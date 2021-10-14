@@ -1,7 +1,7 @@
 {
   "name": "react-native-usercentrics",
   "version": "1.0.0",
-  "description": "",
+  "description": "Usercentrics SDK",
   "homepage": "https://github.com/Usercentrics/usercentrics-react-native",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",

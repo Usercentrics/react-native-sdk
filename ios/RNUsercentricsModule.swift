@@ -6,8 +6,9 @@
 //
 
 import Foundation
+import Usercentrics
 
-@objc(RNUsercentricsModule)
+@objc(Usercentrics)
 class RNUsercentricsModule: NSObject {
   @objc
   func constantsToExport() -> [AnyHashable : Any]! {
