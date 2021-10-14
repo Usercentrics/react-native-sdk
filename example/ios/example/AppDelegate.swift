@@ -1,7 +1,4 @@
 import UIKit
-#if DEBUG
-import FlipperKit
-#endif
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, RCTBridgeDelegate {
@@ -9,8 +6,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, RCTBridgeDelegate {
   var window: UIWindow?
 
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-    initializeFlipper(with: application)
-
     let bridge = RCTBridge(delegate: self, launchOptions: launchOptions)
     let rootView = RCTRootView(bridge: bridge!, moduleName: "example", initialProperties: nil)
 
@@ -34,18 +29,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, RCTBridgeDelegate {
     return RCTBundleURLProvider.sharedSettings()?.jsBundleURL(forBundleRoot: "index", fallbackResource: nil)
     #else
     return Bundle.main.url(forResource: "main", withExtension: "jsbundle")
-    #endif
-  }
-
-  private func initializeFlipper(with application: UIApplication) {
-    #if DEBUG
-    let client = FlipperClient.shared()
-    let layoutDescriptionMapper = SKDescriptorMapper(defaults: ())
-    client?.add(FlipperKitLayoutPlugin(rootNode: application, with: layoutDescriptionMapper))
-    client?.add(FKUserDefaultsPlugin(suiteName: nil))
-    client?.add(FlipperKitReactPlugin())
-    client?.add(FlipperKitNetworkPlugin(networkAdapter: SKIOSNetworkAdapter()))
-    client?.start()
     #endif
   }
 }
