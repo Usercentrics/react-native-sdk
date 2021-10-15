@@ -1,12 +1,9 @@
 import React, { useEffect } from 'react'
 import { Button, NativeModules, StyleSheet, Text, View } from 'react-native'
-import RNUsercentricsModule from 'react-native-usercentrics'
+import { Usercentrics, UsercentricsLoggerLevel, UsercentricsOptions } from '../../src/Usercentrics'
 
 const App = () => {
-  useEffect(() => {
-    console.log(RNUsercentricsModule)
-  })
-
+  
   const styles = StyleSheet.create({
     container: {
       flex: 1,
@@ -18,8 +15,15 @@ const App = () => {
 
   return (
     <View style={styles.container}>
-      <Button onPress={() => console.log("clicou")} title="Show PredefinedUI" />
-      <Button onPress={() => console.log("clicou")} title="Show Custom UI" />
+      <Button title="Show PredefinedUI" onPress={() => {
+        let options = new UsercentricsOptions("abc")
+        options.defaultLanguage = "pt"
+        options.loggerLevel = UsercentricsLoggerLevel.debug
+        options.version = "1.2.3"
+        options.timeoutMillis = 123
+        Usercentrics.configure(options)
+      }} />
+      <Button onPress={() => console.log("cde")} title="Show Custom UI" />
     </View>
   )
 }
