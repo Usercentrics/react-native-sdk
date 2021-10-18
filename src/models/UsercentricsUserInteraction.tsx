@@ -1,0 +1,1 @@
+export enum UsercentricsUserInteraction { acceptAll, denyAll, granular, noInteraction }

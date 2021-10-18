@@ -1,1 +1,0 @@
-export {  UsercentricsOptions } from "./Usercentrics";

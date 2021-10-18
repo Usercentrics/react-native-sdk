@@ -1,37 +1,32 @@
-
 import { NativeModules } from 'react-native'
+import { UsercentricsOptions, UsercentricsServiceConsent, UsercentricsUIOptions, UsercentricsConsentUserResponse } from './models';
 
 const { RNUsercentricsModule } = NativeModules;
 
-export enum UsercentricsLoggerLevel {
-    none,
-    error,
-    warning,
-    debug
-}
+export class UsercentricsReadyStatus {
+    shouldShowCMP: boolean
+    consents: [UsercentricsServiceConsent]
 
-export class UsercentricsOptions {
-    settingsId: string;
-    defaultLanguage?: string;
-    loggerLevel?: UsercentricsLoggerLevel;
-    timeoutMillis?: number;
-    version?: string;
-
-    constructor(settingsId: string,
-        defaultLanguage?: string,
-        loggerLevel?: UsercentricsLoggerLevel,
-        timeoutMillis?: number,
-        version?: string) {
-        this.settingsId = settingsId;
-        this.defaultLanguage = defaultLanguage
-        this.loggerLevel = loggerLevel
-        this.timeoutMillis = timeoutMillis
-        this.version = version
+    constructor(shouldShowCMP: boolean, consents: [UsercentricsServiceConsent]) {
+        this.shouldShowCMP = shouldShowCMP
+        this.consents = consents
     }
 }
 
 export const Usercentrics = {
     configure: (options: UsercentricsOptions) => {
         RNUsercentricsModule.configure(options)
+    },
+
+    status: (): Promise<UsercentricsReadyStatus> => { 
+        return RNUsercentricsModule.isReady();
+    },
+
+    showCMP: (options: UsercentricsUIOptions): Promise<UsercentricsConsentUserResponse> => {
+        return RNUsercentricsModule.showCMP(options);
+    },
+
+    reset: () => {
+        RNUsercentricsModule.reset()
     }
 }
