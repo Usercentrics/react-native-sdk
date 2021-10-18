@@ -8,6 +8,7 @@
 import Foundation
 import Usercentrics
 import UsercentricsUI
+import UIKit
 
 @objc(RNUsercentricsModule)
 class RNUsercentricsModule: NSObject, RCTBridgeModule {
@@ -59,6 +60,22 @@ class RNUsercentricsModule: NSObject, RCTBridgeModule {
             if #available(iOS 13.0, *) { predefinedUI.isModalInPresentation = true }
             rootVC.present(predefinedUI, animated: true, completion: nil)
         }
+    }
+
+    @objc func restoreUserSession(controllerId: String, resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) -> Void {
+        UsercentricsCore.shared.restoreUserSession(controllerId: controllerId) { status in
+            resolve(status.toDictionary())
+        } onFailure: { error in
+            reject("usercentrics_reactNative_restoreUserSession_error", error.localizedDescription, nil)
+        }
+    }
+
+    @objc func getTCFString(_ resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) -> Void {
+        resolve(UsercentricsCore.shared.getTCString())
+    }
+
+    @objc func getControllerId(_ resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) -> Void {
+        resolve(UsercentricsCore.shared.getControllerId())
     }
 
     @objc func reset() -> Void {

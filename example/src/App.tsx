@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Button, NativeModules, StyleSheet, Text, View } from 'react-native'
+import { Button, StyleSheet, Text, View } from 'react-native'
 import { UsercentricsOptions, UsercentricsLoggerLevel, UsercentricsServiceConsent, UsercentricsUIOptions } from '../../src/models'
 import { Usercentrics } from '../../src/Usercentrics' 
 
@@ -27,10 +27,24 @@ class App extends Component {
   }
 
   async showCMP(showCloseButton: boolean) { 
-    const response = await Usercentrics.showCMP(new UsercentricsUIOptions(showCloseButton));
+    const options = new UsercentricsUIOptions(showCloseButton)
+
+    options.customLogo = "logo"
+    // options.fontName = "Lora"
+    // options.fontSize = 14
+
+    const response = await Usercentrics.showCMP(options)
     console.log("Consents -> ${response.consents}", response.consents);
     console.log("User Interaction -> ${response.userInteraction}", response.userInteraction);
     console.log("Controller Id -> ${response.controllerId}", response.controllerId);
+  }
+
+  async printMethods() {
+    const controllerId = await Usercentrics.getControllerId();
+    const tcfString = await Usercentrics.getTCFString();
+
+    console.log("Controller Id -> ${controllerId}", controllerId);
+    console.log("TCF String -> ${tcfString}", tcfString);
   }
 
   applyConsents(consents: [UsercentricsServiceConsent]) {
@@ -44,7 +58,7 @@ class App extends Component {
         alignItems: 'center',
         justifyContent: 'center',
         height: 200,
-      },
+      }
     })
 
     return(
@@ -52,7 +66,9 @@ class App extends Component {
       <Button title="Show PredefinedUI" onPress={ () => {
           this.showCMP(false);
       }} />
-      <Button onPress={() => console.log("Not implemented yet.")} title="Show Custom UI" />
+      <Button onPress={() => {
+          this.printMethods();
+      }} title="Show Custom UI" />
     </View>
     )
   }

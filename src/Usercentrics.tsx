@@ -26,6 +26,18 @@ export const Usercentrics = {
         return RNUsercentricsModule.showCMP(options);
     },
 
+    restoreUserSession: (controllerId: string): Promise<UsercentricsReadyStatus> => {
+        return RNUsercentricsModule.restoreUserSession(controllerId);
+    },
+
+    getControllerId: (): Promise<string> => {
+        return RNUsercentricsModule.getControllerId();
+    },
+
+    getTCFString: (): Promise<string> => {
+        return RNUsercentricsModule.getTCFString();
+    },
+
     reset: () => {
         RNUsercentricsModule.reset()
     }
