@@ -5,7 +5,7 @@ extension UsercentricsConsentUserResponse {
     func toDictionary() -> NSDictionary {
         return [
             "controllerId": self.controllerId,
-            "userInteraction": self.userInteraction.toString(),
+            "userInteraction": self.userInteraction.toInt(),
             "consents": self.consents.map { $0.toDictionary() }
         ]
     }

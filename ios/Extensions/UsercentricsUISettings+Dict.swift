@@ -6,13 +6,18 @@ extension UsercentricsUISettings {
         let showCloseButton = dictionary["showCloseButton"] as? Bool == true
 
         var customFont: UIFont?
-        if let customFontName = dictionary["fontName"] as? String,
-           let customFontSize = dictionary["fontSize"] as? CGFloat {
+        if let usercentricsFontDict = dictionary["customFont"] as? NSDictionary,
+           let customFontName = usercentricsFontDict["fontName"] as? String,
+           let customFontSize = usercentricsFontDict["fontSize"] as? CGFloat {
+
             customFont = UIFont(name: customFontName, size: customFontSize)
         }
 
-        let customImageName = dictionary["customLogo"] as? String
-        let customImage = customImageName != nil ? UIImage(named: customImageName!) : nil
+        var customImage: UIImage?
+        if let customLogoDict = dictionary["customLogo"] as? NSDictionary,
+           let logoName = customLogoDict["logoName"] as? String {
+            customImage = UIImage(named: logoName)
+        }
 
         self.init(customFont: customFont,
                   customLogo: customImage,

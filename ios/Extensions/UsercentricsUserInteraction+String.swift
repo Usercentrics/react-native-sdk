@@ -2,19 +2,17 @@ import Foundation
 import UsercentricsUI
 
 extension UsercentricsUserInteraction {
-    func toString() -> String {
+    func toInt() -> Int {
         switch self {
             case .acceptAll:
-                return "ACCEPT_ALL"
+                return 0
             case .denyAll:
-                return "DENY_ALL"
+                return 1
             case .granular:
-                return "GRANULAR"
-            case .noInteraction:
-                return "NO_INTERACTION"
-            @unknown default:
-                assert(false)
-                return "NO_INTERACTION"
+                return 2
+            default:
+                // NO_INTERACTION
+                return 3
         }
     }
 }

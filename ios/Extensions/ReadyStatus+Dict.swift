@@ -12,12 +12,17 @@ extension UsercentricsReadyStatus {
 
 extension UsercentricsServiceConsent {
     func toDictionary() -> NSDictionary {
-        return [
+        let dict: NSMutableDictionary = [
             "templateId": self.templateId,
             "status": self.status,
-            "type": self.type?.name as Any,
             "version": self.version,
             "dataProcessor": self.dataProcessor,
         ]
+
+        if let type = self.type?.ordinal {
+            dict["type"] = type
+        }
+
+        return dict
     }
 }

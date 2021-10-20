@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import { Button, StyleSheet, Text, View } from 'react-native'
-import { UsercentricsOptions, UsercentricsLoggerLevel, UsercentricsServiceConsent, UsercentricsUIOptions } from '../../src/models'
+import { Button, Image, StyleSheet, Text, View } from 'react-native'
+import { UsercentricsOptions, UsercentricsFont, UsercentricsLoggerLevel, UsercentricsServiceConsent, UsercentricsUIOptions, UsercentricsConsentType, UsercentricsLogo } from '../../src/models'
 import { Usercentrics } from '../../src/Usercentrics' 
 
 class App extends Component { 
@@ -18,7 +18,7 @@ class App extends Component {
 
   async componentDidMount() {
     const status = await Usercentrics.status();
-    
+
     if(status.shouldShowCMP) {
       this.showCMP(false)
     } else { 
@@ -28,10 +28,12 @@ class App extends Component {
 
   async showCMP(showCloseButton: boolean) { 
     const options = new UsercentricsUIOptions(showCloseButton)
+    const customLogo = new UsercentricsLogo("logo.png", Image.resolveAssetSource(require('../assets/images/logo.png')))
 
-    options.customLogo = "logo"
-    // options.fontName = "Lora"
-    // options.fontSize = 14
+    options.customLogo = customLogo
+
+    const font = new UsercentricsFont("Lora", 14)
+    options.customFont = font
 
     const response = await Usercentrics.showCMP(options)
     console.log("Consents -> ${response.consents}", response.consents);
@@ -42,9 +44,11 @@ class App extends Component {
   async printMethods() {
     const controllerId = await Usercentrics.getControllerId();
     const tcfString = await Usercentrics.getTCFString();
+    const data = await Usercentrics.restoreUserSession("customSettingsId")
 
     console.log("Controller Id -> ${controllerId}", controllerId);
     console.log("TCF String -> ${tcfString}", tcfString);
+    console.log("Restore User Session -> ${data}", data)
   }
 
   applyConsents(consents: [UsercentricsServiceConsent]) {
@@ -56,19 +60,26 @@ class App extends Component {
       container: {
         flex: 1,
         alignItems: 'center',
-        justifyContent: 'center',
+        justifyContent: 'space-evenly',
         height: 200,
+      },
+      custom: { 
+        fontFamily: 'Lora',
+        fontSize: 20,
       }
     })
 
     return(
     <View style={styles.container}>
-      <Button title="Show PredefinedUI" onPress={ () => {
+      <Text style={styles.custom}> Hello World ${ require('../assets/images/logo.png') }</Text>
+      <Image source={ require('../assets/images/logo.png') } />
+      <Button onPress={ () => {
           this.showCMP(false);
-      }} />
-      <Button onPress={() => {
+      }} title="Show PredefinedUI" />
+
+      <Button onPress={ () => {
           this.printMethods();
-      }} title="Show Custom UI" />
+      }} title="Print Methods" />
     </View>
     )
   }

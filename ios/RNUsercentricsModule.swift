@@ -62,7 +62,7 @@ class RNUsercentricsModule: NSObject, RCTBridgeModule {
         }
     }
 
-    @objc func restoreUserSession(controllerId: String, resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) -> Void {
+    @objc func restoreUserSession(_ controllerId: String, resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) -> Void {
         UsercentricsCore.shared.restoreUserSession(controllerId: controllerId) { status in
             resolve(status.toDictionary())
         } onFailure: { error in
