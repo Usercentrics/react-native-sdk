@@ -396,7 +396,7 @@ SPEC CHECKSUMS:
   React-jsi: 12913c841713a15f64eabf5c9ad98592c0ec5940
   React-jsiexecutor: 43f2542aed3c26e42175b339f8d37fe3dd683765
   React-jsinspector: 41e58e5b8e3e0bf061fdf725b03f2144014a8fb0
-  react-native-usercentrics: 623dfe0365d07bd0e02d09063ca9fc4258dd31f5
+  react-native-usercentrics: 9e6015e439829fde537964697f8c8c459638504c
   React-perflogger: fd28ee1f2b5b150b00043f0301d96bd417fdc339
   React-RCTActionSheet: 7f3fa0855c346aa5d7c60f9ced16e067db6d29fa
   React-RCTAnimation: 2119a18ee26159004b001bc56404ca5dbaae6077
@@ -413,6 +413,6 @@ SPEC CHECKSUMS:
   UsercentricsUI: da22ffb838fefa7b64ad3e1f7f31597e8006a8b7
   Yoga: aa0cb45287ebe1004c02a13f279c55a95f1572f4
 
-PODFILE CHECKSUM: 9cdf7474d891bfc0bd42f874f9be94c769b4eeca
+PODFILE CHECKSUM: 8832414c5dd364614811ab26910be07c365f97ea
 
 COCOAPODS: 1.10.1

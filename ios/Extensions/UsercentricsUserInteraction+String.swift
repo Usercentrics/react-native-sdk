@@ -1,7 +1,7 @@
 import Foundation
 import UsercentricsUI
 
-extension UsercentricsUserInteraction {
+public extension UsercentricsUserInteraction {
     func toInt() -> Int {
         switch self {
             case .acceptAll:

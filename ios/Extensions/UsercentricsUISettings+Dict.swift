@@ -1,7 +1,7 @@
 import Foundation
 import UsercentricsUI
 
-extension UsercentricsUISettings {
+public extension UsercentricsUISettings {
     init?(from dictionary: NSDictionary) {
         let showCloseButton = dictionary["showCloseButton"] as? Bool == true
 

@@ -1,7 +1,7 @@
 import Foundation
 import UsercentricsUI
 
-extension UsercentricsConsentUserResponse {
+public extension UsercentricsConsentUserResponse {
     func toDictionary() -> NSDictionary {
         return [
             "controllerId": self.controllerId,

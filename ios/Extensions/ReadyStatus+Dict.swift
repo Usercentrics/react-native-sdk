@@ -1,7 +1,7 @@
 import Foundation
 import Usercentrics
 
-extension UsercentricsReadyStatus {
+public extension UsercentricsReadyStatus {
     func toDictionary() -> NSDictionary {
         return [
             "shouldShowCMP": self.shouldShowCMP,
@@ -10,7 +10,7 @@ extension UsercentricsReadyStatus {
     }
 }
 
-extension UsercentricsServiceConsent {
+public extension UsercentricsServiceConsent {
     func toDictionary() -> NSDictionary {
         let dict: NSMutableDictionary = [
             "templateId": self.templateId,

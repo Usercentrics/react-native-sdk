@@ -1,7 +1,7 @@
 import Foundation
 import Usercentrics
 
-extension UsercentricsOptions {
+public extension UsercentricsOptions {
     convenience init?(from dictionary: NSDictionary) {
         guard let settingsId = dictionary["settingsId"] as? String else {
             return nil
@@ -33,7 +33,7 @@ extension UsercentricsOptions {
     }
 }
 
-extension UsercentricsLoggerLevel {
+public extension UsercentricsLoggerLevel {
     static func initialize(from value: Int) -> UsercentricsLoggerLevel {
         switch value {
             case 0:

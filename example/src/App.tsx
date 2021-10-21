@@ -9,10 +9,10 @@ class App extends Component {
     super(props)
 
     let options = new UsercentricsOptions("eQ6JwYNPb")
-    // options.defaultLanguage = "pt"
+    options.defaultLanguage = "pt"
     options.loggerLevel = UsercentricsLoggerLevel.debug
-    // options.version = "1.2.3"
-    // options.timeoutMillis = 123
+    options.version = "1.2.3"
+    options.timeoutMillis = 123
     Usercentrics.configure(options)
   }
 
@@ -71,8 +71,6 @@ class App extends Component {
 
     return(
     <View style={styles.container}>
-      <Text style={styles.custom}> Hello World ${ require('../assets/images/logo.png') }</Text>
-      <Image source={ require('../assets/images/logo.png') } />
       <Button onPress={ () => {
           this.showCMP(false);
       }} title="Show PredefinedUI" />

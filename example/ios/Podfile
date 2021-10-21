@@ -12,4 +12,8 @@ target 'example' do
     # to enable hermes on iOS, change `false` to `true` and then install pods
     :hermes_enabled => false
   )
+
+    target 'exampleTests' do
+        inherit! :complete
+    end
 end
