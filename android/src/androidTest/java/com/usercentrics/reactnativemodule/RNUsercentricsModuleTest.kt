@@ -297,7 +297,7 @@ class RNUsercentricsModuleTest {
 
         val result = promise.resolveValue as WritableMap
         val consent = result.getArray("consents")?.getMap(0)!!
-        
+
         assertEquals(
             "8620135313b043696b806868b20da905886a3a2598ddddc2b52973f9807d6b45",
             result.getString("controllerId")
