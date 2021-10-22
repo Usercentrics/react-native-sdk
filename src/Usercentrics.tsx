@@ -1,17 +1,7 @@
 import { NativeModules } from 'react-native'
-import { UsercentricsOptions, UsercentricsServiceConsent, UsercentricsUIOptions, UsercentricsConsentUserResponse } from './models';
+import { UsercentricsOptions, UsercentricsUIOptions, UsercentricsConsentUserResponse, UsercentricsReadyStatus } from './models';
 
 const { RNUsercentricsModule } = NativeModules;
-
-export class UsercentricsReadyStatus {
-    shouldShowCMP: boolean
-    consents: [UsercentricsServiceConsent]
-
-    constructor(shouldShowCMP: boolean, consents: [UsercentricsServiceConsent]) {
-        this.shouldShowCMP = shouldShowCMP
-        this.consents = consents
-    }
-}
 
 export const Usercentrics = {
     configure: (options: UsercentricsOptions) => {

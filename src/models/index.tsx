@@ -5,3 +5,4 @@ export {  UsercentricsServiceConsent } from "./UsercentricsServiceConsent";
 export {  UsercentricsUIOptions, UsercentricsFont, UsercentricsLogo } from "./UsercentricsUIOptions";
 export { UsercentricsUserInteraction } from './UsercentricsUserInteraction';
 export { UsercentricsConsentUserResponse } from './UsercentricsConsentUserResponse';
+export { UsercentricsReadyStatus } from './UsercentricsReadyStatus';

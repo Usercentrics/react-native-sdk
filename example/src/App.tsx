@@ -1,9 +1,8 @@
 import React, { Component } from 'react'
-import { Button, Image, StyleSheet, Text, View } from 'react-native'
-import { UsercentricsOptions, UsercentricsFont, UsercentricsLoggerLevel, UsercentricsServiceConsent, UsercentricsUIOptions, UsercentricsConsentType, UsercentricsLogo } from '../../src/models'
-import { Usercentrics } from '../../src/Usercentrics' 
+import { Button, Image, StyleSheet, View } from 'react-native'
+import { Usercentrics, UsercentricsFont, UsercentricsLoggerLevel, UsercentricsLogo, UsercentricsOptions, UsercentricsServiceConsent, UsercentricsUIOptions } from 'react-native-usercentrics';
 
-class App extends Component { 
+class App extends Component {
 
   constructor(props: any) {
     super(props)
@@ -19,14 +18,14 @@ class App extends Component {
   async componentDidMount() {
     const status = await Usercentrics.status();
 
-    if(status.shouldShowCMP) {
+    if (status.shouldShowCMP) {
       this.showCMP(false)
-    } else { 
+    } else {
       this.applyConsents(status.consents)
     }
   }
 
-  async showCMP(showCloseButton: boolean) { 
+  async showCMP(showCloseButton: boolean) {
     const options = new UsercentricsUIOptions(showCloseButton)
     const customLogo = new UsercentricsLogo("logo.png", Image.resolveAssetSource(require('../assets/images/logo.png')))
 
@@ -52,7 +51,7 @@ class App extends Component {
   }
 
   applyConsents(consents: [UsercentricsServiceConsent]) {
-      // https://docs.usercentrics.com/cmp_in_app_sdk/latest/apply_consent/apply-consent/#apply-consent-to-each-service
+    // https://docs.usercentrics.com/cmp_in_app_sdk/latest/apply_consent/apply-consent/#apply-consent-to-each-service
   }
 
   render() {
@@ -63,22 +62,22 @@ class App extends Component {
         justifyContent: 'space-evenly',
         height: 200,
       },
-      custom: { 
+      custom: {
         fontFamily: 'Lora',
         fontSize: 20,
       }
     })
 
-    return(
-    <View style={styles.container}>
-      <Button onPress={ () => {
+    return (
+      <View style={styles.container}>
+        <Button onPress={() => {
           this.showCMP(false);
-      }} title="Show PredefinedUI" />
+        }} title="Show PredefinedUI" />
 
-      <Button onPress={ () => {
+        <Button onPress={() => {
           this.printMethods();
-      }} title="Print Methods" />
-    </View>
+        }} title="Print Methods" />
+      </View>
     )
   }
 }
