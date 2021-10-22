@@ -16,6 +16,7 @@
 		A2DC252727216CFC00AA9DD8 /* DispatchQueueManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DC252627216CFC00AA9DD8 /* DispatchQueueManager.swift */; };
 		A2DC252F27217A4600AA9DD8 /* PresentationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DC252E27217A4600AA9DD8 /* PresentationViewController.swift */; };
 		A2DC25362721A05500AA9DD8 /* RNUsercentricsModuleError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DC25352721A05500AA9DD8 /* RNUsercentricsModuleError.swift */; };
+		A2DC25402722A91400AA9DD8 /* UCRNFlag.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DC253F2722A91400AA9DD8 /* UCRNFlag.swift */; };
 		FA4F9FE82512AA42002DB4D5 /* RNUsercentricsModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4F9FE72512AA42002DB4D5 /* RNUsercentricsModule.swift */; };
 		FA4F9FEB2512ACC2002DB4D5 /* RNUsercentricsModule.m in Sources */ = {isa = PBXBuildFile; fileRef = FA4F9FEA2512ACC2002DB4D5 /* RNUsercentricsModule.m */; };
 /* End PBXBuildFile section */
@@ -42,6 +43,7 @@
 		A2DC252627216CFC00AA9DD8 /* DispatchQueueManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DispatchQueueManager.swift; sourceTree = "<group>"; };
 		A2DC252E27217A4600AA9DD8 /* PresentationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentationViewController.swift; sourceTree = "<group>"; };
 		A2DC25352721A05500AA9DD8 /* RNUsercentricsModuleError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RNUsercentricsModuleError.swift; sourceTree = "<group>"; };
+		A2DC253F2722A91400AA9DD8 /* UCRNFlag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UCRNFlag.swift; sourceTree = "<group>"; };
 		FA0EFF60236CC8FB00069FA8 /* libRNUsercentricsModule.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libRNUsercentricsModule.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA4F9FE62512AA41002DB4D5 /* RNUsercentricsModule-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RNUsercentricsModule-Bridging-Header.h"; sourceTree = "<group>"; };
 		FA4F9FE72512AA42002DB4D5 /* RNUsercentricsModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RNUsercentricsModule.swift; sourceTree = "<group>"; };
@@ -97,6 +99,7 @@
 				A22EDF8E271DA46D00F5BB8C /* Extensions */,
 				FA4F9FE62512AA41002DB4D5 /* RNUsercentricsModule-Bridging-Header.h */,
 				FA4F9FEA2512ACC2002DB4D5 /* RNUsercentricsModule.m */,
+				A2DC253F2722A91400AA9DD8 /* UCRNFlag.swift */,
 				FA4F9FE72512AA42002DB4D5 /* RNUsercentricsModule.swift */,
 				FA0EFF61236CC8FB00069FA8 /* Products */,
 			);
@@ -175,6 +178,7 @@
 				A22EDFA0271DA49900F5BB8C /* UsercentricsUserInteraction+String.swift in Sources */,
 				A22EDF9F271DA49900F5BB8C /* ReadyStatus+Dict.swift in Sources */,
 				A22EDFA2271DA49900F5BB8C /* UsercentricsUISettings+Dict.swift in Sources */,
+				A2DC25402722A91400AA9DD8 /* UCRNFlag.swift in Sources */,
 				A2DC252727216CFC00AA9DD8 /* DispatchQueueManager.swift in Sources */,
 				A22EDF9E271DA49900F5BB8C /* UsercentricsOptions+Dict.swift in Sources */,
 				A2DC25362721A05500AA9DD8 /* RNUsercentricsModuleError.swift in Sources */,

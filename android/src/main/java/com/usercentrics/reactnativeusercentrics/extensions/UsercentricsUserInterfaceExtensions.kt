@@ -34,7 +34,7 @@ internal fun ReadableMap.usercentricsFontFromMap(assetManager: AssetManager): Us
     val fontSize = getDoubleOrNull("fontSize") ?: return null
 
     val fontsFolder = assetManager.list("fonts")
-    val firstName = fontsFolder?.first { it.startsWith(fontName) } ?: return null
+    val firstName = fontsFolder?.firstOrNull { it.startsWith(fontName) } ?: return null
 
     val typeface = Typeface.createFromAsset(assetManager, "fonts/$firstName")
 

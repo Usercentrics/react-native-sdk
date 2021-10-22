@@ -49,20 +49,6 @@ class RNUsercentricsModuleTests: XCTestCase {
     XCTAssertEqual(nil, fakeUsercentrics.configureOptions)
   }
 
-  func testConfigureLoggerLevelSerializer() {
-    module.configure(UsercentricsOptions.asDict(mockObject: .mock(loggerLevel: .debug)))
-    XCTAssertEqual(.debug, fakeUsercentrics.configureOptions!.loggerLevel)
-
-    module.configure(UsercentricsOptions.asDict(mockObject: .mock(loggerLevel: .none)))
-    XCTAssertEqual(.none, fakeUsercentrics.configureOptions!.loggerLevel)
-
-    module.configure(UsercentricsOptions.asDict(mockObject: .mock(loggerLevel: .error)))
-    XCTAssertEqual(.error, fakeUsercentrics.configureOptions!.loggerLevel)
-
-    module.configure(UsercentricsOptions.asDict(mockObject: .mock(loggerLevel: .warning)))
-    XCTAssertEqual(.warning, fakeUsercentrics.configureOptions!.loggerLevel)
-  }
-
   func testConfigureWithoutCorrectValues() {
     module.configure([:])
     XCTAssertEqual(nil, fakeUsercentrics.configureOptions)

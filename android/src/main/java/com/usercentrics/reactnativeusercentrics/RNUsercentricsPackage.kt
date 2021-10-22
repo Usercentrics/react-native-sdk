@@ -4,8 +4,11 @@ import com.facebook.react.ReactPackage
 import com.facebook.react.bridge.NativeModule
 import com.facebook.react.bridge.ReactApplicationContext
 import com.facebook.react.uimanager.ViewManager
+import com.usercentrics.reactnativeusercentrics.api.UsercentricsProxySingleton
 
 class RNUsercentricsPackage : ReactPackage {
+
+    private var usercentricsProxy = UsercentricsProxySingleton
 
     override fun createViewManagers(reactContext: ReactApplicationContext):
             MutableList<ViewManager<*, *>> {
@@ -14,6 +17,6 @@ class RNUsercentricsPackage : ReactPackage {
 
     override fun createNativeModules(reactContext: ReactApplicationContext):
             MutableList<NativeModule> {
-        return mutableListOf(RNUsercentricsModule(reactContext))
+        return mutableListOf(RNUsercentricsModule(reactContext, usercentricsProxy))
     }
 }
