@@ -19,6 +19,8 @@ function runTest() {
 }
 
 function main() {
+  export ANDROID_SDK_ROOT=~/Library/Android/sdk
+  
   buildApks
   ../../scripts/wait_emulator.sh
   installTestApk
