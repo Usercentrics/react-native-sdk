@@ -11,21 +11,46 @@ on:
   workflow_dispatch:
 
 jobs: 
-  build:
-    runs-on: ${{ matrix.os }}
-
-    strategy:
-      matrix:
-        os: [ubuntu-latest, macos-latest]
-        node-version: [12.x]
+  test-rn:
+    runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v1
-      - name: Use Node.js ${{ matrix.node-version }}
+
+      - name: Use Node.js "12.x"
         uses: actions/setup-node@v1
         with:
-          node-version: ${{ matrix.node-version }}
-      - name: npm install and test
+          node-version: "12.x"
+
+      - name: Run RN Tests
         run: |
           npm ci
           npm test
+
+  ios: 
+    needs: js
+    runs-on: macos-latest
+    defaults:
+      run:
+        working-directory: example
+    - name: Checkout
+      uses: actions/checkout@v2
+      
+    - name: Setup Node
+      uses: actions/setup-node@v2
+      with:
+        node-version: "12.x"
+
+    - name: Install NPM dependencies
+      run: npm install
+
+    - name: Install pods
+      run: cd ios && pod install
+
+    - name: Run tests
+      run:  xcodebuild \ 
+      -workspace example.xcworkspace \ 
+      -scheme example \ 
+      -sdk iphonesimulator \ 
+      -destination 'platform=iOS Simulator,name=iPhone 12'
+      test
