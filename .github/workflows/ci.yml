@@ -76,8 +76,5 @@ jobs:
       uses: reactivecircus/android-emulator-runner@v2
       with:
           working-directory: ./example/android
-          api-level: 23
-          target: default
-          arch: x86
-          profile: Nexus 6
-          script: ./gradlew connectedCheck --stacktrace
+          api-level: 29
+          script: ./gradlew :react-native-usercentrics:connectedAndroidTest
