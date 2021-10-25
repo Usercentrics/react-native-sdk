@@ -71,6 +71,6 @@ jobs:
     - name: Run all tests
       working-directory: ./example/android
       uses: reactivecircus/android-emulator-runner@v2
-        with:
-          api-level: 29
-          script: ./gradlew connectedAndroidTest --info
+      with:
+        api-level: 29
+        script: ./gradlew connectedAndroidTest --info
