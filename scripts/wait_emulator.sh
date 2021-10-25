@@ -1,4 +1,5 @@
 #!/bin/bash -xe
+export ANDROID_SDK_ROOT=~/Library/Android/sdk
 
 bootanim=""
 failcounter=0
