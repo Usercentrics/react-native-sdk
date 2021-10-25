@@ -57,7 +57,7 @@ jobs:
     runs-on: macos-latest
     defaults:
       run:
-        working-directory: example
+        working-directory: ./example/android
     
     steps: 
     - name: Checkout
@@ -76,4 +76,3 @@ jobs:
       with:
           api-level: 29
           script: ./gradlew connectedDebugAndroidTest
-      working-directory: ./example/android
