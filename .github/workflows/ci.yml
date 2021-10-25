@@ -57,7 +57,7 @@ jobs:
     runs-on: macos-latest
     defaults:
       run:
-        working-directory: example/android
+        working-directory: example
     
     steps: 
     - name: Checkout
@@ -69,10 +69,10 @@ jobs:
         node-version: "14.x"
 
     - name: Install NPM dependencies
-      run: cd .. && npm install
+      run: npm install
 
     - name: Android tests
       uses: reactivecircus/android-emulator-runner@v2
       with:
           api-level: 29
-          script: ./gradlew connectedDebugAndroidTest
+          script: cd android; ./gradlew connectedDebugAndroidTest
