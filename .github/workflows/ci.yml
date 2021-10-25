@@ -28,7 +28,7 @@ jobs:
           npm test
 
   ios: 
-    needs: js
+    needs: test-rn
     runs-on: macos-latest
     defaults:
       run:
