@@ -17,37 +17,62 @@ jobs:
     steps:
       - uses: actions/checkout@v1
 
-      - name: Use Node.js "12.x"
+      - name: Use Node.js "14.x"
         uses: actions/setup-node@v1
         with:
-          node-version: "12.x"
+          node-version: "14.x"
 
       - name: Run RN Tests
         run: |
           npm ci
           npm test
 
-  ios: 
+  # test-ios: 
+  #   needs: test-rn
+  #   runs-on: macos-latest
+  #   defaults:
+  #     run:
+  #       working-directory: example
+
+  #   steps:
+  #   - name: Checkout
+  #     uses: actions/checkout@v2
+      
+  #   - name: Setup Node
+  #     uses: actions/setup-node@v2
+  #     with:
+  #       node-version: "14.x"
+
+  #   - name: Install NPM dependencies
+  #     run: npm install
+
+  #   - name: Install pods
+  #     run: cd ios && pod install
+
+  #   - name: Run tests
+  #     run:  cd ios && xcodebuild -workspace example.xcworkspace -scheme "example" -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 12' test
+
+  test-android: 
     needs: test-rn
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
     defaults:
       run:
         working-directory: example
 
-    steps:
+    steps: 
     - name: Checkout
       uses: actions/checkout@v2
-      
+
     - name: Setup Node
       uses: actions/setup-node@v2
       with:
-        node-version: "12.x"
+        node-version: "14.x"
 
     - name: Install NPM dependencies
       run: npm install
 
-    - name: Install pods
-      run: cd ios && pod install
 
-    - name: Run tests
-      run:  cd ios && xcodebuild -workspace example.xcworkspace -scheme "example" -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 12' test
+
+    - name: Run all tests
+      working-directory: ./example/android
+      run: ./gradlew :usercentrics_sdk:test
