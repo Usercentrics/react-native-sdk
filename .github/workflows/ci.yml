@@ -50,4 +50,4 @@ jobs:
       run: cd ios && pod install
 
     - name: Run tests
-      run:  xcodebuild -workspace example.xcworkspace -scheme "example" -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 12' test
+      run:  cd ios && xcodebuild -workspace example.xcworkspace -scheme "example" -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 12' test
