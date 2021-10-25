@@ -54,7 +54,7 @@ jobs:
 
   test-android: 
     # needs: test-rn
-    runs-on: ubuntu-latest
+    runs-on: macOS-latest
     steps: 
     - name: Checkout
       uses: actions/checkout@v2
@@ -68,9 +68,8 @@ jobs:
       working-directory: ./example
       run: npm install
 
-    - name: Run all tests
-      working-directory: ./example/android
+    - name: Android tests
       uses: reactivecircus/android-emulator-runner@v2
       with:
-        api-level: 29
-        script: ./gradlew connectedAndroidTest --info
+          api-level: 29
+          script: ./gradlew connectedDebugAndroidTest
