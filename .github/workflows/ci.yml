@@ -69,6 +69,7 @@ jobs:
         node-version: "14.x"
 
     - name: Install NPM dependencies
+      working-directory: ./example
       run: npm install
 
     - name: Android tests
