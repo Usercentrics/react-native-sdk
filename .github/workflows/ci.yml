@@ -55,7 +55,7 @@ jobs:
   test-android: 
     # needs: test-rn
     runs-on: macos-latest
-        
+
     steps: 
     - name: Checkout
       uses: actions/checkout@v2
@@ -74,4 +74,4 @@ jobs:
       with:
           working-directory: ./example/android
           api-level: 29
-          script: ls -la
+          script: ./gradlew connectedDebugAndroidTest
