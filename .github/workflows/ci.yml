@@ -82,4 +82,8 @@ jobs:
       with:
           working-directory: ./example/android
           api-level: 29
-          script: java -version; ./gradlew --version; ./gradlew :react-native-usercentrics:connectedAndroidTest
+          script: brew install gradle;
+          gradle wrapper;
+          java -version; 
+          ./gradlew --version; 
+          ./gradlew :react-native-usercentrics:connectedAndroidTest
