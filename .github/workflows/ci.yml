@@ -54,7 +54,8 @@ jobs:
 
   test-android: 
     # needs: test-rn
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
+    container: circleci/android:api-30
 
     steps: 
     - name: Checkout
