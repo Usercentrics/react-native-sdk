@@ -33,7 +33,7 @@ jobs:
     defaults:
       run:
         working-directory: example
-        
+
     steps:
     - name: Checkout
       uses: actions/checkout@v2
@@ -52,7 +52,7 @@ jobs:
     - name: Run tests
       run:  xcodebuild \ 
       -workspace example.xcworkspace \ 
-      -scheme example \ 
+      -scheme "example" \ 
       -sdk iphonesimulator \ 
       -destination 'platform=iOS Simulator,name=iPhone 12'
       test
