@@ -55,10 +55,7 @@ jobs:
   test-android: 
     # needs: test-rn
     runs-on: macos-latest
-    defaults:
-      run:
-        working-directory: ./example/android
-    
+        
     steps: 
     - name: Checkout
       uses: actions/checkout@v2
@@ -75,5 +72,6 @@ jobs:
     - name: Android tests
       uses: reactivecircus/android-emulator-runner@v2
       with:
+          working-directory: ./example/android
           api-level: 29
           script: ls -la
