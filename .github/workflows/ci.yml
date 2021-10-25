@@ -75,7 +75,7 @@ jobs:
 
     - name: Install NPM dependencies
       working-directory: ./example
-      run: npm install; npx react-native run-android
+      run: npm install
 
     - name: Android tests
       uses: reactivecircus/android-emulator-runner@v2
