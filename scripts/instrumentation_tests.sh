@@ -20,7 +20,7 @@ function runTest() {
 
 function main() {
   buildApks
-  ../../scripts/wait_emulator.sh
+  ../scripts/wait_emulator.sh
   installTestApk
   runTest
 }
