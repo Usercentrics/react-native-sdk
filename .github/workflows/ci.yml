@@ -55,9 +55,6 @@ jobs:
   test-android: 
     needs: test-rn
     runs-on: macOS-latest
-    strategy:
-      matrix:
-        java_version: [11]
 
     steps: 
     - name: Checkout
@@ -68,16 +65,11 @@ jobs:
       with:
         node-version: "14.x"
 
-    - name: Java 11
-      uses: actions/setup-java@v1
-      with:
-        java-version: 11
-
-    - name: Install NPM dependencies
+    - name: Install Dependencies
       working-directory: ./example
       run: ../scripts/install_dependencies.sh
 
-    - name: Android tests
+    - name: Android Tests
       uses: reactivecircus/android-emulator-runner@v2
       with:
           working-directory: ./example/android
