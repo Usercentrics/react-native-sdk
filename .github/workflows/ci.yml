@@ -72,7 +72,8 @@ jobs:
       run: npm install
 
     - name: Android tests
+      working-directory: example/android
       uses: reactivecircus/android-emulator-runner@v2
       with:
           api-level: 29
-          script: cd android; ./gradlew connectedDebugAndroidTest
+          script: ./gradlew connectedDebugAndroidTest
