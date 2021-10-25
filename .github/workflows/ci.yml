@@ -70,11 +70,11 @@ jobs:
 
     - name: Install NPM dependencies
       working-directory: ./example
-      run: npm install
+      run: npm install; npx react-native run-android
 
     - name: Android tests
       uses: reactivecircus/android-emulator-runner@v2
       with:
           working-directory: ./example/android
           api-level: 29
-          script: ./gradlew :react-native-usercentrics:connectedAndroidTest
+          script: java -version; ./gradlew --version; ./gradlew :react-native-usercentrics:connectedAndroidTest
