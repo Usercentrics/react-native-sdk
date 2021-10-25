@@ -72,4 +72,5 @@ jobs:
       run: npm install
 
     - name: Run all tests
-      run: ../scripts/instrumentation_tests.sh
+      working-directory: ./android
+      run: ../../scripts/instrumentation_tests.sh
