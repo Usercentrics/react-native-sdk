@@ -65,11 +65,16 @@ jobs:
       with:
         node-version: "14.x"
 
+    - name: Java 11
+      uses: actions/setup-java@v1
+      with:
+        java-version: 11
+
     - name: Install Dependencies
       working-directory: ./example
       run: ../scripts/install_dependencies.sh
 
-    - name: Android Tests
+    - name: Android tests
       uses: reactivecircus/android-emulator-runner@v2
       with:
           working-directory: ./example/android
