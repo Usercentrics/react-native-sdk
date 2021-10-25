@@ -54,10 +54,10 @@ jobs:
 
   test-android: 
     # needs: test-rn
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
     defaults:
       run:
-        working-directory: example
+        working-directory: example/android
     
     steps: 
     - name: Checkout
@@ -69,10 +69,10 @@ jobs:
         node-version: "14.x"
 
     - name: Install NPM dependencies
-      run: npm install
+      run: cd .. && npm install
 
     - name: Android tests
       uses: reactivecircus/android-emulator-runner@v2
       with:
           api-level: 29
-          script: cd android && ./gradlew connectedDebugAndroidTest
+          script: ./gradlew connectedDebugAndroidTest
