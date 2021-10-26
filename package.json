@@ -1,8 +1,8 @@
 {
-  "name": "@usercentrics/react-native",
+  "name": "@usercentrics/react-native-sdk",
   "version": "0.0.1",
   "description": "Usercentrics SDK",
-  "homepage": "https://github.com/Usercentrics/react-native",
+  "homepage": "https://github.com/Usercentrics/react-native-sdk",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "author": "Usercentrics <developer@usercentrics.com>",
@@ -71,9 +71,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Usercentrics/react-native.git"
+    "url": "https://github.com/Usercentrics/react-native-sdk"
   },
   "bugs": {
-    "url": "https://github.com/Usercentrics/react-native/issues"
+    "url": "https://github.com/Usercentrics/react-native-sdk/issues"
   }
 }
