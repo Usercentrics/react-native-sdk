@@ -2,16 +2,10 @@
 
 # Usercentrics
 
-<p align="left">
-  <a href="https://github.com/Usercentrics/react-native/actions/workflows/ci.yml">
-    <img alt="build and test status" src="https://github.com/Usercentrics/react-native/actions/workflows/ci.yml/badge.svg">
-  </a>
-  [![npm version](https://img.shields.io/npm/v/@usercentrics/react-native-sdk)](https://www.npmjs.com/package/@usercentrics/react-native-sdk)
-  <a href="https://twitter.com/intent/follow?screen_name=usercentrics">
+![example workflow](https://github.com/Usercentrics/react-native-sdk/actions/workflows/ci.yml/badge.svg) [![npm version](https://img.shields.io/npm/v/@usercentrics/react-native-sdk)](https://www.npmjs.com/package/@usercentrics/react-native-sdk) <a href="https://twitter.com/intent/follow?screen_name=usercentrics">
     <img src="https://img.shields.io/twitter/follow/usercentrics?style=social&logo=twitter"
             alt="follow on Twitter">
-  </a>
-</p>
+</a>
 
 ## Overview
 
