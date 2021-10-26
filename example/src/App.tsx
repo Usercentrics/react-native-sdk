@@ -25,11 +25,15 @@ class App extends Component {
     }
   }
 
+  createUsercentricsLogo(): UsercentricsLogo {
+    // Logo name is used for iOS and the Image.resolveAssetSource is used for Android.
+    const customLogo = new UsercentricsLogo("logo.png", Image.resolveAssetSource(require('../assets/images/logo.png')))
+    return customLogo
+  }
+
   async showCMP(showCloseButton: boolean) {
     const options = new UsercentricsUIOptions(showCloseButton)
-    const customLogo = new UsercentricsLogo("logo.png", Image.resolveAssetSource(require('../assets/images/logo.png')))
-
-    options.customLogo = customLogo
+    options.customLogo = this.createUsercentricsLogo();
 
     const font = new UsercentricsFont("Lora", 14)
     options.customFont = font
