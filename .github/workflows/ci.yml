@@ -53,7 +53,7 @@ jobs:
   #     run:  cd ios && xcodebuild -workspace example.xcworkspace -scheme "example" -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 12' test
 
   test-android: 
-    needs: test-rn
+    # needs: test-rn
     runs-on: ubuntu-latest
 
     steps: 
