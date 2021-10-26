@@ -1,12 +1,14 @@
 {
-  "name": "react-native-usercentrics",
-  "version": "1.0.0",
+  "name": "@usercentrics/react-native-sdk",
+  "version": "0.0.2",
   "description": "Usercentrics SDK",
-  "homepage": "https://github.com/Usercentrics/usercentrics-react-native",
+  "homepage": "https://github.com/Usercentrics/react-native-sdk",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "author": "Usercentrics <developer@usercentrics.com>",
-  "license": "MIT",
+  "iosPackageName": "react-native-usercentrics",
+  "iosPackageVersion": "2.0.1",
+  "license": "SEE LICENSE IN LICENSE",
   "files": [
     "android",
     "ios",
@@ -64,5 +66,16 @@
       "json",
       "node"
     ]
+  },
+  "directories": {
+    "example": "example",
+    "lib": "lib"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Usercentrics/react-native-sdk"
+  },
+  "bugs": {
+    "url": "https://github.com/Usercentrics/react-native-sdk/issues"
   }
 }

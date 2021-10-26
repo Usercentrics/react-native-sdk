@@ -7,11 +7,11 @@ class App extends Component {
   constructor(props: any) {
     super(props)
 
-    let options = new UsercentricsOptions("eQ6JwYNPb")
-    options.defaultLanguage = "pt"
+    let options = new UsercentricsOptions("Yi9N3aXia")
+    // options.defaultLanguage = "pt"
     options.loggerLevel = UsercentricsLoggerLevel.debug
-    options.version = "1.2.3"
-    options.timeoutMillis = 123
+    // options.version = "1.2.3"
+    // options.timeoutMillis = 123
     Usercentrics.configure(options)
   }
 
