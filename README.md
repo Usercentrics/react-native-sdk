@@ -6,9 +6,7 @@
   <a href="https://github.com/Usercentrics/react-native/actions/workflows/ci.yml">
     <img alt="build and test status" src="https://github.com/Usercentrics/react-native/actions/workflows/ci.yml/badge.svg">
   </a>
-  <a href="https://github.com/Usercentrics/react-native/releases">
-    <img alt="Version" src="https://img.shields.io/badge/version-2.0.1-blue">
-  </a>
+  [![npm version](https://img.shields.io/npm/v/@usercentrics/react-native-sdk)](https://www.npmjs.com/package/@usercentrics/react-native-sdk)
   <a href="https://twitter.com/intent/follow?screen_name=usercentrics">
     <img src="https://img.shields.io/twitter/follow/usercentrics?style=social&logo=twitter"
             alt="follow on Twitter">
@@ -40,9 +38,17 @@ The Usercentrics Apps SDK is a Consent Management Platform framework for mobile,
 * Android 4.1 (API 16) or higher with Kotlin 1.5 or higher
 * iOS 11 or higher
 
-### Installation
+## Installation
+
+Install the library from npm:
+
+```sh
+npm install @usercentrics/react-native-sdk
 ```
-npm install @usercentrics/react-native --save
+
+After installing the package, you will need to install the Usercentrics using:
+```sh
+npx pod-install
 ```
 
 ## Integration
