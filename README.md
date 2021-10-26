@@ -40,6 +40,11 @@ The Usercentrics Apps SDK is a Consent Management Platform framework for mobile,
 * Android 4.1 (API 16) or higher with Kotlin 1.5 or higher
 * iOS 11 or higher
 
+### Installation
+```
+npm install @usercentrics/react-native --save
+```
+
 ## Integration
 
 Continue to our [documentation](https://docs.usercentrics.com/cmp_in_app_sdk/) for a step by step integration guide.
