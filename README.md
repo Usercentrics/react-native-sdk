@@ -1,7 +1,7 @@
 <img src="https://i.ibb.co/Pr2KmHg/uc-logo.png" height="110" alt="Usercentrics" />
 
 # Usercentrics
-[![CI/CD](https://github.com/Usercentrics/react-native-sdk/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/Usercentrics/react-native-sdk/actions/workflows/ci.yml) [![npm version](https://img.shields.io/npm/v/@usercentrics/react-native-sdk)](https://www.npmjs.com/package/@usercentrics/react-native-sdk) <a href="https://twitter.com/intent/follow?screen_name=usercentrics">
+[![CI/CD](https://github.com/Usercentrics/react-native-sdk/actions/workflows/ci.yml/badge.svg?branch=develop)](https://github.com/Usercentrics/react-native-sdk/actions/workflows/ci.yml) [![npm version](https://img.shields.io/npm/v/@usercentrics/react-native-sdk)](https://www.npmjs.com/package/@usercentrics/react-native-sdk) <a href="https://twitter.com/intent/follow?screen_name=usercentrics">
     <img src="https://img.shields.io/twitter/follow/usercentrics?style=social&logo=twitter"
             alt="follow on Twitter">
 </a>
