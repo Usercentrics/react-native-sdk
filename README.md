@@ -47,7 +47,7 @@ npx pod-install
 
 ## Sample Project
 
-To Run the sample project, you will need to run npm install from both root and example folders:
+To run the sample project, you will need to run npm install from both root and example folders:
 
 * From root folder:
     ```sh
