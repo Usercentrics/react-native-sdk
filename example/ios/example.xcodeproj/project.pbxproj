@@ -12,7 +12,6 @@
 		562C9D98E27A41B0BB18F39D /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = D0D223024B51477898C8BE99 /* logo.png */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		85B900E84FFC8E02557F2381 /* libPods-example-exampleTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2762AEA52BFC18E1201301FB /* libPods-example-exampleTests.a */; };
-		A21E7AFB27205691000F1128 /* Holysthic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4D73557C35454A0DBEF500E1 /* Holysthic.ttf */; };
 		A21E7AFC27205691000F1128 /* Lora.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CFBA2F06D5364A84B9A7D6FA /* Lora.ttf */; };
 		A2DC251E272166FB00AA9DD8 /* RNUsercentricsModuleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DC251D272166FB00AA9DD8 /* RNUsercentricsModuleTests.swift */; };
 		A2DC25212721673C00AA9DD8 /* FakeUsercentricsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DC25202721673C00AA9DD8 /* FakeUsercentricsManager.swift */; };
@@ -42,7 +41,6 @@
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = example/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = example/Info.plist; sourceTree = "<group>"; };
 		2762AEA52BFC18E1201301FB /* libPods-example-exampleTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-example-exampleTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		4D73557C35454A0DBEF500E1 /* Holysthic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Holysthic.ttf; path = ../assets/fonts/Holysthic.ttf; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = example/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8F45C64B16AB75DF72E0AD45 /* Pods-example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-example.release.xcconfig"; path = "Target Support Files/Pods-example/Pods-example.release.xcconfig"; sourceTree = "<group>"; };
 		A2DC2511272161D600AA9DD8 /* exampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = exampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -147,7 +145,6 @@
 		870AE07B7E7F49918FEF5534 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				4D73557C35454A0DBEF500E1 /* Holysthic.ttf */,
 				D0D223024B51477898C8BE99 /* logo.png */,
 				CFBA2F06D5364A84B9A7D6FA /* Lora.ttf */,
 			);
@@ -268,7 +265,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A21E7AFB27205691000F1128 /* Holysthic.ttf in Resources */,
 				A21E7AFC27205691000F1128 /* Lora.ttf in Resources */,
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
