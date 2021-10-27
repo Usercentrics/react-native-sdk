@@ -1,6 +1,14 @@
 import React, { Component } from 'react'
 import { Button, Image, StyleSheet, View } from 'react-native'
-import { Usercentrics, UsercentricsFont, UsercentricsLoggerLevel, UsercentricsLogo, UsercentricsOptions, UsercentricsServiceConsent, UsercentricsUIOptions } from 'react-native-usercentrics';
+import {
+  Usercentrics,
+  UsercentricsFont,
+  UsercentricsLoggerLevel,
+  UsercentricsLogo,
+  UsercentricsOptions,
+  UsercentricsServiceConsent,
+  UsercentricsUIOptions
+} from '../../src/index';
 
 class App extends Component {
 
