@@ -1,8 +1,7 @@
 <img src="https://i.ibb.co/Pr2KmHg/uc-logo.png" height="110" alt="Usercentrics" />
 
 # Usercentrics
-
-![example workflow](https://github.com/Usercentrics/react-native-sdk/actions/workflows/ci.yml/badge.svg) [![npm version](https://img.shields.io/npm/v/@usercentrics/react-native-sdk)](https://www.npmjs.com/package/@usercentrics/react-native-sdk) <a href="https://twitter.com/intent/follow?screen_name=usercentrics">
+[![CI/CD](https://github.com/Usercentrics/react-native-sdk/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/Usercentrics/react-native-sdk/actions/workflows/ci.yml) [![npm version](https://img.shields.io/npm/v/@usercentrics/react-native-sdk)](https://www.npmjs.com/package/@usercentrics/react-native-sdk) <a href="https://twitter.com/intent/follow?screen_name=usercentrics">
     <img src="https://img.shields.io/twitter/follow/usercentrics?style=social&logo=twitter"
             alt="follow on Twitter">
 </a>
@@ -29,7 +28,7 @@ The Usercentrics Apps SDK is a Consent Management Platform framework for mobile,
 |    ✅   |  ✅  |   ❌   |  ❌  |  ❌  |
 
 ### Requirements
-* Android 4.1 (API 16) or higher with Kotlin 1.5 or higher
+* Android 5.0 (API 21) or higher with Kotlin 1.5 or higher
 * iOS 11 or higher
 
 ## Installation
@@ -40,10 +39,43 @@ Install the library from npm:
 npm install @usercentrics/react-native-sdk
 ```
 
-After installing the package, you will need to install the Usercentrics using:
+For iOS, after installing the package, you will need to install the Usercentrics dependency by running from your project folder:
 ```sh
 npx pod-install
 ```
+Or running from ios folder:
+```sh
+pod install
+```
+
+## Sample Project
+
+To run the sample project, you will need to run npm install from both root and example folders:
+
+* From root folder:
+    ```sh
+    npm install
+    ``` 
+* From example folder:
+    ```sh
+    npm install
+    ``` 
+
+    ### iOS
+
+    From example folder: 
+    ```sh
+    npx pod-install
+    npx react-native run-ios
+    ``` 
+
+    ### Android
+
+    Open the android folder using Android Studio in order to create essential files then run from example folder:
+    ```sh
+    npx react-native run-android
+    ``` 
+
 
 ## Integration
 
