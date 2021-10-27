@@ -29,7 +29,7 @@ The Usercentrics Apps SDK is a Consent Management Platform framework for mobile,
 |    ✅   |  ✅  |   ❌   |  ❌  |  ❌  |
 
 ### Requirements
-* Android 4.1 (API 16) or higher with Kotlin 1.5 or higher
+* Android 5.0 (API 21) or higher with Kotlin 1.5 or higher
 * iOS 11 or higher
 
 ## Installation
@@ -44,6 +44,35 @@ After installing the package, you will need to install the Usercentrics using:
 ```sh
 npx pod-install
 ```
+
+## Sample Project
+
+To Run the sample project, you will need to run npm install from both root and example folders:
+
+* From root folder:
+    ```sh
+    npm install
+    ``` 
+* From example folder:
+    ```sh
+    npm install
+    ``` 
+
+    ### iOS
+
+    From example folder: 
+    ```sh
+    npx pod-install
+    npx react-native run-ios
+    ``` 
+
+    ### Android
+
+    Open the android folder using Android Studio in order to create essential files then run from example folder:
+    ```sh
+    npx react-native run-android
+    ``` 
+
 
 ## Integration
 
