@@ -23,13 +23,16 @@ class App extends Component {
     Usercentrics.configure(options)
   }
 
-  async componentDidMount() {
-    const status = await Usercentrics.status();
-
-    if (status.shouldShowCMP) {
-      this.showCMP(false)
-    } else {
-      this.applyConsents(status.consents)
+  async cmpStatus() {
+    try  {
+      const status = await Usercentrics.status();
+      if (status.shouldShowCMP) {
+        this.showCMP(false)
+      } else {
+        this.applyConsents(status.consents)
+      }
+    } catch(error) { 
+      // Handle error
     }
   }
 

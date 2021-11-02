@@ -2,7 +2,7 @@
   "name": "@usercentrics/react-native-sdk",
   "version": "0.0.3",
   "description": "Usercentrics SDK",
-  "homepage": "https://github.com/Usercentrics/react-native-sdk",
+  "homepage": "https://usercentrics.com",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "author": "Usercentrics <developer@usercentrics.com>",

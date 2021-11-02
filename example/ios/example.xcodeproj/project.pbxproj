@@ -13,6 +13,9 @@
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		85B900E84FFC8E02557F2381 /* libPods-example-exampleTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2762AEA52BFC18E1201301FB /* libPods-example-exampleTests.a */; };
 		A21E7AFC27205691000F1128 /* Lora.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CFBA2F06D5364A84B9A7D6FA /* Lora.ttf */; };
+		A24E4EA52731354A001093C7 /* UserDecisionDictTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24E4EA42731354A001093C7 /* UserDecisionDictTests.swift */; };
+		A24E4EA727313B82001093C7 /* TCFUserDecisions+Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24E4EA627313B82001093C7 /* TCFUserDecisions+Mock.swift */; };
+		A24E4EA927313FA2001093C7 /* UserDecisions+Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24E4EA827313FA2001093C7 /* UserDecisions+Mock.swift */; };
 		A2DC251E272166FB00AA9DD8 /* RNUsercentricsModuleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DC251D272166FB00AA9DD8 /* RNUsercentricsModuleTests.swift */; };
 		A2DC25212721673C00AA9DD8 /* FakeUsercentricsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DC25202721673C00AA9DD8 /* FakeUsercentricsManager.swift */; };
 		A2DC252327216A9D00AA9DD8 /* UsercentricsIsReady+Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DC252227216A9D00AA9DD8 /* UsercentricsIsReady+Mock.swift */; };
@@ -23,6 +26,8 @@
 		A2DC25382721A3D900AA9DD8 /* UsercentricsOptionsDictTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DC25372721A3D900AA9DD8 /* UsercentricsOptionsDictTests.swift */; };
 		A2DC253A2721A6D400AA9DD8 /* UsercentricsUISettingsDictTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DC25392721A6D400AA9DD8 /* UsercentricsUISettingsDictTests.swift */; };
 		A2DC253C2721A85200AA9DD8 /* UsercentricsUserInteractionDictTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DC253B2721A85200AA9DD8 /* UsercentricsUserInteractionDictTest.swift */; };
+		A2F0B082272C396200A99DD3 /* UsercentricsConsentTypeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F0B081272C396200A99DD3 /* UsercentricsConsentTypeTests.swift */; };
+		A2F0B084272C399600A99DD3 /* TCFDecisionUILayerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F0B083272C399600A99DD3 /* TCFDecisionUILayerTests.swift */; };
 		FAA6DE282607FC1C0044CA6D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA6DE272607FC1C0044CA6D /* AppDelegate.swift */; };
 /* End PBXBuildFile section */
 
@@ -43,6 +48,9 @@
 		2762AEA52BFC18E1201301FB /* libPods-example-exampleTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-example-exampleTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = example/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8F45C64B16AB75DF72E0AD45 /* Pods-example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-example.release.xcconfig"; path = "Target Support Files/Pods-example/Pods-example.release.xcconfig"; sourceTree = "<group>"; };
+		A24E4EA42731354A001093C7 /* UserDecisionDictTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDecisionDictTests.swift; sourceTree = "<group>"; };
+		A24E4EA627313B82001093C7 /* TCFUserDecisions+Mock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TCFUserDecisions+Mock.swift"; sourceTree = "<group>"; };
+		A24E4EA827313FA2001093C7 /* UserDecisions+Mock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDecisions+Mock.swift"; sourceTree = "<group>"; };
 		A2DC2511272161D600AA9DD8 /* exampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = exampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A2DC251D272166FB00AA9DD8 /* RNUsercentricsModuleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RNUsercentricsModuleTests.swift; sourceTree = "<group>"; };
 		A2DC25202721673C00AA9DD8 /* FakeUsercentricsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeUsercentricsManager.swift; sourceTree = "<group>"; };
@@ -54,6 +62,8 @@
 		A2DC25372721A3D900AA9DD8 /* UsercentricsOptionsDictTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsercentricsOptionsDictTests.swift; sourceTree = "<group>"; };
 		A2DC25392721A6D400AA9DD8 /* UsercentricsUISettingsDictTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsercentricsUISettingsDictTests.swift; sourceTree = "<group>"; };
 		A2DC253B2721A85200AA9DD8 /* UsercentricsUserInteractionDictTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsercentricsUserInteractionDictTest.swift; sourceTree = "<group>"; };
+		A2F0B081272C396200A99DD3 /* UsercentricsConsentTypeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsercentricsConsentTypeTests.swift; sourceTree = "<group>"; };
+		A2F0B083272C399600A99DD3 /* TCFDecisionUILayerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TCFDecisionUILayerTests.swift; sourceTree = "<group>"; };
 		A8031BA1511AD4E870387F2A /* libPods-example.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-example.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CFBA2F06D5364A84B9A7D6FA /* Lora.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Lora.ttf; path = ../assets/fonts/Lora.ttf; sourceTree = "<group>"; };
 		D0D223024B51477898C8BE99 /* logo.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = logo.png; path = ../assets/images/logo.png; sourceTree = "<group>"; };
@@ -151,15 +161,30 @@
 			name = Resources;
 			sourceTree = "<group>";
 		};
+		A21D32A2272ADDE0004ED33E /* Mock */ = {
+			isa = PBXGroup;
+			children = (
+				A2DC252227216A9D00AA9DD8 /* UsercentricsIsReady+Mock.swift */,
+				A2DC252427216AA500AA9DD8 /* UsercentricsOptions+Mock.swift */,
+				A24E4EA627313B82001093C7 /* TCFUserDecisions+Mock.swift */,
+				A24E4EA827313FA2001093C7 /* UserDecisions+Mock.swift */,
+			);
+			path = Mock;
+			sourceTree = "<group>";
+		};
 		A2DC2512272161D600AA9DD8 /* exampleTests */ = {
 			isa = PBXGroup;
 			children = (
+				A21D32A2272ADDE0004ED33E /* Mock */,
 				A2DC251F2721673400AA9DD8 /* Fake */,
 				A2DC251D272166FB00AA9DD8 /* RNUsercentricsModuleTests.swift */,
 				A2DC252C272179E600AA9DD8 /* ReadyStatusDictTests.swift */,
 				A2DC25372721A3D900AA9DD8 /* UsercentricsOptionsDictTests.swift */,
 				A2DC25392721A6D400AA9DD8 /* UsercentricsUISettingsDictTests.swift */,
 				A2DC253B2721A85200AA9DD8 /* UsercentricsUserInteractionDictTest.swift */,
+				A2F0B081272C396200A99DD3 /* UsercentricsConsentTypeTests.swift */,
+				A2F0B083272C399600A99DD3 /* TCFDecisionUILayerTests.swift */,
+				A24E4EA42731354A001093C7 /* UserDecisionDictTests.swift */,
 			);
 			path = exampleTests;
 			sourceTree = "<group>";
@@ -170,8 +195,6 @@
 				A2DC25202721673C00AA9DD8 /* FakeUsercentricsManager.swift */,
 				A2DC253027217AEB00AA9DD8 /* FakePresentationViewController.swift */,
 				A2DC252827216D7600AA9DD8 /* FakeDispatchQueue.swift */,
-				A2DC252227216A9D00AA9DD8 /* UsercentricsIsReady+Mock.swift */,
-				A2DC252427216AA500AA9DD8 /* UsercentricsOptions+Mock.swift */,
 			);
 			path = Fake;
 			sourceTree = "<group>";
@@ -443,13 +466,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				A2DC252527216AA500AA9DD8 /* UsercentricsOptions+Mock.swift in Sources */,
+				A2F0B084272C399600A99DD3 /* TCFDecisionUILayerTests.swift in Sources */,
 				A2DC253C2721A85200AA9DD8 /* UsercentricsUserInteractionDictTest.swift in Sources */,
+				A24E4EA927313FA2001093C7 /* UserDecisions+Mock.swift in Sources */,
 				A2DC253127217AEB00AA9DD8 /* FakePresentationViewController.swift in Sources */,
 				A2DC25382721A3D900AA9DD8 /* UsercentricsOptionsDictTests.swift in Sources */,
 				A2DC25212721673C00AA9DD8 /* FakeUsercentricsManager.swift in Sources */,
 				A2DC252327216A9D00AA9DD8 /* UsercentricsIsReady+Mock.swift in Sources */,
+				A24E4EA52731354A001093C7 /* UserDecisionDictTests.swift in Sources */,
 				A2DC251E272166FB00AA9DD8 /* RNUsercentricsModuleTests.swift in Sources */,
 				A2DC252927216D7600AA9DD8 /* FakeDispatchQueue.swift in Sources */,
+				A24E4EA727313B82001093C7 /* TCFUserDecisions+Mock.swift in Sources */,
+				A2F0B082272C396200A99DD3 /* UsercentricsConsentTypeTests.swift in Sources */,
 				A2DC252D272179E600AA9DD8 /* ReadyStatusDictTests.swift in Sources */,
 				A2DC253A2721A6D400AA9DD8 /* UsercentricsUISettingsDictTests.swift in Sources */,
 			);
