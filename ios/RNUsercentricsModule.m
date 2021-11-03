@@ -81,5 +81,7 @@ RCT_EXTERN_METHOD(saveOptOutForCCPA:(BOOL *)isOptedOut
                   resolve:(RCTPromiseResolveBlock)resolve
                   reject:(RCTPromiseRejectBlock)reject)
 
+RCT_EXTERN_METHOD(setCMPId:(NSInteger *)id)
+
 RCT_EXTERN_METHOD(reset)
 @end

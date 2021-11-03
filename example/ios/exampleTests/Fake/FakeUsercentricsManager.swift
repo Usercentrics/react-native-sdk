@@ -161,4 +161,9 @@ final class FakeUsercentricsManager: UsercentricsManager {
   func saveOptOutForCCPA(isOptedOut: Bool, consentType: UsercentricsConsentType) -> [UsercentricsServiceConsent] {
     return saveOptOutForCCPAResponse!
   }
+
+  var cmpId: Int32?
+  func setCMPId(id: Int32) {
+    self.cmpId = id
+  }
 }

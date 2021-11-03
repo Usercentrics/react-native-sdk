@@ -31,6 +31,7 @@ public protocol UsercentricsManager {
                              consentType: UsercentricsConsentType) -> [UsercentricsServiceConsent]
     func saveDecisions(decisions: [UserDecision], consentType: UsercentricsConsentType) -> [UsercentricsServiceConsent]
     func saveOptOutForCCPA(isOptedOut: Bool, consentType: UsercentricsConsentType) -> [UsercentricsServiceConsent]
+    func setCMPId(id: Int32)
 
     func reset()
 }
@@ -115,5 +116,9 @@ final class UsercentricsManagerImplementation: UsercentricsManager {
 
     func saveOptOutForCCPA(isOptedOut: Bool, consentType: UsercentricsConsentType) -> [UsercentricsServiceConsent] {
         return UsercentricsCore.shared.saveOptOutForCCPA(isOptedOut: isOptedOut, consentType: consentType)
+    }
+
+    func setCMPId(id: Int32) {
+        UsercentricsCore.shared.setCMPId(id: id)
     }
 }

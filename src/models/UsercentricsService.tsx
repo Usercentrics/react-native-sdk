@@ -1,109 +1,112 @@
 export class UsercentricsService {
 
-    /// The template ID of the service.
-    templateId: string
+  /// The template ID of the service.
+  templateId: string
 
-    /// The version of the service.
-    version: string
+  /// The version of the service.
+  version: string
 
-    /// The category slug identifier of the service.
-    categorySlug: string
+  /// The category slug identifier of the service.
+  categorySlug: string
+  
+  isEssential: boolean
 
-    type: string
-    dataProcessor: string
-    dataPurposes: [string]
-    processingCompany: string
-    nameOfProcessingCompany: string
-    addressOfProcessingCompany: string
-    descriptionOfService: string
-    languagesAvailable: [string]
-    dataCollectedList: [string]
-    dataPurposesList: [string]
-    dataRecipientsList: [string]
-    legalBasisList: [string]
-    retentionPeriodList: [string]
-    subConsents: [string]
-    cookieNames: [string]
-    language: string
-    isLatest?: boolean
-    isShared?: boolean
-    shareCustomConsent: string
-    linkToDpa: string
-    defaultConsentStatus?: boolean
-    legalGround: string
-    optOutUrl: string
-    policyOfProcessorUrl: string
-    retentionPeriod: number
-    retentionPeriodDescription: string
-    iabId: string
-    iabv2Id: string
-    dataProtectionOfficer: string
-    privacyPolicyURL: string
-    cookiePolicyURL: string
-    locationOfProcessing: string
-    dataCollectedDescription: string
-    dataPurposesDescription: string
-    legalBasisDescription: string
-    optOutDescription: string
-    thirdCountryTransfer: string
-    defaultCategoryLabel: string
-    description: string
-    cookieMaxAgeSeconds: number
-    usesNonCookieAccess?: boolean
-    deviceStorageDisclosureUrl: string
-    isDeactivated?: boolean
-    disableLegalBasis?: boolean
+  type: string
+  dataProcessor: string
+  dataPurposes: [string]
+  processingCompany: string
+  nameOfProcessingCompany: string
+  addressOfProcessingCompany: string
+  descriptionOfService: string
+  languagesAvailable: [string]
+  dataCollectedList: [string]
+  dataPurposesList: [string]
+  dataRecipientsList: [string]
+  legalBasisList: [string]
+  retentionPeriodList: [string]
+  subConsents: [string]
+  cookieNames: [string]
+  language: string
+  isLatest?: boolean
+  isShared?: boolean
+  shareCustomConsent: string
+  linkToDpa: string
+  defaultConsentStatus?: boolean
+  legalGround: string
+  optOutUrl: string
+  policyOfProcessorUrl: string
+  retentionPeriod: number
+  retentionPeriodDescription: string
+  iabId: string
+  iabv2Id: string
+  dataProtectionOfficer: string
+  privacyPolicyURL: string
+  cookiePolicyURL: string
+  locationOfProcessing: string
+  dataCollectedDescription: string
+  dataPurposesDescription: string
+  legalBasisDescription: string
+  optOutDescription: string
+  thirdCountryTransfer: string
+  defaultCategoryLabel: string
+  description: string
+  cookieMaxAgeSeconds: number
+  usesNonCookieAccess?: boolean
+  deviceStorageDisclosureUrl: string
+  isDeactivated?: boolean
+  disableLegalBasis?: boolean
 
 
   constructor(
-    templateId: string, 
-    version: string, 
-    categorySlug: string, 
-    type: string, 
-    dataProcessor: string, 
-    dataPurposes: [string], 
-    processingCompany: string, 
-    nameOfProcessingCompany: string, 
-    addressOfProcessingCompany: string, 
-    descriptionOfService: string, 
-    languagesAvailable: [string], 
-    dataCollectedList: [string], 
-    dataPurposesList: [string], 
-    dataRecipientsList: [string], 
-    legalBasisList: [string], 
-    retentionPeriodList: [string], 
-    subConsents: [string], 
-    cookieNames: [string], 
-    language: string, 
-    shareCustomConsent: string, 
-    linkToDpa: string, 
-    legalGround: string, 
-    optOutUrl: string, 
-    policyOfProcessorUrl: string, 
-    retentionPeriod: number, 
-    retentionPeriodDescription: string, 
-    iabId: string, 
-    iabv2Id: string, 
-    dataProtectionOfficer: string, 
-    privacyPolicyURL: string, 
-    cookiePolicyURL: string, 
-    locationOfProcessing: string, 
-    dataCollectedDescription: string, 
-    dataPurposesDescription: string, 
-    legalBasisDescription: string, 
-    optOutDescription: string, 
-    thirdCountryTransfer: string, 
-    defaultCategoryLabel: string, 
-    description: string, 
-    cookieMaxAgeSeconds: number, 
-    deviceStorageDisclosureUrl: string, 
-    isDeactivated?: boolean, 
+    templateId: string,
+    version: string,
+    categorySlug: string,
+    type: string,
+    isEssential: boolean,
+    dataProcessor: string,
+    dataPurposes: [string],
+    processingCompany: string,
+    nameOfProcessingCompany: string,
+    addressOfProcessingCompany: string,
+    descriptionOfService: string,
+    languagesAvailable: [string],
+    dataCollectedList: [string],
+    dataPurposesList: [string],
+    dataRecipientsList: [string],
+    legalBasisList: [string],
+    retentionPeriodList: [string],
+    subConsents: [string],
+    cookieNames: [string],
+    language: string,
+    shareCustomConsent: string,
+    linkToDpa: string,
+    legalGround: string,
+    optOutUrl: string,
+    policyOfProcessorUrl: string,
+    retentionPeriod: number,
+    retentionPeriodDescription: string,
+    iabId: string,
+    iabv2Id: string,
+    dataProtectionOfficer: string,
+    privacyPolicyURL: string,
+    cookiePolicyURL: string,
+    locationOfProcessing: string,
+    dataCollectedDescription: string,
+    dataPurposesDescription: string,
+    legalBasisDescription: string,
+    optOutDescription: string,
+    thirdCountryTransfer: string,
+    defaultCategoryLabel: string,
+    description: string,
+    cookieMaxAgeSeconds: number,
+    deviceStorageDisclosureUrl: string,
+    isDeactivated?: boolean,
     disableLegalBasis?: boolean,
-    isLatest?: boolean, 
-    defaultConsentStatus?: boolean, 
-    usesNonCookieAccess?: boolean, 
+    isLatest?: boolean,
+    defaultConsentStatus?: boolean,
+    usesNonCookieAccess?: boolean,
     isShared?: boolean
-) {
+  ) {
     this.templateId = templateId
     this.version = version
     this.categorySlug = categorySlug
@@ -151,7 +154,6 @@ export class UsercentricsService {
     this.deviceStorageDisclosureUrl = deviceStorageDisclosureUrl
     this.isDeactivated = isDeactivated
     this.disableLegalBasis = disableLegalBasis
+    this.isEssential = isEssential
   }
-    
-
 }

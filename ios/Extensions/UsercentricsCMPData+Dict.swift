@@ -307,6 +307,7 @@ extension UsercentricsService {
             "templateId" : self.templateId as Any,
             "version" : self.version as Any,
             "type" : self.type as Any,
+            "isEssential": self.isEssential,
             "dataProcessor" : self.dataProcessor as Any,
             "dataPurposes" : self.dataPurposes,
             "processingCompany" : self.processingCompany as Any,

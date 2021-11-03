@@ -67,6 +67,10 @@ class RNUsercentricsModule: NSObject, RCTBridgeModule {
         }
     }
 
+    @objc func setCMPId(_ id: Int) -> Void {
+        usercentricsManager.setCMPId(id: Int32(id))
+    }
+
     @objc func restoreUserSession(_ controllerId: String, resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) -> Void {
         usercentricsManager.restoreUserSession(controllerId: controllerId) { status in
             resolve(status.toDictionary())

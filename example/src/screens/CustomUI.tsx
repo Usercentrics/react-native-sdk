@@ -89,6 +89,8 @@ export const CustomScreen = () => {
         if (data == undefined) return;
         const ccpa = data.settings.ccpa;
 
+        Usercentrics.setCMPId(123);
+
         console.log(`Title: ${ccpa?.firstLayerTitle}`);
         console.log(`Description: ${ccpa?.appFirstLayerDescription}`);
 

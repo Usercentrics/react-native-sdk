@@ -93,6 +93,10 @@ export const Usercentrics = {
         return RNUsercentricsModule.saveOptOutForCCPA(isOptedOut, consentType);
     },
 
+    setCMPId: (id: number) => {
+        RNUsercentricsModule.setCMPId(id);
+    },
+
     reset: () => {
         RNUsercentricsModule.reset()
     }

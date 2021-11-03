@@ -468,4 +468,9 @@ class RNUsercentricsModuleTests: XCTestCase {
       XCTFail("Should not go here")
     }
   }
+
+  func testSetCMPId() {
+    module.setCMPId(id: 123)
+    XCTAssertEqual(Int32(123), fakeUsercentrics.cmpId)
+  }
 }
