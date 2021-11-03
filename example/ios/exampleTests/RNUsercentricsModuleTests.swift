@@ -425,5 +425,47 @@ class RNUsercentricsModuleTests: XCTestCase {
       XCTFail("Should not go here")
     }
   }
-  
+
+  func testGetTCFData() {
+    fakeUsercentrics.getTCFDataResponse = .mock()
+    module.getTCFData { result in
+      guard
+        let result = result as? NSDictionary
+      else {
+        XCTFail()
+        return
+      }
+
+      let features = result["features"] as? [NSDictionary]
+      let purposes = result["purposes"] as? [NSDictionary]
+      let specialFeatures = result["specialFeatures"] as? [NSDictionary]
+      let specialPurposes = result["specialPurposes"] as? [NSDictionary]
+      let stacks = result["stacks"] as? [NSDictionary]
+      let vendors = result["vendors"] as? [NSDictionary]
+
+      XCTAssertNotNil(features)
+      XCTAssertNotNil(purposes)
+      XCTAssertNotNil(specialFeatures)
+      XCTAssertNotNil(specialPurposes)
+      XCTAssertNotNil(stacks)
+      XCTAssertNotNil(vendors)
+
+      XCTAssertEqual(1, features!.count)
+      XCTAssertEqual(1, purposes!.count)
+      XCTAssertEqual(1, specialFeatures!.count)
+      XCTAssertEqual(1, specialPurposes!.count)
+      XCTAssertEqual(1, stacks!.count)
+      XCTAssertEqual(1, vendors!.count)
+
+      XCTAssertEqual(TCFFeature.mock().toDictionary(), features!.first)
+      XCTAssertEqual(TCFPurpose.mock().toDictionary(), purposes!.first)
+      XCTAssertEqual(TCFSpecialFeature.mock().toDictionary(), specialFeatures!.first)
+      XCTAssertEqual(TCFSpecialPurpose.mock().toDictionary(), specialPurposes!.first)
+      XCTAssertEqual(TCFStack.mock().toDictionary(), stacks!.first)
+      XCTAssertEqual(TCFVendor.mock().toDictionary(), vendors!.first)
+
+    } reject: { _, _, _ in
+      XCTFail("Should not go here")
+    }
+  }
 }

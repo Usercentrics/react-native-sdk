@@ -7,7 +7,7 @@ extension UsercentricsCMPData {
             "settings": self.settings.toDictionary(),
             "services": self.services.map { $0.toDictionary() },
             "categories": self.categories.map { $0.toDictionary() },
-            "activeVariant": self.activeVariant.name as Any,
+            "activeVariant": self.activeVariant.ordinal as Any,
             "userLocation": self.userLocation.toDictionary(),
         ]
     }

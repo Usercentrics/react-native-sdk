@@ -14,6 +14,7 @@
 		A22EDFA1271DA49900F5BB8C /* UserResponse+Dict.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22EDF9C271DA49900F5BB8C /* UserResponse+Dict.swift */; };
 		A22EDFA2271DA49900F5BB8C /* UsercentricsUISettings+Dict.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22EDF9D271DA49900F5BB8C /* UsercentricsUISettings+Dict.swift */; };
 		A24E4EA327313492001093C7 /* UserDecision+Dict.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24E4EA227313492001093C7 /* UserDecision+Dict.swift */; };
+		A24E4EAB273186FD001093C7 /* TCFData+Dict.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24E4EAA273186FD001093C7 /* TCFData+Dict.swift */; };
 		A2DC251C272163C600AA9DD8 /* UsercentricsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DC251B272163C600AA9DD8 /* UsercentricsManager.swift */; };
 		A2DC252727216CFC00AA9DD8 /* DispatchQueueManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DC252627216CFC00AA9DD8 /* DispatchQueueManager.swift */; };
 		A2DC252F27217A4600AA9DD8 /* PresentationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DC252E27217A4600AA9DD8 /* PresentationViewController.swift */; };
@@ -47,6 +48,7 @@
 		A22EDF9C271DA49900F5BB8C /* UserResponse+Dict.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UserResponse+Dict.swift"; sourceTree = "<group>"; };
 		A22EDF9D271DA49900F5BB8C /* UsercentricsUISettings+Dict.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UsercentricsUISettings+Dict.swift"; sourceTree = "<group>"; };
 		A24E4EA227313492001093C7 /* UserDecision+Dict.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDecision+Dict.swift"; sourceTree = "<group>"; };
+		A24E4EAA273186FD001093C7 /* TCFData+Dict.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TCFData+Dict.swift"; sourceTree = "<group>"; };
 		A2DC251B272163C600AA9DD8 /* UsercentricsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsercentricsManager.swift; sourceTree = "<group>"; };
 		A2DC252627216CFC00AA9DD8 /* DispatchQueueManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DispatchQueueManager.swift; sourceTree = "<group>"; };
 		A2DC252E27217A4600AA9DD8 /* PresentationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentationViewController.swift; sourceTree = "<group>"; };
@@ -87,6 +89,7 @@
 				A2F0B07F272C367B00A99DD3 /* UsercentricsConsentType+Int.swift */,
 				A2F0B085272C483300A99DD3 /* TCFUserDecisions+Dict.swift */,
 				A24E4EA227313492001093C7 /* UserDecision+Dict.swift */,
+				A24E4EAA273186FD001093C7 /* TCFData+Dict.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -199,6 +202,7 @@
 				A22EDFA0271DA49900F5BB8C /* UsercentricsUserInteraction+String.swift in Sources */,
 				A2F0B086272C483300A99DD3 /* TCFUserDecisions+Dict.swift in Sources */,
 				A22EDF9F271DA49900F5BB8C /* ReadyStatus+Dict.swift in Sources */,
+				A24E4EAB273186FD001093C7 /* TCFData+Dict.swift in Sources */,
 				A22EDFA2271DA49900F5BB8C /* UsercentricsUISettings+Dict.swift in Sources */,
 				A2DC25402722A91400AA9DD8 /* UCRNFlag.swift in Sources */,
 				A2DC252727216CFC00AA9DD8 /* DispatchQueueManager.swift in Sources */,

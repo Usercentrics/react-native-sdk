@@ -7,7 +7,7 @@
   "types": "lib/index.d.ts",
   "author": "Usercentrics <developer@usercentrics.com>",
   "iosPackageName": "react-native-usercentrics",
-  "iosPackageVersion": "2.0.1",
+  "iosPackageVersion": "2.0.2",
   "license": "SEE LICENSE IN LICENSE",
   "files": [
     "android",

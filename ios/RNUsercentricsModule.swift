@@ -91,6 +91,10 @@ class RNUsercentricsModule: NSObject, RCTBridgeModule {
         resolve(usercentricsManager.getCMPData().toDictionary())
     }
 
+    @objc func getTCFData(_ resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) -> Void {
+        resolve(usercentricsManager.getTCFData().toDictionary())
+    }
+
     @objc func getUserSessionData(_ resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) -> Void {
         resolve(usercentricsManager.getUserSessionData())
     }

@@ -1,3 +1,4 @@
 export enum UsercentricsConsentType { 
-    explicit, implicit
+    explicit = 0,
+    implicit = 1
 }
