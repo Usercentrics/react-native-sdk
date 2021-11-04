@@ -71,7 +71,7 @@ RCT_EXTERN_METHOD(saveDecisionsForTCF:(NSDictionary *)tcfDecisions
                   resolve:(RCTPromiseResolveBlock)resolve
                   reject:(RCTPromiseRejectBlock)reject)
 
-RCT_EXTERN_METHOD(serviceDecisions:(NSArray)serviceDecisions
+RCT_EXTERN_METHOD(saveDecisions:(NSArray)serviceDecisions
                   consentType:(NSInteger)consentType
                   resolve:(RCTPromiseResolveBlock)resolve
                   reject:(RCTPromiseRejectBlock)reject)

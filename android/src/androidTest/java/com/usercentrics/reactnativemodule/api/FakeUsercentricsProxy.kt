@@ -20,7 +20,7 @@ internal class FakeUsercentricsProxy(
     var initializeOptionsArgument: UsercentricsOptions? = null
         private set
 
-    override fun initialize(context: Context?, options: UsercentricsOptions) {
+    override fun initialize(context: Context, options: UsercentricsOptions) {
         initializeCount++
         initializeOptionsArgument = options
     }

@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { Button, Image, StyleSheet, View } from 'react-native'
 import {
     Usercentrics,
@@ -6,29 +6,17 @@ import {
     UsercentricsLoggerLevel,
     UsercentricsLogo,
     UsercentricsOptions,
-    UsercentricsReadyStatus,
-    UsercentricsServiceConsent,
     UsercentricsUIOptions
 } from '../../../src/index';
 
 export const HomeScreen = ({ navigation }: { navigation: any }) => {
-    const [cmpStatus, setStatus] = React.useState<UsercentricsReadyStatus>()
-
-    const getIsReadyStatus = useCallback(async () => {
-        let data = await Usercentrics.status();
-        console.log(`Data ${data}`)
-        setStatus(data);
-    }, [])
-
     useEffect(() => {
         // let options = new UsercentricsOptions("Yi9N3aXia");
-        // let options = new UsercentricsOptions("eQ6JwYNPb");
-        let options = new UsercentricsOptions("EA4jnNPb9");
+        let options = new UsercentricsOptions("eQ6JwYNPb");
+        // let options = new UsercentricsOptions("EA4jnNPb9");
         options.loggerLevel = UsercentricsLoggerLevel.debug;
         Usercentrics.configure(options);
-
-        getIsReadyStatus();
-    }, []);
+    });
 
     async function showCMP(showCloseButton: boolean) {
         const options = new UsercentricsUIOptions(showCloseButton)
@@ -58,24 +46,18 @@ export const HomeScreen = ({ navigation }: { navigation: any }) => {
         }
     })
 
-    function applyConsents(consents: [UsercentricsServiceConsent]) {
-        // https://docs.usercentrics.com/cmp_in_app_sdk/latest/apply_consent/apply-consent/#apply-consent-to-each-service
-    }
-
-
     return (
-        <View style={styles.container}>
-            <Button onPress={() => {
-                showCMP(true);
-            }} title="Show PredefinedUI"
-                disabled={cmpStatus == undefined}
-            />
 
-            <Button onPress={() => {
+        <View style={styles.container}>
+            <Button onPress={async () => {
+                await Usercentrics.status();
+                showCMP(true);
+            }} title="Show PredefinedUI" />
+
+            <Button onPress={async () => {
+                await Usercentrics.status();
                 navigation.navigate("CustomUI")
-            }} title="Custom UI"
-                disabled={cmpStatus == undefined}
-            />
+            }} title="Custom UI" />
         </View>
     );
 };

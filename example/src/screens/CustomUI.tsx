@@ -85,11 +85,10 @@ export const CustomScreen = () => {
         console.log(`Save button: ${settings.labels.btnSave}`);
     }
 
-    function printTCF() {
+    async function printCCPA() {
         if (data == undefined) return;
         const ccpa = data.settings.ccpa;
 
-        Usercentrics.setCMPId(123);
 
         console.log(`Title: ${ccpa?.firstLayerTitle}`);
         console.log(`Description: ${ccpa?.appFirstLayerDescription}`);
@@ -106,11 +105,11 @@ export const CustomScreen = () => {
         console.log(`Save: ${ccpa?.btnSave}`);
     }
 
-    async function printCCPA() {
+    async function printTCF() {
         if (data == undefined) return;
 
         console.log("Set your CMP ID");
-        // Usercentrics.cmpId = 0; TODO
+        Usercentrics.setCMPId(123);
 
         const tcf2 = data.settings.tcf2;
 
@@ -275,6 +274,12 @@ export const CustomScreen = () => {
         applyConsents(consents);
     }
 
+    async function getConsents() {
+        if (data == undefined) return;
+        let consents = await Usercentrics.getConsents();
+        applyConsents(consents);
+    }
+
     function applyConsents(consents: [UsercentricsServiceConsent?]) {
         // https://docs.usercentrics.com/cmp_in_app_sdk/latest/apply_consent/apply-consent/#apply-consent-to-each-service
         consents.forEach(consent => {
@@ -304,6 +309,10 @@ export const CustomScreen = () => {
             <Button onPress={() => {
                 saveServices();
             }} title="Save Services" />
+
+            <Button onPress={() => {
+                getConsents();
+            }} title="Get Consents" />
 
             <Button onPress={() => {
                 changeLanguage();

@@ -4,10 +4,15 @@ import android.app.Activity
 import android.content.Intent
 import com.facebook.react.bridge.*
 import com.usercentrics.reactnativeusercentrics.api.UsercentricsProxy
+import com.usercentrics.reactnativeusercentrics.extensions.*
+import com.usercentrics.reactnativeusercentrics.extensions.toWritableArray
 import com.usercentrics.reactnativeusercentrics.extensions.toWritableMap
 import com.usercentrics.reactnativeusercentrics.extensions.usercentricsOptionsFromMap
 import com.usercentrics.reactnativeusercentrics.extensions.usercentricsUISettingsFromMap
-import com.usercentrics.sdk.UsercentricsActivityContract
+import com.usercentrics.sdk.Usercentrics
+import com.usercentrics.sdk.models.settings.UsercentricsConsentType
+import com.usercentrics.sdk.services.tcf.TCFDecisionUILayer
+import com.usercentrics.sdk.services.tcf.interfaces.TCFUserDecisions
 
 internal class RNUsercentricsModule(
     reactContext: ReactApplicationContext,
@@ -39,11 +44,16 @@ internal class RNUsercentricsModule(
 
     @ReactMethod
     fun configure(options: ReadableMap) {
-        val usercentricsOptions = options.usercentricsOptionsFromMap() ?: return
-        try {
+        var alreadyConfigured = false
+        usercentricsProxy.isReady({
+            alreadyConfigured = true
+        }, {
+            alreadyConfigured = true
+        })
+
+        if (!alreadyConfigured) {
+            val usercentricsOptions = options.usercentricsOptionsFromMap() ?: return
             usercentricsProxy.initialize(reactApplicationContext, usercentricsOptions)
-        } catch (e: Exception) {
-            // Do nothing. it's already initialized and we're suffering from hot reload;
         }
     }
 
@@ -94,6 +104,121 @@ internal class RNUsercentricsModule(
     @ReactMethod
     fun getControllerId(promise: Promise) {
         promise.resolve(usercentricsProxy.instance.getControllerId())
+    }
+
+    @ReactMethod
+    fun getConsents(promise: Promise) {
+        promise.resolve(usercentricsProxy.instance.getConsents().toWritableArray())
+    }
+
+    @ReactMethod
+    fun getCMPData(promise: Promise) {
+        promise.resolve(usercentricsProxy.instance.getCMPData().serialize())
+    }
+
+    @ReactMethod
+    fun setCMPId(id: Int) {
+        usercentricsProxy.instance.setCMPId(id)
+    }
+
+    @ReactMethod
+    fun getTCFData(promise: Promise) {
+        promise.resolve(usercentricsProxy.instance.getTCFData().serialize())
+    }
+
+    @ReactMethod
+    fun getUserSessionData(promise: Promise) {
+        promise.resolve(usercentricsProxy.instance.getUserSessionData())
+    }
+
+    @ReactMethod
+    fun getUSPData(promise: Promise) {
+        promise.resolve(usercentricsProxy.instance.getUSPData().serialize())
+    }
+
+    @ReactMethod
+    fun changeLanguage(language: String, promise: Promise) {
+        usercentricsProxy.instance.changeLanguage(language, {
+            promise.resolve(null)
+        }, {
+            promise.reject(it)
+        })
+    }
+
+    @ReactMethod
+    fun acceptAllForTCF(fromLayer: Int, consentType: Int, promise: Promise) {
+        promise.resolve(
+            usercentricsProxy.instance.acceptAllForTCF(
+                TCFDecisionUILayer.values()[fromLayer],
+                UsercentricsConsentType.values()[consentType]
+            ).toWritableArray()
+        )
+    }
+
+    @ReactMethod
+    fun acceptAll(consentType: Int, promise: Promise) {
+        promise.resolve(
+            usercentricsProxy.instance.acceptAll(
+                UsercentricsConsentType.values()[consentType]
+            ).toWritableArray()
+        )
+    }
+
+    @ReactMethod
+    fun denyAllForTCF(fromLayer: Int, consentType: Int, promise: Promise) {
+        promise.resolve(
+            usercentricsProxy.instance.denyAllForTCF(
+                TCFDecisionUILayer.values()[fromLayer],
+                UsercentricsConsentType.values()[consentType]
+            ).toWritableArray()
+        )
+    }
+
+    @ReactMethod
+    fun denyAll(consentType: Int, promise: Promise) {
+        promise.resolve(
+            usercentricsProxy.instance.denyAll(
+                UsercentricsConsentType.values()[consentType]
+            ).toWritableArray()
+        )
+    }
+
+    @ReactMethod
+    fun saveDecisionsForTCF(
+        tcfDecisions: ReadableMap,
+        fromLayer: Int,
+        saveDecisions: ReadableArray,
+        consentType: Int,
+        promise: Promise
+    ) {
+        promise.resolve(
+            usercentricsProxy.instance.saveDecisionsForTCF(
+                tcfDecisions.deserializeTCFUserDecisions(),
+                TCFDecisionUILayer.values()[fromLayer],
+                saveDecisions.deserializeUserDecision(),
+                UsercentricsConsentType.values()[consentType]
+            ).toWritableArray()
+        )
+    }
+
+    @ReactMethod
+    fun saveDecisions(decisions: ReadableArray, consentType: Int, promise: Promise) {
+        promise.resolve(
+            usercentricsProxy.instance.saveDecisions(
+                decisions.deserializeUserDecision(),
+                UsercentricsConsentType.values()[consentType]
+            ).toWritableArray()
+        )
+    }
+
+    @ReactMethod
+    fun saveOptOutForCCPA(isOptedOut: Boolean, consentType: Int, promise: Promise) {
+        promise.resolve(
+            usercentricsProxy.instance.saveOptOutForCCPA(
+                isOptedOut,
+                UsercentricsConsentType.values()[consentType]
+            ).toWritableArray()
+        )
     }
 
     @ReactMethod
