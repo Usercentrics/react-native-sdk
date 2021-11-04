@@ -5,14 +5,8 @@ import android.content.Intent
 import com.facebook.react.bridge.*
 import com.usercentrics.reactnativeusercentrics.api.UsercentricsProxy
 import com.usercentrics.reactnativeusercentrics.extensions.*
-import com.usercentrics.reactnativeusercentrics.extensions.toWritableArray
-import com.usercentrics.reactnativeusercentrics.extensions.toWritableMap
-import com.usercentrics.reactnativeusercentrics.extensions.usercentricsOptionsFromMap
-import com.usercentrics.reactnativeusercentrics.extensions.usercentricsUISettingsFromMap
-import com.usercentrics.sdk.Usercentrics
 import com.usercentrics.sdk.models.settings.UsercentricsConsentType
 import com.usercentrics.sdk.services.tcf.TCFDecisionUILayer
-import com.usercentrics.sdk.services.tcf.interfaces.TCFUserDecisions
 
 internal class RNUsercentricsModule(
     reactContext: ReactApplicationContext,

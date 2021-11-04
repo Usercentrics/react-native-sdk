@@ -4,15 +4,21 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
 import com.facebook.react.bridge.JavaOnlyMap
 import com.facebook.react.bridge.ReactApplicationContext
+import com.facebook.react.bridge.WritableArray
 import com.facebook.react.bridge.WritableMap
 import com.facebook.soloader.SoLoader
 import com.usercentrics.reactnativemodule.api.FakeUsercentricsProxy
 import com.usercentrics.reactnativemodule.fake.FakePromise
+import com.usercentrics.reactnativemodule.mock.*
 import com.usercentrics.reactnativeusercentrics.RNUsercentricsModule
+import com.usercentrics.reactnativeusercentrics.extensions.serialize
+import com.usercentrics.reactnativeusercentrics.extensions.toWritableMap
 import com.usercentrics.sdk.*
 import com.usercentrics.sdk.errors.UsercentricsError
 import com.usercentrics.sdk.models.common.UsercentricsLoggerLevel
+import com.usercentrics.sdk.models.common.UsercentricsVariant
 import com.usercentrics.sdk.models.settings.UsercentricsConsentType
+import com.usercentrics.sdk.services.tcf.TCFDecisionUILayer
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verify
@@ -303,11 +309,382 @@ class RNUsercentricsModuleTest {
             result.getString("controllerId")
         )
         assertEquals(0, result.getInt("userInteraction"))
+        assertEquals(false, consent.getBoolean("status"))
+        assertEquals("ocv9HNX_g", consent.getString("templateId"))
+        assertEquals("Facebook SDK", consent.getString("dataProcessor"))
+        assertEquals(0, consent.getInt("type"))
+        assertEquals("1.0.1", consent.getString("version"))
+    }
+
+    @Test
+    fun testGetConsents() {
+        val usercentricsSDK = mockk<UsercentricsSDK>()
+        every { usercentricsSDK.getConsents() }.returns(GetConsentsMock.fakeWithData)
+
+        val usercentricsProxy = FakeUsercentricsProxy(usercentricsSDK)
+        val contextMock = mockk<ReactApplicationContext>(relaxed = true)
+        val module = RNUsercentricsModule(contextMock, usercentricsProxy)
+
+        val promise = FakePromise()
+
+        module.getConsents(promise)
+
+        verify(exactly = 1) { usercentricsSDK.getConsents() }
+
+        val result = promise.resolveValue as WritableArray
+        val consent = result.getMap(0)
 
         assertEquals(false, consent.getBoolean("status"))
         assertEquals("ocv9HNX_g", consent.getString("templateId"))
         assertEquals("Facebook SDK", consent.getString("dataProcessor"))
         assertEquals(0, consent.getInt("type"))
         assertEquals("1.0.1", consent.getString("version"))
+    }
+
+    @Test
+    fun testGetCMPData() {
+        val cmpData = mockk<UsercentricsCMPData>()
+        every { cmpData.activeVariant }.returns(UsercentricsVariant.TCF)
+        every { cmpData.settings }.returns(GetCMPDataMock.fakeSettings)
+        every { cmpData.categories }.returns(GetCMPDataMock.fakeCategories)
+        every { cmpData.services }.returns(GetCMPDataMock.fakeServices)
+        every { cmpData.userLocation }.returns(GetCMPDataMock.fakeUserLocation)
+
+        val usercentricsSDK = mockk<UsercentricsSDK>()
+        every { usercentricsSDK.getCMPData() }.returns(cmpData)
+
+        val usercentricsProxy = FakeUsercentricsProxy(usercentricsSDK)
+        val contextMock = mockk<ReactApplicationContext>(relaxed = true)
+        val module = RNUsercentricsModule(contextMock, usercentricsProxy)
+
+        val promise = FakePromise()
+
+        module.getCMPData(promise)
+
+        verify(exactly = 1) { usercentricsSDK.getCMPData() }
+
+        val resultMap = (promise.resolveValue as WritableMap)
+
+        assertEquals(5, resultMap.toHashMap().size)
+        assertEquals(2, resultMap.getInt("activeVariant"))
+
+        assertEquals(
+            GetCMPDataMock.expectedSettings.toWritableMap(),
+            resultMap.getMap("settings")
+        )
+
+        assertEquals(
+            GetCMPDataMock.expectedCategories.serialize(),
+            resultMap.getArray("categories")
+        )
+
+        assertEquals(
+            GetCMPDataMock.expectedUserLocation.toWritableMap(),
+            resultMap.getMap("userLocation")
+        )
+
+        assertEquals(GetCMPDataMock.expectedServices.serialize(), resultMap.getArray("services"))
+    }
+
+    @Test
+    fun testSetCMPId() {
+        val usercentricsSDK = mockk<UsercentricsSDK>()
+        every { usercentricsSDK.setCMPId(123) }.returns(Unit)
+
+        val usercentricsProxy = FakeUsercentricsProxy(usercentricsSDK)
+        val contextMock = mockk<ReactApplicationContext>(relaxed = true)
+        val module = RNUsercentricsModule(contextMock, usercentricsProxy)
+
+        module.setCMPId(123)
+
+        verify(exactly = 1) { usercentricsSDK.setCMPId(123) }
+    }
+
+    @Test
+    fun testGetTCFData() {
+        val usercentricsSDK = mockk<UsercentricsSDK>()
+        every { usercentricsSDK.getTCFData() }.returns(GetTCFDataMock.fake)
+
+        val usercentricsProxy = FakeUsercentricsProxy(usercentricsSDK)
+        val contextMock = mockk<ReactApplicationContext>(relaxed = true)
+        val module = RNUsercentricsModule(contextMock, usercentricsProxy)
+        val promise = FakePromise()
+
+        module.getTCFData(promise)
+
+        val result = promise.resolveValue
+
+        verify(exactly = 1) { usercentricsSDK.getTCFData() }
+        assertEquals(GetTCFDataMock.expected.toWritableMap(), result)
+    }
+
+    @Test
+    fun testGetUserSessionData() {
+        val usercentricsSDK = mockk<UsercentricsSDK>()
+        every { usercentricsSDK.getUserSessionData() }.returns(GetUserSessionDataMock.fake)
+        val usercentricsProxy = FakeUsercentricsProxy(usercentricsSDK)
+        val contextMock = mockk<ReactApplicationContext>(relaxed = true)
+        val module = RNUsercentricsModule(contextMock, usercentricsProxy)
+        val promise = FakePromise()
+
+        module.getUserSessionData(promise)
+
+        assertEquals(promise.resolveValue, GetUserSessionDataMock.fake)
+    }
+
+    @Test
+    fun testGetUSPData() {
+        val usercentricsSDK = mockk<UsercentricsSDK>()
+        every { usercentricsSDK.getUSPData() }.returns(GetUSPDataMock.fake)
+
+        val usercentricsProxy = FakeUsercentricsProxy(usercentricsSDK)
+        val contextMock = mockk<ReactApplicationContext>(relaxed = true)
+        val module = RNUsercentricsModule(contextMock, usercentricsProxy)
+        val promise = FakePromise()
+
+        module.getUSPData(promise)
+
+        val result = promise.resolveValue as WritableMap
+
+        assertEquals(result, GetUSPDataMock.expected.toWritableMap())
+    }
+
+    @Test
+    fun testChangeLanguage() {
+        val usercentricsSDK = mockk<UsercentricsSDK>()
+        every { usercentricsSDK.changeLanguage(any(), any(), any()) }
+            .answers {
+                (arg(1) as () -> Unit)()
+            }
+        val usercentricsProxy = FakeUsercentricsProxy(usercentricsSDK)
+        val contextMock = mockk<ReactApplicationContext>(relaxed = true)
+        val module = RNUsercentricsModule(contextMock, usercentricsProxy)
+        val promise = FakePromise()
+
+        module.changeLanguage("abc", promise)
+
+        verify(exactly = 1) {
+            usercentricsSDK.changeLanguage(
+                "abc",
+                any(),
+                any()
+            )
+        }
+
+        assertEquals(null, promise.resolveValue)
+    }
+
+    @Test
+    fun testChangeLanguageWithError() {
+        val error = mockk<UsercentricsError>(relaxed = true)
+        val usercentricsSDK = mockk<UsercentricsSDK>()
+        every { usercentricsSDK.changeLanguage(any(), any(), any()) }
+            .answers {
+                (arg(2) as (UsercentricsError) -> Unit)(error)
+            }
+
+        val usercentricsProxy = FakeUsercentricsProxy(usercentricsSDK)
+        val contextMock = mockk<ReactApplicationContext>(relaxed = true)
+        val module = RNUsercentricsModule(contextMock, usercentricsProxy)
+        val promise = FakePromise()
+
+        module.changeLanguage("abc", promise)
+
+
+        verify(exactly = 1) {
+            usercentricsSDK.changeLanguage(
+                "abc",
+                any(),
+                any()
+            )
+        }
+        assertEquals(error, promise.rejectThrowable)
+    }
+
+    @Test
+    fun testAcceptAllForTCF() {
+        val usercentricsSDK = mockk<UsercentricsSDK>()
+        every {
+            usercentricsSDK.acceptAllForTCF(
+                any(),
+                any()
+            )
+        }.returns(GetConsentsMock.fakeWithData)
+
+        val usercentricsProxy = FakeUsercentricsProxy(usercentricsSDK)
+        val contextMock = mockk<ReactApplicationContext>(relaxed = true)
+        val module = RNUsercentricsModule(contextMock, usercentricsProxy)
+
+        val promise = FakePromise()
+        module.acceptAllForTCF(0, 0, promise)
+
+        verify(exactly = 1) {
+            usercentricsSDK.acceptAllForTCF(
+                TCFDecisionUILayer.FIRST_LAYER, UsercentricsConsentType.EXPLICIT
+            )
+        }
+
+        val result = promise.resolveValue as WritableArray
+
+        assertEquals(GetConsentsMock.expectedWithData.serialize(), result)
+    }
+
+    @Test
+    fun testDenyAllForTCF() {
+        val usercentricsSDK = mockk<UsercentricsSDK>()
+        every {
+            usercentricsSDK.denyAllForTCF(
+                any(),
+                any()
+            )
+        }.returns(GetConsentsMock.fakeWithData)
+
+        val usercentricsProxy = FakeUsercentricsProxy(usercentricsSDK)
+        val contextMock = mockk<ReactApplicationContext>(relaxed = true)
+        val module = RNUsercentricsModule(contextMock, usercentricsProxy)
+
+        val promise = FakePromise()
+        module.denyAllForTCF(0, 0, promise)
+
+        verify(exactly = 1) {
+            usercentricsSDK.denyAllForTCF(
+                TCFDecisionUILayer.FIRST_LAYER, UsercentricsConsentType.EXPLICIT
+            )
+        }
+
+        val result = promise.resolveValue as WritableArray
+
+        assertEquals(GetConsentsMock.expectedWithData.serialize(), result)
+    }
+
+    @Test
+    fun testAcceptAll() {
+        val usercentricsSDK = mockk<UsercentricsSDK>()
+        every {
+            usercentricsSDK.acceptAll(
+                any(),
+            )
+        }.returns(GetConsentsMock.fakeWithData)
+
+        val usercentricsProxy = FakeUsercentricsProxy(usercentricsSDK)
+        val contextMock = mockk<ReactApplicationContext>(relaxed = true)
+        val module = RNUsercentricsModule(contextMock, usercentricsProxy)
+
+        val promise = FakePromise()
+        module.acceptAll(0, promise)
+
+        val result = promise.resolveValue as WritableArray
+
+        assertEquals(GetConsentsMock.expectedWithData.serialize(), result)
+    }
+
+    @Test
+    fun testDenyAll() {
+        val usercentricsSDK = mockk<UsercentricsSDK>()
+        every {
+            usercentricsSDK.denyAll(
+                any(),
+            )
+        }.returns(GetConsentsMock.fakeWithData)
+
+        val usercentricsProxy = FakeUsercentricsProxy(usercentricsSDK)
+        val contextMock = mockk<ReactApplicationContext>(relaxed = true)
+        val module = RNUsercentricsModule(contextMock, usercentricsProxy)
+
+        val promise = FakePromise()
+        module.denyAll(0, promise)
+
+        val result = promise.resolveValue as WritableArray
+
+        assertEquals(GetConsentsMock.expectedWithData.serialize(), result)
+    }
+
+    @Test
+    fun testSaveDecisions() {
+        val usercentricsSDK = mockk<UsercentricsSDK>()
+        every {
+            usercentricsSDK.saveDecisions(
+                any(),
+                any()
+            )
+        }.returns(GetConsentsMock.fakeWithData)
+
+        val usercentricsProxy = FakeUsercentricsProxy(usercentricsSDK)
+        val contextMock = mockk<ReactApplicationContext>(relaxed = true)
+        val module = RNUsercentricsModule(contextMock, usercentricsProxy)
+
+        val promise = FakePromise()
+        module.saveDecisions(SaveDecisionsMock.callDecisions.serialize(), 0, promise)
+
+        val result = promise.resolveValue as WritableArray
+
+        assertEquals(GetConsentsMock.expectedWithData.serialize(), result)
+    }
+
+    @Test
+    fun testSaveDecisionsForTCF() {
+        val usercentricsSDK = mockk<UsercentricsSDK>()
+        every {
+            usercentricsSDK.saveDecisionsForTCF(
+                any(),
+                any(),
+                any(),
+                any()
+            )
+        }.returns(SaveDecisionsForTCFMock.fake)
+
+        val usercentricsProxy = FakeUsercentricsProxy(usercentricsSDK)
+        val contextMock = mockk<ReactApplicationContext>(relaxed = true)
+        val module = RNUsercentricsModule(contextMock, usercentricsProxy)
+
+        val promise = FakePromise()
+        module.saveDecisionsForTCF(
+            SaveDecisionsForTCFMock.call,
+            0,
+            SaveDecisionsMock.callDecisions.serialize(),
+            0,
+            promise
+        )
+
+        val result = promise.resolveValue as WritableArray
+
+        assertEquals(SaveDecisionsForTCFMock.expected.serialize(), result)
+    }
+
+    @Test
+    fun testSaveOptOutForCCPA() {
+        val usercentricsSDK = mockk<UsercentricsSDK>()
+        every {
+            usercentricsSDK.saveOptOutForCCPA(any(), any())
+        }.returns(
+            GetConsentsMock.fakeWithData
+        )
+
+
+        val usercentricsProxy = FakeUsercentricsProxy(usercentricsSDK)
+        val contextMock = mockk<ReactApplicationContext>(relaxed = true)
+        val module = RNUsercentricsModule(contextMock, usercentricsProxy)
+
+        val promise = FakePromise()
+        module.saveOptOutForCCPA(
+            false,
+            0,
+            promise
+        )
+
+        val result = promise.resolveValue as WritableArray
+
+        assertEquals(GetConsentsMock.expectedWithData.serialize(), result)
+    }
+
+    @Test
+    fun testResetMethod() {
+        val usercentricsProxy = FakeUsercentricsProxy()
+        val contextMock = mockk<ReactApplicationContext>(relaxed = true)
+        val module = RNUsercentricsModule(contextMock, usercentricsProxy)
+
+        module.reset()
+
+        assertEquals(1, usercentricsProxy.resetCount)
     }
 }
