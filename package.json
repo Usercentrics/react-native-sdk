@@ -32,7 +32,7 @@
     "compile": "rm -rf lib && tsc -p .",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "prepare": "yarn compile",
-    "test": "jest"
+    "test": "jest src/__tests__/index.test.ts"
   },
   "devDependencies": {
     "@babel/core": "^7.15.5",

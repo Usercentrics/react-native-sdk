@@ -1,15 +1,15 @@
 export class TCFData {
     /// A list of all the TCF features that need to be disclosed to the end-user if TCF is enabled.
-    features: [TCFFeature]
+    features: [TCFFeature?]
 
     /// A list of all the TCF purposes that need to be disclosed to the end-user if TCF is enabled.
-    purposes: [TCFPurpose]
+    purposes: [TCFPurpose?]
 
     /// A list of all the TCF special features that need to be disclosed to the end-user if TCF is enabled
-    specialFeatures: [TCFSpecialFeature]
+    specialFeatures: [TCFSpecialFeature?]
 
     /// A list of all the TCF special purposes that need to be disclosed to the end-user if TCF is enabled
-    specialPurposes: [TCFSpecialPurpose]
+    specialPurposes: [TCFSpecialPurpose?]
 
     /// A list of all TCF stacks that need to be disclosed to the end-user if TCF is enabled. On the first layer of a
     /// TCF UI, stacks may be shown as alternative its comprising purposes and special features. However, on the second
@@ -17,18 +17,18 @@ export class TCFData {
     /// feature may not be shown if a stack containing this purpose or special feature is already displayed. Note, that all
     /// purposes and special features that are part of stacks will still be listed in the TCFData purposes and special
     /// features fields, but they will be flagged with isPartOfASelectedStack = true and include a non-null stackId.
-    stacks: [TCFStack]
+    stacks: [TCFStack?]
 
     /// A list of all TCF vendors that need to be disclosed to the end-user if TCF is enabled */
-    vendors: [TCFVendor]
+    vendors: [TCFVendor?]
 
     constructor(
-        features: [TCFFeature],
-        purposes: [TCFPurpose],
-        specialFeatures: [TCFSpecialFeature],
-        specialPurposes: [TCFSpecialPurpose],
-        stacks: [TCFStack],
-        vendors: [TCFVendor]
+        features: [TCFFeature?],
+        purposes: [TCFPurpose?],
+        specialFeatures: [TCFSpecialFeature?],
+        specialPurposes: [TCFSpecialPurpose?],
+        stacks: [TCFStack?],
+        vendors: [TCFVendor?]
     ) {
         this.features = features
         this.purposes = purposes
@@ -39,7 +39,7 @@ export class TCFData {
     }
 }
 
-class TCFFeature {
+export class TCFFeature {
     purposeDescription: string
     descriptionLegal: string
     id: number
@@ -59,7 +59,7 @@ class TCFFeature {
     }
 }
 
-class TCFPurpose {
+export class TCFPurpose {
     purposeDescription: string
     descriptionLegal: string
     id: number
@@ -97,7 +97,7 @@ class TCFPurpose {
     }
 }
 
-class TCFSpecialFeature {
+export class TCFSpecialFeature {
     purposeDescription: string
     descriptionLegal: string
     id: number
@@ -130,7 +130,7 @@ class TCFSpecialFeature {
 
 }
 
-class TCFSpecialPurpose {
+export class TCFSpecialPurpose {
     purposeDescription: string
     descriptionLegal: string
     id: number
@@ -150,7 +150,7 @@ class TCFSpecialPurpose {
     }
 }
 
-class TCFStack {
+export class TCFStack {
     description: string
     id: number
     name: string
@@ -174,7 +174,7 @@ class TCFStack {
 
 }
 
-class TCFVendor {
+export class TCFVendor {
     consent?: boolean
     features: [number]
     flexiblePurposes: [number]

@@ -1,8 +1,33 @@
 import {
   NativeModules,
 } from 'react-native';
-import { UsercentricsConsentUserResponse, UsercentricsFont, UsercentricsLoggerLevel, UsercentricsLogo, UsercentricsOptions, UsercentricsReadyStatus, UsercentricsUIOptions, UsercentricsUserInteraction } from '../models';
+import {
+  CCPAData,
+  TCFData,
+  TCFDecisionUILayer,
+  UsercentricsConsentType,
+  UsercentricsConsentUserResponse,
+  UsercentricsFont,
+  UsercentricsLoggerLevel,
+  UsercentricsLogo,
+  UsercentricsOptions,
+  UsercentricsReadyStatus,
+  UsercentricsServiceConsent,
+  UsercentricsUIOptions,
+  UsercentricsUserInteraction
+} from '../models';
 import { Usercentrics } from '../Usercentrics';
+import {
+  ccpaDataExample,
+  cmpDataExample,
+  featuresExample,
+  purposesExample,
+  tcfUserDecisionOnPurposeExample,
+  tcfUserDecisionOnSpecialFeatureExample,
+  tcfUserDecisionOnVendorExample,
+  usercentricsServiceConsent,
+  userDecision
+} from './mocks';
 
 const { RNUsercentricsModule } = NativeModules;
 
@@ -16,6 +41,19 @@ jest.mock("react-native", () => {
     restoreUserSession: jest.fn(),
     getControllerId: jest.fn(),
     getTCFString: jest.fn(),
+    getConsents: jest.fn(),
+    getCMPData: jest.fn(),
+    getUserSessionData: jest.fn(),
+    getUSPData: jest.fn(),
+    getTCFData: jest.fn(),
+    changeLanguage: jest.fn(),
+    acceptAll: jest.fn(),
+    acceptAllForTCF: jest.fn(),
+    denyAll: jest.fn(),
+    denyAllForTCF: jest.fn(),
+    saveOptOutForCCPA: jest.fn(),
+    saveDecisionsForTCF: jest.fn(),
+    saveDecisions: jest.fn(),
     reset: jest.fn()
   };
 
@@ -45,21 +83,21 @@ describe('Test Usercentrics Module', () => {
     )
 
     RNUsercentricsModule.isReady.mockImplementationOnce(
-      (): Promise<UsercentricsReadyStatus> => Promise.resolve(readyStatus)
+      (): Promise<any> => Promise.resolve(readyStatus)
     )
 
     const data = await Usercentrics.status();
     expect(data).toBe(readyStatus);
   })
-  
+
   test('testStatusWithError', async () => {
     RNUsercentricsModule.isReady.mockImplementationOnce(
-      (): Promise<UsercentricsReadyStatus> => Promise.reject("Failed")
+      (): Promise<any> => Promise.reject("Failed")
     )
 
-    try { 
+    try {
       await Usercentrics.status();
-    } catch(e) { 
+    } catch (e) {
       expect(e).toBe("Failed");
     }
   })
@@ -80,10 +118,10 @@ describe('Test Usercentrics Module', () => {
     )
 
     RNUsercentricsModule.showCMP.mockImplementationOnce(
-      (): Promise<UsercentricsConsentUserResponse> => Promise.resolve(response)
+      (): Promise<any> => Promise.resolve(response)
     )
 
-    const image = { height: 0, width: 0, scale: 0, uri: "abc"} 
+    const image = { height: 0, width: 0, scale: 0, uri: "abc" }
     const logo = new UsercentricsLogo("abc", image)
     const font = new UsercentricsFont("abc", 16)
     const option = new UsercentricsUIOptions(false, logo, font)
@@ -97,22 +135,22 @@ describe('Test Usercentrics Module', () => {
 
   test('testShowCMPWithError', async () => {
     RNUsercentricsModule.showCMP.mockImplementationOnce(
-      (): Promise<UsercentricsConsentUserResponse> => Promise.reject("Failure")
+      (): Promise<any> => Promise.reject("Failure")
     )
 
-    const image = { height: 0, width: 0, scale: 0, uri: "abc"} 
+    const image = { height: 0, width: 0, scale: 0, uri: "abc" }
     const logo = new UsercentricsLogo("abc", image)
     const font = new UsercentricsFont("abc", 16)
     const option = new UsercentricsUIOptions(false, logo, font)
 
-    try { 
+    try {
       await Usercentrics.showCMP(option);
-    } catch(e) { 
+    } catch (e) {
       expect(e).toBe("Failure");
     }
   })
 
-  test('testRestoreUserSession', async() => {
+  test('testRestoreUserSession', async () => {
     const readyStatus = new UsercentricsReadyStatus(
       true,
       [
@@ -127,7 +165,7 @@ describe('Test Usercentrics Module', () => {
     )
 
     RNUsercentricsModule.restoreUserSession.mockImplementationOnce(
-      (): Promise<UsercentricsReadyStatus> => Promise.resolve(readyStatus)
+      (): Promise<any> => Promise.resolve(readyStatus)
     )
 
     const data = await Usercentrics.restoreUserSession("abc");
@@ -137,9 +175,9 @@ describe('Test Usercentrics Module', () => {
     expect(call).toBe("abc")
   })
 
-  test('testRestoreUserSessionWithError', async() => {
+  test('testRestoreUserSessionWithError', async () => {
     RNUsercentricsModule.restoreUserSession.mockImplementationOnce(
-      (): Promise<UsercentricsReadyStatus> => Promise.reject("Failed")
+      (): Promise<any> => Promise.reject("Failed")
     )
 
     try {
@@ -152,7 +190,7 @@ describe('Test Usercentrics Module', () => {
     expect(call).toBe("abc")
   })
 
-  test('testGetControllerId', async() => {
+  test('testGetControllerId', async () => {
     RNUsercentricsModule.getControllerId.mockImplementationOnce(
       (): Promise<string> => Promise.resolve("abc")
     )
@@ -162,16 +200,152 @@ describe('Test Usercentrics Module', () => {
     expect(data).toBe("abc");
   })
 
-  test('testGetTCFString', async() => {
+  test('testGetTCFString', async () => {
     RNUsercentricsModule.getTCFString.mockImplementationOnce(
-      (): Promise<string> => Promise.resolve("abc")
+      (): Promise<any> => Promise.resolve("abc")
     )
 
     const data = await Usercentrics.getTCFString();
     expect(data).toBe("abc");
   })
 
-  test('testReset', async() => {
+  test('testChangeLanguage', async () => {
+    RNUsercentricsModule.changeLanguage.mockImplementationOnce(
+      (): Promise<any> => Promise.resolve()
+    )
+
+    const data = await Usercentrics.changeLanguage("pt");
+    expect(data).toBe(undefined);
+  })
+
+  test('testGetConsents', async () => { 
+    RNUsercentricsModule.getConsents.mockImplementationOnce(
+      (): Promise<any> => Promise.resolve([usercentricsServiceConsent])
+    )
+
+    const data = await Usercentrics.getConsents();
+    expect(data).toStrictEqual([usercentricsServiceConsent]);
+  })
+
+  test('testGetCMPData', async () => { 
+    RNUsercentricsModule.getCMPData.mockImplementationOnce(
+      (): Promise<any> => Promise.resolve(cmpDataExample)
+    )
+
+    const data = await Usercentrics.getCMPData();
+    expect(data).toBe(cmpDataExample);
+  })
+
+  test('testGetUserSessionData', async () => {
+    RNUsercentricsModule.getUserSessionData.mockImplementationOnce(
+      (): Promise<any> => Promise.resolve("abc")
+    )
+
+    const data = await Usercentrics.getUserSessionData();
+    expect(data).toBe("abc");
+  })
+
+  test('testGetCCPAData', async () => { 
+    RNUsercentricsModule.getUSPData.mockImplementationOnce(
+      (): Promise<any> => Promise.resolve(ccpaDataExample)
+    )
+
+    const data = await Usercentrics.getCCPAData();
+    expect(data).toBe(ccpaDataExample);
+  })
+
+  test('testGetTCFData', async () => {
+    const response: TCFData = {
+      features: featuresExample,
+      purposes: purposesExample,
+      specialFeatures: [],
+      specialPurposes: [],
+      stacks: [],
+      vendors: []
+    }
+
+    RNUsercentricsModule.getTCFData.mockImplementationOnce(
+      (): Promise<any> => Promise.resolve(response)
+    )
+
+    const data = await Usercentrics.getTCFData();
+    expect(data).toStrictEqual(response)
+  })
+
+  test('testAcceptAllForTCF', async () => {
+    RNUsercentricsModule.acceptAllForTCF.mockImplementationOnce(
+      (): Promise<any> => Promise.resolve([usercentricsServiceConsent])
+    )
+
+    const data = await Usercentrics.acceptAllForTCF(TCFDecisionUILayer.firstLayer, UsercentricsConsentType.explicit);
+    expect(data).toStrictEqual([usercentricsServiceConsent]);
+  })
+
+  test('testDenyAllForTCF', async () => {
+    RNUsercentricsModule.denyAllForTCF.mockImplementationOnce(
+      (): Promise<any> => Promise.resolve([usercentricsServiceConsent])
+    )
+
+    const data = await Usercentrics.denyAllForTCF(TCFDecisionUILayer.firstLayer, UsercentricsConsentType.explicit);
+    expect(data).toStrictEqual([usercentricsServiceConsent]);
+  })
+
+  test('testAcceptAll', async () => {
+    RNUsercentricsModule.acceptAll.mockImplementationOnce(
+      (): Promise<any> => Promise.resolve([usercentricsServiceConsent])
+    )
+
+    const data = await Usercentrics.acceptAll(UsercentricsConsentType.explicit);
+    expect(data).toStrictEqual([usercentricsServiceConsent]);
+  })
+
+  test('testDenyAll', async () => {
+    RNUsercentricsModule.denyAll.mockImplementationOnce(
+      (): Promise<any> => Promise.resolve([usercentricsServiceConsent])
+    )
+
+    const data = await Usercentrics.denyAll(UsercentricsConsentType.explicit);
+    expect(data).toStrictEqual([usercentricsServiceConsent]);
+  })
+
+  test('testSaveOptOutForCCPA', async () => {
+    RNUsercentricsModule.saveOptOutForCCPA.mockImplementationOnce(
+      (): Promise<any> => Promise.resolve([usercentricsServiceConsent])
+    )
+
+    const data = await Usercentrics.saveOptOutForCCPA(false, UsercentricsConsentType.explicit);
+    expect(data).toStrictEqual([usercentricsServiceConsent]);
+  })
+
+  test('testSaveDecisions', async () => {
+    RNUsercentricsModule.saveDecisions.mockImplementationOnce(
+      (): Promise<any> => Promise.resolve([usercentricsServiceConsent])
+    )
+
+    const data = await Usercentrics.saveDecisions([userDecision], UsercentricsConsentType.explicit);
+    expect(data).toStrictEqual([usercentricsServiceConsent]);
+  })
+
+  test('testSaveDecisionsForTCF', async () => {
+    RNUsercentricsModule.saveDecisionsForTCF.mockImplementationOnce(
+      (): Promise<any> => Promise.resolve([usercentricsServiceConsent])
+    )
+
+    const data = await Usercentrics.saveDecisionsForTCF(
+      {
+        purposes: tcfUserDecisionOnPurposeExample,
+        specialFeatures: tcfUserDecisionOnSpecialFeatureExample,
+        vendors: tcfUserDecisionOnVendorExample
+      },
+      TCFDecisionUILayer.firstLayer,
+      [userDecision],
+      UsercentricsConsentType.explicit
+    );
+
+    expect(data).toStrictEqual([usercentricsServiceConsent]);
+  })
+
+  test('testReset', async () => {
     Usercentrics.reset();
     let spy = jest.spyOn(RNUsercentricsModule, "reset")
     expect(spy).toHaveBeenCalledTimes(1)
