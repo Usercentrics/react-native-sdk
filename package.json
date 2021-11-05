@@ -1,13 +1,13 @@
 {
   "name": "@usercentrics/react-native-sdk",
-  "version": "0.0.3",
+  "version": "2.0.2",
   "description": "Usercentrics SDK",
-  "homepage": "https://github.com/Usercentrics/react-native-sdk",
+  "homepage": "https://usercentrics.com",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "author": "Usercentrics <developer@usercentrics.com>",
   "iosPackageName": "react-native-usercentrics",
-  "iosPackageVersion": "2.0.1",
+  "iosPackageVersion": "2.0.2",
   "license": "SEE LICENSE IN LICENSE",
   "files": [
     "android",
@@ -32,7 +32,7 @@
     "compile": "rm -rf lib && tsc -p .",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "prepare": "yarn compile",
-    "test": "jest"
+    "test": "jest src/__tests__/index.test.ts"
   },
   "devDependencies": {
     "@babel/core": "^7.15.5",

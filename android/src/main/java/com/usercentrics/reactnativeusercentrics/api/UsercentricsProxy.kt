@@ -2,13 +2,14 @@ package com.usercentrics.reactnativeusercentrics.api
 
 import android.content.Context
 import android.content.Intent
+import android.util.Log
 import com.usercentrics.sdk.*
 import com.usercentrics.sdk.errors.UsercentricsError
 
 interface UsercentricsProxy {
     val instance: UsercentricsSDK
 
-    fun initialize(context: Context?, options: UsercentricsOptions)
+    fun initialize(context: Context, options: UsercentricsOptions)
 
     fun isReady(
         onSuccess: (UsercentricsReadyStatus) -> Unit,
@@ -25,15 +26,13 @@ interface UsercentricsProxy {
     fun reset()
 }
 
-internal object UsercentricsProxySingleton : UsercentricsProxy {
+internal class UsercentricsProxyImpl : UsercentricsProxy {
 
     override val instance: UsercentricsSDK
         get() = Usercentrics.instance
 
-    override fun initialize(context: Context?, options: UsercentricsOptions) {
-        if (context != null) {
-            Usercentrics.initialize(context, options)
-        }
+    override fun initialize(context: Context, options: UsercentricsOptions) {
+        Usercentrics.initialize(context, options)
     }
 
     override fun isReady(

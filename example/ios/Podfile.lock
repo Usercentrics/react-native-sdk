@@ -206,9 +206,11 @@ PODS:
     - React-jsi (= 0.65.1)
     - React-perflogger (= 0.65.1)
   - React-jsinspector (0.65.1)
-  - react-native-usercentrics (0.0.3):
+  - react-native-safe-area-context (3.3.2):
+    - React-Core
+  - react-native-usercentrics (2.0.2):
     - React
-    - UsercentricsUI (= 2.0.1)
+    - UsercentricsUI (= 2.0.2)
   - React-perflogger (0.65.1)
   - React-RCTActionSheet (0.65.1):
     - React-Core/RCTActionSheetHeaders (= 0.65.1)
@@ -273,9 +275,12 @@ PODS:
     - React-cxxreact (= 0.65.1)
     - React-jsi (= 0.65.1)
     - React-perflogger (= 0.65.1)
-  - Usercentrics (2.0.1)
-  - UsercentricsUI (2.0.1):
-    - Usercentrics (= 2.0.1)
+  - RNScreens (3.9.0):
+    - React-Core
+    - React-RCTImage
+  - Usercentrics (2.0.2)
+  - UsercentricsUI (2.0.2):
+    - Usercentrics (= 2.0.2)
   - Yoga (1.14.0)
 
 DEPENDENCIES:
@@ -296,6 +301,7 @@ DEPENDENCIES:
   - React-jsi (from `../node_modules/react-native/ReactCommon/jsi`)
   - React-jsiexecutor (from `../node_modules/react-native/ReactCommon/jsiexecutor`)
   - React-jsinspector (from `../node_modules/react-native/ReactCommon/jsinspector`)
+  - react-native-safe-area-context (from `../node_modules/react-native-safe-area-context`)
   - react-native-usercentrics (from `../..`)
   - React-perflogger (from `../node_modules/react-native/ReactCommon/reactperflogger`)
   - React-RCTActionSheet (from `../node_modules/react-native/Libraries/ActionSheetIOS`)
@@ -309,6 +315,7 @@ DEPENDENCIES:
   - React-RCTVibration (from `../node_modules/react-native/Libraries/Vibration`)
   - React-runtimeexecutor (from `../node_modules/react-native/ReactCommon/runtimeexecutor`)
   - ReactCommon/turbomodule/core (from `../node_modules/react-native/ReactCommon`)
+  - RNScreens (from `../node_modules/react-native-screens`)
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
 SPEC REPOS:
@@ -349,6 +356,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/jsiexecutor"
   React-jsinspector:
     :path: "../node_modules/react-native/ReactCommon/jsinspector"
+  react-native-safe-area-context:
+    :path: "../node_modules/react-native-safe-area-context"
   react-native-usercentrics:
     :path: "../.."
   React-perflogger:
@@ -375,6 +384,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/runtimeexecutor"
   ReactCommon:
     :path: "../node_modules/react-native/ReactCommon"
+  RNScreens:
+    :path: "../node_modules/react-native-screens"
   Yoga:
     :path: "../node_modules/react-native/ReactCommon/yoga"
 
@@ -396,7 +407,8 @@ SPEC CHECKSUMS:
   React-jsi: 12913c841713a15f64eabf5c9ad98592c0ec5940
   React-jsiexecutor: 43f2542aed3c26e42175b339f8d37fe3dd683765
   React-jsinspector: 41e58e5b8e3e0bf061fdf725b03f2144014a8fb0
-  react-native-usercentrics: b35448a46f1dbd499e651097f26ef68d6463c2fc
+  react-native-safe-area-context: 584dc04881deb49474363f3be89e4ca0e854c057
+  react-native-usercentrics: cf25504befdc47dae93f4b731998e20e630a19a7
   React-perflogger: fd28ee1f2b5b150b00043f0301d96bd417fdc339
   React-RCTActionSheet: 7f3fa0855c346aa5d7c60f9ced16e067db6d29fa
   React-RCTAnimation: 2119a18ee26159004b001bc56404ca5dbaae6077
@@ -409,8 +421,9 @@ SPEC CHECKSUMS:
   React-RCTVibration: 92d41c2442e5328cc4d342cd7f78e5876b68bae5
   React-runtimeexecutor: 85187f19dd9c47a7c102f9994f9d14e4dc2110de
   ReactCommon: eafed38eec7b591c31751bfa7494801618460459
-  Usercentrics: af3644ae390750b77c34d5a9435758fa1d91343d
-  UsercentricsUI: da22ffb838fefa7b64ad3e1f7f31597e8006a8b7
+  RNScreens: 4d79118be80f79fa1f4aa131909a1d6e86280af3
+  Usercentrics: 0a782c069efd2cfa7836f504f418d90a7a613d83
+  UsercentricsUI: 2c0a85d538649179afbb8cb278958bea10328bf9
   Yoga: aa0cb45287ebe1004c02a13f279c55a95f1572f4
 
 PODFILE CHECKSUM: 8832414c5dd364614811ab26910be07c365f97ea

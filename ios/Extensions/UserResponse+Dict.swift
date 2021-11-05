@@ -6,7 +6,7 @@ public extension UsercentricsConsentUserResponse {
         return [
             "controllerId": self.controllerId,
             "userInteraction": self.userInteraction.toInt(),
-            "consents": self.consents.map { $0.toDictionary() }
+            "consents": self.consents.toListOfDictionary()
         ]
     }
 }
