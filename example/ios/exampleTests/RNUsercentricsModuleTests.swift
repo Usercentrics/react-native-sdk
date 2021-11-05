@@ -470,7 +470,7 @@ class RNUsercentricsModuleTests: XCTestCase {
   }
 
   func testSetCMPId() {
-    module.setCMPId(id: 123)
+    module.setCMPId(123)
     XCTAssertEqual(Int32(123), fakeUsercentrics.cmpId)
   }
 }
