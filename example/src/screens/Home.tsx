@@ -12,8 +12,6 @@ import {
 export const HomeScreen = ({ navigation }: { navigation: any }) => {
     useEffect(() => {
         let options = new UsercentricsOptions("Yi9N3aXia");
-        // let options = new UsercentricsOptions("eQ6JwYNPb");
-        // let options = new UsercentricsOptions("EA4jnNPb9");
         options.loggerLevel = UsercentricsLoggerLevel.debug;
         Usercentrics.configure(options);
     });

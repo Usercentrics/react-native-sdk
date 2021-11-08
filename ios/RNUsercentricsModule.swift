@@ -19,14 +19,7 @@ class RNUsercentricsModule: NSObject, RCTBridgeModule {
     }
 
     @objc func configure(_ dict: NSDictionary) -> Void {
-        var alreadyInitialized = false
-        usercentricsManager.isReady { _ in
-            alreadyInitialized = true
-        } onFailure: { _ in
-            alreadyInitialized = true
-        }
-
-        if !alreadyInitialized {
+        if !usercentricsManager.alreadyConfigured {
             queue.async { [weak self] in
                 guard
                     let self = self,

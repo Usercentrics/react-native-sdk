@@ -1,8 +1,10 @@
 import Foundation
 import Usercentrics
 import UsercentricsUI
+import RxSwift
 
 public protocol UsercentricsManager {
+    var alreadyConfigured: Bool { get }
     func configure(options: UsercentricsOptions)
 
     func isReady(onSuccess: @escaping ((UsercentricsReadyStatus) -> Void), onFailure: @escaping ((Error) -> Void))
@@ -38,16 +40,33 @@ public protocol UsercentricsManager {
 
 final class UsercentricsManagerImplementation: UsercentricsManager {
 
+    private var bag: DisposeBag = DisposeBag()
+    private let isConfiguredObservable: BehaviorSubject<Bool> = .init(value: false)
+    var alreadyConfigured: Bool {
+        try! isConfiguredObservable.value()
+    }
+
     func isReady(onSuccess: @escaping ((UsercentricsReadyStatus) -> Void), onFailure: @escaping ((Error) -> Void)) {
-        UsercentricsCore.isReady(onSuccess: onSuccess, onFailure: onFailure)
+        var subscription: Disposable?
+
+        subscription = isConfiguredObservable
+            .subscribe(onNext: { isConfigured in
+                guard isConfigured else { return }
+                UsercentricsCore.isReady(onSuccess: onSuccess, onFailure: onFailure)
+                subscription?.dispose()
+            })
+
+        subscription?.disposed(by: bag)
     }
 
     func configure(options: UsercentricsOptions) {
         UsercentricsCore.configure(options: options)
+        isConfiguredObservable.onNext(true)
     }
 
     func reset() {
         UsercentricsCore.reset()
+        isConfiguredObservable.onNext(false)
     }
 
     func getPredefinedUI(settings: UsercentricsUISettings?, dismissViewHandler: @escaping (UsercentricsConsentUserResponse) -> Void) -> UIViewController {

@@ -15,6 +15,8 @@ enum FakeUsercentricsError: Error {
 }
 
 final class FakeUsercentricsManager: UsercentricsManager {
+  var alreadyConfigured: Bool = false
+
   var restoreControllerId: String?
 
   var getTCStringValue: String?
@@ -41,10 +43,12 @@ final class FakeUsercentricsManager: UsercentricsManager {
 
   func configure(options: UsercentricsOptions) {
     self.configureOptions = options
+    alreadyConfigured = true
   }
 
   func reset() {
     resetCount += 1
+    alreadyConfigured = false
   }
 
   func getPredefinedUI(settings: UsercentricsUISettings?, dismissViewHandler: @escaping (UsercentricsConsentUserResponse) -> Void) -> UIViewController {
