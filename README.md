@@ -76,67 +76,6 @@ To run the sample project, you will need to run npm install from both root and e
     npx react-native run-android
     ``` 
 
-
-## Sample Project
-
-To run the sample project, you will need to run npm install from both root and example folders:
-
-* From root folder:
-    ```sh
-    npm install
-    ``` 
-* Then navigate to example folder and run the command:
-    ```sh
-    cd example
-    npm install
-    ``` 
-
-    ### iOS
-    Inside the example folder: 
-    ```sh
-    npx pod-install
-    npx react-native run-ios
-    ``` 
-
-    If you want to open through Xcode, you can open the `example.xcworkspace` file.
-
-    ### Android
-
-    Run this script from the example folder:
-    ```sh
-    npx react-native run-android
-    ``` 
-
-
-## Sample Project
-
-To run the sample project, you will need to run npm install from both root and example folders:
-
-* From root folder:
-    ```sh
-    npm install
-    ``` 
-* From example folder:
-    ```sh
-    npm install
-    ``` 
-
-    ### iOS
-
-    From example folder: 
-    ```sh
-    npx pod-install
-    npx react-native run-ios
-    ``` 
-
-    ### Android
-
-    Open the android folder using Android Studio in order to create essential files then run from example folder:
-    ```sh
-    npx react-native run-android
-    ``` 
-
-
 ## Integration
 
 Continue to our [documentation](https://docs.usercentrics.com/cmp_in_app_sdk/) for a step by step integration guide.
