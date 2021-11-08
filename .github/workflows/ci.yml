@@ -76,36 +76,3 @@ jobs:
           working-directory: ./example/android
           api-level: 29
           script: gradle wrapper; ./gradlew :react-native-usercentrics:connectedAndroidTest
-
-  build-ios-android:
-    needs: [test-rn, test-android, test-ios]
-    runs-on: macOS-latest
-
-    steps: 
-    - name: Checkout
-      uses: actions/checkout@v2
-
-    - name: Setup Node
-      uses: actions/setup-node@v2
-      with:
-        node-version: "14.x"
-
-    - name: Java 11
-      uses: actions/setup-java@v1
-      with:
-        java-version: 11
-
-    - name: Install Dependencies
-      working-directory: ./example
-      run: ../scripts/install_dependencies.sh
-
-    - name: Build Android
-      uses: reactivecircus/android-emulator-runner@v2
-      with:
-          working-directory: ./example/android
-          api-level: 29
-          script: gradle wrapper; cd .. && npx react-native run-android
-
-    - name: Build iOS
-      working-directory: ./example/ios
-      run: pod install; cd .. && npx react-native run-ios

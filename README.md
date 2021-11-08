@@ -74,7 +74,7 @@ To run the sample project, you will need to run npm install from both root and e
     Open the android folder using Android Studio in order to create essential files then run from example folder:
     ```sh
     npx react-native run-android
-    ```
+    ``` 
 
 ## Integration
 
