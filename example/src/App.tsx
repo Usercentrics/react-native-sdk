@@ -2,6 +2,7 @@ import * as React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { CustomScreen, HomeScreen } from './screens';
+import Consent from './screens/Consent';
 
 const Stack = createNativeStackNavigator();
 
@@ -15,7 +16,7 @@ const App = () => {
         />
         <Stack.Screen
           name="CustomUI"
-          component={CustomScreen} />
+          component={Consent} />
       </Stack.Navigator>
     </NavigationContainer>
   )
