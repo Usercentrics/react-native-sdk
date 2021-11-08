@@ -43,12 +43,6 @@ class RNUsercentricsModuleTests: XCTestCase {
     XCTAssertEqual(expectedOptions.timeoutMillis, fakeUsercentrics.configureOptions!.timeoutMillis)
   }
 
-  func testConfigureWhenIsAlreadyConfigured() {
-    fakeUsercentrics.isReadySuccessCompletion = .mock()
-    module.configure(UsercentricsOptions.asDict())
-    XCTAssertEqual(nil, fakeUsercentrics.configureOptions)
-  }
-
   func testConfigureWithoutCorrectValues() {
     module.configure([:])
     XCTAssertEqual(nil, fakeUsercentrics.configureOptions)
