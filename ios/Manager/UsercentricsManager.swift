@@ -40,10 +40,29 @@ public protocol UsercentricsManager {
 
 final class UsercentricsManagerImplementation: UsercentricsManager {
 
+    private let isConfiguredBeforeKey: String = "usercentrics.isConfiguredBefore"
+
+    var isConfigured: Bool = false
     private var bag: DisposeBag = DisposeBag()
-    private let isConfiguredObservable: BehaviorSubject<Bool> = .init(value: false)
+
+    private let isConfiguredObservable: BehaviorSubject<Bool>
     var alreadyConfigured: Bool {
         try! isConfiguredObservable.value()
+    }
+
+    init() {
+        let isConfiguredBefore = UserDefaults.standard.bool(forKey: self.isConfiguredBeforeKey)
+        isConfiguredObservable = .init(value: isConfiguredBefore)
+
+        setupActions()
+    }
+
+    private func setupActions() {
+        isConfiguredObservable
+            .subscribe(onNext: { [weak self] in
+                guard let self = self else { return }
+                UserDefaults.standard.set($0, forKey: self.isConfiguredBeforeKey)
+            }).disposed(by: bag)
     }
 
     func isReady(onSuccess: @escaping ((UsercentricsReadyStatus) -> Void), onFailure: @escaping ((Error) -> Void)) {
