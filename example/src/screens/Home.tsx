@@ -1,21 +1,13 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { Button, Image, StyleSheet, View } from 'react-native'
 import {
     Usercentrics,
     UsercentricsFont,
-    UsercentricsLoggerLevel,
     UsercentricsLogo,
-    UsercentricsOptions,
     UsercentricsUIOptions
 } from '../../../src/index';
 
 export const HomeScreen = ({ navigation }: { navigation: any }) => {
-    useEffect(() => {
-        let options = new UsercentricsOptions("Yi9N3aXia");
-        options.loggerLevel = UsercentricsLoggerLevel.debug;
-        Usercentrics.configure(options);
-    });
-
     async function showCMP(showCloseButton: boolean) {
         const options = new UsercentricsUIOptions(showCloseButton)
         options.customLogo = createUsercentricsLogo();
