@@ -19,15 +19,13 @@ class RNUsercentricsModule: NSObject, RCTBridgeModule {
     }
 
     @objc func configure(_ dict: NSDictionary) -> Void {
-        if !usercentricsManager.alreadyConfigured {
-            queue.async { [weak self] in
-                guard
-                    let self = self,
-                    let userOptions = UsercentricsOptions(from: dict)
-                else { return }
+        queue.async { [weak self] in
+            guard
+                let self = self,
+                let userOptions = UsercentricsOptions(from: dict)
+            else { return }
 
-                self.usercentricsManager.configure(options: userOptions)
-            }
+            self.usercentricsManager.configure(options: userOptions)
         }
     }
 

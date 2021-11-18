@@ -210,7 +210,6 @@ PODS:
     - React-Core
   - react-native-usercentrics (2.0.3):
     - React
-    - RxSwift (= 6.2.0)
     - UsercentricsUI (= 2.0.3)
   - React-perflogger (0.65.1)
   - React-RCTActionSheet (0.65.1):
@@ -279,7 +278,6 @@ PODS:
   - RNScreens (3.9.0):
     - React-Core
     - React-RCTImage
-  - RxSwift (6.2.0)
   - Usercentrics (2.0.3)
   - UsercentricsUI (2.0.3):
     - Usercentrics (= 2.0.3)
@@ -324,7 +322,6 @@ SPEC REPOS:
   trunk:
     - boost-for-react-native
     - fmt
-    - RxSwift
     - Usercentrics
     - UsercentricsUI
 
@@ -411,7 +408,7 @@ SPEC CHECKSUMS:
   React-jsiexecutor: 43f2542aed3c26e42175b339f8d37fe3dd683765
   React-jsinspector: 41e58e5b8e3e0bf061fdf725b03f2144014a8fb0
   react-native-safe-area-context: 584dc04881deb49474363f3be89e4ca0e854c057
-  react-native-usercentrics: 6b0f8015c3f4d9080606d298e1a9019d481634c3
+  react-native-usercentrics: 6387a643160ca10a563e7cfa4908ec2b60af34c3
   React-perflogger: fd28ee1f2b5b150b00043f0301d96bd417fdc339
   React-RCTActionSheet: 7f3fa0855c346aa5d7c60f9ced16e067db6d29fa
   React-RCTAnimation: 2119a18ee26159004b001bc56404ca5dbaae6077
@@ -425,7 +422,6 @@ SPEC CHECKSUMS:
   React-runtimeexecutor: 85187f19dd9c47a7c102f9994f9d14e4dc2110de
   ReactCommon: eafed38eec7b591c31751bfa7494801618460459
   RNScreens: 4d79118be80f79fa1f4aa131909a1d6e86280af3
-  RxSwift: d356ab7bee873611322f134c5f9ef379fa183d8f
   Usercentrics: 81317f8dd028f1d6220df01940e61f56444983ea
   UsercentricsUI: c4d4fb48888daf1b4862f7d4b716eefb51dc7886
   Yoga: aa0cb45287ebe1004c02a13f279c55a95f1572f4

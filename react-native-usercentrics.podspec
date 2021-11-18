@@ -17,6 +17,5 @@ Pod::Spec.new do |s|
 
   s.dependency 'React'
   s.dependency 'UsercentricsUI', "#{package['iosPackageVersion']}"
-  s.dependency 'RxSwift', "6.2.0"
 
 end
