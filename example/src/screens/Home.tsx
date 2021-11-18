@@ -40,7 +40,6 @@ export const HomeScreen = ({ navigation }: { navigation: any }) => {
 
         <View style={styles.container}>
             <Button onPress={async () => {
-                await Usercentrics.status();
                 showCMP(true);
             }} title="Show PredefinedUI" />
 

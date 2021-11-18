@@ -25,27 +25,33 @@ export const Usercentrics = {
         return RNUsercentricsModule.isReady();
     },
 
-    showCMP: (options: UsercentricsUIOptions): Promise<UsercentricsConsentUserResponse> => {
+    showCMP: async (options: UsercentricsUIOptions): Promise<UsercentricsConsentUserResponse> => {
+        await RNUsercentricsModule.isReady();
         return RNUsercentricsModule.showCMP(options);
     },
 
-    restoreUserSession: (controllerId: string): Promise<UsercentricsReadyStatus> => {
+    restoreUserSession: async (controllerId: string): Promise<UsercentricsReadyStatus> => {
+        await RNUsercentricsModule.isReady();
         return RNUsercentricsModule.restoreUserSession(controllerId);
     },
 
-    getControllerId: (): Promise<string> => {
+    getControllerId: async (): Promise<string> => {
+        await RNUsercentricsModule.isReady();
         return RNUsercentricsModule.getControllerId();
     },
 
-    getTCFString: (): Promise<string> => {
+    getTCFString: async (): Promise<string> => {
+        await RNUsercentricsModule.isReady();
         return RNUsercentricsModule.getTCFString();
     },
 
-    getConsents: (): Promise<[UsercentricsServiceConsent]> => {
+    getConsents: async (): Promise<[UsercentricsServiceConsent]> => {
+        await RNUsercentricsModule.isReady();
         return RNUsercentricsModule.getConsents();
     },
 
-    getCMPData: (): Promise<UsercentricsCMPData> => {
+    getCMPData: async (): Promise<UsercentricsCMPData> => {
+        await RNUsercentricsModule.isReady();
         return RNUsercentricsModule.getCMPData();
     },
 
@@ -53,43 +59,53 @@ export const Usercentrics = {
         return RNUsercentricsModule.getUserSessionData();
     },
 
-    getCCPAData: (): Promise<CCPAData> => {
+    getCCPAData: async (): Promise<CCPAData> => {
+        await RNUsercentricsModule.isReady();
         return RNUsercentricsModule.getUSPData();
     },
 
-    getTCFData: (): Promise<TCFData> => {
+    getTCFData: async (): Promise<TCFData> => {
+        await RNUsercentricsModule.isReady();
         return RNUsercentricsModule.getTCFData();
     },
 
-    changeLanguage: (language: string): Promise<void> => {
+    changeLanguage: async (language: string): Promise<void> => {
+        await RNUsercentricsModule.isReady();
         return RNUsercentricsModule.changeLanguage(language);
     },
 
-    acceptAll: (consentType: UsercentricsConsentType): Promise<[UsercentricsServiceConsent]> => {
+    acceptAll: async (consentType: UsercentricsConsentType): Promise<[UsercentricsServiceConsent]> => {
+        await RNUsercentricsModule.isReady();
         return RNUsercentricsModule.acceptAll(consentType);
     },
 
-    acceptAllForTCF: (fromLayer: TCFDecisionUILayer, consentType: UsercentricsConsentType): Promise<[UsercentricsServiceConsent]> => {
+    acceptAllForTCF: async (fromLayer: TCFDecisionUILayer, consentType: UsercentricsConsentType): Promise<[UsercentricsServiceConsent]> => {
+        await RNUsercentricsModule.isReady();
         return RNUsercentricsModule.acceptAllForTCF(fromLayer, consentType);
     },
 
-    denyAll: (consentType: UsercentricsConsentType): Promise<[UsercentricsServiceConsent]> => {
+    denyAll: async (consentType: UsercentricsConsentType): Promise<[UsercentricsServiceConsent]> => {
+        await RNUsercentricsModule.isReady();
         return RNUsercentricsModule.denyAll(consentType);
     },
 
-    denyAllForTCF: (fromLayer: TCFDecisionUILayer, consentType: UsercentricsConsentType): Promise<[UsercentricsServiceConsent]> => {
+    denyAllForTCF: async (fromLayer: TCFDecisionUILayer, consentType: UsercentricsConsentType): Promise<[UsercentricsServiceConsent]> => {
+        await RNUsercentricsModule.isReady();
         return RNUsercentricsModule.denyAllForTCF(fromLayer, consentType);
     },
 
-    saveDecisions: (decisions: [UserDecision], consentType: UsercentricsConsentType): Promise<[UsercentricsServiceConsent]> => {
+    saveDecisions: async (decisions: [UserDecision], consentType: UsercentricsConsentType): Promise<[UsercentricsServiceConsent]> => {
+        await RNUsercentricsModule.isReady();
         return RNUsercentricsModule.saveDecisions(decisions, consentType);
     },
 
-    saveDecisionsForTCF: (tcfDecisions: TCFUserDecisions, fromLayer: TCFDecisionUILayer, decisions: [UserDecision], consentType: UsercentricsConsentType): Promise<[UsercentricsServiceConsent]> => {
+    saveDecisionsForTCF: async (tcfDecisions: TCFUserDecisions, fromLayer: TCFDecisionUILayer, decisions: [UserDecision], consentType: UsercentricsConsentType): Promise<[UsercentricsServiceConsent]> => {
+        await RNUsercentricsModule.isReady();
         return RNUsercentricsModule.saveDecisionsForTCF(tcfDecisions, fromLayer, decisions, consentType);
     },
 
-    saveOptOutForCCPA: (isOptedOut: boolean, consentType: UsercentricsConsentType): Promise<[UsercentricsServiceConsent]> => {
+    saveOptOutForCCPA: async (isOptedOut: boolean, consentType: UsercentricsConsentType): Promise<[UsercentricsServiceConsent]> => {
+        await RNUsercentricsModule.isReady();
         return RNUsercentricsModule.saveOptOutForCCPA(isOptedOut, consentType);
     },
 
