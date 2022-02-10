@@ -3,7 +3,7 @@ import { ImageResolvedAssetSource } from "react-native";
 export class UsercentricsUIOptions { 
     showCloseButton: boolean;
     customLogo?: UsercentricsLogo;
-    customFont?: UsercentricsFont
+    customFont?: UsercentricsFont;
 
     constructor(showCloseButton: boolean, customLogo?: UsercentricsLogo, customFont?: UsercentricsFont) {
         this.showCloseButton = showCloseButton;
@@ -15,10 +15,12 @@ export class UsercentricsUIOptions {
 export class UsercentricsLogo {
     logoName: string;
     logoPath: string;
+    logoUrl?: String;
 
-    constructor(logoName: string, logoPath: ImageResolvedAssetSource) {
+    constructor(logoName: string, logoPath: ImageResolvedAssetSource, logoUrl?: String) {
         this.logoName = logoName;
         this.logoPath = logoPath.uri;
+        this.logoUrl = logoUrl;
     }
 }
 

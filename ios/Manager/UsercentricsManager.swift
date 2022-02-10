@@ -9,6 +9,12 @@ public protocol UsercentricsManager {
     func restoreUserSession(controllerId: String, onSuccess: @escaping ((UsercentricsReadyStatus) -> Void), onFailure: @escaping ((Error) -> Void))
 
     func getPredefinedUI(settings: UsercentricsUISettings?, dismissViewHandler: @escaping (UsercentricsConsentUserResponse) -> Void) -> UIViewController
+
+    func showFirstLayer(bannerSettings: BannerSettings?,
+                        hostView: UINavigationController,
+                        layout: UsercentricsLayout,
+                        settings: FirstLayerStyleSettings?,
+                        dismissViewHandler: @escaping (UsercentricsConsentUserResponse) -> Void)
     func getTCString() -> String
     func getControllerId() -> String
     func getConsents() -> [UsercentricsServiceConsent]
@@ -61,6 +67,14 @@ final class UsercentricsManagerImplementation: UsercentricsManager {
 
     func getPredefinedUI(settings: UsercentricsUISettings?, dismissViewHandler: @escaping (UsercentricsConsentUserResponse) -> Void) -> UIViewController {
         return UsercentricsUserInterface.getPredefinedUI(settings: settings, dismissViewHandler: dismissViewHandler)
+    }
+
+    func showFirstLayer(bannerSettings: BannerSettings?,
+                        hostView: UINavigationController,
+                        layout: UsercentricsLayout,
+                        settings: FirstLayerStyleSettings?,
+                        dismissViewHandler: @escaping (UsercentricsConsentUserResponse) -> Void) {
+        UsercentricsBanner(bannerSettings: bannerSettings).showFirstLayer(hostView: hostView, layout: layout, settings: settings, completionHandler: dismissViewHandler)
     }
 
     func restoreUserSession(controllerId: String, onSuccess: @escaping ((UsercentricsReadyStatus) -> Void), onFailure: @escaping ((Error) -> Void)) {

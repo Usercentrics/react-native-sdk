@@ -58,6 +58,38 @@ class RNUsercentricsModule: NSObject, RCTBridgeModule {
         }
     }
 
+    @objc func showFirstLayer(_ dict: NSDictionary, resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) {
+        queue.async { [weak self] in
+            guard
+                let self = self,
+                let rootVC = self.rootVC,
+                let layoutString = dict["layout"] as? String
+            else {
+                reject("usercentrics_reactNative_showFirstLayer_error", RNUsercentricsModuleError.invalidData.localizedDescription, RNUsercentricsModuleError.invalidData)
+                return
+            }
+
+            let nav = UINavigationController()
+            nav.setNavigationBarHidden(true, animated: false)
+            nav.modalPresentationStyle = .overFullScreen
+            if #available(iOS 13.0, *) {
+                nav.isModalInPresentation = true
+            }
+
+            rootVC.present(nav)
+            let bannerSettingsDict = dict["bannerSettings"] as? NSDictionary
+            let styleSettingsDict = dict["styleSettings"] as? NSDictionary
+
+            self.usercentricsManager.showFirstLayer(bannerSettings: BannerSettings(from: bannerSettingsDict),
+                                                    hostView: nav,
+                                                    layout: UsercentricsLayout.from(enumString: layoutString),
+                                                    settings: FirstLayerStyleSettings(from: styleSettingsDict)) { response in
+                rootVC.dismiss(animated: true)
+                resolve(response.toDictionary())
+            }
+        }
+    }
+
     @objc func setCMPId(_ id: Int) -> Void {
         usercentricsManager.setCMPId(id: Int32(id))
     }

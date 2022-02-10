@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A20E7C9427B28D88004DC947 /* BannerSettings+Dict.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20E7C9327B28D88004DC947 /* BannerSettings+Dict.swift */; };
 		A21D32A4272AE191004ED33E /* UsercentricsServiceConsents+Dict.swift in Sources */ = {isa = PBXBuildFile; fileRef = A21D32A3272AE191004ED33E /* UsercentricsServiceConsents+Dict.swift */; };
 		A22EDF9E271DA49900F5BB8C /* UsercentricsOptions+Dict.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22EDF99271DA49900F5BB8C /* UsercentricsOptions+Dict.swift */; };
 		A22EDF9F271DA49900F5BB8C /* ReadyStatus+Dict.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22EDF9A271DA49900F5BB8C /* ReadyStatus+Dict.swift */; };
@@ -41,6 +42,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		A20E7C9327B28D88004DC947 /* BannerSettings+Dict.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BannerSettings+Dict.swift"; sourceTree = "<group>"; };
 		A21D32A3272AE191004ED33E /* UsercentricsServiceConsents+Dict.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UsercentricsServiceConsents+Dict.swift"; sourceTree = "<group>"; };
 		A22EDF99271DA49900F5BB8C /* UsercentricsOptions+Dict.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UsercentricsOptions+Dict.swift"; sourceTree = "<group>"; };
 		A22EDF9A271DA49900F5BB8C /* ReadyStatus+Dict.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ReadyStatus+Dict.swift"; sourceTree = "<group>"; };
@@ -90,6 +92,7 @@
 				A2F0B085272C483300A99DD3 /* TCFUserDecisions+Dict.swift */,
 				A24E4EA227313492001093C7 /* UserDecision+Dict.swift */,
 				A24E4EAA273186FD001093C7 /* TCFData+Dict.swift */,
+				A20E7C9327B28D88004DC947 /* BannerSettings+Dict.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -206,6 +209,7 @@
 				A22EDFA2271DA49900F5BB8C /* UsercentricsUISettings+Dict.swift in Sources */,
 				A2DC25402722A91400AA9DD8 /* UCRNFlag.swift in Sources */,
 				A2DC252727216CFC00AA9DD8 /* DispatchQueueManager.swift in Sources */,
+				A20E7C9427B28D88004DC947 /* BannerSettings+Dict.swift in Sources */,
 				A22EDF9E271DA49900F5BB8C /* UsercentricsOptions+Dict.swift in Sources */,
 				A2F0B080272C367B00A99DD3 /* UsercentricsConsentType+Int.swift in Sources */,
 				A2DC25362721A05500AA9DD8 /* RNUsercentricsModuleError.swift in Sources */,
