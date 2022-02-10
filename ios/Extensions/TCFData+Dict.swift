@@ -102,7 +102,8 @@ extension TCFVendor {
             "usesNonCookieAccess" : usesNonCookieAccess,
             "deviceStorageDisclosureUrl" : deviceStorageDisclosureUrl  as Any,
             "usesCookies" : usesCookies,
-            "cookieRefresh" : cookieRefresh?.boolValue as Any ,
+            "cookieRefresh" : cookieRefresh?.boolValue as Any,
+            "dataSharedOutsideEU": dataSharedOutsideEU?.boolValue as Any
         ]
     }
 }

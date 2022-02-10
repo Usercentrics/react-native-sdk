@@ -63,7 +63,8 @@ class RNUsercentricsModule: NSObject, RCTBridgeModule {
             guard
                 let self = self,
                 let rootVC = self.rootVC,
-                let layoutString = dict["layout"] as? String
+                let layoutString = dict["layout"] as? String,
+                let layout = UsercentricsLayout.from(enumString: layoutString)
             else {
                 reject("usercentrics_reactNative_showFirstLayer_error", RNUsercentricsModuleError.invalidData.localizedDescription, RNUsercentricsModuleError.invalidData)
                 return
@@ -82,7 +83,7 @@ class RNUsercentricsModule: NSObject, RCTBridgeModule {
 
             self.usercentricsManager.showFirstLayer(bannerSettings: BannerSettings(from: bannerSettingsDict),
                                                     hostView: nav,
-                                                    layout: UsercentricsLayout.from(enumString: layoutString),
+                                                    layout: layout,
                                                     settings: FirstLayerStyleSettings(from: styleSettingsDict)) { response in
                 rootVC.dismiss(animated: true)
                 resolve(response.toDictionary())

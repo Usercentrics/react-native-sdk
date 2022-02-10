@@ -14,6 +14,8 @@ public extension UsercentricsServiceConsent {
             "status": self.status,
             "version": self.version,
             "dataProcessor": self.dataProcessor,
+            "isEssential": self.isEssential,
+            "history": self.history.toDictionary()
         ]
 
         if let type = self.type?.ordinal {
@@ -21,5 +23,17 @@ public extension UsercentricsServiceConsent {
         }
 
         return dict
+    }
+}
+
+public extension Array where Element == UsercentricsConsentHistoryEntry {
+    func toDictionary() -> [NSDictionary] {
+        self.map {
+            [
+                "status": $0.status,
+                "type": $0.type.ordinal,
+                "timestampInMillis": $0.timestampInMillis
+            ]
+        }
     }
 }

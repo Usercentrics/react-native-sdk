@@ -99,10 +99,11 @@ extension ButtonSettings {
     init?(from dictionary: NSDictionary?) {
         guard
             let dictionary = dictionary,
-            let buttonType = dictionary["buttonType"] as? String
+            let buttonTypeDict = dictionary["buttonType"] as? String,
+            let buttonType = ButtonType.from(enumString: buttonTypeDict)
         else { return nil }
 
-        self.init(type: ButtonType.from(enumString: buttonType),
+        self.init(type: buttonType,
                   font: UIFont(from: dictionary["font"] as? NSDictionary),
                   textColor: UIColor(unsafeHex: dictionary["textColorHex"] as? String),
                   backgroundColor: UIColor(unsafeHex: dictionary["backgroundColorHex"] as? String),
@@ -111,7 +112,7 @@ extension ButtonSettings {
 }
 
 extension ButtonType {
-    static func from(enumString: String) -> ButtonType {
+    static func from(enumString: String) -> ButtonType? {
         switch enumString {
             case "ACCEPT_ALL":
                 return .acceptAll
@@ -119,14 +120,16 @@ extension ButtonType {
                 return .denyAll
             case "MORE":
                 return .more
-            default:
+            case "SAVE":
                 return .save
+            default:
+                return nil
         }
     }
 }
 
 extension UsercentricsLayout {
-    static func from(enumString: String) -> UsercentricsLayout {
+    static func from(enumString: String) -> UsercentricsLayout? {
         switch enumString {
             case "FULL":
                 return .full
@@ -134,8 +137,10 @@ extension UsercentricsLayout {
                 return .sheet
             case "POPUP_CENTER":
                 return .popup(position: .center)
-            default:
+            case "POPUP_BOTTOM":
                 return .popup(position: .bottom)
+            default:
+                return nil
         }
     }
 }
@@ -149,8 +154,10 @@ extension SectionPosition {
                 return .center
             case "RIGHT":
                 return .right
-            default:
+            case "LEFT":
                 return .left
+            default:
+                return nil
         }
     }
 }
@@ -164,8 +171,10 @@ extension NSTextAlignment {
                 return .center
             case "RIGHT":
                 return .right
-            default:
+            case "LEFT":
                 return .left
+            default:
+                return nil
         }
     }
 }
