@@ -17,39 +17,17 @@ import {
 } from '../../../src/index';
 
 export const HomeScreen = ({ navigation }: { navigation: any }) => {
-    function createUsercentricsLogo(): UsercentricsLogo {
-        // Logo name is used for iOS and the Image.resolveAssetSource is used for Android.
-        const customLogo = new UsercentricsLogo("logo.png", Image.resolveAssetSource(require('../../assets/images/logo.png')))
-        return customLogo
-    }
-
-    async function showFirstLayer() {
-        const bannerSettings = new BannerSettings();
-
-        const styleSettings: FirstLayerStyleSettings = {
-            headerImage: HeaderImageSettings.logo(createUsercentricsLogo(), 30.0, SectionAlignment.center),
-            buttonLayout: ButtonLayout.grid([
-                [new ButtonSettings(ButtonType.acceptAll)],
-                [new ButtonSettings(ButtonType.more), new ButtonSettings(ButtonType.denyAll)]]),
-            cornerRadius: 30.0
-        }
-        
-        const options = new FirstLayerOptions(
-            UsercentricsLayout.popupCenter,
-            bannerSettings,
-            styleSettings
-        );
-
+    async function showFirstLayer(options: FirstLayerOptions = defaultOptions) {
         const response = await Usercentrics.showFirstLayer(options);
         console.log("Consents -> ${response.consents}", response.consents);
         console.log("User Interaction -> ${response.userInteraction}", response.userInteraction);
         console.log("Controller Id -> ${response.controllerId}", response.controllerId);
     }
 
-    async function showSecondLayer() { 
+    async function showSecondLayer() {
         const bannerSettings = new BannerSettings();
         const options = new SecondLayerOptions(
-            bannerSettings, 
+            bannerSettings,
             true
         );
 
@@ -80,9 +58,86 @@ export const HomeScreen = ({ navigation }: { navigation: any }) => {
             }} title="Show Second Layer" />
 
             <Button onPress={async () => {
+                showFirstLayer(customizationExampleOne);
+            }} title="Customization Example 1" />
+
+            <Button onPress={async () => {
+                showFirstLayer(customizationExampleTwo);
+            }} title="Customization Example 2" />
+
+            <Button onPress={async () => {
                 await Usercentrics.status();
                 navigation.navigate("CustomUI")
             }} title="Custom UI" />
         </View>
     );
 };
+
+const defaultOptions: FirstLayerOptions = {
+    layout: UsercentricsLayout.popupCenter
+}
+
+const customizationExampleOne: FirstLayerOptions = {
+    layout: UsercentricsLayout.popupBottom,
+    styleSettings: {
+        cornerRadius: 30.0,
+        title: {
+            font: { fontName: "Lora", fontSize: 16.0 }
+        },
+        message: {
+            font: { fontName: "Lora", fontSize: 14.0 }
+        },
+        headerImage: HeaderImageSettings.logo(createUsercentricsLogo(), 30, SectionAlignment.center),
+        buttonLayout: ButtonLayout.row([{
+            buttonType: ButtonType.acceptAll,
+            cornerRadius: 30.0
+        }, {
+            buttonType: ButtonType.more,
+            backgroundColorHex: "00000000"
+        }])
+    }
+}
+
+const customizationExampleTwo: FirstLayerOptions = {
+    layout: UsercentricsLayout.full,
+    styleSettings: { 
+        cornerRadius: 20,
+        backgroundColorHex: "000000",
+        headerImage: HeaderImageSettings.hidden(),
+        title: {
+            font: { fontName: "Lora", fontSize: 18.0 },
+            textColorHex: "FFFFFF",
+            textAlignment: SectionAlignment.center
+        },
+        message: {
+            font: { fontName: "Lora", fontSize: 14.0 },
+            textColorHex: "FFFFFF"
+        },
+        buttonLayout: ButtonLayout.grid([
+            [
+                {
+                    buttonType: ButtonType.acceptAll,
+                    cornerRadius: 30.0,
+                    backgroundColorHex: "FFFFFF",
+                    textColorHex: "000000"
+                }, {
+                    buttonType: ButtonType.denyAll,
+                    backgroundColorHex: "00000000",
+                    textColorHex: "FFFFFF"
+                }
+            ], [
+                {
+                    buttonType: ButtonType.more,
+                    cornerRadius: 30.0,
+                    textColorHex: "000000"
+                }
+            ]
+        ])
+    }
+}
+
+function createUsercentricsLogo(): UsercentricsLogo {
+    // Logo name is used for iOS and the Image.resolveAssetSource is used for Android.
+    const customLogo = new UsercentricsLogo("logo.png", Image.resolveAssetSource(require('../../assets/images/logo.png')))
+    return customLogo
+}

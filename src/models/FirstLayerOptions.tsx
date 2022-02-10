@@ -112,11 +112,11 @@ export class ButtonLayout {
         this.layout = layout;
     }
 
-    static row(buttons: [ButtonSettings]): ButtonLayout {
+    static row(buttons: ButtonSettings[]): ButtonLayout {
         return new ButtonLayout([buttons], InternalButtonLayout.row)
     }
 
-    static column(buttons: [ButtonSettings]): ButtonLayout {
+    static column(buttons: ButtonSettings[]): ButtonLayout {
         return new ButtonLayout([buttons], InternalButtonLayout.column)
     }
 
