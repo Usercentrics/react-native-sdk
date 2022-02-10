@@ -10,19 +10,6 @@ extension BannerSettings {
     }
 }
 
-extension UIImage {
-    convenience init?(from dictionary: NSDictionary?) {
-        guard
-            let dictionary = dictionary,
-            let logoName = dictionary["logoName"] as? String
-        else {
-            return nil
-        }
-
-        self.init(named: logoName)
-    }
-}
-
 extension FirstLayerStyleSettings {
     init?(from dictionary: NSDictionary?) {
         guard let dictionary = dictionary else { return nil }
@@ -153,19 +140,6 @@ extension UsercentricsLayout {
     }
 }
 
-extension UIFont {
-    convenience init?(from dictionary: NSDictionary?) {
-        guard let dictionary = dictionary else { return nil }
-
-        if let customFontName = dictionary["fontName"] as? String,
-           let customFontSize = dictionary["fontSize"] as? CGFloat {
-            self.init(name: customFontName, size: customFontSize)
-        } else {
-            return nil
-        }
-    }
-}
-
 extension SectionPosition {
     static func from(enumString: String?) -> SectionPosition? {
         guard let enumString = enumString else { return nil }
@@ -193,43 +167,5 @@ extension NSTextAlignment {
             default:
                 return .left
         }
-    }
-}
-
-
-
-extension UIColor {
-    convenience init?(unsafeHex: String?, alpha: CGFloat = 1.0) {
-        guard let unsafeHex = unsafeHex else { return nil }
-        if unsafeHex.hasPrefix("#") {
-            self.init(hex: unsafeHex, alpha: alpha)
-        } else {
-            self.init(hex: "#\(unsafeHex)", alpha: alpha)
-        }
-    }
-
-    convenience init?(hex: String, alpha: CGFloat = 1.0) {
-        let r, g, b: CGFloat
-
-        if hex.hasPrefix("#") {
-            let start = hex.index(hex.startIndex, offsetBy: 1)
-            let hexColor = String(hex[start...])
-
-            if hexColor.count == 6 {
-                let scanner = Scanner(string: hexColor)
-                var hexNumber: UInt64 = 0
-
-                if scanner.scanHexInt64(&hexNumber) {
-                    r = CGFloat((hexNumber & 0xff0000) >> 16) / 255
-                    g = CGFloat((hexNumber & 0x00ff00) >> 8) / 255
-                    b = CGFloat(hexNumber & 0x0000ff) / 255
-
-                    self.init(red: r, green: g, blue: b, alpha: alpha)
-                    return
-                }
-            }
-        }
-
-        return nil
     }
 }
