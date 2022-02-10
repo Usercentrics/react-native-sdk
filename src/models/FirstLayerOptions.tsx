@@ -17,15 +17,25 @@ export class FirstLayerStyleSettings {
     title?: TitleSettings;
     message?: MessageSettings;
     buttonLayout?: ButtonLayout;
+    backgroundColorHex?: String;
+    cornerRadius?: Number;
+    overlayColorHex?: String;
 
     constructor(headerImage?: HeaderImageSettings,
         title?: TitleSettings,
         message?: MessageSettings,
-        buttonLayout?: ButtonLayout) {
+        buttonLayout?: ButtonLayout,
+        backgroundColorHex?: String,
+        cornerRadius?: Number,
+        overlayColorHex?: String
+        ) {
         this.headerImage = headerImage;
         this.title = title;
         this.message = message;
         this.buttonLayout = buttonLayout;
+        this.backgroundColorHex= backgroundColorHex;
+        this.cornerRadius = cornerRadius;
+        this.overlayColorHex = overlayColorHex;
     }
 }
 

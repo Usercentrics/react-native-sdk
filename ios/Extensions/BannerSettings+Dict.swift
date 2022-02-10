@@ -31,9 +31,9 @@ extension FirstLayerStyleSettings {
                   title: TitleSettings(from: dictionary["title"] as? NSDictionary),
                   message: MessageSettings(from: dictionary["message"] as? NSDictionary),
                   buttonLayout: ButtonLayout.from(dictionary: dictionary["buttonLayout"] as? NSDictionary),
-                  backgroundColor: nil,
-                  cornerRadius: nil,
-                  overlayColor: nil)
+                  backgroundColor: UIColor(unsafeHex: dictionary["backgroundColorHex"] as? String),
+                  cornerRadius: dictionary["cornerRadius"] as? CGFloat,
+                  overlayColor: UIColor(unsafeHex: dictionary["overlayColorHex"] as? String))
     }
 }
 

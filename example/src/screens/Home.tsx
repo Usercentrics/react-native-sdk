@@ -8,28 +8,15 @@ import {
     FirstLayerOptions,
     FirstLayerStyleSettings,
     HeaderImageSettings,
+    SecondLayerOptions,
     SectionAlignment,
     Usercentrics,
     UsercentricsFont,
     UsercentricsLayout,
-    UsercentricsLogo,
-    UsercentricsUIOptions
+    UsercentricsLogo
 } from '../../../src/index';
 
 export const HomeScreen = ({ navigation }: { navigation: any }) => {
-    async function showCMP(showCloseButton: boolean) {
-        const options = new UsercentricsUIOptions(showCloseButton)
-        options.customLogo = createUsercentricsLogo();
-
-        const font = new UsercentricsFont("Lora", 14)
-        options.customFont = font
-
-        const response = await Usercentrics.showCMP(options)
-        console.log("Consents -> ${response.consents}", response.consents);
-        console.log("User Interaction -> ${response.userInteraction}", response.userInteraction);
-        console.log("Controller Id -> ${response.controllerId}", response.controllerId);
-    }
-
     function createUsercentricsLogo(): UsercentricsLogo {
         // Logo name is used for iOS and the Image.resolveAssetSource is used for Android.
         const customLogo = new UsercentricsLogo("logo.png", Image.resolveAssetSource(require('../../assets/images/logo.png')))
@@ -39,26 +26,14 @@ export const HomeScreen = ({ navigation }: { navigation: any }) => {
     async function showFirstLayer() {
         const bannerSettings = new BannerSettings();
 
-        const styleSettings = new FirstLayerStyleSettings(
-            HeaderImageSettings.logo(createUsercentricsLogo(), 30.0, SectionAlignment.right),
-            {
-                font: new UsercentricsFont("Lora", 16),
-                textColorHex: "0045FF",
-                textAlignment: SectionAlignment.center
-            },
-            {
-                font: new UsercentricsFont("Lora", 14),
-                textColorHex: "00F0FF",
-                textAlignment: SectionAlignment.center,
-                linkTextColorHex: "000000",
-                linkTextUnderline: true,
-            },
-
-            ButtonLayout.grid([
-                [new ButtonSettings(ButtonType.acceptAll, new UsercentricsFont("Lora", 16), "00ff00")],
-                [new ButtonSettings(ButtonType.more), new ButtonSettings(ButtonType.denyAll)]])
-        );
-
+        const styleSettings: FirstLayerStyleSettings = {
+            headerImage: HeaderImageSettings.logo(createUsercentricsLogo(), 30.0, SectionAlignment.center),
+            buttonLayout: ButtonLayout.grid([
+                [new ButtonSettings(ButtonType.acceptAll)],
+                [new ButtonSettings(ButtonType.more), new ButtonSettings(ButtonType.denyAll)]]),
+            cornerRadius: 30.0
+        }
+        
         const options = new FirstLayerOptions(
             UsercentricsLayout.popupCenter,
             bannerSettings,
@@ -66,6 +41,19 @@ export const HomeScreen = ({ navigation }: { navigation: any }) => {
         );
 
         const response = await Usercentrics.showFirstLayer(options);
+        console.log("Consents -> ${response.consents}", response.consents);
+        console.log("User Interaction -> ${response.userInteraction}", response.userInteraction);
+        console.log("Controller Id -> ${response.controllerId}", response.controllerId);
+    }
+
+    async function showSecondLayer() { 
+        const bannerSettings = new BannerSettings();
+        const options = new SecondLayerOptions(
+            bannerSettings, 
+            true
+        );
+
+        const response = await Usercentrics.showSecondLayer(options);
         console.log("Consents -> ${response.consents}", response.consents);
         console.log("User Interaction -> ${response.userInteraction}", response.userInteraction);
         console.log("Controller Id -> ${response.controllerId}", response.controllerId);
@@ -84,12 +72,12 @@ export const HomeScreen = ({ navigation }: { navigation: any }) => {
 
         <View style={styles.container}>
             <Button onPress={async () => {
-                showCMP(true);
-            }} title="Show PredefinedUI" />
-
-            <Button onPress={async () => {
                 showFirstLayer();
             }} title="Show First Layer" />
+
+            <Button onPress={async () => {
+                showSecondLayer();
+            }} title="Show Second Layer" />
 
             <Button onPress={async () => {
                 await Usercentrics.status();

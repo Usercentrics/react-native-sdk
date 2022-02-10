@@ -90,6 +90,36 @@ class RNUsercentricsModule: NSObject, RCTBridgeModule {
         }
     }
 
+    @objc func showSecondLayer(_ dict: NSDictionary, resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) {
+        queue.async { [weak self] in
+            guard
+                let self = self,
+                let rootVC = self.rootVC
+            else {
+                reject("usercentrics_reactNative_showFirstLayer_error", RNUsercentricsModuleError.invalidData.localizedDescription, RNUsercentricsModuleError.invalidData)
+                return
+            }
+
+            let nav = UINavigationController()
+            nav.setNavigationBarHidden(true, animated: false)
+            nav.modalPresentationStyle = .overFullScreen
+            if #available(iOS 13.0, *) {
+                nav.isModalInPresentation = true
+            }
+
+            rootVC.present(nav)
+            let bannerSettingsDict = dict["bannerSettings"] as? NSDictionary
+            let showCloseButton = (dict["showCloseButton"] as? Bool) ?? false
+
+            self.usercentricsManager.showSecondLayer(bannerSettings: BannerSettings(from: bannerSettingsDict),
+                                                     hostView: nav,
+                                                     showCloseButton: showCloseButton) { response in
+                rootVC.dismiss(animated: true)
+                resolve(response.toDictionary())
+            }
+        }
+    }
+
     @objc func setCMPId(_ id: Int) -> Void {
         usercentricsManager.setCMPId(id: Int32(id))
     }

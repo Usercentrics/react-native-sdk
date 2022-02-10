@@ -25,4 +25,5 @@ export {
     ButtonType,
     ButtonSettings
 } from './FirstLayerOptions';
+export { SecondLayerOptions } from './SecondLayerOptions';
 export { BannerSettings } from "./BannerSettings";

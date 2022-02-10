@@ -12,7 +12,8 @@ import {
     TCFDecisionUILayer,
     UserDecision,
     TCFUserDecisions,
-    FirstLayerOptions
+    FirstLayerOptions,
+    SecondLayerOptions
 } from './models';
 
 const { RNUsercentricsModule } = NativeModules;
@@ -34,6 +35,11 @@ export const Usercentrics = {
     showFirstLayer: async (options: FirstLayerOptions): Promise<UsercentricsConsentUserResponse> => { 
         await RNUsercentricsModule.isReady();
         return RNUsercentricsModule.showFirstLayer(options);
+    },
+
+    showSecondLayer: async (options: SecondLayerOptions): Promise<UsercentricsConsentUserResponse> => { 
+        await RNUsercentricsModule.isReady();
+        return RNUsercentricsModule.showSecondLayer(options);
     },
 
     restoreUserSession: async (controllerId: string): Promise<UsercentricsReadyStatus> => {
