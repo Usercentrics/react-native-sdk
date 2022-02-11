@@ -32,6 +32,14 @@ internal class GetConsentsMock {
                 "type" to 0,
                 "version" to "1.0.1",
                 "dataProcessor" to "Facebook SDK",
+                "isEssential" to false,
+                "history" to listOf(
+                    mapOf(
+                        "timestampInMillis" to 123,
+                        "type" to 0,
+                        "status" to false
+                    )
+                )
             )
         )
     }

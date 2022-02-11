@@ -1,8 +1,10 @@
 package com.usercentrics.reactnativeusercentrics.extensions
 
 import com.facebook.react.bridge.Arguments
+import com.facebook.react.bridge.ReadableArray
 import com.facebook.react.bridge.WritableArray
 import com.facebook.react.bridge.WritableMap
+import com.usercentrics.sdk.UsercentricsConsentHistoryEntry
 import com.usercentrics.sdk.UsercentricsServiceConsent
 
 internal fun List<UsercentricsServiceConsent>.toWritableArray(): WritableArray {
@@ -28,6 +30,25 @@ internal fun UsercentricsServiceConsent.toWritableMap(): WritableMap {
         }
         putString("version", version)
         putString("dataProcessor", dataProcessor)
+        putBoolean("isEssential", isEssential)
+        putArray("history", history.toWritableArray())
+    }
+}
+
+private fun List<UsercentricsConsentHistoryEntry>.toWritableArray(): ReadableArray? {
+    map {
+        Arguments.createMap().apply {
+            putBoolean("status", it.status)
+            putInt("type", it.type.ordinal)
+            putInt("timestampInMillis", it.timestampInMillis.toInt())
+        }
+    }.apply {
+        val array = Arguments.createArray()
+        forEach {
+            array.pushMap(it)
+        }
+
+        return array
     }
 }
 

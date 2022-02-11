@@ -93,5 +93,6 @@ private fun TCFVendor.serialize(): WritableMap {
 //        "deviceStorage" to deviceStorage.serialize(),
         "usesCookies" to usesCookies,
         "cookieRefresh" to cookieRefresh,
+        "dataSharedOutsideEU" to dataSharedOutsideEU
     ).toWritableMap()
 }
