@@ -152,9 +152,9 @@ extension SectionPosition {
         switch enumString {
             case "CENTER":
                 return .center
-            case "RIGHT":
+            case "END":
                 return .right
-            case "LEFT":
+            case "START":
                 return .left
             default:
                 return nil

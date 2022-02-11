@@ -5,6 +5,7 @@ import android.content.Intent
 import android.util.Log
 import com.usercentrics.sdk.*
 import com.usercentrics.sdk.errors.UsercentricsError
+import java.lang.Exception
 
 interface UsercentricsProxy {
     val instance: UsercentricsSDK
@@ -32,7 +33,9 @@ internal class UsercentricsProxyImpl : UsercentricsProxy {
         get() = Usercentrics.instance
 
     override fun initialize(context: Context, options: UsercentricsOptions) {
-        Usercentrics.initialize(context, options)
+        try {
+            Usercentrics.initialize(context, options)
+        } catch (e: Exception) { e.printStackTrace() }
     }
 
     override fun isReady(

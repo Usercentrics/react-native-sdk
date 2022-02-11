@@ -14,8 +14,8 @@ class FirstLayerOptionsDictTests: XCTestCase {
 
   func testMapSectionPosition() {
     XCTAssertEqual(.center, SectionPosition.from(enumString: "CENTER"))
-    XCTAssertEqual(.left, SectionPosition.from(enumString: "LEFT"))
-    XCTAssertEqual(.right, SectionPosition.from(enumString: "RIGHT"))
+    XCTAssertEqual(.left, SectionPosition.from(enumString: "START"))
+    XCTAssertEqual(.right, SectionPosition.from(enumString: "END"))
     XCTAssertNil(SectionPosition.from(enumString: "Abc"))
   }
 

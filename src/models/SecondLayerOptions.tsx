@@ -2,9 +2,9 @@ import { BannerSettings } from ".";
 
 export class SecondLayerOptions {
     bannerSettings?: BannerSettings;
-    showCloseButton?: Boolean;
+    showCloseButton: Boolean;
 
-    constructor(bannerSettings?: BannerSettings, showCloseButton: Boolean = false) {
+    constructor(showCloseButton: Boolean, bannerSettings?: BannerSettings) {
         this.bannerSettings = bannerSettings;
         this.showCloseButton = showCloseButton;
     }

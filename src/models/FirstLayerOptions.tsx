@@ -138,16 +138,21 @@ export class ButtonSettings {
     backgroundColorHex?: String;
     cornerRadius?: number;
 
+    // Affects only Android
+    isAllCaps?: Boolean
+
     constructor(buttonType: ButtonType,
         font?: UsercentricsFont,
         textColorHex?: String,
         backgroundColorHex?: String,
-        cornerRadius?: number) {
+        cornerRadius?: number,
+        isAllCaps?: Boolean) {
         this.buttonType = buttonType
         this.font = font
         this.textColorHex = textColorHex
         this.backgroundColorHex = backgroundColorHex
         this.cornerRadius = cornerRadius
+        this.isAllCaps = isAllCaps
     }
 }
 
@@ -159,8 +164,8 @@ export enum ButtonType {
 }
 
 export enum SectionAlignment {
-    left = "LEFT",
-    right = "RIGHT",
+    left = "START",
+    right = "END",
     center = "CENTER"
 }
 

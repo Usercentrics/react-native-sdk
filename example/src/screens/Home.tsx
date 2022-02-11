@@ -27,8 +27,8 @@ export const HomeScreen = ({ navigation }: { navigation: any }) => {
     async function showSecondLayer() {
         const bannerSettings = new BannerSettings();
         const options = new SecondLayerOptions(
-            bannerSettings,
-            true
+            true,
+            bannerSettings
         );
 
         const response = await Usercentrics.showSecondLayer(options);
@@ -78,6 +78,10 @@ const defaultOptions: FirstLayerOptions = {
 }
 
 const customizationExampleOne: FirstLayerOptions = {
+    bannerSettings: { 
+        font: { fontName: "Lora", fontSize: 16.0 },
+        logo: createUsercentricsLogo()
+    },
     layout: UsercentricsLayout.popupBottom,
     styleSettings: {
         cornerRadius: 30.0,
@@ -119,7 +123,8 @@ const customizationExampleTwo: FirstLayerOptions = {
                     buttonType: ButtonType.acceptAll,
                     cornerRadius: 30.0,
                     backgroundColorHex: "FFFFFF",
-                    textColorHex: "000000"
+                    textColorHex: "000000",
+                    font: { fontName: "Lora", fontSize: 18.0 }
                 }, {
                     buttonType: ButtonType.denyAll,
                     backgroundColorHex: "00000000",
