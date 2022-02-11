@@ -228,7 +228,8 @@ internal class GetCMPDataMock {
             hideButtonDeny = false,
             tabsServicesIsEnabled = true,
             isOverlayEnabled = true,
-            title = ""
+            title = "",
+            hideTogglesForServices = false
         )
         private val fakeTCF2Settings = TCF2Settings(
             togglesSpecialFeaturesToggleOff = "Off",

@@ -5,7 +5,6 @@ import android.content.Intent
 import com.usercentrics.reactnativeusercentrics.api.UsercentricsProxy
 import com.usercentrics.sdk.*
 import com.usercentrics.sdk.errors.UsercentricsError
-import com.usercentrics.sdk.models.settings.UsercentricsConsent
 
 internal class FakeUsercentricsProxy(
     private val instanceAnswer: UsercentricsSDK? = null,

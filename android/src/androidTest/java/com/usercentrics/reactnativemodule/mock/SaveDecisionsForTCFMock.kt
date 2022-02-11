@@ -2,6 +2,7 @@ package com.usercentrics.reactnativemodule.mock
 
 import com.usercentrics.reactnativeusercentrics.extensions.toWritableMap
 import com.usercentrics.sdk.UserDecision
+import com.usercentrics.sdk.UsercentricsConsentHistoryEntry
 import com.usercentrics.sdk.UsercentricsServiceConsent
 import com.usercentrics.sdk.models.settings.UsercentricsConsentType
 import com.usercentrics.sdk.services.tcf.TCFDecisionUILayer
@@ -18,7 +19,15 @@ internal class SaveDecisionsForTCFMock {
                 status = true,
                 dataProcessor = "Facebook SDK",
                 type = UsercentricsConsentType.EXPLICIT,
-                version = "1.0.1"
+                version = "1.0.1",
+                history = listOf(
+                    UsercentricsConsentHistoryEntry(
+                        status = false,
+                        UsercentricsConsentType.EXPLICIT,
+                        123
+                    )
+                ),
+                isEssential = false
             )
         )
 
