@@ -3,11 +3,13 @@ import {
 } from 'react-native';
 import {
   CCPAData,
+  FirstLayerOptions,
   TCFData,
   TCFDecisionUILayer,
   UsercentricsConsentType,
   UsercentricsConsentUserResponse,
   UsercentricsFont,
+  UsercentricsLayout,
   UsercentricsLoggerLevel,
   UsercentricsLogo,
   UsercentricsOptions,
@@ -38,6 +40,7 @@ jest.mock("react-native", () => {
     configure: jest.fn(),
     isReady: jest.fn(),
     showCMP: jest.fn(),
+    showFirstLayer: jest.fn(),
     restoreUserSession: jest.fn(),
     getControllerId: jest.fn(),
     getTCFString: jest.fn(),
@@ -77,7 +80,13 @@ describe('Test Usercentrics Module', () => {
           status: false,
           dataProcessor: "facebook",
           version: "123",
-          type: 0
+          type: 0,
+          isEssential: false,
+          history: [{
+            status: false,
+            timestampInMillis: 123.0,
+            type: 0
+          }]
         }
       ]
     )
@@ -112,7 +121,13 @@ describe('Test Usercentrics Module', () => {
           status: false,
           dataProcessor: "facebook",
           version: "123",
-          type: 0
+          type: 0,
+          isEssential: false,
+          history: [{
+            status: false,
+            timestampInMillis: 123.0,
+            type: 0
+          }]
         }
       ]
     )
@@ -150,6 +165,43 @@ describe('Test Usercentrics Module', () => {
     }
   })
 
+
+  test('testShowFirstLayer', async () => { 
+    const response = new UsercentricsConsentUserResponse(
+      "abc",
+      UsercentricsUserInteraction.acceptAll,
+      [
+        {
+          templateId: "123",
+          status: false,
+          dataProcessor: "facebook",
+          version: "123",
+          type: 0,
+          isEssential: false,
+          history: [{
+            status: false,
+            timestampInMillis: 123.0,
+            type: 0
+          }]
+        }
+      ]
+    )
+
+    RNUsercentricsModule.showFirstLayer.mockImplementationOnce(
+      (): Promise<any> => Promise.resolve(response)
+    )
+
+    const options: FirstLayerOptions = { 
+      layout: UsercentricsLayout.popupBottom
+    }
+
+    const data = await Usercentrics.showFirstLayer(options)
+    expect(data).toBe(response);
+
+    const call = RNUsercentricsModule.showFirstLayer.mock.calls[0][0];
+    expect(call).toBe(options)
+  })
+
   test('testRestoreUserSession', async () => {
     const readyStatus = new UsercentricsReadyStatus(
       true,
@@ -159,7 +211,13 @@ describe('Test Usercentrics Module', () => {
           status: false,
           dataProcessor: "facebook",
           version: "123",
-          type: 0
+          type: 0,
+          isEssential: false,
+          history: [{
+            status: false,
+            timestampInMillis: 123.0,
+            type: 0
+          }]
         }
       ]
     )
