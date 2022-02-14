@@ -699,4 +699,31 @@ class RNUsercentricsModuleTest {
 
         assertEquals(1, usercentricsProxy.resetCount)
     }
+
+    @Test
+    fun testShowFirstLayer() {
+        val usercentricsProxy = FakeUsercentricsProxy()
+        val contextMock = mockk<ReactApplicationContext>(relaxed = true)
+        val module = RNUsercentricsModule(contextMock, usercentricsProxy)
+
+        val promise = FakePromise()
+        module.showFirstLayer(ShowFirstLayerMock.arguments, promise)
+
+        assertEquals(
+            FirstLayerStyleSettings(
+                title = TitleSettings(alignment = SectionAlignment.END),
+                message = MessageSettings(alignment = SectionAlignment.CENTER),
+                cornerRadius = 50
+            ),
+            usercentricsProxy.showFirstLayerStyle
+        )
+        assertEquals(
+            BannerSettings(font = null, logo = null),
+            usercentricsProxy.showFirstLayerBannerSettings
+        )
+        assertEquals(
+            UsercentricsLayout.Popup(PopupPosition.CENTER),
+            usercentricsProxy.showFirstLayerLayout
+        )
+    }
 }

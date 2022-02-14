@@ -1,7 +1,10 @@
 package com.usercentrics.reactnativemodule.api
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import com.facebook.react.bridge.Promise
+import com.facebook.react.bridge.ReadableMap
 import com.usercentrics.reactnativeusercentrics.api.UsercentricsProxy
 import com.usercentrics.sdk.*
 import com.usercentrics.sdk.errors.UsercentricsError
@@ -64,5 +67,25 @@ internal class FakeUsercentricsProxy(
 
     override fun reset() {
         resetCount++
+    }
+
+    var showFirstLayerLayout: UsercentricsLayout? = null
+    var showFirstLayerBannerSettings: BannerSettings? = null
+    var showFirstLayerStyle: FirstLayerStyleSettings? = null
+
+    override fun showFirstLayer(
+        activity: Activity,
+        layout: UsercentricsLayout,
+        bannerSettings: BannerSettings?,
+        firstLayerStyleSettings: FirstLayerStyleSettings?,
+        promise: Promise
+    ) {
+        this.showFirstLayerLayout = layout
+        this.showFirstLayerBannerSettings = bannerSettings
+        this.showFirstLayerStyle = firstLayerStyleSettings
+    }
+
+    override fun showSecondLayer() {
+
     }
 }

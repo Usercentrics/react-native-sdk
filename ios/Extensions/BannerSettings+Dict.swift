@@ -68,7 +68,7 @@ extension MessageSettings {
                   textColor: UIColor(unsafeHex: dictionary["textColorHex"] as? String ?? ""),
                   textAlignment: NSTextAlignment.from(enumString: dictionary["textAlignment"] as? String),
                   linkTextColor: UIColor(unsafeHex: dictionary["linkTextColorHex"] as? String ?? ""),
-                  linkTextUnderline: dictionary["linkTextUnderline"] as? Bool == true)
+                  linkTextUnderline: dictionary["linkTextUnderline"] as? Bool ?? true)
     }
 }
 

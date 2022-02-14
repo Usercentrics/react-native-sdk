@@ -76,20 +76,21 @@ internal class RNUsercentricsModule(
     fun showFirstLayer(options: ReadableMap, promise: Promise) {
         try {
             val assetManager = currentActivity!!.assets
-            val layout = options.getString("layout")!!.usercentricsLayoutFromEnumString()
-            val bannerSettings =
-                options.getMap("bannerSettings")?.bannerSettingsFromMap(assetManager)
-            val styleSettings =
-                options.getMap("styleSettings")?.firstLayerStyleSettingsFromMap(assetManager)
 
-            UsercentricsBanner(currentActivity!!, bannerSettings).showFirstLayer(
+            val layout = options.getString("layout")!!.usercentricsLayoutFromEnumString()
+            val bannerSettings = options.getMap("bannerSettings")?.bannerSettingsFromMap(assetManager)
+            val styleSettings = options.getMap("styleSettings")?.firstLayerStyleSettingsFromMap(assetManager)
+
+            usercentricsProxy.showFirstLayer(
+                currentActivity!!,
                 layout,
-                styleSettings
-            ) {
-                promise.resolve(it?.toWritableMap())
-            }
-        } catch (ex: Exception) {
-            promise.reject(ex)
+                bannerSettings,
+                styleSettings,
+                promise
+            )
+
+        } catch (e: Exception) {
+            promise.reject(e)
         }
     }
 

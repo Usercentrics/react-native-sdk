@@ -91,7 +91,6 @@ const customizationExampleOne: FirstLayerOptions = {
         message: {
             font: { fontName: "Lora", fontSize: 14.0 }
         },
-        headerImage: HeaderImageSettings.logo(createUsercentricsLogo(), 30, SectionAlignment.center),
         buttonLayout: ButtonLayout.row([{
             buttonType: ButtonType.acceptAll,
             cornerRadius: 30.0
