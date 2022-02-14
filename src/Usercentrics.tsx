@@ -11,7 +11,9 @@ import {
     UsercentricsConsentType,
     TCFDecisionUILayer,
     UserDecision,
-    TCFUserDecisions
+    TCFUserDecisions,
+    FirstLayerOptions,
+    SecondLayerOptions
 } from './models';
 
 const { RNUsercentricsModule } = NativeModules;
@@ -25,9 +27,22 @@ export const Usercentrics = {
         return RNUsercentricsModule.isReady();
     },
 
+    /**
+    * @deprecated showCMP is deprecated: This API will soon be removed in favor of showFirstLayer and showSecondLayer, check our documentation for more details: https://docs.usercentrics.com/cmp_in_app_sdk/latest/collect_consent/present_cmp/
+    */
     showCMP: async (options: UsercentricsUIOptions): Promise<UsercentricsConsentUserResponse> => {
         await RNUsercentricsModule.isReady();
         return RNUsercentricsModule.showCMP(options);
+    },
+
+    showFirstLayer: async (options: FirstLayerOptions): Promise<UsercentricsConsentUserResponse> => { 
+        await RNUsercentricsModule.isReady();
+        return RNUsercentricsModule.showFirstLayer(options);
+    },
+
+    showSecondLayer: async (options: SecondLayerOptions): Promise<UsercentricsConsentUserResponse> => { 
+        await RNUsercentricsModule.isReady();
+        return RNUsercentricsModule.showSecondLayer(options);
     },
 
     restoreUserSession: async (controllerId: string): Promise<UsercentricsReadyStatus> => {

@@ -170,4 +170,23 @@ final class FakeUsercentricsManager: UsercentricsManager {
   func setCMPId(id: Int32) {
     self.cmpId = id
   }
+
+  var showFirstLayerBannerSettings: BannerSettings?
+  var layoutSettings: FirstLayerStyleSettings?
+  var layout: UsercentricsLayout?
+  func showFirstLayer(bannerSettings: BannerSettings?,
+                      hostView: UINavigationController,
+                      layout: UsercentricsLayout,
+                      settings: FirstLayerStyleSettings?,
+                      dismissViewHandler: @escaping (UsercentricsConsentUserResponse) -> Void) {
+    self.showFirstLayerBannerSettings = bannerSettings
+    self.layoutSettings = settings
+    self.layout = layout
+  }
+
+  var showCloseButton: Bool?
+  func showSecondLayer(bannerSettings: BannerSettings?, hostView: UINavigationController, showCloseButton: Bool, dismissViewHandler: @escaping (UsercentricsConsentUserResponse) -> Void) {
+    self.showCloseButton = showCloseButton
+  }
+
 }

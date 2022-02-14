@@ -92,6 +92,7 @@ internal class GetTCFDataMock {
                     deviceStorage = null,
                     usesCookies = false,
                     cookieRefresh = null,
+                    dataSharedOutsideEU = false
                 )
             ),
         )
@@ -182,6 +183,7 @@ internal class GetTCFDataMock {
                     "deviceStorageDisclosureUrl" to null,
                     "usesCookies" to false,
                     "cookieRefresh" to null,
+                    "dataSharedOutsideEU" to false
                 ),
             ),
         )

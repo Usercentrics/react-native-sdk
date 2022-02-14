@@ -467,4 +467,22 @@ class RNUsercentricsModuleTests: XCTestCase {
     module.setCMPId(123)
     XCTAssertEqual(Int32(123), fakeUsercentrics.cmpId)
   }
+
+  func testShowFirstLayer() {
+    let dict: NSDictionary = ["layout": "POPUP_CENTER"]
+    module.showFirstLayer(dict) { result in
+      XCTAssertEqual(.popup(position: .center), self.fakeUsercentrics.layout)
+    } reject: { _, _, _ in
+      XCTFail("Should not go here")
+    }
+  }
+
+  func testShowSecondLayer() {
+    let dict: NSDictionary = ["showCloseButton": "false"]
+    module.showSecondLayer(dict) { result in
+      XCTAssertEqual(false, self.fakeUsercentrics.showCloseButton)
+    } reject: { _, _, _ in
+      XCTFail("Should not go here")
+    }
+  }
 }

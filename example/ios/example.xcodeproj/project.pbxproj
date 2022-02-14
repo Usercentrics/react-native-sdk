@@ -13,6 +13,8 @@
 		607DFD0CDAEAE7FF36CF8FF9 /* libPods-example.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B479AF18D6E682632F1E01A /* libPods-example.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		A21E7AFC27205691000F1128 /* Lora.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CFBA2F06D5364A84B9A7D6FA /* Lora.ttf */; };
+		A2390F8827B534F100F355C1 /* FirstLayerOptionsDictTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2390F8727B534F100F355C1 /* FirstLayerOptionsDictTests.swift */; };
+		A2390F8A27B5355900F355C1 /* BannerSettingsDictTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2390F8927B5355900F355C1 /* BannerSettingsDictTests.swift */; };
 		A24E4EA52731354A001093C7 /* UserDecisionDictTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24E4EA42731354A001093C7 /* UserDecisionDictTests.swift */; };
 		A24E4EA727313B82001093C7 /* TCFUserDecisions+Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24E4EA627313B82001093C7 /* TCFUserDecisions+Mock.swift */; };
 		A24E4EA927313FA2001093C7 /* UserDecisions+Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24E4EA827313FA2001093C7 /* UserDecisions+Mock.swift */; };
@@ -51,6 +53,8 @@
 		69DE640CF9323FCF21B3F85D /* libPods-example-exampleTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-example-exampleTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = example/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8E9C955E6C16013DD62AD737 /* Pods-example-exampleTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-example-exampleTests.debug.xcconfig"; path = "Target Support Files/Pods-example-exampleTests/Pods-example-exampleTests.debug.xcconfig"; sourceTree = "<group>"; };
+		A2390F8727B534F100F355C1 /* FirstLayerOptionsDictTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstLayerOptionsDictTests.swift; sourceTree = "<group>"; };
+		A2390F8927B5355900F355C1 /* BannerSettingsDictTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerSettingsDictTests.swift; sourceTree = "<group>"; };
 		A24E4EA42731354A001093C7 /* UserDecisionDictTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDecisionDictTests.swift; sourceTree = "<group>"; };
 		A24E4EA627313B82001093C7 /* TCFUserDecisions+Mock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TCFUserDecisions+Mock.swift"; sourceTree = "<group>"; };
 		A24E4EA827313FA2001093C7 /* UserDecisions+Mock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDecisions+Mock.swift"; sourceTree = "<group>"; };
@@ -188,6 +192,8 @@
 				A2F0B081272C396200A99DD3 /* UsercentricsConsentTypeTests.swift */,
 				A2F0B083272C399600A99DD3 /* TCFDecisionUILayerTests.swift */,
 				A24E4EA42731354A001093C7 /* UserDecisionDictTests.swift */,
+				A2390F8727B534F100F355C1 /* FirstLayerOptionsDictTests.swift */,
+				A2390F8927B5355900F355C1 /* BannerSettingsDictTests.swift */,
 			);
 			path = exampleTests;
 			sourceTree = "<group>";
@@ -473,6 +479,7 @@
 				A2DC253C2721A85200AA9DD8 /* UsercentricsUserInteractionDictTest.swift in Sources */,
 				A24E4EA927313FA2001093C7 /* UserDecisions+Mock.swift in Sources */,
 				A2DC253127217AEB00AA9DD8 /* FakePresentationViewController.swift in Sources */,
+				A2390F8827B534F100F355C1 /* FirstLayerOptionsDictTests.swift in Sources */,
 				A2DC25382721A3D900AA9DD8 /* UsercentricsOptionsDictTests.swift in Sources */,
 				A2DC25212721673C00AA9DD8 /* FakeUsercentricsManager.swift in Sources */,
 				A2DC252327216A9D00AA9DD8 /* UsercentricsIsReady+Mock.swift in Sources */,
@@ -481,6 +488,7 @@
 				A2DC251E272166FB00AA9DD8 /* RNUsercentricsModuleTests.swift in Sources */,
 				A2DC252927216D7600AA9DD8 /* FakeDispatchQueue.swift in Sources */,
 				A24E4EA727313B82001093C7 /* TCFUserDecisions+Mock.swift in Sources */,
+				A2390F8A27B5355900F355C1 /* BannerSettingsDictTests.swift in Sources */,
 				A2F0B082272C396200A99DD3 /* UsercentricsConsentTypeTests.swift in Sources */,
 				A2DC252D272179E600AA9DD8 /* ReadyStatusDictTests.swift in Sources */,
 				A2DC253A2721A6D400AA9DD8 /* UsercentricsUISettingsDictTests.swift in Sources */,

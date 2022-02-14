@@ -24,3 +24,4 @@ public extension UsercentricsUISettings {
                   showCloseButton: showCloseButton)
     }
 }
+

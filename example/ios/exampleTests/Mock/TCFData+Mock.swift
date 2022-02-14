@@ -89,6 +89,7 @@ extension TCFVendor {
                  deviceStorageDisclosureUrl: "abc",
                  deviceStorage: nil,
                  usesCookies: false,
-                 cookieRefresh: KotlinBoolean(bool: false))
+                 cookieRefresh: KotlinBoolean(bool: false),
+                 dataSharedOutsideEU: KotlinBoolean(bool: false))
   }
 }

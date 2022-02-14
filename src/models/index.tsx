@@ -13,3 +13,17 @@ export { UsercentricsVariant } from './UsercentricsVariant';
 export { TCFDecisionUILayer } from './TCFDecisionUILayer';
 export { UserDecision } from './UserDecision';
 export { TCFUserDecisions, TCFUserDecisionOnPurpose, TCFUserDecisionOnSpecialFeature, TCFUserDecisionOnVendor } from './TCFUserDecisions';
+export {
+    FirstLayerOptions,
+    FirstLayerStyleSettings,
+    HeaderImageSettings,
+    TitleSettings,
+    SectionAlignment,
+    MessageSettings,
+    UsercentricsLayout,
+    ButtonLayout,
+    ButtonType,
+    ButtonSettings
+} from './FirstLayerOptions';
+export { SecondLayerOptions } from './SecondLayerOptions';
+export { BannerSettings } from "./BannerSettings";

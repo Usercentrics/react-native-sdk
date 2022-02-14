@@ -5,8 +5,11 @@ import android.content.Intent
 import com.facebook.react.bridge.*
 import com.usercentrics.reactnativeusercentrics.api.UsercentricsProxy
 import com.usercentrics.reactnativeusercentrics.extensions.*
+import com.usercentrics.sdk.UsercentricsBanner
+import com.usercentrics.sdk.UsercentricsLayout
 import com.usercentrics.sdk.models.settings.UsercentricsConsentType
 import com.usercentrics.sdk.services.tcf.TCFDecisionUILayer
+import java.lang.Exception
 
 internal class RNUsercentricsModule(
     reactContext: ReactApplicationContext,
@@ -67,6 +70,47 @@ internal class RNUsercentricsModule(
 
         val intent = usercentricsProxy.createIntent(reactApplicationContext, usercentricsOptions)
         currentActivity?.startActivityForResult(intent, showCMPRequestCode)
+    }
+
+    @ReactMethod
+    fun showFirstLayer(options: ReadableMap, promise: Promise) {
+        try {
+            val assetManager = currentActivity!!.assets
+
+            val layout = options.getString("layout")!!.usercentricsLayoutFromEnumString()
+            val bannerSettings = options.getMap("bannerSettings")?.bannerSettingsFromMap(assetManager)
+            val styleSettings = options.getMap("styleSettings")?.firstLayerStyleSettingsFromMap(assetManager)
+
+            usercentricsProxy.showFirstLayer(
+                currentActivity!!,
+                layout,
+                bannerSettings,
+                styleSettings,
+                promise
+            )
+
+        } catch (e: Exception) {
+            promise.reject(e)
+        }
+    }
+
+    @ReactMethod
+    fun showSecondLayer(options: ReadableMap, promise: Promise) {
+        try {
+            val assetManager = currentActivity!!.assets
+
+            val bannerSettings =
+                options.getMap("bannerSettings")?.bannerSettingsFromMap(assetManager)
+            val showCloseButton = options.getBoolean("showCloseButton")
+
+            UsercentricsBanner(currentActivity!!, bannerSettings).showSecondLayer(
+                showCloseButton
+            ) {
+                promise.resolve(it?.toWritableMap())
+            }
+        } catch (e: Exception) {
+            promise.reject(e)
+        }
     }
 
     internal fun parseActivityResult(requestCode: Int, resultCode: Int, data: Intent?): Boolean {

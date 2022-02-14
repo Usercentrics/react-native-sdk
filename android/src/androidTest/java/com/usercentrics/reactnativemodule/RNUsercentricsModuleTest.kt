@@ -39,6 +39,14 @@ class RNUsercentricsModuleTest {
             putString("version", "1.2.3")
         }
 
+        private val usercentricsConsentHistoryEntries = listOf(
+            UsercentricsConsentHistoryEntry(
+                status = false,
+                UsercentricsConsentType.EXPLICIT,
+                123
+            )
+        )
+
         private val usercentricsReadyStatus = UsercentricsReadyStatus(
             shouldShowCMP = false,
             consents = listOf(
@@ -47,7 +55,9 @@ class RNUsercentricsModuleTest {
                     status = false,
                     dataProcessor = "Facebook SDK",
                     type = UsercentricsConsentType.EXPLICIT,
-                    version = "1.0.1"
+                    version = "1.0.1",
+                    isEssential = false,
+                    history = usercentricsConsentHistoryEntries
                 )
             )
         )
@@ -74,7 +84,9 @@ class RNUsercentricsModuleTest {
                     status = false,
                     dataProcessor = "Facebook SDK",
                     type = UsercentricsConsentType.EXPLICIT,
-                    version = "1.0.1"
+                    version = "1.0.1",
+                    isEssential = false,
+                    history = usercentricsConsentHistoryEntries
                 )
             ),
             controllerId = "8620135313b043696b806868b20da905886a3a2598ddddc2b52973f9807d6b45",
@@ -686,5 +698,32 @@ class RNUsercentricsModuleTest {
         module.reset()
 
         assertEquals(1, usercentricsProxy.resetCount)
+    }
+
+    @Test
+    fun testShowFirstLayer() {
+        val usercentricsProxy = FakeUsercentricsProxy()
+        val contextMock = mockk<ReactApplicationContext>(relaxed = true)
+        val module = RNUsercentricsModule(contextMock, usercentricsProxy)
+
+        val promise = FakePromise()
+        module.showFirstLayer(ShowFirstLayerMock.arguments, promise)
+
+        assertEquals(
+            FirstLayerStyleSettings(
+                title = TitleSettings(alignment = SectionAlignment.END),
+                message = MessageSettings(alignment = SectionAlignment.CENTER),
+                cornerRadius = 50
+            ),
+            usercentricsProxy.showFirstLayerStyle
+        )
+        assertEquals(
+            BannerSettings(font = null, logo = null),
+            usercentricsProxy.showFirstLayerBannerSettings
+        )
+        assertEquals(
+            UsercentricsLayout.Popup(PopupPosition.CENTER),
+            usercentricsProxy.showFirstLayerLayout
+        )
     }
 }
