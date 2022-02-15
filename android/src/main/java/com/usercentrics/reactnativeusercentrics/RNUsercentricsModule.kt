@@ -74,42 +74,50 @@ internal class RNUsercentricsModule(
 
     @ReactMethod
     fun showFirstLayer(options: ReadableMap, promise: Promise) {
-        try {
-            val assetManager = currentActivity!!.assets
+        UiThreadUtil.runOnUiThread {
+            try {
+                val assetManager = currentActivity!!.assets
 
-            val layout = options.getString("layout")!!.usercentricsLayoutFromEnumString()
-            val bannerSettings = options.getMap("bannerSettings")?.bannerSettingsFromMap(assetManager)
-            val styleSettings = options.getMap("styleSettings")?.firstLayerStyleSettingsFromMap(assetManager)
+                val layout = options.getString("layout")!!.usercentricsLayoutFromEnumString()
+                val bannerSettings =
+                    options.getMap("bannerSettings")?.bannerSettingsFromMap(assetManager)
+                val styleSettings =
+                    options.getMap("styleSettings")?.firstLayerStyleSettingsFromMap(assetManager)
 
-            usercentricsProxy.showFirstLayer(
-                currentActivity!!,
-                layout,
-                bannerSettings,
-                styleSettings,
-                promise
-            )
+                usercentricsProxy.showFirstLayer(
+                    currentActivity!!,
+                    layout,
+                    bannerSettings,
+                    styleSettings,
+                    promise
+                )
 
-        } catch (e: Exception) {
-            promise.reject(e)
+            } catch (e: Exception) {
+                promise.reject(e)
+            }
         }
     }
 
     @ReactMethod
     fun showSecondLayer(options: ReadableMap, promise: Promise) {
-        try {
-            val assetManager = currentActivity!!.assets
+        UiThreadUtil.runOnUiThread {
+            try {
+                val assetManager = currentActivity!!.assets
 
-            val bannerSettings =
-                options.getMap("bannerSettings")?.bannerSettingsFromMap(assetManager)
-            val showCloseButton = options.getBoolean("showCloseButton")
+                val bannerSettings =
+                    options.getMap("bannerSettings")?.bannerSettingsFromMap(assetManager)
+                val showCloseButton = options.getBoolean("showCloseButton")
 
-            UsercentricsBanner(currentActivity!!, bannerSettings).showSecondLayer(
-                showCloseButton
-            ) {
-                promise.resolve(it?.toWritableMap())
+
+                UsercentricsBanner(currentActivity!!, bannerSettings).showSecondLayer(
+                    showCloseButton
+                ) {
+                    promise.resolve(it?.toWritableMap())
+                }
+
+            } catch (e: Exception) {
+                promise.reject(e)
             }
-        } catch (e: Exception) {
-            promise.reject(e)
         }
     }
 
