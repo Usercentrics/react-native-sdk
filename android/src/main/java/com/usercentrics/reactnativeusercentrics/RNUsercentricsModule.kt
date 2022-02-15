@@ -81,14 +81,15 @@ internal class RNUsercentricsModule(
             val bannerSettings = options.getMap("bannerSettings")?.bannerSettingsFromMap(assetManager)
             val styleSettings = options.getMap("styleSettings")?.firstLayerStyleSettingsFromMap(assetManager)
 
-            usercentricsProxy.showFirstLayer(
-                currentActivity!!,
-                layout,
-                bannerSettings,
-                styleSettings,
-                promise
-            )
-
+            UiThreadUtil.runOnUiThread {
+                usercentricsProxy.showFirstLayer(
+                    currentActivity!!,
+                    layout,
+                    bannerSettings,
+                    styleSettings,
+                    promise
+                )
+            }
         } catch (e: Exception) {
             promise.reject(e)
         }
@@ -103,10 +104,12 @@ internal class RNUsercentricsModule(
                 options.getMap("bannerSettings")?.bannerSettingsFromMap(assetManager)
             val showCloseButton = options.getBoolean("showCloseButton")
 
-            UsercentricsBanner(currentActivity!!, bannerSettings).showSecondLayer(
-                showCloseButton
-            ) {
-                promise.resolve(it?.toWritableMap())
+            UiThreadUtil.runOnUiThread {
+                UsercentricsBanner(currentActivity!!, bannerSettings).showSecondLayer(
+                    showCloseButton
+                ) {
+                    promise.resolve(it?.toWritableMap())
+                }
             }
         } catch (e: Exception) {
             promise.reject(e)
