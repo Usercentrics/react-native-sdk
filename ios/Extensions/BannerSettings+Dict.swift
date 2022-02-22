@@ -5,7 +5,7 @@ extension BannerSettings {
     init?(from dictionary: NSDictionary?) {
         guard let dictionary = dictionary else { return nil }
 
-        self.init(font: UIFont(from: dictionary["font"] as? NSDictionary),
+        self.init(font: nil,
                   logo: UIImage(from: dictionary["logo"] as? NSDictionary))
     }
 }

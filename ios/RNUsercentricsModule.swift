@@ -37,27 +37,6 @@ class RNUsercentricsModule: NSObject, RCTBridgeModule {
         }
     }
     
-    @objc func showCMP(_ dict: NSDictionary, resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) -> Void {
-        queue.async { [weak self] in
-            guard
-                let self = self,
-                let rootVC = self.rootVC,
-                let settings = UsercentricsUISettings(from: dict)
-            else {
-                reject("usercentrics_reactNative_showCMP_error", RNUsercentricsModuleError.invalidData.localizedDescription, RNUsercentricsModuleError.invalidData)
-                return
-            }
-            
-            let predefinedUI = self.usercentricsManager.getPredefinedUI(settings: settings) { response in
-                resolve(response.toDictionary())
-                rootVC.dismiss(animated: true)
-            }
-            
-            if #available(iOS 13.0, *) { predefinedUI.isModalInPresentation = true }
-            rootVC.present(predefinedUI)
-        }
-    }
-    
     @objc func showFirstLayer(_ dict: NSDictionary, resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) {
         queue.async { [weak self] in
             guard

@@ -10,7 +10,7 @@ import Usercentrics
 
 extension UsercentricsReadyStatus {
   static func mock() -> UsercentricsReadyStatus {
-    return UsercentricsReadyStatus(shouldShowCMP: false, consents: [.mock(), .mock()])
+    return UsercentricsReadyStatus(shouldCollectConsent: false, consents: [.mock(), .mock()])
   }
 }
 

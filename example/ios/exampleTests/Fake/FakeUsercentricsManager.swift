@@ -51,10 +51,6 @@ final class FakeUsercentricsManager: UsercentricsManager {
     alreadyConfigured = false
   }
 
-  func getPredefinedUI(settings: UsercentricsUISettings?, dismissViewHandler: @escaping (UsercentricsConsentUserResponse) -> Void) -> UIViewController {
-    return UIViewController()
-  }
-
   func restoreUserSession(controllerId: String, onSuccess: @escaping ((UsercentricsReadyStatus) -> Void), onFailure: @escaping ((Error) -> Void)) {
     self.restoreControllerId = controllerId
     

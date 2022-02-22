@@ -4,7 +4,7 @@ import Usercentrics
 public extension UsercentricsReadyStatus {
     func toDictionary() -> NSDictionary {
         return [
-            "shouldShowCMP": self.shouldShowCMP,
+            "shouldCollectConsent": self.shouldCollectConsent,
             "consents": self.consents.toListOfDictionary()
         ]
     }
