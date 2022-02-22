@@ -18,7 +18,7 @@ class ReadyStatusDictTests: XCTestCase {
     let usercentricsReady = UsercentricsReadyStatus(shouldCollectConsent: false, consents: [consent])
     let dictionary = usercentricsReady.toDictionary()
 
-    XCTAssertEqual(false, dictionary["shouldShowCMP"] as! Bool)
+    XCTAssertEqual(false, dictionary["shouldCollectConsent"] as! Bool)
     XCTAssertNotNil(dictionary["consents"] as? [NSDictionary])
   }
 
