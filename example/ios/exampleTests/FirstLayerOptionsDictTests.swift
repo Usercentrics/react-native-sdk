@@ -102,7 +102,8 @@ class FirstLayerOptionsDictTests: XCTestCase {
   }
 
   func testMapMessageSettingsWithValidData() {
-    let dict: NSDictionary = ["font": ["fontName": "Avenir-Heavy", "fontSize": 16.0],
+    let dict: NSDictionary = ["fontName": "Avenir-Heavy",
+                              "textSize": 16.0,
                               "textColorHex": "000000",
                               "textAlignment": "LEFT",
                               "linkTextColorHex": "ffffff",
@@ -122,11 +123,67 @@ class FirstLayerOptionsDictTests: XCTestCase {
   }
 
   func testMapTitleSettingsWithValidData() {
-    let dict: NSDictionary = ["font": ["fontName": "Avenir-Heavy", "fontSize": 16.0],
+    let dict: NSDictionary = ["fontName": "Avenir-Heavy",
+                              "textSize": 16.0,
                               "textColorHex": "0f0f0f",
                               "textAlignment": "RIGHT"]
     let titleSettings = TitleSettings(from: dict)
     let expectedTitleSettings = TitleSettings(font: UIFont(name: "Avenir-Heavy", size: 16.0),
+                                              textColor: UIColor(unsafeHex: "0f0f0f"),
+                                              textAlignment: .right)
+    XCTAssertEqual(expectedTitleSettings, titleSettings)
+  }
+
+  func testMapTitleSettingsWithFallbackFont() {
+    let dict: NSDictionary = ["textColorHex": "0f0f0f",
+                              "textAlignment": "RIGHT"]
+    let titleSettings = TitleSettings(from: dict, fallbackFont: UIFont(name: "Avenir-Heavy", size: 16.0))
+    let expectedTitleSettings = TitleSettings(font: UIFont(name: "Avenir-Heavy", size: UIFont.systemFontSize),
+                                              textColor: UIColor(unsafeHex: "0f0f0f"),
+                                              textAlignment: .right)
+    XCTAssertEqual(expectedTitleSettings, titleSettings)
+  }
+
+  func testMapTitleWithFallbackFontAndDictFontShouldIgnoreFallback() {
+    let dict: NSDictionary = ["fontName": "Avenir-Heavy",
+                              "textSize": 16.0,
+                              "textColorHex": "0f0f0f",
+                              "textAlignment": "RIGHT"]
+    let titleSettings = TitleSettings(from: dict, fallbackFont: UIFont(name: "Avenir", size: 35.0))
+    let expectedTitleSettings = TitleSettings(font: UIFont(name: "Avenir-Heavy", size: 16.0),
+                                              textColor: UIColor(unsafeHex: "0f0f0f"),
+                                              textAlignment: .right)
+    XCTAssertEqual(expectedTitleSettings, titleSettings)
+  }
+
+  func testMapTitleWithFallbackFontAndWithoutFontName() {
+    let dict: NSDictionary = ["textSize": 16.0,
+                              "textColorHex": "0f0f0f",
+                              "textAlignment": "RIGHT"]
+    let titleSettings = TitleSettings(from: dict, fallbackFont: UIFont(name: "Avenir", size: 35.0))
+    let expectedTitleSettings = TitleSettings(font: UIFont(name: "Avenir", size: 16.0),
+                                              textColor: UIColor(unsafeHex: "0f0f0f"),
+                                              textAlignment: .right)
+    XCTAssertEqual(expectedTitleSettings, titleSettings)
+  }
+
+  func testMapTitleWithoutFallbackShouldUseSystemFont() {
+    let dict: NSDictionary = ["textSize": 16.0,
+                              "textColorHex": "0f0f0f",
+                              "textAlignment": "RIGHT"]
+    let titleSettings = TitleSettings(from: dict)
+    let expectedTitleSettings = TitleSettings(font: UIFont.systemFont(ofSize: 16.0),
+                                              textColor: UIColor(unsafeHex: "0f0f0f"),
+                                              textAlignment: .right)
+    XCTAssertEqual(expectedTitleSettings, titleSettings)
+  }
+
+  func testMapTitleWithFallbackFontAndWithoutFontSize() {
+    let dict: NSDictionary = ["fontName": "Avenir-Heavy",
+                              "textColorHex": "0f0f0f",
+                              "textAlignment": "RIGHT"]
+    let titleSettings = TitleSettings(from: dict, fallbackFont: UIFont(name: "Avenir", size: 35.0))
+    let expectedTitleSettings = TitleSettings(font: UIFont(name: "Avenir-Heavy", size: UIFont.systemFontSize),
                                               textColor: UIColor(unsafeHex: "0f0f0f"),
                                               textAlignment: .right)
     XCTAssertEqual(expectedTitleSettings, titleSettings)

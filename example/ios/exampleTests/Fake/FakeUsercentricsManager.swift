@@ -9,6 +9,7 @@ import Foundation
 import react_native_usercentrics
 import Usercentrics
 import UsercentricsUI
+import UIKit
 
 enum FakeUsercentricsError: Error {
   case test
@@ -171,7 +172,7 @@ final class FakeUsercentricsManager: UsercentricsManager {
   var layoutSettings: FirstLayerStyleSettings?
   var layout: UsercentricsLayout?
   func showFirstLayer(bannerSettings: BannerSettings?,
-                      hostView: UINavigationController,
+                      hostView: UIViewController,
                       layout: UsercentricsLayout,
                       settings: FirstLayerStyleSettings?,
                       dismissViewHandler: @escaping (UsercentricsConsentUserResponse) -> Void) {
@@ -181,7 +182,7 @@ final class FakeUsercentricsManager: UsercentricsManager {
   }
 
   var showCloseButton: Bool?
-  func showSecondLayer(bannerSettings: BannerSettings?, hostView: UINavigationController, showCloseButton: Bool, dismissViewHandler: @escaping (UsercentricsConsentUserResponse) -> Void) {
+  func showSecondLayer(bannerSettings: BannerSettings?, hostView: UIViewController, showCloseButton: Bool, dismissViewHandler: @escaping (UsercentricsConsentUserResponse) -> Void) {
     self.showCloseButton = showCloseButton
   }
 
