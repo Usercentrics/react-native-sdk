@@ -2,7 +2,6 @@ import { NativeModules } from 'react-native'
 import {
     UsercentricsOptions,
     UsercentricsServiceConsent,
-    UsercentricsUIOptions,
     UsercentricsConsentUserResponse,
     UsercentricsReadyStatus,
     UsercentricsCMPData,
@@ -25,14 +24,6 @@ export const Usercentrics = {
 
     status: (): Promise<UsercentricsReadyStatus> => {
         return RNUsercentricsModule.isReady();
-    },
-
-    /**
-    * @deprecated showCMP is deprecated: This API will soon be removed in favor of showFirstLayer and showSecondLayer, check our documentation for more details: https://docs.usercentrics.com/cmp_in_app_sdk/latest/collect_consent/present_cmp/
-    */
-    showCMP: async (options: UsercentricsUIOptions): Promise<UsercentricsConsentUserResponse> => {
-        await RNUsercentricsModule.isReady();
-        return RNUsercentricsModule.showCMP(options);
     },
 
     showFirstLayer: async (options: FirstLayerOptions): Promise<UsercentricsConsentUserResponse> => { 

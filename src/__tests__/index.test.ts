@@ -2,7 +2,6 @@ import {
   NativeModules,
 } from 'react-native';
 import {
-  CCPAData,
   FirstLayerOptions,
   TCFData,
   TCFDecisionUILayer,
