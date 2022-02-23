@@ -1,15 +1,11 @@
 package com.usercentrics.reactnativeusercentrics
 
-import android.app.Activity
-import android.content.Intent
 import com.facebook.react.bridge.*
 import com.usercentrics.reactnativeusercentrics.api.UsercentricsProxy
 import com.usercentrics.reactnativeusercentrics.extensions.*
 import com.usercentrics.sdk.UsercentricsBanner
-import com.usercentrics.sdk.UsercentricsLayout
 import com.usercentrics.sdk.models.settings.UsercentricsConsentType
 import com.usercentrics.sdk.services.tcf.TCFDecisionUILayer
-import java.lang.Exception
 
 internal class RNUsercentricsModule(
     reactContext: ReactApplicationContext,
@@ -18,26 +14,6 @@ internal class RNUsercentricsModule(
     ReactContextBaseJavaModule(reactContext) {
 
     override fun getName() = "RNUsercentricsModule"
-
-    private var pendingPromise: Promise? = null
-    private val listener: ActivityEventListener = object : BaseActivityEventListener() {
-        override fun onActivityResult(
-            activity: Activity?,
-            requestCode: Int,
-            resultCode: Int,
-            data: Intent?
-        ) {
-            parseActivityResult(requestCode, resultCode, data)
-        }
-    }
-
-    init {
-        reactApplicationContext.addActivityEventListener(listener)
-    }
-
-    companion object {
-        private const val showCMPRequestCode = 81420
-    }
 
     @ReactMethod
     fun configure(options: ReadableMap) {
@@ -61,15 +37,6 @@ internal class RNUsercentricsModule(
         }, {
             promise.reject(it)
         })
-    }
-
-    @ReactMethod
-    fun showCMP(options: ReadableMap, promise: Promise) {
-        val usercentricsOptions = options.usercentricsUISettingsFromMap(currentActivity!!.assets)
-        this.pendingPromise = promise
-
-        val intent = usercentricsProxy.createIntent(reactApplicationContext, usercentricsOptions)
-        currentActivity?.startActivityForResult(intent, showCMPRequestCode)
     }
 
     @ReactMethod
@@ -119,18 +86,6 @@ internal class RNUsercentricsModule(
                 promise.reject(e)
             }
         }
-    }
-
-    internal fun parseActivityResult(requestCode: Int, resultCode: Int, data: Intent?): Boolean {
-        if (requestCode != showCMPRequestCode) return false
-        assert(pendingPromise != null)
-
-        val response = usercentricsProxy.parseResult(resultCode, data)?.toWritableMap()
-
-        pendingPromise?.resolve(response)
-        pendingPromise = null
-
-        return true
     }
 
     @ReactMethod

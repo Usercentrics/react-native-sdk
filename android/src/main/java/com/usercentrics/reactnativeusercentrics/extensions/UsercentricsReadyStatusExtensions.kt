@@ -6,7 +6,7 @@ import com.usercentrics.sdk.UsercentricsReadyStatus
 
 internal fun UsercentricsReadyStatus.toWritableMap(): WritableMap {
     return Arguments.createMap().apply {
-        putBoolean("shouldShowCMP", shouldShowCMP)
+        putBoolean("shouldCollectConsent", shouldCollectConsent)
         putArray("consents", consents.toWritableArray())
     }
 }
