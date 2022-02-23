@@ -13,9 +13,7 @@
 		A22EDF9F271DA49900F5BB8C /* ReadyStatus+Dict.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22EDF9A271DA49900F5BB8C /* ReadyStatus+Dict.swift */; };
 		A22EDFA0271DA49900F5BB8C /* UsercentricsUserInteraction+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22EDF9B271DA49900F5BB8C /* UsercentricsUserInteraction+String.swift */; };
 		A22EDFA1271DA49900F5BB8C /* UserResponse+Dict.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22EDF9C271DA49900F5BB8C /* UserResponse+Dict.swift */; };
-		A22EDFA2271DA49900F5BB8C /* UsercentricsUISettings+Dict.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22EDF9D271DA49900F5BB8C /* UsercentricsUISettings+Dict.swift */; };
 		A2390F8227B52ADA00F355C1 /* UIImage+UsercentricsLogoDict.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2390F8127B52ADA00F355C1 /* UIImage+UsercentricsLogoDict.swift */; };
-		A2390F8427B52B0800F355C1 /* UIFont+UsercentricsFontDict.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2390F8327B52B0800F355C1 /* UIFont+UsercentricsFontDict.swift */; };
 		A2390F8627B52B2700F355C1 /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2390F8527B52B2700F355C1 /* UIColor+Extensions.swift */; };
 		A24E4EA327313492001093C7 /* UserDecision+Dict.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24E4EA227313492001093C7 /* UserDecision+Dict.swift */; };
 		A24E4EAB273186FD001093C7 /* TCFData+Dict.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24E4EAA273186FD001093C7 /* TCFData+Dict.swift */; };
@@ -51,9 +49,7 @@
 		A22EDF9A271DA49900F5BB8C /* ReadyStatus+Dict.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ReadyStatus+Dict.swift"; sourceTree = "<group>"; };
 		A22EDF9B271DA49900F5BB8C /* UsercentricsUserInteraction+String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UsercentricsUserInteraction+String.swift"; sourceTree = "<group>"; };
 		A22EDF9C271DA49900F5BB8C /* UserResponse+Dict.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UserResponse+Dict.swift"; sourceTree = "<group>"; };
-		A22EDF9D271DA49900F5BB8C /* UsercentricsUISettings+Dict.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UsercentricsUISettings+Dict.swift"; sourceTree = "<group>"; };
 		A2390F8127B52ADA00F355C1 /* UIImage+UsercentricsLogoDict.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+UsercentricsLogoDict.swift"; sourceTree = "<group>"; };
-		A2390F8327B52B0800F355C1 /* UIFont+UsercentricsFontDict.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+UsercentricsFontDict.swift"; sourceTree = "<group>"; };
 		A2390F8527B52B2700F355C1 /* UIColor+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
 		A24E4EA227313492001093C7 /* UserDecision+Dict.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDecision+Dict.swift"; sourceTree = "<group>"; };
 		A24E4EAA273186FD001093C7 /* TCFData+Dict.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TCFData+Dict.swift"; sourceTree = "<group>"; };
@@ -88,7 +84,6 @@
 			children = (
 				A22EDF9A271DA49900F5BB8C /* ReadyStatus+Dict.swift */,
 				A22EDF99271DA49900F5BB8C /* UsercentricsOptions+Dict.swift */,
-				A22EDF9D271DA49900F5BB8C /* UsercentricsUISettings+Dict.swift */,
 				A22EDF9B271DA49900F5BB8C /* UsercentricsUserInteraction+String.swift */,
 				A22EDF9C271DA49900F5BB8C /* UserResponse+Dict.swift */,
 				A21D32A3272AE191004ED33E /* UsercentricsServiceConsents+Dict.swift */,
@@ -101,7 +96,6 @@
 				A20E7C9327B28D88004DC947 /* BannerSettings+Dict.swift */,
 				A2390F8127B52ADA00F355C1 /* UIImage+UsercentricsLogoDict.swift */,
 				A2390F8527B52B2700F355C1 /* UIColor+Extensions.swift */,
-				A2390F8327B52B0800F355C1 /* UIFont+UsercentricsFontDict.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -215,11 +209,9 @@
 				A2F0B086272C483300A99DD3 /* TCFUserDecisions+Dict.swift in Sources */,
 				A22EDF9F271DA49900F5BB8C /* ReadyStatus+Dict.swift in Sources */,
 				A24E4EAB273186FD001093C7 /* TCFData+Dict.swift in Sources */,
-				A22EDFA2271DA49900F5BB8C /* UsercentricsUISettings+Dict.swift in Sources */,
 				A2DC25402722A91400AA9DD8 /* UCRNFlag.swift in Sources */,
 				A2DC252727216CFC00AA9DD8 /* DispatchQueueManager.swift in Sources */,
 				A20E7C9427B28D88004DC947 /* BannerSettings+Dict.swift in Sources */,
-				A2390F8427B52B0800F355C1 /* UIFont+UsercentricsFontDict.swift in Sources */,
 				A22EDF9E271DA49900F5BB8C /* UsercentricsOptions+Dict.swift in Sources */,
 				A2F0B080272C367B00A99DD3 /* UsercentricsConsentType+Int.swift in Sources */,
 				A2DC25362721A05500AA9DD8 /* RNUsercentricsModuleError.swift in Sources */,

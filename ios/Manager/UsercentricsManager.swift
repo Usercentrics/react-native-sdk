@@ -8,16 +8,14 @@ public protocol UsercentricsManager {
     func isReady(onSuccess: @escaping ((UsercentricsReadyStatus) -> Void), onFailure: @escaping ((Error) -> Void))
     func restoreUserSession(controllerId: String, onSuccess: @escaping ((UsercentricsReadyStatus) -> Void), onFailure: @escaping ((Error) -> Void))
 
-    func getPredefinedUI(settings: UsercentricsUISettings?, dismissViewHandler: @escaping (UsercentricsConsentUserResponse) -> Void) -> UIViewController
-
     func showFirstLayer(bannerSettings: BannerSettings?,
-                        hostView: UINavigationController,
+                        hostView: UIViewController,
                         layout: UsercentricsLayout,
                         settings: FirstLayerStyleSettings?,
                         dismissViewHandler: @escaping (UsercentricsConsentUserResponse) -> Void)
 
     func showSecondLayer(bannerSettings: BannerSettings?,
-                         hostView: UINavigationController,
+                         hostView: UIViewController,
                          showCloseButton: Bool,
                          dismissViewHandler: @escaping (UsercentricsConsentUserResponse) -> Void)
 
@@ -71,12 +69,8 @@ final class UsercentricsManagerImplementation: UsercentricsManager {
         UsercentricsCore.reset()
     }
 
-    func getPredefinedUI(settings: UsercentricsUISettings?, dismissViewHandler: @escaping (UsercentricsConsentUserResponse) -> Void) -> UIViewController {
-        return UsercentricsUserInterface.getPredefinedUI(settings: settings, dismissViewHandler: dismissViewHandler)
-    }
-
     func showFirstLayer(bannerSettings: BannerSettings?,
-                        hostView: UINavigationController,
+                        hostView: UIViewController,
                         layout: UsercentricsLayout,
                         settings: FirstLayerStyleSettings?,
                         dismissViewHandler: @escaping (UsercentricsConsentUserResponse) -> Void) {
@@ -87,12 +81,11 @@ final class UsercentricsManagerImplementation: UsercentricsManager {
     }
 
     func showSecondLayer(bannerSettings: BannerSettings?,
-                         hostView: UINavigationController,
+                         hostView: UIViewController,
                          showCloseButton: Bool,
                          dismissViewHandler: @escaping (UsercentricsConsentUserResponse) -> Void) {
         UsercentricsBanner(bannerSettings: bannerSettings).showSecondLayer(hostView: hostView,
                                                                            showCloseButton: showCloseButton,
-                                                                           presentationMode: .present,
                                                                            completionHandler: dismissViewHandler)
     }
 

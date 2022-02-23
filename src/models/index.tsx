@@ -2,7 +2,6 @@ export { UsercentricsOptions } from "./UsercentricsOptions";
 export { UsercentricsConsentType } from "./UsercentricsConsentType";
 export { UsercentricsLoggerLevel } from "./UsercentricsLoggerLevel";
 export { UsercentricsServiceConsent } from "./UsercentricsServiceConsent";
-export { UsercentricsUIOptions, UsercentricsFont, UsercentricsLogo } from "./UsercentricsUIOptions";
 export { UsercentricsUserInteraction } from './UsercentricsUserInteraction';
 export { UsercentricsConsentUserResponse } from './UsercentricsConsentUserResponse';
 export { UsercentricsReadyStatus } from './UsercentricsReadyStatus';
@@ -26,4 +25,4 @@ export {
     ButtonSettings
 } from './FirstLayerOptions';
 export { SecondLayerOptions } from './SecondLayerOptions';
-export { BannerSettings } from "./BannerSettings";
+export { BannerSettings, BannerFont, BannerLogo } from "./BannerSettings";

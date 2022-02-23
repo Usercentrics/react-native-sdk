@@ -1,19 +1,16 @@
 import React from 'react'
 import { Button, Image, StyleSheet, View } from 'react-native'
 import {
+    BannerLogo,
     BannerSettings,
     ButtonLayout,
-    ButtonSettings,
     ButtonType,
     FirstLayerOptions,
-    FirstLayerStyleSettings,
     HeaderImageSettings,
     SecondLayerOptions,
     SectionAlignment,
     Usercentrics,
-    UsercentricsFont,
     UsercentricsLayout,
-    UsercentricsLogo
 } from '../../../src/index';
 
 export const HomeScreen = ({ navigation }: { navigation: any }) => {
@@ -79,17 +76,21 @@ const defaultOptions: FirstLayerOptions = {
 
 const customizationExampleOne: FirstLayerOptions = {
     bannerSettings: { 
-        font: { fontName: "Lora", fontSize: 16.0 },
-        logo: createUsercentricsLogo()
+        font: { 
+            regularFont: "Lora",
+            boldFont: "Lora-Regular_Bold",
+            fontSize: 16.0
+        },
+        logo: createBannerLogo()
     },
     layout: UsercentricsLayout.popupBottom,
     styleSettings: {
         cornerRadius: 30.0,
         title: {
-            font: { fontName: "Lora", fontSize: 16.0 }
+            textSize: 22.0
         },
         message: {
-            font: { fontName: "Lora", fontSize: 14.0 }
+            textSize: 14.0,
         },
         buttonLayout: ButtonLayout.row([{
             buttonType: ButtonType.acceptAll,
@@ -108,12 +109,12 @@ const customizationExampleTwo: FirstLayerOptions = {
         backgroundColorHex: "000000",
         headerImage: HeaderImageSettings.hidden(),
         title: {
-            font: { fontName: "Lora", fontSize: 18.0 },
+            textSize: 22.0,
             textColorHex: "FFFFFF",
             textAlignment: SectionAlignment.center
         },
         message: {
-            font: { fontName: "Lora", fontSize: 14.0 },
+            textSize: 18.0,
             textColorHex: "FFFFFF"
         },
         buttonLayout: ButtonLayout.grid([
@@ -123,7 +124,7 @@ const customizationExampleTwo: FirstLayerOptions = {
                     cornerRadius: 30.0,
                     backgroundColorHex: "FFFFFF",
                     textColorHex: "000000",
-                    font: { fontName: "Lora", fontSize: 18.0 }
+                    textSize: 18.0
                 }, {
                     buttonType: ButtonType.denyAll,
                     backgroundColorHex: "00000000",
@@ -140,8 +141,8 @@ const customizationExampleTwo: FirstLayerOptions = {
     }
 }
 
-function createUsercentricsLogo(): UsercentricsLogo {
+function createBannerLogo(): BannerLogo {
     // Logo name is used for iOS and the Image.resolveAssetSource is used for Android.
-    const customLogo = new UsercentricsLogo("logo.png", Image.resolveAssetSource(require('../../assets/images/logo.png')))
+    const customLogo = new BannerLogo("logo.png", Image.resolveAssetSource(require('../../assets/images/logo.png')))
     return customLogo
 }

@@ -24,13 +24,6 @@ interface UsercentricsProxy {
         onFailure: (UsercentricsError) -> Unit
     )
 
-    fun createIntent(
-        context: Context,
-        usercentricsOptions: UsercentricsUISettings
-    ): Intent
-
-    fun parseResult(resultCode: Int, data: Intent?): UsercentricsConsentUserResponse?
-
     fun showFirstLayer(
         activity: Activity,
         layout: UsercentricsLayout,
@@ -61,21 +54,6 @@ internal class UsercentricsProxyImpl : UsercentricsProxy {
         onSuccess: (UsercentricsReadyStatus) -> Unit,
         onFailure: (UsercentricsError) -> Unit
     ) = Usercentrics.isReady(onSuccess, onFailure)
-
-    override fun createIntent(
-        context: Context,
-        usercentricsOptions: UsercentricsUISettings
-    ): Intent {
-        return UsercentricsActivityContract().createIntent(
-            context,
-            usercentricsOptions
-        )
-    }
-
-    override fun parseResult(resultCode: Int, data: Intent?): UsercentricsConsentUserResponse? {
-        return UsercentricsActivityContract()
-            .parseResult(resultCode, data)
-    }
 
     override fun showFirstLayer(
         activity: Activity,

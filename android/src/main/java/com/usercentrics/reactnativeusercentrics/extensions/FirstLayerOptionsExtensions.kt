@@ -21,9 +21,14 @@ internal fun ReadableMap.bannerSettingsFromMap(assetManager: AssetManager): Bann
     val customLogo = getMap("logo")
 
     return BannerSettings(
-        customFont?.usercentricsFontFromMap(assetManager),
-        customLogo?.usercentricsImageFromMap()
+        customFont?.bannerFontFromMap(assetManager),
+        customLogo?.bannerLogoFromMap()
     )
+}
+
+internal fun ReadableMap.bannerLogoFromMap(): UsercentricsImage? {
+    val logoPath = getString("logoPath") ?: return null
+    return UsercentricsImage.ImageUrl(logoPath)
 }
 
 internal fun ReadableMap.firstLayerStyleSettingsFromMap(assetManager: AssetManager): FirstLayerStyleSettings {
@@ -44,7 +49,7 @@ internal fun ReadableMap.headerImageFromMap(): HeaderImageSettings? {
         return HeaderImageSettings.Hidden
     }
 
-    val image = getMap("image")?.usercentricsImageFromMap() ?: return null
+    val image = getMap("image")?.bannerLogoFromMap() ?: return null
 
     val isExtended = getBooleanOrNull("isExtended") ?: false
     return if (isExtended) {
@@ -59,21 +64,18 @@ internal fun ReadableMap.headerImageFromMap(): HeaderImageSettings? {
 }
 
 internal fun ReadableMap.titleFromMap(assetManager: AssetManager): TitleSettings {
-    val font = getMap("font")?.usercentricsFontFromMap(assetManager)
     return TitleSettings(
         alignment = getString("alignment")?.sectionAlignmentFromMap(),
         textColor = getString("textColorHex")?.deserializeColor(),
-        font = font?.font,
-        textSizeInSp = font?.sizeInSp
+        font = assetManager.createFontFromName(getString("fontName")),
+        textSizeInSp = getDoubleOrNull("textSize")?.toFloat()
     )
 }
 
 internal fun ReadableMap.messageFromMap(assetManager: AssetManager): MessageSettings {
-    val font = getMap("font")?.usercentricsFontFromMap(assetManager)
-
     return MessageSettings(
-        font = font?.font,
-        textSizeInSp = font?.sizeInSp,
+        font = assetManager.createFontFromName(getString("fontName")),
+        textSizeInSp = getDoubleOrNull("textSize")?.toFloat(),
         textColor = getString("textColorHex")?.deserializeColor(),
         alignment = getString("alignment")?.sectionAlignmentFromMap(),
         linkTextColor = getString("linkTextColorHex")?.deserializeColor(),
@@ -129,15 +131,14 @@ internal fun ReadableMap.buttonLayoutFromMap(
 internal fun ReadableMap.buttonSettingsFromMap(
     assetManager: AssetManager
 ): ButtonSettings {
-    val font = getMap("font")?.usercentricsFontFromMap(assetManager)
-    return ButtonSettings(
+  return ButtonSettings(
         type = getString("buttonType")!!.deserializeButtonType(),
         isAllCaps = getBooleanOrNull("isAllCaps"),
-        font = font?.font,
+        font = assetManager.createFontFromName(getString("fontName")),
         textColor = getString("textColorHex")?.deserializeColor(),
         backgroundColor = getString("backgroundColorHex")?.deserializeColor(),
         cornerRadius = getIntOrNull("cornerRadius"),
-        textSizeInSp = font?.sizeInSp
+        textSizeInSp = getDoubleOrNull("textSize")?.toFloat()
     )
 }
 

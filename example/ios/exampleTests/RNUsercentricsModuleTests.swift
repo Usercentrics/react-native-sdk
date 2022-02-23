@@ -53,7 +53,7 @@ class RNUsercentricsModuleTests: XCTestCase {
     module.isReady { result in
       guard
         let result = result as? NSDictionary,
-        let shouldShowCMP = result["shouldShowCMP"] as? Bool,
+        let shouldCollectConsent = result["shouldCollectConsent"] as? Bool,
         let consentsMap = result["consents"] as? [NSDictionary],
         let consent = consentsMap.first
       else {
@@ -61,7 +61,7 @@ class RNUsercentricsModuleTests: XCTestCase {
         return
       }
 
-      XCTAssertEqual(shouldShowCMP, false)
+      XCTAssertEqual(shouldCollectConsent, false)
       XCTAssertEqual(consent["version"] as! String, "1.2.3")
       XCTAssertEqual(consent["dataProcessor"] as! String, "BBBB")
       XCTAssertEqual(consent["templateId"] as! String, "AAAA")
@@ -88,7 +88,7 @@ class RNUsercentricsModuleTests: XCTestCase {
     module.restoreUserSession("abc") { [self] result in
       guard
         let result = result as? NSDictionary,
-        let shouldShowCMP = result["shouldShowCMP"] as? Bool,
+        let shouldCollectConsent = result["shouldCollectConsent"] as? Bool,
         let consentsMap = result["consents"] as? [NSDictionary],
         let consent = consentsMap.first
       else {
@@ -96,7 +96,7 @@ class RNUsercentricsModuleTests: XCTestCase {
         return
       }
 
-      XCTAssertEqual(shouldShowCMP, false)
+      XCTAssertEqual(shouldCollectConsent, false)
       XCTAssertEqual(consent["version"] as! String, "1.2.3")
       XCTAssertEqual(consent["dataProcessor"] as! String, "BBBB")
       XCTAssertEqual(consent["templateId"] as! String, "AAAA")

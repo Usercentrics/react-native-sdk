@@ -42,26 +42,6 @@ internal class FakeUsercentricsProxy(
         }
     }
 
-    var createIntentValue: Intent? = null
-    var usercentricsOptions: UsercentricsUISettings? = null
-        private set
-
-    override fun createIntent(
-        context: Context,
-        usercentricsOptions: UsercentricsUISettings
-    ): Intent {
-        this.usercentricsOptions = usercentricsOptions
-        return createIntentValue!!
-    }
-
-    var parseResultResultCodeArgument: Int = 0
-        private set
-    var parseResultValue: UsercentricsConsentUserResponse? = null
-    override fun parseResult(resultCode: Int, data: Intent?): UsercentricsConsentUserResponse? {
-        this.parseResultResultCodeArgument = resultCode
-        return parseResultValue
-    }
-
     var resetCount: Int = 0
         private set
 

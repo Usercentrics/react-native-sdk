@@ -2,7 +2,10 @@ package com.usercentrics.reactnativemodule
 
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
-import com.facebook.react.bridge.*
+import com.facebook.react.bridge.JavaOnlyMap
+import com.facebook.react.bridge.ReactApplicationContext
+import com.facebook.react.bridge.WritableArray
+import com.facebook.react.bridge.WritableMap
 import com.facebook.soloader.SoLoader
 import com.usercentrics.reactnativemodule.api.FakeUsercentricsProxy
 import com.usercentrics.reactnativemodule.fake.FakePromise
@@ -20,7 +23,6 @@ import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verify
 import org.junit.Assert.assertEquals
-import org.junit.Assert.assertThrows
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -45,7 +47,7 @@ class RNUsercentricsModuleTest {
         )
 
         private val usercentricsReadyStatus = UsercentricsReadyStatus(
-            shouldShowCMP = false,
+            shouldCollectConsent = false,
             consents = listOf(
                 UsercentricsServiceConsent(
                     templateId = "ocv9HNX_g",
@@ -57,37 +59,6 @@ class RNUsercentricsModuleTest {
                     history = usercentricsConsentHistoryEntries
                 )
             )
-        )
-
-        private val usercentricsUIOptions = JavaOnlyMap().apply {
-            putBoolean("showCloseButton", false)
-            putMap("customLogo", JavaOnlyMap().apply {
-                putString("logoName", "logo.png")
-                putString(
-                    "logoPath",
-                    "http://10.0.2.2:8081/assets/assets/images/logo.png"
-                )
-            })
-            putMap("customFont", JavaOnlyMap().apply {
-                putString("fontName", "Lora")
-                putInt("fontSize", 14)
-            })
-        }
-
-        private val usercentricsConsentUserResponse = UsercentricsConsentUserResponse(
-            consents = listOf(
-                UsercentricsServiceConsent(
-                    templateId = "ocv9HNX_g",
-                    status = false,
-                    dataProcessor = "Facebook SDK",
-                    type = UsercentricsConsentType.EXPLICIT,
-                    version = "1.0.1",
-                    isEssential = false,
-                    history = usercentricsConsentHistoryEntries
-                )
-            ),
-            controllerId = "8620135313b043696b806868b20da905886a3a2598ddddc2b52973f9807d6b45",
-            userInteraction = UsercentricsUserInteraction.ACCEPT_ALL
         )
     }
 
@@ -148,7 +119,7 @@ class RNUsercentricsModuleTest {
         val consent = result.getArray("consents")?.getMap(0)!!
 
         assertEquals(1, usercentricsProxy.isReadyCount)
-        assertEquals(false, result.getBoolean("shouldShowCMP"))
+        assertEquals(false, result.getBoolean("shouldCollectConsent"))
         assertEquals(false, consent.getBoolean("status"))
         assertEquals("ocv9HNX_g", consent.getString("templateId"))
         assertEquals("Facebook SDK", consent.getString("dataProcessor"))
@@ -191,7 +162,7 @@ class RNUsercentricsModuleTest {
         val result = promise.resolveValue as WritableMap
         val consent = result.getArray("consents")?.getMap(0)!!
 
-        assertEquals(false, result.getBoolean("shouldShowCMP"))
+        assertEquals(false, result.getBoolean("shouldCollectConsent"))
         assertEquals(false, consent.getBoolean("status"))
         assertEquals("ocv9HNX_g", consent.getString("templateId"))
         assertEquals("Facebook SDK", consent.getString("dataProcessor"))
@@ -246,83 +217,6 @@ class RNUsercentricsModuleTest {
 
         verify(exactly = 1) { usercentricsSDK.getTCString() }
         assertEquals("abc", promise.resolveValue)
-    }
-
-    @Test
-    fun testShowCMP() {
-        val usercentricsProxy = FakeUsercentricsProxy()
-        usercentricsProxy.createIntentValue = mockk(relaxed = true)
-
-        val contextMock = mockk<ReactApplicationContext>(relaxed = true)
-        val module = RNUsercentricsModule(contextMock, usercentricsProxy)
-        val promise = FakePromise()
-
-        module.showCMP(usercentricsUIOptions, promise)
-
-        val responseUsercentricsOptions = usercentricsProxy.usercentricsOptions!!
-        val customLogoURL =
-            (responseUsercentricsOptions.customLogo as UsercentricsImage.ImageUrl).imageUrl
-
-        assertEquals(false, responseUsercentricsOptions.showCloseButton)
-        assertEquals(
-            "http://10.0.2.2:8081/assets/assets/images/logo.png",
-            customLogoURL
-        )
-    }
-
-    @Test
-    fun testOnActivityResultWithOtherCode() {
-        val usercentricsProxy = FakeUsercentricsProxy()
-        val contextMock = mockk<ReactApplicationContext>(relaxed = true)
-        val module = RNUsercentricsModule(contextMock, usercentricsProxy)
-
-        val otherRequestCode = 123
-        val consumed = module.parseActivityResult(otherRequestCode, 123, null)
-
-        assertEquals(false, consumed)
-    }
-
-    @Test
-    fun testOnActivityResultWithNoPendingResult() {
-        val usercentricsProxy = FakeUsercentricsProxy()
-        val contextMock = mockk<ReactApplicationContext>(relaxed = true)
-        val module = RNUsercentricsModule(contextMock, usercentricsProxy)
-
-        assertThrows(AssertionError::class.java) {
-            module.parseActivityResult(81420, 123, null)
-        }
-    }
-
-    @Test
-    fun testOnActivityResultWithPendingResult() {
-        val resultCode = 123
-        val usercentricsProxy = FakeUsercentricsProxy()
-        usercentricsProxy.createIntentValue = mockk(relaxed = true)
-        usercentricsProxy.parseResultValue = usercentricsConsentUserResponse
-
-        val contextMock = mockk<ReactApplicationContext>(relaxed = true)
-        val module = RNUsercentricsModule(contextMock, usercentricsProxy)
-
-        val promise = FakePromise()
-        module.showCMP(usercentricsUIOptions, promise)
-
-        module.parseActivityResult(81420, resultCode, null)
-
-        assertEquals(resultCode, usercentricsProxy.parseResultResultCodeArgument)
-
-        val result = promise.resolveValue as WritableMap
-        val consent = result.getArray("consents")?.getMap(0)!!
-
-        assertEquals(
-            "8620135313b043696b806868b20da905886a3a2598ddddc2b52973f9807d6b45",
-            result.getString("controllerId")
-        )
-        assertEquals(0, result.getInt("userInteraction"))
-        assertEquals(false, consent.getBoolean("status"))
-        assertEquals("ocv9HNX_g", consent.getString("templateId"))
-        assertEquals("Facebook SDK", consent.getString("dataProcessor"))
-        assertEquals(0, consent.getInt("type"))
-        assertEquals("1.0.1", consent.getString("version"))
     }
 
     @Test

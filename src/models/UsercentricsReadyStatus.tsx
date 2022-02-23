@@ -1,11 +1,11 @@
 import { UsercentricsServiceConsent } from "."
 
 export class UsercentricsReadyStatus {
-    shouldShowCMP: boolean
+    shouldCollectConsent: boolean
     consents: [UsercentricsServiceConsent]
 
-    constructor(shouldShowCMP: boolean, consents: [UsercentricsServiceConsent]) {
-        this.shouldShowCMP = shouldShowCMP
+    constructor(shouldCollectConsent: boolean, consents: [UsercentricsServiceConsent]) {
+        this.shouldCollectConsent = shouldCollectConsent
         this.consents = consents
     }
 }

@@ -27,7 +27,6 @@
 		A2DC252D272179E600AA9DD8 /* ReadyStatusDictTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DC252C272179E600AA9DD8 /* ReadyStatusDictTests.swift */; };
 		A2DC253127217AEB00AA9DD8 /* FakePresentationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DC253027217AEB00AA9DD8 /* FakePresentationViewController.swift */; };
 		A2DC25382721A3D900AA9DD8 /* UsercentricsOptionsDictTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DC25372721A3D900AA9DD8 /* UsercentricsOptionsDictTests.swift */; };
-		A2DC253A2721A6D400AA9DD8 /* UsercentricsUISettingsDictTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DC25392721A6D400AA9DD8 /* UsercentricsUISettingsDictTests.swift */; };
 		A2DC253C2721A85200AA9DD8 /* UsercentricsUserInteractionDictTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DC253B2721A85200AA9DD8 /* UsercentricsUserInteractionDictTest.swift */; };
 		A2F0B082272C396200A99DD3 /* UsercentricsConsentTypeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F0B081272C396200A99DD3 /* UsercentricsConsentTypeTests.swift */; };
 		A2F0B084272C399600A99DD3 /* TCFDecisionUILayerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F0B083272C399600A99DD3 /* TCFDecisionUILayerTests.swift */; };
@@ -68,7 +67,6 @@
 		A2DC252C272179E600AA9DD8 /* ReadyStatusDictTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadyStatusDictTests.swift; sourceTree = "<group>"; };
 		A2DC253027217AEB00AA9DD8 /* FakePresentationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakePresentationViewController.swift; sourceTree = "<group>"; };
 		A2DC25372721A3D900AA9DD8 /* UsercentricsOptionsDictTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsercentricsOptionsDictTests.swift; sourceTree = "<group>"; };
-		A2DC25392721A6D400AA9DD8 /* UsercentricsUISettingsDictTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsercentricsUISettingsDictTests.swift; sourceTree = "<group>"; };
 		A2DC253B2721A85200AA9DD8 /* UsercentricsUserInteractionDictTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsercentricsUserInteractionDictTest.swift; sourceTree = "<group>"; };
 		A2F0B081272C396200A99DD3 /* UsercentricsConsentTypeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsercentricsConsentTypeTests.swift; sourceTree = "<group>"; };
 		A2F0B083272C399600A99DD3 /* TCFDecisionUILayerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TCFDecisionUILayerTests.swift; sourceTree = "<group>"; };
@@ -187,7 +185,6 @@
 				A2DC251D272166FB00AA9DD8 /* RNUsercentricsModuleTests.swift */,
 				A2DC252C272179E600AA9DD8 /* ReadyStatusDictTests.swift */,
 				A2DC25372721A3D900AA9DD8 /* UsercentricsOptionsDictTests.swift */,
-				A2DC25392721A6D400AA9DD8 /* UsercentricsUISettingsDictTests.swift */,
 				A2DC253B2721A85200AA9DD8 /* UsercentricsUserInteractionDictTest.swift */,
 				A2F0B081272C396200A99DD3 /* UsercentricsConsentTypeTests.swift */,
 				A2F0B083272C399600A99DD3 /* TCFDecisionUILayerTests.swift */,
@@ -491,7 +488,6 @@
 				A2390F8A27B5355900F355C1 /* BannerSettingsDictTests.swift in Sources */,
 				A2F0B082272C396200A99DD3 /* UsercentricsConsentTypeTests.swift in Sources */,
 				A2DC252D272179E600AA9DD8 /* ReadyStatusDictTests.swift in Sources */,
-				A2DC253A2721A6D400AA9DD8 /* UsercentricsUISettingsDictTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

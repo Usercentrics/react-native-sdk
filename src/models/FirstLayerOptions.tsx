@@ -1,4 +1,4 @@
-import { UsercentricsLogo, UsercentricsFont, BannerSettings } from ".";
+import { BannerLogo, BannerSettings } from ".";
 
 export class FirstLayerOptions {
     layout: UsercentricsLayout;
@@ -42,13 +42,13 @@ export class FirstLayerStyleSettings {
 export class HeaderImageSettings {
     isExtended: Boolean;
     isHidden: Boolean;
-    image?: UsercentricsLogo;
+    image?: BannerLogo;
     height?: Number;
     alignment?: SectionAlignment
 
     private constructor(isExtended: Boolean,
         isHidden: Boolean,
-        image?: UsercentricsLogo,
+        image?: BannerLogo,
         height?: Number,
         alignment?: SectionAlignment) {
         this.isExtended = isExtended;
@@ -58,11 +58,11 @@ export class HeaderImageSettings {
         this.alignment = alignment;
     }
 
-    static extended(image: UsercentricsLogo): HeaderImageSettings {
+    static extended(image: BannerLogo): HeaderImageSettings {
         return new HeaderImageSettings(true, false, image)
     }
 
-    static logo(image: UsercentricsLogo, height?: Number, alignment?: SectionAlignment): HeaderImageSettings {
+    static logo(image: BannerLogo, height?: Number, alignment?: SectionAlignment): HeaderImageSettings {
         return new HeaderImageSettings(false, false, image, height, alignment)
     }
 
@@ -72,30 +72,35 @@ export class HeaderImageSettings {
 }
 
 export class TitleSettings {
-    font?: UsercentricsFont;
+    fontName?: string;
+    textSize?: number;
     textColorHex?: String;
     textAlignment?: SectionAlignment;
 
-    constructor(font?: UsercentricsFont, textColorHex?: String, textAlignment?: SectionAlignment) {
-        this.font = font;
+    constructor(fontName?: string, textSize?: number, textColorHex?: String, textAlignment?: SectionAlignment) {
+        this.fontName = fontName;
+        this.textSize = textSize;
         this.textColorHex = textColorHex;
         this.textAlignment = textAlignment;
     }
 }
 
 export class MessageSettings {
-    font?: UsercentricsFont;
+    fontName?: string;
+    textSize?: number;
     textColorHex?: String;
     textAlignment?: SectionAlignment;
     linkTextColorHex?: String;
     linkTextUnderline?: Boolean;
 
-    constructor(font?: UsercentricsFont,
+    constructor(fontName?: string, 
+        textSize?: number,
         textColorHex?: String,
         textAlignment?: SectionAlignment,
         linkTextColorHex?: String,
         linkTextUnderline?: Boolean) {
-        this.font = font;
+        this.fontName = fontName;
+        this.textSize = textSize;
         this.textColorHex = textColorHex;
         this.textAlignment = textAlignment;
         this.linkTextColorHex = linkTextColorHex;
@@ -133,7 +138,8 @@ enum InternalButtonLayout {
 
 export class ButtonSettings {
     buttonType: ButtonType;
-    font?: UsercentricsFont;
+    fontName?: string;
+    textSize?: number;
     textColorHex?: String;
     backgroundColorHex?: String;
     cornerRadius?: number;
@@ -142,13 +148,15 @@ export class ButtonSettings {
     isAllCaps?: Boolean
 
     constructor(buttonType: ButtonType,
-        font?: UsercentricsFont,
+        fontName?: string,
+        textSize?: number,
         textColorHex?: String,
         backgroundColorHex?: String,
         cornerRadius?: number,
         isAllCaps?: Boolean) {
         this.buttonType = buttonType
-        this.font = font
+        this.fontName = fontName
+        this.textSize = textSize
         this.textColorHex = textColorHex
         this.backgroundColorHex = backgroundColorHex
         this.cornerRadius = cornerRadius
