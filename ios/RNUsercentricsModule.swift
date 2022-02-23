@@ -48,23 +48,17 @@ class RNUsercentricsModule: NSObject, RCTBridgeModule {
                 reject("usercentrics_reactNative_showFirstLayer_error", RNUsercentricsModuleError.invalidData.localizedDescription, RNUsercentricsModuleError.invalidData)
                 return
             }
-            
-            let nav = UINavigationController()
-            nav.setNavigationBarHidden(true, animated: false)
-            nav.modalPresentationStyle = .overFullScreen
-            if #available(iOS 13.0, *) {
-                nav.isModalInPresentation = true
-            }
-            
-            rootVC.present(nav)
+
             let bannerSettingsDict = dict["bannerSettings"] as? NSDictionary
             let styleSettingsDict = dict["styleSettings"] as? NSDictionary
+
+            let bannerSettings = BannerSettings(from: bannerSettingsDict)
+            let bannerFont = BannerFontHolder(from: bannerSettingsDict?["font"] as? NSDictionary)
             
-            self.usercentricsManager.showFirstLayer(bannerSettings: BannerSettings(from: bannerSettingsDict),
-                                                    hostView: nav,
+            self.usercentricsManager.showFirstLayer(bannerSettings: bannerSettings,
+                                                    hostView: rootVC as! UIViewController,
                                                     layout: layout,
-                                                    settings: FirstLayerStyleSettings(from: styleSettingsDict)) { response in
-                rootVC.dismiss(animated: true)
+                                                    settings: FirstLayerStyleSettings(from: styleSettingsDict, bannerFontHolder: bannerFont)) { response in
                 resolve(response.toDictionary())
             }
         }
@@ -81,18 +75,9 @@ class RNUsercentricsModule: NSObject, RCTBridgeModule {
             }
             let bannerSettingsDict = dict["bannerSettings"] as? NSDictionary
             let showCloseButton = (dict["showCloseButton"] as? Bool) ?? false
-            
-            let nav = UINavigationController()
-            nav.setNavigationBarHidden(true, animated: false)
-            nav.modalPresentationStyle = .overFullScreen
-            if #available(iOS 13.0, *) {
-                nav.isModalInPresentation = true
-            }
-            
-            rootVC.present(nav)
-            
+
             self.usercentricsManager.showSecondLayer(bannerSettings: BannerSettings(from: bannerSettingsDict),
-                                                     hostView: nav,
+                                                     hostView: rootVC as! UIViewController,
                                                      showCloseButton: showCloseButton) { response in
                 rootVC.dismiss(animated: true)
                 resolve(response.toDictionary())

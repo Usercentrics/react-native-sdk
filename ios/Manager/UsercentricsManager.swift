@@ -9,13 +9,13 @@ public protocol UsercentricsManager {
     func restoreUserSession(controllerId: String, onSuccess: @escaping ((UsercentricsReadyStatus) -> Void), onFailure: @escaping ((Error) -> Void))
 
     func showFirstLayer(bannerSettings: BannerSettings?,
-                        hostView: UINavigationController,
+                        hostView: UIViewController,
                         layout: UsercentricsLayout,
                         settings: FirstLayerStyleSettings?,
                         dismissViewHandler: @escaping (UsercentricsConsentUserResponse) -> Void)
 
     func showSecondLayer(bannerSettings: BannerSettings?,
-                         hostView: UINavigationController,
+                         hostView: UIViewController,
                          showCloseButton: Bool,
                          dismissViewHandler: @escaping (UsercentricsConsentUserResponse) -> Void)
 
@@ -70,7 +70,7 @@ final class UsercentricsManagerImplementation: UsercentricsManager {
     }
 
     func showFirstLayer(bannerSettings: BannerSettings?,
-                        hostView: UINavigationController,
+                        hostView: UIViewController,
                         layout: UsercentricsLayout,
                         settings: FirstLayerStyleSettings?,
                         dismissViewHandler: @escaping (UsercentricsConsentUserResponse) -> Void) {
@@ -81,7 +81,7 @@ final class UsercentricsManagerImplementation: UsercentricsManager {
     }
 
     func showSecondLayer(bannerSettings: BannerSettings?,
-                         hostView: UINavigationController,
+                         hostView: UIViewController,
                          showCloseButton: Bool,
                          dismissViewHandler: @escaping (UsercentricsConsentUserResponse) -> Void) {
         UsercentricsBanner(bannerSettings: bannerSettings).showSecondLayer(hostView: hostView,

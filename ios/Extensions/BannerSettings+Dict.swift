@@ -5,19 +5,57 @@ extension BannerSettings {
     init?(from dictionary: NSDictionary?) {
         guard let dictionary = dictionary else { return nil }
 
-        self.init(font: nil,
+        self.init(font: BannerFontHolder(from: dictionary["font"] as? NSDictionary)?.font,
                   logo: UIImage(from: dictionary["logo"] as? NSDictionary))
     }
 }
 
-extension FirstLayerStyleSettings {
+struct BannerFontHolder {
+    public let font: BannerFont
+
+    public let regularFont: UIFont
+    public let boldFont: UIFont
+
     init?(from dictionary: NSDictionary?) {
+        guard let dictionary = dictionary,
+              let regularFontName: String = dictionary["regularFont"] as? String,
+              let boldFontName: String = dictionary["boldFont"] as? String,
+              let fontSize: CGFloat = dictionary["fontSize"] as? CGFloat,
+              let regularFont = UIFont(name: regularFontName, size: fontSize),
+              let boldFont = UIFont(name: boldFontName, size: fontSize)
+        else { return nil }
+
+        self.regularFont = regularFont
+        self.boldFont = boldFont
+        self.font = .init(regularFont: regularFont, boldFont: boldFont)
+    }
+}
+
+extension UIFont {
+    static func initialize(from fontName: String?, fontSizeValue: CGFloat?, fallbackFont: UIFont?) -> UIFont? {
+        let fontSize = fontSizeValue ?? UIFont.systemFontSize
+
+        // System font with custom size
+        if fontName == nil, fontSizeValue != nil {
+            return fallbackFont?.withSize(fontSize) ?? UIFont.systemFont(ofSize: fontSize)
+        }
+
+        if let fontName = fontName {
+            return UIFont(name: fontName, size: fontSize)
+        }
+
+        return fallbackFont?.withSize(fontSize)
+    }
+}
+
+extension FirstLayerStyleSettings {
+    init?(from dictionary: NSDictionary?, bannerFontHolder: BannerFontHolder?) {
         guard let dictionary = dictionary else { return nil }
 
         self.init(headerImage: HeaderImageSettings.from(dictionary: dictionary["headerImage"] as? NSDictionary),
-                  title: TitleSettings(from: dictionary["title"] as? NSDictionary),
-                  message: MessageSettings(from: dictionary["message"] as? NSDictionary),
-                  buttonLayout: ButtonLayout.from(dictionary: dictionary["buttonLayout"] as? NSDictionary),
+                  title: TitleSettings(from: dictionary["title"] as? NSDictionary, fallbackFont: bannerFontHolder?.boldFont),
+                  message: MessageSettings(from: dictionary["message"] as? NSDictionary, fallbackFont: bannerFontHolder?.regularFont),
+                  buttonLayout: ButtonLayout.from(dictionary: dictionary["buttonLayout"] as? NSDictionary, fallbackFont: bannerFontHolder?.boldFont),
                   backgroundColor: UIColor(unsafeHex: dictionary["backgroundColorHex"] as? String),
                   cornerRadius: dictionary["cornerRadius"] as? CGFloat,
                   overlayColor: UIColor(unsafeHex: dictionary["overlayColorHex"] as? String))
@@ -50,10 +88,13 @@ extension HeaderImageSettings {
 }
 
 extension TitleSettings {
-    init?(from dictionary: NSDictionary?) {
+    init?(from dictionary: NSDictionary?, fallbackFont: UIFont? = nil) {
         guard let dictionary = dictionary else { return nil }
 
-        self.init(font: UIFont(from: dictionary["font"] as? NSDictionary),
+        let fontName: String? = dictionary["fontName"] as? String
+        let fontSize: CGFloat? = dictionary["textSize"] as? CGFloat
+
+        self.init(font: UIFont.initialize(from: fontName, fontSizeValue: fontSize, fallbackFont: fallbackFont),
                   textColor: UIColor(unsafeHex: dictionary["textColorHex"] as? String ?? ""),
                   textAlignment: NSTextAlignment.from(enumString: dictionary["textAlignment"] as? String))
     }
@@ -61,10 +102,13 @@ extension TitleSettings {
 
 
 extension MessageSettings {
-    init?(from dictionary: NSDictionary?) {
+    init?(from dictionary: NSDictionary?, fallbackFont: UIFont? = nil) {
         guard let dictionary = dictionary else { return nil }
 
-        self.init(font: UIFont(from: dictionary["font"] as? NSDictionary),
+        let fontName: String? = dictionary["fontName"] as? String
+        let textSize: CGFloat? = dictionary["textSize"] as? CGFloat
+
+        self.init(font: UIFont.initialize(from: fontName, fontSizeValue: textSize, fallbackFont: fallbackFont),
                   textColor: UIColor(unsafeHex: dictionary["textColorHex"] as? String ?? ""),
                   textAlignment: NSTextAlignment.from(enumString: dictionary["textAlignment"] as? String),
                   linkTextColor: UIColor(unsafeHex: dictionary["linkTextColorHex"] as? String ?? ""),
@@ -73,7 +117,7 @@ extension MessageSettings {
 }
 
 extension ButtonLayout {
-    static func from(dictionary: NSDictionary?) -> ButtonLayout? {
+    static func from(dictionary: NSDictionary?, fallbackFont: UIFont? = nil) -> ButtonLayout? {
         guard let dictionary = dictionary else { return nil }
 
         let layoutDict = dictionary["layout"] as? String
@@ -81,11 +125,11 @@ extension ButtonLayout {
 
         switch layoutDict {
             case "ROW":
-                return .row(buttons: buttons.flatMap { $0 }.compactMap { ButtonSettings(from: $0) })
+                return .row(buttons: buttons.flatMap { $0 }.compactMap { ButtonSettings(from: $0, fallbackFont: fallbackFont) })
             case "COLUMN":
-                return .column(buttons: buttons.flatMap { $0 }.compactMap { ButtonSettings(from: $0) })
+                return .column(buttons: buttons.flatMap { $0 }.compactMap { ButtonSettings(from: $0, fallbackFont: fallbackFont) })
             case "GRID":
-                let gridButtons = buttons.map { $0.compactMap { button in ButtonSettings(from: button) }}
+                let gridButtons = buttons.map { $0.compactMap { button in ButtonSettings(from: button, fallbackFont: fallbackFont) }}
                 return .grid(buttons: gridButtons)
             default:
                 break
@@ -96,15 +140,18 @@ extension ButtonLayout {
 }
 
 extension ButtonSettings {
-    init?(from dictionary: NSDictionary?) {
+    init?(from dictionary: NSDictionary?, fallbackFont: UIFont? = nil) {
         guard
             let dictionary = dictionary,
             let buttonTypeDict = dictionary["buttonType"] as? String,
             let buttonType = ButtonType.from(enumString: buttonTypeDict)
         else { return nil }
 
+        let fontName: String? = dictionary["fontName"] as? String
+        let textSize: CGFloat? = dictionary["textSize"] as? CGFloat
+
         self.init(type: buttonType,
-                  font: UIFont(from: dictionary["font"] as? NSDictionary),
+                  font: UIFont.initialize(from: fontName, fontSizeValue: textSize, fallbackFont: fallbackFont),
                   textColor: UIColor(unsafeHex: dictionary["textColorHex"] as? String),
                   backgroundColor: UIColor(unsafeHex: dictionary["backgroundColorHex"] as? String),
                   cornerRadius: dictionary["cornerRadius"] as? CGFloat)
