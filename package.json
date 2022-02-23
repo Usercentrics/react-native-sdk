@@ -1,6 +1,6 @@
 {
   "name": "@usercentrics/react-native-sdk",
-  "version": "2.2.2-RC1",
+  "version": "2.3.0",
   "description": "Usercentrics SDK",
   "homepage": "https://usercentrics.com",
   "main": "lib/index.js",
