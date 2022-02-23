@@ -8,14 +8,10 @@ import {
   TCFDecisionUILayer,
   UsercentricsConsentType,
   UsercentricsConsentUserResponse,
-  UsercentricsFont,
   UsercentricsLayout,
   UsercentricsLoggerLevel,
-  UsercentricsLogo,
   UsercentricsOptions,
   UsercentricsReadyStatus,
-  UsercentricsServiceConsent,
-  UsercentricsUIOptions,
   UsercentricsUserInteraction
 } from '../models';
 import { Usercentrics } from '../Usercentrics';
@@ -110,61 +106,6 @@ describe('Test Usercentrics Module', () => {
       expect(e).toBe("Failed");
     }
   })
-
-  test('testShowCMP', async () => {
-    const response = new UsercentricsConsentUserResponse(
-      "abc",
-      UsercentricsUserInteraction.acceptAll,
-      [
-        {
-          templateId: "123",
-          status: false,
-          dataProcessor: "facebook",
-          version: "123",
-          type: 0,
-          isEssential: false,
-          history: [{
-            status: false,
-            timestampInMillis: 123.0,
-            type: 0
-          }]
-        }
-      ]
-    )
-
-    RNUsercentricsModule.showCMP.mockImplementationOnce(
-      (): Promise<any> => Promise.resolve(response)
-    )
-
-    const image = { height: 0, width: 0, scale: 0, uri: "abc" }
-    const logo = new UsercentricsLogo("abc", image)
-    const font = new UsercentricsFont("abc", 16)
-    const option = new UsercentricsUIOptions(false, logo, font)
-
-    const data = await Usercentrics.showCMP(option)
-    expect(data).toBe(response);
-
-    const call = RNUsercentricsModule.showCMP.mock.calls[0][0];
-    expect(call).toBe(option)
-  })
-
-  test('testShowCMPWithError', async () => {
-    RNUsercentricsModule.showCMP.mockImplementationOnce(
-      (): Promise<any> => Promise.reject("Failure")
-    )
-
-    const image = { height: 0, width: 0, scale: 0, uri: "abc" }
-    const logo = new UsercentricsLogo("abc", image)
-    const font = new UsercentricsFont("abc", 16)
-    const option = new UsercentricsUIOptions(false, logo, font)
-
-    try {
-      await Usercentrics.showCMP(option);
-    } catch (e) {
-      expect(e).toBe("Failure");
-    }
-  })
-
 
   test('testShowFirstLayer', async () => { 
     const response = new UsercentricsConsentUserResponse(
