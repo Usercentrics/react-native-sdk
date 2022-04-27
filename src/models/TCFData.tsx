@@ -22,13 +22,17 @@ export class TCFData {
     /// A list of all TCF vendors that need to be disclosed to the end-user if TCF is enabled */
     vendors: TCFVendor[]
 
+    /// The TCF string
+    tcString: String
+
     constructor(
         features: TCFFeature[],
         purposes: TCFPurpose[],
         specialFeatures: TCFSpecialFeature[],
         specialPurposes: TCFSpecialPurpose[],
         stacks: TCFStack[],
-        vendors: TCFVendor[]
+        vendors: TCFVendor[],
+        tcString: String
     ) {
         this.features = features
         this.purposes = purposes
@@ -36,6 +40,7 @@ export class TCFData {
         this.specialPurposes = specialPurposes
         this.stacks = stacks
         this.vendors = vendors
+        this.tcString = tcString
     }
 }
 

@@ -24,16 +24,20 @@ class RNUsercentricsModule: NSObject, RCTBridgeModule {
                 let self = self,
                 let userOptions = UsercentricsOptions(from: dict)
             else { return }
-            
+
             self.usercentricsManager.configure(options: userOptions)
         }
     }
-    
+
     @objc func isReady(_ resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) -> Void {
-        usercentricsManager.isReady { status in
-            resolve(status.toDictionary())
-        } onFailure: { error in
-            reject("usercentrics_reactNative_isReady_error", error.localizedDescription, error)
+        queue.async { [weak self] in
+            guard let self = self else { return }
+
+            self.usercentricsManager.isReady { status in
+                resolve(status.toDictionary())
+            } onFailure: { error in
+                reject("usercentrics_reactNative_isReady_error", error.localizedDescription, error)
+            }
         }
     }
     
@@ -50,15 +54,9 @@ class RNUsercentricsModule: NSObject, RCTBridgeModule {
             }
 
             let bannerSettingsDict = dict["bannerSettings"] as? NSDictionary
-            let styleSettingsDict = dict["styleSettings"] as? NSDictionary
-
-            let bannerSettings = BannerSettings(from: bannerSettingsDict)
-            let bannerFont = BannerFontHolder(from: bannerSettingsDict?["font"] as? NSDictionary)
-            
-            self.usercentricsManager.showFirstLayer(bannerSettings: bannerSettings,
+            self.usercentricsManager.showFirstLayer(bannerSettings: BannerSettings(from: bannerSettingsDict),
                                                     hostView: rootVC as! UIViewController,
-                                                    layout: layout,
-                                                    settings: FirstLayerStyleSettings(from: styleSettingsDict, bannerFontHolder: bannerFont)) { response in
+                                                    layout: layout) { response in
                 resolve(response.toDictionary())
             }
         }
@@ -73,12 +71,10 @@ class RNUsercentricsModule: NSObject, RCTBridgeModule {
                 reject("usercentrics_reactNative_showFirstLayer_error", RNUsercentricsModuleError.invalidData.localizedDescription, RNUsercentricsModuleError.invalidData)
                 return
             }
-            let bannerSettingsDict = dict["bannerSettings"] as? NSDictionary
-            let showCloseButton = (dict["showCloseButton"] as? Bool) ?? false
 
+            let bannerSettingsDict = dict["bannerSettings"] as? NSDictionary
             self.usercentricsManager.showSecondLayer(bannerSettings: BannerSettings(from: bannerSettingsDict),
-                                                     hostView: rootVC as! UIViewController,
-                                                     showCloseButton: showCloseButton) { response in
+                                                     hostView: rootVC as! UIViewController) { response in
                 rootVC.dismiss(animated: true)
                 resolve(response.toDictionary())
             }
@@ -98,7 +94,9 @@ class RNUsercentricsModule: NSObject, RCTBridgeModule {
     }
     
     @objc func getTCFString(_ resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) -> Void {
-        resolve(usercentricsManager.getTCString())
+        usercentricsManager.getTCString { tcString in
+            resolve(tcString)
+        }
     }
     
     @objc func getControllerId(_ resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) -> Void {
@@ -114,7 +112,9 @@ class RNUsercentricsModule: NSObject, RCTBridgeModule {
     }
     
     @objc func getTCFData(_ resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) -> Void {
-        resolve(usercentricsManager.getTCFData().toDictionary())
+        usercentricsManager.getTCFData { tcfData in
+            resolve(tcfData.toDictionary())
+        }
     }
     
     @objc func getUserSessionData(_ resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) -> Void {

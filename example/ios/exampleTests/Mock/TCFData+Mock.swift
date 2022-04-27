@@ -8,7 +8,8 @@ extension TCFData {
                  specialFeatures: [.mock()],
                  specialPurposes: [.mock()],
                  stacks: [.mock()],
-                 vendors: [.mock()])
+                 vendors: [.mock()],
+                 tcString: "abc")
   }
 }
 

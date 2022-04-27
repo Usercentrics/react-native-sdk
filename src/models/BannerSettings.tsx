@@ -24,12 +24,26 @@ export class BannerFont {
     }
 }
 
+export enum LegalLinksSettings {
+    firstLayerOnly = "FIRST_LAYER_ONLY",
+    secondLayerOnly = "SECOND_LAYER_ONLY",
+    both = "BOTH",
+    none = "NONE"
+}
+
 export class BannerSettings { 
     logo?: BannerLogo;
     font?: BannerFont;
+    links?: LegalLinksSettings;
+    firstLayerSettings?: FirstLayerStyleSettings;
+    secondLayerSettings?: SecondLayerStyleSettings;
 
-    constructor(logo?: BannerLogo, font?: BannerFont) {
+    constructor(logo?: BannerLogo, font?: BannerFont, links?: LegalLinksSettings,
+                firstLayerSettings?: FirstLayerStyleSettings, secondLayerSettings?: SecondLayerStyleSettings) {
         this.logo = logo;
         this.font = font;
+        this.links = links;
+        this.firstLayerSettings = firstLayerSettings;
+        this.secondLayerSettings = secondLayerSettings;
     }
 }

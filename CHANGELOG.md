@@ -1,5 +1,21 @@
 [Release Notes](https://docs.usercentrics.com/cmp_in_app_sdk/latest/about/history/)
 
+# 2.4.0
+
+## Features
+
+- **[Customization]** You now have full control over the appearance of the First & Second Layer via our Admin Interface Style options and our Programmatic API. We have updated and extended our Programmatic API to simplify banner customization.
+- **[UI]** Legal links are now added to our the First Layer, and can be hidden or shown as desired via programmatic API.
+- **[CCPA]** Consent button can now be customized via the Admin Interface.
+
+## Improvements
+
+- Improve initialization flow for stability and avoid edge case crashes.
+
+## Resolved Issues
+
+- Solve stability issues and bug fixes.
+
 # 2.3.0
 
 ## Features

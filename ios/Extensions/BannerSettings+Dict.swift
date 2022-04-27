@@ -5,8 +5,21 @@ extension BannerSettings {
     init?(from dictionary: NSDictionary?) {
         guard let dictionary = dictionary else { return nil }
 
-        self.init(font: BannerFontHolder(from: dictionary["font"] as? NSDictionary)?.font,
-                  logo: UIImage(from: dictionary["logo"] as? NSDictionary))
+        let bannerFontHolder = BannerFontHolder(from: dictionary["font"] as? NSDictionary)
+
+        let firstLayerStyleSettingsDict = dictionary["firstLayerSettings"] as? NSDictionary
+        let firstLayerSettings = FirstLayerStyleSettings(from: firstLayerStyleSettingsDict, bannerFontHolder: bannerFontHolder)
+
+        let secondLayerStyleSettingsDict = dictionary["secondLayerSettings"] as? NSDictionary
+        let secondLayerSettings = SecondLayerStyleSettings(from: secondLayerStyleSettingsDict, bannerFontHolder: bannerFontHolder)
+
+        let links = LegalLinksSettings.from(enumString: dictionary["links"] as? String)
+
+        self.init(font: bannerFontHolder?.font,
+                  logo: UIImage(from: dictionary["logo"] as? NSDictionary),
+                  links: links,
+                  firstLayerSettings: firstLayerSettings,
+                  secondLayerSettings: secondLayerSettings)
     }
 }
 
@@ -62,6 +75,14 @@ extension FirstLayerStyleSettings {
     }
 }
 
+extension SecondLayerStyleSettings {
+    init?(from dictionary: NSDictionary?, bannerFontHolder: BannerFontHolder?) {
+        guard let dictionary = dictionary else { return nil }
+
+        self.init(buttonLayout: ButtonLayout.from(dictionary: dictionary["buttonLayout"] as? NSDictionary, fallbackFont: bannerFontHolder?.boldFont),
+                  showCloseButton: dictionary["showCloseButton"] as? Bool)
+    }
+}
 
 extension HeaderImageSettings {
     static func from(dictionary: NSDictionary?) -> HeaderImageSettings? {
@@ -220,6 +241,25 @@ extension NSTextAlignment {
                 return .right
             case "LEFT":
                 return .left
+            default:
+                return nil
+        }
+    }
+}
+
+extension LegalLinksSettings {
+    static func from(enumString: String?) -> LegalLinksSettings? {
+        guard let enumString = enumString else { return nil }
+
+        switch enumString {
+            case "BOTH":
+                return .both
+            case "FIRST_LAYER_ONLY":
+                return .firstLayerOnly
+            case "NONE":
+                return LegalLinksSettings.none
+            case "SECOND_LAYER_ONLY":
+                return .secondLayerOnly
             default:
                 return nil
         }

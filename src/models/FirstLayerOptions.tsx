@@ -3,12 +3,10 @@ import { BannerLogo, BannerSettings } from ".";
 export class FirstLayerOptions {
     layout: UsercentricsLayout;
     bannerSettings?: BannerSettings;
-    styleSettings?: FirstLayerStyleSettings;
 
-    constructor(layout: UsercentricsLayout, bannerSettings?: BannerSettings, styleSettings?: FirstLayerStyleSettings) {
+    constructor(layout: UsercentricsLayout, bannerSettings?: BannerSettings) {
         this.layout = layout;
         this.bannerSettings = bannerSettings;
-        this.styleSettings = styleSettings;
     }
 }
 

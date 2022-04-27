@@ -1,9 +1,3 @@
-//
-//  FakeUsercentricsManager.swift
-//  exampleTests
-//
-//  Created by Pedro Araujo on 21/10/2021.
-//
 
 import Foundation
 import react_native_usercentrics
@@ -16,6 +10,7 @@ enum FakeUsercentricsError: Error {
 }
 
 final class FakeUsercentricsManager: UsercentricsManager {
+
   var alreadyConfigured: Bool = false
 
   var restoreControllerId: String?
@@ -64,8 +59,8 @@ final class FakeUsercentricsManager: UsercentricsManager {
     }
   }
 
-  func getTCString() -> String {
-    return getTCStringValue!
+  func getTCString(callback: @escaping (String) -> Void) {
+    callback(getTCStringValue!)
   }
 
   func getControllerId() -> String {
@@ -93,8 +88,8 @@ final class FakeUsercentricsManager: UsercentricsManager {
   }
 
   var getTCFDataResponse: TCFData?
-  func getTCFData() -> TCFData {
-    return getTCFDataResponse!
+  func getTCFData(callback: @escaping (TCFData) -> Void) {
+    callback(getTCFDataResponse!)
   }
 
   func setTCFUIAsClosed() {
@@ -174,16 +169,14 @@ final class FakeUsercentricsManager: UsercentricsManager {
   func showFirstLayer(bannerSettings: BannerSettings?,
                       hostView: UIViewController,
                       layout: UsercentricsLayout,
-                      settings: FirstLayerStyleSettings?,
                       dismissViewHandler: @escaping (UsercentricsConsentUserResponse) -> Void) {
     self.showFirstLayerBannerSettings = bannerSettings
-    self.layoutSettings = settings
+    self.layoutSettings = bannerSettings?.firstLayerSettings
     self.layout = layout
   }
 
   var showCloseButton: Bool?
-  func showSecondLayer(bannerSettings: BannerSettings?, hostView: UIViewController, showCloseButton: Bool, dismissViewHandler: @escaping (UsercentricsConsentUserResponse) -> Void) {
-    self.showCloseButton = showCloseButton
+  func showSecondLayer(bannerSettings: BannerSettings?, hostView: UIViewController, dismissViewHandler: @escaping (UsercentricsConsentUserResponse) -> Void) {
+    self.showCloseButton = bannerSettings?.secondLayerSettings?.showCloseButton
   }
-
 }
