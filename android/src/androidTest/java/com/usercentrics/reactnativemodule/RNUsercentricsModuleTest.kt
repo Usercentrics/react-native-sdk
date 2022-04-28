@@ -19,6 +19,7 @@ import com.usercentrics.sdk.models.common.UsercentricsLoggerLevel
 import com.usercentrics.sdk.models.common.UsercentricsVariant
 import com.usercentrics.sdk.models.settings.UsercentricsConsentType
 import com.usercentrics.sdk.services.tcf.TCFDecisionUILayer
+import com.usercentrics.sdk.services.tcf.interfaces.TCFData
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verify
@@ -207,7 +208,9 @@ class RNUsercentricsModuleTest {
     @Test
     fun testGetTCString() {
         val usercentricsSDK = mockk<UsercentricsSDK>()
-        every { usercentricsSDK.getTCString() }.returns("abc")
+        every { usercentricsSDK.getTCString(any()) }.answers {
+            firstArg<(String) -> Unit>().invoke("abc")
+        }
         val usercentricsProxy = FakeUsercentricsProxy(usercentricsSDK)
         val contextMock = mockk<ReactApplicationContext>(relaxed = true)
         val module = RNUsercentricsModule(contextMock, usercentricsProxy)
@@ -215,7 +218,7 @@ class RNUsercentricsModuleTest {
 
         module.getTCFString(promise)
 
-        verify(exactly = 1) { usercentricsSDK.getTCString() }
+        verify(exactly = 1) { usercentricsSDK.getTCString(any()) }
         assertEquals("abc", promise.resolveValue)
     }
 
@@ -306,7 +309,9 @@ class RNUsercentricsModuleTest {
     @Test
     fun testGetTCFData() {
         val usercentricsSDK = mockk<UsercentricsSDK>()
-        every { usercentricsSDK.getTCFData() }.returns(GetTCFDataMock.fake)
+        every { usercentricsSDK.getTCFData(any()) }.answers {
+            firstArg<(TCFData) -> Unit>().invoke(GetTCFDataMock.fake)
+        }
 
         val usercentricsProxy = FakeUsercentricsProxy(usercentricsSDK)
         val contextMock = mockk<ReactApplicationContext>(relaxed = true)
@@ -317,7 +322,7 @@ class RNUsercentricsModuleTest {
 
         val result = promise.resolveValue
 
-        verify(exactly = 1) { usercentricsSDK.getTCFData() }
+        verify(exactly = 1) { usercentricsSDK.getTCFData(any()) }
         assertEquals(GetTCFDataMock.expected.toWritableMap(), result)
     }
 
@@ -562,7 +567,6 @@ class RNUsercentricsModuleTest {
         }.returns(
             GetConsentsMock.fakeWithData
         )
-
 
         val usercentricsProxy = FakeUsercentricsProxy(usercentricsSDK)
         val contextMock = mockk<ReactApplicationContext>(relaxed = true)

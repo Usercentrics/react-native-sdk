@@ -1,9 +1,3 @@
-//
-//  RNUsercentricsModuleTests.swift
-//  exampleTests
-//
-//  Created by Pedro Araujo on 21/10/2021.
-//
 
 import XCTest
 
@@ -478,9 +472,9 @@ class RNUsercentricsModuleTests: XCTestCase {
   }
 
   func testShowSecondLayer() {
-    let dict: NSDictionary = ["showCloseButton": "false"]
+    let dict: NSDictionary = ["showCloseButton": "true"]
     module.showSecondLayer(dict) { result in
-      XCTAssertEqual(false, self.fakeUsercentrics.showCloseButton)
+      XCTAssertEqual(true, self.fakeUsercentrics.showCloseButton)
     } reject: { _, _, _ in
       XCTFail("Should not go here")
     }

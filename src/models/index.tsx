@@ -24,5 +24,5 @@ export {
     ButtonType,
     ButtonSettings
 } from './FirstLayerOptions';
-export { SecondLayerOptions } from './SecondLayerOptions';
-export { BannerSettings, BannerFont, BannerLogo } from "./BannerSettings";
+export { SecondLayerOptions, SecondLayerStyleSettings } from './SecondLayerOptions';
+export { BannerSettings, BannerFont, BannerLogo, LegalLinksSettings } from "./BannerSettings";

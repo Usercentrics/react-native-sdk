@@ -11,6 +11,8 @@ import {
     SectionAlignment,
     Usercentrics,
     UsercentricsLayout,
+    LegalLinksSettings,
+    SecondLayerStyleSettings
 } from '../../../src/index';
 
 export const HomeScreen = ({ navigation }: { navigation: any }) => {
@@ -22,11 +24,12 @@ export const HomeScreen = ({ navigation }: { navigation: any }) => {
     }
 
     async function showSecondLayer() {
-        const bannerSettings = new BannerSettings();
-        const options = new SecondLayerOptions(
-            true,
-            bannerSettings
-        );
+        const bannerSettings: BannerSettings = {
+            secondLayerSettings: {
+                showCloseButton: true
+            }
+        };
+        const options = new SecondLayerOptions(bannerSettings);
 
         const response = await Usercentrics.showSecondLayer(options);
         console.log("Consents -> ${response.consents}", response.consents);
@@ -75,69 +78,76 @@ const defaultOptions: FirstLayerOptions = {
 }
 
 const customizationExampleOne: FirstLayerOptions = {
-    bannerSettings: { 
-        font: { 
+    bannerSettings: {
+        font: {
             regularFont: "Lora",
             boldFont: "Lora-Regular_Bold",
             fontSize: 16.0
         },
-        logo: createBannerLogo()
+        logo: createBannerLogo(),
+        firstLayerSettings: {
+            cornerRadius: 30.0,
+            title: {
+                textSize: 22.0
+            },
+            message: {
+                textSize: 14.0,
+            },
+            buttonLayout: ButtonLayout.row(
+                [
+                    {
+                        buttonType: ButtonType.acceptAll,
+                        cornerRadius: 30.0
+                    }, {
+                        buttonType: ButtonType.more,
+                        backgroundColorHex: "00000000"
+                    }
+                ]
+            )
+        },
+        links: LegalLinksSettings.secondLayerOnly
     },
-    layout: UsercentricsLayout.popupBottom,
-    styleSettings: {
-        cornerRadius: 30.0,
-        title: {
-            textSize: 22.0
-        },
-        message: {
-            textSize: 14.0,
-        },
-        buttonLayout: ButtonLayout.row([{
-            buttonType: ButtonType.acceptAll,
-            cornerRadius: 30.0
-        }, {
-            buttonType: ButtonType.more,
-            backgroundColorHex: "00000000"
-        }])
-    }
+    layout: UsercentricsLayout.popupBottom
 }
 
 const customizationExampleTwo: FirstLayerOptions = {
     layout: UsercentricsLayout.full,
-    styleSettings: { 
-        cornerRadius: 20,
-        backgroundColorHex: "000000",
-        headerImage: HeaderImageSettings.hidden(),
-        title: {
-            textSize: 22.0,
-            textColorHex: "FFFFFF",
-            textAlignment: SectionAlignment.center
-        },
-        message: {
-            textSize: 18.0,
-            textColorHex: "FFFFFF"
-        },
-        buttonLayout: ButtonLayout.grid([
-            [
-                {
-                    buttonType: ButtonType.acceptAll,
-                    cornerRadius: 30.0,
-                    backgroundColorHex: "FFFFFF",
-                    textColorHex: "000000",
-                    textSize: 18.0
-                }, {
-                    buttonType: ButtonType.denyAll,
-                    backgroundColorHex: "00000000",
-                    textColorHex: "FFFFFF"
-                }
-            ], [
-                {
-                    buttonType: ButtonType.more,
-                    cornerRadius: 30.0,
-                    textColorHex: "000000"
-                }
-            ]
-        ])
+    bannerSettings: {
+        firstLayerSettings: {
+            cornerRadius: 20,
+            backgroundColorHex: "000000",
+            headerImage: HeaderImageSettings.hidden(),
+            title: {
+                textSize: 22.0,
+                textColorHex: "FFFFFF",
+                textAlignment: SectionAlignment.center
+            },
+            message: {
+                textSize: 18.0,
+                textColorHex: "FFFFFF"
+            },
+            buttonLayout: ButtonLayout.grid([
+                [
+                    {
+                        buttonType: ButtonType.acceptAll,
+                        cornerRadius: 30.0,
+                        backgroundColorHex: "FFFFFF",
+                        textColorHex: "000000",
+                        textSize: 18.0
+                    }, {
+                        buttonType: ButtonType.denyAll,
+                        backgroundColorHex: "00000000",
+                        textColorHex: "FFFFFF"
+                    }
+                ], [
+                    {
+                        buttonType: ButtonType.more,
+                        cornerRadius: 30.0,
+                        textColorHex: "000000"
+                    }
+                ]
+            ])
+        }
     }
 }
 

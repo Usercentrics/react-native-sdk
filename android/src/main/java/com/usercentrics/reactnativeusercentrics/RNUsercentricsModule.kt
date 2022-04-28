@@ -17,17 +17,8 @@ internal class RNUsercentricsModule(
 
     @ReactMethod
     fun configure(options: ReadableMap) {
-        var alreadyConfigured = false
-        usercentricsProxy.isReady({
-            alreadyConfigured = true
-        }, {
-            alreadyConfigured = true
-        })
-
-        if (!alreadyConfigured) {
-            val usercentricsOptions = options.usercentricsOptionsFromMap() ?: return
-            usercentricsProxy.initialize(reactApplicationContext, usercentricsOptions)
-        }
+        val usercentricsOptions = options.usercentricsOptionsFromMap() ?: return
+        usercentricsProxy.initialize(reactApplicationContext, usercentricsOptions)
     }
 
     @ReactMethod
@@ -46,18 +37,8 @@ internal class RNUsercentricsModule(
                 val assetManager = currentActivity!!.assets
 
                 val layout = options.getString("layout")!!.usercentricsLayoutFromEnumString()
-                val bannerSettings =
-                    options.getMap("bannerSettings")?.bannerSettingsFromMap(assetManager)
-                val styleSettings =
-                    options.getMap("styleSettings")?.firstLayerStyleSettingsFromMap(assetManager)
-
-                usercentricsProxy.showFirstLayer(
-                    currentActivity!!,
-                    layout,
-                    bannerSettings,
-                    styleSettings,
-                    promise
-                )
+                val bannerSettings = options.getMap("bannerSettings")?.bannerSettingsFromMap(assetManager)
+                usercentricsProxy.showFirstLayer(currentActivity!!, layout, bannerSettings, promise)
 
             } catch (e: Exception) {
                 promise.reject(e)
@@ -71,17 +52,8 @@ internal class RNUsercentricsModule(
             try {
                 val assetManager = currentActivity!!.assets
 
-                val bannerSettings =
-                    options.getMap("bannerSettings")?.bannerSettingsFromMap(assetManager)
-                val showCloseButton = options.getBoolean("showCloseButton")
-
-
-                UsercentricsBanner(currentActivity!!, bannerSettings).showSecondLayer(
-                    showCloseButton
-                ) {
-                    promise.resolve(it?.toWritableMap())
-                }
-
+                val bannerSettings = options.getMap("bannerSettings")?.bannerSettingsFromMap(assetManager)
+                usercentricsProxy.showSecondLayer(currentActivity!!, bannerSettings, promise)
             } catch (e: Exception) {
                 promise.reject(e)
             }
@@ -98,8 +70,11 @@ internal class RNUsercentricsModule(
     }
 
     @ReactMethod
+    @Deprecated("Please, call getTCFData() to get the 'tcString' from that model")
     fun getTCFString(promise: Promise) {
-        promise.resolve(usercentricsProxy.instance.getTCString())
+        usercentricsProxy.instance.getTCString {
+            promise.resolve(it)
+        }
     }
 
     @ReactMethod
@@ -124,7 +99,9 @@ internal class RNUsercentricsModule(
 
     @ReactMethod
     fun getTCFData(promise: Promise) {
-        promise.resolve(usercentricsProxy.instance.getTCFData().serialize())
+        usercentricsProxy.instance.getTCFData {
+            promise.resolve(it.serialize())
+        }
     }
 
     @ReactMethod
