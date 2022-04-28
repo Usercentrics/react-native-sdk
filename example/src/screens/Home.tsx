@@ -11,7 +11,8 @@ import {
     SectionAlignment,
     Usercentrics,
     UsercentricsLayout,
-    LegalLinksSettings
+    LegalLinksSettings,
+    SecondLayerStyleSettings
 } from '../../../src/index';
 
 export const HomeScreen = ({ navigation }: { navigation: any }) => {
@@ -23,11 +24,12 @@ export const HomeScreen = ({ navigation }: { navigation: any }) => {
     }
 
     async function showSecondLayer() {
-        const bannerSettings = new BannerSettings();
-        const options = new SecondLayerOptions(
-            true,
-            bannerSettings
-        );
+        const bannerSettings: BannerSettings = {
+            secondLayerSettings: {
+                showCloseButton: true
+            }
+        };
+        const options = new SecondLayerOptions(bannerSettings);
 
         const response = await Usercentrics.showSecondLayer(options);
         console.log("Consents -> ${response.consents}", response.consents);

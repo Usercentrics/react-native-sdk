@@ -1,4 +1,5 @@
 import { ImageResolvedAssetSource } from "react-native";
+import { FirstLayerStyleSettings, SecondLayerStyleSettings } from ".";
 
 export class BannerLogo { 
     logoName: string;

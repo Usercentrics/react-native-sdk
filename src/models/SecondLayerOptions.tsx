@@ -1,4 +1,4 @@
-import { BannerSettings } from ".";
+import { BannerSettings, ButtonLayout } from ".";
 
 export class SecondLayerOptions {
     bannerSettings?: BannerSettings;

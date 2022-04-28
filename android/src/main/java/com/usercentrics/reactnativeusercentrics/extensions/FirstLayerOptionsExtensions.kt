@@ -20,9 +20,16 @@ internal fun ReadableMap.bannerSettingsFromMap(assetManager: AssetManager): Bann
     val customFont = getMap("font")
     val customLogo = getMap("logo")
 
+    val rawFirstLayerStyleSettings = getMap("firstLayerSettings")
+    val rawSecondLayerStyleSettings = getMap("secondLayerSettings")
+    val rawLegalLinkSettings = getString("links")
+
     return BannerSettings(
-        customFont?.bannerFontFromMap(assetManager),
-        customLogo?.bannerLogoFromMap()
+        font = customFont?.bannerFontFromMap(assetManager),
+        logo = customLogo?.bannerLogoFromMap(),
+        firstLayerSettings = rawFirstLayerStyleSettings?.firstLayerStyleSettingsFromMap(assetManager),
+        secondLayerSettings = rawSecondLayerStyleSettings?.secondLayerStyleSettingsFromMap(assetManager),
+        links = rawLegalLinkSettings?.legalLinksFromEnumString()
     )
 }
 
@@ -144,6 +151,23 @@ internal fun ReadableMap.buttonSettingsFromMap(
 
 internal fun String.deserializeButtonType(): ButtonType {
     return ButtonType.valueOf(this)
+}
+
+internal fun ReadableMap.secondLayerStyleSettingsFromMap(assetManager: AssetManager): SecondLayerStyleSettings {
+    return SecondLayerStyleSettings(
+        buttonLayout = getMap("buttonLayout")?.buttonLayoutFromMap(assetManager),
+        showCloseButton = getBoolean("showCloseButton"),
+    )
+}
+
+internal fun String?.legalLinksFromEnumString(): LegalLinksSettings? {
+    return when (this) {
+        "BOTH" -> LegalLinksSettings.BOTH
+        "NONE" -> LegalLinksSettings.NONE
+        "FIRST_LAYER_ONLY" -> LegalLinksSettings.FIRST_LAYER_ONLY
+        "SECOND_LAYER_ONLY" -> LegalLinksSettings.SECOND_LAYER_ONLY
+        else -> null
+    }
 }
 
 @ColorInt

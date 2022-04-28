@@ -95,6 +95,7 @@ internal class GetTCFDataMock {
                     dataSharedOutsideEU = false
                 )
             ),
+            tcString = "abc"
         )
 
         // From the debugger
@@ -186,6 +187,7 @@ internal class GetTCFDataMock {
                     "dataSharedOutsideEU" to false
                 ),
             ),
+            "tcString" to "abc"
         )
     }
 }
