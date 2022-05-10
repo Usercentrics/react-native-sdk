@@ -3,7 +3,6 @@ package com.usercentrics.reactnativeusercentrics
 import com.facebook.react.bridge.*
 import com.usercentrics.reactnativeusercentrics.api.UsercentricsProxy
 import com.usercentrics.reactnativeusercentrics.extensions.*
-import com.usercentrics.sdk.UsercentricsBanner
 import com.usercentrics.sdk.models.settings.UsercentricsConsentType
 import com.usercentrics.sdk.services.tcf.TCFDecisionUILayer
 
@@ -37,7 +36,8 @@ internal class RNUsercentricsModule(
                 val assetManager = currentActivity!!.assets
 
                 val layout = options.getString("layout")!!.usercentricsLayoutFromEnumString()
-                val bannerSettings = options.getMap("bannerSettings")?.bannerSettingsFromMap(assetManager)
+                val bannerSettings =
+                    options.getMap("bannerSettings")?.bannerSettingsFromMap(assetManager)
                 usercentricsProxy.showFirstLayer(currentActivity!!, layout, bannerSettings, promise)
 
             } catch (e: Exception) {
@@ -52,7 +52,8 @@ internal class RNUsercentricsModule(
             try {
                 val assetManager = currentActivity!!.assets
 
-                val bannerSettings = options.getMap("bannerSettings")?.bannerSettingsFromMap(assetManager)
+                val bannerSettings =
+                    options.getMap("bannerSettings")?.bannerSettingsFromMap(assetManager)
                 usercentricsProxy.showSecondLayer(currentActivity!!, bannerSettings, promise)
             } catch (e: Exception) {
                 promise.reject(e)
@@ -67,14 +68,6 @@ internal class RNUsercentricsModule(
         }, {
             promise.reject(it)
         })
-    }
-
-    @ReactMethod
-    @Deprecated("Please, call getTCFData() to get the 'tcString' from that model")
-    fun getTCFString(promise: Promise) {
-        usercentricsProxy.instance.getTCString {
-            promise.resolve(it)
-        }
     }
 
     @ReactMethod

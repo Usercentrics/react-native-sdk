@@ -11,8 +11,12 @@ export class CCPAData {
     /// True if the notice was given. False if not.
     noticeGiven?: boolean
 
+    /// Encoded USP String.
+    uspString: string
+
 
     constructor(
+        uspString: string,
         version: number,
         optedOut?: boolean,
         lspact?: boolean,
@@ -22,5 +26,6 @@ export class CCPAData {
         this.optedOut = optedOut
         this.lspact = lspact
         this.noticeGiven = noticeGiven
+        this.uspString = uspString
     }
 }

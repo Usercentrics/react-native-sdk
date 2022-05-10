@@ -1,18 +1,7 @@
-import { NativeModules } from 'react-native'
+import { NativeModules } from 'react-native';
 import {
-    UsercentricsOptions,
-    UsercentricsServiceConsent,
-    UsercentricsConsentUserResponse,
-    UsercentricsReadyStatus,
-    UsercentricsCMPData,
-    CCPAData,
-    TCFData,
-    UsercentricsConsentType,
-    TCFDecisionUILayer,
-    UserDecision,
-    TCFUserDecisions,
-    FirstLayerOptions,
-    SecondLayerOptions
+    CCPAData, FirstLayerOptions,
+    SecondLayerOptions, TCFData, TCFDecisionUILayer, TCFUserDecisions, UsercentricsCMPData, UsercentricsConsentType, UsercentricsConsentUserResponse, UsercentricsOptions, UsercentricsReadyStatus, UsercentricsServiceConsent, UserDecision
 } from './models';
 
 const { RNUsercentricsModule } = NativeModules;
@@ -26,12 +15,12 @@ export const Usercentrics = {
         return RNUsercentricsModule.isReady();
     },
 
-    showFirstLayer: async (options: FirstLayerOptions): Promise<UsercentricsConsentUserResponse> => { 
+    showFirstLayer: async (options: FirstLayerOptions): Promise<UsercentricsConsentUserResponse> => {
         await RNUsercentricsModule.isReady();
         return RNUsercentricsModule.showFirstLayer(options);
     },
 
-    showSecondLayer: async (options: SecondLayerOptions): Promise<UsercentricsConsentUserResponse> => { 
+    showSecondLayer: async (options: SecondLayerOptions): Promise<UsercentricsConsentUserResponse> => {
         await RNUsercentricsModule.isReady();
         return RNUsercentricsModule.showSecondLayer(options);
     },
@@ -45,12 +34,10 @@ export const Usercentrics = {
         await RNUsercentricsModule.isReady();
         return RNUsercentricsModule.getControllerId();
     },
-    /**
-     * @deprecated Please, call getTCFData() to get the 'tcString' from that model
-     */
+
     getTCFString: async (): Promise<string> => {
         await RNUsercentricsModule.isReady();
-        return RNUsercentricsModule.getTCFString();
+        return RNUsercentricsModule.getTCFData().tcString;
     },
 
     getConsents: async (): Promise<[UsercentricsServiceConsent]> => {
