@@ -35,6 +35,9 @@ export const Usercentrics = {
         return RNUsercentricsModule.getControllerId();
     },
 
+    /**
+     * @deprecated Please, call getTCFData() to get the 'tcString' from that model
+     */
     getTCFString: async (): Promise<string> => {
         await RNUsercentricsModule.isReady();
         return RNUsercentricsModule.getTCFData().tcString;
