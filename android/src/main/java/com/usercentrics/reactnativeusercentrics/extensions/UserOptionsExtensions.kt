@@ -33,7 +33,11 @@ internal fun ReadableMap.usercentricsOptionsFromMap(): UsercentricsOptions? {
         getIntOrNull("networkMode")?.let {
             usercentricsOptions.networkMode = when (it) {
                 0 -> NetworkMode.WORLD
-                else -> NetworkMode.EU
+                1 -> NetworkMode.EU
+                else -> {
+                    assert(false)
+                    NetworkMode.WORLD
+                }
             }
         }
 

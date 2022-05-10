@@ -8,8 +8,7 @@ class RNUsercentricsModule: NSObject, RCTBridgeModule {
     
     var usercentricsManager: UsercentricsManager = UsercentricsManagerImplementation()
     var queue: DispatchQueueManager = DispatchQueue.main
-    var rootVC: PresentationViewController? = UIApplication.shared.delegate?.window??.rootViewController
-    
+
     @objc static func moduleName() -> String! {
         return "RNUsercentricsModule"
     }
@@ -22,7 +21,7 @@ class RNUsercentricsModule: NSObject, RCTBridgeModule {
         queue.async { [weak self] in
             guard
                 let self = self,
-                let userOptions = UsercentricsOptions(from: dict)
+                let userOptions = UsercentricsOptions.initialize(from: dict)
             else { return }
 
             self.usercentricsManager.configure(options: userOptions)
@@ -45,7 +44,7 @@ class RNUsercentricsModule: NSObject, RCTBridgeModule {
         queue.async { [weak self] in
             guard
                 let self = self,
-                let rootVC = self.rootVC,
+                let rootVC = self.getPresentationViewController(),
                 let layoutString = dict["layout"] as? String,
                 let layout = UsercentricsLayout.from(enumString: layoutString)
             else {
@@ -66,7 +65,7 @@ class RNUsercentricsModule: NSObject, RCTBridgeModule {
         queue.async { [weak self] in
             guard
                 let self = self,
-                let rootVC = self.rootVC
+                let rootVC = self.getPresentationViewController()
             else {
                 reject("usercentrics_reactNative_showFirstLayer_error", RNUsercentricsModuleError.invalidData.localizedDescription, RNUsercentricsModuleError.invalidData)
                 return
@@ -90,12 +89,6 @@ class RNUsercentricsModule: NSObject, RCTBridgeModule {
             resolve(status.toDictionary())
         } onFailure: { error in
             reject("usercentrics_reactNative_restoreUserSession_error", error.localizedDescription, error)
-        }
-    }
-    
-    @objc func getTCFString(_ resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) -> Void {
-        usercentricsManager.getTCString { tcString in
-            resolve(tcString)
         }
     }
     
@@ -198,5 +191,20 @@ class RNUsercentricsModule: NSObject, RCTBridgeModule {
     
     @objc func reset() -> Void {
         usercentricsManager.reset()
+    }
+
+    func getPresentationViewController() -> PresentationViewController? {
+        var window: UIWindow?
+        if #available(iOS 13.0, *) {
+            window = UIApplication
+                .shared
+                .connectedScenes
+                .compactMap { $0 as? UIWindowScene }
+                .flatMap { $0.windows }
+                .first { $0.isKeyWindow }
+        } else {
+            window = UIApplication.shared.windows.first { $0.isKeyWindow }
+        }
+        return window?.rootViewController as? PresentationViewController
     }
 }
