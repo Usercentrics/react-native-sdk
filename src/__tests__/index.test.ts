@@ -1,8 +1,9 @@
 import {
-  NativeModules,
+  NativeModules
 } from 'react-native';
 import {
   FirstLayerOptions,
+  NetworkMode,
   TCFData,
   TCFDecisionUILayer,
   UsercentricsConsentType,
@@ -60,7 +61,7 @@ jest.mock("react-native", () => {
 
 describe('Test Usercentrics Module', () => {
   test('testConfigureBridge', () => {
-    const options = new UsercentricsOptions("abc", "abc", UsercentricsLoggerLevel.debug, 123, "1.2.3");
+    const options = new UsercentricsOptions("abc", "abc", UsercentricsLoggerLevel.debug, 123, "1.2.3", NetworkMode.eu);
     Usercentrics.configure(options);
     const call = RNUsercentricsModule.configure.mock.calls[0][0];
     expect(call).toBe(options)
@@ -106,7 +107,7 @@ describe('Test Usercentrics Module', () => {
     }
   })
 
-  test('testShowFirstLayer', async () => { 
+  test('testShowFirstLayer', async () => {
     const response = new UsercentricsConsentUserResponse(
       "abc",
       UsercentricsUserInteraction.acceptAll,
@@ -131,7 +132,7 @@ describe('Test Usercentrics Module', () => {
       (): Promise<any> => Promise.resolve(response)
     )
 
-    const options: FirstLayerOptions = { 
+    const options: FirstLayerOptions = {
       layout: UsercentricsLayout.popupBottom
     }
 
@@ -198,15 +199,6 @@ describe('Test Usercentrics Module', () => {
     expect(data).toBe("abc");
   })
 
-  test('testGetTCFString', async () => {
-    RNUsercentricsModule.getTCFString.mockImplementationOnce(
-      (): Promise<any> => Promise.resolve("abc")
-    )
-
-    const data = await Usercentrics.getTCFString();
-    expect(data).toBe("abc");
-  })
-
   test('testChangeLanguage', async () => {
     RNUsercentricsModule.changeLanguage.mockImplementationOnce(
       (): Promise<any> => Promise.resolve()
@@ -216,7 +208,7 @@ describe('Test Usercentrics Module', () => {
     expect(data).toBe(undefined);
   })
 
-  test('testGetConsents', async () => { 
+  test('testGetConsents', async () => {
     RNUsercentricsModule.getConsents.mockImplementationOnce(
       (): Promise<any> => Promise.resolve([usercentricsServiceConsent])
     )
@@ -225,7 +217,7 @@ describe('Test Usercentrics Module', () => {
     expect(data).toStrictEqual([usercentricsServiceConsent]);
   })
 
-  test('testGetCMPData', async () => { 
+  test('testGetCMPData', async () => {
     RNUsercentricsModule.getCMPData.mockImplementationOnce(
       (): Promise<any> => Promise.resolve(cmpDataExample)
     )
@@ -243,7 +235,7 @@ describe('Test Usercentrics Module', () => {
     expect(data).toBe("abc");
   })
 
-  test('testGetCCPAData', async () => { 
+  test('testGetCCPAData', async () => {
     RNUsercentricsModule.getUSPData.mockImplementationOnce(
       (): Promise<any> => Promise.resolve(ccpaDataExample)
     )
@@ -259,7 +251,8 @@ describe('Test Usercentrics Module', () => {
       specialFeatures: [],
       specialPurposes: [],
       stacks: [],
-      vendors: []
+      vendors: [],
+      tcString: "ABCD1234"
     }
 
     RNUsercentricsModule.getTCFData.mockImplementationOnce(
