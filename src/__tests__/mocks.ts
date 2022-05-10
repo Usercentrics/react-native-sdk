@@ -1,5 +1,5 @@
-import { CCPAData, TCFUserDecisionOnPurpose, TCFUserDecisionOnSpecialFeature, TCFUserDecisionOnVendor, UsercentricsCMPData, UsercentricsVariant } from "../models";
-import { TCFFeature, TCFPurpose, TCFSpecialFeature } from "../models/TCFData";
+import { TCFUserDecisionOnPurpose, TCFUserDecisionOnSpecialFeature, TCFUserDecisionOnVendor, UsercentricsCMPData, UsercentricsVariant } from "../models";
+import { TCFFeature, TCFPurpose } from "../models/TCFData";
 
 export const usercentricsServiceConsent = {
     templateId: "abc",
@@ -15,6 +15,7 @@ export const userDecision = {
 };
 
 export const ccpaDataExample = {
+    uspString: "ABCD1234",
     version: 123,
     optedOut: false,
     lspact: true,
