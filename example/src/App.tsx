@@ -1,8 +1,8 @@
-import * as React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { CustomScreen, HomeScreen } from './screens';
-import { UsercentricsOptions, UsercentricsLoggerLevel, Usercentrics } from '../../src/index';
+import * as React from 'react';
+import { Usercentrics, UsercentricsLoggerLevel, UsercentricsOptions } from '../../src/index';
+import { CustomScreen, HomeScreen, WebviewIntegrationScreen } from './screens';
 
 const Stack = createNativeStackNavigator();
 
@@ -23,6 +23,9 @@ const App = () => {
         <Stack.Screen
           name="CustomUI"
           component={CustomScreen} />
+        <Stack.Screen
+          name="WebviewIntegration"
+          component={WebviewIntegrationScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   )

@@ -13,7 +13,6 @@ class RNUsercentricsModuleTests: XCTestCase {
     module = RNUsercentricsModule()
     fakeUsercentrics = FakeUsercentricsManager()
     module.queue = FakeDispatchQueue()
-    module.rootVC = FakePresentationViewController()
     module.usercentricsManager = fakeUsercentrics
   }
 
@@ -122,15 +121,6 @@ class RNUsercentricsModuleTests: XCTestCase {
     }
   }
 
-  func testGetTCString() {
-    fakeUsercentrics.getTCStringValue = "abc"
-    module.getTCFString { response in
-      XCTAssertEqual("abc", response as? String)
-    } reject: { _, _, _ in
-      XCTFail("Should not go here")
-    }
-  }
-
   func testReset() {
     module.reset()
     XCTAssertEqual(1, fakeUsercentrics.resetCount)
@@ -187,6 +177,7 @@ class RNUsercentricsModuleTests: XCTestCase {
       XCTAssertEqual(false, result["noticeGiven"] as! Bool)
       XCTAssertEqual(false, result["optedOut"] as! Bool)
       XCTAssertEqual(false, result["lspact"] as! Bool)
+      XCTAssertEqual("1NNN", result["uspString"] as! String)
     } reject: { _, _, _ in
       XCTFail("Should not go here")
     }

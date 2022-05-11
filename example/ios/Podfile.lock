@@ -211,6 +211,8 @@ PODS:
   - react-native-usercentrics (2.4.0):
     - React
     - UsercentricsUI (= 2.4.0)
+  - react-native-webview (11.18.2):
+    - React-Core
   - React-perflogger (0.65.1)
   - React-RCTActionSheet (0.65.1):
     - React-Core/RCTActionSheetHeaders (= 0.65.1)
@@ -303,6 +305,7 @@ DEPENDENCIES:
   - React-jsinspector (from `../node_modules/react-native/ReactCommon/jsinspector`)
   - react-native-safe-area-context (from `../node_modules/react-native-safe-area-context`)
   - react-native-usercentrics (from `../..`)
+  - react-native-webview (from `../node_modules/react-native-webview`)
   - React-perflogger (from `../node_modules/react-native/ReactCommon/reactperflogger`)
   - React-RCTActionSheet (from `../node_modules/react-native/Libraries/ActionSheetIOS`)
   - React-RCTAnimation (from `../node_modules/react-native/Libraries/NativeAnimation`)
@@ -360,6 +363,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-safe-area-context"
   react-native-usercentrics:
     :path: "../.."
+  react-native-webview:
+    :path: "../node_modules/react-native-webview"
   React-perflogger:
     :path: "../node_modules/react-native/ReactCommon/reactperflogger"
   React-RCTActionSheet:
@@ -409,6 +414,7 @@ SPEC CHECKSUMS:
   React-jsinspector: 41e58e5b8e3e0bf061fdf725b03f2144014a8fb0
   react-native-safe-area-context: 584dc04881deb49474363f3be89e4ca0e854c057
   react-native-usercentrics: e701e36fd4a03da7c2836e0e1dc59d3e9eda9688
+  react-native-webview: 8ec7ddf9eb4ddcd92b32cee7907efec19a9ec7cb
   React-perflogger: fd28ee1f2b5b150b00043f0301d96bd417fdc339
   React-RCTActionSheet: 7f3fa0855c346aa5d7c60f9ced16e067db6d29fa
   React-RCTAnimation: 2119a18ee26159004b001bc56404ca5dbaae6077
@@ -426,6 +432,6 @@ SPEC CHECKSUMS:
   UsercentricsUI: 905bee6404cf4e8f0bcc0afd75f14f443d0b17af
   Yoga: aa0cb45287ebe1004c02a13f279c55a95f1572f4
 
-PODFILE CHECKSUM: 8832414c5dd364614811ab26910be07c365f97ea
+PODFILE CHECKSUM: 5a89fa8da4198b244bbb143e1b9e2e5c19bcd96d
 
-COCOAPODS: 1.11.2
+COCOAPODS: 1.10.1

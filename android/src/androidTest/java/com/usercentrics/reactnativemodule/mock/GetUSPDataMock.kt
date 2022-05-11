@@ -13,6 +13,7 @@ internal class GetUSPDataMock {
 
         // From the debugger
         val expected = mapOf(
+            "uspString" to "1YN-",
             "version" to 1,
             "noticeGiven" to true,
             "optedOut" to false,

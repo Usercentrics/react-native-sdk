@@ -2,6 +2,7 @@ package com.usercentrics.reactnativeusercentrics.extensions
 
 import com.facebook.react.bridge.ReadableMap
 import com.usercentrics.sdk.UsercentricsOptions
+import com.usercentrics.sdk.models.common.NetworkMode
 import com.usercentrics.sdk.models.common.UsercentricsLoggerLevel
 
 internal fun ReadableMap.usercentricsOptionsFromMap(): UsercentricsOptions? {
@@ -27,6 +28,17 @@ internal fun ReadableMap.usercentricsOptionsFromMap(): UsercentricsOptions? {
 
         getString("defaultLanguage")?.let {
             usercentricsOptions.defaultLanguage = it
+        }
+
+        getIntOrNull("networkMode")?.let {
+            usercentricsOptions.networkMode = when (it) {
+                0 -> NetworkMode.WORLD
+                1 -> NetworkMode.EU
+                else -> {
+                    assert(false)
+                    NetworkMode.WORLD
+                }
+            }
         }
 
         usercentricsOptions

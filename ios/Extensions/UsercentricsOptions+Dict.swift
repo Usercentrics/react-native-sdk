@@ -2,7 +2,7 @@ import Foundation
 import Usercentrics
 
 public extension UsercentricsOptions {
-    convenience init?(from dictionary: NSDictionary) {
+    static func initialize(from dictionary: NSDictionary) -> UsercentricsOptions? {
         guard let settingsId = dictionary["settingsId"] as? String else {
             return nil
         }
@@ -25,11 +25,11 @@ public extension UsercentricsOptions {
             options.version = version
         }
 
-        self.init(settingsId: settingsId,
-                  defaultLanguage: options.defaultLanguage,
-                  version: options.version,
-                  timeoutMillis: options.timeoutMillis,
-                  loggerLevel: options.loggerLevel)
+        if let networkModeValue = dictionary["networkMode"] as? Int {
+            options.networkMode = NetworkMode.initialize(from: networkModeValue)
+        }
+
+        return options
     }
 }
 
@@ -44,6 +44,20 @@ public extension UsercentricsLoggerLevel {
                 return .warning
             default:
                 return .debug
+        }
+    }
+}
+
+public extension NetworkMode {
+    static func initialize(from value: Int) -> NetworkMode {
+        switch value {
+        case 0:
+            return NetworkMode.world
+        case 1:
+            return NetworkMode.eu
+        default:
+            assert(false)
+            return NetworkMode.world
         }
     }
 }

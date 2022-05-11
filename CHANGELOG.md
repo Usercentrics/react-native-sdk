@@ -1,5 +1,21 @@
 [Release Notes](https://docs.usercentrics.com/cmp_in_app_sdk/latest/about/history/)
 
+# 2.5.0
+
+## Features
+
+- **[UI]** Controller ID section was redesigned to have a better UX.
+- `CCPAData` exposes the encoded `uspString`.
+
+## Improvements
+
+- Improve stability and performance issues.
+
+## Resolved Issues
+
+- General bug fixes.
+- **[iOS]** Access to `rootViewController` depending on API version.
+
 # 2.4.0
 
 ## Features

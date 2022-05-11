@@ -15,6 +15,7 @@ import com.usercentrics.reactnativeusercentrics.extensions.serialize
 import com.usercentrics.reactnativeusercentrics.extensions.toWritableMap
 import com.usercentrics.sdk.*
 import com.usercentrics.sdk.errors.UsercentricsError
+import com.usercentrics.sdk.models.common.NetworkMode
 import com.usercentrics.sdk.models.common.UsercentricsLoggerLevel
 import com.usercentrics.sdk.models.common.UsercentricsVariant
 import com.usercentrics.sdk.models.settings.UsercentricsConsentType
@@ -37,6 +38,7 @@ class RNUsercentricsModuleTest {
             putInt("loggerlevel", 0)
             putInt("timeoutMillis", 1000)
             putString("version", "1.2.3")
+            putInt("networkMode", 1)
         }
 
         private val usercentricsConsentHistoryEntries = listOf(
@@ -95,6 +97,7 @@ class RNUsercentricsModuleTest {
         )
         assertEquals(1000L, usercentricsProxy.initializeOptionsArgument?.timeoutMillis)
         assertEquals("1.2.3", usercentricsProxy.initializeOptionsArgument?.version)
+        assertEquals(NetworkMode.EU, usercentricsProxy.initializeOptionsArgument?.networkMode)
     }
 
     @Test
@@ -202,23 +205,6 @@ class RNUsercentricsModuleTest {
         module.getControllerId(promise)
 
         verify(exactly = 1) { usercentricsSDK.getControllerId() }
-        assertEquals("abc", promise.resolveValue)
-    }
-
-    @Test
-    fun testGetTCString() {
-        val usercentricsSDK = mockk<UsercentricsSDK>()
-        every { usercentricsSDK.getTCString(any()) }.answers {
-            firstArg<(String) -> Unit>().invoke("abc")
-        }
-        val usercentricsProxy = FakeUsercentricsProxy(usercentricsSDK)
-        val contextMock = mockk<ReactApplicationContext>(relaxed = true)
-        val module = RNUsercentricsModule(contextMock, usercentricsProxy)
-        val promise = FakePromise()
-
-        module.getTCFString(promise)
-
-        verify(exactly = 1) { usercentricsSDK.getTCString(any()) }
         assertEquals("abc", promise.resolveValue)
     }
 

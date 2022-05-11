@@ -17,7 +17,6 @@ public protocol UsercentricsManager {
                          hostView: UIViewController,
                          dismissViewHandler: @escaping (UsercentricsConsentUserResponse) -> Void)
 
-    func getTCString(callback: @escaping (String) -> Void)
     func getControllerId() -> String
     func getConsents() -> [UsercentricsServiceConsent]
     func getCMPData() -> UsercentricsCMPData
@@ -75,11 +74,6 @@ final class UsercentricsManagerImplementation: UsercentricsManager {
 
     func restoreUserSession(controllerId: String, onSuccess: @escaping ((UsercentricsReadyStatus) -> Void), onFailure: @escaping ((Error) -> Void)) {
         UsercentricsCore.shared.restoreUserSession(controllerId: controllerId, onSuccess: onSuccess, onFailure: onFailure)
-    }
-
-    @available(*, deprecated, message: "Please, call getTCFData() to get the 'tcString' from that model")
-    func getTCString(callback: @escaping (String) -> Void) {
-        UsercentricsCore.shared.getTCString(callback: callback)
     }
 
     func getControllerId() -> String {

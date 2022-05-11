@@ -11,22 +11,24 @@ class UsercentricsOptionsDictTests: XCTestCase {
       "defaultLanguage": "pt",
       "settingsId": "123",
       "timeoutMillis": 1000,
-      "version": "1.2.3"
+      "version": "1.2.3",
+      "networkMode": 1
     ]
 
 
-    let usercentricsOptionsFromDict = UsercentricsOptions(from: dict)!
+    let usercentricsOptionsFromDict = UsercentricsOptions.initialize(from: dict)!
 
     XCTAssertEqual("123", usercentricsOptionsFromDict.settingsId)
     XCTAssertEqual("pt", usercentricsOptionsFromDict.defaultLanguage)
     XCTAssertEqual("1.2.3", usercentricsOptionsFromDict.version)
     XCTAssertEqual(.debug, usercentricsOptionsFromDict.loggerLevel)
     XCTAssertEqual(1000, usercentricsOptionsFromDict.timeoutMillis)
+    XCTAssertEqual(.eu, usercentricsOptionsFromDict.networkMode)
   }
 
   func testInitializeWithoutSettingsIdShouldNotInitialize() {
     let dict: NSDictionary = [:]
-    let usercentricsOptionsFromDict = UsercentricsOptions(from: dict)
+    let usercentricsOptionsFromDict = UsercentricsOptions.initialize(from: dict)
     XCTAssertNil(usercentricsOptionsFromDict)
   }
 
@@ -53,10 +55,31 @@ class UsercentricsOptionsDictTests: XCTestCase {
       "loggerLevel": 3,
       "settingsId": "123",
     ]
-    XCTAssertEqual(UsercentricsLoggerLevel.none, UsercentricsOptions(from: dict0)?.loggerLevel)
-    XCTAssertEqual(.error, UsercentricsOptions(from: dict1)?.loggerLevel)
-    XCTAssertEqual(.warning, UsercentricsOptions(from: dict2)?.loggerLevel)
-    XCTAssertEqual(.debug, UsercentricsOptions(from: dict3)?.loggerLevel)
+    XCTAssertEqual(UsercentricsLoggerLevel.none, UsercentricsOptions.initialize(from: dict0)?.loggerLevel)
+    XCTAssertEqual(.error, UsercentricsOptions.initialize(from: dict1)?.loggerLevel)
+    XCTAssertEqual(.warning, UsercentricsOptions.initialize(from: dict2)?.loggerLevel)
+    XCTAssertEqual(.debug, UsercentricsOptions.initialize(from: dict3)?.loggerLevel)
+  }
+
+  func testSerializeNetworkMode() {
+    let dict0: NSDictionary = [
+      "networkMode": 0,
+      "settingsId": "123",
+    ]
+
+
+    let dict1: NSDictionary = [
+      "networkMode": 1,
+      "settingsId": "123",
+    ]
+
+
+    let dict2: NSDictionary = [
+      "settingsId": "123",
+    ]
+    XCTAssertEqual(.world, UsercentricsOptions.initialize(from: dict0)?.networkMode)
+    XCTAssertEqual(.eu, UsercentricsOptions.initialize(from: dict1)?.networkMode)
+    XCTAssertEqual(.world, UsercentricsOptions.initialize(from: dict2)?.networkMode)
   }
 
 }
