@@ -1,18 +1,15 @@
-import React from 'react'
-import { Button, Image, StyleSheet, View } from 'react-native'
+import React from 'react';
+import { Button, Image, StyleSheet, View } from 'react-native';
 import {
     BannerLogo,
     BannerSettings,
     ButtonLayout,
     ButtonType,
     FirstLayerOptions,
-    HeaderImageSettings,
-    SecondLayerOptions,
+    HeaderImageSettings, LegalLinksSettings, SecondLayerOptions,
     SectionAlignment,
     Usercentrics,
-    UsercentricsLayout,
-    LegalLinksSettings,
-    SecondLayerStyleSettings
+    UsercentricsLayout
 } from '../../../src/index';
 
 export const HomeScreen = ({ navigation }: { navigation: any }) => {
@@ -69,6 +66,11 @@ export const HomeScreen = ({ navigation }: { navigation: any }) => {
                 await Usercentrics.status();
                 navigation.navigate("CustomUI")
             }} title="Custom UI" />
+
+            <Button onPress={async () => {
+                await Usercentrics.status();
+                navigation.navigate("WebviewIntegration")
+            }} title="Webview Integration" />
         </View>
     );
 };

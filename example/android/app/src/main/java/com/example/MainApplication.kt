@@ -2,9 +2,9 @@ package com.example
 
 import android.app.Application
 import android.content.Context
-import com.usercentrics.reactnativeusercentrics.RNUsercentricsPackage
 import com.facebook.react.*
 import com.facebook.soloader.SoLoader
+import com.usercentrics.reactnativeusercentrics.RNUsercentricsPackage
 import java.lang.reflect.InvocationTargetException
 
 class MainApplication : Application(), ReactApplication {
@@ -39,13 +39,20 @@ class MainApplication : Application(), ReactApplication {
 
     companion object {
 
-        private fun initializeFlipper(context: Context, reactInstanceManager: ReactInstanceManager) {
+        private fun initializeFlipper(
+            context: Context,
+            reactInstanceManager: ReactInstanceManager
+        ) {
             if (BuildConfig.DEBUG) {
                 try {
                     val aClass = Class.forName("com.example.ReactNativeFlipper")
                     aClass
-                            .getMethod("initializeFlipper", Context::class.java, ReactInstanceManager::class.java)
-                            .invoke(null, context, reactInstanceManager)
+                        .getMethod(
+                            "initializeFlipper",
+                            Context::class.java,
+                            ReactInstanceManager::class.java
+                        )
+                        .invoke(null, context, reactInstanceManager)
                 } catch (e: ClassNotFoundException) {
                     e.printStackTrace()
                 } catch (e: NoSuchMethodException) {
