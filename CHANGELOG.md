@@ -1,5 +1,11 @@
 [Release Notes](https://docs.usercentrics.com/cmp_in_app_sdk/latest/about/history/)
 
+# 2.5.1
+
+## Resolved Issues
+
+    * TCF String solved issue with encoding to shorten the length of the string
+
 # 2.5.0
 
 ## Features

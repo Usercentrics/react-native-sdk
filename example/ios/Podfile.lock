@@ -208,9 +208,9 @@ PODS:
   - React-jsinspector (0.65.1)
   - react-native-safe-area-context (3.3.2):
     - React-Core
-  - react-native-usercentrics (2.4.0):
+  - react-native-usercentrics (2.5.1):
     - React
-    - UsercentricsUI (= 2.4.0)
+    - UsercentricsUI (= 2.5.1)
   - react-native-webview (11.18.2):
     - React-Core
   - React-perflogger (0.65.1)
@@ -280,9 +280,9 @@ PODS:
   - RNScreens (3.9.0):
     - React-Core
     - React-RCTImage
-  - Usercentrics (2.4.0)
-  - UsercentricsUI (2.4.0):
-    - Usercentrics (= 2.4.0)
+  - Usercentrics (2.5.1)
+  - UsercentricsUI (2.5.1):
+    - Usercentrics (= 2.5.1)
   - Yoga (1.14.0)
 
 DEPENDENCIES:
@@ -413,7 +413,7 @@ SPEC CHECKSUMS:
   React-jsiexecutor: 43f2542aed3c26e42175b339f8d37fe3dd683765
   React-jsinspector: 41e58e5b8e3e0bf061fdf725b03f2144014a8fb0
   react-native-safe-area-context: 584dc04881deb49474363f3be89e4ca0e854c057
-  react-native-usercentrics: e701e36fd4a03da7c2836e0e1dc59d3e9eda9688
+  react-native-usercentrics: 392512fe4296dda60a330f30b80092baa2409a9f
   react-native-webview: 8ec7ddf9eb4ddcd92b32cee7907efec19a9ec7cb
   React-perflogger: fd28ee1f2b5b150b00043f0301d96bd417fdc339
   React-RCTActionSheet: 7f3fa0855c346aa5d7c60f9ced16e067db6d29fa
@@ -428,10 +428,10 @@ SPEC CHECKSUMS:
   React-runtimeexecutor: 85187f19dd9c47a7c102f9994f9d14e4dc2110de
   ReactCommon: eafed38eec7b591c31751bfa7494801618460459
   RNScreens: 4d79118be80f79fa1f4aa131909a1d6e86280af3
-  Usercentrics: 5a6d6021a692c9b8aedf4ea34795b565379eb616
-  UsercentricsUI: 905bee6404cf4e8f0bcc0afd75f14f443d0b17af
+  Usercentrics: 51fa2b6f1d214dcda04bc0a1f5f41ff50e17cc79
+  UsercentricsUI: dccacad15d05f77a64ca257cb33ce69390ece034
   Yoga: aa0cb45287ebe1004c02a13f279c55a95f1572f4
 
 PODFILE CHECKSUM: 5a89fa8da4198b244bbb143e1b9e2e5c19bcd96d
 
-COCOAPODS: 1.10.1
+COCOAPODS: 1.11.3
