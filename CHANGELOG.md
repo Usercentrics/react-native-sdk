@@ -1,5 +1,11 @@
 [Release Notes](https://docs.usercentrics.com/cmp_in_app_sdk/latest/about/history/)
 
+# 2.5.2
+
+## Resolved Issues
+
+    * TCF String solved issue when signalling legitimate interests
+
 # 2.5.1
 
 ## Resolved Issues
