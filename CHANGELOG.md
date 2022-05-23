@@ -1,5 +1,11 @@
 [Release Notes](https://docs.usercentrics.com/cmp_in_app_sdk/latest/about/history/)
 
+# 2.5.3
+
+## Resolved Issues
+
+    * Fixes issues when parsing TCF String
+
 # 2.5.2
 
 ## Resolved Issues
