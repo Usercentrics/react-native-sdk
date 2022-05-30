@@ -39,7 +39,6 @@ jest.mock("react-native", () => {
     showFirstLayer: jest.fn(),
     restoreUserSession: jest.fn(),
     getControllerId: jest.fn(),
-    getTCFString: jest.fn(),
     getConsents: jest.fn(),
     getCMPData: jest.fn(),
     getUserSessionData: jest.fn(),
