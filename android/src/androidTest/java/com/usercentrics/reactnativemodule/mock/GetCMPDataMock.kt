@@ -1,6 +1,5 @@
 package com.usercentrics.reactnativemodule.mock
 
-import com.usercentrics.reactnativeusercentrics.extensions.toWritableMap
 import com.usercentrics.sdk.v2.location.data.UsercentricsLocation
 import com.usercentrics.sdk.v2.settings.data.*
 
@@ -16,7 +15,6 @@ internal class GetCMPDataMock {
         )
         val fakeUserLocation = UsercentricsLocation(
             countryCode = "PT",
-            countryName = "Portugal",
             regionCode = ""
         )
         val fakeServices = listOf(
@@ -85,8 +83,8 @@ internal class GetCMPDataMock {
             btnChipName = "Privacy settings",
             statusActive = "active",
             statusInactive = "inactive",
-            titleCorner = "This tool helps you to select and deactivate various tags / trackers / analytic tools used on this website.",
-            headerCorner = "Privacy settings",
+            secondLayerTitle = "Privacy Settings Title",
+            secondLayerDescriptionHtml = "Privacy Settings Description",
             btnSaveSettings = "Save settings",
             btnMore = "more",
             poweredBy = "Powered by <a href=\"https://usercentrics.com/?utm_source=cmp&utm_medium=powered_by\" rel=\"nofollow\" target=\"_blank\">Usercentrics Consent Management</a>",
@@ -341,10 +339,10 @@ internal class GetCMPDataMock {
             showLanguageDropdown = true,
             imprintUrl = "https://usercentrics.com/legal-notice/",
             btnMoreInfoIsVisible = true,
-            bannerMessage = "Privacy Settings test description.",
+            firstLayerDescriptionHtml = "Privacy Settings test description.",
             bannerMobileDescriptionIsActive = false,
             dataController = "GDPR",
-            bannerMobileDescription = "",
+            firstLayerMobileDescriptionHtml = "",
             version = "6.0.4",
             isLatest = true,
             language = "en",
@@ -379,8 +377,6 @@ internal class GetCMPDataMock {
             "tabsServicesIsEnabled" to true,
             "hideButtonDeny" to false,
             "hideLanguageSwitch" to false,
-            "title" to "",
-            "description" to "",
         )
         private val expectedLabels = hashMapOf(
             "btnAcceptAll" to "Accept All",
@@ -444,6 +440,9 @@ internal class GetCMPDataMock {
             "btnBannerReadMore" to "Read more",
             "linkToDpaInfo" to "Data Processing Agreement",
             "second" to "second",
+            "consent" to "Consent",
+            "secondLayerTitle" to "Privacy Settings Title",
+            "secondLayerDescriptionHtml" to "Privacy Settings Description",
         )
         private val expectedTCF2Settings = hashMapOf(
             "firstLayerTitle" to "Privacy Information",
@@ -542,10 +541,10 @@ internal class GetCMPDataMock {
             "showLanguageDropdown" to true,
             "imprintUrl" to "https://usercentrics.com/legal-notice/",
             "btnMoreInfoIsVisible" to true,
-            "bannerMessage" to "Privacy Settings test description.",
+            "firstLayerDescriptionHtml" to "Privacy Settings test description.",
             "bannerMobileDescriptionIsActive" to false,
             "dataController" to "GDPR",
-            "bannerMobileDescription" to "",
+            "firstLayerMobileDescriptionHtml" to "",
             "version" to "6.0.4",
             "isLatest" to true,
             "language" to "en",
@@ -571,7 +570,6 @@ internal class GetCMPDataMock {
         )
         val expectedUserLocation = hashMapOf(
             "countryCode" to "PT",
-            "countryName" to "Portugal",
             "regionCode" to "",
             "isInEU" to true,
             "isInUS" to false,

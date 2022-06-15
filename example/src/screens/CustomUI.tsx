@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Button, StyleSheet, View, Text } from 'react-native'
+import { Button, StyleSheet, Text, View } from 'react-native';
 import {
     TCFDecisionUILayer,
     TCFUserDecisionOnPurpose,
@@ -120,6 +120,8 @@ export const CustomScreen = () => {
         console.log(`Second layer description: ${tcf2?.secondLayerDescription}`);
 
         const tcfData = await Usercentrics.getTCFData();
+        console.log(`TCString ${tcfData.tcString}`);
+
         tcfData.purposes.forEach(purpose => {
             console.log(`Purpose: ${purpose.name}`);
         })
@@ -157,8 +159,6 @@ export const CustomScreen = () => {
         console.log(`Accept All button: ${tcf2?.buttonsAcceptAllLabel}`);
         console.log(`Deny button: ${tcf2?.buttonsDenyAllLabel}`);
         console.log(`Save button: ${tcf2?.buttonsSaveLabel}`);
-
-        console.log(`TCString ${await Usercentrics.getTCFString()}`);
     }
 
     async function changeLanguage() {

@@ -32,10 +32,10 @@ extension UsercentricsSettings {
             "showLanguageDropdown": self.showLanguageDropdown,
             "imprintUrl": self.imprintUrl as Any,
             "btnMoreInfoIsVisible": self.btnMoreInfoIsVisible,
-            "bannerMessage": self.bannerMessage as Any,
+            "firstLayerDescriptionHtml": self.firstLayerDescriptionHtml as Any,
             "bannerMobileDescriptionIsActive": self.bannerMobileDescriptionIsActive,
             "dataController": self.dataController as Any,
-            "bannerMobileDescription": self.bannerMobileDescription as Any,
+            "firstLayerMobileDescriptionHtml": self.firstLayerMobileDescriptionHtml as Any,
             "version": self.version,
             "isLatest": self.isLatest?.boolValue as Any,
             "language" : self.language,
@@ -119,6 +119,9 @@ extension UsercentricsLabels {
             "btnBannerReadMore" : self.btnBannerReadMore,
             "linkToDpaInfo" : self.linkToDpaInfo,
             "second" : self.second,
+            "consent" : self.consent,
+            "secondLayerDescriptionHtml" : self.secondLayerDescriptionHtml,
+            "secondLayerTitle" : self.secondLayerTitle ?? ""
         ]
     }
 }
@@ -292,9 +295,7 @@ extension SecondLayer {
             "tabsCategoriesIsEnabled" : tabsCategoriesIsEnabled?.boolValue as Any,
             "tabsServicesIsEnabled" : tabsServicesIsEnabled?.boolValue as Any,
             "hideButtonDeny" : hideButtonDeny?.boolValue as Any,
-            "hideLanguageSwitch" : hideLanguageSwitch?.boolValue as Any,
-            "title" : self.title as Any,
-            "description" : self.description,
+            "hideLanguageSwitch" : hideLanguageSwitch?.boolValue as Any
         ]
     }
 }
@@ -372,7 +373,6 @@ extension UsercentricsLocation {
     func toDictionary() -> NSDictionary {
         return [
             "countryCode" : self.countryCode,
-            "countryName" : self.countryName,
             "regionCode" : self.regionCode,
             "isInEU" : self.isInEU(),
             "isInUS" : self.isInUS(),

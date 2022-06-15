@@ -10,6 +10,7 @@ class UsercentricsOptionsDictTests: XCTestCase {
       "loggerLevel": 3,
       "defaultLanguage": "pt",
       "settingsId": "123",
+      "ruleSetId": "qwer",
       "timeoutMillis": 1000,
       "version": "1.2.3",
       "networkMode": 1
@@ -19,6 +20,7 @@ class UsercentricsOptionsDictTests: XCTestCase {
     let usercentricsOptionsFromDict = UsercentricsOptions.initialize(from: dict)!
 
     XCTAssertEqual("123", usercentricsOptionsFromDict.settingsId)
+    XCTAssertEqual("qwer", usercentricsOptionsFromDict.ruleSetId)
     XCTAssertEqual("pt", usercentricsOptionsFromDict.defaultLanguage)
     XCTAssertEqual("1.2.3", usercentricsOptionsFromDict.version)
     XCTAssertEqual(.debug, usercentricsOptionsFromDict.loggerLevel)
@@ -29,7 +31,7 @@ class UsercentricsOptionsDictTests: XCTestCase {
   func testInitializeWithoutSettingsIdShouldNotInitialize() {
     let dict: NSDictionary = [:]
     let usercentricsOptionsFromDict = UsercentricsOptions.initialize(from: dict)
-    XCTAssertNil(usercentricsOptionsFromDict)
+    XCTAssertEqual(UsercentricsOptions(), usercentricsOptionsFromDict)
   }
 
   func testSerializeLoggerLevel() {
