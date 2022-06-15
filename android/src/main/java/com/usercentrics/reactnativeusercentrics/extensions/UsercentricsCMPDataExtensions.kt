@@ -34,10 +34,10 @@ private fun UsercentricsSettings.serialize(): WritableMap {
         "showLanguageDropdown" to showLanguageDropdown,
         "imprintUrl" to imprintUrl,
         "btnMoreInfoIsVisible" to btnMoreInfoIsVisible,
-        "bannerMessage" to bannerMessage,
+        "firstLayerDescriptionHtml" to firstLayerDescriptionHtml,
         "bannerMobileDescriptionIsActive" to bannerMobileDescriptionIsActive,
         "dataController" to dataController,
-        "bannerMobileDescription" to bannerMobileDescription,
+        "firstLayerMobileDescriptionHtml" to firstLayerMobileDescriptionHtml,
         "version" to version,
         "isLatest" to isLatest,
         "language" to language,
@@ -119,6 +119,9 @@ private fun UsercentricsLabels.serialize(): Map<String, Any?> {
         "btnBannerReadMore" to btnBannerReadMore,
         "linkToDpaInfo" to linkToDpaInfo,
         "second" to second,
+        "consent" to consent,
+        "secondLayerTitle" to secondLayerTitle,
+        "secondLayerDescriptionHtml" to secondLayerDescriptionHtml,
     )
 }
 
@@ -270,8 +273,6 @@ private fun SecondLayer.serialize(): WritableMap {
         "tabsServicesIsEnabled" to tabsServicesIsEnabled,
         "hideButtonDeny" to hideButtonDeny,
         "hideLanguageSwitch" to hideLanguageSwitch,
-        "title" to title,
-        "description" to description,
     ).toWritableMap()
 }
 
@@ -342,7 +343,6 @@ private fun UsercentricsCategory.serialize(): WritableMap {
 private fun UsercentricsLocation.serialize(): WritableMap {
     return mapOf(
         "countryCode" to countryCode,
-        "countryName" to countryName,
         "regionCode" to regionCode,
         "isInEU" to isInEU(),
         "isInUS" to isInUS(),

@@ -60,7 +60,15 @@ jest.mock("react-native", () => {
 
 describe('Test Usercentrics Module', () => {
   test('testConfigureBridge', () => {
-    const options = new UsercentricsOptions("abc", "abc", UsercentricsLoggerLevel.debug, 123, "1.2.3", NetworkMode.eu);
+    const options = new UsercentricsOptions({
+      settingsId: "abc",
+      ruleSetId: "qwer",
+      defaultLanguage: "en",
+      loggerLevel: UsercentricsLoggerLevel.debug,
+      timeoutMillis: 123,
+      version: "1.2.3",
+      networkMode: NetworkMode.eu
+    });
     Usercentrics.configure(options);
     const call = RNUsercentricsModule.configure.mock.calls[0][0];
     expect(call).toBe(options)

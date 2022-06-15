@@ -2,9 +2,6 @@ export class UsercentricsLocation {
     /// The country code. E.g 'DE'.
     countryCode: string
 
-    /// The country name in the local language. E.g 'Italy'.
-    countryName: string
-
     /// The region code following the local format. E.g 'CA'.
     regionCode: string
 
@@ -20,14 +17,12 @@ export class UsercentricsLocation {
 
     constructor(
         countryCode: string,
-        countryName: string,
         regionCode: string,
         isInEU: boolean,
         isInUS: boolean,
         isInCalifornia: boolean
     ) {
         this.countryCode = countryCode
-        this.countryName = countryName
         this.regionCode = regionCode
         this.isInEU = isInEU
         this.isInUS = isInUS

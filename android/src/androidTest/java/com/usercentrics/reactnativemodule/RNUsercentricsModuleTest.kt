@@ -35,6 +35,7 @@ class RNUsercentricsModuleTest {
     companion object {
         private val usercentricsOptions = JavaOnlyMap().apply {
             putString("settingsId", "AAAAA")
+            putString("ruleSetId", "BBBBB")
             putInt("loggerlevel", 0)
             putInt("timeoutMillis", 1000)
             putString("version", "1.2.3")
@@ -91,6 +92,7 @@ class RNUsercentricsModuleTest {
 
         assertEquals(1, usercentricsProxy.initializeCount)
         assertEquals("AAAAA", usercentricsProxy.initializeOptionsArgument?.settingsId)
+        assertEquals("BBBBB", usercentricsProxy.initializeOptionsArgument?.ruleSetId)
         assertEquals(
             UsercentricsLoggerLevel.NONE,
             usercentricsProxy.initializeOptionsArgument?.loggerLevel
@@ -107,7 +109,7 @@ class RNUsercentricsModuleTest {
         val module = RNUsercentricsModule(contextMock, usercentricsProxy)
 
         module.configure(JavaOnlyMap())
-        assertEquals(null, usercentricsProxy.initializeOptionsArgument)
+        assertEquals(UsercentricsOptions(), usercentricsProxy.initializeOptionsArgument)
     }
 
     @Test

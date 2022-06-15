@@ -1,20 +1,33 @@
 import { NetworkMode, UsercentricsLoggerLevel } from ".";
 
 export class UsercentricsOptions {
-    settingsId: string;
+    settingsId?: string;
+    ruleSetId?: string;
     defaultLanguage?: string;
     loggerLevel?: UsercentricsLoggerLevel;
     timeoutMillis?: number;
     version?: string;
     networkMode?: NetworkMode;
 
-    constructor(settingsId: string,
-        defaultLanguage?: string,
-        loggerLevel?: UsercentricsLoggerLevel,
-        timeoutMillis?: number,
-        version?: string,
-        networkMode?: NetworkMode) {
+    constructor({
+        settingsId = "",
+        ruleSetId = "",
+        defaultLanguage = undefined,
+        loggerLevel = undefined,
+        timeoutMillis = undefined,
+        version = undefined,
+        networkMode = undefined }:
+        {
+            settingsId?: string,
+            ruleSetId?: string,
+            defaultLanguage?: string,
+            loggerLevel?: UsercentricsLoggerLevel,
+            timeoutMillis?: number,
+            version?: string,
+            networkMode?: NetworkMode
+        }) {
         this.settingsId = settingsId;
+        this.ruleSetId = ruleSetId;
         this.defaultLanguage = defaultLanguage
         this.loggerLevel = loggerLevel
         this.timeoutMillis = timeoutMillis

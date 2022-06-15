@@ -3,11 +3,15 @@ import Usercentrics
 
 public extension UsercentricsOptions {
     static func initialize(from dictionary: NSDictionary) -> UsercentricsOptions? {
-        guard let settingsId = dictionary["settingsId"] as? String else {
-            return nil
+        let options = UsercentricsOptions()
+
+        if let settingsId = dictionary["settingsId"] as? String {
+            options.settingsId = settingsId
         }
 
-        let options = UsercentricsOptions(settingsId: settingsId)
+        if let ruleSetId = dictionary["ruleSetId"] as? String {
+            options.ruleSetId = ruleSetId
+        }
 
         if let defaultLanguage = dictionary["defaultLanguage"] as? String {
             options.defaultLanguage = defaultLanguage

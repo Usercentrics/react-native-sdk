@@ -8,7 +8,7 @@ const Stack = createNativeStackNavigator();
 
 const App = () => {
   React.useEffect(() => {
-    let options = new UsercentricsOptions("Yi9N3aXia");
+    let options: UsercentricsOptions = { settingsId: "Yi9N3aXia" };
     options.loggerLevel = UsercentricsLoggerLevel.debug;
     Usercentrics.configure(options);
   }, []);

@@ -1,7 +1,7 @@
 import { ImageResolvedAssetSource } from "react-native";
 import { FirstLayerStyleSettings, SecondLayerStyleSettings } from ".";
 
-export class BannerLogo { 
+export class BannerLogo {
     logoName: string;
     logoPath: string;
     logoUrl?: String;
@@ -13,7 +13,7 @@ export class BannerLogo {
     }
 }
 
-export class BannerFont { 
+export class BannerFont {
     regularFont: string;
     boldFont: string;
     fontSize: number;
@@ -32,7 +32,7 @@ export enum LegalLinksSettings {
     none = "NONE"
 }
 
-export class BannerSettings { 
+export class BannerSettings {
     logo?: BannerLogo;
     font?: BannerFont;
     links?: LegalLinksSettings;
@@ -40,7 +40,7 @@ export class BannerSettings {
     secondLayerSettings?: SecondLayerStyleSettings;
 
     constructor(logo?: BannerLogo, font?: BannerFont, links?: LegalLinksSettings,
-                firstLayerSettings?: FirstLayerStyleSettings, secondLayerSettings?: SecondLayerStyleSettings) {
+        firstLayerSettings?: FirstLayerStyleSettings, secondLayerSettings?: SecondLayerStyleSettings) {
         this.logo = logo;
         this.font = font;
         this.links = links;

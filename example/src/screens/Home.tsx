@@ -135,7 +135,6 @@ const customizationExampleTwo: FirstLayerOptions = {
                         cornerRadius: 30.0,
                         backgroundColorHex: "FFFFFF",
                         textColorHex: "000000",
-                        textSize: 18.0
                     }, {
                         buttonType: ButtonType.denyAll,
                         backgroundColorHex: "00000000",

@@ -38,7 +38,7 @@ class RNUsercentricsModuleTests: XCTestCase {
 
   func testConfigureWithoutCorrectValues() {
     module.configure([:])
-    XCTAssertEqual(nil, fakeUsercentrics.configureOptions)
+    XCTAssertEqual(UsercentricsOptions(), fakeUsercentrics.configureOptions)
   }
 
   func testIsReady() {

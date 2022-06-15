@@ -1,5 +1,18 @@
 [Release Notes](https://docs.usercentrics.com/cmp_in_app_sdk/latest/about/history/)
 
+# 2.6.0
+
+## Features
+
+- **[Geolocation Rules]** By initializing our SDK using the Rule Set ID, now you can have your geolocation rules being applied for your mobile app.
+- **[Custom UI]** Since we display some fields using HTML, we are now exposing them using Spanned (Android) and NSMutableAttributedString.
+- **[Analytics]** To help the integration process, we've created a feature section to further explain how to use Analytics with Custom UI.
+
+## Resolved Issues
+
+- General bug fixes.
+- Improve stability and performance issues.
+
 # 2.5.3
 
 ## Resolved Issues
