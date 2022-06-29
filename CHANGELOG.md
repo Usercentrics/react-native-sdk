@@ -1,5 +1,17 @@
 [Release Notes](https://docs.usercentrics.com/cmp_in_app_sdk/latest/about/history/)
 
+# 2.6.1
+
+## Improvements
+
+- UI improvements to history section.
+- Added additional customization options for TCF 2.0 banner.
+
+## Resolved Issues
+
+- Solve thread freeze issue for edge case initialization flow.
+- Solved stability issues.
+
 # 2.6.0
 
 ## Features
