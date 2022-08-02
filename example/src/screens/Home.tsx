@@ -81,12 +81,6 @@ const defaultOptions: FirstLayerOptions = {
 
 const customizationExampleOne: FirstLayerOptions = {
     bannerSettings: {
-        font: {
-            regularFont: "Lora",
-            boldFont: "Lora-Regular_Bold",
-            fontSize: 16.0
-        },
-        logo: createBannerLogo(),
         firstLayerSettings: {
             cornerRadius: 30.0,
             title: {
@@ -107,7 +101,17 @@ const customizationExampleOne: FirstLayerOptions = {
                 ]
             )
         },
-        links: LegalLinksSettings.secondLayerOnly
+        generalStyleSettings: {
+            font: {
+                regularFont: "Lora",
+                boldFont: "Lora-Regular_Bold",
+                fontSize: 14.0
+            },
+            textColorHex: "#77ff00",
+            layerBackgroundColorHex: "#fff000",
+            logo: createBannerLogo(),
+            links: LegalLinksSettings.secondLayerOnly
+        }
     },
     layout: UsercentricsLayout.popupBottom
 }
@@ -148,6 +152,18 @@ const customizationExampleTwo: FirstLayerOptions = {
                     }
                 ]
             ])
+        },
+        generalStyleSettings: {
+            font: {
+                regularFont: "Lora",
+                boldFont: "Lora-Regular_Bold",
+                fontSize: 14.0
+            },
+            textColorHex: "#ffffff",
+            layerBackgroundColorHex: "#000000",
+            layerBackgroundSecondaryColorHex: "#6b6b6b",
+            logo: createBannerLogo(),
+            links: LegalLinksSettings.secondLayerOnly
         }
     }
 }

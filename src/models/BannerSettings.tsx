@@ -32,19 +32,75 @@ export enum LegalLinksSettings {
     none = "NONE"
 }
 
-export class BannerSettings {
-    logo?: BannerLogo;
+export class ToggleStyleSettings {
+    activeBackgroundColorHex?: String;
+    inactiveBackgroundColorHex?: String;
+    disabledBackgroundColorHex?: String;
+    activeThumbColorHex?: String;
+    inactiveThumbColorHex?: String;
+    disabledThumbColorHex?: String;
+
+    constructor(
+        activeBackgroundColorHex?: String,
+        inactiveBackgroundColorHex?: String,
+        disabledBackgroundColorHex?: String,
+        activeThumbColorHex?: String,
+        inactiveThumbColorHex?: String,
+        disabledThumbColorHex?: String
+    ) {
+        this.activeBackgroundColorHex = activeBackgroundColorHex;
+        this.inactiveBackgroundColorHex = inactiveBackgroundColorHex;
+        this.disabledBackgroundColorHex = disabledBackgroundColorHex;
+        this.activeThumbColorHex = activeThumbColorHex;
+        this.inactiveThumbColorHex = inactiveThumbColorHex;
+        this.disabledThumbColorHex = disabledThumbColorHex;
+    }
+}
+
+export class GeneralStyleSettings {
     font?: BannerFont;
+    logo?: BannerLogo;
     links?: LegalLinksSettings;
+    textColorHex?: String;
+    layerBackgroundColorHex?: String;
+    layerBackgroundSecondaryColorHex?: String;
+    linkColorHex?: String;
+    tabColorHex?: String;
+    bordersColorHex?: String;
+    toggleStyleSettings?: ToggleStyleSettings;
+
+    constructor(font?: BannerFont,
+        logo?: BannerLogo,
+        links?: LegalLinksSettings,
+        textColorHex?: String,
+        layerBackgroundColorHex?: String,
+        layerBackgroundSecondaryColorHex?: String,
+        linkColorHex?: String,
+        tabColorHex?: String,
+        bordersColorHex?: String,
+        toggleStyleSettings?: ToggleStyleSettings
+    ) {
+        this.font = font;
+        this.logo = logo;
+        this.links = links;
+        this.textColorHex = textColorHex;
+        this.layerBackgroundColorHex = layerBackgroundColorHex;
+        this.layerBackgroundSecondaryColorHex = layerBackgroundSecondaryColorHex;
+        this.linkColorHex = linkColorHex;
+        this.tabColorHex = tabColorHex;
+        this.bordersColorHex = bordersColorHex;
+        this.toggleStyleSettings = toggleStyleSettings;
+    }
+}
+
+export class BannerSettings {
     firstLayerSettings?: FirstLayerStyleSettings;
     secondLayerSettings?: SecondLayerStyleSettings;
+    generalStyleSettings?: GeneralStyleSettings;
 
-    constructor(logo?: BannerLogo, font?: BannerFont, links?: LegalLinksSettings,
-        firstLayerSettings?: FirstLayerStyleSettings, secondLayerSettings?: SecondLayerStyleSettings) {
-        this.logo = logo;
-        this.font = font;
-        this.links = links;
+    constructor(firstLayerSettings?: FirstLayerStyleSettings, secondLayerSettings?: SecondLayerStyleSettings, generalStyleSettings?: GeneralStyleSettings) {
         this.firstLayerSettings = firstLayerSettings;
         this.secondLayerSettings = secondLayerSettings;
+        this.generalStyleSettings = generalStyleSettings;
     }
 }

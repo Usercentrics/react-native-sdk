@@ -31,13 +31,12 @@ internal class RNUsercentricsModule(
 
     @ReactMethod
     fun showFirstLayer(options: ReadableMap, promise: Promise) {
-        UiThreadUtil.runOnUiThread {
+        runOnUiThread {
             try {
                 val assetManager = currentActivity!!.assets
 
                 val layout = options.getString("layout")!!.usercentricsLayoutFromEnumString()
-                val bannerSettings =
-                    options.getMap("bannerSettings")?.bannerSettingsFromMap(assetManager)
+                val bannerSettings = options.getMap("bannerSettings")?.bannerSettingsFromMap(assetManager)
                 usercentricsProxy.showFirstLayer(currentActivity!!, layout, bannerSettings, promise)
 
             } catch (e: Exception) {
@@ -48,12 +47,11 @@ internal class RNUsercentricsModule(
 
     @ReactMethod
     fun showSecondLayer(options: ReadableMap, promise: Promise) {
-        UiThreadUtil.runOnUiThread {
+        runOnUiThread {
             try {
                 val assetManager = currentActivity!!.assets
 
-                val bannerSettings =
-                    options.getMap("bannerSettings")?.bannerSettingsFromMap(assetManager)
+                val bannerSettings = options.getMap("bannerSettings")?.bannerSettingsFromMap(assetManager)
                 usercentricsProxy.showSecondLayer(currentActivity!!, bannerSettings, promise)
             } catch (e: Exception) {
                 promise.reject(e)
@@ -195,5 +193,9 @@ internal class RNUsercentricsModule(
     @ReactMethod
     fun reset() {
         usercentricsProxy.reset()
+    }
+
+    private fun runOnUiThread(block: () -> Unit) {
+        UiThreadUtil.runOnUiThread(block)
     }
 }
