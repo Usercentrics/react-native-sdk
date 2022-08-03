@@ -22,7 +22,7 @@ export const HomeScreen = ({ navigation }: { navigation: any }) => {
 
     async function showSecondLayer() {
         const bannerSettings: BannerSettings = {
-            secondLayerSettings: {
+            secondLayerStyleSettings: {
                 showCloseButton: true
             }
         };
@@ -81,13 +81,7 @@ const defaultOptions: FirstLayerOptions = {
 
 const customizationExampleOne: FirstLayerOptions = {
     bannerSettings: {
-        font: {
-            regularFont: "Lora",
-            boldFont: "Lora-Regular_Bold",
-            fontSize: 16.0
-        },
-        logo: createBannerLogo(),
-        firstLayerSettings: {
+        firstLayerStyleSettings: {
             cornerRadius: 30.0,
             title: {
                 textSize: 22.0
@@ -107,7 +101,25 @@ const customizationExampleOne: FirstLayerOptions = {
                 ]
             )
         },
-        links: LegalLinksSettings.secondLayerOnly
+        generalStyleSettings: {
+            font: {
+                regularFont: "Lora",
+                boldFont: "Lora-Regular_Bold",
+                fontSize: 14.0
+            },
+            textColorHex: "#77ff00",
+            layerBackgroundColorHex: "#fff000",
+            logo: createBannerLogo(),
+            links: LegalLinksSettings.secondLayerOnly,
+            toggleStyleSettings: {
+                activeBackgroundColorHex: "#12e09f",
+                inactiveBackgroundColorHex: "#abdccd",
+                disabledBackgroundColorHex: "#d47e00",
+                activeThumbColorHex: "#957950",
+                inactiveThumbColorHex: "#4439e9",
+                disabledThumbColorHex: "c99dc1"
+            }
+        }
     },
     layout: UsercentricsLayout.popupBottom
 }
@@ -115,7 +127,7 @@ const customizationExampleOne: FirstLayerOptions = {
 const customizationExampleTwo: FirstLayerOptions = {
     layout: UsercentricsLayout.full,
     bannerSettings: {
-        firstLayerSettings: {
+        firstLayerStyleSettings: {
             cornerRadius: 20,
             backgroundColorHex: "000000",
             headerImage: HeaderImageSettings.hidden(),
@@ -148,6 +160,18 @@ const customizationExampleTwo: FirstLayerOptions = {
                     }
                 ]
             ])
+        },
+        generalStyleSettings: {
+            font: {
+                regularFont: "Lora",
+                boldFont: "Lora-Regular_Bold",
+                fontSize: 14.0
+            },
+            textColorHex: "#ffffff",
+            layerBackgroundColorHex: "#000000",
+            layerBackgroundSecondaryColorHex: "#6b6b6b",
+            logo: createBannerLogo(),
+            links: LegalLinksSettings.secondLayerOnly
         }
     }
 }

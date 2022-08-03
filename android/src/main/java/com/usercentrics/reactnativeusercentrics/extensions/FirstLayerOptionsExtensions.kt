@@ -17,19 +17,14 @@ internal fun String.usercentricsLayoutFromEnumString(): UsercentricsLayout {
 }
 
 internal fun ReadableMap.bannerSettingsFromMap(assetManager: AssetManager): BannerSettings {
-    val customFont = getMap("font")
-    val customLogo = getMap("logo")
-
-    val rawFirstLayerStyleSettings = getMap("firstLayerSettings")
-    val rawSecondLayerStyleSettings = getMap("secondLayerSettings")
-    val rawLegalLinkSettings = getString("links")
+    val rawFirstLayerStyleSettings = getMap("firstLayerStyleSettings")
+    val rawSecondLayerStyleSettings = getMap("secondLayerStyleSettings")
+    val rawGeneralStyleSettings = getMap("generalStyleSettings")
 
     return BannerSettings(
-        font = customFont?.bannerFontFromMap(assetManager),
-        logo = customLogo?.bannerLogoFromMap(),
-        firstLayerSettings = rawFirstLayerStyleSettings?.firstLayerStyleSettingsFromMap(assetManager),
-        secondLayerSettings = rawSecondLayerStyleSettings?.secondLayerStyleSettingsFromMap(assetManager),
-        links = rawLegalLinkSettings?.legalLinksFromEnumString()
+        firstLayerStyleSettings = rawFirstLayerStyleSettings?.firstLayerStyleSettingsFromMap(assetManager),
+        secondLayerStyleSettings = rawSecondLayerStyleSettings?.secondLayerStyleSettingsFromMap(assetManager),
+        generalStyleSettings = rawGeneralStyleSettings?.generalStyleSettingsFromMap(assetManager),
     )
 }
 
@@ -138,7 +133,7 @@ internal fun ReadableMap.buttonLayoutFromMap(
 internal fun ReadableMap.buttonSettingsFromMap(
     assetManager: AssetManager
 ): ButtonSettings {
-  return ButtonSettings(
+    return ButtonSettings(
         type = getString("buttonType")!!.deserializeButtonType(),
         isAllCaps = getBooleanOrNull("isAllCaps"),
         font = assetManager.createFontFromName(getString("fontName")),
@@ -160,6 +155,33 @@ internal fun ReadableMap.secondLayerStyleSettingsFromMap(assetManager: AssetMana
     )
 }
 
+internal fun ReadableMap.generalStyleSettingsFromMap(assetManager: AssetManager): GeneralStyleSettings {
+    val rawToggleStyleSettings = getMap("toggleStyleSettings")
+    return GeneralStyleSettings(
+        textColor = getString("textColorHex")?.deserializeColor(),
+        layerBackgroundColor = getString("layerBackgroundColorHex")?.deserializeColor(),
+        layerBackgroundSecondaryColor = getString("layerBackgroundSecondaryColorHex")?.deserializeColor(),
+        linkColor = getString("linkColorHex")?.deserializeColor(),
+        tabColor = getString("tabColorHex")?.deserializeColor(),
+        bordersColor = getString("bordersColorHex")?.deserializeColor(),
+        toggleStyleSettings = rawToggleStyleSettings?.toggleStyleSettingsFromMap(),
+        font = getMap("font")?.bannerFontFromMap(assetManager),
+        logo = getMap("logo")?.bannerLogoFromMap(),
+        links = getString("links")?.legalLinksFromEnumString(),
+    )
+}
+
+internal fun ReadableMap.toggleStyleSettingsFromMap(): ToggleStyleSettings {
+    return ToggleStyleSettings(
+        activeBackgroundColor = getString("activeBackgroundColorHex")?.deserializeColor(),
+        inactiveBackgroundColor = getString("inactiveBackgroundColorHex")?.deserializeColor(),
+        disabledBackgroundColor = getString("disabledBackgroundColorHex")?.deserializeColor(),
+        activeThumbColor = getString("activeThumbColorHex")?.deserializeColor(),
+        inactiveThumbColor = getString("inactiveThumbColorHex")?.deserializeColor(),
+        disabledThumbColor = getString("disabledThumbColorHex")?.deserializeColor(),
+    )
+}
+
 internal fun String?.legalLinksFromEnumString(): LegalLinksSettings? {
     return when (this) {
         "BOTH" -> LegalLinksSettings.BOTH
@@ -172,14 +194,10 @@ internal fun String?.legalLinksFromEnumString(): LegalLinksSettings? {
 
 @ColorInt
 internal fun String.deserializeColor(): Int? {
-    val colorString: String =
-        if (!this.startsWith("#")) {
-            "#$this"
-        } else {
-            this
-        }
-
-    return runCatching {
-        Color.parseColor(colorString)
-    }.getOrNull()
+    val colorString: String = if (!this.startsWith("#")) {
+        "#$this"
+    } else {
+        this
+    }
+    return runCatching { Color.parseColor(colorString) }.getOrNull()
 }

@@ -5,21 +5,37 @@ extension BannerSettings {
     init?(from dictionary: NSDictionary?) {
         guard let dictionary = dictionary else { return nil }
 
-        let bannerFontHolder = BannerFontHolder(from: dictionary["font"] as? NSDictionary)
+        let generalStyleSettingsDict = dictionary["generalStyleSettings"] as? NSDictionary ?? [:]
 
-        let firstLayerStyleSettingsDict = dictionary["firstLayerSettings"] as? NSDictionary
+        let bannerFontHolder = BannerFontHolder(from: generalStyleSettingsDict["font"] as? NSDictionary)
+
+        let firstLayerStyleSettingsDict = dictionary["firstLayerStyleSettings"] as? NSDictionary
         let firstLayerSettings = FirstLayerStyleSettings(from: firstLayerStyleSettingsDict, bannerFontHolder: bannerFontHolder)
 
-        let secondLayerStyleSettingsDict = dictionary["secondLayerSettings"] as? NSDictionary
+        let secondLayerStyleSettingsDict = dictionary["secondLayerStyleSettings"] as? NSDictionary
         let secondLayerSettings = SecondLayerStyleSettings(from: secondLayerStyleSettingsDict, bannerFontHolder: bannerFontHolder)
 
-        let links = LegalLinksSettings.from(enumString: dictionary["links"] as? String)
+        let toggleStyleSettingsDict = generalStyleSettingsDict["toggleStyleSettings"] as? NSDictionary
+        let toggleStyleSettings = ToggleStyleSettings(from: toggleStyleSettingsDict)
 
-        self.init(font: bannerFontHolder?.font,
-                  logo: UIImage(from: dictionary["logo"] as? NSDictionary),
-                  links: links,
-                  firstLayerSettings: firstLayerSettings,
-                  secondLayerSettings: secondLayerSettings)
+        let links = LegalLinksSettings.from(enumString: generalStyleSettingsDict["links"] as? String)
+        let font = bannerFontHolder?.font
+        let logo = UIImage(from: generalStyleSettingsDict["logo"] as? NSDictionary)
+
+        let generalStyleSettings = GeneralStyleSettings(font: font,
+                                                        logo: logo,
+                                                        links: links,
+                                                        textColor: UIColor(unsafeHex: generalStyleSettingsDict["textColorHex"] as? String),
+                                                        layerBackgroundColor: UIColor(unsafeHex: generalStyleSettingsDict["layerBackgroundColorHex"] as? String),
+                                                        layerBackgroundSecondaryColor: UIColor(unsafeHex: generalStyleSettingsDict["layerBackgroundSecondaryColorHex"] as? String),
+                                                        linkColor: UIColor(unsafeHex: generalStyleSettingsDict["linkColorHex"] as? String),
+                                                        tabColor: UIColor(unsafeHex: generalStyleSettingsDict["tabColorHex"] as? String),
+                                                        bordersColor: UIColor(unsafeHex: generalStyleSettingsDict["bordersColorHex"] as? String),
+                                                        toggleStyleSettings: toggleStyleSettings)
+
+        self.init(generalStyleSettings: generalStyleSettings,
+                  firstLayerStyleSettings: firstLayerSettings,
+                  secondLayerStyleSettings: secondLayerSettings)
     }
 }
 
@@ -263,5 +279,18 @@ extension LegalLinksSettings {
             default:
                 return nil
         }
+    }
+}
+
+extension ToggleStyleSettings {
+    init?(from dictionary: NSDictionary?) {
+        guard let dictionary = dictionary else { return nil }
+
+        self.init(activeBackgroundColor: UIColor(unsafeHex: dictionary["activeBackgroundColorHex"] as? String),
+                  inactiveBackgroundColor: UIColor(unsafeHex: dictionary["inactiveBackgroundColorHex"] as? String),
+                  disabledBackgroundColor: UIColor(unsafeHex: dictionary["disabledBackgroundColorHex"] as? String),
+                  activeThumbColor: UIColor(unsafeHex: dictionary["activeThumbColorHex"] as? String),
+                  inactiveThumbColor: UIColor(unsafeHex: dictionary["inactiveThumbColorHex"] as? String),
+                  disabledThumbColor: UIColor(unsafeHex: dictionary["disabledThumbColorHex"] as? String))
     }
 }

@@ -5,7 +5,7 @@ import com.usercentrics.sdk.UsercentricsOptions
 import com.usercentrics.sdk.models.common.NetworkMode
 import com.usercentrics.sdk.models.common.UsercentricsLoggerLevel
 
-internal fun ReadableMap.usercentricsOptionsFromMap(): UsercentricsOptions? {
+internal fun ReadableMap.usercentricsOptionsFromMap(): UsercentricsOptions {
     val options = UsercentricsOptions()
 
     getString("settingsId")?.let {
@@ -46,6 +46,10 @@ internal fun ReadableMap.usercentricsOptionsFromMap(): UsercentricsOptions? {
                 NetworkMode.WORLD
             }
         }
+    }
+
+    getBooleanOrNull("consentMediation")?.let {
+        options.consentMediation = it
     }
 
     return options

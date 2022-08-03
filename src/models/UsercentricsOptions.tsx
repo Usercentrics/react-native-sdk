@@ -8,6 +8,7 @@ export class UsercentricsOptions {
     timeoutMillis?: number;
     version?: string;
     networkMode?: NetworkMode;
+    consentMediation?: Boolean;
 
     constructor({
         settingsId = "",
@@ -16,7 +17,8 @@ export class UsercentricsOptions {
         loggerLevel = undefined,
         timeoutMillis = undefined,
         version = undefined,
-        networkMode = undefined }:
+        networkMode = undefined,
+        consentMediation = undefined }:
         {
             settingsId?: string,
             ruleSetId?: string,
@@ -24,7 +26,8 @@ export class UsercentricsOptions {
             loggerLevel?: UsercentricsLoggerLevel,
             timeoutMillis?: number,
             version?: string,
-            networkMode?: NetworkMode
+            networkMode?: NetworkMode,
+            consentMediation?: Boolean
         }) {
         this.settingsId = settingsId;
         this.ruleSetId = ruleSetId;
@@ -33,5 +36,6 @@ export class UsercentricsOptions {
         this.timeoutMillis = timeoutMillis
         this.version = version
         this.networkMode = networkMode
+        this.consentMediation = consentMediation
     }
 }
