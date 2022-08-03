@@ -17,8 +17,8 @@ internal fun String.usercentricsLayoutFromEnumString(): UsercentricsLayout {
 }
 
 internal fun ReadableMap.bannerSettingsFromMap(assetManager: AssetManager): BannerSettings {
-    val rawFirstLayerStyleSettings = getMap("firstLayerSettings")
-    val rawSecondLayerStyleSettings = getMap("secondLayerSettings")
+    val rawFirstLayerStyleSettings = getMap("firstLayerStyleSettings")
+    val rawSecondLayerStyleSettings = getMap("secondLayerStyleSettings")
     val rawGeneralStyleSettings = getMap("generalStyleSettings")
 
     return BannerSettings(
@@ -194,7 +194,7 @@ internal fun String?.legalLinksFromEnumString(): LegalLinksSettings? {
 
 @ColorInt
 internal fun String.deserializeColor(): Int? {
-    var colorString: String = if (!this.startsWith("#")) {
+    val colorString: String = if (!this.startsWith("#")) {
         "#$this"
     } else {
         this

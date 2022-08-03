@@ -94,13 +94,13 @@ export class GeneralStyleSettings {
 }
 
 export class BannerSettings {
-    firstLayerSettings?: FirstLayerStyleSettings;
-    secondLayerSettings?: SecondLayerStyleSettings;
+    firstLayerStyleSettings?: FirstLayerStyleSettings;
+    secondLayerStyleSettings?: SecondLayerStyleSettings;
     generalStyleSettings?: GeneralStyleSettings;
 
-    constructor(firstLayerSettings?: FirstLayerStyleSettings, secondLayerSettings?: SecondLayerStyleSettings, generalStyleSettings?: GeneralStyleSettings) {
-        this.firstLayerSettings = firstLayerSettings;
-        this.secondLayerSettings = secondLayerSettings;
+    constructor(firstLayerStyleSettings?: FirstLayerStyleSettings, secondLayerStyleSettings?: SecondLayerStyleSettings, generalStyleSettings?: GeneralStyleSettings) {
+        this.firstLayerStyleSettings = firstLayerStyleSettings;
+        this.secondLayerStyleSettings = secondLayerStyleSettings;
         this.generalStyleSettings = generalStyleSettings;
     }
 }

@@ -9,13 +9,13 @@ extension BannerSettings {
 
         let bannerFontHolder = BannerFontHolder(from: generalStyleSettingsDict["font"] as? NSDictionary)
 
-        let firstLayerStyleSettingsDict = dictionary["firstLayerSettings"] as? NSDictionary
+        let firstLayerStyleSettingsDict = dictionary["firstLayerStyleSettings"] as? NSDictionary
         let firstLayerSettings = FirstLayerStyleSettings(from: firstLayerStyleSettingsDict, bannerFontHolder: bannerFontHolder)
 
-        let secondLayerStyleSettingsDict = dictionary["secondLayerSettings"] as? NSDictionary
+        let secondLayerStyleSettingsDict = dictionary["secondLayerStyleSettings"] as? NSDictionary
         let secondLayerSettings = SecondLayerStyleSettings(from: secondLayerStyleSettingsDict, bannerFontHolder: bannerFontHolder)
 
-        let toggleStyleSettingsDict = dictionary["toggleStyleSettings"] as? NSDictionary
+        let toggleStyleSettingsDict = generalStyleSettingsDict["toggleStyleSettings"] as? NSDictionary
         let toggleStyleSettings = ToggleStyleSettings(from: toggleStyleSettingsDict)
 
         let links = LegalLinksSettings.from(enumString: generalStyleSettingsDict["links"] as? String)
