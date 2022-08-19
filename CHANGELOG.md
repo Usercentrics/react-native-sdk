@@ -1,5 +1,34 @@
 [Release Notes](https://docs.usercentrics.com/cmp_in_app_sdk/latest/about/history/)
 
+# 2.7.1
+
+## Features
+
+* **[Restore User Session][TCF]** With this release, you will now be able to restore user sessions when using a TCF configuration. This feature however, needs to be enabled and approved. Please contact your Customer Success Manager for more information.
+
+## Improvements
+
+* API upgrades to improve performance and storage space usage.
+* **[TCF]** Updates to TCF logic, for custom use cases.
+
+## Resolved Issues
+
+* **[iOS][Dark Mode]** Solve issue where SDK was overwritting theme to always be "light".
+* Improvements to solve "NullPointerException" and unknown origin crashes.
+
+# 2.7.0
+
+## Features
+
+- **[Dark Mode][Customization API]** Support Dark Mode and create advanced banner customizations with our updated [Customization API](https://docs.usercentrics.com/cmp_in_app_sdk/latest/collect_consent/usercentrics-ui/#programmatic-customization). :first_quarter_moon:
+- **[Beta][Consent Mediation]** Automatically apply consent to 3rd party SDKs with our [Consent Mediation](https://docs.usercentrics.com/cmp_in_app_sdk/latest/apply_consent/consent-mediation) feature. :partying_face:
+- UI improvements to history section.
+- Added additional customization options for TCF 2.0 banner.
+
+## Resolved Issues
+
+- Solved stability issues.
+
 # 2.6.1
 
 ## Improvements
