@@ -252,7 +252,6 @@ internal class GetCMPDataMock {
             "Your choices for this website will be applied globally, which means they will be available to other websites that set your choices globally.",
             togglesSpecialFeaturesToggleOn = "On",
             vendorSpecialFeatures = "Special Features",
-            resurfaceIABLegalBasisChanged = true,
             appLayerNoteResurface =
             "You can change your privacy settings or withdraw your consent at any time by opening the menu point Privacy Settings.",
             cmpVersion = 3,
@@ -481,7 +480,6 @@ internal class GetCMPDataMock {
             "disabledSpecialFeatures" to listOf<Any>(),
             "firstLayerShowDescriptions" to false,
             "hideNonIabOnFirstLayer" to false,
-            "resurfaceIABLegalBasisChanged" to true,
             "resurfacePeriodEnded" to true,
             "resurfacePurposeChanged" to true,
             "resurfaceVendorAdded" to true,
