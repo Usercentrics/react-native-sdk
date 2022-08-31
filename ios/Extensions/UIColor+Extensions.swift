@@ -3,7 +3,9 @@ import Foundation
 extension UIColor {
     convenience init?(unsafeHex: String?) {
         guard let unsafeHex = unsafeHex else { return nil }
-        if unsafeHex.hasPrefix("#") {
+        if unsafeHex.isEmpty {
+            return nil
+        } else if unsafeHex.hasPrefix("#") {
             self.init(hex: unsafeHex)
         } else {
             self.init(hex: "#\(unsafeHex)")
