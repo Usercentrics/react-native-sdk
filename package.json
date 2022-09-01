@@ -1,13 +1,13 @@
 {
     "name": "@usercentrics/react-native-sdk",
-    "version": "2.7.1",
+    "version": "2.7.2",
     "description": "Usercentrics SDK",
     "homepage": "https://usercentrics.com",
     "main": "lib/index.js",
     "types": "lib/index.d.ts",
     "author": "Usercentrics <developer@usercentrics.com>",
     "iosPackageName": "react-native-usercentrics",
-    "iosPackageVersion": "2.7.1",
+    "iosPackageVersion": "2.7.2",
     "license": "SEE LICENSE IN LICENSE",
     "files": [
         "android",

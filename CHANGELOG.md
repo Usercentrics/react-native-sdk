@@ -1,5 +1,20 @@
 [Release Notes](https://docs.usercentrics.com/cmp_in_app_sdk/latest/about/history/)
 
+# 2.7.2
+
+## Features
+
+* **[Compliance]** You may now enable a close button in the First Layer, to "Continue without accepting".
+
+## Improvements
+
+* Improve legal link customization via our Programmatic API.
+* Upgrade Error logs to help you debug the SDK's behaviour.
+
+## Resolved Issues
+
+* [TCF 2.0] Solve issue where shouldCollectConsent was always true.
+
 # 2.7.1
 
 ## Features
