@@ -1,4 +1,10 @@
 [Release Notes](https://docs.usercentrics.com/cmp_in_app_sdk/latest/about/history/)
+# 2.7.3
+
+## Improvements
+
+* General bug fixes.
+* Huge performance improvement.
 
 # 2.7.2
 
