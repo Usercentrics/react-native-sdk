@@ -205,6 +205,10 @@ class RNUsercentricsModule: NSObject, RCTBridgeModule {
         } else {
             window = UIApplication.shared.windows.first { $0.isKeyWindow }
         }
-        return window?.rootViewController as? PresentationViewController
+        var viewController = window?.rootViewController
+        while viewController?.presentedViewController != nil {
+            viewController = viewController?.presentedViewController
+        }
+        return viewController
     }
 }
