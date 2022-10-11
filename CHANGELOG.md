@@ -1,4 +1,15 @@
 [Release Notes](https://docs.usercentrics.com/cmp_in_app_sdk/latest/about/history/)
+# 2.7.4
+
+## Features
+
+* **[A/B Testing]** With this release, you will now be able to create your own A/B Testing when showing the banner to your users. Check our [exclusive page](https://docs.usercentrics.com/cmp_in_app_sdk/latest/features/ab-testing) on how to achieve this.
+
+## Improvements
+
+* General bug fixes.
+* [iOS] Support dynamic colors.
+
 # 2.7.3
 
 ## Improvements
