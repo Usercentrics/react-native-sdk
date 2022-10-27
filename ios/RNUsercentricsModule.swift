@@ -44,7 +44,6 @@ class RNUsercentricsModule: NSObject, RCTBridgeModule {
         queue.async { [weak self] in
             guard
                 let self = self,
-                let rootVC = self.getPresentationViewController(),
                 let layoutString = dict["layout"] as? String,
                 let layout = UsercentricsLayout.from(enumString: layoutString)
             else {
@@ -54,7 +53,6 @@ class RNUsercentricsModule: NSObject, RCTBridgeModule {
 
             let bannerSettingsDict = dict["bannerSettings"] as? NSDictionary
             self.usercentricsManager.showFirstLayer(bannerSettings: BannerSettings(from: bannerSettingsDict),
-                                                    hostView: rootVC as! UIViewController,
                                                     layout: layout) { response in
                 resolve(response.toDictionary())
             }
@@ -64,17 +62,14 @@ class RNUsercentricsModule: NSObject, RCTBridgeModule {
     @objc func showSecondLayer(_ dict: NSDictionary, resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) {
         queue.async { [weak self] in
             guard
-                let self = self,
-                let rootVC = self.getPresentationViewController()
+                let self = self
             else {
                 reject("usercentrics_reactNative_showFirstLayer_error", RNUsercentricsModuleError.invalidData.localizedDescription, RNUsercentricsModuleError.invalidData)
                 return
             }
 
             let bannerSettingsDict = dict["bannerSettings"] as? NSDictionary
-            self.usercentricsManager.showSecondLayer(bannerSettings: BannerSettings(from: bannerSettingsDict),
-                                                     hostView: rootVC as! UIViewController) { response in
-                rootVC.dismiss(animated: true)
+            self.usercentricsManager.showSecondLayer(bannerSettings: BannerSettings(from: bannerSettingsDict)) { response in
                 resolve(response.toDictionary())
             }
         }
@@ -191,24 +186,5 @@ class RNUsercentricsModule: NSObject, RCTBridgeModule {
     
     @objc func reset() -> Void {
         usercentricsManager.reset()
-    }
-
-    func getPresentationViewController() -> PresentationViewController? {
-        var window: UIWindow?
-        if #available(iOS 13.0, *) {
-            window = UIApplication
-                .shared
-                .connectedScenes
-                .compactMap { $0 as? UIWindowScene }
-                .flatMap { $0.windows }
-                .first { $0.isKeyWindow }
-        } else {
-            window = UIApplication.shared.windows.first { $0.isKeyWindow }
-        }
-        var viewController = window?.rootViewController
-        while viewController?.presentedViewController != nil {
-            viewController = viewController?.presentedViewController
-        }
-        return viewController
     }
 }
