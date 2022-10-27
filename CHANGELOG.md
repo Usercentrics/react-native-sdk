@@ -1,4 +1,15 @@
 [Release Notes](https://docs.usercentrics.com/cmp_in_app_sdk/latest/about/history/)
+### 2.7.5
+
+## Improvements
+
+* Major improvements to main thread use.
+
+## Resolved Issues
+
+* [Android] Resolve NPE crash happening in edge cases.
+* Stability improvements.
+
 # 2.7.4
 
 ## Features

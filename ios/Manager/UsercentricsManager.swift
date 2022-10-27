@@ -9,12 +9,10 @@ public protocol UsercentricsManager {
     func restoreUserSession(controllerId: String, onSuccess: @escaping ((UsercentricsReadyStatus) -> Void), onFailure: @escaping ((Error) -> Void))
 
     func showFirstLayer(bannerSettings: BannerSettings?,
-                        hostView: UIViewController,
                         layout: UsercentricsLayout,
                         dismissViewHandler: @escaping (UsercentricsConsentUserResponse) -> Void)
 
     func showSecondLayer(bannerSettings: BannerSettings?,
-                         hostView: UIViewController,
                          dismissViewHandler: @escaping (UsercentricsConsentUserResponse) -> Void)
 
     func getControllerId() -> String
@@ -58,18 +56,15 @@ final class UsercentricsManagerImplementation: UsercentricsManager {
     }
 
     func showFirstLayer(bannerSettings: BannerSettings?,
-                        hostView: UIViewController,
                         layout: UsercentricsLayout,
                         dismissViewHandler: @escaping (UsercentricsConsentUserResponse) -> Void) {
-        UsercentricsBanner(bannerSettings: bannerSettings).showFirstLayer(hostView: hostView,
-                                                                          layout: layout,
+        UsercentricsBanner(bannerSettings: bannerSettings).showFirstLayer(layout: layout,
                                                                           completionHandler: dismissViewHandler)
     }
 
     func showSecondLayer(bannerSettings: BannerSettings?,
-                         hostView: UIViewController,
                          dismissViewHandler: @escaping (UsercentricsConsentUserResponse) -> Void) {
-        UsercentricsBanner(bannerSettings: bannerSettings).showSecondLayer(hostView: hostView, completionHandler: dismissViewHandler)
+        UsercentricsBanner(bannerSettings: bannerSettings).showSecondLayer(completionHandler: dismissViewHandler)
     }
 
     func restoreUserSession(controllerId: String, onSuccess: @escaping ((UsercentricsReadyStatus) -> Void), onFailure: @escaping ((Error) -> Void)) {
