@@ -12,6 +12,9 @@ public protocol UsercentricsManager {
                         layout: UsercentricsLayout,
                         dismissViewHandler: @escaping (UsercentricsConsentUserResponse) -> Void)
 
+    func showFirstLayer(bannerSettings: BannerSettings?,
+                        dismissViewHandler: @escaping (UsercentricsConsentUserResponse) -> Void)
+
     func showSecondLayer(bannerSettings: BannerSettings?,
                          dismissViewHandler: @escaping (UsercentricsConsentUserResponse) -> Void)
 
@@ -61,6 +64,11 @@ final class UsercentricsManagerImplementation: UsercentricsManager {
         UsercentricsBanner(bannerSettings: bannerSettings).showFirstLayer(layout: layout,
                                                                           completionHandler: dismissViewHandler)
     }
+
+    func showFirstLayer(bannerSettings: BannerSettings?,
+                        dismissViewHandler: @escaping (UsercentricsConsentUserResponse) -> Void) {
+            UsercentricsBanner(bannerSettings: bannerSettings).showFirstLayer(completionHandler: dismissViewHandler)
+        }
 
     func showSecondLayer(bannerSettings: BannerSettings?,
                          dismissViewHandler: @escaping (UsercentricsConsentUserResponse) -> Void) {
