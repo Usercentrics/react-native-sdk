@@ -39,6 +39,7 @@ jest.mock("react-native", () => {
     showFirstLayer: jest.fn(),
     restoreUserSession: jest.fn(),
     getControllerId: jest.fn(),
+    getABTestingVariant: jest.fn(),
     getConsents: jest.fn(),
     getCMPData: jest.fn(),
     getUserSessionData: jest.fn(),
@@ -204,6 +205,16 @@ describe('Test Usercentrics Module', () => {
 
     const data = await Usercentrics.getControllerId();
     expect(data).toBe("abc");
+  })
+
+  test('testGetABTestingVariant', async () => {
+    RNUsercentricsModule.getABTestingVariant.mockImplementationOnce(
+      (): Promise<string> => Promise.resolve("variantA")
+    )
+
+
+    const data = await Usercentrics.getABTestingVariant();
+    expect(data).toBe("variantA");
   })
 
   test('testChangeLanguage', async () => {

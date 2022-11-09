@@ -17,6 +17,7 @@ final class FakeUsercentricsManager: UsercentricsManager {
 
   var getTCStringValue: String?
   var getControllerIdValue: String?
+  var getABTestingVariantValue: String?
 
   var configureOptions: UsercentricsOptions?
   var isReadySuccessCompletion: UsercentricsReadyStatus?
@@ -65,6 +66,10 @@ final class FakeUsercentricsManager: UsercentricsManager {
 
   func getControllerId() -> String {
     return getControllerIdValue!
+  }
+
+  func getABTestingVariant() -> String {
+    return getABTestingVariantValue!
   }
 
   var getConsentsResponse: [UsercentricsServiceConsent]?
@@ -161,6 +166,11 @@ final class FakeUsercentricsManager: UsercentricsManager {
   var cmpId: Int32?
   func setCMPId(id: Int32) {
     self.cmpId = id
+  }
+
+  var variant: String?
+  func setABTestingVariant(variant: String) {
+    self.variant = variant
   }
 
   var showFirstLayerBannerSettings: BannerSettings?

@@ -21,6 +21,7 @@ public protocol UsercentricsManager {
     func getUserSessionData() -> String
     func getUSPData() -> CCPAData
     func getTCFData(callback: @escaping (TCFData) -> Void)
+    func getABTestingVariant() -> String
 
     func changeLanguage(language: String, onSuccess: @escaping (() -> Void), onFailure: @escaping ((Error) -> Void))
 
@@ -37,6 +38,7 @@ public protocol UsercentricsManager {
     func saveDecisions(decisions: [UserDecision], consentType: UsercentricsConsentType) -> [UsercentricsServiceConsent]
     func saveOptOutForCCPA(isOptedOut: Bool, consentType: UsercentricsConsentType) -> [UsercentricsServiceConsent]
     func setCMPId(id: Int32)
+    func setABTestingVariant(variant: String)
 
     func reset()
 }
@@ -73,6 +75,10 @@ final class UsercentricsManagerImplementation: UsercentricsManager {
 
     func getControllerId() -> String {
         return UsercentricsCore.shared.getControllerId()
+    }
+
+    func getABTestingVariant() -> String {
+        return UsercentricsCore.shared.getABTestingVariant()
     }
 
     func getConsents() -> [UsercentricsServiceConsent] {
@@ -129,5 +135,9 @@ final class UsercentricsManagerImplementation: UsercentricsManager {
 
     func setCMPId(id: Int32) {
         UsercentricsCore.shared.setCMPId(id: id)
+    }
+
+    func setABTestingVariant(variant: String) {
+        UsercentricsCore.shared.setABTestingVariant(variant: variant)
     }
 }

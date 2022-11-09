@@ -121,6 +121,15 @@ class RNUsercentricsModuleTests: XCTestCase {
     }
   }
 
+  func testGetControllerId() {
+    fakeUsercentrics.getTestingValue = "variantA"
+    module.getABTestingVariant { response in
+      XCTAssertEqual("variantA", response as? String)
+    } reject: { _, _, _ in
+      XCTFail("Should not go here")
+    }
+  }
+
   func testReset() {
     module.reset()
     XCTAssertEqual(1, fakeUsercentrics.resetCount)
@@ -451,6 +460,11 @@ class RNUsercentricsModuleTests: XCTestCase {
   func testSetCMPId() {
     module.setCMPId(123)
     XCTAssertEqual(Int32(123), fakeUsercentrics.cmpId)
+  }
+
+  func testSetABTestingVariant() {
+    module.setABTestingVariant("variantA")
+    XCTAssertEqual(String("variantA"), fakeUsercentrics.variant)
   }
 
   func testShowFirstLayer() {

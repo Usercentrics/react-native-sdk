@@ -74,6 +74,11 @@ internal class RNUsercentricsModule(
     }
 
     @ReactMethod
+    fun getABTestingVariant(promise: Promise) {
+        promise.resolve(usercentricsProxy.instance.getABTestingVariant())
+    }
+
+    @ReactMethod
     fun getConsents(promise: Promise) {
         promise.resolve(usercentricsProxy.instance.getConsents().toWritableArray())
     }
@@ -86,6 +91,11 @@ internal class RNUsercentricsModule(
     @ReactMethod
     fun setCMPId(id: Int) {
         usercentricsProxy.instance.setCMPId(id)
+    }
+
+   @ReactMethod
+    fun setABTestingVariant(variant: String) {
+        usercentricsProxy.instance.setABTestingVariant(variant)
     }
 
     @ReactMethod

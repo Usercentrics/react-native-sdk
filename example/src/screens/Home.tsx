@@ -11,6 +11,8 @@ import {
 
 export const HomeScreen = ({ navigation }: { navigation: any }) => {
     async function showFirstLayer(options: FirstLayerOptions = defaultOptions) {
+        // const bannerSettings = await getBannerSettings()
+        // const options = new FirstLayerOptions(UsercentriwcsLayout.popupBottom, bannerSettings)
         const response = await Usercentrics.showFirstLayer(options);
         console.log("Consents -> ${response.consents}", response.consents);
         console.log("User Interaction -> ${response.userInteraction}", response.userInteraction);
@@ -23,6 +25,8 @@ export const HomeScreen = ({ navigation }: { navigation: any }) => {
                 showCloseButton: true
             }
         };
+        //const bannerSettings = await getBannerSettings()
+
         const options = new SecondLayerOptions(bannerSettings);
 
         const response = await Usercentrics.showSecondLayer(options);
@@ -30,6 +34,29 @@ export const HomeScreen = ({ navigation }: { navigation: any }) => {
         console.log("User Interaction -> ${response.userInteraction}", response.userInteraction);
         console.log("Controller Id -> ${response.controllerId}", response.controllerId);
     }
+
+    // async function getBannerSettings(){
+    //     const variant = await Usercentrics.getABTestingVariant()
+    //     let bannerSettings: BannerSettings;
+    //
+    //     switch (variant){
+    //         case "variantA":
+    //             return bannerSettings = {/* settings for the banner with variantA */};
+    //         case "variantB":
+    //             return bannerSettings = {/* settings for the banner with variantB */};
+    //         default:
+    //             return bannerSettings = {/* default banner settings*/};
+    //    }
+    //     // 'Activate with third-party tool' option
+    //     // switch (variant){
+    //     //     case "variantA":
+    //     //         return bannerSettings = {/* settings for the banner with variantA */ variant: "variantA"};
+    //     //     case "variantB":
+    //     //         return bannerSettings = {/* settings for the banner with variantB */ variant: "variantB"};
+    //     //     default:
+    //     //         return bannerSettings = {/* default banner settings*/variant: "variantC"};
+    //     // }
+    // }
 
     const styles = StyleSheet.create({
         container: {
