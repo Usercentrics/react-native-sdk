@@ -121,7 +121,7 @@ class RNUsercentricsModuleTests: XCTestCase {
     }
   }
 
-  func testGetControllerId() {
+  func testGetABTestingVariantId() {
     fakeUsercentrics.getTestingValue = "variantA"
     module.getABTestingVariant { response in
       XCTAssertEqual("variantA", response as? String)

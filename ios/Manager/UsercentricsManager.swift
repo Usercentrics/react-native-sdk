@@ -21,7 +21,7 @@ public protocol UsercentricsManager {
     func getUserSessionData() -> String
     func getUSPData() -> CCPAData
     func getTCFData(callback: @escaping (TCFData) -> Void)
-    func getABTestingVariant() -> String
+    func getABTestingVariant() -> String?
 
     func changeLanguage(language: String, onSuccess: @escaping (() -> Void), onFailure: @escaping ((Error) -> Void))
 
@@ -77,7 +77,7 @@ final class UsercentricsManagerImplementation: UsercentricsManager {
         return UsercentricsCore.shared.getControllerId()
     }
 
-    func getABTestingVariant() -> String {
+    func getABTestingVariant() -> String? {
         return UsercentricsCore.shared.getABTestingVariant()
     }
 
