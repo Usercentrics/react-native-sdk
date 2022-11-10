@@ -68,7 +68,7 @@ final class FakeUsercentricsManager: UsercentricsManager {
     return getControllerIdValue!
   }
 
-  func getABTestingVariant() -> String {
+  func getABTestingVariant() -> String? {
     return getABTestingVariantValue!
   }
 
