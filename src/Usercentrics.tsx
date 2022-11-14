@@ -35,9 +35,9 @@ export const Usercentrics = {
         return RNUsercentricsModule.getControllerId();
     },
 
-    getABTestingVariant: async (): Promise<string> => {
-            await RNUsercentricsModule.isReady();
-            return RNUsercentricsModule.getABTestingVariant();
+    getABTestingVariant: async (): Promise<string | null> => {
+        await RNUsercentricsModule.isReady();
+        return RNUsercentricsModule.getABTestingVariant();
     },
 
     getConsents: async (): Promise<[UsercentricsServiceConsent]> => {

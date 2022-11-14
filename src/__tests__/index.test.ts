@@ -202,7 +202,6 @@ describe('Test Usercentrics Module', () => {
       (): Promise<string> => Promise.resolve("abc")
     )
 
-
     const data = await Usercentrics.getControllerId();
     expect(data).toBe("abc");
   })
@@ -212,9 +211,17 @@ describe('Test Usercentrics Module', () => {
       (): Promise<string> => Promise.resolve("variantA")
     )
 
-
     const data = await Usercentrics.getABTestingVariant();
     expect(data).toBe("variantA");
+  })
+
+  test('testGetABTestingVariant_WhenNull', async () => {
+    RNUsercentricsModule.getABTestingVariant.mockImplementationOnce(
+      (): Promise<string | null> => Promise.resolve(null)
+    )
+
+    const data = await Usercentrics.getABTestingVariant();
+    expect(data).toBe(null);
   })
 
   test('testChangeLanguage', async () => {

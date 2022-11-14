@@ -36,7 +36,8 @@ internal class RNUsercentricsModule(
                 val assetManager = currentActivity!!.assets
 
                 val layout = options.getString("layout")!!.usercentricsLayoutFromEnumString()
-                val bannerSettings = options.getMap("bannerSettings")?.bannerSettingsFromMap(assetManager)
+                val bannerSettings =
+                    options.getMap("bannerSettings")?.bannerSettingsFromMap(assetManager)
                 usercentricsProxy.showFirstLayer(currentActivity!!, layout, bannerSettings, promise)
 
             } catch (e: Exception) {
@@ -51,7 +52,8 @@ internal class RNUsercentricsModule(
             try {
                 val assetManager = currentActivity!!.assets
 
-                val bannerSettings = options.getMap("bannerSettings")?.bannerSettingsFromMap(assetManager)
+                val bannerSettings =
+                    options.getMap("bannerSettings")?.bannerSettingsFromMap(assetManager)
                 usercentricsProxy.showSecondLayer(currentActivity!!, bannerSettings, promise)
             } catch (e: Exception) {
                 promise.reject(e)
@@ -93,7 +95,7 @@ internal class RNUsercentricsModule(
         usercentricsProxy.instance.setCMPId(id)
     }
 
-   @ReactMethod
+    @ReactMethod
     fun setABTestingVariant(variant: String) {
         usercentricsProxy.instance.setABTestingVariant(variant)
     }
