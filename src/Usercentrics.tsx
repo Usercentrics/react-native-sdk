@@ -45,7 +45,8 @@ export const Usercentrics = {
         return RNUsercentricsModule.getCMPData();
     },
 
-    getUserSessionData: (): Promise<string> => {
+    getUserSessionData: async (): Promise<string> => {
+        await RNUsercentricsModule.isReady();
         return RNUsercentricsModule.getUserSessionData();
     },
 
