@@ -35,29 +35,6 @@ export const HomeScreen = ({ navigation }: { navigation: any }) => {
         console.log("Controller Id -> ${response.controllerId}", response.controllerId);
     }
 
-    // async function getBannerSettings(){
-    //     const variant = await Usercentrics.getABTestingVariant()
-    //     let bannerSettings: BannerSettings;
-    //
-    //     switch (variant){
-    //         case "variantA":
-    //             return bannerSettings = {/* settings for the banner with variantA */};
-    //         case "variantB":
-    //             return bannerSettings = {/* settings for the banner with variantB */};
-    //         default:
-    //             return bannerSettings = {/* default banner settings*/};
-    //    }
-    //     // 'Activate with third-party tool' option
-    //     // switch (variant){
-    //     //     case "variantA":
-    //     //         return bannerSettings = {/* settings for the banner with variantA */ variant: "variantA"};
-    //     //     case "variantB":
-    //     //         return bannerSettings = {/* settings for the banner with variantB */ variant: "variantB"};
-    //     //     default:
-    //     //         return bannerSettings = {/* default banner settings*/variant: "variantC"};
-    //     // }
-    // }
-
     const styles = StyleSheet.create({
         container: {
             flex: 1,
