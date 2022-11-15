@@ -2,7 +2,7 @@ import React from 'react';
 import { Button, StyleSheet, View } from 'react-native';
 import {
     BannerSettings, FirstLayerOptions, SecondLayerOptions, Usercentrics,
-    UsercentricsLayout
+    UsercentricsLayout, UsercentricsReadyStatus
 } from '../../../src/index';
 import {
     customizationExampleOne,
@@ -25,7 +25,6 @@ export const HomeScreen = ({ navigation }: { navigation: any }) => {
                 showCloseButton: true
             }
         };
-        //const bannerSettings = await getBannerSettings()
 
         const options = new SecondLayerOptions(bannerSettings);
 
@@ -33,6 +32,43 @@ export const HomeScreen = ({ navigation }: { navigation: any }) => {
         console.log("Consents -> ${response.consents}", response.consents);
         console.log("User Interaction -> ${response.userInteraction}", response.userInteraction);
         console.log("Controller Id -> ${response.controllerId}", response.controllerId);
+    }
+
+    async function getBannerSettings(){
+        const variant = await Usercentrics.getABTestingVariant()
+        let bannerSettings: BannerSettings;
+
+        switch (variant){
+            case "variantA":
+                return bannerSettings = {/* settings for the banner with variantA */};
+            case "variantB":
+                return bannerSettings = {/* settings for the banner with variantB */};
+            default:
+                return bannerSettings = {/* default banner settings*/};
+       }
+    }
+
+    //'Activate with third-party tool' option
+    async function getBannerSettingsThirdPartyTool(){
+        const variant = ThirdPartyTool.getABTestingVariant()
+        let bannerSettings: BannerSettings;
+
+        switch (variant){
+            case "variantA":
+                return bannerSettings = {/* settings for the banner with variantA */ variant: "variantA"};
+            case "variantB":
+                return bannerSettings = {/* settings for the banner with variantB */ variant: "variantB"};
+            default:
+                return bannerSettings = {/* default banner settings*/variant: "variantC"};
+        }
+    }
+
+    const ThirdPartyTool = {
+        getABTestingVariant: (): String | null => {
+            const variants = ["variantA", "variantB"]
+            const random = Math.floor(Math.random() * variants.length );
+            return variants[random];
+        }
     }
 
     const styles = StyleSheet.create({
