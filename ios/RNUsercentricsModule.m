@@ -35,6 +35,9 @@ RCT_EXTERN_METHOD(getTCFString:(RCTPromiseResolveBlock)resolve
 RCT_EXTERN_METHOD(getControllerId:(RCTPromiseResolveBlock)resolve
                   reject:(RCTPromiseRejectBlock)reject)
 
+RCT_EXTERN_METHOD(getABTestingVariant:(RCTPromiseResolveBlock)resolve
+                reject:(RCTPromiseRejectBlock)reject)
+
 RCT_EXTERN_METHOD(getConsents:(RCTPromiseResolveBlock)resolve
                   reject:(RCTPromiseRejectBlock)reject)
 
@@ -90,6 +93,8 @@ RCT_EXTERN_METHOD(saveOptOutForCCPA:(BOOL *)isOptedOut
                   reject:(RCTPromiseRejectBlock)reject)
 
 RCT_EXTERN_METHOD(setCMPId:(NSInteger *)id)
+
+RCT_EXTERN_METHOD(setABTestingVariant:(NSString *)variant)
 
 RCT_EXTERN_METHOD(reset)
 @end

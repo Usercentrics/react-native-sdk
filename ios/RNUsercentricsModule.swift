@@ -78,7 +78,11 @@ class RNUsercentricsModule: NSObject, RCTBridgeModule {
     @objc func setCMPId(_ id: Int) -> Void {
         usercentricsManager.setCMPId(id: Int32(id))
     }
-    
+
+    @objc func setABTestingVariant(_ variant: String) -> Void {
+        usercentricsManager.setABTestingVariant(variant: String(variant))
+    }
+
     @objc func restoreUserSession(_ controllerId: String, resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) -> Void {
         usercentricsManager.restoreUserSession(controllerId: controllerId) { status in
             resolve(status.toDictionary())
@@ -112,6 +116,10 @@ class RNUsercentricsModule: NSObject, RCTBridgeModule {
     @objc func getUSPData(_ resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) -> Void {
         resolve(usercentricsManager.getUSPData().toDictionary())
     }
+
+    @objc func getABTestingVariant(_ resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) -> Void {
+            resolve(usercentricsManager.getABTestingVariant())
+        }
     
     @objc func changeLanguage(_ language: String, resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) -> Void {
         usercentricsManager.changeLanguage(language: language) {

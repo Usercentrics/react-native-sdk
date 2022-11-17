@@ -211,6 +211,21 @@ class RNUsercentricsModuleTest {
     }
 
     @Test
+    fun testGetABTestingVariant() {
+        val usercentricsSDK = mockk<UsercentricsSDK>()
+        every { usercentricsSDK.getABTestingVariant() }.returns("variantA")
+        val usercentricsProxy = FakeUsercentricsProxy(usercentricsSDK)
+        val contextMock = mockk<ReactApplicationContext>(relaxed = true)
+        val module = RNUsercentricsModule(contextMock, usercentricsProxy)
+        val promise = FakePromise()
+
+        module.getABTestingVariant(promise)
+
+        verify(exactly = 1) { usercentricsSDK.getABTestingVariant() }
+        assertEquals("variantA", promise.resolveValue)
+    }
+
+    @Test
     fun testGetConsents() {
         val usercentricsSDK = mockk<UsercentricsSDK>()
         every { usercentricsSDK.getConsents() }.returns(GetConsentsMock.fakeWithData)
@@ -292,6 +307,20 @@ class RNUsercentricsModuleTest {
         module.setCMPId(123)
 
         verify(exactly = 1) { usercentricsSDK.setCMPId(123) }
+    }
+
+    @Test
+    fun testSetABTestingVariant() {
+        val usercentricsSDK = mockk<UsercentricsSDK>()
+        every { usercentricsSDK.setABTestingVariant("variantA") }.returns(Unit)
+
+        val usercentricsProxy = FakeUsercentricsProxy(usercentricsSDK)
+        val contextMock = mockk<ReactApplicationContext>(relaxed = true)
+        val module = RNUsercentricsModule(contextMock, usercentricsProxy)
+
+        module.setABTestingVariant("variantA")
+
+        verify(exactly = 1) { usercentricsSDK.setABTestingVariant("variantA") }
     }
 
     @Test

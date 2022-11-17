@@ -35,6 +35,11 @@ export const Usercentrics = {
         return RNUsercentricsModule.getControllerId();
     },
 
+    getABTestingVariant: async (): Promise<string | null> => {
+        await RNUsercentricsModule.isReady();
+        return RNUsercentricsModule.getABTestingVariant();
+    },
+
     getConsents: async (): Promise<[UsercentricsServiceConsent]> => {
         await RNUsercentricsModule.isReady();
         return RNUsercentricsModule.getConsents();
@@ -102,6 +107,10 @@ export const Usercentrics = {
 
     setCMPId: (id: number) => {
         RNUsercentricsModule.setCMPId(id);
+    },
+
+    setABTestingVariant: (variant: string) => {
+        RNUsercentricsModule.setABTestingVariant(variant);
     },
 
     reset: () => {
