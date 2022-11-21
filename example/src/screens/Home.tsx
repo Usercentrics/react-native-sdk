@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, StyleSheet, View } from 'react-native';
 import {
-    BannerSettings, FirstLayerOptions, SecondLayerOptions, Usercentrics,
+    BannerSettings, SecondLayerOptions, Usercentrics,
     UsercentricsLayout, UsercentricsReadyStatus
 } from '../../../src/index';
 import {
@@ -10,9 +10,8 @@ import {
 } from './CustomizationExamples';
 
 export const HomeScreen = ({ navigation }: { navigation: any }) => {
-    async function showFirstLayer(options: FirstLayerOptions = defaultOptions) {
+    async function showFirstLayer(options: BannerSettings = new BannerSettings()) {
         // const bannerSettings = await getBannerSettings()
-        // const options = new FirstLayerOptions(UsercentriwcsLayout.popupBottom, bannerSettings)
         const response = await Usercentrics.showFirstLayer(options);
         console.log("Consents -> ${response.consents}", response.consents);
         console.log("User Interaction -> ${response.userInteraction}", response.userInteraction);
@@ -84,7 +83,7 @@ export const HomeScreen = ({ navigation }: { navigation: any }) => {
 
         <View style={styles.container}>
             <Button onPress={async () => {
-                showFirstLayer();
+                 showFirstLayer();
             }} title="Show First Layer" />
 
             <Button onPress={async () => {
@@ -111,7 +110,3 @@ export const HomeScreen = ({ navigation }: { navigation: any }) => {
         </View>
     );
 };
-
-const defaultOptions: FirstLayerOptions = {
-    layout: UsercentricsLayout.popupCenter
-}

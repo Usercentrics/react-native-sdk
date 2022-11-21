@@ -1,15 +1,8 @@
-import { BannerLogo, BannerSettings } from ".";
+import { BannerLogo } from ".";
 
-export class FirstLayerOptions {
-    bannerSettings?: BannerSettings;
-
-    constructor(bannerSettings?: BannerSettings) {
-        this.bannerSettings = bannerSettings;
-    }
-}
 
 export class FirstLayerStyleSettings {
-    layout: UsercentricsLayout = UsercentricsLayout.sheet
+    layout?: UsercentricsLayout = UsercentricsLayout.sheet;
     headerImage?: HeaderImageSettings;
     title?: TitleSettings;
     message?: MessageSettings;
@@ -18,7 +11,8 @@ export class FirstLayerStyleSettings {
     cornerRadius?: Number;
     overlayColorHex?: String;
 
-    constructor(headerImage?: HeaderImageSettings,
+    constructor(layout?: UsercentricsLayout,
+        headerImage?: HeaderImageSettings,
         title?: TitleSettings,
         message?: MessageSettings,
         buttonLayout?: ButtonLayout,
@@ -26,6 +20,7 @@ export class FirstLayerStyleSettings {
         cornerRadius?: Number,
         overlayColorHex?: String
         ) {
+        this.layout = layout
         this.headerImage = headerImage;
         this.title = title;
         this.message = message;

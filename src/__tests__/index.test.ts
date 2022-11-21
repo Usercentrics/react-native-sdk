@@ -2,7 +2,7 @@ import {
   NativeModules
 } from 'react-native';
 import {
-  FirstLayerOptions,
+  BannerSettings, FirstLayerStyleSettings,
   NetworkMode,
   TCFData,
   TCFDecisionUILayer,
@@ -140,15 +140,17 @@ describe('Test Usercentrics Module', () => {
       (): Promise<any> => Promise.resolve(response)
     )
 
-    const options: FirstLayerOptions = {
-      layout: UsercentricsLayout.popupBottom
+    const bannerSettings: BannerSettings = {
+      firstLayerStyleSettings: {
+        layout: UsercentricsLayout.popupBottom
+      }
     }
 
-    const data = await Usercentrics.showFirstLayer(options)
+    const data = await Usercentrics.showFirstLayer(bannerSettings)
     expect(data).toBe(response);
 
     const call = RNUsercentricsModule.showFirstLayer.mock.calls[0][0];
-    expect(call).toBe(options)
+    expect(call).toBe(bannerSettings)
   })
 
   test('testRestoreUserSession', async () => {

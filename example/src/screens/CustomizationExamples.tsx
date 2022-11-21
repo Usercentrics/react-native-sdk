@@ -1,104 +1,104 @@
-import { Image } from 'react-native';
+import {Image} from 'react-native';
 import {
-    BannerLogo, ButtonLayout,
+    BannerLogo,
+    ButtonLayout,
     ButtonType,
-    FirstLayerOptions,
-    HeaderImageSettings, LegalLinksSettings, SectionAlignment, UsercentricsLayout
+    HeaderImageSettings,
+    LegalLinksSettings,
+    SectionAlignment,
+    UsercentricsLayout
 } from '../../../src/index';
+import {BannerSettings} from "@usercentrics/react-native-sdk";
 
-export const customizationExampleOne: FirstLayerOptions = {
-    bannerSettings: {
-        generalStyleSettings: {
-            font: {
-                regularFont: "Lora",
-                boldFont: "Lora-Regular_Bold",
-                fontSize: 14.0
-            },
-            logo: createBannerLogo(),
-            links: LegalLinksSettings.both,
+export const customizationExampleOne: BannerSettings = {
+    firstLayerStyleSettings: {
+        layout: UsercentricsLayout.sheet,
+        cornerRadius: 30.0,
+        title: {
+            textSize: 20.0,
+            textAlignment: SectionAlignment.center,
+            textColorHex: "000000",
         },
-        firstLayerStyleSettings: {
-            cornerRadius: 30.0,
-            title: {
-                textSize: 20.0,
-                textAlignment: SectionAlignment.center,
-                textColorHex: "000000",
-            },
-            message: {
-                textSize: 16.0,
-                textAlignment: SectionAlignment.left,
-                textColorHex: "181818",
-                linkTextColorHex: "000000",
-                linkTextUnderline: true,
-            },
-            buttonLayout: ButtonLayout.row(
-                [
-                    {
-                        buttonType: ButtonType.acceptAll,
-                        cornerRadius: 30.0
-                    }, {
-                        buttonType: ButtonType.more,
-                        backgroundColorHex: "00000000"
-                    }
-                ]
-            )
+        message: {
+            textSize: 16.0,
+            textAlignment: SectionAlignment.left,
+            textColorHex: "181818",
+            linkTextColorHex: "000000",
+            linkTextUnderline: true,
         },
+        buttonLayout: ButtonLayout.row(
+            [
+                {
+                    buttonType: ButtonType.acceptAll,
+                    cornerRadius: 30.0
+                }, {
+                buttonType: ButtonType.more,
+                backgroundColorHex: "00000000"
+            }
+            ]
+        )
     },
-    layout: UsercentricsLayout.popupBottom
+    generalStyleSettings: {
+        font: {
+            regularFont: "Lora",
+            boldFont: "Lora-Regular_Bold",
+            fontSize: 14.0
+        },
+        logo: createBannerLogo(),
+        links: LegalLinksSettings.both,
+    }
 }
 
-export const customizationExampleTwo: FirstLayerOptions = {
-    layout: UsercentricsLayout.full,
-    bannerSettings: {
-        generalStyleSettings: {
-            font: {
-                regularFont: "Lora",
-                boldFont: "Lora-Regular_Bold",
-                fontSize: 14.0
-            },
-            linkColorHex: "FFFFFF",
-            tabColorHex: "FFFFFF",
-            textColorHex: "#e1e1e1",
-            layerBackgroundColorHex: "#181818",
-            layerBackgroundSecondaryColorHex: "#2a2a2a",
-            bordersColorHex: "2a2a2a",
-            logo: createBannerLogo(),
-            links: LegalLinksSettings.secondLayerOnly
+export const customizationExampleTwo: BannerSettings = {
+    firstLayerStyleSettings: {
+        layout: UsercentricsLayout.sheet,
+        cornerRadius: 20,
+        backgroundColorHex: "181818",
+        headerImage: HeaderImageSettings.logo(createBannerLogo()),
+        title: {
+            textSize: 22.0,
+            textColorHex: "FFFFFF",
+            textAlignment: SectionAlignment.center
         },
-        firstLayerStyleSettings: {
-            cornerRadius: 20,
-            backgroundColorHex: "181818",
-            headerImage: HeaderImageSettings.logo(createBannerLogo()),
-            title: {
-                textSize: 22.0,
-                textColorHex: "FFFFFF",
-                textAlignment: SectionAlignment.center
-            },
-            message: {
-                textSize: 18.0,
+        message: {
+            textSize: 18.0,
+            textColorHex: "FFFFFF"
+        },
+        buttonLayout: ButtonLayout.grid([
+            [
+                {
+                    buttonType: ButtonType.acceptAll,
+                    cornerRadius: 30.0,
+                    backgroundColorHex: "FFFFFF",
+                    textColorHex: "000000",
+                }, {
+                buttonType: ButtonType.denyAll,
+                backgroundColorHex: "00000000",
                 textColorHex: "FFFFFF"
-            },
-            buttonLayout: ButtonLayout.grid([
-                [
-                    {
-                        buttonType: ButtonType.acceptAll,
-                        cornerRadius: 30.0,
-                        backgroundColorHex: "FFFFFF",
-                        textColorHex: "000000",
-                    }, {
-                        buttonType: ButtonType.denyAll,
-                        backgroundColorHex: "00000000",
-                        textColorHex: "FFFFFF"
-                    }
-                ], [
-                    {
-                        buttonType: ButtonType.more,
-                        cornerRadius: 30.0,
-                        textColorHex: "000000"
-                    }
-                ]
-            ])
+            }
+            ], [
+                {
+                    buttonType: ButtonType.more,
+                    cornerRadius: 30.0,
+                    textColorHex: "000000"
+                }
+            ]
+        ])
+    },
+    generalStyleSettings: {
+        font: {
+            regularFont: "Lora",
+            boldFont: "Lora-Regular_Bold",
+            fontSize: 14.0
         },
+        linkColorHex: "FFFFFF",
+        tabColorHex: "FFFFFF",
+        textColorHex: "#e1e1e1",
+        layerBackgroundColorHex: "#181818",
+        layerBackgroundSecondaryColorHex: "#2a2a2a",
+        bordersColorHex: "2a2a2a",
+        logo: createBannerLogo(),
+        links: LegalLinksSettings.secondLayerOnly
     }
 }
 

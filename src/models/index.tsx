@@ -1,10 +1,10 @@
 export { BannerFont, BannerLogo, BannerSettings, LegalLinksSettings } from "./BannerSettings";
 export { CCPAData } from './CCPAData';
 export {
-    ButtonLayout, ButtonSettings, ButtonType, FirstLayerOptions,
+    ButtonLayout, ButtonSettings, ButtonType,
     FirstLayerStyleSettings,
     HeaderImageSettings, MessageSettings, SectionAlignment, TitleSettings, UsercentricsLayout
-} from './FirstLayerOptions';
+} from './FirstLayerSettings';
 export { NetworkMode } from "./NetworkMode";
 export { SecondLayerOptions, SecondLayerStyleSettings } from './SecondLayerOptions';
 export { TCFData } from './TCFData';
