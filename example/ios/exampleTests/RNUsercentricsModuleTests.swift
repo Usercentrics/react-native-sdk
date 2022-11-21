@@ -468,9 +468,9 @@ class RNUsercentricsModuleTests: XCTestCase {
   }
 
   func testShowFirstLayer() {
-    let dict: NSDictionary = ["layout": "POPUP_CENTER"]
+    let dict: NSDictionary = [:]
     module.showFirstLayer(dict) { result in
-      XCTAssertEqual(.popup(position: .center), self.fakeUsercentrics.layout)
+      XCTAssertEqual(.popup(position: .center), self.fakeUsercentrics.showFirstLayerBannerSettings?.firstLayerStyleSettings?.layout)
     } reject: { _, _, _ in
       XCTFail("Should not go here")
     }

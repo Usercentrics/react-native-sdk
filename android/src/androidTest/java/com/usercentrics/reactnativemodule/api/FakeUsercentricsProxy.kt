@@ -49,7 +49,6 @@ internal class FakeUsercentricsProxy(
         resetCount++
     }
 
-    var showFirstLayerLayout: UsercentricsLayout? = null
     var showFirstLayerBannerSettings: BannerSettings? = null
     var showFirstLayerStyle: FirstLayerStyleSettings? = null
 
