@@ -13,7 +13,7 @@ interface UsercentricsProxy {
 
     fun initialize(context: Context, options: UsercentricsOptions)
     fun isReady(onSuccess: (UsercentricsReadyStatus) -> Unit, onFailure: (UsercentricsError) -> Unit)
-    fun showFirstLayer(activity: Activity, layout: UsercentricsLayout, bannerSettings: BannerSettings?, promise: Promise)
+    fun showFirstLayer(activity: Activity, bannerSettings: BannerSettings?, promise: Promise)
     fun showSecondLayer(activity: Activity, bannerSettings: BannerSettings?, promise: Promise)
     fun reset()
 }
@@ -33,8 +33,8 @@ internal class UsercentricsProxyImpl : UsercentricsProxy {
 
     override fun isReady(onSuccess: (UsercentricsReadyStatus) -> Unit, onFailure: (UsercentricsError) -> Unit) = Usercentrics.isReady(onSuccess, onFailure)
 
-    override fun showFirstLayer(activity: Activity, layout: UsercentricsLayout, bannerSettings: BannerSettings?, promise: Promise) {
-        UsercentricsBanner(activity, bannerSettings).showFirstLayer(layout) {
+    override fun showFirstLayer(activity: Activity, bannerSettings: BannerSettings?, promise: Promise) {
+        UsercentricsBanner(activity, bannerSettings).showFirstLayer() {
             promise.resolve(it?.toWritableMap())
         }
     }

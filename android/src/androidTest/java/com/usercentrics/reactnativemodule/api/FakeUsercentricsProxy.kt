@@ -53,8 +53,7 @@ internal class FakeUsercentricsProxy(
     var showFirstLayerBannerSettings: BannerSettings? = null
     var showFirstLayerStyle: FirstLayerStyleSettings? = null
 
-    override fun showFirstLayer(activity: Activity, layout: UsercentricsLayout, bannerSettings: BannerSettings?, promise: Promise) {
-        this.showFirstLayerLayout = layout
+    override fun showFirstLayer(activity: Activity, bannerSettings: BannerSettings?, promise: Promise) {
         this.showFirstLayerBannerSettings = bannerSettings
         this.showFirstLayerStyle = bannerSettings?.firstLayerStyleSettings
     }

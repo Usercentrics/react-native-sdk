@@ -35,6 +35,7 @@ internal fun ReadableMap.bannerLogoFromMap(): UsercentricsImage? {
 
 internal fun ReadableMap.firstLayerStyleSettingsFromMap(assetManager: AssetManager): FirstLayerStyleSettings {
     return FirstLayerStyleSettings(
+        layout = getString("layout")?.usercentricsLayoutFromEnumString(),
         headerImage = getMap("headerImage")?.headerImageFromMap(),
         title = getMap("title")?.titleFromMap(assetManager),
         message = getMap("message")?.messageFromMap(assetManager),

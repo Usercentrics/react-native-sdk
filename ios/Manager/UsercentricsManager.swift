@@ -9,7 +9,6 @@ public protocol UsercentricsManager {
     func restoreUserSession(controllerId: String, onSuccess: @escaping ((UsercentricsReadyStatus) -> Void), onFailure: @escaping ((Error) -> Void))
 
     func showFirstLayer(bannerSettings: BannerSettings?,
-                        layout: UsercentricsLayout,
                         dismissViewHandler: @escaping (UsercentricsConsentUserResponse) -> Void)
 
     func showSecondLayer(bannerSettings: BannerSettings?,
@@ -58,10 +57,8 @@ final class UsercentricsManagerImplementation: UsercentricsManager {
     }
 
     func showFirstLayer(bannerSettings: BannerSettings?,
-                        layout: UsercentricsLayout,
                         dismissViewHandler: @escaping (UsercentricsConsentUserResponse) -> Void) {
-        UsercentricsBanner(bannerSettings: bannerSettings).showFirstLayer(layout: layout,
-                                                                          completionHandler: dismissViewHandler)
+        UsercentricsBanner(bannerSettings: bannerSettings).showFirstLayer(completionHandler: dismissViewHandler)
     }
 
     func showSecondLayer(bannerSettings: BannerSettings?,

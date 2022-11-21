@@ -1,16 +1,15 @@
 import { BannerLogo, BannerSettings } from ".";
 
 export class FirstLayerOptions {
-    layout: UsercentricsLayout;
     bannerSettings?: BannerSettings;
 
-    constructor(layout: UsercentricsLayout, bannerSettings?: BannerSettings) {
-        this.layout = layout;
+    constructor(bannerSettings?: BannerSettings) {
         this.bannerSettings = bannerSettings;
     }
 }
 
 export class FirstLayerStyleSettings {
+    layout: UsercentricsLayout = UsercentricsLayout.sheet
     headerImage?: HeaderImageSettings;
     title?: TitleSettings;
     message?: MessageSettings;

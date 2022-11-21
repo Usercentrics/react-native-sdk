@@ -43,17 +43,14 @@ class RNUsercentricsModule: NSObject, RCTBridgeModule {
     @objc func showFirstLayer(_ dict: NSDictionary, resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) {
         queue.async { [weak self] in
             guard
-                let self = self,
-                let layoutString = dict["layout"] as? String,
-                let layout = UsercentricsLayout.from(enumString: layoutString)
+                let self = self
             else {
                 reject("usercentrics_reactNative_showFirstLayer_error", RNUsercentricsModuleError.invalidData.localizedDescription, RNUsercentricsModuleError.invalidData)
                 return
             }
 
             let bannerSettingsDict = dict["bannerSettings"] as? NSDictionary
-            self.usercentricsManager.showFirstLayer(bannerSettings: BannerSettings(from: bannerSettingsDict),
-                                                    layout: layout) { response in
+            self.usercentricsManager.showFirstLayer(bannerSettings: BannerSettings(from: bannerSettingsDict)) { response in
                 resolve(response.toDictionary())
             }
         }

@@ -35,10 +35,9 @@ internal class RNUsercentricsModule(
             try {
                 val assetManager = currentActivity!!.assets
 
-                val layout = options.getString("layout")!!.usercentricsLayoutFromEnumString()
                 val bannerSettings =
                     options.getMap("bannerSettings")?.bannerSettingsFromMap(assetManager)
-                usercentricsProxy.showFirstLayer(currentActivity!!, layout, bannerSettings, promise)
+                usercentricsProxy.showFirstLayer(currentActivity!!, bannerSettings, promise)
 
             } catch (e: Exception) {
                 promise.reject(e)
