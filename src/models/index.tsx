@@ -6,7 +6,7 @@ export {
     HeaderImageSettings, MessageSettings, SectionAlignment, TitleSettings, UsercentricsLayout
 } from './FirstLayerSettings';
 export { NetworkMode } from "./NetworkMode";
-export { SecondLayerOptions, SecondLayerStyleSettings } from './SecondLayerOptions';
+export { SecondLayerStyleSettings } from './SecondLayerSettings';
 export { TCFData } from './TCFData';
 export { TCFDecisionUILayer } from './TCFDecisionUILayer';
 export { TCFUserDecisionOnPurpose, TCFUserDecisionOnSpecialFeature, TCFUserDecisionOnVendor, TCFUserDecisions } from './TCFUserDecisions';

@@ -2,8 +2,6 @@ import { NativeModules } from 'react-native';
 import {
     BannerSettings,
     CCPAData,
-    FirstLayerStyleSettings,
-    SecondLayerOptions,
     TCFData,
     TCFDecisionUILayer,
     TCFUserDecisions,
@@ -32,7 +30,7 @@ export const Usercentrics = {
         return RNUsercentricsModule.showFirstLayer(options);
     },
 
-    showSecondLayer: async (options: SecondLayerOptions): Promise<UsercentricsConsentUserResponse> => {
+    showSecondLayer: async (options: BannerSettings): Promise<UsercentricsConsentUserResponse> => {
         await RNUsercentricsModule.isReady();
         return RNUsercentricsModule.showSecondLayer(options);
     },

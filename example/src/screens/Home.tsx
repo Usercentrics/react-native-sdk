@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, StyleSheet, View } from 'react-native';
 import {
-    BannerSettings, SecondLayerOptions, Usercentrics,
+    BannerSettings, Usercentrics,
     UsercentricsLayout, UsercentricsReadyStatus
 } from '../../../src/index';
 import {
@@ -25,9 +25,7 @@ export const HomeScreen = ({ navigation }: { navigation: any }) => {
             }
         };
 
-        const options = new SecondLayerOptions(bannerSettings);
-
-        const response = await Usercentrics.showSecondLayer(options);
+        const response = await Usercentrics.showSecondLayer(bannerSettings);
         console.log("Consents -> ${response.consents}", response.consents);
         console.log("User Interaction -> ${response.userInteraction}", response.userInteraction);
         console.log("Controller Id -> ${response.controllerId}", response.controllerId);

@@ -1,12 +1,4 @@
-import { BannerSettings, ButtonLayout } from ".";
-
-export class SecondLayerOptions {
-    bannerSettings?: BannerSettings;
-
-    constructor(bannerSettings?: BannerSettings) {
-        this.bannerSettings = bannerSettings;
-    }
-}
+import { ButtonLayout } from ".";
 
 export class SecondLayerStyleSettings {
     buttonLayout?: ButtonLayout;
