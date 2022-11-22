@@ -2,7 +2,7 @@ import { BannerLogo } from ".";
 
 
 export class FirstLayerStyleSettings {
-    layout?: UsercentricsLayout = UsercentricsLayout.sheet;
+    layout?: UsercentricsLayout;
     headerImage?: HeaderImageSettings;
     title?: TitleSettings;
     message?: MessageSettings;

@@ -42,6 +42,15 @@ class RNUsercentricsModuleTest {
             putInt("networkMode", 1)
         }
 
+        private val bannerSettings = mapOf(
+            "bannerSettings" to mapOf(
+                "variant" to null,
+                "firstLayerStyleSettings" to null,
+                "secondLayerStyleSettings" to null,
+                "generalStyleSettings" to null
+            )
+        ).toWritableMap()
+
         private val usercentricsConsentHistoryEntries = listOf(
             UsercentricsConsentHistoryEntry(
                 status = false,
@@ -610,5 +619,29 @@ class RNUsercentricsModuleTest {
         module.reset()
 
         assertEquals(1, usercentricsProxy.resetCount)
+    }
+
+    @Test
+    fun testShowFirstLayer() {
+        val usercentricsProxy = FakeUsercentricsProxy()
+        val contextMock = mockk<ReactApplicationContext>(relaxed = true)
+        val module = RNUsercentricsModule(contextMock, usercentricsProxy)
+        val promise = FakePromise()
+        module.showFirstLayer(bannerSettings, promise)
+
+        assertEquals(BannerSettings(), usercentricsProxy.showFirstLayerBannerSettings)
+
+    }
+
+    @Test
+    fun testShowSecondLayer() {
+        val usercentricsProxy = FakeUsercentricsProxy()
+        val contextMock = mockk<ReactApplicationContext>(relaxed = true)
+        val module = RNUsercentricsModule(contextMock, usercentricsProxy)
+        val promise = FakePromise()
+        module.showSecondLayer(bannerSettings, promise)
+
+        assertEquals(BannerSettings(), usercentricsProxy.showSecondLayerBannerSettings)
+
     }
 }
