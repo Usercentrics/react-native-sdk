@@ -16,7 +16,7 @@ internal class RNUsercentricsModule(
 
     @ReactMethod
     fun configure(options: ReadableMap) {
-        val usercentricsOptions = options.usercentricsOptionsFromMap() ?: return
+        val usercentricsOptions = options.usercentricsOptionsFromMap()
         usercentricsProxy.initialize(reactApplicationContext, usercentricsOptions)
     }
 

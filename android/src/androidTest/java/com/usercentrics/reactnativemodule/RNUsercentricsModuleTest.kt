@@ -2,10 +2,7 @@ package com.usercentrics.reactnativemodule
 
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
-import com.facebook.react.bridge.JavaOnlyMap
-import com.facebook.react.bridge.ReactApplicationContext
-import com.facebook.react.bridge.WritableArray
-import com.facebook.react.bridge.WritableMap
+import com.facebook.react.bridge.*
 import com.facebook.soloader.SoLoader
 import com.usercentrics.reactnativemodule.api.FakeUsercentricsProxy
 import com.usercentrics.reactnativemodule.fake.FakePromise
@@ -42,14 +39,25 @@ class RNUsercentricsModuleTest {
             putInt("networkMode", 1)
         }
 
-        private val bannerSettings = mapOf(
-            "bannerSettings" to mapOf(
-                "variant" to null,
-                "firstLayerStyleSettings" to null,
-                "secondLayerStyleSettings" to null,
-                "generalStyleSettings" to null
-            )
-        ).toWritableMap()
+        private val bannerSettingsMap = mapOf(
+            "variant" to null,
+            "firstLayerStyleSettings" to mapOf(
+                "layout" to "POPUP_CENTER",
+            ),
+            "secondLayerStyleSettings" to mapOf(
+                "showCloseButton" to true,
+            ),
+            "generalStyleSettings" to null
+        )
+
+        private val expectedBannerSettings = BannerSettings(
+            firstLayerStyleSettings = FirstLayerStyleSettings(
+                layout = UsercentricsLayout.Popup(
+                    PopupPosition.CENTER
+                )
+            ),
+            secondLayerStyleSettings = SecondLayerStyleSettings(showCloseButton = true),
+        )
 
         private val usercentricsConsentHistoryEntries = listOf(
             UsercentricsConsentHistoryEntry(
@@ -627,10 +635,9 @@ class RNUsercentricsModuleTest {
         val contextMock = mockk<ReactApplicationContext>(relaxed = true)
         val module = RNUsercentricsModule(contextMock, usercentricsProxy)
         val promise = FakePromise()
-        module.showFirstLayer(bannerSettings, promise)
-
-        assertEquals(BannerSettings(), usercentricsProxy.showFirstLayerBannerSettings)
-
+        module.showFirstLayer(bannerSettingsMap.toWritableMap(), promise)
+        promise.await()
+        assertEquals(expectedBannerSettings, usercentricsProxy.showFirstLayerBannerSettings)
     }
 
     @Test
@@ -639,9 +646,8 @@ class RNUsercentricsModuleTest {
         val contextMock = mockk<ReactApplicationContext>(relaxed = true)
         val module = RNUsercentricsModule(contextMock, usercentricsProxy)
         val promise = FakePromise()
-        module.showSecondLayer(bannerSettings, promise)
-
-        assertEquals(BannerSettings(), usercentricsProxy.showSecondLayerBannerSettings)
-
+        module.showSecondLayer(bannerSettingsMap.toWritableMap(), promise)
+        promise.await()
+        assertEquals(expectedBannerSettings, usercentricsProxy.showSecondLayerBannerSettings)
     }
 }
