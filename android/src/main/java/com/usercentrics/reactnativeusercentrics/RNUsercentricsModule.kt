@@ -35,8 +35,7 @@ internal class RNUsercentricsModule(
             try {
                 val assetManager = currentActivity!!.assets
 
-                val bannerSettings =
-                    options.getMap("bannerSettings")?.bannerSettingsFromMap(assetManager)
+                val bannerSettings = options.bannerSettingsFromMap(assetManager)
                 usercentricsProxy.showFirstLayer(currentActivity!!, bannerSettings, promise)
 
             } catch (e: Exception) {
@@ -51,8 +50,7 @@ internal class RNUsercentricsModule(
             try {
                 val assetManager = currentActivity!!.assets
 
-                val bannerSettings =
-                    options.getMap("bannerSettings")?.bannerSettingsFromMap(assetManager)
+                val bannerSettings = options.bannerSettingsFromMap(assetManager)
                 usercentricsProxy.showSecondLayer(currentActivity!!, bannerSettings, promise)
             } catch (e: Exception) {
                 promise.reject(e)

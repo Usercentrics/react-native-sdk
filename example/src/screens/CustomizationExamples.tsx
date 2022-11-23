@@ -1,18 +1,16 @@
-import {Image} from 'react-native';
+import { Image } from 'react-native';
 import {
-    BannerLogo,
-    ButtonLayout,
+    BannerLogo, BannerSettings, ButtonLayout,
     ButtonType,
     HeaderImageSettings,
     LegalLinksSettings,
     SectionAlignment,
     UsercentricsLayout
 } from '../../../src/index';
-import {BannerSettings} from "@usercentrics/react-native-sdk";
 
 export const customizationExampleOne: BannerSettings = {
     firstLayerStyleSettings: {
-        layout: UsercentricsLayout.sheet,
+        layout: UsercentricsLayout.popupCenter,
         cornerRadius: 30.0,
         title: {
             textSize: 20.0,
@@ -32,11 +30,14 @@ export const customizationExampleOne: BannerSettings = {
                     buttonType: ButtonType.acceptAll,
                     cornerRadius: 30.0
                 }, {
-                buttonType: ButtonType.more,
-                backgroundColorHex: "00000000"
-            }
+                    buttonType: ButtonType.more,
+                    backgroundColorHex: "00000000"
+                }
             ]
         )
+    },
+    secondLayerStyleSettings: {
+        showCloseButton: true,
     },
     generalStyleSettings: {
         font: {
@@ -51,7 +52,7 @@ export const customizationExampleOne: BannerSettings = {
 
 export const customizationExampleTwo: BannerSettings = {
     firstLayerStyleSettings: {
-        layout: UsercentricsLayout.sheet,
+        layout: UsercentricsLayout.full,
         cornerRadius: 20,
         backgroundColorHex: "181818",
         headerImage: HeaderImageSettings.logo(createBannerLogo()),
@@ -72,10 +73,10 @@ export const customizationExampleTwo: BannerSettings = {
                     backgroundColorHex: "FFFFFF",
                     textColorHex: "000000",
                 }, {
-                buttonType: ButtonType.denyAll,
-                backgroundColorHex: "00000000",
-                textColorHex: "FFFFFF"
-            }
+                    buttonType: ButtonType.denyAll,
+                    backgroundColorHex: "00000000",
+                    textColorHex: "FFFFFF"
+                }
             ], [
                 {
                     buttonType: ButtonType.more,

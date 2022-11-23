@@ -174,16 +174,16 @@ final class FakeUsercentricsManager: UsercentricsManager {
   }
 
   var showFirstLayerBannerSettings: BannerSettings?
-  var layoutSettings: FirstLayerStyleSettings?
-  
+
   func showFirstLayer(bannerSettings: BannerSettings?,
                       dismissViewHandler: @escaping (UsercentricsConsentUserResponse) -> Void) {
     self.showFirstLayerBannerSettings = bannerSettings
-    self.layoutSettings = bannerSettings?.firstLayerStyleSettings
+    dismissViewHandler(UsercentricsConsentUserResponse(consents: [], controllerId: "", userInteraction: .acceptAll))
   }
 
-  var showCloseButton: Bool?
+  var showSecondLayerBannerSettings: BannerSettings?
   func showSecondLayer(bannerSettings: BannerSettings?, dismissViewHandler: @escaping (UsercentricsConsentUserResponse) -> Void) {
-    self.showCloseButton = bannerSettings?.secondLayerStyleSettings?.showCloseButton
+    self.showSecondLayerBannerSettings = bannerSettings
+    dismissViewHandler(UsercentricsConsentUserResponse(consents: [], controllerId: "", userInteraction: .acceptAll))
   }
 }

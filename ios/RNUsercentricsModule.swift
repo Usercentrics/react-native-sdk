@@ -49,8 +49,7 @@ class RNUsercentricsModule: NSObject, RCTBridgeModule {
                 return
             }
 
-            let bannerSettingsDict = dict["bannerSettings"] as? NSDictionary
-            self.usercentricsManager.showFirstLayer(bannerSettings: BannerSettings(from: bannerSettingsDict)) { response in
+            self.usercentricsManager.showFirstLayer(bannerSettings: BannerSettings(from: dict)) { response in
                 resolve(response.toDictionary())
             }
         }
@@ -65,8 +64,7 @@ class RNUsercentricsModule: NSObject, RCTBridgeModule {
                 return
             }
 
-            let bannerSettingsDict = dict["bannerSettings"] as? NSDictionary
-            self.usercentricsManager.showSecondLayer(bannerSettings: BannerSettings(from: bannerSettingsDict)) { response in
+            self.usercentricsManager.showSecondLayer(bannerSettings: BannerSettings(from: dict)) { response in
                 resolve(response.toDictionary())
             }
         }

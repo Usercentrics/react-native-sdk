@@ -1,8 +1,7 @@
 import React from 'react';
 import { Button, StyleSheet, View } from 'react-native';
 import {
-    BannerSettings, Usercentrics,
-    UsercentricsLayout, UsercentricsReadyStatus
+    BannerSettings, Usercentrics
 } from '../../../src/index';
 import {
     customizationExampleOne,
@@ -31,39 +30,39 @@ export const HomeScreen = ({ navigation }: { navigation: any }) => {
         console.log("Controller Id -> ${response.controllerId}", response.controllerId);
     }
 
-    async function getBannerSettings(){
+    async function getBannerSettings() {
         const variant = await Usercentrics.getABTestingVariant()
         let bannerSettings: BannerSettings;
 
-        switch (variant){
+        switch (variant) {
             case "variantA":
-                return bannerSettings = {/* settings for the banner with variantA */};
+                return bannerSettings = {/* settings for the banner with variantA */ };
             case "variantB":
-                return bannerSettings = {/* settings for the banner with variantB */};
+                return bannerSettings = {/* settings for the banner with variantB */ };
             default:
-                return bannerSettings = {/* default banner settings*/};
-       }
+                return bannerSettings = {/* default banner settings*/ };
+        }
     }
 
     //'Activate with third-party tool' option
-    async function getBannerSettingsThirdPartyTool(){
+    async function getBannerSettingsThirdPartyTool() {
         const variant = ThirdPartyTool.getABTestingVariant()
         let bannerSettings: BannerSettings;
 
-        switch (variant){
+        switch (variant) {
             case "variantA":
-                return bannerSettings = {/* settings for the banner with variantA */ variant: "variantA"};
+                return bannerSettings = {/* settings for the banner with variantA */ variant: "variantA" };
             case "variantB":
-                return bannerSettings = {/* settings for the banner with variantB */ variant: "variantB"};
+                return bannerSettings = {/* settings for the banner with variantB */ variant: "variantB" };
             default:
-                return bannerSettings = {/* default banner settings*/variant: "variantC"};
+                return bannerSettings = {/* default banner settings*/variant: "variantC" };
         }
     }
 
     const ThirdPartyTool = {
         getABTestingVariant: (): String | null => {
             const variants = ["variantA", "variantB"]
-            const random = Math.floor(Math.random() * variants.length );
+            const random = Math.floor(Math.random() * variants.length);
             return variants[random];
         }
     }
@@ -81,7 +80,7 @@ export const HomeScreen = ({ navigation }: { navigation: any }) => {
 
         <View style={styles.container}>
             <Button onPress={async () => {
-                 showFirstLayer();
+                showFirstLayer();
             }} title="Show First Layer" />
 
             <Button onPress={async () => {

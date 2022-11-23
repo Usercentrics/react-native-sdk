@@ -5,9 +5,9 @@ extension BannerSettings {
     init?(from dictionary: NSDictionary?) {
         guard let dictionary = dictionary else { return nil }
 
-        let generalStyleSettingsDict = dictionary["generalStyleSettings"] as? NSDictionary ?? [:]
-
-        let bannerFontHolder = BannerFontHolder(from: generalStyleSettingsDict["font"] as? NSDictionary)
+        let generalStyleSettingsDict = dictionary["generalStyleSettings"] as? NSDictionary
+        let bannerFontHolder = BannerFontHolder(from: generalStyleSettingsDict?["font"] as? NSDictionary)
+        let generalStyleSettings = GeneralStyleSettings(from: generalStyleSettingsDict, bannerFontHolder: bannerFontHolder)
 
         let firstLayerStyleSettingsDict = dictionary["firstLayerStyleSettings"] as? NSDictionary
         let firstLayerSettings = FirstLayerStyleSettings(from: firstLayerStyleSettingsDict, bannerFontHolder: bannerFontHolder)
@@ -15,27 +15,34 @@ extension BannerSettings {
         let secondLayerStyleSettingsDict = dictionary["secondLayerStyleSettings"] as? NSDictionary
         let secondLayerSettings = SecondLayerStyleSettings(from: secondLayerStyleSettingsDict, bannerFontHolder: bannerFontHolder)
 
-        let toggleStyleSettingsDict = generalStyleSettingsDict["toggleStyleSettings"] as? NSDictionary
-        let toggleStyleSettings = ToggleStyleSettings(from: toggleStyleSettingsDict)
-
-        let links = LegalLinksSettings.from(enumString: generalStyleSettingsDict["links"] as? String)
-        let font = bannerFontHolder?.font
-        let logo = UIImage(from: generalStyleSettingsDict["logo"] as? NSDictionary)
-
-        let generalStyleSettings = GeneralStyleSettings(font: font,
-                                                        logo: logo,
-                                                        links: links,
-                                                        textColor: UIColor(unsafeHex: generalStyleSettingsDict["textColorHex"] as? String),
-                                                        layerBackgroundColor: UIColor(unsafeHex: generalStyleSettingsDict["layerBackgroundColorHex"] as? String),
-                                                        layerBackgroundSecondaryColor: UIColor(unsafeHex: generalStyleSettingsDict["layerBackgroundSecondaryColorHex"] as? String),
-                                                        linkColor: UIColor(unsafeHex: generalStyleSettingsDict["linkColorHex"] as? String),
-                                                        tabColor: UIColor(unsafeHex: generalStyleSettingsDict["tabColorHex"] as? String),
-                                                        bordersColor: UIColor(unsafeHex: generalStyleSettingsDict["bordersColorHex"] as? String),
-                                                        toggleStyleSettings: toggleStyleSettings)
-
         self.init(generalStyleSettings: generalStyleSettings,
                   firstLayerStyleSettings: firstLayerSettings,
                   secondLayerStyleSettings: secondLayerSettings)
+    }
+}
+
+
+extension GeneralStyleSettings {
+    init?(from dictionary: NSDictionary?, bannerFontHolder: BannerFontHolder?) {
+        guard let dictionary = dictionary else { return nil }
+
+        let toggleStyleSettingsDict = dictionary["toggleStyleSettings"] as? NSDictionary
+        let toggleStyleSettings = ToggleStyleSettings(from: toggleStyleSettingsDict)
+
+        let links = LegalLinksSettings.from(enumString: dictionary["links"] as? String)
+        let font = bannerFontHolder?.font
+        let logo = UIImage(from: dictionary["logo"] as? NSDictionary)
+
+        self.init(font: font,
+                  logo: logo,
+                  links: links,
+                  textColor: UIColor(unsafeHex: dictionary["textColorHex"] as? String),
+                  layerBackgroundColor: UIColor(unsafeHex: dictionary["layerBackgroundColorHex"] as? String),
+                  layerBackgroundSecondaryColor: UIColor(unsafeHex: dictionary["layerBackgroundSecondaryColorHex"] as? String),
+                  linkColor: UIColor(unsafeHex: dictionary["linkColorHex"] as? String),
+                  tabColor: UIColor(unsafeHex: dictionary["tabColorHex"] as? String),
+                  bordersColor: UIColor(unsafeHex: dictionary["bordersColorHex"] as? String),
+                  toggleStyleSettings: toggleStyleSettings)
     }
 }
 
@@ -87,7 +94,8 @@ extension FirstLayerStyleSettings {
                   buttonLayout: ButtonLayout.from(dictionary: dictionary["buttonLayout"] as? NSDictionary, fallbackFont: bannerFontHolder?.boldFont),
                   backgroundColor: UIColor(unsafeHex: dictionary["backgroundColorHex"] as? String),
                   cornerRadius: dictionary["cornerRadius"] as? CGFloat,
-                  overlayColor: UIColor(unsafeHex: dictionary["overlayColorHex"] as? String))
+                  overlayColor: UIColor(unsafeHex: dictionary["overlayColorHex"] as? String),
+                  layout: UsercentricsLayout.from(enumString: dictionary["layout"] as? String))
     }
 }
 
@@ -95,8 +103,10 @@ extension SecondLayerStyleSettings {
     init?(from dictionary: NSDictionary?, bannerFontHolder: BannerFontHolder?) {
         guard let dictionary = dictionary else { return nil }
 
-        self.init(buttonLayout: ButtonLayout.from(dictionary: dictionary["buttonLayout"] as? NSDictionary, fallbackFont: bannerFontHolder?.boldFont),
-                  showCloseButton: dictionary["showCloseButton"] as? Bool)
+        let buttonLayout = ButtonLayout.from(dictionary: dictionary["buttonLayout"] as? NSDictionary, fallbackFont: bannerFontHolder?.boldFont)
+        let showCloseButton = dictionary["showCloseButton"] as? Bool
+        self.init(buttonLayout: buttonLayout,
+                  showCloseButton: showCloseButton)
     }
 }
 
@@ -213,7 +223,9 @@ extension ButtonType {
 }
 
 extension UsercentricsLayout {
-    static func from(enumString: String) -> UsercentricsLayout? {
+    static func from(enumString: String?) -> UsercentricsLayout? {
+        guard let enumString = enumString else { return nil }
+
         switch enumString {
             case "FULL":
                 return .full
