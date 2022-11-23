@@ -1,8 +1,7 @@
 import React from 'react';
 import { Button, StyleSheet, View } from 'react-native';
 import {
-    BannerSettings, FirstLayerOptions, SecondLayerOptions, Usercentrics,
-    UsercentricsLayout, UsercentricsReadyStatus
+    BannerSettings, Usercentrics
 } from '../../../src/index';
 import {
     customizationExampleOne,
@@ -10,9 +9,8 @@ import {
 } from './CustomizationExamples';
 
 export const HomeScreen = ({ navigation }: { navigation: any }) => {
-    async function showFirstLayer(options: FirstLayerOptions = defaultOptions) {
+    async function showFirstLayer(options: BannerSettings = new BannerSettings()) {
         // const bannerSettings = await getBannerSettings()
-        // const options = new FirstLayerOptions(UsercentriwcsLayout.popupBottom, bannerSettings)
         const response = await Usercentrics.showFirstLayer(options);
         console.log("Consents -> ${response.consents}", response.consents);
         console.log("User Interaction -> ${response.userInteraction}", response.userInteraction);
@@ -26,47 +24,45 @@ export const HomeScreen = ({ navigation }: { navigation: any }) => {
             }
         };
 
-        const options = new SecondLayerOptions(bannerSettings);
-
-        const response = await Usercentrics.showSecondLayer(options);
+        const response = await Usercentrics.showSecondLayer(bannerSettings);
         console.log("Consents -> ${response.consents}", response.consents);
         console.log("User Interaction -> ${response.userInteraction}", response.userInteraction);
         console.log("Controller Id -> ${response.controllerId}", response.controllerId);
     }
 
-    async function getBannerSettings(){
+    async function getBannerSettings() {
         const variant = await Usercentrics.getABTestingVariant()
         let bannerSettings: BannerSettings;
 
-        switch (variant){
+        switch (variant) {
             case "variantA":
-                return bannerSettings = {/* settings for the banner with variantA */};
+                return bannerSettings = {/* settings for the banner with variantA */ };
             case "variantB":
-                return bannerSettings = {/* settings for the banner with variantB */};
+                return bannerSettings = {/* settings for the banner with variantB */ };
             default:
-                return bannerSettings = {/* default banner settings*/};
-       }
+                return bannerSettings = {/* default banner settings*/ };
+        }
     }
 
     //'Activate with third-party tool' option
-    async function getBannerSettingsThirdPartyTool(){
+    async function getBannerSettingsThirdPartyTool() {
         const variant = ThirdPartyTool.getABTestingVariant()
         let bannerSettings: BannerSettings;
 
-        switch (variant){
+        switch (variant) {
             case "variantA":
-                return bannerSettings = {/* settings for the banner with variantA */ variant: "variantA"};
+                return bannerSettings = {/* settings for the banner with variantA */ variant: "variantA" };
             case "variantB":
-                return bannerSettings = {/* settings for the banner with variantB */ variant: "variantB"};
+                return bannerSettings = {/* settings for the banner with variantB */ variant: "variantB" };
             default:
-                return bannerSettings = {/* default banner settings*/variant: "variantC"};
+                return bannerSettings = {/* default banner settings*/variant: "variantC" };
         }
     }
 
     const ThirdPartyTool = {
         getABTestingVariant: (): String | null => {
             const variants = ["variantA", "variantB"]
-            const random = Math.floor(Math.random() * variants.length );
+            const random = Math.floor(Math.random() * variants.length);
             return variants[random];
         }
     }
@@ -111,7 +107,3 @@ export const HomeScreen = ({ navigation }: { navigation: any }) => {
         </View>
     );
 };
-
-const defaultOptions: FirstLayerOptions = {
-    layout: UsercentricsLayout.popupCenter
-}

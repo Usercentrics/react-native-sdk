@@ -2,14 +2,22 @@ package com.usercentrics.reactnativemodule.fake
 
 import com.facebook.react.bridge.Promise
 import com.facebook.react.bridge.WritableMap
+import java.util.concurrent.CountDownLatch
 
-internal class FakePromise: Promise {
+internal class FakePromise : Promise {
 
     var resolveValue: Any? = null
     var rejectThrowable: Throwable? = null
 
+    val lock = CountDownLatch(1)
+
+    fun await() {
+        lock.await()
+    }
+
     override fun resolve(value: Any?) {
         this.resolveValue = value
+        lock.countDown()
     }
 
     override fun reject(code: String?, message: String?) {

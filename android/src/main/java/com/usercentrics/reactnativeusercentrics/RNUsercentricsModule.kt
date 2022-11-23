@@ -16,7 +16,7 @@ internal class RNUsercentricsModule(
 
     @ReactMethod
     fun configure(options: ReadableMap) {
-        val usercentricsOptions = options.usercentricsOptionsFromMap() ?: return
+        val usercentricsOptions = options.usercentricsOptionsFromMap()
         usercentricsProxy.initialize(reactApplicationContext, usercentricsOptions)
     }
 
@@ -35,10 +35,8 @@ internal class RNUsercentricsModule(
             try {
                 val assetManager = currentActivity!!.assets
 
-                val layout = options.getString("layout")!!.usercentricsLayoutFromEnumString()
-                val bannerSettings =
-                    options.getMap("bannerSettings")?.bannerSettingsFromMap(assetManager)
-                usercentricsProxy.showFirstLayer(currentActivity!!, layout, bannerSettings, promise)
+                val bannerSettings = options.bannerSettingsFromMap(assetManager)
+                usercentricsProxy.showFirstLayer(currentActivity!!, bannerSettings, promise)
 
             } catch (e: Exception) {
                 promise.reject(e)
@@ -52,8 +50,7 @@ internal class RNUsercentricsModule(
             try {
                 val assetManager = currentActivity!!.assets
 
-                val bannerSettings =
-                    options.getMap("bannerSettings")?.bannerSettingsFromMap(assetManager)
+                val bannerSettings = options.bannerSettingsFromMap(assetManager)
                 usercentricsProxy.showSecondLayer(currentActivity!!, bannerSettings, promise)
             } catch (e: Exception) {
                 promise.reject(e)

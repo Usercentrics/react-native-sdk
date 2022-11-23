@@ -24,7 +24,7 @@ private fun UsercentricsSettings.serialize(): WritableMap {
         "displayOnlyForEU" to displayOnlyForEU,
         "urlConsentInfo" to urlConsentInfo,
         "updatedAt" to updatedAt,
-        "secondLayer" to secondLayer?.serialize(),
+        "secondLayer" to secondLayer.serialize(),
         "cookiePolicyUrl" to cookiePolicyUrl,
         "tcf2" to tcf2?.serialize(),
         "ccpa" to ccpa?.serialize(),

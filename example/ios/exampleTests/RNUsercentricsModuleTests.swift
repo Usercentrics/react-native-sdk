@@ -468,18 +468,22 @@ class RNUsercentricsModuleTests: XCTestCase {
   }
 
   func testShowFirstLayer() {
-    let dict: NSDictionary = ["layout": "POPUP_CENTER"]
-    module.showFirstLayer(dict) { result in
-      XCTAssertEqual(.popup(position: .center), self.fakeUsercentrics.layout)
+    let serializedSettings: NSDictionary = [
+      "firstLayerStyleSettings": ["layout": "POPUP_CENTER"]
+    ]
+    module.showFirstLayer(serializedSettings) { result in
+      XCTAssertEqual(.popup(position: .center), self.fakeUsercentrics.showFirstLayerBannerSettings?.firstLayerStyleSettings?.layout)
     } reject: { _, _, _ in
       XCTFail("Should not go here")
     }
   }
 
   func testShowSecondLayer() {
-    let dict: NSDictionary = ["showCloseButton": "true"]
-    module.showSecondLayer(dict) { result in
-      XCTAssertEqual(true, self.fakeUsercentrics.showCloseButton)
+    let serializedSettings: NSDictionary = [
+      "secondLayerStyleSettings": ["showCloseButton": true]
+    ]
+    module.showSecondLayer(serializedSettings) { result in
+      XCTAssertEqual(true, self.fakeUsercentrics.showSecondLayerBannerSettings?.secondLayerStyleSettings?.showCloseButton)
     } reject: { _, _, _ in
       XCTFail("Should not go here")
     }

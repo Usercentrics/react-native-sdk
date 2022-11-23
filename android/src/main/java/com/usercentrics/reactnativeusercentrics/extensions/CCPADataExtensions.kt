@@ -5,7 +5,7 @@ import com.usercentrics.ccpa.CCPAData
 
 internal fun CCPAData.serialize(): WritableMap {
     return mapOf(
-        "uspString" to toUSPString(),
+        "uspString" to uspString,
         "version" to version,
         "noticeGiven" to noticeGiven,
         "optedOut" to optedOut,

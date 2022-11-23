@@ -4,8 +4,6 @@ import com.facebook.react.bridge.Arguments
 import com.facebook.react.bridge.ReadableMap
 import com.facebook.react.bridge.WritableArray
 import com.facebook.react.bridge.WritableMap
-import com.usercentrics.sdk.UsercentricsOptions
-import com.usercentrics.sdk.models.common.UsercentricsLoggerLevel
 
 internal fun ReadableMap.getIntOrNull(key: String): Int? {
     return if (hasKey(key) && !isNull(key)) {

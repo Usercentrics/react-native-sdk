@@ -1,7 +1,17 @@
 import { NativeModules } from 'react-native';
 import {
-    CCPAData, FirstLayerOptions,
-    SecondLayerOptions, TCFData, TCFDecisionUILayer, TCFUserDecisions, UsercentricsCMPData, UsercentricsConsentType, UsercentricsConsentUserResponse, UsercentricsOptions, UsercentricsReadyStatus, UsercentricsServiceConsent, UserDecision
+    BannerSettings,
+    CCPAData,
+    TCFData,
+    TCFDecisionUILayer,
+    TCFUserDecisions,
+    UsercentricsCMPData,
+    UsercentricsConsentType,
+    UsercentricsConsentUserResponse,
+    UsercentricsOptions,
+    UsercentricsReadyStatus,
+    UsercentricsServiceConsent,
+    UserDecision
 } from './models';
 
 const { RNUsercentricsModule } = NativeModules;
@@ -15,12 +25,12 @@ export const Usercentrics = {
         return RNUsercentricsModule.isReady();
     },
 
-    showFirstLayer: async (options: FirstLayerOptions): Promise<UsercentricsConsentUserResponse> => {
+    showFirstLayer: async (options: BannerSettings): Promise<UsercentricsConsentUserResponse> => {
         await RNUsercentricsModule.isReady();
         return RNUsercentricsModule.showFirstLayer(options);
     },
 
-    showSecondLayer: async (options: SecondLayerOptions): Promise<UsercentricsConsentUserResponse> => {
+    showSecondLayer: async (options: BannerSettings): Promise<UsercentricsConsentUserResponse> => {
         await RNUsercentricsModule.isReady();
         return RNUsercentricsModule.showSecondLayer(options);
     },

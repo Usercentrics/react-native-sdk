@@ -6,13 +6,13 @@ import androidx.annotation.ColorInt
 import com.facebook.react.bridge.ReadableMap
 import com.usercentrics.sdk.*
 
-internal fun String.usercentricsLayoutFromEnumString(): UsercentricsLayout {
+internal fun String.usercentricsLayoutFromEnumString(): UsercentricsLayout? {
     return when (this) {
         "FULL" -> UsercentricsLayout.Full
         "SHEET" -> UsercentricsLayout.Sheet
         "POPUP_BOTTOM" -> UsercentricsLayout.Popup(PopupPosition.BOTTOM)
         "POPUP_CENTER" -> UsercentricsLayout.Popup(PopupPosition.CENTER)
-        else -> throw IllegalArgumentException("Invalid layout: $this")
+        else -> null
     }
 }
 
@@ -22,8 +22,12 @@ internal fun ReadableMap.bannerSettingsFromMap(assetManager: AssetManager): Bann
     val rawGeneralStyleSettings = getMap("generalStyleSettings")
 
     return BannerSettings(
-        firstLayerStyleSettings = rawFirstLayerStyleSettings?.firstLayerStyleSettingsFromMap(assetManager),
-        secondLayerStyleSettings = rawSecondLayerStyleSettings?.secondLayerStyleSettingsFromMap(assetManager),
+        firstLayerStyleSettings = rawFirstLayerStyleSettings?.firstLayerStyleSettingsFromMap(
+            assetManager
+        ),
+        secondLayerStyleSettings = rawSecondLayerStyleSettings?.secondLayerStyleSettingsFromMap(
+            assetManager
+        ),
         generalStyleSettings = rawGeneralStyleSettings?.generalStyleSettingsFromMap(assetManager),
     )
 }
@@ -35,6 +39,7 @@ internal fun ReadableMap.bannerLogoFromMap(): UsercentricsImage? {
 
 internal fun ReadableMap.firstLayerStyleSettingsFromMap(assetManager: AssetManager): FirstLayerStyleSettings {
     return FirstLayerStyleSettings(
+        layout = getString("layout")?.usercentricsLayoutFromEnumString(),
         headerImage = getMap("headerImage")?.headerImageFromMap(),
         title = getMap("title")?.titleFromMap(assetManager),
         message = getMap("message")?.messageFromMap(assetManager),
