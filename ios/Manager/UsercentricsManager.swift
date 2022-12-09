@@ -135,6 +135,6 @@ final class UsercentricsManagerImplementation: UsercentricsManager {
     }
 
     func setABTestingVariant(variant: String) {
-        UsercentricsCore.shared.setABTestingVariant(variant: variant)
+        UsercentricsCore.shared.setABTestingVariant(variantName: variant)
     }
 }

@@ -75,7 +75,7 @@ class RNUsercentricsModule: NSObject, RCTBridgeModule {
     }
 
     @objc func setABTestingVariant(_ variant: String) -> Void {
-        usercentricsManager.setABTestingVariant(variant: String(variant))
+        usercentricsManager.setABTestingVariant(variant: variant)
     }
 
     @objc func restoreUserSession(_ controllerId: String, resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) -> Void {
