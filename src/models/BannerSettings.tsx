@@ -97,12 +97,12 @@ export class BannerSettings {
     firstLayerStyleSettings?: FirstLayerStyleSettings;
     secondLayerStyleSettings?: SecondLayerStyleSettings;
     generalStyleSettings?: GeneralStyleSettings;
-    variant?: String
+    variantName?: String
 
-    constructor(firstLayerStyleSettings?: FirstLayerStyleSettings, secondLayerStyleSettings?: SecondLayerStyleSettings, generalStyleSettings?: GeneralStyleSettings, variant?: String) {
+    constructor(firstLayerStyleSettings?: FirstLayerStyleSettings, secondLayerStyleSettings?: SecondLayerStyleSettings, generalStyleSettings?: GeneralStyleSettings, variantName?: String) {
         this.firstLayerStyleSettings = firstLayerStyleSettings;
         this.secondLayerStyleSettings = secondLayerStyleSettings;
         this.generalStyleSettings = generalStyleSettings;
-        this.variant = variant
+        this.variantName = variantName;
     }
 }

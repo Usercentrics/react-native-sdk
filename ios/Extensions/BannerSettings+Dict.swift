@@ -17,7 +17,8 @@ extension BannerSettings {
 
         self.init(generalStyleSettings: generalStyleSettings,
                   firstLayerStyleSettings: firstLayerSettings,
-                  secondLayerStyleSettings: secondLayerSettings)
+                  secondLayerStyleSettings: secondLayerSettings,
+                  variantName: dictionary["variantName"] as? String)
     }
 }
 
@@ -88,14 +89,14 @@ extension FirstLayerStyleSettings {
     init?(from dictionary: NSDictionary?, bannerFontHolder: BannerFontHolder?) {
         guard let dictionary = dictionary else { return nil }
 
-        self.init(headerImage: HeaderImageSettings.from(dictionary: dictionary["headerImage"] as? NSDictionary),
+        self.init(layout: UsercentricsLayout.from(enumString: dictionary["layout"] as? String),
+                  headerImage: HeaderImageSettings.from(dictionary: dictionary["headerImage"] as? NSDictionary),
                   title: TitleSettings(from: dictionary["title"] as? NSDictionary, fallbackFont: bannerFontHolder?.boldFont),
                   message: MessageSettings(from: dictionary["message"] as? NSDictionary, fallbackFont: bannerFontHolder?.regularFont),
                   buttonLayout: ButtonLayout.from(dictionary: dictionary["buttonLayout"] as? NSDictionary, fallbackFont: bannerFontHolder?.boldFont),
                   backgroundColor: UIColor(unsafeHex: dictionary["backgroundColorHex"] as? String),
                   cornerRadius: dictionary["cornerRadius"] as? CGFloat,
-                  overlayColor: UIColor(unsafeHex: dictionary["overlayColorHex"] as? String),
-                  layout: UsercentricsLayout.from(enumString: dictionary["layout"] as? String))
+                  overlayColor: UIColor(unsafeHex: dictionary["overlayColorHex"] as? String))
     }
 }
 

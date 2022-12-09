@@ -22,13 +22,12 @@ internal fun ReadableMap.bannerSettingsFromMap(assetManager: AssetManager): Bann
     val rawGeneralStyleSettings = getMap("generalStyleSettings")
 
     return BannerSettings(
-        firstLayerStyleSettings = rawFirstLayerStyleSettings?.firstLayerStyleSettingsFromMap(
-            assetManager
-        ),
-        secondLayerStyleSettings = rawSecondLayerStyleSettings?.secondLayerStyleSettingsFromMap(
-            assetManager
-        ),
+        firstLayerStyleSettings =
+        rawFirstLayerStyleSettings?.firstLayerStyleSettingsFromMap(assetManager),
+        secondLayerStyleSettings =
+        rawSecondLayerStyleSettings?.secondLayerStyleSettingsFromMap(assetManager),
         generalStyleSettings = rawGeneralStyleSettings?.generalStyleSettingsFromMap(assetManager),
+        variantName = getString("variantName"),
     )
 }
 

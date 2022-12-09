@@ -51,11 +51,11 @@ export const HomeScreen = ({ navigation }: { navigation: any }) => {
 
         switch (variant) {
             case "variantA":
-                return bannerSettings = {/* settings for the banner with variantA */ variant: "variantA" };
+                return bannerSettings = {/* settings for the banner with variantA */ variantName: "variantA" };
             case "variantB":
-                return bannerSettings = {/* settings for the banner with variantB */ variant: "variantB" };
+                return bannerSettings = {/* settings for the banner with variantB */ variantName: "variantB" };
             default:
-                return bannerSettings = {/* default banner settings*/variant: "variantC" };
+                return bannerSettings = {/* default banner settings*/variantName: "variantC" };
         }
     }
 

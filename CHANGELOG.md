@@ -1,4 +1,16 @@
 [Release Notes](https://docs.usercentrics.com/cmp_in_app_sdk/latest/about/history/)
+### 2.7.8
+
+## Features
+
+* First Layer Banner has met accessibility requirements :tada:
+* Remotely configure your banner layout option of your banner. This feature is only for "App Advanced" Configurations. Please contact your CSM if you would like to get access to this feature.
+
+## Resolved Issues
+
+* Solve CCPA issue with toggle initial value.
+* Stability improvements and bug fixes
+
 ### 2.7.6
 
 ## Improvements
