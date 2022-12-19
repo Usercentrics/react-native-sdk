@@ -33,6 +33,7 @@ extension GeneralStyleSettings {
         let links = LegalLinksSettings.from(enumString: dictionary["links"] as? String)
         let font = bannerFontHolder?.font
         let logo = UIImage(from: dictionary["logo"] as? NSDictionary)
+        let disableSystemBackButton = dictionary["disableSystemBackButton"] as? Bool
 
         self.init(font: font,
                   logo: logo,
@@ -43,7 +44,8 @@ extension GeneralStyleSettings {
                   linkColor: UIColor(unsafeHex: dictionary["linkColorHex"] as? String),
                   tabColor: UIColor(unsafeHex: dictionary["tabColorHex"] as? String),
                   bordersColor: UIColor(unsafeHex: dictionary["bordersColorHex"] as? String),
-                  toggleStyleSettings: toggleStyleSettings)
+                  toggleStyleSettings: toggleStyleSettings,
+                  disableSystemBackButton: disableSystemBackButton)
     }
 }
 

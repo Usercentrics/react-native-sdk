@@ -68,6 +68,7 @@ export class GeneralStyleSettings {
     tabColorHex?: String;
     bordersColorHex?: String;
     toggleStyleSettings?: ToggleStyleSettings;
+    disableSystemBackButton?: Boolean;
 
     constructor(font?: BannerFont,
         logo?: BannerLogo,
@@ -79,6 +80,7 @@ export class GeneralStyleSettings {
         tabColorHex?: String,
         bordersColorHex?: String,
         toggleStyleSettings?: ToggleStyleSettings
+        disableSystemBackButton?: Boolean
     ) {
         this.font = font;
         this.logo = logo;
@@ -90,6 +92,7 @@ export class GeneralStyleSettings {
         this.tabColorHex = tabColorHex;
         this.bordersColorHex = bordersColorHex;
         this.toggleStyleSettings = toggleStyleSettings;
+        this.disableSystemBackButton = disableSystemBackButton;
     }
 }
 

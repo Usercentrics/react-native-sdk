@@ -172,6 +172,7 @@ internal fun ReadableMap.generalStyleSettingsFromMap(assetManager: AssetManager)
         font = getMap("font")?.bannerFontFromMap(assetManager),
         logo = getMap("logo")?.bannerLogoFromMap(),
         links = getString("links")?.legalLinksFromEnumString(),
+        disableSystemBackButton = getBooleanOrNull("disableSystemBackButton")?.
     )
 }
 
