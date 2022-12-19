@@ -79,7 +79,7 @@ export class GeneralStyleSettings {
         linkColorHex?: String,
         tabColorHex?: String,
         bordersColorHex?: String,
-        toggleStyleSettings?: ToggleStyleSettings
+        toggleStyleSettings?: ToggleStyleSettings,
         disableSystemBackButton?: Boolean
     ) {
         this.font = font;
