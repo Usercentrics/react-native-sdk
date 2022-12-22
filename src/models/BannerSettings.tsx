@@ -29,7 +29,7 @@ export enum LegalLinksSettings {
     firstLayerOnly = "FIRST_LAYER_ONLY",
     secondLayerOnly = "SECOND_LAYER_ONLY",
     both = "BOTH",
-    none = "NONE"
+    hidden = "HIDDEN"
 }
 
 export class ToggleStyleSettings {

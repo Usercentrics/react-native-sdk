@@ -285,8 +285,8 @@ extension LegalLinksSettings {
                 return .both
             case "FIRST_LAYER_ONLY":
                 return .firstLayerOnly
-            case "NONE":
-                return LegalLinksSettings.none
+            case "HIDDEN":
+                return LegalLinksSettings.hidden
             case "SECOND_LAYER_ONLY":
                 return .secondLayerOnly
             default:

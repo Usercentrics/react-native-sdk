@@ -190,7 +190,7 @@ internal fun ReadableMap.toggleStyleSettingsFromMap(): ToggleStyleSettings {
 internal fun String?.legalLinksFromEnumString(): LegalLinksSettings? {
     return when (this) {
         "BOTH" -> LegalLinksSettings.BOTH
-        "NONE" -> LegalLinksSettings.NONE
+        "HIDDEN" -> LegalLinksSettings.HIDDEN
         "FIRST_LAYER_ONLY" -> LegalLinksSettings.FIRST_LAYER_ONLY
         "SECOND_LAYER_ONLY" -> LegalLinksSettings.SECOND_LAYER_ONLY
         else -> null
