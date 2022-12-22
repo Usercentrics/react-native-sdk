@@ -29,7 +29,7 @@ export enum LegalLinksSettings {
     firstLayerOnly = "FIRST_LAYER_ONLY",
     secondLayerOnly = "SECOND_LAYER_ONLY",
     both = "BOTH",
-    none = "NONE"
+    hidden = "HIDDEN"
 }
 
 export class ToggleStyleSettings {
@@ -68,6 +68,7 @@ export class GeneralStyleSettings {
     tabColorHex?: String;
     bordersColorHex?: String;
     toggleStyleSettings?: ToggleStyleSettings;
+    disableSystemBackButton?: Boolean;
 
     constructor(font?: BannerFont,
         logo?: BannerLogo,
@@ -78,7 +79,8 @@ export class GeneralStyleSettings {
         linkColorHex?: String,
         tabColorHex?: String,
         bordersColorHex?: String,
-        toggleStyleSettings?: ToggleStyleSettings
+        toggleStyleSettings?: ToggleStyleSettings,
+        disableSystemBackButton?: Boolean
     ) {
         this.font = font;
         this.logo = logo;
@@ -90,6 +92,7 @@ export class GeneralStyleSettings {
         this.tabColorHex = tabColorHex;
         this.bordersColorHex = bordersColorHex;
         this.toggleStyleSettings = toggleStyleSettings;
+        this.disableSystemBackButton = disableSystemBackButton;
     }
 }
 
