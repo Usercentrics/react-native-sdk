@@ -1,8 +1,8 @@
-def usercentrics_version = "2.7.9"
+def usercentrics_version = "2.7.10"
 version usercentrics_version
 
 buildscript {
-    ext.kotlin_version = '1.7.10'
+    ext.kotlin_version = '1.8.0'
 
     ext.safeExtGet = { prop, fallback ->
         return rootProject.ext.has(prop) ? rootProject.ext.get(prop) : fallback
@@ -27,7 +27,7 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 
 android {
-    compileSdkVersion 31
+    compileSdkVersion 32
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
