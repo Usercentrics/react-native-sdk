@@ -31,8 +31,6 @@ export class TCF2Settings {
   purposeOneTreatment: boolean
   selectedVendorIds: [number]
   gdprApplies: boolean
-  consensuDomain: string
-  consensuScriptPath: string
   selectedStacks: [number]
   disabledSpecialFeatures: [number]
   firstLayerShowDescriptions: boolean
@@ -40,14 +38,12 @@ export class TCF2Settings {
   resurfacePeriodEnded: boolean
   resurfacePurposeChanged: boolean
   resurfaceVendorAdded: boolean
-  vendorToggleAll: boolean
   firstLayerDescription: string
   firstLayerAdditionalInfo: string
   secondLayerDescription: string
   togglesSpecialFeaturesToggleOn: string
   togglesSpecialFeaturesToggleOff: string
   appLayerNoteResurface: string
-  firstLayerNoteGlobal: string
   firstLayerNoteResurface: string
 
 
@@ -83,8 +79,6 @@ export class TCF2Settings {
     purposeOneTreatment: boolean,
     selectedVendorIds: [number],
     gdprApplies: boolean,
-    consensuDomain: string,
-    consensuScriptPath: string,
     selectedStacks: [number],
     disabledSpecialFeatures: [number],
     firstLayerShowDescriptions: boolean,
@@ -92,14 +86,12 @@ export class TCF2Settings {
     resurfacePeriodEnded: boolean,
     resurfacePurposeChanged: boolean,
     resurfaceVendorAdded: boolean,
-    vendorToggleAll: boolean,
     firstLayerDescription: string,
     firstLayerAdditionalInfo: string,
     secondLayerDescription: string,
     togglesSpecialFeaturesToggleOn: string,
     togglesSpecialFeaturesToggleOff: string,
     appLayerNoteResurface: string,
-    firstLayerNoteGlobal: string,
     firstLayerNoteResurface: string,
     firstLayerHideButtonDeny?: boolean,
   ) {
@@ -135,8 +127,6 @@ export class TCF2Settings {
     this.purposeOneTreatment = purposeOneTreatment
     this.selectedVendorIds = selectedVendorIds
     this.gdprApplies = gdprApplies
-    this.consensuDomain = consensuDomain
-    this.consensuScriptPath = consensuScriptPath
     this.selectedStacks = selectedStacks
     this.disabledSpecialFeatures = disabledSpecialFeatures
     this.firstLayerShowDescriptions = firstLayerShowDescriptions
@@ -144,14 +134,12 @@ export class TCF2Settings {
     this.resurfacePeriodEnded = resurfacePeriodEnded
     this.resurfacePurposeChanged = resurfacePurposeChanged
     this.resurfaceVendorAdded = resurfaceVendorAdded
-    this.vendorToggleAll = vendorToggleAll
     this.firstLayerDescription = firstLayerDescription
     this.firstLayerAdditionalInfo = firstLayerAdditionalInfo
     this.secondLayerDescription = secondLayerDescription
     this.togglesSpecialFeaturesToggleOn = togglesSpecialFeaturesToggleOn
     this.togglesSpecialFeaturesToggleOff = togglesSpecialFeaturesToggleOff
     this.appLayerNoteResurface = appLayerNoteResurface
-    this.firstLayerNoteGlobal = firstLayerNoteGlobal
     this.firstLayerNoteResurface = firstLayerNoteResurface
   }
 

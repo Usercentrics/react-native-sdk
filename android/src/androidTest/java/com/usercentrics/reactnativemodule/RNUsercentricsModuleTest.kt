@@ -309,7 +309,7 @@ class RNUsercentricsModuleTest {
             resultMap.getMap("userLocation")
         )
 
-        assertEquals(GetCMPDataMock.expectedServices.serialize(), resultMap.getArray("services"))
+        assertEquals(GetCMPDataMock.expectedServices.serialize(), resultMap.getArray("services")!!)
     }
 
     @Test

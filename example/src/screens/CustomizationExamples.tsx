@@ -29,9 +29,6 @@ export const customizationExampleOne: BannerSettings = {
                 {
                     buttonType: ButtonType.acceptAll,
                     cornerRadius: 30.0
-                }, {
-                    buttonType: ButtonType.more,
-                    backgroundColorHex: "00000000"
                 }
             ]
         )
@@ -76,12 +73,6 @@ export const customizationExampleTwo: BannerSettings = {
                     buttonType: ButtonType.denyAll,
                     backgroundColorHex: "00000000",
                     textColorHex: "FFFFFF"
-                }
-            ], [
-                {
-                    buttonType: ButtonType.more,
-                    cornerRadius: 30.0,
-                    textColorHex: "000000"
                 }
             ]
         ])

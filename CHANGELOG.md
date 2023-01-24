@@ -1,4 +1,14 @@
 [Release Notes](https://docs.usercentrics.com/cmp_in_app_sdk/latest/about/history/)
+### 2.7.10
+
+## Improvements
+
+* [TCF] Performance improvement.
+
+## Features
+
+* Stability improvements and bug fixes.
+
 ### 2.7.9
 
 ## Features
