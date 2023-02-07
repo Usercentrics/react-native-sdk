@@ -1,6 +1,6 @@
 package com.usercentrics.reactnativeusercentrics.extensions
 
-import android.content.res.AssetManager
+import android.content.Context
 import android.graphics.Color
 import androidx.annotation.ColorInt
 import com.facebook.react.bridge.ReadableMap
@@ -16,48 +16,51 @@ internal fun String.usercentricsLayoutFromEnumString(): UsercentricsLayout? {
     }
 }
 
-internal fun ReadableMap.bannerSettingsFromMap(assetManager: AssetManager): BannerSettings {
+internal fun ReadableMap.bannerSettingsFromMap(context: Context): BannerSettings {
     val rawFirstLayerStyleSettings = getMap("firstLayerStyleSettings")
     val rawSecondLayerStyleSettings = getMap("secondLayerStyleSettings")
     val rawGeneralStyleSettings = getMap("generalStyleSettings")
 
     return BannerSettings(
-        firstLayerStyleSettings =
-        rawFirstLayerStyleSettings?.firstLayerStyleSettingsFromMap(assetManager),
-        secondLayerStyleSettings =
-        rawSecondLayerStyleSettings?.secondLayerStyleSettingsFromMap(assetManager),
-        generalStyleSettings = rawGeneralStyleSettings?.generalStyleSettingsFromMap(assetManager),
+        firstLayerStyleSettings = rawFirstLayerStyleSettings?.firstLayerStyleSettingsFromMap(context),
+        secondLayerStyleSettings = rawSecondLayerStyleSettings?.secondLayerStyleSettingsFromMap(context),
+        generalStyleSettings = rawGeneralStyleSettings?.generalStyleSettingsFromMap(context),
         variantName = getString("variantName"),
     )
 }
 
-internal fun ReadableMap.bannerLogoFromMap(): UsercentricsImage? {
+internal fun ReadableMap.bannerLogoFromMap(context: Context): UsercentricsImage? {
     val logoPath = getString("logoPath") ?: return null
+
+    val drawableResId = context.resources.getIdentifier(logoPath, "drawable", context.packageName)
+    if (drawableResId != 0) {
+        return UsercentricsImage.ImageDrawableId(drawableResId)
+    }
     return UsercentricsImage.ImageUrl(logoPath)
 }
 
-internal fun ReadableMap.firstLayerStyleSettingsFromMap(assetManager: AssetManager): FirstLayerStyleSettings {
+internal fun ReadableMap.firstLayerStyleSettingsFromMap(context: Context): FirstLayerStyleSettings {
     return FirstLayerStyleSettings(
         layout = getString("layout")?.usercentricsLayoutFromEnumString(),
-        headerImage = getMap("headerImage")?.headerImageFromMap(),
-        title = getMap("title")?.titleFromMap(assetManager),
-        message = getMap("message")?.messageFromMap(assetManager),
-        buttonLayout = getMap("buttonLayout")?.buttonLayoutFromMap(assetManager),
+        headerImage = getMap("headerImage")?.headerImageFromMap(context),
+        title = getMap("title")?.titleFromMap(context),
+        message = getMap("message")?.messageFromMap(context),
+        buttonLayout = getMap("buttonLayout")?.buttonLayoutFromMap(context),
         backgroundColor = getString("backgroundColorHex")?.deserializeColor(),
         overlayColor = getString("overlayColorHex")?.deserializeColor(),
         cornerRadius = getIntOrNull("cornerRadius")
     )
 }
 
-internal fun ReadableMap.headerImageFromMap(): HeaderImageSettings? {
+internal fun ReadableMap.headerImageFromMap(context: Context): HeaderImageSettings? {
     val isHidden = getBooleanOrNull("isHidden") ?: false
     if (isHidden) {
         return HeaderImageSettings.Hidden
     }
 
-    val image = getMap("image")?.bannerLogoFromMap() ?: return null
-
+    val image = getMap("image")?.bannerLogoFromMap(context) ?: return null
     val isExtended = getBooleanOrNull("isExtended") ?: false
+
     return if (isExtended) {
         HeaderImageSettings.ExtendedLogoSettings(image)
     } else {
@@ -69,7 +72,9 @@ internal fun ReadableMap.headerImageFromMap(): HeaderImageSettings? {
     }
 }
 
-internal fun ReadableMap.titleFromMap(assetManager: AssetManager): TitleSettings {
+internal fun ReadableMap.titleFromMap(context: Context): TitleSettings {
+    val assetManager = context.assets
+
     return TitleSettings(
         alignment = getString("alignment")?.sectionAlignmentFromMap(),
         textColor = getString("textColorHex")?.deserializeColor(),
@@ -78,7 +83,9 @@ internal fun ReadableMap.titleFromMap(assetManager: AssetManager): TitleSettings
     )
 }
 
-internal fun ReadableMap.messageFromMap(assetManager: AssetManager): MessageSettings {
+internal fun ReadableMap.messageFromMap(context: Context): MessageSettings {
+    val assetManager = context.assets
+
     return MessageSettings(
         font = assetManager.createFontFromName(getString("fontName")),
         textSizeInSp = getDoubleOrNull("textSize")?.toFloat(),
@@ -93,19 +100,19 @@ internal fun String.sectionAlignmentFromMap(): SectionAlignment {
     return SectionAlignment.valueOf(this)
 }
 
-internal fun ReadableMap.buttonLayoutFromMap(
-    assetManager: AssetManager
-): ButtonLayout? {
+internal fun ReadableMap.buttonLayoutFromMap(context: Context): ButtonLayout? {
     val layout = getString("layout")
+
     val buttons: List<List<ButtonSettings>> = getArray("buttons")?.let { buttonsArray ->
-        val buttonsList: MutableList<List<ButtonSettings>> = mutableListOf()
+        val buttonsList = mutableListOf<List<ButtonSettings>>()
 
         for (rowIndex in 0 until buttonsArray.size()) {
             val listRow = mutableListOf<ButtonSettings>()
             val row = buttonsArray.getArray(rowIndex)
+
             for (rowElement in 0 until row.size()) {
                 val element = row.getMap(rowElement)
-                listRow.add(element.buttonSettingsFromMap(assetManager))
+                listRow.add(element.buttonSettingsFromMap(context))
             }
             buttonsList.add(listRow)
         }
@@ -115,28 +122,21 @@ internal fun ReadableMap.buttonLayoutFromMap(
 
     when (layout) {
         "ROW" -> {
-            return ButtonLayout.Row(
-                buttons.flatten()
-            )
+            return ButtonLayout.Row(buttons.flatten())
         }
         "COLUMN" -> {
-            return ButtonLayout.Column(
-                buttons.flatten()
-            )
+            return ButtonLayout.Column(buttons.flatten())
         }
         "GRID" -> {
-            return ButtonLayout.Grid(
-                buttons
-            )
+            return ButtonLayout.Grid(buttons)
         }
     }
-
     return null
 }
 
-internal fun ReadableMap.buttonSettingsFromMap(
-    assetManager: AssetManager
-): ButtonSettings {
+internal fun ReadableMap.buttonSettingsFromMap(context: Context): ButtonSettings {
+    val assetManager = context.assets
+
     return ButtonSettings(
         type = getString("buttonType")!!.deserializeButtonType(),
         isAllCaps = getBooleanOrNull("isAllCaps"),
@@ -152,15 +152,16 @@ internal fun String.deserializeButtonType(): ButtonType {
     return ButtonType.valueOf(this)
 }
 
-internal fun ReadableMap.secondLayerStyleSettingsFromMap(assetManager: AssetManager): SecondLayerStyleSettings {
+internal fun ReadableMap.secondLayerStyleSettingsFromMap(context: Context): SecondLayerStyleSettings {
     return SecondLayerStyleSettings(
-        buttonLayout = getMap("buttonLayout")?.buttonLayoutFromMap(assetManager),
+        buttonLayout = getMap("buttonLayout")?.buttonLayoutFromMap(context),
         showCloseButton = getBoolean("showCloseButton"),
     )
 }
 
-internal fun ReadableMap.generalStyleSettingsFromMap(assetManager: AssetManager): GeneralStyleSettings {
+internal fun ReadableMap.generalStyleSettingsFromMap(context: Context): GeneralStyleSettings {
     val rawToggleStyleSettings = getMap("toggleStyleSettings")
+
     return GeneralStyleSettings(
         textColor = getString("textColorHex")?.deserializeColor(),
         layerBackgroundColor = getString("layerBackgroundColorHex")?.deserializeColor(),
@@ -169,8 +170,8 @@ internal fun ReadableMap.generalStyleSettingsFromMap(assetManager: AssetManager)
         tabColor = getString("tabColorHex")?.deserializeColor(),
         bordersColor = getString("bordersColorHex")?.deserializeColor(),
         toggleStyleSettings = rawToggleStyleSettings?.toggleStyleSettingsFromMap(),
-        font = getMap("font")?.bannerFontFromMap(assetManager),
-        logo = getMap("logo")?.bannerLogoFromMap(),
+        font = getMap("font")?.bannerFontFromMap(context = context),
+        logo = getMap("logo")?.bannerLogoFromMap(context = context),
         links = getString("links")?.legalLinksFromEnumString(),
         disableSystemBackButton = getBooleanOrNull("disableSystemBackButton")
     )

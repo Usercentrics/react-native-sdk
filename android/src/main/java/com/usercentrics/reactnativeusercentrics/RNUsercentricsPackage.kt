@@ -8,15 +8,14 @@ import com.usercentrics.reactnativeusercentrics.api.UsercentricsProxyImpl
 
 class RNUsercentricsPackage : ReactPackage {
 
-    private var usercentricsProxy = UsercentricsProxyImpl()
+    private val usercentricsProxy = UsercentricsProxyImpl()
 
-    override fun createViewManagers(reactContext: ReactApplicationContext):
-            MutableList<ViewManager<*, *>> {
+    override fun createViewManagers(reactContext: ReactApplicationContext): MutableList<ViewManager<*, *>> {
         return mutableListOf()
     }
 
-    override fun createNativeModules(reactContext: ReactApplicationContext):
-            MutableList<NativeModule> {
-        return mutableListOf(RNUsercentricsModule(reactContext, usercentricsProxy))
+    override fun createNativeModules(reactContext: ReactApplicationContext): MutableList<NativeModule> {
+        val reactContextProvider = ReactContextProviderImpl(reactContext)
+        return mutableListOf(RNUsercentricsModule(reactContext, usercentricsProxy, reactContextProvider))
     }
 }

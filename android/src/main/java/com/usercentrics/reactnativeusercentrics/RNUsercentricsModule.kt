@@ -8,9 +8,9 @@ import com.usercentrics.sdk.services.tcf.TCFDecisionUILayer
 
 internal class RNUsercentricsModule(
     reactContext: ReactApplicationContext,
-    private val usercentricsProxy: UsercentricsProxy
-) :
-    ReactContextBaseJavaModule(reactContext) {
+    private val usercentricsProxy: UsercentricsProxy,
+    private val reactContextProvider: ReactContextProvider,
+) : ReactContextBaseJavaModule(reactContext) {
 
     override fun getName() = "RNUsercentricsModule"
 
@@ -33,11 +33,11 @@ internal class RNUsercentricsModule(
     fun showFirstLayer(options: ReadableMap, promise: Promise) {
         runOnUiThread {
             try {
-                val assetManager = currentActivity!!.assets
+                val context = reactContextProvider.context()
+                val bannerSettings = options.bannerSettingsFromMap(context)
 
-                val bannerSettings = options.bannerSettingsFromMap(assetManager)
-                usercentricsProxy.showFirstLayer(currentActivity!!, bannerSettings, promise)
-
+                val activity = reactContextProvider.activity()!!
+                usercentricsProxy.showFirstLayer(activity, bannerSettings, promise)
             } catch (e: Exception) {
                 promise.reject(e)
             }
@@ -48,10 +48,11 @@ internal class RNUsercentricsModule(
     fun showSecondLayer(options: ReadableMap, promise: Promise) {
         runOnUiThread {
             try {
-                val assetManager = currentActivity!!.assets
+                val context = reactContextProvider.context()
+                val bannerSettings = options.bannerSettingsFromMap(context)
 
-                val bannerSettings = options.bannerSettingsFromMap(assetManager)
-                usercentricsProxy.showSecondLayer(currentActivity!!, bannerSettings, promise)
+                val activity = reactContextProvider.activity()!!
+                usercentricsProxy.showSecondLayer(activity, bannerSettings, promise)
             } catch (e: Exception) {
                 promise.reject(e)
             }
@@ -127,8 +128,7 @@ internal class RNUsercentricsModule(
     fun acceptAllForTCF(fromLayer: Int, consentType: Int, promise: Promise) {
         promise.resolve(
             usercentricsProxy.instance.acceptAllForTCF(
-                TCFDecisionUILayer.values()[fromLayer],
-                UsercentricsConsentType.values()[consentType]
+                TCFDecisionUILayer.values()[fromLayer], UsercentricsConsentType.values()[consentType]
             ).toWritableArray()
         )
     }
@@ -146,8 +146,7 @@ internal class RNUsercentricsModule(
     fun denyAllForTCF(fromLayer: Int, consentType: Int, promise: Promise) {
         promise.resolve(
             usercentricsProxy.instance.denyAllForTCF(
-                TCFDecisionUILayer.values()[fromLayer],
-                UsercentricsConsentType.values()[consentType]
+                TCFDecisionUILayer.values()[fromLayer], UsercentricsConsentType.values()[consentType]
             ).toWritableArray()
         )
     }
@@ -163,11 +162,7 @@ internal class RNUsercentricsModule(
 
     @ReactMethod
     fun saveDecisionsForTCF(
-        tcfDecisions: ReadableMap,
-        fromLayer: Int,
-        saveDecisions: ReadableArray,
-        consentType: Int,
-        promise: Promise
+        tcfDecisions: ReadableMap, fromLayer: Int, saveDecisions: ReadableArray, consentType: Int, promise: Promise
     ) {
         promise.resolve(
             usercentricsProxy.instance.saveDecisionsForTCF(
@@ -183,8 +178,7 @@ internal class RNUsercentricsModule(
     fun saveDecisions(decisions: ReadableArray, consentType: Int, promise: Promise) {
         promise.resolve(
             usercentricsProxy.instance.saveDecisions(
-                decisions.deserializeUserDecision(),
-                UsercentricsConsentType.values()[consentType]
+                decisions.deserializeUserDecision(), UsercentricsConsentType.values()[consentType]
             ).toWritableArray()
         )
     }
@@ -193,8 +187,7 @@ internal class RNUsercentricsModule(
     fun saveOptOutForCCPA(isOptedOut: Boolean, consentType: Int, promise: Promise) {
         promise.resolve(
             usercentricsProxy.instance.saveOptOutForCCPA(
-                isOptedOut,
-                UsercentricsConsentType.values()[consentType]
+                isOptedOut, UsercentricsConsentType.values()[consentType]
             ).toWritableArray()
         )
     }
