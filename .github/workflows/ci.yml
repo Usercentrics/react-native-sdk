@@ -33,7 +33,7 @@ jobs:
     steps:
     - uses: maxim-lobanov/setup-xcode@v1
       with:
-        xcode-version: '13.0'
+        xcode-version: '14.2'
         
     - name: Checkout
       uses: actions/checkout@v2
@@ -50,7 +50,7 @@ jobs:
       run: cd ios && pod install
 
     - name: Run tests
-      run:  cd ios && xcodebuild -workspace example.xcworkspace -scheme "example" -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 12' test
+      run:  cd ios && xcodebuild -workspace example.xcworkspace -scheme "example" -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 14' test
 
   test-android: 
     needs: test-rn
