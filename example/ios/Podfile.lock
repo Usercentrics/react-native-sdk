@@ -208,9 +208,9 @@ PODS:
   - React-jsinspector (0.65.1)
   - react-native-safe-area-context (3.3.2):
     - React-Core
-  - react-native-usercentrics (2.7.10):
+  - react-native-usercentrics (2.7.12):
     - React
-    - UsercentricsUI (= 2.7.10)
+    - UsercentricsUI (= 2.7.12)
   - react-native-webview (11.18.2):
     - React-Core
   - React-perflogger (0.65.1)
@@ -280,9 +280,9 @@ PODS:
   - RNScreens (3.9.0):
     - React-Core
     - React-RCTImage
-  - Usercentrics (2.7.10)
-  - UsercentricsUI (2.7.10):
-    - Usercentrics (= 2.7.10)
+  - Usercentrics (2.7.12)
+  - UsercentricsUI (2.7.12):
+    - Usercentrics (= 2.7.12)
   - Yoga (1.14.0)
 
 DEPENDENCIES:
@@ -412,9 +412,9 @@ SPEC CHECKSUMS:
   React-jsi: 12913c841713a15f64eabf5c9ad98592c0ec5940
   React-jsiexecutor: 43f2542aed3c26e42175b339f8d37fe3dd683765
   React-jsinspector: 41e58e5b8e3e0bf061fdf725b03f2144014a8fb0
-  react-native-safe-area-context: 584dc04881deb49474363f3be89e4ca0e854c057
-  react-native-usercentrics: fc7dd0fe287005e3e5e1ac15085015c03db17ab0
-  react-native-webview: 8ec7ddf9eb4ddcd92b32cee7907efec19a9ec7cb
+  react-native-safe-area-context: 5cf05f49df9d17261e40e518481f2e334c6cd4b5
+  react-native-usercentrics: 6763afad94b7c41618e621805dd4a91ddfe0211b
+  react-native-webview: e742836e562288f0e66e26f436decba163dd93f9
   React-perflogger: fd28ee1f2b5b150b00043f0301d96bd417fdc339
   React-RCTActionSheet: 7f3fa0855c346aa5d7c60f9ced16e067db6d29fa
   React-RCTAnimation: 2119a18ee26159004b001bc56404ca5dbaae6077
@@ -428,10 +428,10 @@ SPEC CHECKSUMS:
   React-runtimeexecutor: 85187f19dd9c47a7c102f9994f9d14e4dc2110de
   ReactCommon: eafed38eec7b591c31751bfa7494801618460459
   RNScreens: 4d79118be80f79fa1f4aa131909a1d6e86280af3
-  Usercentrics: 56111632329c9f2970cfb12363e3f90fbf4e3e59
-  UsercentricsUI: 029913decd72e1b7e5a220a9165247ded1dcf47e
+  Usercentrics: 2f135e895dab2f9e27de1120962112f5c68df7c0
+  UsercentricsUI: cd16df692358178f7d45086e41377d2d98b636ff
   Yoga: aa0cb45287ebe1004c02a13f279c55a95f1572f4
 
 PODFILE CHECKSUM: 6a0c106d5e4f01a025fc61ce0aefe430d1ada736
 
-COCOAPODS: 1.11.3
+COCOAPODS: 1.11.2
