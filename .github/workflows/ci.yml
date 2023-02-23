@@ -86,6 +86,11 @@ jobs:
           ./example/android/gradlew
         key: ${{ runner.os }}-cache-gradle-${{ env.GRADLE_VERSION }}
 
+    - name: Setup Gradle
+        if: steps.cache-gradle.outputs.cache-hit != 'true'
+        working-directory: ./example/android
+        run: ../../scripts/setup_gradle.sh ${{ env.GRADLE_VERSION }}
+
     - name: Android tests
       uses: reactivecircus/android-emulator-runner@v2
       with:
