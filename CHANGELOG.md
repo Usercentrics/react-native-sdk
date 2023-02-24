@@ -1,4 +1,19 @@
 [Release Notes](https://docs.usercentrics.com/cmp_in_app_sdk/latest/about/history/)
+### 2.7.13
+
+## Features
+
+* Enabling PUR customisation properties
+
+## Improvements
+
+* Improvements to stability and exception handling to solve edge cases.
+
+## Resolved Issues
+
+* Solve issue with third party SDKs being included in POM file.
+* UI improvements to CCPA Banner solution
+
 ### 2.7.12
 
 ## Improvements
