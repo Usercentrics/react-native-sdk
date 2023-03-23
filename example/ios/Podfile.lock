@@ -208,9 +208,9 @@ PODS:
   - React-jsinspector (0.65.1)
   - react-native-safe-area-context (3.3.2):
     - React-Core
-  - react-native-usercentrics (2.7.13):
+  - react-native-usercentrics (2.7.15):
     - React
-    - UsercentricsUI (= 2.7.13)
+    - UsercentricsUI (= 2.7.15)
   - react-native-webview (11.18.2):
     - React-Core
   - React-perflogger (0.65.1)
@@ -280,9 +280,9 @@ PODS:
   - RNScreens (3.9.0):
     - React-Core
     - React-RCTImage
-  - Usercentrics (2.7.13)
-  - UsercentricsUI (2.7.13):
-    - Usercentrics (= 2.7.13)
+  - Usercentrics (2.7.15)
+  - UsercentricsUI (2.7.15):
+    - Usercentrics (= 2.7.15)
   - Yoga (1.14.0)
 
 DEPENDENCIES:
