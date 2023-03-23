@@ -1,4 +1,18 @@
 [Release Notes](https://docs.usercentrics.com/cmp_in_app_sdk/latest/about/history/)
+### 2.7.15
+
+## Resolved Issues
+
+* Solve general issues.
+
+* Solve issue when switches were showing the wrong value on iOS when pressing too many times repeatedly.
+
+* Solve issue when toggles were showing on second layer even though they were disabled.
+
+* Solve issue where the first time the app was initialized using the method getTCString, the TCString comes out empty.
+
+* Fixed issue where DPSs accepted by default did not appear as accepted when opening second layer.
+
 ### 2.7.13
 
 ## Features
