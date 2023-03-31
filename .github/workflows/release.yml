@@ -11,6 +11,7 @@ jobs:
         with:
           node-version: '14.x'
           registry-url: 'https://registry.npmjs.org'
+
       - run: npm install
       - run: yarn prepare
       - run: npm publish --access public
