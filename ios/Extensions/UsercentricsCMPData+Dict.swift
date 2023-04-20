@@ -109,7 +109,9 @@ extension UsercentricsLabels {
             "second" : self.second,
             "consent" : self.consent,
             "secondLayerDescriptionHtml" : self.secondLayerDescriptionHtml,
-            "secondLayerTitle" : self.secondLayerTitle ?? ""
+            "secondLayerTitle" : self.secondLayerTitle ?? "",
+            "btnMore": self.btnMore,
+            "explicit": self.explicit_ ?? ""
         ]
     }
 }
@@ -265,7 +267,9 @@ extension SecondLayer {
             "tabsCategoriesLabel" : self.tabsCategoriesLabel,
             "tabsServicesLabel" : self.tabsServicesLabel,
             "hideButtonDeny" : hideButtonDeny?.boolValue as Any,
-            "hideLanguageSwitch" : hideLanguageSwitch?.boolValue as Any
+            "hideLanguageSwitch" : hideLanguageSwitch?.boolValue as Any,
+            "acceptButtonText": self.acceptButtonText ?? "",
+            "denyButtonText": self.denyButtonText ?? "",
         ]
     }
 }
@@ -311,6 +315,7 @@ extension UsercentricsService {
             "deviceStorageDisclosureUrl" : self.deviceStorageDisclosureUrl as Any,
             "isDeactivated" : isDeactivated?.boolValue as Any,
             "disableLegalBasis" : disableLegalBasis?.boolValue as Any,
+            "technologyUsed": self.technologyUsed,
         ]
     }
 }
