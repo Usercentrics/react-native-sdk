@@ -9,9 +9,8 @@ import {
 } from './CustomizationExamples';
 
 export const HomeScreen = ({ navigation }: { navigation: any }) => {
-    async function showFirstLayer(options: BannerSettings = new BannerSettings()) {
-        // const bannerSettings = await getBannerSettings()
-        const response = await Usercentrics.showFirstLayer(options);
+    async function showFirstLayer(bannerSettings: BannerSettings = new BannerSettings()) {
+        const response = await Usercentrics.showFirstLayer(bannerSettings);
         console.log("Consents -> ${response.consents}", response.consents);
         console.log("User Interaction -> ${response.userInteraction}", response.userInteraction);
         console.log("Controller Id -> ${response.controllerId}", response.controllerId);
