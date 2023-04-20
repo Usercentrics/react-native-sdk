@@ -25,12 +25,12 @@ export const Usercentrics = {
         return RNUsercentricsModule.isReady();
     },
 
-    showFirstLayer: async (options: BannerSettings): Promise<UsercentricsConsentUserResponse> => {
+    showFirstLayer: async (options?: BannerSettings): Promise<UsercentricsConsentUserResponse> => {
         await RNUsercentricsModule.isReady();
         return RNUsercentricsModule.showFirstLayer(options);
     },
 
-    showSecondLayer: async (options: BannerSettings): Promise<UsercentricsConsentUserResponse> => {
+    showSecondLayer: async (options?: BannerSettings): Promise<UsercentricsConsentUserResponse> => {
         await RNUsercentricsModule.isReady();
         return RNUsercentricsModule.showSecondLayer(options);
     },

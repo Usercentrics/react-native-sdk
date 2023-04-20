@@ -1,4 +1,19 @@
 [Release Notes](https://docs.usercentrics.com/cmp_in_app_sdk/latest/about/history/)
+### 2.7.16
+
+## Features
+
+* Supporting Limited Fields in Service Descriptions.
+
+## Improvements
+
+* Improvements in accessibility.
+* Custom UI objects are getting the latest values.
+
+## Resolved Issues
+
+* Solve general issues
+
 ### 2.7.15
 
 ## Resolved Issues

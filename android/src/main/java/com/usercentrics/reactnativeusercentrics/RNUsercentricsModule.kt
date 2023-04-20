@@ -30,11 +30,11 @@ internal class RNUsercentricsModule(
     }
 
     @ReactMethod
-    fun showFirstLayer(options: ReadableMap, promise: Promise) {
+    fun showFirstLayer(options: ReadableMap?, promise: Promise) {
         runOnUiThread {
             try {
                 val context = reactContextProvider.context()
-                val bannerSettings = options.bannerSettingsFromMap(context)
+                val bannerSettings = options?.bannerSettingsFromMap(context)
 
                 val activity = reactContextProvider.activity()!!
                 usercentricsProxy.showFirstLayer(activity, bannerSettings, promise)
