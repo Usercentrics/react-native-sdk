@@ -110,6 +110,8 @@ private fun UsercentricsLabels.serialize(): Map<String, Any?> {
         "consent" to consent,
         "secondLayerTitle" to secondLayerTitle,
         "secondLayerDescriptionHtml" to secondLayerDescriptionHtml,
+        "btnMore" to btnMore,
+        "explicit" to (explicit ?: "")
     )
 }
 
@@ -237,10 +239,10 @@ private fun FirstLayer.serialize(): WritableMap {
 
 private fun SecondLayer.serialize(): WritableMap {
     return mapOf(
-        // Required
         "tabsCategoriesLabel" to tabsCategoriesLabel,
         "tabsServicesLabel" to tabsServicesLabel,
-        // Optional
+        "acceptButtonText" to (acceptButtonText ?: ""),
+        "denyButtonText" to (denyButtonText ?: ""),
         "hideButtonDeny" to hideButtonDeny,
         "hideLanguageSwitch" to hideLanguageSwitch,
     ).toWritableMap()
@@ -284,6 +286,7 @@ private fun UsercentricsService.serialize(): WritableMap {
         "deviceStorageDisclosureUrl" to deviceStorageDisclosureUrl,
         "isDeactivated" to isDeactivated,
         "disableLegalBasis" to disableLegalBasis,
+        "technologyUsed" to technologyUsed
     ).toWritableMap()
 }
 

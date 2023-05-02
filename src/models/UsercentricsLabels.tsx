@@ -63,6 +63,8 @@ export class UsercentricsLabels {
   consent: string
   secondLayerDescriptionHtml: string
   secondLayerTitle: string
+  btnMore: string
+  explicit: string
 
   constructor(
     btnAcceptAll: string,
@@ -128,7 +130,9 @@ export class UsercentricsLabels {
     second: string,
     consent: string,
     secondLayerDescriptionHtml: string,
-    secondLayerTitle: string
+    secondLayerTitle: string,
+    btnMore: string,
+    explicit: string,
   ) {
     this.btnAcceptAll = btnAcceptAll
     this.btnDeny = btnDeny
@@ -194,6 +198,8 @@ export class UsercentricsLabels {
     this.consent = consent
     this.secondLayerDescriptionHtml = secondLayerDescriptionHtml
     this.secondLayerTitle = secondLayerTitle
+    this.btnMore = btnMore
+    this.explicit = explicit
   }
 
 }
