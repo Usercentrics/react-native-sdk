@@ -1,7 +1,7 @@
 name: CI/CD
 
 env:
-  NODE_JS_VERSION: 14.21.3
+  NODE_JS_VERSION: 19.7.0
 
 on:
   pull_request:
