@@ -11,3 +11,5 @@ include ':react-native-usercentrics'
 project(':react-native-usercentrics').projectDir = new File(rootProject.projectDir, '../../android')
 
 include ':app'
+
+includeBuild('../node_modules/react-native-gradle-plugin')
