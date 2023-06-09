@@ -1,5 +1,19 @@
 [Release Notes](https://docs.usercentrics.com/cmp_in_app_sdk/latest/about/history/)
 
+### 2.8.1 - June 9, 2023
+
+## Improvements
+
+* `onConsentUpdated` event is not triggered after initialization
+* Banner reshow logic
+
+## Resolved Issues
+
+* Boolean values sent via consent mediation to Adjust
+*  Apple TV labels being cut off
+*  Android TV issue when showing TCF on 2nd layer
+*  Solved general issues
+
 ### 2.8.0 - May 8, 2023
 
 ## Features
@@ -63,9 +77,9 @@
 
 ## Improvements
 
-* Several improvements on Consent Mediation 
- * Add support for Adjust and Crashlytics.
- * Add support for Custom DPSs.
+* Several improvements on Consent Mediation
+* Add support for Adjust and Crashlytics.
+* Add support for Custom DPSs.
 
 ## Resolved Issues
 
@@ -281,11 +295,11 @@
 ## Features
 
 - **[Banner API v2]** A complete revamp of our banner API will enable you to have high customisation and versatility to build a end-user friendly consent banner. We can't wait for you to give it a try. For more details, see: Presenting the Banner.
-    - Add a Header Image to your banner.
-    - Have full control over the layour of your action buttons with Column, Row or Grid configurations.
-    - Launch the second layer directly.
-    - Landscape Mode support.
-    - You can now add a "More Information" link to your banner message to forward users to the 2nd Layer. Appearance > Settings > More Information Link in Banner Message. Then you will be able to add this link in the banner message text editor.
+  - Add a Header Image to your banner.
+  - Have full control over the layour of your action buttons with Column, Row or Grid configurations.
+  - Launch the second layer directly.
+  - Landscape Mode support.
+  - You can now add a "More Information" link to your banner message to forward users to the 2nd Layer. Appearance > Settings > More Information Link in Banner Message. Then you will be able to add this link in the banner message text editor.
 - **[Usability]** Collect consent only at a category level. Option available in your Admin Interface: Configure > Legal Specifications > Settings > Category Consent.
 - **[CNIL]** "Continue wthout Accepting" feature is now supported. (French regulation)
 - **[Fonts]** Admin Interface fonts are now deprecated for App. To enable custom fonts, please inject the font via banner API.
