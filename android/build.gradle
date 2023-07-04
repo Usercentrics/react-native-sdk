@@ -59,7 +59,7 @@ repositories {
 
 dependencies {
     //noinspection GradleDynamicVersion
-    implementation 'com.facebook.react:react-native:0.71.0-rc.0'
+    implementation 'com.facebook.react:react-native:+'
     // Usercentrics
     implementation "com.usercentrics.sdk:usercentrics-ui:$usercentrics_version"
 
