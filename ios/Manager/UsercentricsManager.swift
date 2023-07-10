@@ -38,6 +38,7 @@ public protocol UsercentricsManager {
     func saveOptOutForCCPA(isOptedOut: Bool, consentType: UsercentricsConsentType) -> [UsercentricsServiceConsent]
     func setCMPId(id: Int32)
     func setABTestingVariant(variant: String)
+    func track(event: UsercentricsAnalyticsEventType)
 
     func reset()
 }
@@ -136,5 +137,9 @@ final class UsercentricsManagerImplementation: UsercentricsManager {
 
     func setABTestingVariant(variant: String) {
         UsercentricsCore.shared.setABTestingVariant(variantName: variant)
+    }
+
+    func track(event: UsercentricsAnalyticsEventType) {
+        UsercentricsCore.shared.track(event: event)
     }
 }

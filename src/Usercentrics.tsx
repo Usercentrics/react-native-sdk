@@ -1,4 +1,4 @@
-import { NativeModules } from 'react-native';
+import {NativeModules} from 'react-native';
 import {
     BannerSettings,
     CCPAData,
@@ -11,10 +11,11 @@ import {
     UsercentricsOptions,
     UsercentricsReadyStatus,
     UsercentricsServiceConsent,
-    UserDecision
+    UserDecision,
+    UsercentricsAnalyticsEventType,
 } from './models';
 
-const { RNUsercentricsModule } = NativeModules;
+const {RNUsercentricsModule} = NativeModules;
 
 export const Usercentrics = {
     configure: (options: UsercentricsOptions) => {
@@ -121,6 +122,11 @@ export const Usercentrics = {
 
     setABTestingVariant: (variant: string) => {
         RNUsercentricsModule.setABTestingVariant(variant);
+    },
+
+    track: async (event: UsercentricsAnalyticsEventType) => {
+        await RNUsercentricsModule.isReady();
+        RNUsercentricsModule.track(event);
     },
 
     reset: () => {
