@@ -1,6 +1,5 @@
 package com.usercentrics.reactnativemodule
 
-import android.app.Activity
 import android.content.Context
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
@@ -10,7 +9,6 @@ import com.usercentrics.reactnativemodule.api.FakeUsercentricsProxy
 import com.usercentrics.reactnativemodule.fake.FakePromise
 import com.usercentrics.reactnativemodule.mock.*
 import com.usercentrics.reactnativeusercentrics.RNUsercentricsModule
-import com.usercentrics.reactnativeusercentrics.ReactContextProvider
 import com.usercentrics.reactnativeusercentrics.extensions.serialize
 import com.usercentrics.reactnativeusercentrics.extensions.toWritableMap
 import com.usercentrics.sdk.*
@@ -617,6 +615,25 @@ class RNUsercentricsModuleTest {
         val result = promise.resolveValue as WritableArray
 
         assertEquals(GetConsentsMock.expectedWithData.serialize(), result)
+    }
+
+    @Test
+    fun testTrackMethod() {
+        val trackedEvents = mutableListOf<UsercentricsAnalyticsEventType>()
+
+        val usercentricsSdk = mockk<UsercentricsSDK>()
+        every { usercentricsSdk.track(any()) } answers {
+            trackedEvents.add(arg(0))
+        }
+
+        val usercentricsProxy = FakeUsercentricsProxy(usercentricsSdk)
+        val contextMock = mockk<ReactApplicationContext>(relaxed = true)
+        val module = RNUsercentricsModule(contextMock, usercentricsProxy, ReactContextProviderMock())
+
+        module.track(UsercentricsAnalyticsEventType.ACCEPT_ALL_FIRST_LAYER.ordinal)
+
+        assertEquals(1, trackedEvents.size)
+        assertEquals(UsercentricsAnalyticsEventType.ACCEPT_ALL_FIRST_LAYER, trackedEvents[0])
     }
 
     @Test

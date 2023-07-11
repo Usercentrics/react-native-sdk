@@ -186,7 +186,11 @@ class RNUsercentricsModule: NSObject, RCTBridgeModule {
         let services = usercentricsManager.saveOptOutForCCPA(isOptedOut: isOptedOut, consentType: .initialize(from: consentType))
         resolve(services.toListOfDictionary())
     }
-    
+
+    @objc func track(_ event: Int) -> Void {
+        usercentricsManager.track(event: UsercentricsAnalyticsEventType.initialize(from: event))
+    }
+
     @objc func reset() -> Void {
         usercentricsManager.reset()
     }

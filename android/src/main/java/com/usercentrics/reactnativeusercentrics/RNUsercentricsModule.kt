@@ -3,6 +3,7 @@ package com.usercentrics.reactnativeusercentrics
 import com.facebook.react.bridge.*
 import com.usercentrics.reactnativeusercentrics.api.UsercentricsProxy
 import com.usercentrics.reactnativeusercentrics.extensions.*
+import com.usercentrics.sdk.UsercentricsAnalyticsEventType
 import com.usercentrics.sdk.models.settings.UsercentricsConsentType
 import com.usercentrics.sdk.services.tcf.TCFDecisionUILayer
 
@@ -190,6 +191,11 @@ internal class RNUsercentricsModule(
                 isOptedOut, UsercentricsConsentType.values()[consentType]
             ).toWritableArray()
         )
+    }
+
+    @ReactMethod
+    fun track(event: Int) {
+        usercentricsProxy.instance.track(UsercentricsAnalyticsEventType.values()[event])
     }
 
     @ReactMethod

@@ -12,13 +12,11 @@ interface UsercentricsProxy {
     val instance: UsercentricsSDK
 
     fun initialize(context: Context, options: UsercentricsOptions)
-    fun isReady(
-        onSuccess: (UsercentricsReadyStatus) -> Unit,
-        onFailure: (UsercentricsError) -> Unit
-    )
+    fun isReady(onSuccess: (UsercentricsReadyStatus) -> Unit, onFailure: (UsercentricsError) -> Unit)
 
     fun showFirstLayer(activity: Activity, bannerSettings: BannerSettings?, promise: Promise)
     fun showSecondLayer(activity: Activity, bannerSettings: BannerSettings?, promise: Promise)
+
     fun reset()
 }
 

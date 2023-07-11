@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3706DFCD2A5C028700DFC0C9 /* UsercentricsAnalyticsEventType+Int.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3706DFCC2A5C028700DFC0C9 /* UsercentricsAnalyticsEventType+Int.swift */; };
 		A20E7C9427B28D88004DC947 /* BannerSettings+Dict.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20E7C9327B28D88004DC947 /* BannerSettings+Dict.swift */; };
 		A21D32A4272AE191004ED33E /* UsercentricsServiceConsents+Dict.swift in Sources */ = {isa = PBXBuildFile; fileRef = A21D32A3272AE191004ED33E /* UsercentricsServiceConsents+Dict.swift */; };
 		A22EDF9E271DA49900F5BB8C /* UsercentricsOptions+Dict.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22EDF99271DA49900F5BB8C /* UsercentricsOptions+Dict.swift */; };
@@ -43,6 +44,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		3706DFCC2A5C028700DFC0C9 /* UsercentricsAnalyticsEventType+Int.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UsercentricsAnalyticsEventType+Int.swift"; sourceTree = "<group>"; };
 		A20E7C9327B28D88004DC947 /* BannerSettings+Dict.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BannerSettings+Dict.swift"; sourceTree = "<group>"; };
 		A21D32A3272AE191004ED33E /* UsercentricsServiceConsents+Dict.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UsercentricsServiceConsents+Dict.swift"; sourceTree = "<group>"; };
 		A22EDF99271DA49900F5BB8C /* UsercentricsOptions+Dict.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UsercentricsOptions+Dict.swift"; sourceTree = "<group>"; };
@@ -96,6 +98,7 @@
 				A20E7C9327B28D88004DC947 /* BannerSettings+Dict.swift */,
 				A2390F8127B52ADA00F355C1 /* UIImage+UsercentricsLogoDict.swift */,
 				A2390F8527B52B2700F355C1 /* UIColor+Extensions.swift */,
+				3706DFCC2A5C028700DFC0C9 /* UsercentricsAnalyticsEventType+Int.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -219,6 +222,7 @@
 				FA4F9FEB2512ACC2002DB4D5 /* RNUsercentricsModule.m in Sources */,
 				A2390F8627B52B2700F355C1 /* UIColor+Extensions.swift in Sources */,
 				A2F0B07E272C2E0A00A99DD3 /* CCPAData+Dict.swift in Sources */,
+				3706DFCD2A5C028700DFC0C9 /* UsercentricsAnalyticsEventType+Int.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

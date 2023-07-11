@@ -20,4 +20,4 @@ export { UsercentricsServiceConsent } from "./UsercentricsServiceConsent";
 export { UsercentricsUserInteraction } from './UsercentricsUserInteraction';
 export { UsercentricsVariant } from './UsercentricsVariant';
 export { UserDecision } from './UserDecision';
-
+export { UsercentricsAnalyticsEventType } from "./UsercentricsAnalyticsEventType";

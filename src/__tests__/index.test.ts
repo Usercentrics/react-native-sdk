@@ -1,8 +1,6 @@
+import {NativeModules} from 'react-native';
 import {
-  NativeModules
-} from 'react-native';
-import {
-  BannerSettings, FirstLayerStyleSettings,
+  BannerSettings,
   NetworkMode,
   TCFData,
   TCFDecisionUILayer,
@@ -14,7 +12,7 @@ import {
   UsercentricsReadyStatus,
   UsercentricsUserInteraction
 } from '../models';
-import { Usercentrics } from '../Usercentrics';
+import {Usercentrics} from '../Usercentrics';
 import {
   ccpaDataExample,
   cmpDataExample,
@@ -26,6 +24,7 @@ import {
   usercentricsServiceConsent,
   userDecision
 } from './mocks';
+import {UsercentricsAnalyticsEventType} from "../models/UsercentricsAnalyticsEventType";
 
 const { RNUsercentricsModule } = NativeModules;
 
@@ -53,6 +52,7 @@ jest.mock("react-native", () => {
     saveOptOutForCCPA: jest.fn(),
     saveDecisionsForTCF: jest.fn(),
     saveDecisions: jest.fn(),
+    track: jest.fn(),
     reset: jest.fn()
   };
 
@@ -361,6 +361,12 @@ describe('Test Usercentrics Module', () => {
     );
 
     expect(data).toStrictEqual([usercentricsServiceConsent]);
+  })
+
+  test('testTrack', async () => {
+    await Usercentrics.track(UsercentricsAnalyticsEventType.acceptAllFirstLayer);
+    let spy = jest.spyOn(RNUsercentricsModule, "track")
+    expect(spy).toHaveBeenCalledTimes(1);
   })
 
   test('testReset', async () => {

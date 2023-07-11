@@ -186,4 +186,9 @@ final class FakeUsercentricsManager: UsercentricsManager {
     self.showSecondLayerBannerSettings = bannerSettings
     dismissViewHandler(UsercentricsConsentUserResponse(consents: [], controllerId: "", userInteraction: .acceptAll))
   }
+
+  var trackCalls: Array<UsercentricsAnalyticsEventType> = []
+  func track(event: UsercentricsAnalyticsEventType) {
+    trackCalls.append(event)
+  }
 }

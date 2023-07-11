@@ -488,4 +488,10 @@ class RNUsercentricsModuleTests: XCTestCase {
       XCTFail("Should not go here")
     }
   }
+
+  func testTrack() {
+    module.track(1)
+    XCTAssertEqual(1, fakeUsercentrics.trackCalls.count)
+    XCTAssertEqual(UsercentricsAnalyticsEventType.acceptAllFirstLayer, fakeUsercentrics.trackCalls[0])
+  }
 }
