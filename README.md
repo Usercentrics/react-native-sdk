@@ -32,6 +32,7 @@ The Usercentrics Apps SDK is a Consent Management Platform framework for mobile,
 * iOS 11 or higher
 * React 17.0 or higher
 * React Native 0.65 or higher
+* Node 14 
 
 ## Installation
 
@@ -41,11 +42,11 @@ Install the library from npm:
 npm install @usercentrics/react-native-sdk
 ```
 
-For iOS, after installing the package, you will need to install the Usercentrics dependency by running from your project folder:
+For iOS, after installing the package, you will need to install the Usercentrics dependency by running from your project folder, in this repository go to example/ and run:
 ```sh
 npx pod-install
 ```
-Or running from ios folder:
+Or running from example/ios/ folder:
 ```sh
 pod install
 ```

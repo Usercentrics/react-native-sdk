@@ -490,7 +490,7 @@ class RNUsercentricsModuleTests: XCTestCase {
   }
 
   func testTrack() {
-    module.track(event: 1)
+    module.track(1)
     XCTAssertEqual(1, fakeUsercentrics.trackCalls.count)
     XCTAssertEqual(UsercentricsAnalyticsEventType.acceptAllFirstLayer, fakeUsercentrics.trackCalls[0])
   }
