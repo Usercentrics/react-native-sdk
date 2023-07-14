@@ -1,5 +1,22 @@
 [Release Notes](https://docs.usercentrics.com/cmp_in_app_sdk/latest/about/history/)
 
+### 2.8.2 - July 12, 2023
+
+## Features
+
+* [Unity] New GetCmpData API, check out the documentation [here](https://docs.usercentrics.com/cmp_in_app_sdk/latest/unity/core-api/#get-cmp-data) :tada:
+* [Flutter and RN] Track API is live, check out the documentation [here](https://docs.usercentrics.com/cmp_in_app_sdk/latest/api/usercentrics-core/#track) :tada:
+
+## Improvements
+
+* Enabled support for Hide Data Processing Services
+* Added a "default" label into consent history entries, when it was given implicitly
+
+## Resolved Issues
+
+* Consent mediation improvements
+* Solved general issues
+
 ### 2.8.1 - June 9, 2023
 
 ## Improvements
