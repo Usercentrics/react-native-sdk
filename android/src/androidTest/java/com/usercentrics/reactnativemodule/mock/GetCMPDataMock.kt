@@ -149,6 +149,8 @@ internal class GetCMPDataMock {
             anyDomain = "any domain (ex. first party cookie)",
             multipleDomains = "multiple subdomains may exist",
             storageInformationDescription = "Below you can see the longest potential duration for storage on a device, as set when using the cookie method of storage and if there are any other methods used.",
+            noImplicit = "no (default)",
+            yesImplicit = "yes (implicit)"
         )
         private val fakeFirstLayer = FirstLayer(
             hideButtonDeny = false,
@@ -161,6 +163,7 @@ internal class GetCMPDataMock {
             hideTogglesForServices = false,
             acceptButtonText = "Accept All",
             denyButtonText = "Deny All",
+            hideDataProcessingServices = false,
         )
         private val fakeTCF2Settings = TCF2Settings(
             togglesSpecialFeaturesToggleOff = "Off",
