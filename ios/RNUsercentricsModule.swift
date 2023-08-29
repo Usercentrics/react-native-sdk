@@ -188,7 +188,8 @@ class RNUsercentricsModule: NSObject, RCTBridgeModule {
     }
 
     @objc func track(_ event: Int) -> Void {
-        usercentricsManager.track(event: UsercentricsAnalyticsEventType.initialize(from: event))
+        guard let usercentricsAnalyticsEventType = UsercentricsAnalyticsEventType.initialize(from: event) else { return }
+        usercentricsManager.track(event: usercentricsAnalyticsEventType)
     }
 
     @objc func reset() -> Void {
