@@ -2,20 +2,6 @@
 
 ### 2.8.3 - September 4, 2023
 
-## Features
-
-* [Unity]
-  * :warning: Breaking change :warning: New App Tracking Transparency Framework (ATT) API, check out the new documentation on how to support it on your game [here](att.md)
-  * Beta: Static Linkage support for iOS
-
-* [React-Native]
-  * Fixes iOS guard syntax, that was breaking the build
-
-## Improvements
-
-* [Unity]
-  * Exposing User Location, check out the documentation [here](core-api.md#get-cmp-data) :tada:
-
 ## Resolved Issues
 
 * UI small issues on iOS (labels being cut, when they have long values)
