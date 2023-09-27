@@ -1,5 +1,16 @@
 [Release Notes](https://docs.usercentrics.com/cmp_in_app_sdk/latest/about/history/)
 
+### 2.8.4 - September 27, 2023
+
+## Improvements
+
+* TCF performance is now improved for settings with a huge amount of vendors
+
+## Resolved Issues
+
+* UI small issues
+* Solved general issues
+
 ### 2.8.3 - September 4, 2023
 
 ## Resolved Issues
