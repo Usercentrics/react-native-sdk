@@ -1,6 +1,14 @@
 package com.usercentrics.reactnativemodule.mock
 
-import com.usercentrics.sdk.services.tcf.interfaces.*
+import com.usercentrics.sdk.services.tcf.interfaces.IdAndName
+import com.usercentrics.sdk.services.tcf.interfaces.TCFData
+import com.usercentrics.sdk.services.tcf.interfaces.TCFFeature
+import com.usercentrics.sdk.services.tcf.interfaces.TCFPurpose
+import com.usercentrics.sdk.services.tcf.interfaces.TCFSpecialFeature
+import com.usercentrics.sdk.services.tcf.interfaces.TCFSpecialPurpose
+import com.usercentrics.sdk.services.tcf.interfaces.TCFStack
+import com.usercentrics.sdk.services.tcf.interfaces.TCFVendor
+import com.usercentrics.tcf.core.model.gvl.VendorUrl
 
 internal class GetTCFDataMock {
     companion object {
@@ -8,7 +16,7 @@ internal class GetTCFDataMock {
             features = listOf(
                 TCFFeature(
                     purposeDescription = "Data from offline data sources can be combined with your online activity in support of one or more purposes",
-                    descriptionLegal = "Vendors can:\n* Combine data obtained offline with data collected online in support of one or more Purposes or Special Purposes.",
+                    illustrations = listOf("Vendors can:\n* Combine data obtained offline with data collected online in support of one or more Purposes or Special Purposes."),
                     id = 2,
                     name = "Link different devices",
                 )
@@ -16,7 +24,7 @@ internal class GetTCFDataMock {
             purposes = listOf(
                 TCFPurpose(
                     purposeDescription = "Cookies, device identifiers, or other information can be stored or accessed on your device for the purposes presented to you.",
-                    descriptionLegal = "Vendors can:\n* Store and access information on the device such as cookies and device identifiers presented to a user.",
+                    illustrations = listOf("Vendors can:\n* Store and access information on the device such as cookies and device identifiers presented to a user."),
                     id = 1,
                     name = "Store and/or access information on a device",
                     consent = null,
@@ -30,7 +38,7 @@ internal class GetTCFDataMock {
             specialFeatures = listOf(
                 TCFSpecialFeature(
                     purposeDescription = "Your precise geolocation data can be used in support of one or more purposes. This means your location can be accurate to within several meters.",
-                    descriptionLegal = "Vendors can:\n* Collect and process precise geolocation data in support of one or more purposes.\nN.B. Precise geolocation means that there are no restrictions on the precision of a user’s location; this can be accurate to within several meters.",
+                    illustrations = listOf("Vendors can:\n* Collect and process precise geolocation data in support of one or more purposes.\nN.B. Precise geolocation means that there are no restrictions on the precision of a user’s location; this can be accurate to within several meters."),
                     id = 1,
                     name = "Use precise geolocation data",
                     consent = null,
@@ -42,7 +50,7 @@ internal class GetTCFDataMock {
             specialPurposes = listOf(
                 TCFSpecialPurpose(
                     purposeDescription = "Your data can be used to monitor for and prevent fraudulent activity, and ensure systems and processes work properly and securely.",
-                    descriptionLegal = "To ensure security, prevent fraud and debug vendors can:\n* Ensure data are securely transmitted\n* Detect and prevent malicious, fraudulent, invalid, or illegal activity.\n* Ensure correct and efficient operation of systems and processes, including to monitor and enhance the performance of systems and processes engaged in permitted purposes\nVendors cannot:\n* Conduct any other data processing operation allowed under a different purpose under this purpose.\nNote: Data collected and used to ensure security, prevent fraud, and debug may include automatically-sent device characteristics for identification, precise geolocation data, and data obtained by actively scanning device characteristics for identification without separate disclosure and/or opt-in.",
+                    illustrations = listOf("To ensure security, prevent fraud and debug vendors can:\n* Ensure data are securely transmitted\n* Detect and prevent malicious, fraudulent, invalid, or illegal activity.\n* Ensure correct and efficient operation of systems and processes, including to monitor and enhance the performance of systems and processes engaged in permitted purposes\nVendors cannot:\n* Conduct any other data processing operation allowed under a different purpose under this purpose.\nNote: Data collected and used to ensure security, prevent fraud, and debug may include automatically-sent device characteristics for identification, precise geolocation data, and data obtained by actively scanning device characteristics for identification without separate disclosure and/or opt-in."),
                     id = 1,
                     name = "Ensure security, prevent fraud, and debug",
                 )
@@ -92,10 +100,14 @@ internal class GetTCFDataMock {
                     deviceStorage = null,
                     usesCookies = false,
                     cookieRefresh = null,
-                    dataSharedOutsideEU = false
+                    dataSharedOutsideEU = false,
+                    dataRetention = null,
+                    dataCategories = listOf(IdAndName(id = 123, name = "name")),
+                    vendorUrls = listOf(VendorUrl(langId = "langId", privacy = "privacy", legIntClaim = "legIntClaim"))
                 )
             ),
-            tcString = "abc"
+            tcString = "abc",
+            thirdPartyCount = 123,
         )
 
         // From the debugger
@@ -103,7 +115,7 @@ internal class GetTCFDataMock {
             "features" to listOf(
                 mapOf(
                     "purposeDescription" to "Data from offline data sources can be combined with your online activity in support of one or more purposes",
-                    "descriptionLegal" to "Vendors can:\n* Combine data obtained offline with data collected online in support of one or more Purposes or Special Purposes.",
+                    "illustrations" to listOf("Vendors can:\n* Combine data obtained offline with data collected online in support of one or more Purposes or Special Purposes."),
                     "id" to 2,
                     "name" to "Link different devices",
                 )
@@ -111,7 +123,7 @@ internal class GetTCFDataMock {
             "purposes" to listOf(
                 mapOf(
                     "purposeDescription" to "Cookies, device identifiers, or other information can be stored or accessed on your device for the purposes presented to you.",
-                    "descriptionLegal" to "Vendors can:\n* Store and access information on the device such as cookies and device identifiers presented to a user.",
+                    "illustrations" to listOf("Vendors can:\n* Store and access information on the device such as cookies and device identifiers presented to a user."),
                     "id" to 1,
                     "name" to "Store and/or access information on a device",
                     "consent" to null,
@@ -125,7 +137,7 @@ internal class GetTCFDataMock {
             "specialFeatures" to listOf(
                 mapOf(
                     "purposeDescription" to "Your precise geolocation data can be used in support of one or more purposes. This means your location can be accurate to within several meters.",
-                    "descriptionLegal" to "Vendors can:\n* Collect and process precise geolocation data in support of one or more purposes.\nN.B. Precise geolocation means that there are no restrictions on the precision of a user’s location; this can be accurate to within several meters.",
+                    "illustrations" to listOf("Vendors can:\n* Collect and process precise geolocation data in support of one or more purposes.\nN.B. Precise geolocation means that there are no restrictions on the precision of a user’s location; this can be accurate to within several meters."),
                     "id" to 1,
                     "name" to "Use precise geolocation data",
                     "consent" to null,
@@ -137,7 +149,7 @@ internal class GetTCFDataMock {
             "specialPurposes" to listOf(
                 mapOf(
                     "purposeDescription" to "Your data can be used to monitor for and prevent fraudulent activity, and ensure systems and processes work properly and securely.",
-                    "descriptionLegal" to "To ensure security, prevent fraud and debug vendors can:\n* Ensure data are securely transmitted\n* Detect and prevent malicious, fraudulent, invalid, or illegal activity.\n* Ensure correct and efficient operation of systems and processes, including to monitor and enhance the performance of systems and processes engaged in permitted purposes\nVendors cannot:\n* Conduct any other data processing operation allowed under a different purpose under this purpose.\nNote: Data collected and used to ensure security, prevent fraud, and debug may include automatically-sent device characteristics for identification, precise geolocation data, and data obtained by actively scanning device characteristics for identification without separate disclosure and/or opt-in.",
+                    "illustrations" to listOf("To ensure security, prevent fraud and debug vendors can:\n* Ensure data are securely transmitted\n* Detect and prevent malicious, fraudulent, invalid, or illegal activity.\n* Ensure correct and efficient operation of systems and processes, including to monitor and enhance the performance of systems and processes engaged in permitted purposes\nVendors cannot:\n* Conduct any other data processing operation allowed under a different purpose under this purpose.\nNote: Data collected and used to ensure security, prevent fraud, and debug may include automatically-sent device characteristics for identification, precise geolocation data, and data obtained by actively scanning device characteristics for identification without separate disclosure and/or opt-in."),
                     "id" to 1,
                     "name" to "Ensure security, prevent fraud, and debug",
                 )
@@ -184,10 +196,14 @@ internal class GetTCFDataMock {
                     "deviceStorageDisclosureUrl" to null,
                     "usesCookies" to false,
                     "cookieRefresh" to null,
-                    "dataSharedOutsideEU" to false
+                    "dataSharedOutsideEU" to false,
+                    "dataRetention" to null,
+                    "dataCategories" to listOf(123),
+                    "vendorUrls" to listOf(mapOf("langId" to "langId", "privacy" to "privacy", "legIntClaim" to "legIntClaim")),
                 ),
             ),
-            "tcString" to "abc"
+            "tcString" to "abc",
+            "thirdPartyCount" to 123,
         )
     }
 }

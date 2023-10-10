@@ -9,7 +9,9 @@ extension TCFData {
             "specialFeatures" : specialFeatures.map { $0.toDictionary() },
             "specialPurposes" : specialPurposes.map { $0.toDictionary() },
             "stacks" : stacks.map { $0.toDictionary() },
-            "vendors" : vendors.map { $0.toDictionary() }
+            "vendors" : vendors.map { $0.toDictionary() },
+            "tcString": tcString,
+            "thirdPartyCount": thirdPartyCount
         ]
     }
 }
@@ -18,7 +20,7 @@ extension TCFFeature {
     func toDictionary() -> NSDictionary {
         return[
             "purposeDescription" : purposeDescription,
-            "descriptionLegal" : descriptionLegal,
+            "illustrations" : illustrations,
             "id" : id,
             "name" : name,
         ]
@@ -29,7 +31,7 @@ extension TCFPurpose {
     func toDictionary() -> NSDictionary {
         return[
             "purposeDescription" : purposeDescription,
-            "descriptionLegal" : descriptionLegal,
+            "illustrations" : illustrations,
             "id" : id,
             "name" : name,
             "consent" : consent?.boolValue as Any,
@@ -46,7 +48,7 @@ extension TCFSpecialPurpose {
     func toDictionary() -> NSDictionary {
         return[
             "purposeDescription" : purposeDescription,
-            "descriptionLegal" : descriptionLegal,
+            "illustrations" : illustrations,
             "id" : id,
             "name" : name,
         ]
@@ -59,7 +61,7 @@ extension TCFSpecialFeature {
     func toDictionary() -> NSDictionary {
         return[
             "purposeDescription" : purposeDescription,
-            "descriptionLegal" : descriptionLegal,
+            "illustrations" : illustrations,
             "id" : id,
             "name" : name,
             "consent" : self.consent?.boolValue as Any ,
@@ -103,7 +105,20 @@ extension TCFVendor {
             "deviceStorageDisclosureUrl" : deviceStorageDisclosureUrl  as Any,
             "usesCookies" : usesCookies,
             "cookieRefresh" : cookieRefresh?.boolValue as Any,
-            "dataSharedOutsideEU": dataSharedOutsideEU?.boolValue as Any
+            "dataSharedOutsideEU": dataSharedOutsideEU?.boolValue as Any,
+            "dataCategories": dataCategories.map { $0.id },
+            "vendorUrls": vendorUrls.map { $0.toDictionary() }
+        ]
+    }
+}
+
+extension VendorUrl {
+
+    func toDictionary() -> NSDictionary {
+        return [
+            "langId": langId as Any,
+            "privacy": privacy as Any,
+            "legIntClaim": legIntClaim as Any
         ]
     }
 }

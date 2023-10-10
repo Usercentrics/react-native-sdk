@@ -1,7 +1,15 @@
 package com.usercentrics.reactnativeusercentrics.extensions
 
 import com.facebook.react.bridge.WritableMap
-import com.usercentrics.sdk.services.tcf.interfaces.*
+import com.usercentrics.sdk.services.tcf.interfaces.TCFData
+import com.usercentrics.sdk.services.tcf.interfaces.TCFFeature
+import com.usercentrics.sdk.services.tcf.interfaces.TCFPurpose
+import com.usercentrics.sdk.services.tcf.interfaces.TCFSpecialFeature
+import com.usercentrics.sdk.services.tcf.interfaces.TCFSpecialPurpose
+import com.usercentrics.sdk.services.tcf.interfaces.TCFStack
+import com.usercentrics.sdk.services.tcf.interfaces.TCFVendor
+import com.usercentrics.tcf.core.model.gvl.DataRetention
+import com.usercentrics.tcf.core.model.gvl.VendorUrl
 
 internal fun TCFData.serialize(): WritableMap {
     return mapOf(
@@ -11,14 +19,15 @@ internal fun TCFData.serialize(): WritableMap {
         "specialPurposes" to specialPurposes.map { it.serialize() },
         "stacks" to stacks.map { it.serialize() },
         "vendors" to vendors.map { it.serialize() },
-        "tcString" to tcString
+        "tcString" to tcString,
+        "thirdPartyCount" to thirdPartyCount
     ).toWritableMap()
 }
 
 private fun TCFFeature.serialize(): WritableMap {
     return mapOf(
         "purposeDescription" to purposeDescription,
-        "descriptionLegal" to descriptionLegal,
+        "illustrations" to illustrations,
         "id" to id,
         "name" to name,
     ).toWritableMap()
@@ -27,7 +36,7 @@ private fun TCFFeature.serialize(): WritableMap {
 private fun TCFPurpose.serialize(): WritableMap {
     return mapOf(
         "purposeDescription" to purposeDescription,
-        "descriptionLegal" to descriptionLegal,
+        "illustrations" to illustrations,
         "id" to id,
         "name" to name,
         "consent" to consent,
@@ -43,7 +52,7 @@ private fun TCFPurpose.serialize(): WritableMap {
 private fun TCFSpecialPurpose.serialize(): WritableMap {
     return mapOf(
         "purposeDescription" to purposeDescription,
-        "descriptionLegal" to descriptionLegal,
+        "illustrations" to illustrations,
         "id" to id,
         "name" to name,
     ).toWritableMap()
@@ -52,7 +61,7 @@ private fun TCFSpecialPurpose.serialize(): WritableMap {
 private fun TCFSpecialFeature.serialize(): WritableMap {
     return mapOf(
         "purposeDescription" to purposeDescription,
-        "descriptionLegal" to descriptionLegal,
+        "illustrations" to illustrations,
         "id" to id,
         "name" to name,
         "consent" to consent,
@@ -94,6 +103,16 @@ private fun TCFVendor.serialize(): WritableMap {
 //        "deviceStorage" to deviceStorage.serialize(),
         "usesCookies" to usesCookies,
         "cookieRefresh" to cookieRefresh,
-        "dataSharedOutsideEU" to dataSharedOutsideEU
+        "dataSharedOutsideEU" to dataSharedOutsideEU,
+        "dataCategories" to dataCategories.map { it.id },
+        "vendorUrls" to vendorUrls.map { it.serialize() }
+    ).toWritableMap()
+}
+
+private fun VendorUrl.serialize(): WritableMap {
+    return mapOf(
+        "langId" to langId,
+        "privacy" to privacy,
+        "legIntClaim" to legIntClaim
     ).toWritableMap()
 }
