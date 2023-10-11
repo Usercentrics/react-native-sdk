@@ -1,5 +1,22 @@
 [Release Notes](https://docs.usercentrics.com/cmp_in_app_sdk/latest/about/history/)
 
+### 2.9.0 - October 6, 2023
+
+## Features
+
+* :rocket: **Full TCF 2.2 Support**: As the industry shifts to TCF 2.2 (deadline: November 20, 2024), we are pleased to announce that SDK Version 2.9.0 now offers comprehensive support for this new industry standard.
+* :warning: **Important Note**: Please be aware that this version is incompatible with TCF 2.0. Before upgrading to V 2.9.0, ensure a smooth transition to TCF 2.2 following the  guidelines:
+
+[How to migrate from TCF v2.0 to TCF v2.2](https://usercentrics.atlassian.net/wiki/spaces/SKB/pages/2668789801/How+to+migrate+from+TCF+v2.0+to+TCF+v2.2#\uD83D\uDCD8-Migration-instructions-for-TCF-v2.2)
+
+## Key Changes and Enhancements:
+
+* Updated Global Vendor List: We've transitioned to Global Vendor List v3 to align with industry standards.
+* Legitimate Interest: To enhance transparency and privacy, purposes 3 to 6 have been removed, and purpose 11 has been introduced.
+* Improved User Interface: We've made enhancements to the banner's second layer for a better user experience.
+* Vendor Count Display: Users can now easily see the total count of IAB and non-IAB vendors.
+* New Resurface Requirements: We've implemented new resurfacing requirements to keep your CMP compliant with the latest standards.
+
 ### 2.8.4 - September 27, 2023
 
 ## Improvements
