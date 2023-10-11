@@ -36,15 +36,19 @@ internal fun List<*>.serialize(): WritableArray {
             is Boolean -> {
                 array.pushBoolean(value)
             }
+
             is Int -> {
                 array.pushInt(value)
             }
+
             is Double -> {
                 array.pushDouble(value)
             }
+
             is String -> {
                 array.pushString(value)
             }
+
             is Map<*, *> -> {
                 val newMap = (value as Map<String, Any>).toWritableMap()
                 array.pushMap(newMap)
@@ -75,15 +79,19 @@ internal fun Map<String, Any?>.toWritableMap(): WritableMap {
             is Boolean -> {
                 map.putBoolean(key, value)
             }
+
             is Int -> {
                 map.putInt(key, value)
             }
+
             is Double -> {
                 map.putDouble(key, value)
             }
+
             is String -> {
                 map.putString(key, value)
             }
+
             is Map<*, *> -> {
                 val newMap = (value as Map<String, Any>).toWritableMap()
                 map.putMap(key, newMap)

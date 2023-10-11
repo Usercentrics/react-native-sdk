@@ -9,6 +9,7 @@ extension UsercentricsCMPData {
             "categories": self.categories.map { $0.toDictionary() },
             "activeVariant": self.activeVariant.ordinal as Any,
             "userLocation": self.userLocation.toDictionary(),
+            "legalBasis": self.legalBasis.toDictionary()
         ]
     }
 }
@@ -189,6 +190,12 @@ extension TCF2Settings {
             "togglesSpecialFeaturesToggleOff" : self.togglesSpecialFeaturesToggleOff as Any,
             "appLayerNoteResurface" : self.appLayerNoteResurface as Any,
             "firstLayerNoteResurface" : self.firstLayerNoteResurface as Any,
+            "version": self.version as Any,
+            "categoriesOfDataLabel": self.categoriesOfDataLabel,
+            "dataRetentionPeriodLabel": self.dataRetentionPeriodLabel,
+            "legitimateInterestLabel": self.legitimateInterestLabel,
+            "version": self.version,
+            "examplesLabel": self.examplesLabel,
         ]
     }
 }
@@ -339,6 +346,52 @@ extension UsercentricsLocation {
             "isInEU" : self.isInEU(),
             "isInUS" : self.isInUS(),
             "isInCalifornia" : self.isInCalifornia(),
+        ]
+    }
+}
+
+
+extension LegalBasisLocalization {
+
+    func toDictionary() -> NSDictionary {
+        return [
+            "labelsAria": (labelsAria?.toDictionary() ?? nil) as Any,
+            "data": data as Any
+        ]
+    }
+}
+
+extension TranslationAriaLabels {
+    
+    func toDictionary() -> NSDictionary {
+        return [
+            "acceptAllButton": acceptAllButton as Any,
+            "ccpaButton": ccpaButton as Any,
+            "ccpaMoreInformation": ccpaMoreInformation as Any,
+            "closeButton": closeButton as Any,
+            "collapse": collapse as Any,
+            "cookiePolicyButton": cookiePolicyButton as Any,
+            "copyControllerId": copyControllerId as Any,
+            "denyAllButton": denyAllButton as Any,
+            "expand": expand as Any,
+            "fullscreenButton": fullscreenButton as Any,
+            "imprintButton": imprintButton as Any,
+            "languageSelector": languageSelector as Any,
+            "privacyButton": privacyButton as Any,
+            "privacyPolicyButton": privacyPolicyButton as Any,
+            "saveButton": saveButton as Any,
+            "serviceInCategoryDetails": serviceInCategoryDetails as Any,
+            "servicesInCategory": servicesInCategory as Any,
+            "tabButton": tabButton as Any,
+            "usercentricsCMPButtons": usercentricsCMPButtons as Any,
+            "usercentricsCMPContent": usercentricsCMPContent as Any,
+            "usercentricsCMPHeader": usercentricsCMPHeader as Any,
+            "usercentricsCMPUI": usercentricsCMPUI as Any,
+            "usercentricsCard": usercentricsCard as Any,
+            "usercentricsList": usercentricsList as Any,
+            "vendorConsentToggle": vendorConsentToggle as Any,
+            "vendorDetailedStorageInformation": vendorDetailedStorageInformation as Any,
+            "vendorLegIntToggle": vendorLegIntToggle as Any
         ]
     }
 }

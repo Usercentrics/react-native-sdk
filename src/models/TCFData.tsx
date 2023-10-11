@@ -25,6 +25,9 @@ export class TCFData {
     /// The TCF string
     tcString: String
 
+    /// The total of vendors and services
+    thirdPartyCount: number
+
     constructor(
         features: TCFFeature[],
         purposes: TCFPurpose[],
@@ -32,7 +35,8 @@ export class TCFData {
         specialPurposes: TCFSpecialPurpose[],
         stacks: TCFStack[],
         vendors: TCFVendor[],
-        tcString: String
+        tcString: String,
+        thirdPartyCount: number
     ) {
         this.features = features
         this.purposes = purposes
@@ -41,24 +45,25 @@ export class TCFData {
         this.stacks = stacks
         this.vendors = vendors
         this.tcString = tcString
+        this.thirdPartyCount = thirdPartyCount
     }
 }
 
 export class TCFFeature {
     purposeDescription: string
-    descriptionLegal: string
+    illustrations: [string]
     id: number
     name: string
 
 
     constructor(
         purposeDescription: string,
-        descriptionLegal: string,
+        illustrations: [string],
         id: number,
         name: string
     ) {
         this.purposeDescription = purposeDescription
-        this.descriptionLegal = descriptionLegal
+        this.illustrations = illustrations
         this.id = id
         this.name = name
     }
@@ -66,7 +71,7 @@ export class TCFFeature {
 
 export class TCFPurpose {
     purposeDescription: string
-    descriptionLegal: string
+    illustrations: [string]
     id: number
     name: string
     consent?: boolean
@@ -79,7 +84,7 @@ export class TCFPurpose {
 
     constructor(
         purposeDescription: string,
-        descriptionLegal: string,
+        illustrations: [string],
         id: number,
         name: string,
         isPartOfASelectedStack: boolean,
@@ -90,7 +95,7 @@ export class TCFPurpose {
         stackId?: number
     ) {
         this.purposeDescription = purposeDescription
-        this.descriptionLegal = descriptionLegal
+        this.illustrations = illustrations
         this.id = id
         this.name = name
         this.consent = consent
@@ -104,7 +109,7 @@ export class TCFPurpose {
 
 export class TCFSpecialFeature {
     purposeDescription: string
-    descriptionLegal: string
+    illustrations: [string]
     id: number
     name: string
     consent?: boolean
@@ -115,7 +120,7 @@ export class TCFSpecialFeature {
 
     constructor(
         purposeDescription: string,
-        descriptionLegal: string,
+        illustrations: [string],
         id: number,
         isPartOfASelectedStack: boolean,
         showConsentToggle: boolean,
@@ -124,7 +129,7 @@ export class TCFSpecialFeature {
         stackId?: number
     ) {
         this.purposeDescription = purposeDescription
-        this.descriptionLegal = descriptionLegal
+        this.illustrations = illustrations
         this.id = id
         this.name = name
         this.consent = consent
@@ -137,19 +142,19 @@ export class TCFSpecialFeature {
 
 export class TCFSpecialPurpose {
     purposeDescription: string
-    descriptionLegal: string
+    illustrations: [string]
     id: number
     name: string
 
 
     constructor(
         purposeDescription: string,
-        descriptionLegal: string,
+        illustrations: [string],
         id: number,
         name: string
     ) {
         this.purposeDescription = purposeDescription
-        this.descriptionLegal = descriptionLegal
+        this.illustrations = illustrations
         this.id = id
         this.name = name
     }
@@ -199,7 +204,8 @@ export class TCFVendor {
     usesCookies: boolean
     cookieRefresh?: boolean
     dataSharedOutsideEU: boolean
-
+    dataCategories: [number]
+    vendorUrls: VendorUrl[]
 
     constructor(
         features: [number],
@@ -217,6 +223,8 @@ export class TCFVendor {
         usesNonCookieAccess: boolean,
         usesCookies: boolean,
         dataSharedOutsideEU: boolean,
+        dataCategories: [number],
+        vendorUrls: VendorUrl[],
         deviceStorageDisclosureUrl?: string,
         legitimateInterestConsent?: boolean,
         consent?: boolean,
@@ -241,6 +249,24 @@ export class TCFVendor {
         this.usesCookies = usesCookies
         this.cookieRefresh = cookieRefresh
         this.dataSharedOutsideEU = dataSharedOutsideEU
+        this.dataCategories = dataCategories
+        this.vendorUrls = vendorUrls
+    }
+}
+
+export class VendorUrl {
+    langId?: string
+    privacy?: string
+    legIntClaim?: string
+
+    constructor(
+        langId: string,
+        privacy: string,
+        legIntClaim: string
+    ) {
+        this.langId = langId
+        this.privacy = privacy
+        this.legIntClaim = legIntClaim
     }
 
 }

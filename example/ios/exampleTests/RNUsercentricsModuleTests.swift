@@ -430,6 +430,8 @@ class RNUsercentricsModuleTests: XCTestCase {
       let specialPurposes = result["specialPurposes"] as? [NSDictionary]
       let stacks = result["stacks"] as? [NSDictionary]
       let vendors = result["vendors"] as? [NSDictionary]
+      let tcString = result["tcString"] as? String
+      let thirdPartyCount = result["thirdPartyCount"] as? Int
 
       XCTAssertNotNil(features)
       XCTAssertNotNil(purposes)
@@ -437,6 +439,8 @@ class RNUsercentricsModuleTests: XCTestCase {
       XCTAssertNotNil(specialPurposes)
       XCTAssertNotNil(stacks)
       XCTAssertNotNil(vendors)
+      XCTAssertNotNil(tcString)
+      XCTAssertNotNil(thirdPartyCount)
 
       XCTAssertEqual(1, features!.count)
       XCTAssertEqual(1, purposes!.count)
@@ -451,6 +455,8 @@ class RNUsercentricsModuleTests: XCTestCase {
       XCTAssertEqual(TCFSpecialPurpose.mock().toDictionary(), specialPurposes!.first)
       XCTAssertEqual(TCFStack.mock().toDictionary(), stacks!.first)
       XCTAssertEqual(TCFVendor.mock().toDictionary(), vendors!.first)
+      XCTAssertEqual("abc", tcString)
+      XCTAssertEqual(123, thirdPartyCount)
 
     } reject: { _, _, _ in
       XCTFail("Should not go here")
@@ -493,5 +499,39 @@ class RNUsercentricsModuleTests: XCTestCase {
     module.track(1)
     XCTAssertEqual(1, fakeUsercentrics.trackCalls.count)
     XCTAssertEqual(UsercentricsAnalyticsEventType.acceptAllFirstLayer, fakeUsercentrics.trackCalls[0])
+  }
+  
+  func testGetCMPData() {
+    fakeUsercentrics.getCMPDataResponse = .mock()
+    module.getCMPData { result in
+      guard
+        let result = result as? NSDictionary
+      else {
+        XCTFail()
+        return
+      }
+
+      let settings = result["settings"] as? NSDictionary
+      let services = result["services"] as? [NSDictionary]
+      let legalBasis = result["legalBasis"] as? NSDictionary
+      let activeVariant = result["activeVariant"]
+      let userLocation = result["userLocation"] as? NSDictionary
+
+      XCTAssertNotNil(settings)
+      XCTAssertNotNil(services)
+      XCTAssertNotNil(legalBasis)
+      XCTAssertNotNil(userLocation)
+      XCTAssertNotNil(activeVariant)
+
+      XCTAssertEqual(1, services!.count)
+
+      XCTAssertEqual(UsercentricsSettings.mock().toDictionary(), settings)
+      XCTAssertEqual(UsercentricsService.mock().toDictionary(), services!.first)
+      XCTAssertEqual(LegalBasisLocalization.mock().toDictionary(), legalBasis)
+      XCTAssertEqual(2, activeVariant as? Int)
+      XCTAssertEqual(UsercentricsLocation.mock().toDictionary(), userLocation)
+    } reject: { _, _, _ in
+      XCTFail("Should not go here")
+    }
   }
 }

@@ -31,6 +31,7 @@
 		A2DC253C2721A85200AA9DD8 /* UsercentricsUserInteractionDictTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DC253B2721A85200AA9DD8 /* UsercentricsUserInteractionDictTest.swift */; };
 		A2F0B082272C396200A99DD3 /* UsercentricsConsentTypeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F0B081272C396200A99DD3 /* UsercentricsConsentTypeTests.swift */; };
 		A2F0B084272C399600A99DD3 /* TCFDecisionUILayerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F0B083272C399600A99DD3 /* TCFDecisionUILayerTests.swift */; };
+		AAFE3D882AD55A2000BA0FD0 /* CMPData+Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAFE3D872AD55A1F00BA0FD0 /* CMPData+Mock.swift */; };
 		FAA6DE282607FC1C0044CA6D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA6DE272607FC1C0044CA6D /* AppDelegate.swift */; };
 /* End PBXBuildFile section */
 
@@ -72,6 +73,7 @@
 		A2DC253B2721A85200AA9DD8 /* UsercentricsUserInteractionDictTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsercentricsUserInteractionDictTest.swift; sourceTree = "<group>"; };
 		A2F0B081272C396200A99DD3 /* UsercentricsConsentTypeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsercentricsConsentTypeTests.swift; sourceTree = "<group>"; };
 		A2F0B083272C399600A99DD3 /* TCFDecisionUILayerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TCFDecisionUILayerTests.swift; sourceTree = "<group>"; };
+		AAFE3D872AD55A1F00BA0FD0 /* CMPData+Mock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CMPData+Mock.swift"; sourceTree = "<group>"; };
 		CFBA2F06D5364A84B9A7D6FA /* Lora.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Lora.ttf; path = ../assets/fonts/Lora.ttf; sourceTree = "<group>"; };
 		D0D223024B51477898C8BE99 /* logo.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = logo.png; path = ../assets/images/logo.png; sourceTree = "<group>"; };
 		D34EFCF1D12D39933F680772 /* Pods-example-exampleTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-example-exampleTests.release.xcconfig"; path = "Target Support Files/Pods-example-exampleTests/Pods-example-exampleTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -170,6 +172,7 @@
 		A21D32A2272ADDE0004ED33E /* Mock */ = {
 			isa = PBXGroup;
 			children = (
+				AAFE3D872AD55A1F00BA0FD0 /* CMPData+Mock.swift */,
 				A2DC252227216A9D00AA9DD8 /* UsercentricsIsReady+Mock.swift */,
 				A2DC252427216AA500AA9DD8 /* UsercentricsOptions+Mock.swift */,
 				A24E4EA627313B82001093C7 /* TCFUserDecisions+Mock.swift */,
@@ -490,6 +493,7 @@
 				A2DC252927216D7600AA9DD8 /* FakeDispatchQueue.swift in Sources */,
 				A24E4EA727313B82001093C7 /* TCFUserDecisions+Mock.swift in Sources */,
 				A2390F8A27B5355900F355C1 /* BannerSettingsDictTests.swift in Sources */,
+				AAFE3D882AD55A2000BA0FD0 /* CMPData+Mock.swift in Sources */,
 				A2F0B082272C396200A99DD3 /* UsercentricsConsentTypeTests.swift in Sources */,
 				A2DC252D272179E600AA9DD8 /* ReadyStatusDictTests.swift in Sources */,
 			);

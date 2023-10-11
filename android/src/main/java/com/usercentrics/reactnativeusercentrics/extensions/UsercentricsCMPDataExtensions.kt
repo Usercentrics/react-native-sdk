@@ -184,6 +184,11 @@ private fun TCF2Settings.serialize(): WritableMap {
         "togglesSpecialFeaturesToggleOff" to togglesSpecialFeaturesToggleOff,
         "appLayerNoteResurface" to appLayerNoteResurface,
         "firstLayerNoteResurface" to firstLayerNoteResurface,
+        "categoriesOfDataLabel" to categoriesOfDataLabel,
+        "dataRetentionPeriodLabel" to dataRetentionPeriodLabel,
+        "legitimateInterestLabel" to legitimateInterestLabel,
+        "version" to version,
+        "examplesLabel" to examplesLabel,
     ).toWritableMap()
 }
 

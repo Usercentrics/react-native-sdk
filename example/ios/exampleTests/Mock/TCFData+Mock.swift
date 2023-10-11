@@ -9,14 +9,15 @@ extension TCFData {
                  specialPurposes: [.mock()],
                  stacks: [.mock()],
                  vendors: [.mock()],
-                 tcString: "abc")
+                 tcString: "abc",
+                 thirdPartyCount: 123)
   }
 }
 
 extension TCFFeature {
   static func mock() -> TCFFeature {
     return .init(purposeDescription: "abc",
-                 descriptionLegal: "abc",
+                 illustrations: ["abc"],
                  id: Int32(123),
                  name: "abc")
   }
@@ -25,7 +26,7 @@ extension TCFFeature {
 extension TCFPurpose {
   static func mock() -> TCFPurpose {
     return .init(purposeDescription: "abc",
-                 descriptionLegal: "abc",
+                 illustrations: ["abc"],
                  id: Int32(123),
                  name: "abc",
                  consent: KotlinBoolean(bool: false),
@@ -40,7 +41,7 @@ extension TCFPurpose {
 extension TCFSpecialFeature {
   static func mock() -> TCFSpecialFeature {
     return .init(purposeDescription: "abc",
-                 descriptionLegal: "abc",
+                 illustrations: ["abc"],
                  id: Int32(123),
                  name: "abc",
                  consent: KotlinBoolean(bool: false),
@@ -63,7 +64,7 @@ extension TCFStack {
 extension TCFSpecialPurpose {
   static func mock() -> TCFSpecialPurpose {
     return .init(purposeDescription: "abc",
-                 descriptionLegal: "abc",
+                 illustrations: ["abc"],
                  id: Int32(123),
                  name: "abc")
   }
@@ -91,6 +92,10 @@ extension TCFVendor {
                  deviceStorage: nil,
                  usesCookies: false,
                  cookieRefresh: KotlinBoolean(bool: false),
-                 dataSharedOutsideEU: KotlinBoolean(bool: false))
+                 dataSharedOutsideEU: KotlinBoolean(bool: false),
+                 dataRetention: nil,
+                 dataCategories: [IdAndName(id: 123, name: "name")],
+                 vendorUrls: [VendorUrl(langId: "langId", privacy: "privacy", legIntClaim: "legIntClaim")]
+    )
   }
 }
