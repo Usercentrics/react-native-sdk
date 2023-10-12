@@ -6,50 +6,36 @@
             alt="follow on Twitter">
 </a>
 
-## Overview
+# Welcome!
 
-The Usercentrics Apps SDK is a Consent Management Platform framework for mobile, TV, Web, and Unity applications, that enables the collection, documentation, and management of your user's privacy settings, in order to ensure legal compliance for different legal frameworks around the world.
+You are now one step closer from making **privacy** a core feature in your application. We are very happy that you decided to make this a priority. We are here to help you **build trust** with your users.
+
+## The Usercentrics Apps SDK
+
+The Usercentrics Apps SDK is a native Consent Management Platform solution for mobile apps, mobile games & TV applications, that enables the collection, documentation, and management of your user's privacy choices, in order to ensure legal compliance for legal regulations around the world.
 
 <p align="center">
 <img src="https://docs.usercentrics.com/cmp_in_app_sdk/latest/assets/media/predefinedUI.png" alt="Usercentrics UI" />
 </p>
-
-### Supported Legal Frameworks
-
-* 🇪🇺 GDPR - European Union's General Data Protection Regulation
-* 🇺🇸 CCPA - California's Consumer Privacy Act
-* 🇧🇷 LGPD - Brazil’s Lei Geral de Proteção de Dados
-* 🌎 TCF 2.0 - Transparency & Consent Framework 2.0
-
-### Supported Platforms
-
-| Android | iOS |  Web  | tvOS | MacOS |
-|:-------:|:---:|:-----:|:----:|:-----:|
-|    ✅   |  ✅  |   ❌   |  ❌  |  ❌  |
 
 ### Requirements
 * Android 5.0 (API 21) or higher with Kotlin 1.5 or higher
 * iOS 11 or higher
 * React 17.0 or higher
 * React Native 0.65 or higher
-* Node 14 
+* Node 14
 
-## Installation
+## Get started!
 
-Install the library from npm:
+In order to use and test the SDK, you will need a Usercentrics Account. Get [started with a free trial](https://usercentrics.com/in-app-sdk/).
 
-```sh
-npm install @usercentrics/react-native-sdk
-```
+## Integration
 
-For iOS, after installing the package, you will need to install the Usercentrics dependency by running from your project folder, in this repository go to example/ and run:
-```sh
-npx pod-install
-```
-Or running from example/ios/ folder:
-```sh
-pod install
-```
+Continue to our [documentation](https://usercentrics.com/docs/apps/intro/) for a step by step integration guide.
+
+## Example
+
+See the [example](https://github.com/Usercentrics/react-native/tree/master/example) directory for a complete sample app using Usercentrics.
 
 ## Sample Project
 
@@ -78,17 +64,6 @@ To run the sample project, you will need to run npm install from both root and e
     ```sh
     npx react-native run-android
     ``` 
-
-## Integration
-
-Continue to our [documentation](https://docs.usercentrics.com/cmp_in_app_sdk/) for a step by step integration guide.
-
-## Example
-
-See the [example](https://github.com/Usercentrics/react-native/tree/master/example) directory for a complete sample app using Usercentrics.
-
-## Get an Account
-First step to get started with our SDK, is to create a Usercentrics Account, [get started with a free account](https://usercentrics.com/pricing/#mobile) or [request a quote](https://usercentrics.com/in-app-sdk/#in-app-demo) for your organization.
 
 ## Maintainers
 - [Usercentrics](https://github.com/Usercentrics)
