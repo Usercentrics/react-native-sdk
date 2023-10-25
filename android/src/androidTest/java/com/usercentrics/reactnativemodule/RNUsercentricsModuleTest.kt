@@ -755,55 +755,22 @@ class RNUsercentricsModuleTest {
 
     @Test
     fun testShowFirstLayerWhenShowCloseButtonIsNull() {
-        val context = InstrumentationRegistry.getInstrumentation().context
         val usercentricsProxy = FakeUsercentricsProxy()
         val contextMock = mockk<ReactApplicationContext>(relaxed = true)
         val module =
             RNUsercentricsModule(contextMock, usercentricsProxy, ReactContextProviderMock())
         val bannerSettingsMap = mapOf(
-            "variant" to null,
-            "firstLayerStyleSettings" to mapOf(
-                "layout" to "POPUP_CENTER",
-            ),
             "secondLayerStyleSettings" to mapOf(
-                "buttonLayout" to mapOf(
-                    "layout" to "ROW",
-                    "buttons" to arrayOf(
-                        mapOf(
-                            "buttonType" to "ACCEPT_ALL",
-                            "cornerRadius" to 30.0,
-                        )
-                    )
-                ),
+                "showCloseButton" to null
             ),
-            "generalStyleSettings" to mapOf(
-                "logo" to mapOf(
-                    "logoPath" to "some_local_image"
-                )
-            )
         )
         val promise = FakePromise()
         module.showFirstLayer(bannerSettingsMap.toWritableMap(), promise)
         promise.await()
 
-        val someLocalImageDrawableId =
-            context.resources.getIdentifier("some_local_image", "drawable", context.packageName)
-
         val expectedBannerSettings = BannerSettings(
-            firstLayerStyleSettings = FirstLayerStyleSettings(
-                layout = UsercentricsLayout.Popup(
-                    PopupPosition.CENTER
-                )
-            ),
             secondLayerStyleSettings = SecondLayerStyleSettings(
-                buttonLayout = ButtonLayout.Row(
-                    listOf(
-                        ButtonSettings(type = ButtonType.ACCEPT_ALL, cornerRadius = 30)
-                    )
-                )
-            ),
-            generalStyleSettings = GeneralStyleSettings(
-                logo = UsercentricsImage.ImageDrawableId(someLocalImageDrawableId)
+                showCloseButton = null
             )
         )
 
