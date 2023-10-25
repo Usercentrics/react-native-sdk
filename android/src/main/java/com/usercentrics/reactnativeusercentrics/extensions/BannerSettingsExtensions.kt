@@ -155,7 +155,7 @@ internal fun String.deserializeButtonType(): ButtonType {
 internal fun ReadableMap.secondLayerStyleSettingsFromMap(context: Context): SecondLayerStyleSettings {
     return SecondLayerStyleSettings(
         buttonLayout = getMap("buttonLayout")?.buttonLayoutFromMap(context),
-        showCloseButton = getBoolean("showCloseButton"),
+        showCloseButton = getBooleanOrNull("showCloseButton"),
     )
 }
 
