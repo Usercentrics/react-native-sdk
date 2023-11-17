@@ -1,4 +1,20 @@
 [Release Notes](https://docs.usercentrics.com/cmp_in_app_sdk/latest/about/history/)
+### 2.10.0 - November 16, 2023
+
+## Improvements
+
+* Accessibility: Various issues have been addressed to enhance accessibility.
+  * Resolved banner compatibility issues with iOS VoiceOver.
+  * Resolved banner compatibility issues with Android TalkBack.
+  * Adjusted font sizes to comply with Accessibility requirements on both iOS and Android.
+
+* Added Ukrainian support language for TCF.
+
+## Resolved Issues
+
+* Fixed the issue of not disclosing the setting "showCloseButton" has been addressed, preventing errors on Android.
+* Fixed the crash on Android when passing an invalid controller id to restore the user session.
+* Fixed The issue of the remote variant configuration not being used in first layer on Unity.
 
 ### 2.9.0 - October 6, 2023
 
