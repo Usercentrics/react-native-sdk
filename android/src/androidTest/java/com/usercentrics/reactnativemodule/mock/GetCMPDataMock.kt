@@ -1,9 +1,11 @@
 package com.usercentrics.reactnativemodule.mock
 
+import com.usercentrics.sdk.models.settings.USAFrameworks
 import com.usercentrics.sdk.v2.location.data.UsercentricsLocation
 import com.usercentrics.sdk.v2.settings.data.*
 
 internal class GetCMPDataMock {
+
     companion object {
         val fakeCategories = listOf(
             UsercentricsCategory(
@@ -51,7 +53,22 @@ internal class GetCMPDataMock {
                 description = "",
                 isDeactivated = false,
                 disableLegalBasis = false,
-                technologyUsed = listOf("Cookies", "Pixel Tags")
+                technologyUsed = listOf("Cookies", "Pixel Tags"),
+                deviceStorage = ConsentDisclosureObject(
+                    disclosures = listOf(
+                        ConsentDisclosure(
+                            identifier = "identifier",
+                            type = ConsentDisclosureType.APP,
+                            name = "name",
+                            maxAgeSeconds = 123123,
+                            cookieRefresh = true,
+                            purposes = listOf(1, 2, 3),
+                            domain = "domain",
+                            description = "description",
+                        )
+                    )
+                ),
+                isHidden = false,
             )
         )
         private val fakeLabels = UsercentricsLabels(
@@ -83,7 +100,7 @@ internal class GetCMPDataMock {
             dataCollectedInfo = "This list represents all (personal) data that is collected by or through the use of this service.",
             legalBasisInfo = "In the following the required legal basis for the processing of data is listed.",
             dataRecipientsList = "Data Recipients",
-            transferToThirdCountriesInfo = "This service may forward the collected data to a different country. Please note that this service might transfer the data outside of the EU/EEA and to a country without the required data protection standards. If the data is transferred to the US, there is a risk that your data can be processed by US authorities, for control and surveillance measures, possibly without legal remedies. Below you can find a list of countries to which the data is being transferred. This can be for different reasons like storing or processing.",
+            transferToThirdCountriesInfo = "This service may forward the collected data to a different country.",
             linkToDpaInfo = "Data Processing Agreement",
             dataPurposesInfo = "This list represents the purposes of the data collection and processing.",
             technologiesUsedInfo = "This list represents all technologies this service uses to collect data. Typical technologies are Cookies and Pixels that are placed in the browser.",
@@ -160,9 +177,9 @@ internal class GetCMPDataMock {
             hideLanguageSwitch = false,
             tabsCategoriesLabel = "Categories",
             hideButtonDeny = false,
-            hideTogglesForServices = false,
             acceptButtonText = "Accept All",
             denyButtonText = "Deny All",
+            hideTogglesForServices = false,
             hideDataProcessingServices = false,
         )
         private val fakeTCF2Settings = TCF2Settings(
@@ -221,6 +238,12 @@ internal class GetCMPDataMock {
             dataRetentionPeriodLabel = "dataRetentionPeriodLabel",
             legitimateInterestLabel = "legitimateInterestLabel",
             examplesLabel = "examplesLabel",
+            firstLayerMobileVariant = FirstLayerMobileVariant.FULL,
+            showDataSharedOutsideEUText = true,
+            dataSharedOutsideEUText = "dataSharedOutsideEUText",
+            vendorIdsOutsideEUList = listOf(1, 2, 3),
+            scope = TCF2Scope.SERVICE,
+            changedPurposes = TCF2ChangedPurposes(purposes = listOf(1, 2, 3), legIntPurposes = listOf(1, 2, 3)),
         )
         private val fakeCCPASettings = CCPASettings(
             secondLayerHideLanguageSwitch = false,
@@ -252,6 +275,7 @@ internal class GetCMPDataMock {
             ),
             logoUrl = "https://www.munich-startup.de/wp-content/uploads/2018/01/usercentrics-logo-4c@4x.png"
         )
+
         val fakeSettings = UsercentricsSettings(
             labels = fakeLabels,
             showInitialViewForVersionChange = listOf(),
@@ -274,6 +298,12 @@ internal class GetCMPDataMock {
             enablePoweredBy = true,
             editableLanguages = listOf("en", "de"),
             customization = fakeCustomization,
+            variants = VariantsSettings(enabled = true, experimentsJson = "{}", activateWith = "UC"),
+            dpsDisplayFormat = DpsDisplayFormat.ALL,
+            framework = USAFrameworks.CTDPA,
+            publishedApps = listOf(
+                PublishedApp(bundleId = "bundleId", platform = PublishedAppPlatform.ANDROID)
+            ),
         )
 
         // From the debugger
@@ -286,8 +316,11 @@ internal class GetCMPDataMock {
             "hideButtonDeny" to false,
             "hideLanguageSwitch" to false,
             "acceptButtonText" to "Accept All",
-            "denyButtonText" to "Deny All"
+            "denyButtonText" to "Deny All",
+            "hideTogglesForServices" to false,
+            "hideDataProcessingServices" to false,
         )
+
         private val expectedLabels = hashMapOf(
             "btnAcceptAll" to "Accept All",
             "btnDeny" to "Deny",
@@ -354,7 +387,14 @@ internal class GetCMPDataMock {
             "secondLayerTitle" to "Privacy Settings Title",
             "secondLayerDescriptionHtml" to "Privacy Settings Description",
             "btnMore" to "more",
-            "explicit" to "Explicit"
+            "explicit" to "Explicit",
+            "transferToThirdCountriesInfo" to "This service may forward the collected data to a different country.",
+            "more" to "more",
+            "headerModal" to "This tool helps you to select and deactivate various tags / trackers / analytic tools used on this website.",
+            "furtherInformationOptOut" to "Further Information and Opt-Out",
+            "cookiePolicyLinkText" to "Cookie Policy",
+            "noImplicit" to "no (default)",
+            "yesImplicit" to "yes (implicit)",
         )
         private val expectedTCF2Settings = hashMapOf(
             "firstLayerTitle" to "Privacy Information",
@@ -408,6 +448,15 @@ internal class GetCMPDataMock {
             "legitimateInterestLabel" to "legitimateInterestLabel",
             "examplesLabel" to "examplesLabel",
             "version" to "2.2",
+            "firstLayerMobileVariant" to "FULL",
+            "showDataSharedOutsideEUText" to true,
+            "dataSharedOutsideEUText" to "dataSharedOutsideEUText",
+            "vendorIdsOutsideEUList" to listOf(1, 2, 3),
+            "scope" to "SERVICE",
+            "changedPurposes" to mapOf(
+                "purposes" to listOf(1, 2, 3),
+                "legIntPurposes" to listOf(1, 2, 3),
+            ),
         )
         private val expectedCCPASettings = hashMapOf(
             "optOutNoticeLabel" to "Do not sell my personal information",
@@ -458,7 +507,21 @@ internal class GetCMPDataMock {
             "enablePoweredBy" to true,
             "editableLanguages" to listOf("en", "de"),
             "customization" to expectedCustomization,
+            "variants" to mapOf(
+                "enabled" to true,
+                "experimentsJson" to "{}",
+                "activateWith" to "UC"
+            ),
+            "dpsDisplayFormat" to "ALL",
+            "framework" to "CTDPA",
+            "publishedApps" to listOf(
+                mapOf(
+                    "bundleId" to "bundleId",
+                    "platform" to "ANDROID"
+                )
+            ),
         )
+
         val expectedCategories = listOf(
             hashMapOf(
                 "categorySlug" to "essential",
@@ -509,7 +572,20 @@ internal class GetCMPDataMock {
                 "description" to "",
                 "isDeactivated" to false,
                 "disableLegalBasis" to false,
-                "technologyUsed" to listOf("Cookies", "Pixel Tags")
+                "technologyUsed" to listOf("Cookies", "Pixel Tags"),
+                "deviceStorage" to listOf(
+                    mapOf(
+                        "identifier" to "identifier",
+                        "type" to "APP",
+                        "name" to "name",
+                        "maxAgeSeconds" to 123123L,
+                        "cookieRefresh" to true,
+                        "purposes" to listOf(1, 2, 3),
+                        "domain" to "domain",
+                        "description" to "description",
+                    )
+                ),
+                "isHidden" to false,
             )
         )
     }

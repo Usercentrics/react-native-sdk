@@ -1,3 +1,5 @@
+import {ConsentDisclosureObject} from "./ConsentDisclosureObject";
+
 export class UsercentricsService {
 
     /// The template ID of the service.
@@ -44,6 +46,8 @@ export class UsercentricsService {
     technologyUsed: [string]
     isDeactivated?: boolean
     disableLegalBasis?: boolean
+    deviceStorage?: ConsentDisclosureObject
+    isHidden: boolean
 
     constructor(
         templateId: string,
@@ -81,9 +85,11 @@ export class UsercentricsService {
         cookieMaxAgeSeconds: number,
         deviceStorageDisclosureUrl: string,
         technologyUsed: [string],
+        isHidden: boolean,
         isDeactivated?: boolean,
         disableLegalBasis?: boolean,
         usesNonCookieAccess?: boolean,
+        deviceStorage?: ConsentDisclosureObject,
     ) {
         this.templateId = templateId
         this.version = version
@@ -122,5 +128,7 @@ export class UsercentricsService {
         this.disableLegalBasis = disableLegalBasis
         this.isEssential = isEssential
         this.technologyUsed = technologyUsed
+        this.deviceStorage = deviceStorage
+        this.isHidden = isHidden
     }
 }

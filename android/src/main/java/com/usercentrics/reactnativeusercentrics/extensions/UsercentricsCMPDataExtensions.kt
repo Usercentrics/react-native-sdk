@@ -4,7 +4,20 @@ import com.facebook.react.bridge.Arguments
 import com.facebook.react.bridge.WritableMap
 import com.usercentrics.sdk.UsercentricsCMPData
 import com.usercentrics.sdk.v2.location.data.UsercentricsLocation
-import com.usercentrics.sdk.v2.settings.data.*
+import com.usercentrics.sdk.v2.settings.data.CCPASettings
+import com.usercentrics.sdk.v2.settings.data.CustomizationColor
+import com.usercentrics.sdk.v2.settings.data.CustomizationFont
+import com.usercentrics.sdk.v2.settings.data.FirstLayer
+import com.usercentrics.sdk.v2.settings.data.PublishedApp
+import com.usercentrics.sdk.v2.settings.data.SecondLayer
+import com.usercentrics.sdk.v2.settings.data.TCF2ChangedPurposes
+import com.usercentrics.sdk.v2.settings.data.TCF2Settings
+import com.usercentrics.sdk.v2.settings.data.UsercentricsCategory
+import com.usercentrics.sdk.v2.settings.data.UsercentricsCustomization
+import com.usercentrics.sdk.v2.settings.data.UsercentricsLabels
+import com.usercentrics.sdk.v2.settings.data.UsercentricsService
+import com.usercentrics.sdk.v2.settings.data.UsercentricsSettings
+import com.usercentrics.sdk.v2.settings.data.VariantsSettings
 
 internal fun UsercentricsCMPData.serialize(): WritableMap {
     return Arguments.createMap().apply {
@@ -40,12 +53,15 @@ private fun UsercentricsSettings.serialize(): WritableMap {
         "enablePoweredBy" to enablePoweredBy,
         "editableLanguages" to editableLanguages,
         "customization" to customization?.serialize(),
+        "variants" to variants?.serialize(),
+        "dpsDisplayFormat" to (dpsDisplayFormat?.name ?: ""),
+        "framework" to (framework?.name ?: ""),
+        "publishedApps" to publishedApps?.map { it.serialize() },
     ).toWritableMap()
 }
 
 private fun UsercentricsLabels.serialize(): Map<String, Any?> {
     return mapOf(
-        // Required only
         "btnAcceptAll" to btnAcceptAll,
         "btnDeny" to btnDeny,
         "btnSave" to btnSave,
@@ -111,7 +127,14 @@ private fun UsercentricsLabels.serialize(): Map<String, Any?> {
         "secondLayerTitle" to secondLayerTitle,
         "secondLayerDescriptionHtml" to secondLayerDescriptionHtml,
         "btnMore" to btnMore,
-        "explicit" to (explicit ?: "")
+        "explicit" to (explicit ?: ""),
+        "transferToThirdCountriesInfo" to transferToThirdCountriesInfo,
+        "more" to more,
+        "headerModal" to headerModal,
+        "furtherInformationOptOut" to furtherInformationOptOut,
+        "cookiePolicyLinkText" to cookiePolicyLinkText,
+        "noImplicit" to noImplicit,
+        "yesImplicit" to yesImplicit,
     )
 }
 
@@ -136,7 +159,6 @@ private fun CCPASettings.serialize(): WritableMap {
 
 private fun TCF2Settings.serialize(): WritableMap {
     return mapOf(
-        // Required
         "firstLayerTitle" to firstLayerTitle,
         "secondLayerTitle" to secondLayerTitle,
         "tabsPurposeLabel" to tabsPurposeLabel,
@@ -160,7 +182,6 @@ private fun TCF2Settings.serialize(): WritableMap {
         "linksVendorListLinkLabel" to linksVendorListLinkLabel,
         "cmpId" to cmpId,
         "cmpVersion" to cmpVersion,
-        // Optional
         "firstLayerHideToggles" to firstLayerHideToggles,
         "secondLayerHideToggles" to secondLayerHideToggles,
         "hideLegitimateInterestToggles" to hideLegitimateInterestToggles,
@@ -189,6 +210,12 @@ private fun TCF2Settings.serialize(): WritableMap {
         "legitimateInterestLabel" to legitimateInterestLabel,
         "version" to version,
         "examplesLabel" to examplesLabel,
+        "firstLayerMobileVariant" to (firstLayerMobileVariant?.name ?: ""),
+        "showDataSharedOutsideEUText" to showDataSharedOutsideEUText,
+        "dataSharedOutsideEUText" to dataSharedOutsideEUText,
+        "vendorIdsOutsideEUList" to vendorIdsOutsideEUList,
+        "scope" to scope.name,
+        "changedPurposes" to changedPurposes?.serialize(),
     ).toWritableMap()
 }
 
@@ -250,6 +277,8 @@ private fun SecondLayer.serialize(): WritableMap {
         "denyButtonText" to (denyButtonText ?: ""),
         "hideButtonDeny" to hideButtonDeny,
         "hideLanguageSwitch" to hideLanguageSwitch,
+        "hideTogglesForServices" to hideTogglesForServices,
+        "hideDataProcessingServices" to hideDataProcessingServices,
     ).toWritableMap()
 }
 
@@ -291,10 +320,11 @@ private fun UsercentricsService.serialize(): WritableMap {
         "deviceStorageDisclosureUrl" to deviceStorageDisclosureUrl,
         "isDeactivated" to isDeactivated,
         "disableLegalBasis" to disableLegalBasis,
-        "technologyUsed" to technologyUsed
+        "technologyUsed" to technologyUsed,
+        "deviceStorage" to deviceStorage.serialize(),
+        "isHidden" to isHidden,
     ).toWritableMap()
 }
-
 
 private fun UsercentricsCategory.serialize(): WritableMap {
     return mapOf(
@@ -313,4 +343,32 @@ private fun UsercentricsLocation.serialize(): WritableMap {
         "isInUS" to isInUS(),
         "isInCalifornia" to isInCalifornia(),
     ).toWritableMap()
+}
+
+private fun VariantsSettings?.serialize(): Any? {
+    if (this == null) {
+        return null
+    }
+    return mapOf(
+        "enabled" to enabled,
+        "experimentsJson" to experimentsJson,
+        "activateWith" to activateWith,
+    )
+}
+
+private fun PublishedApp.serialize(): Any {
+    return mapOf(
+        "bundleId" to bundleId,
+        "platform" to platform.name,
+    )
+}
+
+private fun TCF2ChangedPurposes?.serialize(): Any? {
+    if (this == null) {
+        return null
+    }
+    return mapOf(
+        "purposes" to purposes,
+        "legIntPurposes" to legIntPurposes
+    )
 }

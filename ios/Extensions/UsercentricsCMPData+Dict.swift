@@ -39,6 +39,10 @@ extension UsercentricsSettings {
             "enablePoweredBy" : self.enablePoweredBy,
             "editableLanguages" : self.editableLanguages,
             "customization" : self.customization?.toDictionary() as Any,
+            "variants": (self.variants?.toDictionary() ?? nil) as Any,
+            "dpsDisplayFormat": (self.dpsDisplayFormat?.name ?? "") as Any,
+            "framework": (self.framework?.name ?? "") as Any,
+            "publishedApps": (self.publishedApps?.map { $0.toDictionary() } ?? nil) as Any,
         ]
     }
 }
@@ -46,7 +50,6 @@ extension UsercentricsSettings {
 extension UsercentricsLabels {
     func toDictionary() -> NSDictionary {
         return [
-            // Required only
             "btnAcceptAll" : self.btnAcceptAll,
             "btnDeny" : self.btnDeny,
             "btnSave" : self.btnSave,
@@ -112,7 +115,14 @@ extension UsercentricsLabels {
             "secondLayerDescriptionHtml" : self.secondLayerDescriptionHtml,
             "secondLayerTitle" : self.secondLayerTitle ?? "",
             "btnMore": self.btnMore,
-            "explicit": self.explicit_ ?? ""
+            "explicit": self.explicit_ ?? "",
+            "transferToThirdCountriesInfo": self.transferToThirdCountriesInfo,
+            "more": self.more,
+            "headerModal": self.headerModal,
+            "furtherInformationOptOut": self.furtherInformationOptOut,
+            "cookiePolicyLinkText": self.cookiePolicyLinkText,
+            "noImplicit": self.noImplicit,
+            "yesImplicit": self.yesImplicit,
         ]
     }
 }
@@ -142,7 +152,6 @@ extension CCPASettings {
 extension TCF2Settings {
     func toDictionary() -> NSDictionary {
         return [
-            // Required
             "firstLayerTitle" : self.firstLayerTitle,
             "secondLayerTitle" : self.secondLayerTitle,
             "tabsPurposeLabel" : self.tabsPurposeLabel,
@@ -166,7 +175,6 @@ extension TCF2Settings {
             "linksVendorListLinkLabel" : self.linksVendorListLinkLabel,
             "cmpId" : self.cmpId,
             "cmpVersion" : self.cmpVersion,
-            // Optional
             "firstLayerHideToggles" : self.firstLayerHideToggles,
             "secondLayerHideToggles" : self.secondLayerHideToggles,
             "hideLegitimateInterestToggles" : self.hideLegitimateInterestToggles,
@@ -196,6 +204,12 @@ extension TCF2Settings {
             "legitimateInterestLabel": self.legitimateInterestLabel,
             "version": self.version,
             "examplesLabel": self.examplesLabel,
+            "firstLayerMobileVariant": self.firstLayerMobileVariant?.name ?? "",
+            "showDataSharedOutsideEUText": self.showDataSharedOutsideEUText,
+            "dataSharedOutsideEUText": self.dataSharedOutsideEUText as Any,
+            "vendorIdsOutsideEUList": self.vendorIdsOutsideEUList,
+            "scope": self.scope.name,
+            "changedPurposes": self.changedPurposes?.toDictionary() as Any,
         ]
     }
 }
@@ -266,21 +280,20 @@ extension FirstLayer {
 }
 
 
-
 extension SecondLayer {
     func toDictionary() -> NSDictionary {
         return [
-            // Required
             "tabsCategoriesLabel" : self.tabsCategoriesLabel,
             "tabsServicesLabel" : self.tabsServicesLabel,
             "hideButtonDeny" : hideButtonDeny?.boolValue as Any,
             "hideLanguageSwitch" : hideLanguageSwitch?.boolValue as Any,
             "acceptButtonText": self.acceptButtonText ?? "",
             "denyButtonText": self.denyButtonText ?? "",
+            "hideTogglesForServices": self.hideTogglesForServices,
+            "hideDataProcessingServices": self.hideDataProcessingServices,
         ]
     }
 }
-
 
 
 extension UsercentricsService {
@@ -323,9 +336,33 @@ extension UsercentricsService {
             "isDeactivated" : isDeactivated?.boolValue as Any,
             "disableLegalBasis" : disableLegalBasis?.boolValue as Any,
             "technologyUsed": self.technologyUsed,
+            "deviceStorage": self.deviceStorage.toDictionary(),
+            "isHidden": self.isHidden
         ]
     }
 }
+
+extension ConsentDisclosureObject {
+    func toDictionary() -> Any {
+        return self.disclosures.map { $0.toDictionary() }
+    }
+}
+
+extension ConsentDisclosure {
+    func toDictionary() -> Any {
+        return [
+            "identifier": self.identifier as Any,
+            "type": self.type?.name ?? "",
+            "name": self.name as Any,
+            "maxAgeSeconds": self.maxAgeSeconds as Any,
+            "cookieRefresh": self.cookieRefresh,
+            "purposes": self.purposes,
+            "domain": self.domain ?? "",
+            "description": self.description,
+        ]
+    }
+}
+
 
 extension UsercentricsCategory {
     func toDictionary() -> Any? {
@@ -392,6 +429,34 @@ extension TranslationAriaLabels {
             "vendorConsentToggle": vendorConsentToggle as Any,
             "vendorDetailedStorageInformation": vendorDetailedStorageInformation as Any,
             "vendorLegIntToggle": vendorLegIntToggle as Any
+        ]
+    }
+}
+
+extension VariantsSettings {
+    func toDictionary() -> Any {
+        return [
+            "enabled": enabled,
+            "experimentsJson": experimentsJson,
+            "activateWith": activateWith,
+        ] as [String : Any]
+    }
+}
+
+extension PublishedApp {
+    func toDictionary() -> Any {
+        return [
+            "bundleId": bundleId,
+            "platform": platform.name,
+        ]
+    }
+}
+
+extension TCF2ChangedPurposes {
+    func toDictionary() -> Any {
+        return [
+            "purposes": purposes,
+            "legIntPurposes": legIntPurposes
         ]
     }
 }

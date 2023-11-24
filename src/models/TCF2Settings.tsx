@@ -50,6 +50,12 @@ export class TCF2Settings {
     legitimateInterestLabel: string
     version: string
     examplesLabel: string
+    firstLayerMobileVariant?: FirstLayerMobileVariant
+    showDataSharedOutsideEUText: boolean
+    dataSharedOutsideEUText?: String
+    vendorIdsOutsideEUList: [number]
+    scope: TCF2Scope
+    changedPurposes: TCF2ChangedPurposes
 
     constructor(
         firstLayerTitle: string,
@@ -102,7 +108,13 @@ export class TCF2Settings {
         legitimateInterestLabel: string,
         version: string,
         examplesLabel: string,
+        showDataSharedOutsideEUText: boolean,
+        vendorIdsOutsideEUList: [number],
+        scope: TCF2Scope,
+        changedPurposes: TCF2ChangedPurposes,
         firstLayerHideButtonDeny?: boolean,
+        firstLayerMobileVariant?: FirstLayerMobileVariant,
+        dataSharedOutsideEUText?: String,
     ) {
         this.firstLayerTitle = firstLayerTitle
         this.secondLayerTitle = secondLayerTitle
@@ -155,6 +167,29 @@ export class TCF2Settings {
         this.legitimateInterestLabel = legitimateInterestLabel
         this.version = version
         this.examplesLabel = examplesLabel
+        this.firstLayerMobileVariant = firstLayerMobileVariant
+        this.showDataSharedOutsideEUText = showDataSharedOutsideEUText
+        this.dataSharedOutsideEUText = dataSharedOutsideEUText
+        this.vendorIdsOutsideEUList = vendorIdsOutsideEUList
+        this.scope = scope
+        this.changedPurposes = changedPurposes
     }
+}
 
+enum FirstLayerMobileVariant { sheet, full, popupBottom, popupCenter }
+
+enum TCF2Scope { global, service }
+
+class TCF2ChangedPurposes {
+
+    purposes: [number]
+    legIntPurposes: [number]
+
+    constructor(
+        purposes: [number],
+        legIntPurposes: [number],
+    ) {
+        this.purposes = purposes
+        this.legIntPurposes = legIntPurposes
+    }
 }

@@ -25,7 +25,10 @@ export class UsercentricsSettings {
     customization?: string
     firstLayer?: FirstLayer
     secondLayer?: SecondLayer
-
+    variants?: VariantsSettings
+    dpsDisplayFormat?: DpsDisplayFormat
+    framework?: USAFrameworks
+    publishedApps?: [PublishedApp]
 
     constructor(
         labels: UsercentricsLabels,
@@ -49,7 +52,11 @@ export class UsercentricsSettings {
         tcf2?: TCF2Settings,
         customization?: string,
         firstLayer?: FirstLayer,
-        secondLayer?: SecondLayer
+        secondLayer?: SecondLayer,
+        variants?: VariantsSettings,
+        dpsDisplayFormat?: DpsDisplayFormat,
+        framework?: USAFrameworks,
+        publishedApps?: [PublishedApp],
     ) {
         this.labels = labels
         this.version = version
@@ -73,8 +80,11 @@ export class UsercentricsSettings {
         this.customization = customization
         this.firstLayer = firstLayer
         this.secondLayer = secondLayer
+        this.variants = variants
+        this.dpsDisplayFormat = dpsDisplayFormat
+        this.framework = framework
+        this.publishedApps = publishedApps
     }
-
 }
 
 class FirstLayer {
@@ -110,5 +120,46 @@ class SecondLayer {
         this.acceptButtonText = acceptButtonText
         this.denyButtonText = denyButtonText
     }
-
 }
+
+class VariantsSettings {
+
+    enabled: boolean
+    experimentsJson: string
+    activateWith: string
+
+    constructor(
+        enabled: boolean,
+        experimentsJson: string,
+        activateWith: string,
+    ) {
+        this.enabled = enabled
+        this.experimentsJson = experimentsJson
+        this.activateWith = activateWith
+    }
+}
+
+enum DpsDisplayFormat { all, short }
+
+enum USAFrameworks {
+    cpra,
+    vcdpa,
+    cpa,
+    ctdpa,
+    ucpa,
+}
+
+class PublishedApp {
+    bundleId: string
+    platform: PublishedAppPlatform
+
+    constructor(
+        bundleId: string,
+        platform: PublishedAppPlatform,
+    ) {
+        this.bundleId = bundleId
+        this.platform = platform
+    }
+}
+
+enum PublishedAppPlatform { android, ios }

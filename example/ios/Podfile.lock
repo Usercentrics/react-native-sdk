@@ -413,7 +413,7 @@ SPEC CHECKSUMS:
   React-jsiexecutor: d7540b187f30f45281ece995f19dde143e3afff3
   React-jsinspector: 94bbad998be4efbdac7d6d152677bdd134c1c980
   react-native-safe-area-context: 5b8a418400eb3d8364aa87300e865c0262cc17b9
-  react-native-usercentrics: 9a077b254649b00f982cebef763c7412a8fcec2c
+  react-native-usercentrics: b1399dba603a97a2baa1ff59e67b4eeedc13b428
   react-native-webview: e3b659a6d614bb37fb12a2de82c91a378c59d84b
   React-perflogger: f8205b59ccf68dbe4184e71ac7b4db55ea0c8965
   React-RCTActionSheet: 67b50ddfccbc123dcc7574475e4fdc911cc601d7
@@ -428,8 +428,8 @@ SPEC CHECKSUMS:
   React-runtimeexecutor: 5ebf1c985947ea684140fe8431b5b4921c2960c1
   ReactCommon: 3a88b42affa0809e2524f978700a22841b04a421
   RNScreens: 218801c16a2782546d30bd2026bb625c0302d70f
-  Usercentrics: 6257d76d7ab3af9f4ab3e8b10159488c12045c22
-  UsercentricsUI: 79f3f848e2c34674af28f66b45eab76ae65b7abd
+  Usercentrics: be85dc92df056e85f72bf999b546bffb526757b6
+  UsercentricsUI: 531c118d3c25218f23b6169ab398c72f744a48ba
   Yoga: 8ae716bf8b654fac1c7be1ac81376041837acb2c
 
 PODFILE CHECKSUM: 6a0c106d5e4f01a025fc61ce0aefe430d1ada736

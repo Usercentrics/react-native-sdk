@@ -74,7 +74,7 @@ export const CustomScreen = () => {
         const settings = data.settings;
 
         console.log(`Title: ${settings.labels.firstLayerTitle}`);
-        console.log(`Description: ${settings.bannerMessage}`);
+        console.log(`Description: ${settings.firstLayerDescriptionHtml}`);
 
         console.log(`data.settings: $settings`);
         console.log(`data.services: ${data.services}`);

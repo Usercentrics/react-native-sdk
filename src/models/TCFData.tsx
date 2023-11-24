@@ -1,3 +1,5 @@
+import {ConsentDisclosureObject} from "./ConsentDisclosureObject";
+
 export class TCFData {
     /// A list of all the TCF features that need to be disclosed to the end-user if TCF is enabled.
     features: TCFFeature[]
@@ -206,6 +208,7 @@ export class TCFVendor {
     dataSharedOutsideEU: boolean
     dataCategories: [number]
     vendorUrls: VendorUrl[]
+    deviceStorage?: ConsentDisclosureObject
 
     constructor(
         features: [number],
@@ -228,7 +231,8 @@ export class TCFVendor {
         deviceStorageDisclosureUrl?: string,
         legitimateInterestConsent?: boolean,
         consent?: boolean,
-        cookieRefresh?: boolean
+        cookieRefresh?: boolean,
+        deviceStorage?: ConsentDisclosureObject
     ) {
         this.consent = consent
         this.features = features
@@ -251,6 +255,7 @@ export class TCFVendor {
         this.dataSharedOutsideEU = dataSharedOutsideEU
         this.dataCategories = dataCategories
         this.vendorUrls = vendorUrls
+        this.deviceStorage = deviceStorage
     }
 }
 

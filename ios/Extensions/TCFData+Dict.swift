@@ -107,7 +107,8 @@ extension TCFVendor {
             "cookieRefresh" : cookieRefresh?.boolValue as Any,
             "dataSharedOutsideEU": dataSharedOutsideEU?.boolValue as Any,
             "dataCategories": dataCategories.map { $0.id },
-            "vendorUrls": vendorUrls.map { $0.toDictionary() }
+            "vendorUrls": vendorUrls.map { $0.toDictionary() },
+            "deviceStorage" : self.deviceStorage?.toDictionary() as Any,
         ]
     }
 }
