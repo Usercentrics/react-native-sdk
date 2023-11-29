@@ -1,7 +1,8 @@
-import { ImageResolvedAssetSource } from "react-native";
-import { FirstLayerStyleSettings, SecondLayerStyleSettings } from ".";
+import {ImageResolvedAssetSource} from "react-native";
+import {FirstLayerStyleSettings, SecondLayerStyleSettings} from ".";
 
 export class BannerLogo {
+
     logoName: string;
     logoPath: string;
     logoUrl?: String;
@@ -14,6 +15,7 @@ export class BannerLogo {
 }
 
 export class BannerFont {
+
     regularFont: string;
     boldFont: string;
     fontSize: number;
@@ -26,6 +28,7 @@ export class BannerFont {
 }
 
 export enum LegalLinksSettings {
+
     firstLayerOnly = "FIRST_LAYER_ONLY",
     secondLayerOnly = "SECOND_LAYER_ONLY",
     both = "BOTH",
@@ -33,6 +36,7 @@ export enum LegalLinksSettings {
 }
 
 export class ToggleStyleSettings {
+
     activeBackgroundColorHex?: String;
     inactiveBackgroundColorHex?: String;
     disabledBackgroundColorHex?: String;
@@ -58,6 +62,7 @@ export class ToggleStyleSettings {
 }
 
 export class GeneralStyleSettings {
+
     font?: BannerFont;
     logo?: BannerLogo;
     links?: LegalLinksSettings;
@@ -71,16 +76,16 @@ export class GeneralStyleSettings {
     disableSystemBackButton?: Boolean;
 
     constructor(font?: BannerFont,
-        logo?: BannerLogo,
-        links?: LegalLinksSettings,
-        textColorHex?: String,
-        layerBackgroundColorHex?: String,
-        layerBackgroundSecondaryColorHex?: String,
-        linkColorHex?: String,
-        tabColorHex?: String,
-        bordersColorHex?: String,
-        toggleStyleSettings?: ToggleStyleSettings,
-        disableSystemBackButton?: Boolean
+                logo?: BannerLogo,
+                links?: LegalLinksSettings,
+                textColorHex?: String,
+                layerBackgroundColorHex?: String,
+                layerBackgroundSecondaryColorHex?: String,
+                linkColorHex?: String,
+                tabColorHex?: String,
+                bordersColorHex?: String,
+                toggleStyleSettings?: ToggleStyleSettings,
+                disableSystemBackButton?: Boolean
     ) {
         this.font = font;
         this.logo = logo;
@@ -97,6 +102,7 @@ export class GeneralStyleSettings {
 }
 
 export class BannerSettings {
+
     firstLayerStyleSettings?: FirstLayerStyleSettings;
     secondLayerStyleSettings?: SecondLayerStyleSettings;
     generalStyleSettings?: GeneralStyleSettings;

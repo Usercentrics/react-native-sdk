@@ -54,8 +54,8 @@ private fun UsercentricsSettings.serialize(): WritableMap {
         "editableLanguages" to editableLanguages,
         "customization" to customization?.serialize(),
         "variants" to variants?.serialize(),
-        "dpsDisplayFormat" to (dpsDisplayFormat?.name ?: ""),
-        "framework" to (framework?.name ?: ""),
+        "dpsDisplayFormat" to dpsDisplayFormat?.ordinal,
+        "framework" to framework?.ordinal,
         "publishedApps" to publishedApps?.map { it.serialize() },
     ).toWritableMap()
 }
@@ -210,11 +210,11 @@ private fun TCF2Settings.serialize(): WritableMap {
         "legitimateInterestLabel" to legitimateInterestLabel,
         "version" to version,
         "examplesLabel" to examplesLabel,
-        "firstLayerMobileVariant" to (firstLayerMobileVariant?.name ?: ""),
+        "firstLayerMobileVariant" to firstLayerMobileVariant?.ordinal,
         "showDataSharedOutsideEUText" to showDataSharedOutsideEUText,
         "dataSharedOutsideEUText" to dataSharedOutsideEUText,
         "vendorIdsOutsideEUList" to vendorIdsOutsideEUList,
-        "scope" to scope.name,
+        "scope" to scope.ordinal,
         "changedPurposes" to changedPurposes?.serialize(),
     ).toWritableMap()
 }
@@ -359,7 +359,7 @@ private fun VariantsSettings?.serialize(): Any? {
 private fun PublishedApp.serialize(): Any {
     return mapOf(
         "bundleId" to bundleId,
-        "platform" to platform.name,
+        "platform" to platform.ordinal,
     )
 }
 

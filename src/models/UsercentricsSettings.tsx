@@ -87,7 +87,7 @@ export class UsercentricsSettings {
     }
 }
 
-class FirstLayer {
+export class FirstLayer {
     hideButtonDeny?: boolean
 
     constructor(
@@ -97,7 +97,7 @@ class FirstLayer {
     }
 }
 
-class SecondLayer {
+export class SecondLayer {
     tabsCategoriesLabel: string
     tabsServicesLabel: string
     hideButtonDeny?: boolean
@@ -122,7 +122,7 @@ class SecondLayer {
     }
 }
 
-class VariantsSettings {
+export class VariantsSettings {
 
     enabled: boolean
     experimentsJson: string
@@ -139,17 +139,20 @@ class VariantsSettings {
     }
 }
 
-enum DpsDisplayFormat { all, short }
-
-enum USAFrameworks {
-    cpra,
-    vcdpa,
-    cpa,
-    ctdpa,
-    ucpa,
+export enum DpsDisplayFormat {
+    all = 0,
+    short = 1
 }
 
-class PublishedApp {
+export enum USAFrameworks {
+    cpra = 0,
+    vcdpa = 1,
+    cpa = 2,
+    ctdpa = 3,
+    ucpa = 4,
+}
+
+export class PublishedApp {
     bundleId: string
     platform: PublishedAppPlatform
 
@@ -162,4 +165,7 @@ class PublishedApp {
     }
 }
 
-enum PublishedAppPlatform { android, ios }
+export enum PublishedAppPlatform {
+    android = 0,
+    ios = 1
+}

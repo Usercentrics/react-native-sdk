@@ -176,11 +176,19 @@ export class TCF2Settings {
     }
 }
 
-enum FirstLayerMobileVariant { sheet, full, popupBottom, popupCenter }
+export enum FirstLayerMobileVariant {
+    sheet = 0,
+    full = 1,
+    popupBottom = 2,
+    popupCenter = 3
+}
 
-enum TCF2Scope { global, service }
+export enum TCF2Scope {
+    global = 0,
+    service = 1
+}
 
-class TCF2ChangedPurposes {
+export class TCF2ChangedPurposes {
 
     purposes: [number]
     legIntPurposes: [number]

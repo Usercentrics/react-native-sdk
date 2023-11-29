@@ -1,4 +1,5 @@
 export class TCFUserDecisions {
+
     /// A user's consent decision on TCF purposes.
     purposes: [TCFUserDecisionOnPurpose]
 
@@ -17,6 +18,7 @@ export class TCFUserDecisions {
 }
 
 export class TCFUserDecisionOnPurpose {
+
     id: number
     consent?: boolean
     legitimateInterestConsent?: boolean
@@ -30,6 +32,7 @@ export class TCFUserDecisionOnPurpose {
 }
 
 export class TCFUserDecisionOnSpecialFeature {
+
     id: number
     consent?: boolean
 
@@ -40,6 +43,7 @@ export class TCFUserDecisionOnSpecialFeature {
 }
 
 export class TCFUserDecisionOnVendor {
+
     id: number
     consent?: boolean
     legitimateInterestConsent?: boolean

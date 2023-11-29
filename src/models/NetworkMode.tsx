@@ -1,4 +1,5 @@
 export enum NetworkMode {
-    world,
-    eu
+
+    world = 0,
+    eu = 1
 }
