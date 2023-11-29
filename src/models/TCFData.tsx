@@ -209,6 +209,7 @@ export class TCFVendor {
     dataCategories: [number]
     vendorUrls: VendorUrl[]
     deviceStorage?: ConsentDisclosureObject
+    restrictions: TCFVendorRestriction[]
 
     constructor(
         features: [number],
@@ -228,6 +229,7 @@ export class TCFVendor {
         dataSharedOutsideEU: boolean,
         dataCategories: [number],
         vendorUrls: VendorUrl[],
+        restrictions: TCFVendorRestriction[],
         deviceStorageDisclosureUrl?: string,
         legitimateInterestConsent?: boolean,
         consent?: boolean,
@@ -256,6 +258,7 @@ export class TCFVendor {
         this.dataCategories = dataCategories
         this.vendorUrls = vendorUrls
         this.deviceStorage = deviceStorage
+        this.restrictions = restrictions
     }
 }
 
@@ -274,4 +277,24 @@ export class VendorUrl {
         this.legIntClaim = legIntClaim
     }
 
+}
+
+export class TCFVendorRestriction {
+
+    purposeId: number
+    restrictionType: RestrictionType
+
+    constructor(
+        purposeId: number,
+        restrictionType: RestrictionType
+    ) {
+        this.purposeId = purposeId
+        this.restrictionType = restrictionType
+    }
+}
+
+export enum RestrictionType {
+    notAllowed = 0,
+    requireConsent = 1,
+    requireLi = 2,
 }
