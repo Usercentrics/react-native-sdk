@@ -13,7 +13,7 @@ internal fun ConsentDisclosureObject?.serialize(): Any? {
 internal fun ConsentDisclosure.serialize(): Any {
     return mapOf(
         "identifier" to identifier,
-        "type" to (type?.name ?: ""),
+        "type" to type?.ordinal,
         "name" to name,
         "maxAgeSeconds" to maxAgeSeconds,
         "cookieRefresh" to cookieRefresh,

@@ -40,8 +40,8 @@ extension UsercentricsSettings {
             "editableLanguages" : self.editableLanguages,
             "customization" : self.customization?.toDictionary() as Any,
             "variants": (self.variants?.toDictionary() ?? nil) as Any,
-            "dpsDisplayFormat": (self.dpsDisplayFormat?.name ?? "") as Any,
-            "framework": (self.framework?.name ?? "") as Any,
+            "dpsDisplayFormat": (self.dpsDisplayFormat?.ordinal ?? nil) as Any,
+            "framework": (self.framework?.ordinal ?? nil) as Any,
             "publishedApps": (self.publishedApps?.map { $0.toDictionary() } ?? nil) as Any,
         ]
     }
@@ -204,11 +204,11 @@ extension TCF2Settings {
             "legitimateInterestLabel": self.legitimateInterestLabel,
             "version": self.version,
             "examplesLabel": self.examplesLabel,
-            "firstLayerMobileVariant": self.firstLayerMobileVariant?.name ?? "",
+            "firstLayerMobileVariant": (self.firstLayerMobileVariant?.ordinal ?? nil) as Any,
             "showDataSharedOutsideEUText": self.showDataSharedOutsideEUText,
             "dataSharedOutsideEUText": self.dataSharedOutsideEUText as Any,
             "vendorIdsOutsideEUList": self.vendorIdsOutsideEUList,
-            "scope": self.scope.name,
+            "scope": self.scope.ordinal,
             "changedPurposes": self.changedPurposes?.toDictionary() as Any,
         ]
     }
@@ -352,7 +352,7 @@ extension ConsentDisclosure {
     func toDictionary() -> Any {
         return [
             "identifier": self.identifier as Any,
-            "type": self.type?.name ?? "",
+            "type": self.type?.ordinal ?? "",
             "name": self.name as Any,
             "maxAgeSeconds": self.maxAgeSeconds as Any,
             "cookieRefresh": self.cookieRefresh,
@@ -447,7 +447,7 @@ extension PublishedApp {
     func toDictionary() -> Any {
         return [
             "bundleId": bundleId,
-            "platform": platform.name,
+            "platform": platform.ordinal,
         ]
     }
 }

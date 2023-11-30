@@ -1,6 +1,7 @@
-import { UsercentricsConsentType } from "."
+import {UsercentricsConsentType} from "."
 
-export class UsercentricsServiceConsent { 
+export class UsercentricsServiceConsent {
+
     templateId: string
     status: boolean
     dataProcessor: string
@@ -17,10 +18,11 @@ export class UsercentricsServiceConsent {
         this.type = type
         this.isEssential = isEssential
         this.history = history
-    }    
+    }
 }
 
-export class UsercentricsConsentHistoryEntry { 
+export class UsercentricsConsentHistoryEntry {
+
     status: boolean
     type: UsercentricsConsentType
     timestampInMillis: number

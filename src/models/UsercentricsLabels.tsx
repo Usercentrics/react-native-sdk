@@ -1,4 +1,5 @@
 export class UsercentricsLabels {
+
     btnAcceptAll: string
     btnDeny: string
     btnSave: string
@@ -222,5 +223,4 @@ export class UsercentricsLabels {
         this.noImplicit = noImplicit
         this.yesImplicit = yesImplicit
     }
-
 }

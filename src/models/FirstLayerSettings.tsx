@@ -1,7 +1,7 @@
-import { BannerLogo } from ".";
-
+import {BannerLogo} from ".";
 
 export class FirstLayerStyleSettings {
+
     layout?: UsercentricsLayout;
     headerImage?: HeaderImageSettings;
     title?: TitleSettings;
@@ -12,13 +12,13 @@ export class FirstLayerStyleSettings {
     overlayColorHex?: String;
 
     constructor(layout?: UsercentricsLayout,
-        headerImage?: HeaderImageSettings,
-        title?: TitleSettings,
-        message?: MessageSettings,
-        buttonLayout?: ButtonLayout,
-        backgroundColorHex?: String,
-        cornerRadius?: Number,
-        overlayColorHex?: String
+                headerImage?: HeaderImageSettings,
+                title?: TitleSettings,
+                message?: MessageSettings,
+                buttonLayout?: ButtonLayout,
+                backgroundColorHex?: String,
+                cornerRadius?: Number,
+                overlayColorHex?: String
     ) {
         this.layout = layout
         this.headerImage = headerImage;
@@ -32,6 +32,7 @@ export class FirstLayerStyleSettings {
 }
 
 export class HeaderImageSettings {
+
     isExtended: Boolean;
     isHidden: Boolean;
     image?: BannerLogo;
@@ -39,10 +40,10 @@ export class HeaderImageSettings {
     alignment?: SectionAlignment
 
     private constructor(isExtended: Boolean,
-        isHidden: Boolean,
-        image?: BannerLogo,
-        height?: Number,
-        alignment?: SectionAlignment) {
+                        isHidden: Boolean,
+                        image?: BannerLogo,
+                        height?: Number,
+                        alignment?: SectionAlignment) {
         this.isExtended = isExtended;
         this.isHidden = isHidden;
         this.image = image;
@@ -64,6 +65,7 @@ export class HeaderImageSettings {
 }
 
 export class TitleSettings {
+
     fontName?: string;
     textSize?: number;
     textColorHex?: String;
@@ -78,6 +80,7 @@ export class TitleSettings {
 }
 
 export class MessageSettings {
+
     fontName?: string;
     textSize?: number;
     textColorHex?: String;
@@ -86,11 +89,11 @@ export class MessageSettings {
     linkTextUnderline?: Boolean;
 
     constructor(fontName?: string,
-        textSize?: number,
-        textColorHex?: String,
-        textAlignment?: SectionAlignment,
-        linkTextColorHex?: String,
-        linkTextUnderline?: Boolean) {
+                textSize?: number,
+                textColorHex?: String,
+                textAlignment?: SectionAlignment,
+                linkTextColorHex?: String,
+                linkTextUnderline?: Boolean) {
         this.fontName = fontName;
         this.textSize = textSize;
         this.textColorHex = textColorHex;
@@ -101,6 +104,7 @@ export class MessageSettings {
 }
 
 export class ButtonLayout {
+
     buttons: ButtonSettings[][]
     layout: InternalButtonLayout
 
@@ -129,6 +133,7 @@ enum InternalButtonLayout {
 }
 
 export class ButtonSettings {
+
     buttonType: ButtonType;
     fontName?: string;
     textSize?: number;
@@ -140,12 +145,12 @@ export class ButtonSettings {
     isAllCaps?: Boolean
 
     constructor(buttonType: ButtonType,
-        fontName?: string,
-        textSize?: number,
-        textColorHex?: String,
-        backgroundColorHex?: String,
-        cornerRadius?: number,
-        isAllCaps?: Boolean) {
+                fontName?: string,
+                textSize?: number,
+                textColorHex?: String,
+                backgroundColorHex?: String,
+                cornerRadius?: number,
+                isAllCaps?: Boolean) {
         this.buttonType = buttonType
         this.fontName = fontName
         this.textSize = textSize
@@ -157,6 +162,7 @@ export class ButtonSettings {
 }
 
 export enum ButtonType {
+
     acceptAll = "ACCEPT_ALL",
     denyAll = "DENY_ALL",
     more = "MORE",
@@ -164,12 +170,14 @@ export enum ButtonType {
 }
 
 export enum SectionAlignment {
+
     left = "START",
     right = "END",
     center = "CENTER"
 }
 
 export enum UsercentricsLayout {
+
     full = "FULL",
     sheet = "SHEET",
     popupCenter = "POPUP_CENTER",

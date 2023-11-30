@@ -40,7 +40,8 @@ export class ConsentDisclosure {
 }
 
 export enum ConsentDisclosureType {
-    cookie,
-    web,
-    app
+
+    cookie = 0,
+    web = 1,
+    app = 2
 }

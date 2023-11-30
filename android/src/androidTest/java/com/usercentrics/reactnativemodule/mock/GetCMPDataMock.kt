@@ -448,11 +448,11 @@ internal class GetCMPDataMock {
             "legitimateInterestLabel" to "legitimateInterestLabel",
             "examplesLabel" to "examplesLabel",
             "version" to "2.2",
-            "firstLayerMobileVariant" to "FULL",
+            "firstLayerMobileVariant" to 1,
             "showDataSharedOutsideEUText" to true,
             "dataSharedOutsideEUText" to "dataSharedOutsideEUText",
             "vendorIdsOutsideEUList" to listOf(1, 2, 3),
-            "scope" to "SERVICE",
+            "scope" to 1,
             "changedPurposes" to mapOf(
                 "purposes" to listOf(1, 2, 3),
                 "legIntPurposes" to listOf(1, 2, 3),
@@ -512,12 +512,12 @@ internal class GetCMPDataMock {
                 "experimentsJson" to "{}",
                 "activateWith" to "UC"
             ),
-            "dpsDisplayFormat" to "ALL",
-            "framework" to "CTDPA",
+            "dpsDisplayFormat" to 0,
+            "framework" to 3,
             "publishedApps" to listOf(
                 mapOf(
                     "bundleId" to "bundleId",
-                    "platform" to "ANDROID"
+                    "platform" to 0
                 )
             ),
         )
@@ -576,7 +576,7 @@ internal class GetCMPDataMock {
                 "deviceStorage" to listOf(
                     mapOf(
                         "identifier" to "identifier",
-                        "type" to "APP",
+                        "type" to 2,
                         "name" to "name",
                         "maxAgeSeconds" to 123123L,
                         "cookieRefresh" to true,

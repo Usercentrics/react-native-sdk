@@ -1,4 +1,5 @@
 export enum UsercentricsAnalyticsEventType {
+
     cmpShown = 0,
     acceptAllFirstLayer = 1,
     denyAllFirstLayer = 2,
