@@ -107,7 +107,9 @@ extension TCFVendor {
             "cookieRefresh" : cookieRefresh?.boolValue as Any,
             "dataSharedOutsideEU": dataSharedOutsideEU?.boolValue as Any,
             "dataCategories": dataCategories.map { $0.id },
-            "vendorUrls": vendorUrls.map { $0.toDictionary() }
+            "vendorUrls": vendorUrls.map { $0.toDictionary() },
+            "deviceStorage" : self.deviceStorage?.toDictionary() as Any,
+            "restrictions" : self.restrictions.map { $0.toDictionary() }
         ]
     }
 }
@@ -119,6 +121,16 @@ extension VendorUrl {
             "langId": langId as Any,
             "privacy": privacy as Any,
             "legIntClaim": legIntClaim as Any
+        ]
+    }
+}
+
+extension TCFVendorRestriction {
+
+    func toDictionary() -> NSDictionary {
+        return [
+            "purposeId" : self.purposeId,
+            "restrictionType" : self.restrictionType.ordinal
         ]
     }
 }

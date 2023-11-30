@@ -81,7 +81,9 @@ extension TCFVendor {
                  name: "abc",
                  policyUrl: "abc",
                  purposes:  [.init(id: Int32(123), name: "abc")],
-                 restrictions: [],
+                 restrictions: [
+                  TCFVendorRestriction(purposeId: 1, restrictionType: .requireLi)
+                 ],
                  specialFeatures:  [.init(id: Int32(123), name: "abc")],
                  specialPurposes:  [.init(id: Int32(123), name: "abc")],
                  showConsentToggle: false,

@@ -1,10 +1,11 @@
-import { UsercentricsCategory } from "./UsercentricsCategory";
-import { UsercentricsLocation } from "./UsercentricsLocation";
-import { UsercentricsService } from "./UsercentricsService";
-import { UsercentricsSettings } from "./UsercentricsSettings";
-import { UsercentricsVariant } from "./UsercentricsVariant";
+import {UsercentricsCategory} from "./UsercentricsCategory";
+import {UsercentricsLocation} from "./UsercentricsLocation";
+import {UsercentricsService} from "./UsercentricsService";
+import {UsercentricsSettings} from "./UsercentricsSettings";
+import {UsercentricsVariant} from "./UsercentricsVariant";
 
 export class UsercentricsCMPData {
+
     /// The general settings defined for the settingsId.
     settings: UsercentricsSettings
     /// The services defined for the settingsId.

@@ -1,6 +1,7 @@
-import { UsercentricsServiceConsent } from "."
+import {UsercentricsServiceConsent} from "."
 
 export class UsercentricsReadyStatus {
+
     shouldCollectConsent: boolean
     consents: [UsercentricsServiceConsent]
 

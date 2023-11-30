@@ -1,6 +1,7 @@
-import { ButtonLayout } from ".";
+import {ButtonLayout} from ".";
 
 export class SecondLayerStyleSettings {
+
     buttonLayout?: ButtonLayout;
     showCloseButton?: Boolean;
 

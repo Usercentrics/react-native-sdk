@@ -1,4 +1,5 @@
 export class UsercentricsLocation {
+
     /// The country code. E.g 'DE'.
     countryCode: string
 
@@ -13,7 +14,6 @@ export class UsercentricsLocation {
 
     /// True, if the location is inside the state of California. False, it not.
     isInCalifornia: boolean
-
 
     constructor(
         countryCode: string,
