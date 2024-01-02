@@ -3,6 +3,7 @@ package com.usercentrics.reactnativeusercentrics.extensions
 import com.facebook.react.bridge.ReadableArray
 import com.facebook.react.bridge.ReadableMap
 import com.usercentrics.sdk.UserDecision
+import com.usercentrics.sdk.services.tcf.interfaces.AdTechProviderDecision
 import com.usercentrics.sdk.services.tcf.interfaces.TCFUserDecisionOnPurpose
 import com.usercentrics.sdk.services.tcf.interfaces.TCFUserDecisionOnSpecialFeature
 import com.usercentrics.sdk.services.tcf.interfaces.TCFUserDecisionOnVendor
@@ -47,10 +48,19 @@ internal fun ReadableMap.deserializeTCFUserDecisions(): TCFUserDecisions {
         list
     }
 
+    val adTechProviderDecisions = getArray("adTechProviders")?.let {
+        val list = mutableListOf<AdTechProviderDecision>()
+        for (i in 0 until it.size()) {
+            list.add(it.getMap(i).deserializeAdTechProviderDecision())
+        }
+        list
+    }
+
     return TCFUserDecisions(
         purposes = purposes,
         specialFeatures = specialFeature,
         vendors = vendors,
+        adTechProviders = adTechProviderDecisions ?: emptyList(),
     )
 }
 
@@ -74,5 +84,12 @@ private fun ReadableMap.deserializeTCFUserDecisionOnVendor(): TCFUserDecisionOnV
         id = getInt("id"),
         consent = getBooleanOrNull("consent"),
         legitimateInterestConsent = getBooleanOrNull("legitimateInterestConsent"),
+    )
+}
+
+private fun ReadableMap.deserializeAdTechProviderDecision(): AdTechProviderDecision {
+    return AdTechProviderDecision(
+        id = getInt("id"),
+        consent = getBooleanOrNull("consent") ?: false,
     )
 }

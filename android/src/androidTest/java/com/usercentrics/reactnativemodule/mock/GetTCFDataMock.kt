@@ -35,6 +35,7 @@ internal class GetTCFDataMock {
                     showConsentToggle = false,
                     showLegitimateInterestToggle = false,
                     stackId = null,
+                    numberOfVendors = 1,
                 )
             ),
             specialFeatures = listOf(
@@ -135,6 +136,7 @@ internal class GetTCFDataMock {
                     "showConsentToggle" to false,
                     "showLegitimateInterestToggle" to false,
                     "stackId" to null,
+                    "numberOfVendors" to 1
                 )
             ),
             "specialFeatures" to listOf(

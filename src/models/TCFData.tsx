@@ -82,7 +82,7 @@ export class TCFPurpose {
     showConsentToggle: boolean
     showLegitimateInterestToggle: boolean
     stackId?: number
-
+    numberOfVendors?: number
 
     constructor(
         purposeDescription: string,
@@ -94,7 +94,8 @@ export class TCFPurpose {
         showLegitimateInterestToggle: boolean,
         legitimateInterestConsent?: boolean,
         consent?: boolean,
-        stackId?: number
+        stackId?: number,
+        numberOfVendors?: number,
     ) {
         this.purposeDescription = purposeDescription
         this.illustrations = illustrations
@@ -106,6 +107,7 @@ export class TCFPurpose {
         this.showConsentToggle = showConsentToggle
         this.showLegitimateInterestToggle = showLegitimateInterestToggle
         this.stackId = stackId
+        this.numberOfVendors = numberOfVendors
     }
 }
 

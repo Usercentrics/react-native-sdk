@@ -21,6 +21,7 @@ public protocol UsercentricsManager {
     func getUSPData() -> CCPAData
     func getTCFData(callback: @escaping (TCFData) -> Void)
     func getABTestingVariant() -> String?
+    func getAdditionalConsentModeData() -> AdditionalConsentModeData
 
     func changeLanguage(language: String, onSuccess: @escaping (() -> Void), onFailure: @escaping ((Error) -> Void))
 
@@ -98,7 +99,11 @@ final class UsercentricsManagerImplementation: UsercentricsManager {
     func getTCFData(callback: @escaping (TCFData) -> Void) {
         UsercentricsCore.shared.getTCFData(callback: callback)
     }
-    
+
+    func getAdditionalConsentModeData() -> AdditionalConsentModeData {
+        return UsercentricsCore.shared.getAdditionalConsentModeData()
+    }
+
     func changeLanguage(language: String, onSuccess: @escaping (() -> Void), onFailure: @escaping ((Error) -> Void)) {
         UsercentricsCore.shared.changeLanguage(language: language, onSuccess: onSuccess, onFailure: onFailure)
     }

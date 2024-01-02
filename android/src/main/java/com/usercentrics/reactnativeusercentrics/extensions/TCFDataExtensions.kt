@@ -45,6 +45,7 @@ private fun TCFPurpose.serialize(): WritableMap {
         "showConsentToggle" to showConsentToggle,
         "showLegitimateInterestToggle" to showLegitimateInterestToggle,
         "stackId" to stackId,
+        "numberOfVendors" to numberOfVendors,
     ).toWritableMap()
 }
 

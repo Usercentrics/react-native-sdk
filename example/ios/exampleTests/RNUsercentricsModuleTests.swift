@@ -534,4 +534,30 @@ class RNUsercentricsModuleTests: XCTestCase {
       XCTFail("Should not go here")
     }
   }
+
+  func testGetAdditionalConsentModeData() {
+    let expected = AdditionalConsentModeData(acString: "2~43.46.55~dv.",
+                                             adTechProviders: [AdTechProvider(id: 43, name: "AdPredictive", privacyPolicyUrl: "https://adpredictive.com/privacy", consent: true)])
+
+    fakeUsercentrics.getAdditionalConsentModeDataResponse = expected
+
+    module.getAdditionalConsentModeData { response in
+      guard let result = response as? NSDictionary else {
+        XCTFail()
+        return
+      }
+
+      XCTAssertEqual(expected.acString, result["acString"] as! String)
+
+      let adTechProviders = result["adTechProviders"] as? [NSDictionary]
+      XCTAssertEqual(1, adTechProviders!.count)
+
+      XCTAssertEqual(43, adTechProviders![0]["id"] as! Int)
+      XCTAssertEqual(true, adTechProviders![0]["consent"] as! Bool)
+      XCTAssertEqual("AdPredictive", adTechProviders![0]["name"] as! String)
+      XCTAssertEqual("https://adpredictive.com/privacy", adTechProviders![0]["privacyPolicyUrl"] as! String)
+    } reject: { _, _, _ in
+      XCTFail("Should not go here")
+    }
+  }
 }

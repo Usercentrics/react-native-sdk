@@ -53,6 +53,9 @@ RCT_EXTERN_METHOD(getUSPData:(RCTPromiseResolveBlock)resolve
 RCT_EXTERN_METHOD(getTCFData:(RCTPromiseResolveBlock)resolve
                   reject:(RCTPromiseRejectBlock)reject)
 
+RCT_EXTERN_METHOD(getAdditionalConsentModeData:(RCTPromiseResolveBlock)resolve
+                  reject:(RCTPromiseRejectBlock)reject)
+
 RCT_EXTERN_METHOD(changeLanguage:(NSString *)language
                   resolve:(RCTPromiseResolveBlock)resolve
                   reject:(RCTPromiseRejectBlock)reject)

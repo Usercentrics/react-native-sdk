@@ -210,6 +210,8 @@ extension TCF2Settings {
             "vendorIdsOutsideEUList": self.vendorIdsOutsideEUList,
             "scope": self.scope.ordinal,
             "changedPurposes": self.changedPurposes?.toDictionary() as Any,
+            "acmV2Enabled": self.acmV2Enabled,
+            "selectedATPIds": self.selectedATPIds
         ]
     }
 }
@@ -457,6 +459,28 @@ extension TCF2ChangedPurposes {
         return [
             "purposes": purposes,
             "legIntPurposes": legIntPurposes
+        ]
+    }
+}
+
+extension AdditionalConsentModeData {
+
+    func toDictionary() -> NSDictionary {
+        return [
+            "acString": self.acString,
+            "adTechProviders": self.adTechProviders.map { $0.toDictionary() }
+        ]
+    }
+}
+
+extension AdTechProvider {
+
+    func toDictionary() -> NSDictionary {
+        return [
+            "id" : id,
+            "name" : name,
+            "privacyPolicyUrl" : privacyPolicyUrl,
+            "consent" : consent
         ]
     }
 }

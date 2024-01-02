@@ -97,12 +97,15 @@ final class FakeUsercentricsManager: UsercentricsManager {
     callback(getTCFDataResponse!)
   }
 
-  func setTCFUIAsClosed() {
+  var getAdditionalConsentModeDataResponse: AdditionalConsentModeData?
+  func getAdditionalConsentModeData() -> AdditionalConsentModeData {
+    return getAdditionalConsentModeDataResponse!
+  }
 
+  func setTCFUIAsClosed() {
   }
 
   func setTCFUIAsOpen() {
-
   }
 
   var changeLanguageValue: String? = nil

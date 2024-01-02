@@ -1,5 +1,34 @@
 [Release Notes](https://docs.usercentrics.com/cmp_in_app_sdk/latest/about/history/)
 
+### 2.11.0 - December 22, 2023
+
+## Features
+
+* Google Consent Mode V2 Support - Seamlessly integrate with the latest Google Consent Mode, ensuring enhanced privacy compliance and meeting Google requirements.
+* Google Additional Consent Mode V2 - Integrate with the latest Google Additional Consent, allowing you to collect and signal additional consent for ad tech providers not covered by the IAB TCF V2.2.
+* Display Number of Vendors for Each Purpose on TCF - Easily view the number of vendors associated with each purpose in the Transparency and Consent Framework.
+* Chartboost SDK in Consent Mediation - Optimize revenue by effortlessly managing the Chartboost SDK within Usercentrics Consent Mediation.
+
+## Improvements
+
+* TCFUserDecisions API update - All properties have been changed from variables to constants. The adTechProviders field has been added which represent consents for Google Additional Consent Mode. On iOS this is a required argument, so if this is irrelevant for your configuration, just set an empty list, when needed.
+* Location is only cached by the SDK for offline mode.
+
+## Android Resolved Issues
+
+* Avoid fetching any image resource after the banner has been closed.
+
+## iOS Resolved Issues
+
+* Prevent Long Privacy Legal Links from Being Truncated.
+* Enable Scaled Fonts resources when using Custom UI.
+
+## Other Resolved Issues
+
+* Third-Party Vendors Count misalignment in some configurations.
+* Fix the bug causing the banner to reappear for users outside the European Union, despite configurations being specifically set to enforce GDPR compliance exclusively for EU users.
+* Update Link to Report Issues on Zendesk.
+
 ### 2.10.0 - November 16, 2023
 
 ## Improvements

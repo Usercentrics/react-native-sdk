@@ -113,9 +113,13 @@ class RNUsercentricsModule: NSObject, RCTBridgeModule {
     }
 
     @objc func getABTestingVariant(_ resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) -> Void {
-            resolve(usercentricsManager.getABTestingVariant())
-        }
-    
+        resolve(usercentricsManager.getABTestingVariant())
+    }
+
+    @objc func getAdditionalConsentModeData(_ resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) -> Void {
+        resolve(usercentricsManager.getAdditionalConsentModeData().toDictionary())
+    }
+
     @objc func changeLanguage(_ language: String, resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) -> Void {
         usercentricsManager.changeLanguage(language: language) {
             resolve(Void.self)

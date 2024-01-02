@@ -5,6 +5,7 @@ import {
     TCFData,
     TCFDecisionUILayer,
     TCFUserDecisions,
+    UsercentricsAnalyticsEventType,
     UsercentricsCMPData,
     UsercentricsConsentType,
     UsercentricsConsentUserResponse,
@@ -12,12 +13,13 @@ import {
     UsercentricsReadyStatus,
     UsercentricsServiceConsent,
     UserDecision,
-    UsercentricsAnalyticsEventType,
 } from './models';
+import {AdditionalConsentModeData} from "./models/AdditionalConsentModeData";
 
 const {RNUsercentricsModule} = NativeModules;
 
 export const Usercentrics = {
+
     configure: (options: UsercentricsOptions) => {
         RNUsercentricsModule.configure(options)
     },
@@ -76,6 +78,11 @@ export const Usercentrics = {
         return RNUsercentricsModule.getTCFData();
     },
 
+    getAdditionalConsentModeData: async (): Promise<AdditionalConsentModeData> => {
+        await RNUsercentricsModule.isReady();
+        return RNUsercentricsModule.getAdditionalConsentModeData();
+    },
+
     changeLanguage: async (language: string): Promise<void> => {
         await RNUsercentricsModule.isReady();
         return RNUsercentricsModule.changeLanguage(language);
@@ -101,12 +108,12 @@ export const Usercentrics = {
         return RNUsercentricsModule.denyAllForTCF(fromLayer, consentType);
     },
 
-    saveDecisions: async (decisions: [UserDecision], consentType: UsercentricsConsentType): Promise<[UsercentricsServiceConsent]> => {
+    saveDecisions: async (decisions: UserDecision[], consentType: UsercentricsConsentType): Promise<[UsercentricsServiceConsent]> => {
         await RNUsercentricsModule.isReady();
         return RNUsercentricsModule.saveDecisions(decisions, consentType);
     },
 
-    saveDecisionsForTCF: async (tcfDecisions: TCFUserDecisions, fromLayer: TCFDecisionUILayer, decisions: [UserDecision], consentType: UsercentricsConsentType): Promise<[UsercentricsServiceConsent]> => {
+    saveDecisionsForTCF: async (tcfDecisions: TCFUserDecisions, fromLayer: TCFDecisionUILayer, decisions: UserDecision[], consentType: UsercentricsConsentType): Promise<[UsercentricsServiceConsent]> => {
         await RNUsercentricsModule.isReady();
         return RNUsercentricsModule.saveDecisionsForTCF(tcfDecisions, fromLayer, decisions, consentType);
     },
