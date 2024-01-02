@@ -2,6 +2,8 @@ package com.usercentrics.reactnativeusercentrics.extensions
 
 import com.facebook.react.bridge.Arguments
 import com.facebook.react.bridge.WritableMap
+import com.usercentrics.sdk.AdTechProvider
+import com.usercentrics.sdk.AdditionalConsentModeData
 import com.usercentrics.sdk.UsercentricsCMPData
 import com.usercentrics.sdk.v2.location.data.UsercentricsLocation
 import com.usercentrics.sdk.v2.settings.data.CCPASettings
@@ -216,6 +218,8 @@ private fun TCF2Settings.serialize(): WritableMap {
         "vendorIdsOutsideEUList" to vendorIdsOutsideEUList,
         "scope" to scope.ordinal,
         "changedPurposes" to changedPurposes?.serialize(),
+        "acmV2Enabled" to acmV2Enabled,
+        "selectedATPIds" to selectedATPIds,
     ).toWritableMap()
 }
 
@@ -371,4 +375,20 @@ private fun TCF2ChangedPurposes?.serialize(): Any? {
         "purposes" to purposes,
         "legIntPurposes" to legIntPurposes
     )
+}
+
+internal fun AdditionalConsentModeData.serialize(): WritableMap {
+    return Arguments.createMap().apply {
+        putString("acString", acString)
+        putArray("adTechProviders", adTechProviders.map { it.serialize() }.serialize())
+    }
+}
+
+private fun AdTechProvider.serialize(): WritableMap {
+    return mapOf(
+        "consent" to consent,
+        "id" to id,
+        "name" to name,
+        "privacyPolicyUrl" to privacyPolicyUrl,
+    ).toWritableMap()
 }

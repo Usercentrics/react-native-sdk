@@ -54,6 +54,12 @@ internal class SaveDecisionsForTCFMock {
                         "legitimateInterestConsent" to null
                     )
                 ),
+                "adTechProviders" to listOf(
+                    mapOf(
+                        "id" to 43,
+                        "consent" to true,
+                    )
+                )
             ),
             "fromLayer" to "FIRST_LAYER",
             "serviceDecisions" to listOf(

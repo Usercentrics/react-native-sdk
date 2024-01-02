@@ -56,6 +56,8 @@ export class TCF2Settings {
     vendorIdsOutsideEUList: [number]
     scope: TCF2Scope
     changedPurposes: TCF2ChangedPurposes
+    acmV2Enabled: boolean
+    selectedATPIds: number[]
 
     constructor(
         firstLayerTitle: string,
@@ -112,6 +114,8 @@ export class TCF2Settings {
         vendorIdsOutsideEUList: [number],
         scope: TCF2Scope,
         changedPurposes: TCF2ChangedPurposes,
+        acmV2Enabled: boolean,
+        selectedATPIds: number[],
         firstLayerHideButtonDeny?: boolean,
         firstLayerMobileVariant?: FirstLayerMobileVariant,
         dataSharedOutsideEUText?: String,
@@ -173,6 +177,8 @@ export class TCF2Settings {
         this.vendorIdsOutsideEUList = vendorIdsOutsideEUList
         this.scope = scope
         this.changedPurposes = changedPurposes
+        this.acmV2Enabled = acmV2Enabled
+        this.selectedATPIds = selectedATPIds
     }
 }
 

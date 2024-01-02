@@ -90,6 +90,11 @@ internal class RNUsercentricsModule(
     }
 
     @ReactMethod
+    fun getAdditionalConsentModeData(promise: Promise) {
+        promise.resolve(usercentricsProxy.instance.getAdditionalConsentModeData().serialize())
+    }
+
+    @ReactMethod
     fun setCMPId(id: Int) {
         usercentricsProxy.instance.setCMPId(id)
     }
@@ -163,7 +168,11 @@ internal class RNUsercentricsModule(
 
     @ReactMethod
     fun saveDecisionsForTCF(
-        tcfDecisions: ReadableMap, fromLayer: Int, saveDecisions: ReadableArray, consentType: Int, promise: Promise
+        tcfDecisions: ReadableMap,
+        fromLayer: Int,
+        saveDecisions: ReadableArray,
+        consentType: Int,
+        promise: Promise
     ) {
         promise.resolve(
             usercentricsProxy.instance.saveDecisionsForTCF(

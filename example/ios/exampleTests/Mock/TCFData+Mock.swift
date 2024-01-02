@@ -34,7 +34,8 @@ extension TCFPurpose {
                  legitimateInterestConsent: KotlinBoolean(bool: false),
                  showConsentToggle: false,
                  showLegitimateInterestToggle: false,
-                 stackId: KotlinInt(int: Int32(123)))
+                 stackId: KotlinInt(int: Int32(123)),
+                 numberOfVendors: 1)
   }
 }
 
