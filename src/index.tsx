@@ -1,2 +1,2 @@
-export { Usercentrics } from "./Usercentrics";
+export * from "./Usercentrics";
 export * from './models';

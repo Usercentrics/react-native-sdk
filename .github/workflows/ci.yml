@@ -25,6 +25,8 @@ jobs:
         run: |
           npm ci
           npm test
+      - name: Assert that every file that should be public has been exported
+        run: ./scripts/assert_export.sh
 
   test-ios:
     needs: test-rn
