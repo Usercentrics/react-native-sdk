@@ -1,5 +1,28 @@
 [Release Notes](https://docs.usercentrics.com/cmp_in_app_sdk/latest/about/history/)
 
+### 2.11.1 - January 10, 2024
+
+## Improvements
+
+* Rework of session restore checks to prevent empty/bogus Controller ID
+
+## Android Bug Fixes
+
+* Controller ID card replaced at the bottom when using Google Additional Consent
+* Language selection menu will respect programmatic customization parameters
+* Warning for Chartboost SDK when R8 is enabled
+* Minor UI glitch where tab names were truncated when displaying the second layer in landscape mode
+
+## iOS Bug Fixes
+
+* Prevent fatal exceptions for a known iOS issue, more details [here](https://developer.apple.com/forums/thread/115405)
+
+## Other Fixes
+
+* Solved for Webview continuity previously not restoring consents to Google Additional Technology Providers
+* Solves the problem where the option 'Show non-IAB purposes only for EU users' incorrectly impacts users from specific regions
+* Application of consents when configuring the CMP to 'Do Not Display' with Geolocation Rules
+
 ### 2.11.0 - December 22, 2023
 
 ## Features
