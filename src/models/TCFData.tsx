@@ -210,8 +210,11 @@ export class TCFVendor {
     dataSharedOutsideEU: boolean
     dataCategories: [number]
     vendorUrls: VendorUrl[]
-    deviceStorage?: ConsentDisclosureObject
     restrictions: TCFVendorRestriction[]
+    /**
+     * @deprecated replaces to deviceStorageDisclosureUrl, this field will be removed in the upcoming version
+     */
+    deviceStorage?: ConsentDisclosureObject
 
     constructor(
         features: [number],
