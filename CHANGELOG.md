@@ -1,5 +1,16 @@
 [Release Notes](https://docs.usercentrics.com/cmp_in_app_sdk/latest/about/history/)
 
+### 2.11.3 - January 25, 2024
+
+## Improvements
+
+* Adds AC String into Updated Consent Event API
+
+## Other Fixes
+
+* Ensures accurate and proper display of large links on the Banner First and Second layer
+* Deprecates deviceStorage field on TCF Vendor class
+
 ### 2.11.1 - January 10, 2024
 
 ## Improvements

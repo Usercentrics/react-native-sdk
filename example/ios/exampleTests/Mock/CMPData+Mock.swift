@@ -38,7 +38,6 @@ extension UsercentricsSettings {
                  firstLayer: .mock(),
                  styles: .mock(),
                  interactionAnalytics: true,
-                 consentAPIv2: true,
                  consentAnalytics: true,
                  consentXDevice: true,
                  variants: .mock(),
