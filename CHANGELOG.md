@@ -1,5 +1,32 @@
 [Release Notes](https://docs.usercentrics.com/cmp_in_app_sdk/latest/about/history/)
 
+### 2.12.0 - February 15, 2024
+
+## Features
+
+* Consent choice persistence** - Prevents repeated banner displays across geographies for users moving across different legal frameworks (i.e. in case of frequent
+  travellers)
+
+## Improvements
+
+* Displaying the count of third-party vendors by category title
+
+## Android Bug Fixes
+
+* Removes JVM Target ('1.8') compatibility annotation
+* Improved UX on language selector popup
+
+## iOS Bug Fixes
+
+* Enhancing the UI of First-layer Popups and Sheets for Optimal Display on iPads
+
+
+## Other Fixes
+
+* Aligned purposes descriptions/illustrations and vendor data with GVL translation
+* Edge case when certain services, hidden by their respective categories, were visible"
+* Minor issues on session restoration when using TCF
+
 ### 2.11.3 - January 25, 2024
 
 ## Improvements
