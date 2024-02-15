@@ -6,6 +6,10 @@
             alt="follow on Twitter">
 </a>
 
+# Already a customer?
+
+In case you wish to report an issue, we provide a [dedicated page](https://usercentricssupport.zendesk.com/hc/en-us/requests/new) specifically for this purpose. By accessing the provided link and submitting a ticket our team will address your concerns with the utmost efficiency, ensuring a prompt resolution.
+
 # Welcome!
 
 You are now one step closer from making **privacy** a core feature in your application. We are very happy that you decided to make this a priority. We are here to help you **build trust** with your users.
