@@ -10,7 +10,10 @@ import Usercentrics
 
 extension UsercentricsReadyStatus {
   static func mock() -> UsercentricsReadyStatus {
-    return UsercentricsReadyStatus(shouldCollectConsent: false, consents: [.mock(), .mock()])
+    return UsercentricsReadyStatus(shouldCollectConsent: false,
+                                   consents: [.mock(), .mock()],
+                                   geolocationRuleset: GeolocationRuleset(activeSettingsId: "settingsId", bannerRequiredAtLocation: true),
+                                   location: UsercentricsLocation(countryCode: "PT", regionCode: "PT11"))
   }
 }
 

@@ -24,4 +24,5 @@ export * from './TCF2Settings';
 export * from './UsercentricsCategory';
 export * from './UsercentricsLabels';
 export * from './UsercentricsLocation';
-export * from './UsercentricsSettings'
+export * from './UsercentricsSettings';
+export * from './GeolocationRuleset';
