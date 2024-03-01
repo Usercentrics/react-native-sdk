@@ -1,5 +1,30 @@
 [Release Notes](https://docs.usercentrics.com/cmp_in_app_sdk/latest/about/history/)
 
+### 2.13.0 - February 29, 2024
+
+## Features
+
+**New Usercentrics Ready API** - The API's new properties introduce a feature that, through Rulesets, allows identification of scenarios where the banner may be bypassed in specific locations, [check it out](integration/initialize.md#initialize-usercentrics)
+
+## Improvements
+
+**Removes TCF 2.0 warnings** - Since TCF 2.0 has been deprecated, we've removed all warnings regarding the usage of version 2.0 of this framework
+**New TCF 2.2 Stacks** - Added support for Stacks 44 and 45
+
+## Android Bug Fixes
+
+**[Warning]** ⚠️Support for versions lower than Android 5.0 (API Level 20) is planned to be removed in releases starting from end of March/24
+**[Fix]** Fully removes support for TLS 1.2 in Android versions lower than 5.0 (API Level 20)
+
+## iOS Bug Fixes
+
+**[Fix]** Banner was not correctly rendered given some specific programmatic customization scenarios
+**[Fix]** Fixes layout constraints when changing the language for CCPA banners
+
+## Other Fixes
+
+**[Fix]** General improvement on resurfacing logic for any Legal Basis change on TCF Purposes
+
 ### 2.12.0 - February 15, 2024
 
 ## Features
@@ -19,7 +44,6 @@
 ## iOS Bug Fixes
 
 * Enhancing the UI of First-layer Popups and Sheets for Optimal Display on iPads
-
 
 ## Other Fixes
 
