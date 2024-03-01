@@ -19,6 +19,7 @@ import com.usercentrics.sdk.models.common.UsercentricsVariant
 import com.usercentrics.sdk.models.settings.UsercentricsConsentType
 import com.usercentrics.sdk.services.tcf.TCFDecisionUILayer
 import com.usercentrics.sdk.services.tcf.interfaces.TCFData
+import com.usercentrics.sdk.v2.location.data.UsercentricsLocation
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verify
@@ -81,7 +82,9 @@ class RNUsercentricsModuleTest {
                     isEssential = false,
                     history = usercentricsConsentHistoryEntries
                 )
-            )
+            ),
+            geolocationRuleset = GeolocationRuleset(activeSettingsId = "settingsId", bannerRequiredAtLocation = true),
+            location = UsercentricsLocation(countryCode = "PT", regionCode = "PT11")
         )
     }
 
@@ -142,6 +145,13 @@ class RNUsercentricsModuleTest {
 
         assertEquals(1, usercentricsProxy.isReadyCount)
         assertEquals(false, result.getBoolean("shouldCollectConsent"))
+
+        assertEquals("settingsId", result.getMap("geolocationRuleset")?.getString("activeSettingsId"))
+        assertEquals(true, result.getMap("geolocationRuleset")?.getBoolean("bannerRequiredAtLocation"))
+
+        assertEquals("PT", result.getMap("location")?.getString("countryCode"))
+        assertEquals("PT11", result.getMap("location")?.getString("regionCode"))
+
         assertEquals(false, consent.getBoolean("status"))
         assertEquals("ocv9HNX_g", consent.getString("templateId"))
         assertEquals("Facebook SDK", consent.getString("dataProcessor"))

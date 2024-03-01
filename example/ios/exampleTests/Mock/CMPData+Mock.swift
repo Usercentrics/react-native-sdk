@@ -453,7 +453,7 @@ extension UsercentricsCategory {
 extension TCF2ChangedPurposes {
 
   static func mock() -> TCF2ChangedPurposes {
-    return .init(purposes: [1,2,3], legIntPurposes: [1,2,3])
+    return .init(purposes: [1,2,3], legIntPurposes: [1,2,3], notAllowedPurposes: [1,2,3])
   }
 }
 

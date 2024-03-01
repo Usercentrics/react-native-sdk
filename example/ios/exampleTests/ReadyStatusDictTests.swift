@@ -15,11 +15,22 @@ class ReadyStatusDictTests: XCTestCase {
                                                                          version: "version",
                                                                          isEssential: true)
     
-    let usercentricsReady = UsercentricsReadyStatus(shouldCollectConsent: false, consents: [consent])
+    let usercentricsReady = UsercentricsReadyStatus(shouldCollectConsent: false,
+                                                    consents: [consent],
+                                                    geolocationRuleset: GeolocationRuleset(activeSettingsId: "settingsId", bannerRequiredAtLocation: true),
+                                                    location: UsercentricsLocation(countryCode: "PT", regionCode: "PT11"))
     let dictionary = usercentricsReady.toDictionary()
 
     XCTAssertEqual(false, dictionary["shouldCollectConsent"] as! Bool)
     XCTAssertNotNil(dictionary["consents"] as? [NSDictionary])
+
+    let geolocationRuleset = dictionary["geolocationRuleset"] as! NSDictionary
+    XCTAssertEqual(true, geolocationRuleset["bannerRequiredAtLocation"] as! Bool)
+    XCTAssertEqual("settingsId", geolocationRuleset["activeSettingsId"] as! String)
+
+    let location = dictionary["location"] as! NSDictionary
+    XCTAssertEqual("PT", location["countryCode"] as! String)
+    XCTAssertEqual("PT11", location["regionCode"] as! String)
   }
 
   func testSerializeConsent() {

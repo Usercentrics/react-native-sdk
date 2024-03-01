@@ -339,7 +339,7 @@ private fun UsercentricsCategory.serialize(): WritableMap {
     ).toWritableMap()
 }
 
-private fun UsercentricsLocation.serialize(): WritableMap {
+internal fun UsercentricsLocation.serialize(): WritableMap {
     return mapOf(
         "countryCode" to countryCode,
         "regionCode" to regionCode,

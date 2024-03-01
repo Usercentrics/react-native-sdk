@@ -48,18 +48,27 @@ class RNUsercentricsModuleTests: XCTestCase {
         let result = result as? NSDictionary,
         let shouldCollectConsent = result["shouldCollectConsent"] as? Bool,
         let consentsMap = result["consents"] as? [NSDictionary],
+        let geolocationRulesetMap = result["geolocationRuleset"] as? NSDictionary,
+        let locationMap = result["location"] as? NSDictionary,
         let consent = consentsMap.first
       else {
         XCTFail()
         return
       }
 
-      XCTAssertEqual(shouldCollectConsent, false)
-      XCTAssertEqual(consent["version"] as! String, "1.2.3")
-      XCTAssertEqual(consent["dataProcessor"] as! String, "BBBB")
-      XCTAssertEqual(consent["templateId"] as! String, "AAAA")
-      XCTAssertEqual(consent["type"] as! Int, 0)
-      XCTAssertEqual(consent["status"] as! Bool, true)
+      XCTAssertEqual(false, shouldCollectConsent)
+
+      XCTAssertEqual("settingsId", geolocationRulesetMap["activeSettingsId"] as! String)
+      XCTAssertEqual(true, geolocationRulesetMap["bannerRequiredAtLocation"] as! Bool)
+
+      XCTAssertEqual("PT", locationMap["countryCode"] as! String)
+      XCTAssertEqual("PT11", locationMap["regionCode"] as! String)
+
+      XCTAssertEqual("1.2.3", consent["version"] as! String)
+      XCTAssertEqual("BBBB", consent["dataProcessor"] as! String)
+      XCTAssertEqual("AAAA", consent["templateId"] as! String)
+      XCTAssertEqual(0, consent["type"] as! Int)
+      XCTAssertEqual(true, consent["status"] as! Bool)
     } reject: { _,_,_  in
       XCTFail("Should not go here")
     }
