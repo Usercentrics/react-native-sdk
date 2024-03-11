@@ -487,8 +487,6 @@ extension CustomizationColor {
                  toggleDisabledBackground: "toggleDisabledBackground",
                  toggleDisabledIcon: "toggleDisabledIcon",
                  secondLayerTab: "secondLayerTab",
-                 moreBtnBackground: "moreBtnBackground",
-                 moreBtnText: "moreBtnText",
                  tabsBorderColor: "tabsBorderColor",
                  ccpaButtonColor: "ccpaButtonColor",
                  ccpaButtonTextColor: "ccpaButtonTextColor")
