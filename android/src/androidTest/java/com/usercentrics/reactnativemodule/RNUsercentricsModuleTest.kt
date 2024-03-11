@@ -750,9 +750,11 @@ class RNUsercentricsModuleTest {
 
     @Test
     fun testClearUserSession() {
+        val clearSessionStatus = usercentricsReadyStatus.copy(shouldCollectConsent = true)
+
         val usercentricsSDK = mockk<UsercentricsSDK>()
         every { usercentricsSDK.clearUserSession(any(), any()) }.answers {
-            (arg(0) as (UsercentricsReadyStatus) -> Unit)(usercentricsReadyStatus)
+            (arg(0) as (UsercentricsReadyStatus) -> Unit)(clearSessionStatus)
         }
 
         val usercentricsProxy = FakeUsercentricsProxy(instanceAnswer = usercentricsSDK)
@@ -760,15 +762,15 @@ class RNUsercentricsModuleTest {
         val module = RNUsercentricsModule(contextMock, usercentricsProxy, ReactContextProviderMock())
 
         val promise = FakePromise()
-        module.restoreUserSession(promise)
+        module.clearUserSession(promise)
 
-        verify(exactly = 1) { usercentricsSDK.restoreUserSession(any(), any()) }
+        verify(exactly = 1) { usercentricsSDK.clearUserSession(any(), any()) }
 
         val result = promise.resolveValue as WritableMap
         val consent = result.getArray("consents")?.getMap(0)!!
 
         assertEquals(true, result.getBoolean("shouldCollectConsent"))
-        assertEquals(true, consent.getBoolean("status"))
+        assertEquals(false, consent.getBoolean("status"))
         assertEquals("ocv9HNX_g", consent.getString("templateId"))
         assertEquals("Facebook SDK", consent.getString("dataProcessor"))
         assertEquals(0, consent.getInt("type"))
