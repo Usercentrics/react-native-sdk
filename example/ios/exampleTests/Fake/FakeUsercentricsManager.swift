@@ -27,6 +27,9 @@ final class FakeUsercentricsManager: UsercentricsManager {
   var restoreUserSessionError: Error?
 
   var resetCount: Int = 0
+  
+  var clearUserSessionSuccess: UsercentricsReadyStatus?
+  var clearUserSessionError: Error?
 
   func isReady(onSuccess: @escaping ((UsercentricsReadyStatus) -> Void), onFailure: @escaping ((Error) -> Void)) {
     if let isReadySuccessCompletion = isReadySuccessCompletion {
@@ -193,5 +196,16 @@ final class FakeUsercentricsManager: UsercentricsManager {
   var trackCalls: Array<UsercentricsAnalyticsEventType> = []
   func track(event: UsercentricsAnalyticsEventType) {
     trackCalls.append(event)
+  }
+  
+  func clearUserSession(onSuccess: @escaping ((UsercentricsReadyStatus) -> Void), onError: @escaping ((Error) -> Void)) {
+  
+    if let clearUserSessionSuccess = clearUserSessionSuccess {
+      onSuccess(clearUserSessionSuccess)
+    }
+
+    if let clearUserSessionError = clearUserSessionError {
+      onError(clearUserSessionError)
+    }
   }
 }

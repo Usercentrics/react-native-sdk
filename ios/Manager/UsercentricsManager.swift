@@ -42,6 +42,7 @@ public protocol UsercentricsManager {
     func track(event: UsercentricsAnalyticsEventType)
 
     func reset()
+    func clearUserSession(onSuccess: @escaping ((UsercentricsReadyStatus) -> Void), onError: @escaping ((Error) -> Void))
 }
 
 final class UsercentricsManagerImplementation: UsercentricsManager {
@@ -146,5 +147,9 @@ final class UsercentricsManagerImplementation: UsercentricsManager {
 
     func track(event: UsercentricsAnalyticsEventType) {
         UsercentricsCore.shared.track(event: event)
+    }
+    
+    func clearUserSession(onSuccess: @escaping ((UsercentricsReadyStatus) -> Void), onError: @escaping ((Error) -> Void)) {
+        UsercentricsCore.shared.clearUserSession(onSuccess: onSuccess, onError: onError)
     }
 }

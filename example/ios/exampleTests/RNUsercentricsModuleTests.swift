@@ -569,4 +569,39 @@ class RNUsercentricsModuleTests: XCTestCase {
       XCTFail("Should not go here")
     }
   }
+  
+  func testclearUserSession() {
+    fakeUsercentrics.clearUserSessionSuccess = .mock()
+    module.clearUserSession() { [self] result in
+      guard
+        let result = result as? NSDictionary,
+        let shouldCollectConsent = result["shouldCollectConsent"] as? Bool,
+        let consentsMap = result["consents"] as? [NSDictionary],
+        let consent = consentsMap.first
+      else {
+        XCTFail()
+        return
+      }
+
+      XCTAssertEqual(shouldCollectConsent, false)
+      XCTAssertEqual(consent["version"] as! String, "1.2.3")
+      XCTAssertEqual(consent["dataProcessor"] as! String, "BBBB")
+      XCTAssertEqual(consent["templateId"] as! String, "AAAA")
+      XCTAssertEqual(consent["type"] as! Int, 0)
+      XCTAssertEqual(consent["status"] as! Bool, true)
+    } reject: { _,_,_  in
+      XCTFail("Should not go here")
+    }
+  }
+
+  func testClearUserSessionWithError() {
+    fakeUsercentrics.clearUserSessionError = FakeUsercentricsError.test
+    module.clearUserSession() { _ in
+      XCTFail("Should not go here")
+    } reject: { code, message, error in
+      XCTAssertEqual(error?.localizedDescription, FakeUsercentricsError.test.localizedDescription)
+      XCTAssertEqual("usercentrics_reactNative_clearUserSession_error", code)
+      XCTAssertEqual("The operation couldn’t be completed. (exampleTests.FakeUsercentricsError error 0.)", message)
+    }
+  }
 }

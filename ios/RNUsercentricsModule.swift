@@ -199,4 +199,12 @@ class RNUsercentricsModule: NSObject, RCTBridgeModule {
     @objc func reset() -> Void {
         usercentricsManager.reset()
     }
+    
+    @objc func clearUserSession(resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) -> Void {
+        usercentricsManager.clearUserSession { status in
+            resolve(status.toDictionary())
+        } onError: { error in
+            reject("usercentrics_reactNative_clearUserSession_error", error.localizedDescription, error)
+        }
+    }
 }
