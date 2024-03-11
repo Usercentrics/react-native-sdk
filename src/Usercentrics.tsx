@@ -138,5 +138,10 @@ export const Usercentrics = {
 
     reset: () => {
         RNUsercentricsModule.reset()
-    }
+    },
+
+    clearUserSession: async (): Promise<UsercentricsReadyStatus> => {
+        await RNUsercentricsModule.isReady();
+        return RNUsercentricsModule.clearUserSession();
+    },
 }
