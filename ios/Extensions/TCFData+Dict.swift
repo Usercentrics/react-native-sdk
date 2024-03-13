@@ -109,7 +109,6 @@ extension TCFVendor {
             "dataSharedOutsideEU": dataSharedOutsideEU?.boolValue as Any,
             "dataCategories": dataCategories.map { $0.id },
             "vendorUrls": vendorUrls.map { $0.toDictionary() },
-            "deviceStorage" : self.deviceStorage?.toDictionary() as Any,
             "restrictions" : self.restrictions.map { $0.toDictionary() }
         ]
     }
