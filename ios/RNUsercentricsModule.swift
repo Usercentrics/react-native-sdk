@@ -200,7 +200,7 @@ class RNUsercentricsModule: NSObject, RCTBridgeModule {
         usercentricsManager.reset()
     }
     
-    @objc func clearUserSession(resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) -> Void {
+    @objc func clearUserSession(_ resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) -> Void {
         usercentricsManager.clearUserSession { status in
             resolve(status.toDictionary())
         } onError: { error in
