@@ -1,5 +1,27 @@
 [Release Notes](https://docs.usercentrics.com/cmp_in_app_sdk/latest/about/history/)
 
+### 2.13.2 - March 13, 2024
+
+## Features
+
+**Clear User Session** - Introducing a new API designed to simplify the process of clearing user sessions
+
+## Improvements
+
+**Google Consent Mode Granular Choices** - Enhances integration with Google SDKs by updating to the latest changes.
+
+**Adjust Granular Consent** - By Using Consent Mediation, we have fully integrated with Adjust SDK updates associated with the DMA
+
+## iOS Bug Fixes
+
+**[Fix]** Adjusts in landscape mode where labels were not fully aligned with other elements of the screen
+**[tvOS Fix]** Numerous layout modifications have been made to address the arrangement of titles and the rendering of other elements in languages that result in larger text sizes
+
+## Other Fixes
+
+**[Fix]** Removes deprecated field TCFVendor::deviceStorage
+**[Fix]** In certain scenarios, the 'Save Settings' button color was not customizable
+
 ### 2.13.0 - February 29, 2024
 
 ## Features
