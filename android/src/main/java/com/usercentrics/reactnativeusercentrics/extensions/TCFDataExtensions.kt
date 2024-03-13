@@ -105,7 +105,6 @@ private fun TCFVendor.serialize(): WritableMap {
         "dataSharedOutsideEU" to dataSharedOutsideEU,
         "dataCategories" to dataCategories.map { it.id },
         "vendorUrls" to vendorUrls.map { it.serialize() },
-        "deviceStorage" to deviceStorage.serialize(),
         "restrictions" to restrictions.map { it.serialize() }
     ).toWritableMap()
 }

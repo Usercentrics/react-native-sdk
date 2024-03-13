@@ -99,7 +99,6 @@ internal class GetTCFDataMock {
                     cookieMaxAgeSeconds = null,
                     usesNonCookieAccess = false,
                     deviceStorageDisclosureUrl = null,
-                    deviceStorage = null,
                     usesCookies = false,
                     cookieRefresh = null,
                     dataSharedOutsideEU = false,
