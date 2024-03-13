@@ -92,7 +92,6 @@ extension TCFVendor {
                  cookieMaxAgeSeconds: nil,
                  usesNonCookieAccess: false,
                  deviceStorageDisclosureUrl: "abc",
-                 deviceStorage: nil,
                  usesCookies: false,
                  cookieRefresh: KotlinBoolean(bool: false),
                  dataSharedOutsideEU: KotlinBoolean(bool: false),
