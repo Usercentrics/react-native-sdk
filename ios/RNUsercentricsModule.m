@@ -102,4 +102,7 @@ RCT_EXTERN_METHOD(setABTestingVariant:(NSString *)variant)
 RCT_EXTERN_METHOD(track:(NSInteger *)event)
 
 RCT_EXTERN_METHOD(reset)
+
+RCT_EXTERN_METHOD(clearUserSession:(RCTPromiseResolveBlock)resolve
+                  reject:(RCTPromiseRejectBlock)reject)
 @end

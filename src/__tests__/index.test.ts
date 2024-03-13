@@ -56,7 +56,8 @@ jest.mock("react-native", () => {
         saveDecisionsForTCF: jest.fn(),
         saveDecisions: jest.fn(),
         track: jest.fn(),
-        reset: jest.fn()
+        reset: jest.fn(),
+        clearUserSession: jest.fn()
     };
 
     return RN
@@ -95,7 +96,18 @@ describe('Test Usercentrics Module', () => {
                         type: 0
                     }]
                 }
-            ]
+            ],
+          {
+              countryCode: "PT",
+              regionCode: "PT11",
+              isInEU: true,
+              isInUS: false,
+              isInCalifornia: false
+          },
+          {
+              activeSettingsId: "",
+              bannerRequiredAtLocation: false
+          }
         )
 
         RNUsercentricsModule.isReady.mockImplementationOnce(
@@ -173,7 +185,18 @@ describe('Test Usercentrics Module', () => {
                         type: 0
                     }]
                 }
-            ]
+            ],
+          {
+              countryCode: "PT",
+              regionCode: "PT11",
+              isInEU: true,
+              isInUS: false,
+              isInCalifornia: false
+          },
+          {
+              activeSettingsId: "",
+              bannerRequiredAtLocation: false
+          }
         )
 
         RNUsercentricsModule.restoreUserSession.mockImplementationOnce(
@@ -399,5 +422,56 @@ describe('Test Usercentrics Module', () => {
 
         const data = await Usercentrics.getAdditionalConsentModeData();
         expect(data).toStrictEqual(response)
+    })
+
+    test('testClearUserSession', async () => {
+        const readyStatus = new UsercentricsReadyStatus(
+          true,
+          [
+              {
+                  templateId: "123",
+                  status: false,
+                  dataProcessor: "facebook",
+                  version: "123",
+                  type: 0,
+                  isEssential: false,
+                  history: [{
+                      status: false,
+                      timestampInMillis: 123.0,
+                      type: 0
+                  }]
+              }
+          ],
+          {
+              countryCode: "PT",
+              regionCode: "PT11",
+              isInEU: true,
+              isInUS: false,
+              isInCalifornia: false
+          },
+          {
+              activeSettingsId: "",
+              bannerRequiredAtLocation: false
+          }
+        )
+
+        RNUsercentricsModule.clearUserSession.mockImplementationOnce(
+          (): Promise<any> => Promise.resolve(readyStatus)
+        )
+
+        const data = await Usercentrics.clearUserSession();
+        expect(data).toBe(readyStatus);
+    })
+
+    test('testClearUserSessionWithError', async () => {
+        RNUsercentricsModule.restoreUserSession.mockImplementationOnce(
+          (): Promise<any> => Promise.reject("Failed")
+        )
+
+        try {
+            await Usercentrics.clearUserSession();
+        } catch (e) {
+            expect(e).toBe("Failed");
+        }
     })
 })

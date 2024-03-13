@@ -212,6 +212,15 @@ internal class RNUsercentricsModule(
         usercentricsProxy.reset()
     }
 
+    @ReactMethod
+    fun clearUserSession(promise: Promise) {
+        usercentricsProxy.instance.clearUserSession({
+            promise.resolve(it.toWritableMap())
+        }, {
+            promise.reject(it)
+        })
+    }
+
     private fun runOnUiThread(block: () -> Unit) {
         UiThreadUtil.runOnUiThread(block)
     }

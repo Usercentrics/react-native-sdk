@@ -747,4 +747,51 @@ class RNUsercentricsModuleTest {
         verify(exactly = 1) { usercentricsSDK.getAdditionalConsentModeData() }
         assertEquals(GetCMPDataMock.expectedAdditionalConsentModeData.toWritableMap(), result)
     }
+
+    @Test
+    fun testClearUserSession() {
+        val clearSessionStatus = usercentricsReadyStatus.copy(shouldCollectConsent = true)
+
+        val usercentricsSDK = mockk<UsercentricsSDK>()
+        every { usercentricsSDK.clearUserSession(any(), any()) }.answers {
+            (arg(0) as (UsercentricsReadyStatus) -> Unit)(clearSessionStatus)
+        }
+
+        val usercentricsProxy = FakeUsercentricsProxy(instanceAnswer = usercentricsSDK)
+        val contextMock = mockk<ReactApplicationContext>(relaxed = true)
+        val module = RNUsercentricsModule(contextMock, usercentricsProxy, ReactContextProviderMock())
+
+        val promise = FakePromise()
+        module.clearUserSession(promise)
+
+        verify(exactly = 1) { usercentricsSDK.clearUserSession(any(), any()) }
+
+        val result = promise.resolveValue as WritableMap
+        val consent = result.getArray("consents")?.getMap(0)!!
+
+        assertEquals(true, result.getBoolean("shouldCollectConsent"))
+        assertEquals(false, consent.getBoolean("status"))
+        assertEquals("ocv9HNX_g", consent.getString("templateId"))
+        assertEquals("Facebook SDK", consent.getString("dataProcessor"))
+        assertEquals(0, consent.getInt("type"))
+        assertEquals("1.0.1", consent.getString("version"))
+    }
+
+    @Test
+    fun testClearUserSessionWithError() {
+        val error = mockk<UsercentricsError>(relaxed = true)
+        val usercentricsSDK = mockk<UsercentricsSDK>()
+        every { usercentricsSDK.clearUserSession(any(), any()) }.answers {
+            (arg(1) as (UsercentricsError) -> Unit)(error)
+        }
+        val usercentricsProxy = FakeUsercentricsProxy(usercentricsSDK)
+        val contextMock = mockk<ReactApplicationContext>(relaxed = true)
+        val module = RNUsercentricsModule(contextMock, usercentricsProxy, ReactContextProviderMock())
+
+        val promise = FakePromise()
+        module.clearUserSession(promise)
+
+        verify(exactly = 1) { usercentricsSDK.clearUserSession(any(), any()) }
+        assertEquals(error, promise.rejectThrowable)
+    }
 }

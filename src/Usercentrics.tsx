@@ -1,5 +1,6 @@
 import {NativeModules} from 'react-native';
 import {
+    AdditionalConsentModeData,
     BannerSettings,
     CCPAData,
     TCFData,
@@ -14,7 +15,6 @@ import {
     UsercentricsServiceConsent,
     UserDecision,
 } from './models';
-import {AdditionalConsentModeData} from "./models/AdditionalConsentModeData";
 
 const {RNUsercentricsModule} = NativeModules;
 
@@ -138,5 +138,10 @@ export const Usercentrics = {
 
     reset: () => {
         RNUsercentricsModule.reset()
-    }
+    },
+
+    clearUserSession: async (): Promise<UsercentricsReadyStatus> => {
+        await RNUsercentricsModule.isReady();
+        return RNUsercentricsModule.clearUserSession();
+    },
 }
