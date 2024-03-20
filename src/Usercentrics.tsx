@@ -136,6 +136,9 @@ export const Usercentrics = {
         RNUsercentricsModule.track(event);
     },
 
+    /**
+     * @deprecated This method will be removed in the next version. Please consider using the clearUserSession() method instead
+     */
     reset: () => {
         RNUsercentricsModule.reset()
     },
