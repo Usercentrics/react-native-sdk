@@ -1,16 +1,17 @@
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import {NavigationContainer} from '@react-navigation/native';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import * as React from 'react';
-import { Usercentrics, UsercentricsLoggerLevel, UsercentricsOptions } from '../../src/index';
-import { CustomScreen, HomeScreen, WebviewIntegrationScreen } from './screens';
+import {Usercentrics, UsercentricsLoggerLevel, UsercentricsOptions} from '../../src/index';
+import {CustomScreen, HomeScreen, WebviewIntegrationScreen} from './screens';
 
 const Stack = createNativeStackNavigator();
 
 const App = () => {
   React.useEffect(() => {
-    let options: UsercentricsOptions = { settingsId: "Yi9N3aXia" };
-    options.loggerLevel = UsercentricsLoggerLevel.debug;
+    let options: UsercentricsOptions = { settingsId: "Yi9N3aXia", loggerLevel: UsercentricsLoggerLevel.debug };
+    // let options: UsercentricsOptions = { settingsId: "Nk6RDltio", consentMediation: true, loggerLevel: UsercentricsLoggerLevel.debug  };
     Usercentrics.configure(options);
+
   }, []);
 
   return (
