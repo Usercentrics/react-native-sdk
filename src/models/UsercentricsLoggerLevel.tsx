@@ -1,6 +1,7 @@
 export enum UsercentricsLoggerLevel {
-    none,
-    error,
-    warning,
-    debug
+
+    none = 0,
+    error = 1,
+    warning = 2,
+    debug = 3
 }

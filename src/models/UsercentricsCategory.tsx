@@ -1,4 +1,5 @@
 export class UsercentricsCategory {
+
     /// The category slug identifier.
     categorySlug: string
 

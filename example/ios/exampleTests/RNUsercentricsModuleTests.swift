@@ -48,18 +48,27 @@ class RNUsercentricsModuleTests: XCTestCase {
         let result = result as? NSDictionary,
         let shouldCollectConsent = result["shouldCollectConsent"] as? Bool,
         let consentsMap = result["consents"] as? [NSDictionary],
+        let geolocationRulesetMap = result["geolocationRuleset"] as? NSDictionary,
+        let locationMap = result["location"] as? NSDictionary,
         let consent = consentsMap.first
       else {
         XCTFail()
         return
       }
 
-      XCTAssertEqual(shouldCollectConsent, false)
-      XCTAssertEqual(consent["version"] as! String, "1.2.3")
-      XCTAssertEqual(consent["dataProcessor"] as! String, "BBBB")
-      XCTAssertEqual(consent["templateId"] as! String, "AAAA")
-      XCTAssertEqual(consent["type"] as! Int, 0)
-      XCTAssertEqual(consent["status"] as! Bool, true)
+      XCTAssertEqual(false, shouldCollectConsent)
+
+      XCTAssertEqual("settingsId", geolocationRulesetMap["activeSettingsId"] as! String)
+      XCTAssertEqual(true, geolocationRulesetMap["bannerRequiredAtLocation"] as! Bool)
+
+      XCTAssertEqual("PT", locationMap["countryCode"] as! String)
+      XCTAssertEqual("PT11", locationMap["regionCode"] as! String)
+
+      XCTAssertEqual("1.2.3", consent["version"] as! String)
+      XCTAssertEqual("BBBB", consent["dataProcessor"] as! String)
+      XCTAssertEqual("AAAA", consent["templateId"] as! String)
+      XCTAssertEqual(0, consent["type"] as! Int)
+      XCTAssertEqual(true, consent["status"] as! Bool)
     } reject: { _,_,_  in
       XCTFail("Should not go here")
     }
@@ -532,6 +541,67 @@ class RNUsercentricsModuleTests: XCTestCase {
       XCTAssertEqual(UsercentricsLocation.mock().toDictionary(), userLocation)
     } reject: { _, _, _ in
       XCTFail("Should not go here")
+    }
+  }
+
+  func testGetAdditionalConsentModeData() {
+    let expected = AdditionalConsentModeData(acString: "2~43.46.55~dv.",
+                                             adTechProviders: [AdTechProvider(id: 43, name: "AdPredictive", privacyPolicyUrl: "https://adpredictive.com/privacy", consent: true)])
+
+    fakeUsercentrics.getAdditionalConsentModeDataResponse = expected
+
+    module.getAdditionalConsentModeData { response in
+      guard let result = response as? NSDictionary else {
+        XCTFail()
+        return
+      }
+
+      XCTAssertEqual(expected.acString, result["acString"] as! String)
+
+      let adTechProviders = result["adTechProviders"] as? [NSDictionary]
+      XCTAssertEqual(1, adTechProviders!.count)
+
+      XCTAssertEqual(43, adTechProviders![0]["id"] as! Int)
+      XCTAssertEqual(true, adTechProviders![0]["consent"] as! Bool)
+      XCTAssertEqual("AdPredictive", adTechProviders![0]["name"] as! String)
+      XCTAssertEqual("https://adpredictive.com/privacy", adTechProviders![0]["privacyPolicyUrl"] as! String)
+    } reject: { _, _, _ in
+      XCTFail("Should not go here")
+    }
+  }
+  
+  func testclearUserSession() {
+    fakeUsercentrics.clearUserSessionSuccess = .mock()
+    module.clearUserSession() { [self] result in
+      guard
+        let result = result as? NSDictionary,
+        let shouldCollectConsent = result["shouldCollectConsent"] as? Bool,
+        let consentsMap = result["consents"] as? [NSDictionary],
+        let consent = consentsMap.first
+      else {
+        XCTFail()
+        return
+      }
+
+      XCTAssertEqual(shouldCollectConsent, false)
+      XCTAssertEqual(consent["version"] as! String, "1.2.3")
+      XCTAssertEqual(consent["dataProcessor"] as! String, "BBBB")
+      XCTAssertEqual(consent["templateId"] as! String, "AAAA")
+      XCTAssertEqual(consent["type"] as! Int, 0)
+      XCTAssertEqual(consent["status"] as! Bool, true)
+    } reject: { _,_,_  in
+      XCTFail("Should not go here")
+    }
+  }
+
+  func testClearUserSessionWithError() {
+    fakeUsercentrics.clearUserSessionError = FakeUsercentricsError.test
+    module.clearUserSession() { _ in
+      XCTFail("Should not go here")
+    } reject: { code, message, error in
+      XCTAssertEqual(error?.localizedDescription, FakeUsercentricsError.test.localizedDescription)
+      XCTAssertEqual("usercentrics_reactNative_clearUserSession_error", code)
+      XCTAssertEqual("The operation couldn’t be completed. (exampleTests.FakeUsercentricsError error 0.)", message)
     }
   }
 }

@@ -1,5 +1,141 @@
 [Release Notes](https://docs.usercentrics.com/cmp_in_app_sdk/latest/about/history/)
 
+### 2.13.2 - March 13, 2024
+
+## Features
+
+**Clear User Session** - Introducing a new API designed to simplify the process of clearing user sessions
+
+## Improvements
+
+**Google Consent Mode Granular Choices** - Enhances integration with Google SDKs by updating to the latest changes.
+
+**Adjust Granular Consent** - By Using Consent Mediation, we have fully integrated with Adjust SDK updates associated with the DMA
+
+## iOS Bug Fixes
+
+**[Fix]** Adjusts in landscape mode where labels were not fully aligned with other elements of the screen
+**[tvOS Fix]** Numerous layout modifications have been made to address the arrangement of titles and the rendering of other elements in languages that result in larger text sizes
+
+## Other Fixes
+
+**[Fix]** Removes deprecated field TCFVendor::deviceStorage
+**[Fix]** In certain scenarios, the 'Save Settings' button color was not customizable
+
+### 2.13.0 - February 29, 2024
+
+## Features
+
+**New Usercentrics Ready API** - The API's new properties introduce a feature that, through Rulesets, allows identification of scenarios where the banner may be bypassed in specific locations, [check it out](integration/initialize.md#initialize-usercentrics)
+
+## Improvements
+
+**Removes TCF 2.0 warnings** - Since TCF 2.0 has been deprecated, we've removed all warnings regarding the usage of version 2.0 of this framework
+**New TCF 2.2 Stacks** - Added support for Stacks 44 and 45
+
+## Android Bug Fixes
+
+**[Warning]** ⚠️Support for versions lower than Android 5.0 (API Level 20) is planned to be removed in releases starting from end of March/24
+**[Fix]** Fully removes support for TLS 1.2 in Android versions lower than 5.0 (API Level 20)
+
+## iOS Bug Fixes
+
+**[Fix]** Banner was not correctly rendered given some specific programmatic customization scenarios
+**[Fix]** Fixes layout constraints when changing the language for CCPA banners
+
+## Other Fixes
+
+**[Fix]** General improvement on resurfacing logic for any Legal Basis change on TCF Purposes
+
+### 2.12.0 - February 15, 2024
+
+## Features
+
+* Consent choice persistence** - Prevents repeated banner displays across geographies for users moving across different legal frameworks (i.e. in case of frequent
+  travellers)
+
+## Improvements
+
+* Displaying the count of third-party vendors by category title
+
+## Android Bug Fixes
+
+* Removes JVM Target ('1.8') compatibility annotation
+* Improved UX on language selector popup
+
+## iOS Bug Fixes
+
+* Enhancing the UI of First-layer Popups and Sheets for Optimal Display on iPads
+
+## Other Fixes
+
+* Aligned purposes descriptions/illustrations and vendor data with GVL translation
+* Edge case when certain services, hidden by their respective categories, were visible"
+* Minor issues on session restoration when using TCF
+
+### 2.11.3 - January 25, 2024
+
+## Improvements
+
+* Adds AC String into Updated Consent Event API
+
+## Other Fixes
+
+* Ensures accurate and proper display of large links on the Banner First and Second layer
+* Deprecates deviceStorage field on TCF Vendor class
+
+### 2.11.1 - January 10, 2024
+
+## Improvements
+
+* Rework of session restore checks to prevent empty/bogus Controller ID
+
+## Android Bug Fixes
+
+* Controller ID card replaced at the bottom when using Google Additional Consent
+* Language selection menu will respect programmatic customization parameters
+* Warning for Chartboost SDK when R8 is enabled
+* Minor UI glitch where tab names were truncated when displaying the second layer in landscape mode
+
+## iOS Bug Fixes
+
+* Prevent fatal exceptions for a known iOS issue, more details [here](https://developer.apple.com/forums/thread/115405)
+
+## Other Fixes
+
+* Solved for Webview continuity previously not restoring consents to Google Additional Technology Providers
+* Solves the problem where the option 'Show non-IAB purposes only for EU users' incorrectly impacts users from specific regions
+* Application of consents when configuring the CMP to 'Do Not Display' with Geolocation Rules
+
+### 2.11.0 - December 22, 2023
+
+## Features
+
+* Google Consent Mode V2 Support - Seamlessly integrate with the latest Google Consent Mode, ensuring enhanced privacy compliance and meeting Google requirements.
+* Google Additional Consent Mode V2 - Integrate with the latest Google Additional Consent, allowing you to collect and signal additional consent for ad tech providers not covered by the IAB TCF V2.2.
+* Display Number of Vendors for Each Purpose on TCF - Easily view the number of vendors associated with each purpose in the Transparency and Consent Framework.
+* Chartboost SDK in Consent Mediation - Optimize revenue by effortlessly managing the Chartboost SDK within Usercentrics Consent Mediation.
+
+## Improvements
+
+* TCFUserDecisions API update - All properties have been changed from variables to constants. The adTechProviders field has been added which represent consents for Google Additional Consent Mode. On iOS this is a required argument, so if this is irrelevant for your configuration, just set an empty list, when needed.
+* Location is only cached by the SDK for offline mode.
+
+## Android Resolved Issues
+
+* Avoid fetching any image resource after the banner has been closed.
+
+## iOS Resolved Issues
+
+* Prevent Long Privacy Legal Links from Being Truncated.
+* Enable Scaled Fonts resources when using Custom UI.
+
+## Other Resolved Issues
+
+* Third-Party Vendors Count misalignment in some configurations.
+* Fix the bug causing the banner to reappear for users outside the European Union, despite configurations being specifically set to enforce GDPR compliance exclusively for EU users.
+* Update Link to Report Issues on Zendesk.
+
 ### 2.10.0 - November 16, 2023
 
 ## Improvements

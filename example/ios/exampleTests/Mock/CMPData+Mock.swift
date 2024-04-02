@@ -38,7 +38,6 @@ extension UsercentricsSettings {
                  firstLayer: .mock(),
                  styles: .mock(),
                  interactionAnalytics: true,
-                 consentAPIv2: true,
                  consentAnalytics: true,
                  consentXDevice: true,
                  variants: .mock(),
@@ -331,7 +330,9 @@ extension TCF2Settings {
                  secondLayerDescription: "secondLayerDescription",
                  appLayerNoteResurface: "appLayerNoteResurface",
                  firstLayerNoteResurface: "firstLayerNoteResurface",
-                 changedPurposes: .mock())
+                 changedPurposes: .mock(),
+                 acmV2Enabled: true,
+                 selectedATPIds: [43,46,55])
   }
 }
 
@@ -452,7 +453,7 @@ extension UsercentricsCategory {
 extension TCF2ChangedPurposes {
 
   static func mock() -> TCF2ChangedPurposes {
-    return .init(purposes: [1,2,3], legIntPurposes: [1,2,3])
+    return .init(purposes: [1,2,3], legIntPurposes: [1,2,3], notAllowedPurposes: [1,2,3])
   }
 }
 
@@ -486,8 +487,6 @@ extension CustomizationColor {
                  toggleDisabledBackground: "toggleDisabledBackground",
                  toggleDisabledIcon: "toggleDisabledIcon",
                  secondLayerTab: "secondLayerTab",
-                 moreBtnBackground: "moreBtnBackground",
-                 moreBtnText: "moreBtnText",
                  tabsBorderColor: "tabsBorderColor",
                  ccpaButtonColor: "ccpaButtonColor",
                  ccpaButtonTextColor: "ccpaButtonTextColor")

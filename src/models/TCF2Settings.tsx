@@ -50,6 +50,14 @@ export class TCF2Settings {
     legitimateInterestLabel: string
     version: string
     examplesLabel: string
+    firstLayerMobileVariant?: FirstLayerMobileVariant
+    showDataSharedOutsideEUText: boolean
+    dataSharedOutsideEUText?: String
+    vendorIdsOutsideEUList: [number]
+    scope: TCF2Scope
+    changedPurposes: TCF2ChangedPurposes
+    acmV2Enabled: boolean
+    selectedATPIds: number[]
 
     constructor(
         firstLayerTitle: string,
@@ -102,7 +110,15 @@ export class TCF2Settings {
         legitimateInterestLabel: string,
         version: string,
         examplesLabel: string,
+        showDataSharedOutsideEUText: boolean,
+        vendorIdsOutsideEUList: [number],
+        scope: TCF2Scope,
+        changedPurposes: TCF2ChangedPurposes,
+        acmV2Enabled: boolean,
+        selectedATPIds: number[],
         firstLayerHideButtonDeny?: boolean,
+        firstLayerMobileVariant?: FirstLayerMobileVariant,
+        dataSharedOutsideEUText?: String,
     ) {
         this.firstLayerTitle = firstLayerTitle
         this.secondLayerTitle = secondLayerTitle
@@ -155,6 +171,39 @@ export class TCF2Settings {
         this.legitimateInterestLabel = legitimateInterestLabel
         this.version = version
         this.examplesLabel = examplesLabel
+        this.firstLayerMobileVariant = firstLayerMobileVariant
+        this.showDataSharedOutsideEUText = showDataSharedOutsideEUText
+        this.dataSharedOutsideEUText = dataSharedOutsideEUText
+        this.vendorIdsOutsideEUList = vendorIdsOutsideEUList
+        this.scope = scope
+        this.changedPurposes = changedPurposes
+        this.acmV2Enabled = acmV2Enabled
+        this.selectedATPIds = selectedATPIds
     }
+}
 
+export enum FirstLayerMobileVariant {
+    sheet = 0,
+    full = 1,
+    popupBottom = 2,
+    popupCenter = 3
+}
+
+export enum TCF2Scope {
+    global = 0,
+    service = 1
+}
+
+export class TCF2ChangedPurposes {
+
+    purposes: [number]
+    legIntPurposes: [number]
+
+    constructor(
+        purposes: [number],
+        legIntPurposes: [number],
+    ) {
+        this.purposes = purposes
+        this.legIntPurposes = legIntPurposes
+    }
 }

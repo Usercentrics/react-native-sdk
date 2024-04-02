@@ -8,7 +8,7 @@ import com.usercentrics.sdk.services.tcf.interfaces.TCFSpecialFeature
 import com.usercentrics.sdk.services.tcf.interfaces.TCFSpecialPurpose
 import com.usercentrics.sdk.services.tcf.interfaces.TCFStack
 import com.usercentrics.sdk.services.tcf.interfaces.TCFVendor
-import com.usercentrics.tcf.core.model.gvl.DataRetention
+import com.usercentrics.sdk.services.tcf.interfaces.TCFVendorRestriction
 import com.usercentrics.tcf.core.model.gvl.VendorUrl
 
 internal fun TCFData.serialize(): WritableMap {
@@ -45,6 +45,7 @@ private fun TCFPurpose.serialize(): WritableMap {
         "showConsentToggle" to showConsentToggle,
         "showLegitimateInterestToggle" to showLegitimateInterestToggle,
         "stackId" to stackId,
+        "numberOfVendors" to numberOfVendors,
     ).toWritableMap()
 }
 
@@ -92,7 +93,6 @@ private fun TCFVendor.serialize(): WritableMap {
         "name" to name,
         "policyUrl" to policyUrl,
         "purposes" to purposes.map { it.id },
-//        "restrictions" to restrictions.map { restrictions.serialize() },
         "specialFeatures" to specialFeatures.map { it.id },
         "specialPurposes" to specialPurposes.map { it.id },
         "showConsentToggle" to showConsentToggle,
@@ -100,12 +100,12 @@ private fun TCFVendor.serialize(): WritableMap {
         "cookieMaxAgeSeconds" to cookieMaxAgeSeconds,
         "usesNonCookieAccess" to usesNonCookieAccess,
         "deviceStorageDisclosureUrl" to deviceStorageDisclosureUrl,
-//        "deviceStorage" to deviceStorage.serialize(),
         "usesCookies" to usesCookies,
         "cookieRefresh" to cookieRefresh,
         "dataSharedOutsideEU" to dataSharedOutsideEU,
         "dataCategories" to dataCategories.map { it.id },
-        "vendorUrls" to vendorUrls.map { it.serialize() }
+        "vendorUrls" to vendorUrls.map { it.serialize() },
+        "restrictions" to restrictions.map { it.serialize() }
     ).toWritableMap()
 }
 
@@ -114,5 +114,12 @@ private fun VendorUrl.serialize(): WritableMap {
         "langId" to langId,
         "privacy" to privacy,
         "legIntClaim" to legIntClaim
+    ).toWritableMap()
+}
+
+private fun TCFVendorRestriction.serialize(): WritableMap {
+    return mapOf(
+        "purposeId" to purposeId,
+        "restrictionType" to restrictionType.ordinal
     ).toWritableMap()
 }

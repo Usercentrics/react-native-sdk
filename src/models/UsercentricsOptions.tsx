@@ -1,4 +1,4 @@
-import { NetworkMode, UsercentricsLoggerLevel } from ".";
+import {NetworkMode, UsercentricsLoggerLevel} from ".";
 
 export class UsercentricsOptions {
     settingsId?: string;
@@ -11,24 +11,24 @@ export class UsercentricsOptions {
     consentMediation?: Boolean;
 
     constructor({
-        settingsId = "",
-        ruleSetId = "",
-        defaultLanguage = undefined,
-        loggerLevel = undefined,
-        timeoutMillis = undefined,
-        version = undefined,
-        networkMode = undefined,
-        consentMediation = undefined }:
-        {
-            settingsId?: string,
-            ruleSetId?: string,
-            defaultLanguage?: string,
-            loggerLevel?: UsercentricsLoggerLevel,
-            timeoutMillis?: number,
-            version?: string,
-            networkMode?: NetworkMode,
-            consentMediation?: Boolean
-        }) {
+                    settingsId = "",
+                    ruleSetId = "",
+                    defaultLanguage = undefined,
+                    loggerLevel = undefined,
+                    timeoutMillis = undefined,
+                    version = undefined,
+                    networkMode = undefined,
+                    consentMediation = undefined
+                }: {
+        settingsId?: string,
+        ruleSetId?: string,
+        defaultLanguage?: string,
+        loggerLevel?: UsercentricsLoggerLevel,
+        timeoutMillis?: number,
+        version?: string,
+        networkMode?: NetworkMode,
+        consentMediation?: Boolean
+    }) {
         this.settingsId = settingsId;
         this.ruleSetId = ruleSetId;
         this.defaultLanguage = defaultLanguage

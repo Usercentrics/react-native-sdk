@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Button, StyleSheet, Text, View } from 'react-native';
+import {Button, StyleSheet, Text, View} from 'react-native';
 import {
     TCFDecisionUILayer,
     TCFUserDecisionOnPurpose,
@@ -13,6 +13,7 @@ import {
     UsercentricsVariant,
     UserDecision
 } from '../../../src/index';
+import {AdTechProviderDecision} from "../../../src/models/TCFUserDecisions";
 
 export const CustomScreen = () => {
     const [data, setData] = React.useState<UsercentricsCMPData>()
@@ -74,7 +75,7 @@ export const CustomScreen = () => {
         const settings = data.settings;
 
         console.log(`Title: ${settings.labels.firstLayerTitle}`);
-        console.log(`Description: ${settings.bannerMessage}`);
+        console.log(`Description: ${settings.firstLayerDescriptionHtml}`);
 
         console.log(`data.settings: $settings`);
         console.log(`data.services: ${data.services}`);
@@ -209,14 +210,14 @@ export const CustomScreen = () => {
         applyConsents(consents);
     }
 
-    const decisionsExample: [UserDecision] = [
+    const decisionsExample: UserDecision[] = [
         {
             serviceId: "SJKM9Ns_ibQ",
             consent: false
         }
     ]
 
-    const purposesExample: [TCFUserDecisionOnPurpose] = [
+    const purposesExample: TCFUserDecisionOnPurpose[] = [
         {
             id: 123,
             consent: false,
@@ -224,18 +225,25 @@ export const CustomScreen = () => {
         }
     ]
 
-    const specialFeaturesExample: [TCFUserDecisionOnSpecialFeature] = [
+    const specialFeaturesExample: TCFUserDecisionOnSpecialFeature[] = [
         {
             id: 222,
             consent: false,
         }
     ]
 
-    const vendorsExample: [TCFUserDecisionOnVendor] = [
+    const vendorsExample: TCFUserDecisionOnVendor[] = [
         {
             id: 111,
             consent: false,
             legitimateInterestConsent: true
+        }
+    ];
+
+    const adTechProvidersExample: AdTechProviderDecision[] = [
+        {
+            id: 43,
+            consent: false,
         }
     ];
 
@@ -254,7 +262,8 @@ export const CustomScreen = () => {
                 const tcfUserDecisions: TCFUserDecisions = {
                     purposes: purposesExample,
                     specialFeatures: specialFeaturesExample,
-                    vendors: vendorsExample
+                    vendors: vendorsExample,
+                    adTechProviders: adTechProvidersExample
                 };
 
                 consents = await Usercentrics.saveDecisionsForTCF(
@@ -296,27 +305,27 @@ export const CustomScreen = () => {
             <Text>Those buttons represents APIs that you need to call in order to replicate user actions to Usercentrics</Text>
             <Button onPress={() => {
                 printUIElements();
-            }} title="Print UI elements" />
+            }} title="Print UI elements"/>
 
             <Button onPress={() => {
                 acceptAll();
-            }} title="Accept All" />
+            }} title="Accept All"/>
 
             <Button onPress={() => {
                 denyAll();
-            }} title="Deny All" />
+            }} title="Deny All"/>
 
             <Button onPress={() => {
                 saveServices();
-            }} title="Save Services" />
+            }} title="Save Services"/>
 
             <Button onPress={() => {
                 getConsents();
-            }} title="Get Consents" />
+            }} title="Get Consents"/>
 
             <Button onPress={() => {
                 changeLanguage();
-            }} title="Change Language" />
+            }} title="Change Language"/>
         </View>
     );
 };

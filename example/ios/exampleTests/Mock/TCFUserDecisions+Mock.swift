@@ -5,7 +5,8 @@ extension TCFUserDecisions {
   static func mock() -> TCFUserDecisions {
     return TCFUserDecisions(purposes: [.mock()],
                             specialFeatures: [.mock()],
-                            vendors: [.mock()])
+                            vendors: [.mock()],
+                            adTechProviders: [.mock()])
   }
 
   static func mockToDict() -> NSDictionary {
@@ -13,7 +14,8 @@ extension TCFUserDecisions {
     return [
       "purposes": decisions.purposes?.map { $0.toDictionary() } as Any,
       "specialFeatures": decisions.specialFeatures?.map { $0.toDictionary() } as Any,
-      "vendors": decisions.vendors?.map { $0.toDictionary() } as Any
+      "vendors": decisions.vendors?.map { $0.toDictionary() } as Any,
+      "adTechProviders": decisions.adTechProviders.map { $0.toDictionary() } as Any
     ]
   }
 }
@@ -60,6 +62,19 @@ extension TCFUserDecisionOnVendor {
       "id": self.id as Any,
       "consent": self.consent?.boolValue as Any,
       "legitimateInterestConsent": self.legitimateInterestConsent?.boolValue as Any
+    ]
+  }
+}
+
+extension AdTechProviderDecision {
+  static func mock() -> AdTechProviderDecision {
+    return .init(id: Int32(1), consent: true)
+  }
+
+  func toDictionary() -> NSDictionary {
+    return [
+      "id": self.id as Any,
+      "consent": self.consent
     ]
   }
 }

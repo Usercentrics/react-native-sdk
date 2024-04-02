@@ -80,7 +80,7 @@ export class TCFPurpose {
     showConsentToggle: boolean
     showLegitimateInterestToggle: boolean
     stackId?: number
-
+    numberOfVendors?: number
 
     constructor(
         purposeDescription: string,
@@ -92,7 +92,8 @@ export class TCFPurpose {
         showLegitimateInterestToggle: boolean,
         legitimateInterestConsent?: boolean,
         consent?: boolean,
-        stackId?: number
+        stackId?: number,
+        numberOfVendors?: number,
     ) {
         this.purposeDescription = purposeDescription
         this.illustrations = illustrations
@@ -104,6 +105,7 @@ export class TCFPurpose {
         this.showConsentToggle = showConsentToggle
         this.showLegitimateInterestToggle = showLegitimateInterestToggle
         this.stackId = stackId
+        this.numberOfVendors = numberOfVendors
     }
 }
 
@@ -206,6 +208,7 @@ export class TCFVendor {
     dataSharedOutsideEU: boolean
     dataCategories: [number]
     vendorUrls: VendorUrl[]
+    restrictions: TCFVendorRestriction[]
 
     constructor(
         features: [number],
@@ -225,10 +228,11 @@ export class TCFVendor {
         dataSharedOutsideEU: boolean,
         dataCategories: [number],
         vendorUrls: VendorUrl[],
+        restrictions: TCFVendorRestriction[],
         deviceStorageDisclosureUrl?: string,
         legitimateInterestConsent?: boolean,
         consent?: boolean,
-        cookieRefresh?: boolean
+        cookieRefresh?: boolean,
     ) {
         this.consent = consent
         this.features = features
@@ -251,6 +255,7 @@ export class TCFVendor {
         this.dataSharedOutsideEU = dataSharedOutsideEU
         this.dataCategories = dataCategories
         this.vendorUrls = vendorUrls
+        this.restrictions = restrictions
     }
 }
 
@@ -269,4 +274,24 @@ export class VendorUrl {
         this.legIntClaim = legIntClaim
     }
 
+}
+
+export class TCFVendorRestriction {
+
+    purposeId: number
+    restrictionType: RestrictionType
+
+    constructor(
+        purposeId: number,
+        restrictionType: RestrictionType
+    ) {
+        this.purposeId = purposeId
+        this.restrictionType = restrictionType
+    }
+}
+
+export enum RestrictionType {
+    notAllowed = 0,
+    requireConsent = 1,
+    requireLi = 2,
 }

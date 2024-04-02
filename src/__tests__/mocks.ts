@@ -1,5 +1,6 @@
-import { TCFUserDecisionOnPurpose, TCFUserDecisionOnSpecialFeature, TCFUserDecisionOnVendor, UsercentricsCMPData, UsercentricsVariant } from "../models";
-import { TCFFeature, TCFPurpose } from "../models/TCFData";
+import {TCFUserDecisionOnPurpose, TCFUserDecisionOnSpecialFeature, TCFUserDecisionOnVendor, UsercentricsCMPData, UsercentricsVariant} from "../models";
+import {TCFFeature, TCFPurpose} from "../models/TCFData";
+import {AdTechProviderDecision} from "../models/TCFUserDecisions";
 
 export const usercentricsServiceConsent = {
     templateId: "abc",
@@ -33,7 +34,7 @@ export const cmpDataExample: UsercentricsCMPData = {
 export const featuresExample: [TCFFeature] = [
     {
         purposeDescription: "string",
-        descriptionLegal: "string",
+        illustrations: ['1'],
         id: 123,
         name: "string"
     }
@@ -42,12 +43,16 @@ export const featuresExample: [TCFFeature] = [
 export const purposesExample: [TCFPurpose] = [
     {
         purposeDescription: "string",
-        descriptionLegal: "string",
+        illustrations: ['1'],
         id: 123,
         name: "string",
         isPartOfASelectedStack: false,
         showConsentToggle: false,
-        showLegitimateInterestToggle: false
+        showLegitimateInterestToggle: false,
+        legitimateInterestConsent: false,
+        consent: true,
+        stackId: 42,
+        numberOfVendors: 1,
     }
 ]
 
@@ -72,5 +77,12 @@ export const tcfUserDecisionOnVendorExample: [TCFUserDecisionOnVendor] = [
         id: 111,
         consent: false,
         legitimateInterestConsent: true
+    }
+];
+
+export const adTechProviderDecisionExample: [AdTechProviderDecision] = [
+    {
+        id: 43,
+        consent: false,
     }
 ];

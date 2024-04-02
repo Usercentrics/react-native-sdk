@@ -34,7 +34,8 @@ extension TCFPurpose {
                  legitimateInterestConsent: KotlinBoolean(bool: false),
                  showConsentToggle: false,
                  showLegitimateInterestToggle: false,
-                 stackId: KotlinInt(int: Int32(123)))
+                 stackId: KotlinInt(int: Int32(123)),
+                 numberOfVendors: 1)
   }
 }
 
@@ -81,7 +82,9 @@ extension TCFVendor {
                  name: "abc",
                  policyUrl: "abc",
                  purposes:  [.init(id: Int32(123), name: "abc")],
-                 restrictions: [],
+                 restrictions: [
+                  TCFVendorRestriction(purposeId: 1, restrictionType: .requireLi)
+                 ],
                  specialFeatures:  [.init(id: Int32(123), name: "abc")],
                  specialPurposes:  [.init(id: Int32(123), name: "abc")],
                  showConsentToggle: false,
@@ -89,7 +92,6 @@ extension TCFVendor {
                  cookieMaxAgeSeconds: nil,
                  usesNonCookieAccess: false,
                  deviceStorageDisclosureUrl: "abc",
-                 deviceStorage: nil,
                  usesCookies: false,
                  cookieRefresh: KotlinBoolean(bool: false),
                  dataSharedOutsideEU: KotlinBoolean(bool: false),

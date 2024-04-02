@@ -1,4 +1,5 @@
 export class CCPAData {
+
     /// CCPA version.
     version: number
 

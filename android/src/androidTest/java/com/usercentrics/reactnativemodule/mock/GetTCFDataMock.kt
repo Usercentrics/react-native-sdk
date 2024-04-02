@@ -8,6 +8,8 @@ import com.usercentrics.sdk.services.tcf.interfaces.TCFSpecialFeature
 import com.usercentrics.sdk.services.tcf.interfaces.TCFSpecialPurpose
 import com.usercentrics.sdk.services.tcf.interfaces.TCFStack
 import com.usercentrics.sdk.services.tcf.interfaces.TCFVendor
+import com.usercentrics.sdk.services.tcf.interfaces.TCFVendorRestriction
+import com.usercentrics.tcf.core.model.RestrictionType
 import com.usercentrics.tcf.core.model.gvl.VendorUrl
 
 internal class GetTCFDataMock {
@@ -33,6 +35,7 @@ internal class GetTCFDataMock {
                     showConsentToggle = false,
                     showLegitimateInterestToggle = false,
                     stackId = null,
+                    numberOfVendors = 1,
                 )
             ),
             specialFeatures = listOf(
@@ -89,7 +92,6 @@ internal class GetTCFDataMock {
                         IdAndName(7, ""),
                         IdAndName(8, "")
                     ),
-                    restrictions = listOf(),
                     specialFeatures = listOf(IdAndName(1, "")),
                     specialPurposes = listOf(),
                     showConsentToggle = true,
@@ -97,20 +99,21 @@ internal class GetTCFDataMock {
                     cookieMaxAgeSeconds = null,
                     usesNonCookieAccess = false,
                     deviceStorageDisclosureUrl = null,
-                    deviceStorage = null,
                     usesCookies = false,
                     cookieRefresh = null,
                     dataSharedOutsideEU = false,
                     dataRetention = null,
                     dataCategories = listOf(IdAndName(id = 123, name = "name")),
-                    vendorUrls = listOf(VendorUrl(langId = "langId", privacy = "privacy", legIntClaim = "legIntClaim"))
+                    vendorUrls = listOf(VendorUrl(langId = "langId", privacy = "privacy", legIntClaim = "legIntClaim")),
+                    restrictions = listOf(
+                        TCFVendorRestriction(purposeId = 1, restrictionType = RestrictionType.REQUIRE_LI)
+                    ),
                 )
             ),
             tcString = "abc",
             thirdPartyCount = 123,
         )
 
-        // From the debugger
         val expected = mapOf(
             "features" to listOf(
                 mapOf(
@@ -132,6 +135,7 @@ internal class GetTCFDataMock {
                     "showConsentToggle" to false,
                     "showLegitimateInterestToggle" to false,
                     "stackId" to null,
+                    "numberOfVendors" to 1
                 )
             ),
             "specialFeatures" to listOf(
@@ -159,7 +163,6 @@ internal class GetTCFDataMock {
                     "description" to "Ads can be personalised based on a profile. More data can be added to better personalise ads.",
                     "id" to 3,
                     "name" to "Personalised ads",
-
                     "purposeIds" to listOf(
                         2,
                         3,
@@ -200,6 +203,12 @@ internal class GetTCFDataMock {
                     "dataRetention" to null,
                     "dataCategories" to listOf(123),
                     "vendorUrls" to listOf(mapOf("langId" to "langId", "privacy" to "privacy", "legIntClaim" to "legIntClaim")),
+                    "restrictions" to listOf(
+                        mapOf(
+                            "purposeId" to 1,
+                            "restrictionType" to 2
+                        )
+                    )
                 ),
             ),
             "tcString" to "abc",
