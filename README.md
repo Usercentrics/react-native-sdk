@@ -8,7 +8,7 @@
 
 # Welcome!
 
-You are now one step closer from making **privacy** a core feature in your application. We are very happy that you decided to make this a priority. We are here to help you **build trust** with your users.
+You are now one step closer to make **privacy** a core feature in your application. We are very happy that you decided to make this a priority. We are here to help you **build trust** with your users.
 
 ## The Usercentrics Apps SDK
 
@@ -64,6 +64,10 @@ To run the sample project, you will need to run npm install from both root and e
     ```sh
     npx react-native run-android
     ``` 
+
+### Consent Mediation
+
+You can enable and run the Consent Mediation example in this example by following the [documentation](https://usercentrics.com/docs/apps/features/consent-mediation/#enable-mediation).
 
 ## Maintainers
 - [Usercentrics](https://github.com/Usercentrics)
