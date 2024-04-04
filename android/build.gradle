@@ -1,4 +1,4 @@
-def usercentrics_version = "2.13.2"
+def usercentrics_version = "2.14.1"
 version usercentrics_version
 
 buildscript {
