@@ -1,5 +1,21 @@
 [Release Notes](https://docs.usercentrics.com/cmp_in_app_sdk/latest/about/history/)
 
+### 2.14.0 - April 4, 2024
+
+## Features
+
+* **Resurface Banner for Additional Tech Providers** - When changing Additional Tech Providers from Google, we are now enabling an option on Admin Interface to choose whether this should cause the banner to resurface or not
+
+## Improvements
+
+* Documentation about Consent Mediation on Flutter and React Native
+* Support for Android Gradle Plugin 8 for Flutter
+* Reset API will be deprecated in future versions
+
+## iOS Bug Fixes
+
+* UI improvements on spacing between labels
+
 ### 2.13.2 - March 13, 2024
 
 ## Features

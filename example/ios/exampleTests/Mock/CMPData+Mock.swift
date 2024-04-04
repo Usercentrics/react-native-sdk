@@ -332,7 +332,8 @@ extension TCF2Settings {
                  firstLayerNoteResurface: "firstLayerNoteResurface",
                  changedPurposes: .mock(),
                  acmV2Enabled: true,
-                 selectedATPIds: [43,46,55])
+                 selectedATPIds: [43,46,55],
+                 resurfaceATPListChanged: false)
   }
 }
 
