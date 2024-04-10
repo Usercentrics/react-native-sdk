@@ -1,5 +1,23 @@
 [Release Notes](https://docs.usercentrics.com/cmp_in_app_sdk/latest/about/history/)
 
+### 2.14.2 - April 10, 2024
+
+## Improvements
+
+* **Supports Read More on Banner Message** - Adds support to have a "read more" button on banner message displayed on the First Layer
+
+## iOS Bug Fixes
+
+* Sporadically crashes on `getUserSessionData` API
+
+## Android Bug Fixes
+
+* Sporadically crashes on TCF banner initializations
+
+## Other Fixes
+
+* Stability improvements
+
 ### 2.14.0 - April 4, 2024
 
 ## Features
