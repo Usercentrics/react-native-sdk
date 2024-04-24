@@ -545,6 +545,7 @@ internal object GetCMPDataMock {
                 "platform" to 0
             )
         ),
+        "reshowBanner" to 0
     )
 
     val expectedCategories = listOf(
