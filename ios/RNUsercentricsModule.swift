@@ -195,10 +195,6 @@ class RNUsercentricsModule: NSObject, RCTBridgeModule {
         guard let usercentricsAnalyticsEventType = UsercentricsAnalyticsEventType.initialize(from: event) else { return }
         usercentricsManager.track(event: usercentricsAnalyticsEventType)
     }
-
-    @objc func reset() -> Void {
-        usercentricsManager.reset()
-    }
     
     @objc func clearUserSession(_ resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) -> Void {
         usercentricsManager.clearUserSession { status in

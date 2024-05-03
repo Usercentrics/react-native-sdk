@@ -42,13 +42,6 @@ internal class FakeUsercentricsProxy(
         }
     }
 
-    var resetCount: Int = 0
-        private set
-
-    override fun reset() {
-        resetCount++
-    }
-
     var showFirstLayerBannerSettings: BannerSettings? = null
 
     override fun showFirstLayer(activity: Activity, bannerSettings: BannerSettings?, promise: Promise) {

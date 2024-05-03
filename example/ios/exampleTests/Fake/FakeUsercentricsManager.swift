@@ -25,8 +25,6 @@ final class FakeUsercentricsManager: UsercentricsManager {
 
   var restoreUserSessionSuccess: UsercentricsReadyStatus?
   var restoreUserSessionError: Error?
-
-  var resetCount: Int = 0
   
   var clearUserSessionSuccess: UsercentricsReadyStatus?
   var clearUserSessionError: Error?
@@ -46,10 +44,6 @@ final class FakeUsercentricsManager: UsercentricsManager {
     alreadyConfigured = true
   }
 
-  func reset() {
-    resetCount += 1
-    alreadyConfigured = false
-  }
 
   func restoreUserSession(controllerId: String, onSuccess: @escaping ((UsercentricsReadyStatus) -> Void), onFailure: @escaping ((Error) -> Void)) {
     self.restoreControllerId = controllerId
