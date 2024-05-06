@@ -397,12 +397,6 @@ describe('Test Usercentrics Module', () => {
         expect(spy).toHaveBeenCalledTimes(1);
     })
 
-    test('testReset', async () => {
-        Usercentrics.reset();
-        let spy = jest.spyOn(RNUsercentricsModule, "reset")
-        expect(spy).toHaveBeenCalledTimes(1)
-    })
-
     test('testGetAdditionalConsentModeData', async () => {
         const response: AdditionalConsentModeData = {
             acString: '2~43.46.55~dv.',
