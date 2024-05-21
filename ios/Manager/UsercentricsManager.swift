@@ -41,7 +41,6 @@ public protocol UsercentricsManager {
     func setABTestingVariant(variant: String)
     func track(event: UsercentricsAnalyticsEventType)
 
-    func reset()
     func clearUserSession(onSuccess: @escaping ((UsercentricsReadyStatus) -> Void), onError: @escaping ((Error) -> Void))
 }
 
@@ -53,10 +52,6 @@ final class UsercentricsManagerImplementation: UsercentricsManager {
 
     func configure(options: UsercentricsOptions) {
         UsercentricsCore.configure(options: options)
-    }
-
-    func reset() {
-        UsercentricsCore.reset()
     }
 
     func showFirstLayer(bannerSettings: BannerSettings?,

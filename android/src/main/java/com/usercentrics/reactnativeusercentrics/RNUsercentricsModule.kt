@@ -208,11 +208,6 @@ internal class RNUsercentricsModule(
     }
 
     @ReactMethod
-    fun reset() {
-        usercentricsProxy.reset()
-    }
-
-    @ReactMethod
     fun clearUserSession(promise: Promise) {
         usercentricsProxy.instance.clearUserSession({
             promise.resolve(it.toWritableMap())

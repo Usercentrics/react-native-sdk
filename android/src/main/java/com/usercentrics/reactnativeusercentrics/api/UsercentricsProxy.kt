@@ -16,8 +16,6 @@ interface UsercentricsProxy {
 
     fun showFirstLayer(activity: Activity, bannerSettings: BannerSettings?, promise: Promise)
     fun showSecondLayer(activity: Activity, bannerSettings: BannerSettings?, promise: Promise)
-
-    fun reset()
 }
 
 internal class UsercentricsProxyImpl : UsercentricsProxy {
@@ -57,6 +55,4 @@ internal class UsercentricsProxyImpl : UsercentricsProxy {
             promise.resolve(it?.toWritableMap())
         }
     }
-
-    override fun reset() = Usercentrics.reset()
 }

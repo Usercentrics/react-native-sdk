@@ -59,7 +59,7 @@ jobs:
 
   test-android:
     needs: test-rn
-    runs-on: macOS-latest
+    runs-on: macOS-12
     env:
       GRADLE_VERSION: 7.6
 

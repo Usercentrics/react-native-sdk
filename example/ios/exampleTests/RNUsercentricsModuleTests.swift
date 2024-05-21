@@ -139,11 +139,6 @@ class RNUsercentricsModuleTests: XCTestCase {
     }
   }
 
-  func testReset() {
-    module.reset()
-    XCTAssertEqual(1, fakeUsercentrics.resetCount)
-  }
-
   func testGetConsents() {
     fakeUsercentrics.getConsentsResponse = [.mock()]
     module.getConsents { result in

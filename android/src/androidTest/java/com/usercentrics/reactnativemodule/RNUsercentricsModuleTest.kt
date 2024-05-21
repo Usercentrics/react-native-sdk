@@ -625,17 +625,6 @@ class RNUsercentricsModuleTest {
     }
 
     @Test
-    fun testResetMethod() {
-        val usercentricsProxy = FakeUsercentricsProxy()
-        val contextMock = mockk<ReactApplicationContext>(relaxed = true)
-        val module = RNUsercentricsModule(contextMock, usercentricsProxy, ReactContextProviderMock())
-
-        module.reset()
-
-        assertEquals(1, usercentricsProxy.resetCount)
-    }
-
-    @Test
     fun testShowFirstLayer() {
         val usercentricsProxy = FakeUsercentricsProxy()
         val contextMock = mockk<ReactApplicationContext>(relaxed = true)
