@@ -1,5 +1,20 @@
 [Release Notes](https://docs.usercentrics.com/cmp_in_app_sdk/latest/about/history/)
 
+### 2.15.2 - June 12, 2024
+
+## Improvements
+
+* Firebase Consent Mediation: Improved integration with its flags
+
+## Android Bug Fix
+
+* Fixed issues related to displaying banners in inactive activities
+
+## Other Fixes
+
+* Addressed sporadic crashes during TCF banner initializations on iOS.
+* Enhanced code efficiency for smoother consent banner displays.
+
 ### 2.15.1 - May 29, 2024
 
 ## Improvements
