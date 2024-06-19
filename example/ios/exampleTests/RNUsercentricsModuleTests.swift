@@ -520,20 +520,25 @@ class RNUsercentricsModuleTests: XCTestCase {
       let legalBasis = result["legalBasis"] as? NSDictionary
       let activeVariant = result["activeVariant"]
       let userLocation = result["userLocation"] as? NSDictionary
+      let categories = result["categories"] as? [NSDictionary]
 
       XCTAssertNotNil(settings)
       XCTAssertNotNil(services)
       XCTAssertNotNil(legalBasis)
       XCTAssertNotNil(userLocation)
       XCTAssertNotNil(activeVariant)
+      XCTAssertNotNil(categories)
 
       XCTAssertEqual(1, services!.count)
+      XCTAssertEqual(1, categories!.count)
 
       XCTAssertEqual(UsercentricsSettings.mock().toDictionary(), settings)
       XCTAssertEqual(UsercentricsService.mock().toDictionary(), services!.first)
       XCTAssertEqual(LegalBasisLocalization.mock().toDictionary(), legalBasis)
       XCTAssertEqual(2, activeVariant as? Int)
       XCTAssertEqual(UsercentricsLocation.mock().toDictionary(), userLocation)
+      XCTAssertEqual(UsercentricsCategory.mock().toDictionary(), categories!.first)
+      
     } reject: { _, _, _ in
       XCTFail("Should not go here")
     }

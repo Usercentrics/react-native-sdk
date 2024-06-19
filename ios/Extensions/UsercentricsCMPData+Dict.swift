@@ -329,7 +329,7 @@ extension UsercentricsService {
             "locationOfProcessing" : self.locationOfProcessing,
             "dataCollectedDescription" : self.dataCollectedDescription as Any,
             "thirdCountryTransfer" : self.thirdCountryTransfer,
-            "description" : self.description,
+            "description" : self.description_ as Any,
             "cookieMaxAgeSeconds" : self.cookieMaxAgeSeconds as Any,
             "usesNonCookieAccess" : usesNonCookieAccess?.boolValue as Any,
             "deviceStorageDisclosureUrl" : self.deviceStorageDisclosureUrl as Any,
@@ -358,18 +358,18 @@ extension ConsentDisclosure {
             "cookieRefresh": self.cookieRefresh,
             "purposes": self.purposes,
             "domain": self.domain ?? "",
-            "description": self.description,
+            "description": self.description_ as Any,
         ]
     }
 }
 
 
 extension UsercentricsCategory {
-    func toDictionary() -> Any? {
+    func toDictionary() -> NSDictionary? {
         return [
             "categorySlug" : self.categorySlug,
             "label" : self.label as Any,
-            "description" : self.description,
+            "description" : self.description_ as Any,
             "isEssential" : self.isEssential
         ]
     }
