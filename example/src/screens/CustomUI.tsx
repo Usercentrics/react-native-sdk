@@ -82,7 +82,7 @@ export const CustomScreen = () => {
         console.log(`Save button: ${cmpDataSettings.labels.btnSave}`);
 
         console.log(`CMP Data settings: ${JSON.stringify(cmpDataSettings)}`);
-        console.log(`CMP Data services: ${JSON.stringify(data.services)}`);*/
+        console.log(`CMP Data services: ${JSON.stringify(data.services)}`);
         console.log(`CMP Data categories: ${JSON.stringify(data.categories)}`);
 
         console.log(`User Country: ${data.userLocation.countryCode}`)
