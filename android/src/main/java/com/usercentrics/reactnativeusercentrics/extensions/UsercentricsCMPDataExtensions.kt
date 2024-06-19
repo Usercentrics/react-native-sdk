@@ -32,7 +32,7 @@ internal fun UsercentricsCMPData.serialize(): WritableMap {
 }
 
 private fun UsercentricsSettings.serialize(): WritableMap {
-    return mapOf(
+    val a = mapOf(
         "labels" to labels.serialize(),
         "showInitialViewForVersionChange" to showInitialViewForVersionChange,
         "reshowBanner" to reshowBanner,
@@ -60,10 +60,11 @@ private fun UsercentricsSettings.serialize(): WritableMap {
         "framework" to framework?.ordinal,
         "publishedApps" to publishedApps?.map { it.serialize() },
     ).toWritableMap()
+    return a
 }
 
 private fun UsercentricsLabels.serialize(): Map<String, Any?> {
-    return mapOf(
+    val labels = mapOf(
         "btnAcceptAll" to btnAcceptAll,
         "btnDeny" to btnDeny,
         "btnSave" to btnSave,
@@ -138,6 +139,7 @@ private fun UsercentricsLabels.serialize(): Map<String, Any?> {
         "noImplicit" to noImplicit,
         "yesImplicit" to yesImplicit,
     )
+    return labels
 }
 
 private fun CCPASettings.serialize(): WritableMap {

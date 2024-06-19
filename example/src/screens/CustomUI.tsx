@@ -72,18 +72,21 @@ export const CustomScreen = () => {
 
     function printGDPR() {
         if (data == undefined) return;
-        const settings = data.settings;
+        const cmpDataSettings = data.settings;
 
-        console.log(`Title: ${settings.labels.firstLayerTitle}`);
-        console.log(`Description: ${settings.firstLayerDescriptionHtml}`);
+        console.log(`Title: ${cmpDataSettings.labels.firstLayerTitle}`);
+        console.log(`Description: ${cmpDataSettings.firstLayerDescriptionHtml}`);
 
-        console.log(`data.settings: $settings`);
-        console.log(`data.services: ${data.services}`);
-        console.log(`data.categories: ${data.categories}`);
+        console.log(`Accept All button: ${cmpDataSettings.labels.btnAcceptAll}`);
+        console.log(`Deny button: ${cmpDataSettings.labels.btnDeny}`);
+        console.log(`Save button: ${cmpDataSettings.labels.btnSave}`);
 
-        console.log(`Accept All button: ${settings.labels.btnAcceptAll}`);
-        console.log(`Deny button: ${settings.labels.btnDeny}`);
-        console.log(`Save button: ${settings.labels.btnSave}`);
+        console.log(`CMP Data settings: ${cmpDataSettings}`);
+        console.log(`CMP Data services: ${data.services}`);
+        console.log(`CMP Data categories: ${data.categories}`);
+
+        console.log(`User Country: ${data.userLocation.countryCode}`)
+        console.log(`User Region: ${data.userLocation.regionCode}`)
     }
 
     async function printCCPA() {
