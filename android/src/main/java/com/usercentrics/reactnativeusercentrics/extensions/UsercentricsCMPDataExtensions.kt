@@ -20,6 +20,8 @@ import com.usercentrics.sdk.v2.settings.data.UsercentricsLabels
 import com.usercentrics.sdk.v2.settings.data.UsercentricsService
 import com.usercentrics.sdk.v2.settings.data.UsercentricsSettings
 import com.usercentrics.sdk.v2.settings.data.VariantsSettings
+import com.usercentrics.sdk.v2.translation.data.LegalBasisLocalization
+import com.usercentrics.sdk.v2.translation.data.TranslationAriaLabels
 
 internal fun UsercentricsCMPData.serialize(): WritableMap {
     return Arguments.createMap().apply {
@@ -28,6 +30,7 @@ internal fun UsercentricsCMPData.serialize(): WritableMap {
         putArray("categories", categories.map { it.serialize() }.serialize())
         putInt("activeVariant", activeVariant.ordinal)
         putMap("userLocation", userLocation.serialize())
+        putMap("legalBasis", legalBasis.serialize())
     }
 }
 
@@ -388,5 +391,44 @@ private fun AdTechProvider.serialize(): WritableMap {
         "id" to id,
         "name" to name,
         "privacyPolicyUrl" to privacyPolicyUrl,
+    ).toWritableMap()
+}
+
+private fun LegalBasisLocalization.serialize(): WritableMap {
+    return mapOf(
+        "labelsAria" to labelsAria?.serialize(),
+        "data" to data
+    ).toWritableMap()
+}
+
+private fun TranslationAriaLabels.serialize(): WritableMap {
+    return mapOf(
+        "acceptAllButton" to acceptAllButton,
+        "ccpaButton" to ccpaButton,
+        "ccpaMoreInformation" to ccpaMoreInformation,
+        "closeButton" to closeButton,
+        "collapse" to collapse,
+        "cookiePolicyButton" to cookiePolicyButton,
+        "copyControllerId" to copyControllerId,
+        "denyAllButton" to denyAllButton,
+        "expand" to expand,
+        "fullscreenButton" to fullscreenButton,
+        "imprintButton" to imprintButton,
+        "languageSelector" to languageSelector,
+        "privacyButton" to languageSelector,
+        "privacyPolicyButton" to privacyPolicyButton,
+        "saveButton" to saveButton,
+        "serviceInCategoryDetails" to serviceInCategoryDetails,
+        "servicesInCategory" to servicesInCategory,
+        "tabButton" to tabButton,
+        "usercentricsCMPButtons" to usercentricsCMPButtons,
+        "usercentricsCMPContent" to usercentricsCMPContent,
+        "usercentricsCMPHeader" to usercentricsCMPHeader,
+        "usercentricsCMPUI" to usercentricsCMPUI,
+        "usercentricsCard" to usercentricsCard,
+        "usercentricsList" to usercentricsList,
+        "vendorConsentToggle" to vendorConsentToggle,
+        "vendorDetailedStorageInformation" to vendorDetailedStorageInformation,
+        "vendorLegIntToggle" to vendorLegIntToggle,
     ).toWritableMap()
 }
