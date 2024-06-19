@@ -21,6 +21,7 @@ import {
 import { TCFFeature, TCFPurpose } from "../models/TCFData";
 import { AdTechProviderDecision } from "../models/TCFUserDecisions";
 import { UsercentricsService } from "../models/UsercentricsService";
+import { LegalBasisLocalization } from "../models/LegalBasisLocalization";
 
 export const usercentricsServiceConsent = {
     templateId: "abc",
@@ -308,12 +309,21 @@ const userLocation: UsercentricsLocation = {
     regionCode: "PT11"
 }
 
+let dataMap: Map<string, string> = new Map();
+dataMap.set('key1', 'value1');
+
+const legalBasis: LegalBasisLocalization = {
+    data: dataMap,
+    labelsAria: undefined
+}
+
 export const cmpDataExample: UsercentricsCMPData = {
     settings: ucSettings,
     services: [ucService],
     categories: [ucCategory],
     activeVariant: UsercentricsVariant.default,
-    userLocation: userLocation
+    userLocation: userLocation,
+    legalBasis: legalBasis
 }
 
 export const featuresExample: [TCFFeature] = [

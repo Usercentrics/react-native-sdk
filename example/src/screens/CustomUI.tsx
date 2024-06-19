@@ -87,6 +87,8 @@ export const CustomScreen = () => {
 
         console.log(`User Country: ${data.userLocation.countryCode}`)
         console.log(`User Region: ${data.userLocation.regionCode}`)
+
+        console.log(`Legal Basis: ${JSON.stringify(data.legalBasis)}`)
     }
 
     async function printCCPA() {
