@@ -415,7 +415,7 @@ private fun TranslationAriaLabels.serialize(): WritableMap {
         "fullscreenButton" to fullscreenButton,
         "imprintButton" to imprintButton,
         "languageSelector" to languageSelector,
-        "privacyButton" to languageSelector,
+        "privacyButton" to privacyButton,
         "privacyPolicyButton" to privacyPolicyButton,
         "saveButton" to saveButton,
         "serviceInCategoryDetails" to serviceInCategoryDetails,
