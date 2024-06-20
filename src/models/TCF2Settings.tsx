@@ -52,7 +52,7 @@ export class TCF2Settings {
     examplesLabel: string
     firstLayerMobileVariant?: FirstLayerMobileVariant
     showDataSharedOutsideEUText: boolean
-    dataSharedOutsideEUText?: String
+    dataSharedOutsideEUText?: string
     vendorIdsOutsideEUList: [number]
     scope: TCF2Scope
     changedPurposes: TCF2ChangedPurposes
@@ -118,7 +118,7 @@ export class TCF2Settings {
         selectedATPIds: number[],
         firstLayerHideButtonDeny?: boolean,
         firstLayerMobileVariant?: FirstLayerMobileVariant,
-        dataSharedOutsideEUText?: String,
+        dataSharedOutsideEUText?: string,
     ) {
         this.firstLayerTitle = firstLayerTitle
         this.secondLayerTitle = secondLayerTitle

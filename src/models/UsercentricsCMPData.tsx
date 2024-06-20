@@ -3,6 +3,7 @@ import {UsercentricsLocation} from "./UsercentricsLocation";
 import {UsercentricsService} from "./UsercentricsService";
 import {UsercentricsSettings} from "./UsercentricsSettings";
 import {UsercentricsVariant} from "./UsercentricsVariant";
+import { LegalBasisLocalization } from "./LegalBasisLocalization";
 
 export class UsercentricsCMPData {
 
@@ -16,18 +17,22 @@ export class UsercentricsCMPData {
     activeVariant: UsercentricsVariant
     /// The current user location.
     userLocation: UsercentricsLocation
+    // The current legal basis localization
+    legalBasis: LegalBasisLocalization
 
     constructor(
         settings: UsercentricsSettings,
         services: [UsercentricsService],
         categories: [UsercentricsCategory],
         activeVariant: UsercentricsVariant,
-        userLocation: UsercentricsLocation
+        userLocation: UsercentricsLocation,
+        legalBasis: LegalBasisLocalization
     ) {
         this.settings = settings
         this.services = services
         this.categories = categories
         this.activeVariant = activeVariant
         this.userLocation = userLocation
+        this.legalBasis = legalBasis
     }
 }

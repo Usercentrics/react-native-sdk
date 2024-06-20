@@ -20,6 +20,8 @@ import com.usercentrics.sdk.models.settings.UsercentricsConsentType
 import com.usercentrics.sdk.services.tcf.TCFDecisionUILayer
 import com.usercentrics.sdk.services.tcf.interfaces.TCFData
 import com.usercentrics.sdk.v2.location.data.UsercentricsLocation
+import com.usercentrics.sdk.v2.translation.data.LegalBasisLocalization
+import io.mockk.InternalPlatformDsl.toArray
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verify
@@ -83,7 +85,10 @@ class RNUsercentricsModuleTest {
                     history = usercentricsConsentHistoryEntries
                 )
             ),
-            geolocationRuleset = GeolocationRuleset(activeSettingsId = "settingsId", bannerRequiredAtLocation = true),
+            geolocationRuleset = GeolocationRuleset(
+                activeSettingsId = "settingsId",
+                bannerRequiredAtLocation = true
+            ),
             location = UsercentricsLocation(countryCode = "PT", regionCode = "PT11")
         )
     }
@@ -98,7 +103,8 @@ class RNUsercentricsModuleTest {
     @Test
     fun testModuleName() {
         assertEquals(
-            "RNUsercentricsModule", RNUsercentricsModule(mockk(relaxed = true), mockk(), ReactContextProviderMock()).name
+            "RNUsercentricsModule",
+            RNUsercentricsModule(mockk(relaxed = true), mockk(), ReactContextProviderMock()).name
         )
     }
 
@@ -106,7 +112,8 @@ class RNUsercentricsModuleTest {
     fun testConfigure() {
         val usercentricsProxy = FakeUsercentricsProxy()
         val contextMock = mockk<ReactApplicationContext>(relaxed = true)
-        val module = RNUsercentricsModule(contextMock, usercentricsProxy, ReactContextProviderMock())
+        val module =
+            RNUsercentricsModule(contextMock, usercentricsProxy, ReactContextProviderMock())
 
         module.configure(usercentricsOptions)
 
@@ -125,7 +132,8 @@ class RNUsercentricsModuleTest {
     fun testConfigureWithWrongValues() {
         val usercentricsProxy = FakeUsercentricsProxy()
         val contextMock = mockk<ReactApplicationContext>(relaxed = true)
-        val module = RNUsercentricsModule(contextMock, usercentricsProxy, ReactContextProviderMock())
+        val module =
+            RNUsercentricsModule(contextMock, usercentricsProxy, ReactContextProviderMock())
 
         module.configure(JavaOnlyMap())
         assertEquals(UsercentricsOptions(), usercentricsProxy.initializeOptionsArgument)
@@ -135,7 +143,8 @@ class RNUsercentricsModuleTest {
     fun testIsReady() {
         val usercentricsProxy = FakeUsercentricsProxy(isReadyAnswer = usercentricsReadyStatus)
         val contextMock = mockk<ReactApplicationContext>(relaxed = true)
-        val module = RNUsercentricsModule(contextMock, usercentricsProxy, ReactContextProviderMock())
+        val module =
+            RNUsercentricsModule(contextMock, usercentricsProxy, ReactContextProviderMock())
 
         val promise = FakePromise()
         module.isReady(promise)
@@ -146,8 +155,14 @@ class RNUsercentricsModuleTest {
         assertEquals(1, usercentricsProxy.isReadyCount)
         assertEquals(false, result.getBoolean("shouldCollectConsent"))
 
-        assertEquals("settingsId", result.getMap("geolocationRuleset")?.getString("activeSettingsId"))
-        assertEquals(true, result.getMap("geolocationRuleset")?.getBoolean("bannerRequiredAtLocation"))
+        assertEquals(
+            "settingsId",
+            result.getMap("geolocationRuleset")?.getString("activeSettingsId")
+        )
+        assertEquals(
+            true,
+            result.getMap("geolocationRuleset")?.getBoolean("bannerRequiredAtLocation")
+        )
 
         assertEquals("PT", result.getMap("location")?.getString("countryCode"))
         assertEquals("PT11", result.getMap("location")?.getString("regionCode"))
@@ -165,7 +180,8 @@ class RNUsercentricsModuleTest {
 
         val usercentricsProxy = FakeUsercentricsProxy(isReadyAnswer = error)
         val contextMock = mockk<ReactApplicationContext>(relaxed = true)
-        val module = RNUsercentricsModule(contextMock, usercentricsProxy, ReactContextProviderMock())
+        val module =
+            RNUsercentricsModule(contextMock, usercentricsProxy, ReactContextProviderMock())
 
         val promise = FakePromise()
         module.isReady(promise)
@@ -183,7 +199,8 @@ class RNUsercentricsModuleTest {
 
         val usercentricsProxy = FakeUsercentricsProxy(instanceAnswer = usercentricsSDK)
         val contextMock = mockk<ReactApplicationContext>(relaxed = true)
-        val module = RNUsercentricsModule(contextMock, usercentricsProxy, ReactContextProviderMock())
+        val module =
+            RNUsercentricsModule(contextMock, usercentricsProxy, ReactContextProviderMock())
 
         val promise = FakePromise()
         module.restoreUserSession("abc", promise)
@@ -210,7 +227,8 @@ class RNUsercentricsModuleTest {
         }
         val usercentricsProxy = FakeUsercentricsProxy(usercentricsSDK)
         val contextMock = mockk<ReactApplicationContext>(relaxed = true)
-        val module = RNUsercentricsModule(contextMock, usercentricsProxy, ReactContextProviderMock())
+        val module =
+            RNUsercentricsModule(contextMock, usercentricsProxy, ReactContextProviderMock())
 
         val promise = FakePromise()
         module.restoreUserSession("abc", promise)
@@ -225,7 +243,8 @@ class RNUsercentricsModuleTest {
         every { usercentricsSDK.getControllerId() }.returns("abc")
         val usercentricsProxy = FakeUsercentricsProxy(usercentricsSDK)
         val contextMock = mockk<ReactApplicationContext>(relaxed = true)
-        val module = RNUsercentricsModule(contextMock, usercentricsProxy, ReactContextProviderMock())
+        val module =
+            RNUsercentricsModule(contextMock, usercentricsProxy, ReactContextProviderMock())
         val promise = FakePromise()
 
         module.getControllerId(promise)
@@ -240,7 +259,8 @@ class RNUsercentricsModuleTest {
         every { usercentricsSDK.getABTestingVariant() }.returns("variantA")
         val usercentricsProxy = FakeUsercentricsProxy(usercentricsSDK)
         val contextMock = mockk<ReactApplicationContext>(relaxed = true)
-        val module = RNUsercentricsModule(contextMock, usercentricsProxy, ReactContextProviderMock())
+        val module =
+            RNUsercentricsModule(contextMock, usercentricsProxy, ReactContextProviderMock())
         val promise = FakePromise()
 
         module.getABTestingVariant(promise)
@@ -256,7 +276,8 @@ class RNUsercentricsModuleTest {
 
         val usercentricsProxy = FakeUsercentricsProxy(usercentricsSDK)
         val contextMock = mockk<ReactApplicationContext>(relaxed = true)
-        val module = RNUsercentricsModule(contextMock, usercentricsProxy, ReactContextProviderMock())
+        val module =
+            RNUsercentricsModule(contextMock, usercentricsProxy, ReactContextProviderMock())
 
         val promise = FakePromise()
 
@@ -276,12 +297,17 @@ class RNUsercentricsModuleTest {
 
     @Test
     fun testGetCMPData() {
+        val legalBasisLocalization = mockk<LegalBasisLocalization>()
+        every { legalBasisLocalization.data }.returns(GetCMPDataMock.fakeData)
+        every { legalBasisLocalization.labelsAria }.returns(GetCMPDataMock.fakeLabelsAria)
+
         val cmpData = mockk<UsercentricsCMPData>()
         every { cmpData.activeVariant }.returns(UsercentricsVariant.TCF)
         every { cmpData.settings }.returns(GetCMPDataMock.fakeSettings)
         every { cmpData.categories }.returns(GetCMPDataMock.fakeCategories)
         every { cmpData.services }.returns(GetCMPDataMock.fakeServices)
         every { cmpData.userLocation }.returns(GetCMPDataMock.fakeUserLocation)
+        every { cmpData.legalBasis }.returns(legalBasisLocalization)
 
         val usercentricsSDK = mockk<UsercentricsSDK>()
         every { usercentricsSDK.getCMPData() }.returns(cmpData)
@@ -298,22 +324,30 @@ class RNUsercentricsModuleTest {
 
         val resultMap = (promise.resolveValue as WritableMap)
 
-        assertEquals(5, resultMap.toHashMap().size)
-        assertEquals(2, resultMap.getInt("activeVariant"))
+        assertEquals(6, resultMap.toHashMap().size)
 
         assertEquals(
             GetCMPDataMock.expectedSettings.toWritableMap(), resultMap.getMap("settings")
         )
 
         assertEquals(
-            GetCMPDataMock.expectedCategories.serialize(), resultMap.getArray("categories")
+            GetCMPDataMock.expectedServices.serialize(), resultMap.getArray("services")
         )
+
+        assertEquals(
+            GetCMPDataMock.expectedLegalBasisLocalization.toWritableMap(),
+            resultMap.getMap("legalBasis")
+        )
+
+        assertEquals(2, resultMap.getInt("activeVariant"))
 
         assertEquals(
             GetCMPDataMock.expectedUserLocation.toWritableMap(), resultMap.getMap("userLocation")
         )
 
-        assertEquals(GetCMPDataMock.expectedServices.serialize(), resultMap.getArray("services")!!)
+        assertEquals(
+            GetCMPDataMock.expectedCategories.serialize(), resultMap.getArray("categories")
+        )
     }
 
     @Test
@@ -323,7 +357,8 @@ class RNUsercentricsModuleTest {
 
         val usercentricsProxy = FakeUsercentricsProxy(usercentricsSDK)
         val contextMock = mockk<ReactApplicationContext>(relaxed = true)
-        val module = RNUsercentricsModule(contextMock, usercentricsProxy, ReactContextProviderMock())
+        val module =
+            RNUsercentricsModule(contextMock, usercentricsProxy, ReactContextProviderMock())
 
         module.setCMPId(123)
 
@@ -337,7 +372,8 @@ class RNUsercentricsModuleTest {
 
         val usercentricsProxy = FakeUsercentricsProxy(usercentricsSDK)
         val contextMock = mockk<ReactApplicationContext>(relaxed = true)
-        val module = RNUsercentricsModule(contextMock, usercentricsProxy, ReactContextProviderMock())
+        val module =
+            RNUsercentricsModule(contextMock, usercentricsProxy, ReactContextProviderMock())
 
         module.setABTestingVariant("variantA")
 
@@ -353,7 +389,8 @@ class RNUsercentricsModuleTest {
 
         val usercentricsProxy = FakeUsercentricsProxy(usercentricsSDK)
         val contextMock = mockk<ReactApplicationContext>(relaxed = true)
-        val module = RNUsercentricsModule(contextMock, usercentricsProxy, ReactContextProviderMock())
+        val module =
+            RNUsercentricsModule(contextMock, usercentricsProxy, ReactContextProviderMock())
         val promise = FakePromise()
 
         module.getTCFData(promise)
@@ -370,7 +407,8 @@ class RNUsercentricsModuleTest {
         every { usercentricsSDK.getUserSessionData() }.returns(GetUserSessionDataMock.fake)
         val usercentricsProxy = FakeUsercentricsProxy(usercentricsSDK)
         val contextMock = mockk<ReactApplicationContext>(relaxed = true)
-        val module = RNUsercentricsModule(contextMock, usercentricsProxy, ReactContextProviderMock())
+        val module =
+            RNUsercentricsModule(contextMock, usercentricsProxy, ReactContextProviderMock())
         val promise = FakePromise()
 
         module.getUserSessionData(promise)
@@ -385,7 +423,8 @@ class RNUsercentricsModuleTest {
 
         val usercentricsProxy = FakeUsercentricsProxy(usercentricsSDK)
         val contextMock = mockk<ReactApplicationContext>(relaxed = true)
-        val module = RNUsercentricsModule(contextMock, usercentricsProxy, ReactContextProviderMock())
+        val module =
+            RNUsercentricsModule(contextMock, usercentricsProxy, ReactContextProviderMock())
         val promise = FakePromise()
 
         module.getUSPData(promise)
@@ -403,7 +442,8 @@ class RNUsercentricsModuleTest {
         }
         val usercentricsProxy = FakeUsercentricsProxy(usercentricsSDK)
         val contextMock = mockk<ReactApplicationContext>(relaxed = true)
-        val module = RNUsercentricsModule(contextMock, usercentricsProxy, ReactContextProviderMock())
+        val module =
+            RNUsercentricsModule(contextMock, usercentricsProxy, ReactContextProviderMock())
         val promise = FakePromise()
 
         module.changeLanguage("abc", promise)
@@ -427,7 +467,8 @@ class RNUsercentricsModuleTest {
 
         val usercentricsProxy = FakeUsercentricsProxy(usercentricsSDK)
         val contextMock = mockk<ReactApplicationContext>(relaxed = true)
-        val module = RNUsercentricsModule(contextMock, usercentricsProxy, ReactContextProviderMock())
+        val module =
+            RNUsercentricsModule(contextMock, usercentricsProxy, ReactContextProviderMock())
         val promise = FakePromise()
 
         module.changeLanguage("abc", promise)
@@ -452,7 +493,8 @@ class RNUsercentricsModuleTest {
 
         val usercentricsProxy = FakeUsercentricsProxy(usercentricsSDK)
         val contextMock = mockk<ReactApplicationContext>(relaxed = true)
-        val module = RNUsercentricsModule(contextMock, usercentricsProxy, ReactContextProviderMock())
+        val module =
+            RNUsercentricsModule(contextMock, usercentricsProxy, ReactContextProviderMock())
 
         val promise = FakePromise()
         module.acceptAllForTCF(0, 0, promise)
@@ -479,7 +521,8 @@ class RNUsercentricsModuleTest {
 
         val usercentricsProxy = FakeUsercentricsProxy(usercentricsSDK)
         val contextMock = mockk<ReactApplicationContext>(relaxed = true)
-        val module = RNUsercentricsModule(contextMock, usercentricsProxy, ReactContextProviderMock())
+        val module =
+            RNUsercentricsModule(contextMock, usercentricsProxy, ReactContextProviderMock())
 
         val promise = FakePromise()
         module.denyAllForTCF(0, 0, promise)
@@ -506,7 +549,8 @@ class RNUsercentricsModuleTest {
 
         val usercentricsProxy = FakeUsercentricsProxy(usercentricsSDK)
         val contextMock = mockk<ReactApplicationContext>(relaxed = true)
-        val module = RNUsercentricsModule(contextMock, usercentricsProxy, ReactContextProviderMock())
+        val module =
+            RNUsercentricsModule(contextMock, usercentricsProxy, ReactContextProviderMock())
 
         val promise = FakePromise()
         module.acceptAll(0, promise)
@@ -527,7 +571,8 @@ class RNUsercentricsModuleTest {
 
         val usercentricsProxy = FakeUsercentricsProxy(usercentricsSDK)
         val contextMock = mockk<ReactApplicationContext>(relaxed = true)
-        val module = RNUsercentricsModule(contextMock, usercentricsProxy, ReactContextProviderMock())
+        val module =
+            RNUsercentricsModule(contextMock, usercentricsProxy, ReactContextProviderMock())
 
         val promise = FakePromise()
         module.denyAll(0, promise)
@@ -548,7 +593,8 @@ class RNUsercentricsModuleTest {
 
         val usercentricsProxy = FakeUsercentricsProxy(usercentricsSDK)
         val contextMock = mockk<ReactApplicationContext>(relaxed = true)
-        val module = RNUsercentricsModule(contextMock, usercentricsProxy, ReactContextProviderMock())
+        val module =
+            RNUsercentricsModule(contextMock, usercentricsProxy, ReactContextProviderMock())
 
         val promise = FakePromise()
         module.saveDecisions(SaveDecisionsMock.callDecisions.serialize(), 0, promise)
@@ -567,7 +613,8 @@ class RNUsercentricsModuleTest {
 
         val usercentricsProxy = FakeUsercentricsProxy(usercentricsSDK)
         val contextMock = mockk<ReactApplicationContext>(relaxed = true)
-        val module = RNUsercentricsModule(contextMock, usercentricsProxy, ReactContextProviderMock())
+        val module =
+            RNUsercentricsModule(contextMock, usercentricsProxy, ReactContextProviderMock())
 
         val promise = FakePromise()
         module.saveDecisionsForTCF(
@@ -593,7 +640,8 @@ class RNUsercentricsModuleTest {
 
         val usercentricsProxy = FakeUsercentricsProxy(usercentricsSDK)
         val contextMock = mockk<ReactApplicationContext>(relaxed = true)
-        val module = RNUsercentricsModule(contextMock, usercentricsProxy, ReactContextProviderMock())
+        val module =
+            RNUsercentricsModule(contextMock, usercentricsProxy, ReactContextProviderMock())
 
         val promise = FakePromise()
         module.saveOptOutForCCPA(
@@ -616,7 +664,8 @@ class RNUsercentricsModuleTest {
 
         val usercentricsProxy = FakeUsercentricsProxy(usercentricsSdk)
         val contextMock = mockk<ReactApplicationContext>(relaxed = true)
-        val module = RNUsercentricsModule(contextMock, usercentricsProxy, ReactContextProviderMock())
+        val module =
+            RNUsercentricsModule(contextMock, usercentricsProxy, ReactContextProviderMock())
 
         module.track(UsercentricsAnalyticsEventType.ACCEPT_ALL_FIRST_LAYER.ordinal)
 
@@ -628,7 +677,8 @@ class RNUsercentricsModuleTest {
     fun testShowFirstLayer() {
         val usercentricsProxy = FakeUsercentricsProxy()
         val contextMock = mockk<ReactApplicationContext>(relaxed = true)
-        val module = RNUsercentricsModule(contextMock, usercentricsProxy, ReactContextProviderMock())
+        val module =
+            RNUsercentricsModule(contextMock, usercentricsProxy, ReactContextProviderMock())
         val promise = FakePromise()
         module.showFirstLayer(bannerSettingsMap.toWritableMap(), promise)
         promise.await()
@@ -639,7 +689,8 @@ class RNUsercentricsModuleTest {
     fun testShowSecondLayer() {
         val usercentricsProxy = FakeUsercentricsProxy()
         val contextMock = mockk<ReactApplicationContext>(relaxed = true)
-        val module = RNUsercentricsModule(contextMock, usercentricsProxy, ReactContextProviderMock())
+        val module =
+            RNUsercentricsModule(contextMock, usercentricsProxy, ReactContextProviderMock())
         val promise = FakePromise()
         module.showSecondLayer(bannerSettingsMap.toWritableMap(), promise)
         promise.await()
@@ -681,13 +732,16 @@ class RNUsercentricsModuleTest {
         module.showFirstLayer(bannerSettingsMap.toWritableMap(), promise)
         promise.await()
 
-        val someLocalImageDrawableId = context.resources.getIdentifier("some_local_image", "drawable", context.packageName)
+        val someLocalImageDrawableId =
+            context.resources.getIdentifier("some_local_image", "drawable", context.packageName)
         val expectedBannerSettings = BannerSettings(
             firstLayerStyleSettings = FirstLayerStyleSettings(
                 layout = UsercentricsLayout.Popup(
                     PopupPosition.CENTER
                 )
-            ), secondLayerStyleSettings = SecondLayerStyleSettings(showCloseButton = true), generalStyleSettings = GeneralStyleSettings(
+            ),
+            secondLayerStyleSettings = SecondLayerStyleSettings(showCloseButton = true),
+            generalStyleSettings = GeneralStyleSettings(
                 logo = UsercentricsImage.ImageDrawableId(someLocalImageDrawableId)
             )
         )
@@ -698,7 +752,8 @@ class RNUsercentricsModuleTest {
     fun testShowFirstLayerWhenShowCloseButtonIsNull() {
         val usercentricsProxy = FakeUsercentricsProxy()
         val contextMock = mockk<ReactApplicationContext>(relaxed = true)
-        val module = RNUsercentricsModule(contextMock, usercentricsProxy, ReactContextProviderMock())
+        val module =
+            RNUsercentricsModule(contextMock, usercentricsProxy, ReactContextProviderMock())
         val bannerSettingsMap = mapOf(
             "secondLayerStyleSettings" to mapOf(
                 "showCloseButton" to null
@@ -726,7 +781,8 @@ class RNUsercentricsModuleTest {
 
         val usercentricsProxy = FakeUsercentricsProxy(usercentricsSDK)
         val contextMock = mockk<ReactApplicationContext>(relaxed = true)
-        val module = RNUsercentricsModule(contextMock, usercentricsProxy, ReactContextProviderMock())
+        val module =
+            RNUsercentricsModule(contextMock, usercentricsProxy, ReactContextProviderMock())
         val promise = FakePromise()
 
         module.getAdditionalConsentModeData(promise)
@@ -748,7 +804,8 @@ class RNUsercentricsModuleTest {
 
         val usercentricsProxy = FakeUsercentricsProxy(instanceAnswer = usercentricsSDK)
         val contextMock = mockk<ReactApplicationContext>(relaxed = true)
-        val module = RNUsercentricsModule(contextMock, usercentricsProxy, ReactContextProviderMock())
+        val module =
+            RNUsercentricsModule(contextMock, usercentricsProxy, ReactContextProviderMock())
 
         val promise = FakePromise()
         module.clearUserSession(promise)
@@ -775,7 +832,8 @@ class RNUsercentricsModuleTest {
         }
         val usercentricsProxy = FakeUsercentricsProxy(usercentricsSDK)
         val contextMock = mockk<ReactApplicationContext>(relaxed = true)
-        val module = RNUsercentricsModule(contextMock, usercentricsProxy, ReactContextProviderMock())
+        val module =
+            RNUsercentricsModule(contextMock, usercentricsProxy, ReactContextProviderMock())
 
         val promise = FakePromise()
         module.clearUserSession(promise)

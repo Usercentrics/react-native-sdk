@@ -25,6 +25,7 @@ import com.usercentrics.sdk.v2.settings.data.UsercentricsLabels
 import com.usercentrics.sdk.v2.settings.data.UsercentricsService
 import com.usercentrics.sdk.v2.settings.data.UsercentricsSettings
 import com.usercentrics.sdk.v2.settings.data.VariantsSettings
+import com.usercentrics.sdk.v2.translation.data.TranslationAriaLabels
 
 internal object GetCMPDataMock {
 
@@ -661,5 +662,80 @@ internal object GetCMPDataMock {
                 "consent" to false
             ),
         )
+    )
+
+    val fakeData = mapOf(
+        "KeyA" to "ValueA",
+        "KeyB" to "ValueB",
+    )
+
+    private val expectedData = hashMapOf(
+        "KeyA" to "ValueA",
+        "KeyB" to "ValueB",
+    )
+
+    val fakeLabelsAria = TranslationAriaLabels(
+        acceptAllButton = "acceptAllButton",
+        ccpaButton = "ccpaButton",
+        ccpaMoreInformation = "ccpaMoreInformation",
+        closeButton = "closeButton",
+        collapse = "collapse",
+        cookiePolicyButton = "cookiePolicyButton",
+        copyControllerId = "copyControllerId",
+        denyAllButton = "denyAllButton",
+        expand = "expand",
+        fullscreenButton = "fullscreenButton",
+        imprintButton = "imprintButton",
+        languageSelector = "languageSelector",
+        privacyButton = "privacyButton",
+        privacyPolicyButton = "privacyPolicyButton",
+        saveButton = "saveButton",
+        serviceInCategoryDetails = "serviceInCategoryDetails",
+        servicesInCategory = "servicesInCategory",
+        tabButton = "tabButton",
+        usercentricsCMPButtons = "usercentricsCMPButtons",
+        usercentricsCMPContent = "usercentricsCMPContent",
+        usercentricsCMPHeader = "usercentricsCMPHeader",
+        usercentricsCMPUI = "usercentricsCMPUI",
+        usercentricsCard = "usercentricsCard",
+        usercentricsList = "usercentricsList",
+        vendorConsentToggle = "vendorConsentToggle",
+        vendorDetailedStorageInformation = "vendorDetailedStorageInformation",
+        vendorLegIntToggle = "vendorLegIntToggle"
+    )
+
+    val expectedTranslationAriaLabels = hashMapOf(
+        "acceptAllButton" to "acceptAllButton",
+        "ccpaButton" to "ccpaButton",
+        "ccpaMoreInformation" to "ccpaMoreInformation",
+        "closeButton" to "closeButton",
+        "collapse" to "collapse",
+        "cookiePolicyButton" to "cookiePolicyButton",
+        "copyControllerId" to "copyControllerId",
+        "denyAllButton" to "denyAllButton",
+        "expand" to "expand",
+        "fullscreenButton" to "fullscreenButton",
+        "imprintButton" to "imprintButton",
+        "languageSelector" to "languageSelector",
+        "privacyButton" to "privacyButton",
+        "privacyPolicyButton" to "privacyPolicyButton",
+        "saveButton" to "saveButton",
+        "serviceInCategoryDetails" to "serviceInCategoryDetails",
+        "servicesInCategory" to "servicesInCategory",
+        "tabButton" to "tabButton",
+        "usercentricsCMPButtons" to "usercentricsCMPButtons",
+        "usercentricsCMPContent" to "usercentricsCMPContent",
+        "usercentricsCMPHeader" to "usercentricsCMPHeader",
+        "usercentricsCMPUI" to "usercentricsCMPUI",
+        "usercentricsCard" to "usercentricsCard",
+        "usercentricsList" to "usercentricsList",
+        "vendorConsentToggle" to "vendorConsentToggle",
+        "vendorDetailedStorageInformation" to "vendorDetailedStorageInformation",
+        "vendorLegIntToggle" to "vendorLegIntToggle"
+    )
+
+    val expectedLegalBasisLocalization = hashMapOf(
+        "labelsAria" to expectedTranslationAriaLabels,
+        "data" to expectedData,
     )
 }
