@@ -1,5 +1,11 @@
 [Release Notes](https://docs.usercentrics.com/cmp_in_app_sdk/latest/about/history/)
 
+### 2.15.3 - June 24, 2024
+
+## React Native Bug Fix
+
+**[Fix]** Services categories description was returning a stringify object instead of the actual description
+
 ### 2.15.2 - June 12, 2024
 
 ## Improvements
