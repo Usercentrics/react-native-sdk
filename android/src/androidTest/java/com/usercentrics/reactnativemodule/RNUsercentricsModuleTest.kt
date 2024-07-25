@@ -674,7 +674,7 @@ class RNUsercentricsModuleTest {
     }
 
     @Test
-    fun testShowFirstLayer() {
+    fun testShowFirstLayerBannerSettingsObject() {
         val usercentricsProxy = FakeUsercentricsProxy()
         val contextMock = mockk<ReactApplicationContext>(relaxed = true)
         val module =
@@ -686,7 +686,33 @@ class RNUsercentricsModuleTest {
     }
 
     @Test
-    fun testShowSecondLayer() {
+    fun testShowFirstLayerWithNullBannerSettings() {
+        val usercentricsProxy = FakeUsercentricsProxy()
+        val contextMock = mockk<ReactApplicationContext>(relaxed = true)
+        val module =
+            RNUsercentricsModule(contextMock, usercentricsProxy, ReactContextProviderMock())
+        val promise = FakePromise()
+        module.showFirstLayer(null, promise)
+        promise.await()
+        assertEquals(null, usercentricsProxy.showFirstLayerBannerSettings)
+    }
+
+    @Test
+    fun testShowFirstLayerWithEmptyBannerSettingsObject() {
+        val bannerSettings = emptyMap<String, String>().toWritableMap()
+
+        val usercentricsProxy = FakeUsercentricsProxy()
+        val contextMock = mockk<ReactApplicationContext>(relaxed = true)
+        val module =
+            RNUsercentricsModule(contextMock, usercentricsProxy, ReactContextProviderMock())
+        val promise = FakePromise()
+        module.showFirstLayer(bannerSettings, promise)
+        promise.await()
+        assertEquals(BannerSettings(), usercentricsProxy.showFirstLayerBannerSettings)
+    }
+
+    @Test
+    fun testShowSecondLayerWithBannerSettingsObject() {
         val usercentricsProxy = FakeUsercentricsProxy()
         val contextMock = mockk<ReactApplicationContext>(relaxed = true)
         val module =
@@ -695,6 +721,32 @@ class RNUsercentricsModuleTest {
         module.showSecondLayer(bannerSettingsMap.toWritableMap(), promise)
         promise.await()
         assertEquals(expectedBannerSettings, usercentricsProxy.showSecondLayerBannerSettings)
+    }
+
+    @Test
+    fun testShowSecondLayerWithNullBannerSettings() {
+        val usercentricsProxy = FakeUsercentricsProxy()
+        val contextMock = mockk<ReactApplicationContext>(relaxed = true)
+        val module =
+            RNUsercentricsModule(contextMock, usercentricsProxy, ReactContextProviderMock())
+        val promise = FakePromise()
+        module.showSecondLayer(null, promise)
+        promise.await()
+        assertEquals(null, usercentricsProxy.showSecondLayerBannerSettings)
+    }
+
+    @Test
+    fun testShowSecondLayerWithEmptyBannerSettingsObject() {
+        val bannerSettings = emptyMap<String, String>().toWritableMap()
+
+        val usercentricsProxy = FakeUsercentricsProxy()
+        val contextMock = mockk<ReactApplicationContext>(relaxed = true)
+        val module =
+            RNUsercentricsModule(contextMock, usercentricsProxy, ReactContextProviderMock())
+        val promise = FakePromise()
+        module.showSecondLayer(bannerSettings, promise)
+        promise.await()
+        assertEquals(BannerSettings(), usercentricsProxy.showSecondLayerBannerSettings)
     }
 
     @Test
