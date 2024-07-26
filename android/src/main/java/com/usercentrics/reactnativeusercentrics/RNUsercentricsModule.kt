@@ -46,11 +46,11 @@ internal class RNUsercentricsModule(
     }
 
     @ReactMethod
-    fun showSecondLayer(options: ReadableMap, promise: Promise) {
+    fun showSecondLayer(options: ReadableMap?, promise: Promise) {
         runOnUiThread {
             try {
                 val context = reactContextProvider.context()
-                val bannerSettings = options.bannerSettingsFromMap(context)
+                val bannerSettings = options?.bannerSettingsFromMap(context)
 
                 val activity = reactContextProvider.activity()!!
                 usercentricsProxy.showSecondLayer(activity, bannerSettings, promise)

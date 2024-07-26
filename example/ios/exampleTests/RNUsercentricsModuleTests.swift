@@ -477,7 +477,7 @@ class RNUsercentricsModuleTests: XCTestCase {
     XCTAssertEqual(String("variantA"), fakeUsercentrics.variant)
   }
 
-  func testShowFirstLayer() {
+  func testShowFirstLayerWithBannerSettingsObject() {
     let serializedSettings: NSDictionary = [
       "firstLayerStyleSettings": ["layout": "POPUP_CENTER"]
     ]
@@ -487,13 +487,32 @@ class RNUsercentricsModuleTests: XCTestCase {
       XCTFail("Should not go here")
     }
   }
+  
+  func testShowFirstLayerWithEmptyBannerSettingsObject() {
+    let emptyDictionary: NSDictionary = [:]
+    module.showFirstLayer(emptyDictionary) { result in
+      XCTAssertNil(self.fakeUsercentrics.showFirstLayerBannerSettings?.firstLayerStyleSettings)
+    } reject: { _, _, _ in
+      XCTFail("Should not go here")
+    }
+  }
 
-  func testShowSecondLayer() {
+  func testShowSecondLayerWithBannerSettingsObject() {
     let serializedSettings: NSDictionary = [
       "secondLayerStyleSettings": ["showCloseButton": true]
     ]
     module.showSecondLayer(serializedSettings) { result in
       XCTAssertEqual(true, self.fakeUsercentrics.showSecondLayerBannerSettings?.secondLayerStyleSettings?.showCloseButton)
+    } reject: { _, _, _ in
+      XCTFail("Should not go here")
+    }
+  }
+  
+  func testShowSecondLayerWithEmptyBannerSettingsObject() {
+    let emptyDictionary: NSDictionary = [:]
+    
+    module.showSecondLayer(emptyDictionary) { result in
+      XCTAssertNil(self.fakeUsercentrics.showSecondLayerBannerSettings?.secondLayerStyleSettings)
     } reject: { _, _, _ in
       XCTFail("Should not go here")
     }
