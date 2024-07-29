@@ -127,7 +127,7 @@ extension UsercentricsLabels {
             "dataProtectionOfficer" : self.dataProtectionOfficer ?? "",
             "nameOfProcessingCompany" : self.nameOfProcessingCompany ?? "",
             "btnBack" : self.btnBack ?? "",
-            "copy" : self.copy ?? "", // CHECK THIS
+            "copy" : self.copy, // CHECK THIS
             "copied" : self.copied ?? "",
             "basic" : self.basic ?? "",
             "advanced" : self.advanced ?? "",

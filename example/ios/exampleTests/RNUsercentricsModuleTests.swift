@@ -550,8 +550,10 @@ class RNUsercentricsModuleTests: XCTestCase {
 
       XCTAssertEqual(1, services!.count)
       XCTAssertEqual(1, categories!.count)
-
-      XCTAssertEqual(UsercentricsSettings.mock().toDictionary(), settings)
+      
+      let expectedSettings = UsercentricsSettings.mock().toDictionary()
+      
+      XCTAssertEqual(UsercentricsSettings.mock().toDictionary(), settings) // FAILING HERE
       XCTAssertEqual(UsercentricsService.mock().toDictionary(), services!.first)
       XCTAssertEqual(LegalBasisLocalization.mock().toDictionary(), legalBasis)
       XCTAssertEqual(2, activeVariant as? Int)
