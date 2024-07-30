@@ -47,7 +47,7 @@ extension UsercentricsSettings {
     }
 }
 
-extension UsercentricsLabels {
+extension UsercentricsLabels {    
     func toDictionary() -> NSDictionary {
         return [
             "btnAcceptAll" : self.btnAcceptAll,
@@ -127,7 +127,7 @@ extension UsercentricsLabels {
             "dataProtectionOfficer" : self.dataProtectionOfficer ?? "",
             "nameOfProcessingCompany" : self.nameOfProcessingCompany ?? "",
             "btnBack" : self.btnBack ?? "",
-            "copy" : self.copy, // CHECK THIS
+            "copy" : self.copyLabel ?? "",
             "copied" : self.copied ?? "",
             "basic" : self.basic ?? "",
             "advanced" : self.advanced ?? "",
@@ -492,10 +492,10 @@ extension AdTechProvider {
 
     func toDictionary() -> NSDictionary {
         return [
-            "id" : id,
-            "name" : name,
-            "privacyPolicyUrl" : privacyPolicyUrl,
-            "consent" : consent
+            "id" : self.id,
+            "name" : self.name,
+            "privacyPolicyUrl" : self.privacyPolicyUrl,
+            "consent" : self.consent
         ]
     }
 }
