@@ -143,7 +143,7 @@ private fun UsercentricsLabels.serialize(): Map<String, Any?> {
         "dataProtectionOfficer" to (dataProtectionOfficer ?: ""),
         "nameOfProcessingCompany" to (nameOfProcessingCompany ?: ""),
         "btnBack" to (btnBack ?: ""),
-        "copy" to (copy ?: ""),
+        "copy" to (copyLabel ?: ""),
         "copied" to (copied ?: ""),
         "basic" to (basic ?: ""),
         "advanced" to (advanced ?: ""),

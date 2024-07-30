@@ -189,7 +189,7 @@ extension UsercentricsLabels {
                  dataProtectionOfficer: "dataProtectionOfficer",
                  nameOfProcessingCompany: "nameOfProcessingCompany",
                  btnBack: "btnBack",
-                 copy: "copy",
+                 copy: "copyLabel",
                  copied: "copied",
                  basic: "basic",
                  advanced: "advanced",
