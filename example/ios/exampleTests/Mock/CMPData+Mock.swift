@@ -181,6 +181,7 @@ extension UsercentricsLabels {
                  headerModal: "headerModal",
                  secondLayerDescriptionHtml: "secondLayerDescriptionHtml",
                  secondLayerTitle: "secondLayerTitle",
+                 
                  settings: "settings",
                  subConsents: "subConsents",
                  btnAccept: "btnAccept",
@@ -188,7 +189,7 @@ extension UsercentricsLabels {
                  dataProtectionOfficer: "dataProtectionOfficer",
                  nameOfProcessingCompany: "nameOfProcessingCompany",
                  btnBack: "btnBack",
-                 copy: "copy",
+                 copy: "copyLabel",
                  copied: "copied",
                  basic: "basic",
                  advanced: "advanced",
@@ -201,6 +202,7 @@ extension UsercentricsLabels {
                  cookiePolicyLinkText: "cookiePolicyLinkText",
                  noImplicit: "noImplicit",
                  yesImplicit: "yesImplicit",
+                 
                  addressOfProcessingCompany: "addressOfProcessingCompany",
                  consentType: "consentType",
                  consents: "consents",

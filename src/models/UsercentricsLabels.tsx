@@ -12,6 +12,7 @@ export class UsercentricsLabels {
     dataCollectedInfo: string
     locationOfProcessing: string
     transferToThirdCountries: string
+    transferToThirdCountriesInfo: string
     dataPurposes: string
     dataPurposesInfo: string
     dataRecipientsList: string
@@ -59,16 +60,32 @@ export class UsercentricsLabels {
     yes: string
     storageInformationDescription: string
     btnBannerReadMore: string
+    btnMore: string
+    more: string
     linkToDpaInfo: string
     second: string
     consent: string
+    headerModal: string
     secondLayerDescriptionHtml: string
     secondLayerTitle: string
-    btnMore: string
+
+    // Optional
+    settings: string
+    subConsents: string
+    btnAccept: string
+    poweredBy: string
+    dataProtectionOfficer: string
+    nameOfProcessingCompany: string
+    btnBack: string
+    copy: string
+    copied: string
+    basic: string
+    advanced: string
+    processingCompany: string
+    name: string
     explicit: string
-    transferToThirdCountriesInfo: string
-    more: string
-    headerModal: string
+    implicit: string
+    btnMoreInfo: string
     furtherInformationOptOut: string
     cookiePolicyLinkText: string
     noImplicit: string
@@ -87,6 +104,7 @@ export class UsercentricsLabels {
         dataCollectedInfo: string,
         locationOfProcessing: string,
         transferToThirdCountries: string,
+        transferToThirdCountriesInfo: string,
         dataPurposes: string,
         dataPurposesInfo: string,
         dataRecipientsList: string,
@@ -134,16 +152,30 @@ export class UsercentricsLabels {
         yes: string,
         storageInformationDescription: string,
         btnBannerReadMore: string,
+        btnMore: string,
+        more: string,
         linkToDpaInfo: string,
         second: string,
         consent: string,
+        headerModal: string,
         secondLayerDescriptionHtml: string,
         secondLayerTitle: string,
-        btnMore: string,
+        settings: string,
+        subConsents: string,
+        btnAccept: string,
+        poweredBy: string,
+        dataProtectionOfficer: string,
+        nameOfProcessingCompany: string,
+        btnBack: string,
+        copy: string,
+        copied: string,
+        basic: string,
+        advanced: string,
+        processingCompany: string,
+        name: string,
         explicit: string,
-        transferToThirdCountriesInfo: string,
-        more: string,
-        headerModal: string,
+        implicit: string,
+        btnMoreInfo: string,
         furtherInformationOptOut: string,
         cookiePolicyLinkText: string,
         noImplicit: string,
@@ -161,6 +193,7 @@ export class UsercentricsLabels {
         this.dataCollectedInfo = dataCollectedInfo
         this.locationOfProcessing = locationOfProcessing
         this.transferToThirdCountries = transferToThirdCountries
+        this.transferToThirdCountriesInfo = transferToThirdCountriesInfo
         this.dataPurposes = dataPurposes
         this.dataPurposesInfo = dataPurposesInfo
         this.dataRecipientsList = dataRecipientsList
@@ -208,16 +241,30 @@ export class UsercentricsLabels {
         this.yes = yes
         this.storageInformationDescription = storageInformationDescription
         this.btnBannerReadMore = btnBannerReadMore
+        this.btnMore = btnMore
+        this.more = more
         this.linkToDpaInfo = linkToDpaInfo
         this.second = second
         this.consent = consent
+        this.headerModal = headerModal
         this.secondLayerDescriptionHtml = secondLayerDescriptionHtml
         this.secondLayerTitle = secondLayerTitle
-        this.btnMore = btnMore
+        this.settings = settings
+        this.subConsents = subConsents
+        this.btnAccept = btnAccept
+        this.poweredBy = poweredBy
+        this.dataProtectionOfficer = dataProtectionOfficer
+        this.nameOfProcessingCompany = nameOfProcessingCompany
+        this.btnBack = btnBack
+        this.copy = copy
+        this.copied = copied
+        this.basic = basic
+        this.advanced = advanced
+        this.processingCompany = processingCompany
+        this.name = name
         this.explicit = explicit
-        this.transferToThirdCountriesInfo = transferToThirdCountriesInfo
-        this.more = more
-        this.headerModal = headerModal
+        this.implicit = implicit
+        this.btnMoreInfo = btnMoreInfo
         this.furtherInformationOptOut = furtherInformationOptOut
         this.cookiePolicyLinkText = cookiePolicyLinkText
         this.noImplicit = noImplicit

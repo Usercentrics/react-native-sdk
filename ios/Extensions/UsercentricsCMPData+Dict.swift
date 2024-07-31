@@ -47,7 +47,7 @@ extension UsercentricsSettings {
     }
 }
 
-extension UsercentricsLabels {
+extension UsercentricsLabels {    
     func toDictionary() -> NSDictionary {
         return [
             "btnAcceptAll" : self.btnAcceptAll,
@@ -62,6 +62,7 @@ extension UsercentricsLabels {
             "dataCollectedInfo" : self.dataCollectedInfo,
             "locationOfProcessing" : self.locationOfProcessing,
             "transferToThirdCountries" : self.transferToThirdCountries,
+            "transferToThirdCountriesInfo": self.transferToThirdCountriesInfo,
             "dataPurposes" : self.dataPurposes,
             "dataPurposesInfo" : self.dataPurposesInfo,
             "dataRecipientsList" : self.dataRecipientsList,
@@ -109,16 +110,32 @@ extension UsercentricsLabels {
             "yes" : self.yes,
             "storageInformationDescription" : self.storageInformationDescription,
             "btnBannerReadMore" : self.btnBannerReadMore,
+            "btnMore": self.btnMore,
+            "more": self.more,
             "linkToDpaInfo" : self.linkToDpaInfo,
             "second" : self.second,
             "consent" : self.consent,
+            "headerModal": self.headerModal,
             "secondLayerDescriptionHtml" : self.secondLayerDescriptionHtml,
             "secondLayerTitle" : self.secondLayerTitle ?? "",
-            "btnMore": self.btnMore,
+            
+            // Optional
+            "settings" : self.settings ?? "",
+            "subConsents" : self.subConsents ?? "",
+            "btnAccept" : self.btnAccept ?? "",
+            "poweredBy" : self.poweredBy ?? "",
+            "dataProtectionOfficer" : self.dataProtectionOfficer ?? "",
+            "nameOfProcessingCompany" : self.nameOfProcessingCompany ?? "",
+            "btnBack" : self.btnBack ?? "",
+            "copy" : self.copyLabel ?? "",
+            "copied" : self.copied ?? "",
+            "basic" : self.basic ?? "",
+            "advanced" : self.advanced ?? "",
+            "processingCompany" : self.processingCompany ?? "",
+            "name" : self.name ?? "",
             "explicit": self.explicit_ ?? "",
-            "transferToThirdCountriesInfo": self.transferToThirdCountriesInfo,
-            "more": self.more,
-            "headerModal": self.headerModal,
+            "implicit": self.implicit ?? "",
+            "btnMoreInfo" : self.btnMoreInfo ?? "",
             "furtherInformationOptOut": self.furtherInformationOptOut,
             "cookiePolicyLinkText": self.cookiePolicyLinkText,
             "noImplicit": self.noImplicit,
@@ -475,10 +492,10 @@ extension AdTechProvider {
 
     func toDictionary() -> NSDictionary {
         return [
-            "id" : id,
-            "name" : name,
-            "privacyPolicyUrl" : privacyPolicyUrl,
-            "consent" : consent
+            "id" : self.id,
+            "name" : self.name,
+            "privacyPolicyUrl" : self.privacyPolicyUrl,
+            "consent" : self.consent
         ]
     }
 }

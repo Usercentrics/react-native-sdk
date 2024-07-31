@@ -21,7 +21,6 @@ import com.usercentrics.sdk.services.tcf.TCFDecisionUILayer
 import com.usercentrics.sdk.services.tcf.interfaces.TCFData
 import com.usercentrics.sdk.v2.location.data.UsercentricsLocation
 import com.usercentrics.sdk.v2.translation.data.LegalBasisLocalization
-import io.mockk.InternalPlatformDsl.toArray
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verify

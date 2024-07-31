@@ -1,5 +1,17 @@
 [Release Notes](https://docs.usercentrics.com/cmp_in_app_sdk/latest/about/history/)
 
+### 2.15.5 - July 31, 2024
+
+## Improvements
+
+* Google Consent Mode: Enhanced implementation when integrating with the TCF framework
+* Deprecating `copy` field from `UsercentricsLabels`
+
+## Other Fixes
+
+* Crash when invoking `showSecondLayer(...)` method without arguments
+* Adding missing labels in `UsercentrisLabels` object
+
 ### 2.15.4 - July 17, 2024
 
 ## Other Fixes
