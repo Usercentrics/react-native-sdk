@@ -1,5 +1,12 @@
 [Release Notes](https://docs.usercentrics.com/cmp_in_app_sdk/latest/about/history/)
 
+### 2.15.6 - August 14, 2024
+
+## Other Fixes
+
+* Toggle visibility of Deny Button on Second Layer for TVs
+* Stability improvements when initializing the SDK
+
 ### 2.15.5 - July 31, 2024
 
 ## Improvements
