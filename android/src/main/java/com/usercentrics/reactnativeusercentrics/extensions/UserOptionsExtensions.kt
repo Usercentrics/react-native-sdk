@@ -52,5 +52,9 @@ internal fun ReadableMap.usercentricsOptionsFromMap(): UsercentricsOptions {
         options.consentMediation = it
     }
 
+    getDoubleOrNull("initTimeoutMillis")?.let {
+        options.initTimeoutMillis = it.toLong()
+    }
+
     return options
 }
