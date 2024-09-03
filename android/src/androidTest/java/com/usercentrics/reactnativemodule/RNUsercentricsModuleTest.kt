@@ -41,7 +41,7 @@ class RNUsercentricsModuleTest {
             putInt("timeoutMillis", 1000)
             putString("version", "1.2.3")
             putInt("networkMode", 1)
-            putInt("initTimeoutMillis", 1000)
+            putInt("initTimeoutMillis", 10000)
         }
 
         private val bannerSettingsMap = mapOf(
