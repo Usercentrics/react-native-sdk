@@ -9,6 +9,7 @@ export class UsercentricsOptions {
     version?: string;
     networkMode?: NetworkMode;
     consentMediation?: Boolean;
+    initTimeoutMillis?: number;
 
     constructor({
                     settingsId = "",
@@ -18,7 +19,8 @@ export class UsercentricsOptions {
                     timeoutMillis = undefined,
                     version = undefined,
                     networkMode = undefined,
-                    consentMediation = undefined
+                    consentMediation = undefined,
+                    initTimeoutMillis = undefined
                 }: {
         settingsId?: string,
         ruleSetId?: string,
@@ -27,7 +29,8 @@ export class UsercentricsOptions {
         timeoutMillis?: number,
         version?: string,
         networkMode?: NetworkMode,
-        consentMediation?: Boolean
+        consentMediation?: Boolean,
+        initTimeoutMillis?: number
     }) {
         this.settingsId = settingsId;
         this.ruleSetId = ruleSetId;
@@ -37,5 +40,6 @@ export class UsercentricsOptions {
         this.version = version
         this.networkMode = networkMode
         this.consentMediation = consentMediation
+        this.initTimeoutMillis = initTimeoutMillis
     }
 }
