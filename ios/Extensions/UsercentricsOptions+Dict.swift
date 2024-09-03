@@ -36,6 +36,10 @@ public extension UsercentricsOptions {
         if let consentMediationValue = dictionary["networkMode"] as? Bool {
             options.consentMediation = consentMediationValue
         }
+        
+        if let initTimeoutMillis = dictionary["initTimeoutMillis"] as? Int {
+            options.initTimeoutMillis = Int64(initTimeoutMillis)
+        }
 
         return options
     }
