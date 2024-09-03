@@ -1,5 +1,11 @@
 [Release Notes](https://docs.usercentrics.com/cmp_in_app_sdk/latest/about/history/)
 
+### 2.16.0 - September 4, 2024
+
+## Features
+
+* New timeout mode - In this version, you are able to customize the global timeout for the maximum amount of time that the SDK should take to fully initialize, just set the new parameter on the [UsercentricsOptions](https://usercentrics.com/docs/apps/api/core-api/#usercentricsoptions)
+
 ### 2.15.6 - August 14, 2024
 
 ## Other Fixes
