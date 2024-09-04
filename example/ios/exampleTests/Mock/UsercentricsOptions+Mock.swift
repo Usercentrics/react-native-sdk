@@ -8,8 +8,10 @@ extension UsercentricsOptions {
                    defaultLanguage: String = "PT",
                    version: String = "1.2.3",
                    timeoutMillis: Int64 = 1000,
-                   consentMediation: Bool = true) -> UsercentricsOptions {
-    return UsercentricsOptions(settingsId: settingsId, defaultLanguage: defaultLanguage, version: version, timeoutMillis: timeoutMillis, loggerLevel: loggerLevel, ruleSetId: ruleSetId, consentMediation: consentMediation)
+                   consentMediation: Bool = true,
+                   domains: UsercentricsDomains? = nil,
+                   initTimeoutMillis: Int64 = 1000) -> UsercentricsOptions {
+    return UsercentricsOptions(settingsId: settingsId, defaultLanguage: defaultLanguage, version: version, timeoutMillis: timeoutMillis, loggerLevel: loggerLevel, ruleSetId: ruleSetId, consentMediation: consentMediation, domains: domains, initTimeoutMillis: initTimeoutMillis)
   }
 
   static func asDict(mockObject: UsercentricsOptions? = nil) -> NSDictionary {
@@ -21,7 +23,8 @@ extension UsercentricsOptions {
       "timeoutMillis": expectedOptions.timeoutMillis,
       "version": expectedOptions.version,
       "defaultLanguage": expectedOptions.defaultLanguage,
-      "consentMediation": expectedOptions.consentMediation
+      "consentMediation": expectedOptions.consentMediation,
+      "initTimeoutMillis": expectedOptions.initTimeoutMillis
     ]
   }
 }

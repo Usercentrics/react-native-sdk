@@ -72,7 +72,8 @@ describe('Test Usercentrics Module', () => {
             loggerLevel: UsercentricsLoggerLevel.debug,
             timeoutMillis: 123,
             version: "1.2.3",
-            networkMode: NetworkMode.eu
+            networkMode: NetworkMode.eu,
+            initTimeoutMillis: 1000
         });
         Usercentrics.configure(options);
         const call = RNUsercentricsModule.configure.mock.calls[0][0];

@@ -13,7 +13,8 @@ class UsercentricsOptionsDictTests: XCTestCase {
       "ruleSetId": "qwer",
       "timeoutMillis": 1000,
       "version": "1.2.3",
-      "networkMode": 1
+      "networkMode": 1,
+      "initTimeoutMillis": 1500,
     ]
 
 
@@ -26,6 +27,7 @@ class UsercentricsOptionsDictTests: XCTestCase {
     XCTAssertEqual(.debug, usercentricsOptionsFromDict.loggerLevel)
     XCTAssertEqual(1000, usercentricsOptionsFromDict.timeoutMillis)
     XCTAssertEqual(.eu, usercentricsOptionsFromDict.networkMode)
+    XCTAssertEqual(1500, usercentricsOptionsFromDict.initTimeoutMillis)
   }
 
   func testInitializeWithoutSettingsIdShouldNotInitialize() {
