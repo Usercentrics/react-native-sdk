@@ -1,5 +1,18 @@
 [Release Notes](https://docs.usercentrics.com/cmp_in_app_sdk/latest/about/history/)
 
+### 2.17.0 - September 18, 2024
+
+## Improvements
+* TCF V5 - Updated to new TCF Policy version
+  * Updated TCF banner second's layer to reflect the latest addition of Special Purpose 3
+  * Updated TCF banner second's layer to include information related to the CMP’s maximum device storage duration
+* Adjust Consent Mediation
+  * Adding support for new Adjust version 5
+  * Adjust version 4 will be supported until October 31, 2024
+## iOS Bug Fixes
+* ironSource Consent Mediation for CCPA not being applied
+* HTML text not being rendered correctly
+
 ### 2.16.0 - September 4, 2024
 
 ## Features
