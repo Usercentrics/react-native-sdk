@@ -271,7 +271,8 @@ internal object GetCMPDataMock {
         scope = TCF2Scope.SERVICE,
         changedPurposes = TCF2ChangedPurposes(purposes = listOf(1, 2, 3), legIntPurposes = listOf(1, 2, 3)),
         acmV2Enabled = true,
-        selectedATPIds = listOf(43, 46, 55)
+        selectedATPIds = listOf(43, 46, 55),
+        atpListTitle = "Google Providers",
     )
     private val fakeCCPASettings = CCPASettings(
         secondLayerHideLanguageSwitch = false,
