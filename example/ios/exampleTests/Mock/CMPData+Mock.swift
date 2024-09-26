@@ -335,7 +335,8 @@ extension TCF2Settings {
                  changedPurposes: .mock(),
                  acmV2Enabled: true,
                  selectedATPIds: [43,46,55],
-                 resurfaceATPListChanged: false)
+                 resurfaceATPListChanged: false,
+                 atpListTitle: "Google Providers")
   }
 }
 
