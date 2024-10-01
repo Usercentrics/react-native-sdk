@@ -1,5 +1,10 @@
 [Release Notes](https://docs.usercentrics.com/cmp_in_app_sdk/latest/about/history/)
 
+### 2.17.2 - October 1, 2024
+
+## Improvements
+* Update to improve compatibility and ensure smoother performance with Google Consent Mode
+
 ### 2.17.1 - September 25, 2024
 
 ## Improvements
