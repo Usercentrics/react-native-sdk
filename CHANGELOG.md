@@ -1,5 +1,13 @@
 [Release Notes](https://docs.usercentrics.com/cmp_in_app_sdk/latest/about/history/)
 
+### 2.17.3 - October 17, 2024
+
+## Features
+* Added support for right-to-left (RTL) languages in our SDK for enhanced localization and global accessibility.
+
+## Fixes
+* General fixes and performance improvements
+
 ### 2.17.2 - October 1, 2024
 
 ## Improvements
