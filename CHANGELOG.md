@@ -1,5 +1,13 @@
 [Release Notes](https://docs.usercentrics.com/cmp_in_app_sdk/latest/about/history/)
 
+### 2.18.0 - November 14, 2024
+
+## Fixes
+* [Fix] Crash when attempting to restore user session with controller id that only has TCF component
+
+## Android Bug Fix:
+* [Fix] Fixed issues related to dismissing banners in inactive activities.
+
 ### 2.17.3 - October 17, 2024
 
 ## Features
