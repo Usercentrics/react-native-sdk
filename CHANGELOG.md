@@ -1,5 +1,10 @@
 [Release Notes](https://docs.usercentrics.com/cmp_in_app_sdk/latest/about/history/)
 
+### 2.18.1 - November 20, 2024
+
+## Improvements
+* Caching solutions - Improved our cache solution to provide faster initializations and better UX
+
 ### 2.18.0 - November 14, 2024
 
 ## Fixes
