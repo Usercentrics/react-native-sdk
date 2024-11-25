@@ -44,6 +44,7 @@ extension UsercentricsSettings {
                  dpsDisplayFormat: .all,
                  framework: .vcdpa,
                  publishedApps: [.mock()],
+                 renewConsentsTimestamp: 1000,
                  consentTemplates: [.mock()],
                  categories: [.mock()])
   }
@@ -173,6 +174,7 @@ extension UsercentricsLabels {
                  yes: "yes",
                  storageInformationDescription: "storageInformationDescription",
                  btnBannerReadMore: "btnBannerReadMore",
+                 readLess: "readLess",
                  btnMore: "btnMore",
                  more: "more",
                  linkToDpaInfo: "linkToDpaInfo",
