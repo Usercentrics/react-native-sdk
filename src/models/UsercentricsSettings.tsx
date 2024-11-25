@@ -29,6 +29,7 @@ export class UsercentricsSettings {
     dpsDisplayFormat?: DpsDisplayFormat
     framework?: USAFrameworks
     publishedApps?: [PublishedApp]
+    renewConsentsTimestamp?: number
 
     constructor(
         labels: UsercentricsLabels,
@@ -57,6 +58,7 @@ export class UsercentricsSettings {
         dpsDisplayFormat?: DpsDisplayFormat,
         framework?: USAFrameworks,
         publishedApps?: [PublishedApp],
+        renewConsentsTimestamp?: number,
     ) {
         this.labels = labels
         this.version = version
@@ -84,6 +86,7 @@ export class UsercentricsSettings {
         this.dpsDisplayFormat = dpsDisplayFormat
         this.framework = framework
         this.publishedApps = publishedApps
+        this.renewConsentsTimestamp = renewConsentsTimestamp
     }
 }
 

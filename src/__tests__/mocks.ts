@@ -105,6 +105,7 @@ const ucLabels: UsercentricsLabels = {
     yes: "yes",
     storageInformationDescription: "storageInformationDescription",
     btnBannerReadMore: "btnBannerReadMore",
+    readLess: "readLess",
     btnMore: "btnMore",
     more: "more",
     linkToDpaInfo: "linkToDpaInfo",
@@ -249,7 +250,8 @@ const ucSettings: UsercentricsSettings = {
     variants: undefined,
     dpsDisplayFormat: DpsDisplayFormat.all,
     framework: USAFrameworks.cpa,
-    publishedApps: undefined
+    publishedApps: undefined,
+    renewConsentsTimestamp: 1000
 }
 
 const disclosure: ConsentDisclosure = {
