@@ -154,6 +154,7 @@ internal object GetCMPDataMock {
         yes = "yes",
         storageInformationDescription = "Below you can see the longest potential duration for storage on a device, as set when using the cookie method of storage and if there are any other methods used.",
         btnBannerReadMore = "Read more",
+        readLess = "Read less",
         btnMore = "more",
         more = "more",
         linkToDpaInfo = "Data Processing Agreement",
@@ -333,6 +334,7 @@ internal object GetCMPDataMock {
         publishedApps = listOf(
             PublishedApp(bundleId = "bundleId", platform = PublishedAppPlatform.ANDROID)
         ),
+        renewConsentsTimestamp = 1000L
     )
 
     // From the debugger
@@ -411,6 +413,7 @@ internal object GetCMPDataMock {
         "yes" to "yes",
         "storageInformationDescription" to "Below you can see the longest potential duration for storage on a device, as set when using the cookie method of storage and if there are any other methods used.",
         "btnBannerReadMore" to "Read more",
+        "readLess" to "Read less",
         "btnMore" to "more",
         "more" to "more",
         "linkToDpaInfo" to "Data Processing Agreement",
@@ -568,7 +571,8 @@ internal object GetCMPDataMock {
                 "platform" to 0
             )
         ),
-        "reshowBanner" to 0
+        "reshowBanner" to 0,
+        "renewConsentsTimestamp" to 1000L
     )
 
     val expectedCategories = listOf(

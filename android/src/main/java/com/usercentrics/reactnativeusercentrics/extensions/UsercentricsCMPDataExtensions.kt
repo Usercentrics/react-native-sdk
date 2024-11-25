@@ -62,6 +62,7 @@ private fun UsercentricsSettings.serialize(): WritableMap {
         "dpsDisplayFormat" to dpsDisplayFormat?.ordinal,
         "framework" to framework?.ordinal,
         "publishedApps" to publishedApps?.map { it.serialize() },
+        "renewConsentsTimestamp" to renewConsentsTimestamp
     ).toWritableMap()
 }
 
@@ -127,6 +128,7 @@ private fun UsercentricsLabels.serialize(): Map<String, Any?> {
         "yes" to yes,
         "storageInformationDescription" to storageInformationDescription,
         "btnBannerReadMore" to btnBannerReadMore,
+        "readLess" to readLess,
         "btnMore" to btnMore,
         "more" to more,
         "linkToDpaInfo" to linkToDpaInfo,
