@@ -60,6 +60,7 @@ export class UsercentricsLabels {
     yes: string
     storageInformationDescription: string
     btnBannerReadMore: string
+    readLess: string
     btnMore: string
     more: string
     linkToDpaInfo: string
@@ -152,6 +153,7 @@ export class UsercentricsLabels {
         yes: string,
         storageInformationDescription: string,
         btnBannerReadMore: string,
+        readLess: string,
         btnMore: string,
         more: string,
         linkToDpaInfo: string,
@@ -241,6 +243,7 @@ export class UsercentricsLabels {
         this.yes = yes
         this.storageInformationDescription = storageInformationDescription
         this.btnBannerReadMore = btnBannerReadMore
+        this.readLess = readLess
         this.btnMore = btnMore
         this.more = more
         this.linkToDpaInfo = linkToDpaInfo

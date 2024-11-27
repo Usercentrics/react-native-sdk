@@ -43,6 +43,7 @@ extension UsercentricsSettings {
             "dpsDisplayFormat": (self.dpsDisplayFormat?.ordinal ?? nil) as Any,
             "framework": (self.framework?.ordinal ?? nil) as Any,
             "publishedApps": (self.publishedApps?.map { $0.toDictionary() } ?? nil) as Any,
+            "renewConsentsTimestamp": self.renewConsentsTimestamp as Any,
         ]
     }
 }
@@ -110,6 +111,7 @@ extension UsercentricsLabels {
             "yes" : self.yes,
             "storageInformationDescription" : self.storageInformationDescription,
             "btnBannerReadMore" : self.btnBannerReadMore,
+            "readLess": self.readLess,
             "btnMore": self.btnMore,
             "more": self.more,
             "linkToDpaInfo" : self.linkToDpaInfo,
