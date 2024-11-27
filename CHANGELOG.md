@@ -1,5 +1,13 @@
 [Release Notes](https://docs.usercentrics.com/cmp_in_app_sdk/latest/about/history/)
 
+### 2.18.2 - November 27, 2024
+
+## Features
+* Added support for manual resurface in the mobile SDK, which can be trigged through Admin Interface.
+
+## Improvements
+* Exposed `readLess` label in `UsercentricsLabels` object
+
 ### 2.18.1 - November 20, 2024
 
 ## Improvements
