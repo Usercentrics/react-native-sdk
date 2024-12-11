@@ -1,5 +1,17 @@
 [Release Notes](https://docs.usercentrics.com/cmp_in_app_sdk/latest/about/history/)
 
+### 2.18.3 - December 11, 2024
+
+## Features
+* Removed support for Adjust version 4.
+
+## Improvements
+* Flutter: Exposed `legalBasis` field in `UsercentricsCMPData` class.
+
+## Android Bug Fixes:
+* Full-screen mode was not properly applied on certain devices, causing the banner to be displayed within the safe area.
+* Banner content was hidden by the selfie camera when full-screen mode was activated.
+
 ### 2.18.2 - November 27, 2024
 
 ## Features
