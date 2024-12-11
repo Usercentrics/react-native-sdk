@@ -30,7 +30,7 @@ jobs:
 
   test-ios:
     needs: test-rn
-    runs-on: macos-12
+    runs-on: macos-13
     defaults:
       run:
         working-directory: example
@@ -59,7 +59,7 @@ jobs:
 
   test-android:
     needs: test-rn
-    runs-on: macOS-12
+    runs-on: macOS-13
     env:
       GRADLE_VERSION: 7.6
 
