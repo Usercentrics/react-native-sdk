@@ -12,7 +12,6 @@ on:
 jobs:
   test-rn:
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v1
 
@@ -25,6 +24,7 @@ jobs:
         run: |
           npm ci
           npm test
+
       - name: Assert that every file that should be public has been exported
         run: ./scripts/assert_export.sh
 
@@ -60,52 +60,45 @@ jobs:
   test-android:
     needs: test-rn
     runs-on: macOS-13
-    steps:
-      - name: No-op
-        run: echo "Skipping Android tests. Job completed successfully."
+    env:
+      GRADLE_VERSION: 7.6
 
-#  test-android:
-#    needs: test-rn
-#    runs-on: macOS-13
-#    env:
-#      GRADLE_VERSION: 7.6
-#
-#    steps:
-#      - name: Checkout
-#        uses: actions/checkout@v2
-#
-#      - name: Setup Node
-#        uses: actions/setup-node@v2
-#        with:
-#          node-version: ${{ env.NODE_JS_VERSION }}
-#
-#      - name: Java 11
-#        uses: actions/setup-java@v1
-#        with:
-#          java-version: 11
-#
-#      - name: Install Dependencies npm
-#        working-directory: ./example
-#        run: npm install
-#
-#      - name: Cache Gradle
-#        id: cache-gradle
-#        uses: actions/cache@v2
-#        with:
-#          path: |
-#            ./example/android/ci-cache/gradle
-#            ./example/android/gradle/wrapper/gradle-wrapper.jar
-#            ./example/android/gradlew
-#          key: ${{ runner.os }}-cache-gradle-${{ env.GRADLE_VERSION }}
-#
-#      - name: Setup Gradle
-#        if: steps.cache-gradle.outputs.cache-hit != 'true'
-#        working-directory: ./example/android
-#        run: ../../scripts/setup_gradle.sh ${{ env.GRADLE_VERSION }}
-#
-#      - name: Android tests
-#        uses: reactivecircus/android-emulator-runner@v2
-#        with:
-#          working-directory: ./example/android
-#          api-level: 29
-#          script: gradle wrapper; ./gradlew :react-native-usercentrics:connectedAndroidTest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ env.NODE_JS_VERSION }}
+
+      - name: Java 17
+        uses: actions/setup-java@v1
+        with:
+          java-version: 17
+
+      - name: Install Dependencies npm
+        working-directory: ./example
+        run: npm install
+
+      - name: Cache Gradle
+        id: cache-gradle
+        uses: actions/cache@v4
+        with:
+          path: |
+            ./example/android/ci-cache/gradle
+            ./example/android/gradle/wrapper/gradle-wrapper.jar
+            ./example/android/gradlew
+          key: ${{ runner.os }}-cache-gradle-${{ env.GRADLE_VERSION }}
+
+      - name: Setup Gradle
+        if: steps.cache-gradle.outputs.cache-hit != 'true'
+        working-directory: ./example/android
+        run: ../../scripts/setup_gradle.sh ${{ env.GRADLE_VERSION }}
+
+      - name: Android tests
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          working-directory: ./example/android
+          api-level: 29
+          script: gradle wrapper; ./gradlew :react-native-usercentrics:connectedAndroidTest
