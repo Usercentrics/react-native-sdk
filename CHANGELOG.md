@@ -11,6 +11,17 @@
 * Google Consent Mode edge case when setting `analytics_storage` flag
 * Clear User Session edge case when using caching certain requests
 
+### 2.18.5 - January 23, 2025
+
+## Fixes
+* Issue causing a temporary unstable SDK state when calling the `clearUserSession()` API
+
+## Android Bug Fixes
+* Memory leak that occurred when displaying the banner's First Layer
+
+## iOS Bug Fixes
+* Accessibility by addressing instances where multiple links had identical link text
+
 ### 2.18.3 - December 11, 2024
 
 ## Features
