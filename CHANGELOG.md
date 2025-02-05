@@ -11,6 +11,16 @@
 * Google Consent Mode edge case when setting `analytics_storage` flag
 * Clear User Session edge case when using caching certain requests
 
+### 2.18.6 - February 05, 2025
+
+## Fixes
+* An error occurring when trying to migrate from version 7 to 8.
+* Issue causing SDK initialization to fail when using a specific version with Google's ATPs disabled.
+
+## Improvements
+* iOS - Enhanced accessibility by increasing the contrast of the focus indicator.
+* Flutter - Exposing the stack trace when SDK initialization fails.
+
 ### 2.18.5 - January 23, 2025
 
 ## Fixes
