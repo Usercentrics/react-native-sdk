@@ -1,5 +1,11 @@
 [Release Notes](https://docs.usercentrics.com/cmp_in_app_sdk/latest/about/history/)
 
+### 2.19.0 - March 24, 2025
+
+## Improvements
+* Resolved an SDK cache issue that was causing the banner to display an inconsistent UI.
+* Accessibility features for a better user experience.
+
 ### 2.18.9 - February 27, 2025
 
 ## Fixes
