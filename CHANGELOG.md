@@ -1,5 +1,11 @@
 [Release Notes](https://docs.usercentrics.com/cmp_in_app_sdk/latest/about/history/)
 
+### 2.20.0 - April 16, 2025
+## Feature
+* TCF Updates - TCF library updated to version 1.5.15 to resolve LI signaling ambiguity for vendors with Purposes under consent and Special Purposes
+  * Implemented LI signalling to vendors only registered for Special Purposes with TCF Technical specifications
+  * Added support for new languages: Albanian (SQ), Chinese Traditional (ZH-HANT), Georgian (KA), Hindi (HI), Thai (TH), Vietnamese (VI)
+
 ### 2.19.0 - March 24, 2025
 
 ## Improvements
