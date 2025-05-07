@@ -46,7 +46,8 @@ extension UsercentricsSettings {
                  publishedApps: [.mock()],
                  renewConsentsTimestamp: 1000,
                  consentTemplates: [.mock()],
-                 categories: [.mock()])
+                 categories: [.mock()]),
+                 consentWebhook: true,
   }
 }
 
