@@ -334,7 +334,8 @@ internal object GetCMPDataMock {
         publishedApps = listOf(
             PublishedApp(bundleId = "bundleId", platform = PublishedAppPlatform.ANDROID)
         ),
-        renewConsentsTimestamp = 1000L
+        renewConsentsTimestamp = 1000L,
+        consentWebhook = true
     )
 
     // From the debugger
@@ -572,7 +573,8 @@ internal object GetCMPDataMock {
             )
         ),
         "reshowBanner" to 0,
-        "renewConsentsTimestamp" to 1000L
+        "renewConsentsTimestamp" to 1000L,
+        "consentWebhook" to true
     )
 
     val expectedCategories = listOf(

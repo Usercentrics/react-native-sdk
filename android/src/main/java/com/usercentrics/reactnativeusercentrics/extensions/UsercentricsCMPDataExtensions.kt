@@ -62,7 +62,8 @@ private fun UsercentricsSettings.serialize(): WritableMap {
         "dpsDisplayFormat" to dpsDisplayFormat?.ordinal,
         "framework" to framework?.ordinal,
         "publishedApps" to publishedApps?.map { it.serialize() },
-        "renewConsentsTimestamp" to renewConsentsTimestamp
+        "renewConsentsTimestamp" to renewConsentsTimestamp,
+        "consentWebhook" to consentWebhook
     ).toWritableMap()
 }
 
