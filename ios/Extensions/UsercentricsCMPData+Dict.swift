@@ -44,6 +44,7 @@ extension UsercentricsSettings {
             "framework": (self.framework?.ordinal ?? nil) as Any,
             "publishedApps": (self.publishedApps?.map { $0.toDictionary() } ?? nil) as Any,
             "renewConsentsTimestamp": self.renewConsentsTimestamp as Any,
+            "consentWebhook": self.consentWebhook as Any,
         ]
     }
 }

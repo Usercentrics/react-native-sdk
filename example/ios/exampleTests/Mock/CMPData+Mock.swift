@@ -45,6 +45,7 @@ extension UsercentricsSettings {
                  framework: .vcdpa,
                  publishedApps: [.mock()],
                  renewConsentsTimestamp: 1000,
+                 consentWebhook: true,
                  consentTemplates: [.mock()],
                  categories: [.mock()])
   }
