@@ -30,6 +30,7 @@ export class UsercentricsSettings {
     framework?: USAFrameworks
     publishedApps?: [PublishedApp]
     renewConsentsTimestamp?: number
+    consentWebhook?: boolean
 
     constructor(
         labels: UsercentricsLabels,
@@ -59,6 +60,7 @@ export class UsercentricsSettings {
         framework?: USAFrameworks,
         publishedApps?: [PublishedApp],
         renewConsentsTimestamp?: number,
+        consentWebhook?: boolean,
     ) {
         this.labels = labels
         this.version = version
@@ -87,6 +89,7 @@ export class UsercentricsSettings {
         this.framework = framework
         this.publishedApps = publishedApps
         this.renewConsentsTimestamp = renewConsentsTimestamp
+        this.consentWebhook = consentWebhook
     }
 }
 

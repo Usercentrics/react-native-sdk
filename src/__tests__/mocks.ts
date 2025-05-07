@@ -251,7 +251,8 @@ const ucSettings: UsercentricsSettings = {
     dpsDisplayFormat: DpsDisplayFormat.all,
     framework: USAFrameworks.cpa,
     publishedApps: undefined,
-    renewConsentsTimestamp: 1000
+    renewConsentsTimestamp: 1000,
+    consentWebhook: true
 }
 
 const disclosure: ConsentDisclosure = {
