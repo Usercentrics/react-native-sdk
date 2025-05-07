@@ -1,5 +1,7 @@
 [Release Notes](https://docs.usercentrics.com/cmp_in_app_sdk/latest/about/history/)
 
+### 2.20.1 - May 7, 2025
+
 ### 2.20.0 - April 16, 2025
 ## Feature
 * TCF Updates - TCF library updated to version 1.5.15 to resolve LI signaling ambiguity for vendors with Purposes under consent and Special Purposes
