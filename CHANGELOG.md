@@ -1,6 +1,13 @@
 [Release Notes](https://docs.usercentrics.com/cmp_in_app_sdk/latest/about/history/)
 
 ### 2.20.1 - May 7, 2025
+## Improvements: Accessibility Enhancements - Enhanced accessibility features to provide a more inclusive user experience.
+* Android Bug Fixes:
+  * Ensured minimum touch target size of 24dp for interactive elements.
+  * Added status messages to announce additional content for screen readers.
+* iOS Bug Fixes:
+  * Added status messages to announce additional content for screen readers.
+  * Fixed dynamic type behavior to correctly resize text when accessibility text size is increased.
 
 ### 2.20.0 - April 16, 2025
 ## Feature
