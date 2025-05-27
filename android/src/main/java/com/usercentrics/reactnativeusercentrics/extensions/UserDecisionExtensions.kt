@@ -12,7 +12,7 @@ import com.usercentrics.sdk.services.tcf.interfaces.TCFUserDecisions
 internal fun ReadableArray.deserializeUserDecision(): List<UserDecision> {
     val decisionList = mutableListOf<UserDecision>()
     for (i in 0 until size()) {
-        val map = getMap(i)
+        val map = getMap(i) ?: continue
         decisionList.add(
             UserDecision(
                 map.getString("serviceId")!!,
@@ -27,7 +27,8 @@ internal fun ReadableMap.deserializeTCFUserDecisions(): TCFUserDecisions {
     val purposes = getArray("purposes")?.let {
         val list = mutableListOf<TCFUserDecisionOnPurpose>()
         for (i in 0 until it.size()) {
-            list.add(it.getMap(i).deserializeTCFUserDecisionOnPurpose())
+            val item = it.getMap(i)?.deserializeTCFUserDecisionOnPurpose() ?: continue
+            list.add(item)
         }
         list
     }
@@ -35,7 +36,8 @@ internal fun ReadableMap.deserializeTCFUserDecisions(): TCFUserDecisions {
     val specialFeature = getArray("specialFeatures")?.let {
         val list = mutableListOf<TCFUserDecisionOnSpecialFeature>()
         for (i in 0 until it.size()) {
-            list.add(it.getMap(i).deserializeTCFUserDecisionOnSpecialFeature())
+            val item = it.getMap(i)?.deserializeTCFUserDecisionOnSpecialFeature() ?: continue
+            list.add(item)
         }
         list
     }
@@ -43,7 +45,8 @@ internal fun ReadableMap.deserializeTCFUserDecisions(): TCFUserDecisions {
     val vendors = getArray("vendors")?.let {
         val list = mutableListOf<TCFUserDecisionOnVendor>()
         for (i in 0 until it.size()) {
-            list.add(it.getMap(i).deserializeTCFUserDecisionOnVendor())
+            val item = it.getMap(i)?.deserializeTCFUserDecisionOnVendor() ?: continue
+            list.add(item)
         }
         list
     }
@@ -51,7 +54,8 @@ internal fun ReadableMap.deserializeTCFUserDecisions(): TCFUserDecisions {
     val adTechProviderDecisions = getArray("adTechProviders")?.let {
         val list = mutableListOf<AdTechProviderDecision>()
         for (i in 0 until it.size()) {
-            list.add(it.getMap(i).deserializeAdTechProviderDecision())
+            val item = it.getMap(i)?.deserializeAdTechProviderDecision() ?: continue
+            list.add(item)
         }
         list
     }

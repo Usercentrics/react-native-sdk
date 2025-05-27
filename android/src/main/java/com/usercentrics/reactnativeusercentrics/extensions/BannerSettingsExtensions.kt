@@ -108,10 +108,10 @@ internal fun ReadableMap.buttonLayoutFromMap(context: Context): ButtonLayout? {
 
         for (rowIndex in 0 until buttonsArray.size()) {
             val listRow = mutableListOf<ButtonSettings>()
-            val row = buttonsArray.getArray(rowIndex)
+            val row = buttonsArray.getArray(rowIndex) ?: continue
 
             for (rowElement in 0 until row.size()) {
-                val element = row.getMap(rowElement)
+                val element = row.getMap(rowElement) ?: continue
                 listRow.add(element.buttonSettingsFromMap(context))
             }
             buttonsList.add(listRow)
