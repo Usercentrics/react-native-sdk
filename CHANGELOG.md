@@ -1,5 +1,9 @@
 [Release Notes](https://docs.usercentrics.com/cmp_in_app_sdk/latest/about/history/)
 
+### 2.20.2 - May 27, 2025
+## Improvement: Accessibility Enhancements
+* Android & iOS: Implemented general accessibility improvements, including better color contrast, adjustments to touch target sizes, improved focus order, and fixes to prevent keyboard traps enhancing compatibility with assistive technologies and overall usability.
+
 ### 2.20.1 - May 7, 2025
 ## Improvements: Accessibility Enhancements - Enhanced accessibility features to provide a more inclusive user experience.
 * Android Bug Fixes:
