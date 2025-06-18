@@ -21,7 +21,8 @@ internal class GetConsentsMock {
                         123
                     )
                 ),
-                isEssential = false
+                isEssential = false,
+                category = "marketing",
             )
         )
 
@@ -39,7 +40,8 @@ internal class GetConsentsMock {
                         "type" to 0,
                         "status" to false
                     )
-                )
+                ),
+                "category" to "marketing"
             )
         )
     }

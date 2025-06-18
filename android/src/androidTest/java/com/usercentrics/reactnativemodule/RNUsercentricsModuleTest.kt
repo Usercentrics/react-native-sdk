@@ -82,7 +82,8 @@ class RNUsercentricsModuleTest {
                     type = UsercentricsConsentType.EXPLICIT,
                     version = "1.0.1",
                     isEssential = false,
-                    history = usercentricsConsentHistoryEntries
+                    history = usercentricsConsentHistoryEntries,
+                    category = "marketing",
                 )
             ),
             geolocationRuleset = GeolocationRuleset(

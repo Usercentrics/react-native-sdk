@@ -1,5 +1,14 @@
 [Release Notes](https://docs.usercentrics.com/cmp_in_app_sdk/latest/about/history/)
 
+### 2.21.0 - Jun 18, 2025
+## Feature - Consent Mediation
+* Added support for AppsFlyer SDK
+* Added support for Singular SDK
+## Improvement - Exposing `category` field in `UsercentricsServiceConsent` object
+## iOS Bug Fixes:
+* Accessibility improvements with VoiceOver and keyboard focus
+* Fixed button sizes when expanding font size
+
 ### 2.20.3 - May 30, 2025
 ## Improvement: Accessibility Enhancements
 * iOS: Enhanced VoiceOver support when expanding cards across all compliance frameworks.

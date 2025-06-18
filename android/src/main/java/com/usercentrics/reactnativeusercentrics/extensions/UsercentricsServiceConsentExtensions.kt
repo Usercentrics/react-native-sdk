@@ -32,6 +32,7 @@ internal fun UsercentricsServiceConsent.toWritableMap(): WritableMap {
         putString("dataProcessor", dataProcessor)
         putBoolean("isEssential", isEssential)
         putArray("history", history.toWritableArray())
+        putString("category", category)
     }
 }
 
