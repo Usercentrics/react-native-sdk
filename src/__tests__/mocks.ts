@@ -28,7 +28,8 @@ export const usercentricsServiceConsent = {
     status: false,
     dataProcessor: "abc",
     version: "abc",
-    type: 0
+    type: 0,
+    categoty: "essential",
 };
 
 export const userDecision = {

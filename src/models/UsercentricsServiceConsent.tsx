@@ -9,8 +9,9 @@ export class UsercentricsServiceConsent {
     type: UsercentricsConsentType
     isEssential: boolean
     history: UsercentricsConsentHistoryEntry[]
+    category: string
 
-    constructor(templateId: string, status: boolean, dataProcessor: string, version: string, type: UsercentricsConsentType, isEssential: boolean, history: UsercentricsConsentHistoryEntry[]) {
+    constructor(templateId: string, status: boolean, dataProcessor: string, version: string, type: UsercentricsConsentType, isEssential: boolean, history: UsercentricsConsentHistoryEntry[], category: string) {
         this.templateId = templateId
         this.status = status
         this.dataProcessor = dataProcessor
@@ -18,6 +19,7 @@ export class UsercentricsServiceConsent {
         this.type = type
         this.isEssential = isEssential
         this.history = history
+        this.category = category;
     }
 }
 
