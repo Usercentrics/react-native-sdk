@@ -15,7 +15,8 @@ public extension UsercentricsServiceConsent {
             "version": self.version,
             "dataProcessor": self.dataProcessor,
             "isEssential": self.isEssential,
-            "history": self.history.toDictionary()
+            "history": self.history.toDictionary(),
+            "category": self.category
         ]
 
         if let type = self.type?.ordinal {
