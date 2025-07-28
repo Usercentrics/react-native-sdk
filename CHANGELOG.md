@@ -1,5 +1,10 @@
 [Release Notes](https://docs.usercentrics.com/cmp_in_app_sdk/latest/about/history/)
 
+### 2.21.1 - Jul 25, 2025
+## Improvement
+## Android/iOS Bug Fixes:
+* Fixed crashes related to the UI
+
 ### 2.21.0 - Jun 18, 2025
 ## Feature - Consent Mediation
 * Added support for AppsFlyer SDK
