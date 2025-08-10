@@ -126,6 +126,15 @@ android {
     ndkVersion libs.versions.ndk.get()
     compileSdkVersion libs.versions.compile.sdk.get().toInteger()
 
+    compileOptions {
+        sourceCompatibility JavaVersion.valueOf("VERSION_" + libs.versions.java.version.get().replace(".", "_"))
+        targetCompatibility JavaVersion.valueOf("VERSION_" + libs.versions.java.version.get().replace(".", "_"))
+    }
+
+    kotlinOptions {
+        jvmTarget = libs.versions.jvm.target.get()
+    }
+
     defaultConfig {
         applicationId 'com.example'
         minSdkVersion libs.versions.min.sdk.get().toInteger()

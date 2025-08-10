@@ -10,8 +10,9 @@ target-sdk = "32"
 build-tools = "30.0.2"
 ndk = "23.0.7599858"
 
-# Java
+# Java/Kotlin Compatibility
 java-version = "1.8"
+jvm-target = "1.8"
 
 # Dependencies
 usercentrics = "2.21.1"

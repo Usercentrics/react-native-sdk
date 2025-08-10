@@ -26,8 +26,12 @@ android {
     compileSdkVersion libs.versions.compile.sdk.get().toInteger()
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.valueOf("VERSION_" + libs.versions.java.version.get().replace(".", "_"))
+        targetCompatibility JavaVersion.valueOf("VERSION_" + libs.versions.java.version.get().replace(".", "_"))
+    }
+
+    kotlinOptions {
+        jvmTarget = libs.versions.jvm.target.get()
     }
 
     sourceSets {
