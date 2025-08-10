@@ -127,8 +127,8 @@ android {
     compileSdkVersion libs.versions.compile.sdk.get().toInteger()
 
     compileOptions {
-        sourceCompatibility JavaVersion.valueOf("VERSION_" + libs.versions.java.version.get().replace(".", "_"))
-        targetCompatibility JavaVersion.valueOf("VERSION_" + libs.versions.java.version.get().replace(".", "_"))
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
 
     kotlinOptions {

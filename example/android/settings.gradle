@@ -1,7 +1,5 @@
 rootProject.name = 'example'
 
-// Enable Version Catalog
-enableFeaturePreview('VERSION_CATALOGS')
 dependencyResolutionManagement {
     versionCatalogs {
         libs {
