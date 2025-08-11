@@ -1,5 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
+apply plugin: 'com.facebook.react'
 
 import com.android.build.OutputFile
 
@@ -82,7 +83,7 @@ project.ext.react = [
         enableHermes: false,  // clean and rebuild if changing
 ]
 
-apply from: '../../node_modules/react-native/react.gradle'
+//apply from: '../../node_modules/react-native/react.gradle'
 
 /**
  * Set this to true to create two separate APKs instead of one:
@@ -127,8 +128,8 @@ android {
     compileSdkVersion libs.versions.compile.sdk.get().toInteger()
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
     }
 
     kotlinOptions {

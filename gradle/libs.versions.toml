@@ -1,18 +1,21 @@
 [versions]
 # Build Tools
-gradle-plugin = "7.4.2"
-kotlin = "1.8.22"
+gradle-plugin = "8.0.2"
+kotlin = "1.9.20"
 
 # Android SDK
 min-sdk = "21"
-compile-sdk = "32"
-target-sdk = "32"
-build-tools = "30.0.2"
+compile-sdk = "33"
+target-sdk = "33"
+build-tools = "33.0.1"
 ndk = "23.0.7599858"
 
 # Java/Kotlin Compatibility
-java-version = "1.8"
-jvm-target = "1.8"
+java-version = "17"
+jvm-target = "17"
+
+# React Native
+react-native-plugin = "0.73.6"
 
 # Dependencies
 usercentrics = "2.21.1"
@@ -29,6 +32,7 @@ androidx-test-rules = "1.4.0"
 # Build Tools (for buildscript)
 gradle-plugin = { module = "com.android.tools.build:gradle", version.ref = "gradle-plugin" }
 kotlin-plugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
+react-native-plugin = { module = "com.facebook.react:react-native-gradle-plugin", version.ref = "react-native-plugin" }
 
 # Main Dependencies
 react-native = { module = "com.facebook.react:react-native", version.ref = "react-native" }
@@ -45,3 +49,5 @@ androidx-test-rules = { module = "androidx.test:rules", version.ref = "androidx-
 android-application = { id = "com.android.application", version.ref = "gradle-plugin" }
 android-library = { id = "com.android.library", version.ref = "gradle-plugin" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+react-native = { id = "com.facebook.react", version.ref = "react-native-plugin" }
+

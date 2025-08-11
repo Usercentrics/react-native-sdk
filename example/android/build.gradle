@@ -8,6 +8,7 @@ buildscript {
     dependencies {
         classpath libs.gradle.plugin
         classpath libs.kotlin.plugin
+        classpath(libs.react.native.plugin)
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }
@@ -30,3 +31,18 @@ allprojects {
         maven { url 'https://www.jitpack.io' }
     }
 }
+subprojects { subproject ->
+    afterEvaluate { project ->
+        def kotlinExt = subproject.extensions.findByName("kotlinOptions")
+        if (kotlinExt != null) {
+            kotlinExt.jvmTarget = "17"
+        }
+        if (project.hasProperty("android")) {
+            android {
+                compileSdkVersion = 33
+                buildToolsVersion = "33.0.1"
+            }
+        }
+    }
+}
+
