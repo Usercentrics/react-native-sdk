@@ -1,5 +1,15 @@
 [Release Notes](https://docs.usercentrics.com/cmp_in_app_sdk/latest/about/history/)
 
+### 2.22.2 - Aug 7, 2025
+## Feature - Consent Mediation
+* Added support for AirBridge SDK
+* Add GDPR API AcceptAll / DenyAll / SaveDecisions for Unity
+* Fixed dependency download issue in versions 2.22.0 and 2.22.1.
+* Added missing Proguard rules for Airbridge in versions 2.22.0 and 2.22.1.
+## Android/iOS Bug Fixes:
+* Improvements to geolocation handling
+* Adjustments to DAU tracking logic
+
 ### 2.21.1 - Jul 25, 2025
 ## Improvement
 ## Android/iOS Bug Fixes:
