@@ -1,0 +1,35 @@
+diff --git a/node_modules/react-native-screens/android/build.gradle b/node_modules/react-native-screens/android/build.gradle
+index 482478b..modificado 100644
+--- a/node_modules/react-native-screens/android/build.gradle
++++ b/node_modules/react-native-screens/android/build.gradle
+@@ -38,11 +38,12 @@
+ def reactNativeArchitectures() {
+ }
+
+ android {
+-    namespace = "com.swmansion.rnscreens"
+-    compileSdkVersion safeExtGet('compileSdkVersion', 28)
++    namespace = "com.swmansion.rnscreens"
++    compileSdkVersion safeExtGet('compileSdkVersion', 33)
+
+     // Used to override the NDK path/version on internal CI or by allowing
+     // build to work on Mac M1 machines
+     ndkVersion safeExtGet('ndkVersion', '23.1.7779620')
+
+-    buildToolsVersion safeExtGet('buildToolsVersion', '30.0.3')
++    buildToolsVersion safeExtGet('buildToolsVersion', '33.0.1')
+
+     defaultConfig {
+         minSdkVersion safeExtGet('minSdkVersion', 21)
+@@ -62,7 +63,12 @@
+     lintOptions {
+         abortOnError false
+     }
++
++    buildFeatures {
++        buildConfig = true
++    }
+
+     compileOptions {
+         sourceCompatibility JavaVersion.VERSION_1_8
+         targetCompatibility JavaVersion.VERSION_1_8

@@ -1,0 +1,16 @@
+diff --git a/node_modules/react-native-safe-area-context/.DS_Store b/node_modules/react-native-safe-area-context/.DS_Store
+new file mode 100644
+index 0000000..6da1493
+Binary files /dev/null and b/node_modules/react-native-safe-area-context/.DS_Store differ
+diff --git a/node_modules/react-native-safe-area-context/android/build.gradle b/node_modules/react-native-safe-area-context/android/build.gradle
+index a900007..07218a0 100644
+--- a/node_modules/react-native-safe-area-context/android/build.gradle
++++ b/node_modules/react-native-safe-area-context/android/build.gradle
+@@ -20,6 +20,7 @@ buildscript {
+ apply plugin: 'com.android.library'
+ 
+ android {
++  namespace "com.th3rdwave.safeareacontext"
+   compileSdkVersion getExtOrDefault('compileSdkVersion', 28)
+ 
+   defaultConfig {
