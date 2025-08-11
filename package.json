@@ -32,7 +32,8 @@
         "compile": "rm -rf lib && tsc -p .",
         "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
         "prepare": "yarn compile",
-        "test": "jest src/__tests__/index.test.ts"
+        "test": "jest src/__tests__/index.test.ts",
+        "clean-all-caches": "./scripts/clean-all-caches.sh"
     },
     "devDependencies": {
         "@babel/core": "^7.22.10",
