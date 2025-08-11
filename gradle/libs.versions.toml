@@ -4,10 +4,10 @@ gradle-plugin = "8.1.1"
 kotlin = "1.9.20"
 
 # Android SDK
-min-sdk = "21"
-compile-sdk = "33"
-target-sdk = "33"
-build-tools = "33.0.1"
+min-sdk = "23"
+compile-sdk = "34"
+target-sdk = "34"
+build-tools = "34.0.0"
 ndk = "23.0.7599858"
 
 # Java/Kotlin Compatibility
@@ -15,7 +15,7 @@ java-version = "17"
 jvm-target = "17"
 
 # React Native
-react-native-plugin = "0.73.6"
+react-native-plugin = "0.74.3"
 
 # Dependencies
 usercentrics = "2.21.1"
