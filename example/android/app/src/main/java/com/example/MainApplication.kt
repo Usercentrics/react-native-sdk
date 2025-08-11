@@ -27,9 +27,8 @@ class MainApplication : Application(), ReactApplication {
         }
     }
 
-    override fun getReactNativeHost(): ReactNativeHost {
-        return mReactNativeHost
-    }
+    override val reactNativeHost: ReactNativeHost
+        get() = mReactNativeHost
 
     override fun onCreate() {
         super.onCreate()
