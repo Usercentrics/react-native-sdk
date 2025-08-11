@@ -201,20 +201,11 @@ dependencies {
 
     implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
 
-    debugImplementation("com.facebook.flipper:flipper:${FLIPPER_VERSION}") {
-        exclude group: 'com.facebook.fbjni'
-    }
-
+    // Flipper dependencies for debugging
+    debugImplementation("com.facebook.flipper:flipper:${FLIPPER_VERSION}")
     debugImplementation("com.facebook.flipper:flipper-network-plugin:${FLIPPER_VERSION}") {
-        exclude group: 'com.facebook.flipper'
         exclude group: 'com.squareup.okhttp3', module: 'okhttp'
     }
-
-    debugImplementation("com.facebook.flipper:flipper-fresco-plugin:${FLIPPER_VERSION}") {
-        exclude group: 'com.facebook.flipper'
-    }
-
-    debugImplementation("com.facebook.flipper:flipper-software-metadata-plugin:${FLIPPER_VERSION}")
     debugImplementation("com.facebook.soloader:soloader:0.10.5")
 
     if (project.ext.react.enableHermes) {
