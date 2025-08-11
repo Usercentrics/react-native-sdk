@@ -10,7 +10,11 @@
     "start": "react-native start",
     "test": "jest",
     "postinstall": "patch-package",
-    "clean-all-caches": "../scripts/clean-all-caches.sh"
+    "clean-all-caches": "../scripts/clean-all-caches.sh",
+    "install-dependencies": "../scripts/install-dependencies.sh",
+    "run-android": "../scripts/run-android.sh",
+    "check-requirements": "../scripts/check-requirements.sh",
+    "auto-setup": "../scripts/auto-setup.sh"
   },
   "dependencies": {
     "@react-navigation/native": "^6.1.6",

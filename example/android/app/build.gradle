@@ -195,10 +195,9 @@ android {
 dependencies {
     implementation project(':react-native-usercentrics')
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+
     //noinspection GradleDynamicVersion
-//    implementation 'com.facebook.react:react-native:+'  // From node_modules
-    implementation 'com.facebook.react:react-android'  // From node_modules
-//    implementation 'com.facebook.react:hermes-android'
+    implementation 'com.facebook.react:react-android'
 
     implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
 

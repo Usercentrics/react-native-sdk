@@ -33,7 +33,11 @@
         "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
         "prepare": "yarn compile",
         "test": "jest src/__tests__/index.test.ts",
-        "clean-all-caches": "./scripts/clean-all-caches.sh"
+        "clean-all-caches": "./scripts/clean-all-caches.sh",
+        "install-dependencies": "./scripts/install-dependencies.sh",
+        "run-android": "./scripts/run-android.sh",
+        "check-requirements": "./scripts/check-requirements.sh",
+        "auto-setup": "./scripts/auto-setup.sh"
     },
     "devDependencies": {
         "@babel/core": "^7.22.10",
