@@ -1,4 +1,4 @@
-def usercentrics_version = "2.21.1"
+def usercentrics_version = "2.22.2"
 version usercentrics_version
 
 buildscript {
@@ -27,7 +27,7 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 
 android {
-    compileSdkVersion 32
+    compileSdkVersion 33
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
