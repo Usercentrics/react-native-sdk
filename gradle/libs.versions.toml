@@ -8,7 +8,7 @@ min-sdk = "23"
 compile-sdk = "34"
 target-sdk = "34"
 build-tools = "34.0.0"
-ndk = "23.0.7599858"
+ndk = "25.1.8937393"
 
 # Java/Kotlin Compatibility
 java-version = "17"
