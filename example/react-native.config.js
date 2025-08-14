@@ -4,4 +4,19 @@ module.exports = {
       packageName: 'com.usercentrics.reactnativesdk.example',
     },
   },
+  dependencies: {
+    '@usercentrics/react-native-sdk': {
+      root: require('path').resolve(__dirname, '..'),
+      platforms: {
+        android: {
+          sourceDir: require('path').resolve(__dirname, '../android'),
+          packageImportPath: 'import com.usercentrics.reactnativeusercentrics.RNUsercentricsPackage;',
+          packageInstance: 'new RNUsercentricsPackage()',
+        },
+        ios: {
+          podspecPath: require('path').resolve(__dirname, '../react-native-usercentrics.podspec'),
+        },
+      },
+    },
+  },
 };

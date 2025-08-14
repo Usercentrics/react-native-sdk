@@ -7,7 +7,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, RCTBridgeDelegate {
 
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
     let bridge = RCTBridge(delegate: self, launchOptions: launchOptions)
-    let rootView = RCTRootView(bridge: bridge!, moduleName: "example", initialProperties: nil)
+    let rootView = RCTRootView(bridge: bridge!, moduleName: "usercentrics", initialProperties: nil)
 
     if #available(iOS 13.0, *) {
       rootView.backgroundColor = UIColor.systemBackground
