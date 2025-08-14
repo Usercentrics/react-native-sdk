@@ -3,8 +3,12 @@ import Usercentrics
 import UsercentricsUI
 import UIKit
 
+#if RCT_NEW_ARCH_ENABLED
+import RNUsercentricsModuleSpec
+#endif
+
 @objc(RNUsercentricsModule)
-class RNUsercentricsModule: NSObject, RCTBridgeModule {
+class RNUsercentricsModule: NSObject {
     
     var usercentricsManager: UsercentricsManager = UsercentricsManagerImplementation()
     var queue: DispatchQueueManager = DispatchQueue.main
@@ -204,3 +208,16 @@ class RNUsercentricsModule: NSObject, RCTBridgeModule {
         }
     }
 }
+
+// MARK: - RCTBridgeModule & TurboModule Conformance
+#if RCT_NEW_ARCH_ENABLED
+extension RNUsercentricsModule: NativeUsercentricsSpec {
+    func getTurboModule(jsInvoker: RCTJSInvoker) -> std::shared_ptr<facebook::react::TurboModule> {
+        return std::make_shared<facebook::react::NativeUsercentricsSpecJSI>(self, jsInvoker)
+    }
+}
+#else
+extension RNUsercentricsModule: RCTBridgeModule {
+    // Bridge module methods are already implemented above
+}
+#endif

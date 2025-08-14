@@ -3,28 +3,28 @@ package com.example
 import android.app.Application
 import android.content.Context
 import com.facebook.react.*
+import com.facebook.react.defaults.DefaultReactNativeHost
 import com.facebook.soloader.SoLoader
 import com.usercentrics.reactnativeusercentrics.RNUsercentricsPackage
 import java.lang.reflect.InvocationTargetException
 
 class MainApplication : Application(), ReactApplication {
 
-    private val mReactNativeHost = object : ReactNativeHost(this) {
+    private val mReactNativeHost = object : DefaultReactNativeHost(this) {
         override fun getUseDeveloperSupport(): Boolean {
             return BuildConfig.DEBUG
         }
 
         override fun getPackages(): List<ReactPackage> {
             val packages = PackageList(this).packages
-            // Packages that cannot be autolinked yet can be added manually here, for example:
-            // packages.add(MyReactNativePackage());
-            packages.add(RNUsercentricsPackage())
+            packages.add(RNUsercentricsPackage()) // Pacotes manuais
             return packages
         }
 
-        override fun getJSMainModuleName(): String {
-            return "index"
-        }
+        override fun getJSMainModuleName(): String = "index"
+
+        override val isNewArchEnabled: Boolean = BuildConfig.IS_NEW_ARCHITECTURE_ENABLED
+        override val isHermesEnabled: Boolean = BuildConfig.IS_HERMES_ENABLED
     }
 
     override val reactNativeHost: ReactNativeHost
@@ -33,7 +33,11 @@ class MainApplication : Application(), ReactApplication {
     override fun onCreate() {
         super.onCreate()
         SoLoader.init(this, false)
-        initializeFlipper(this, reactNativeHost.reactInstanceManager)
+
+        // Inicializa Flipper somente no debug
+        if (BuildConfig.DEBUG) {
+            initializeFlipper(this, reactNativeHost.reactInstanceManager)
+        }
     }
 
     companion object {

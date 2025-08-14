@@ -1,4 +1,4 @@
-import {NativeModules} from 'react-native';
+import {NativeModules, Platform} from 'react-native';
 import {
     AdditionalConsentModeData,
     BannerSettings,
@@ -15,8 +15,10 @@ import {
     UsercentricsServiceConsent,
     UserDecision,
 } from './models';
+import NativeUsercentrics from './NativeUsercentrics';
 
-const {RNUsercentricsModule} = NativeModules;
+// Use TurboModule when available, fallback to legacy bridge
+const RNUsercentricsModule = NativeUsercentrics || NativeModules.RNUsercentricsModule;
 
 export const Usercentrics = {
 
@@ -53,7 +55,7 @@ export const Usercentrics = {
         return RNUsercentricsModule.getABTestingVariant();
     },
 
-    getConsents: async (): Promise<[UsercentricsServiceConsent]> => {
+    getConsents: async (): Promise<Array<UsercentricsServiceConsent>> => {
         await RNUsercentricsModule.isReady();
         return RNUsercentricsModule.getConsents();
     },
@@ -88,37 +90,37 @@ export const Usercentrics = {
         return RNUsercentricsModule.changeLanguage(language);
     },
 
-    acceptAll: async (consentType: UsercentricsConsentType): Promise<[UsercentricsServiceConsent]> => {
+    acceptAll: async (consentType: UsercentricsConsentType): Promise<Array<UsercentricsServiceConsent>> => {
         await RNUsercentricsModule.isReady();
         return RNUsercentricsModule.acceptAll(consentType);
     },
 
-    acceptAllForTCF: async (fromLayer: TCFDecisionUILayer, consentType: UsercentricsConsentType): Promise<[UsercentricsServiceConsent]> => {
+    acceptAllForTCF: async (fromLayer: TCFDecisionUILayer, consentType: UsercentricsConsentType): Promise<Array<UsercentricsServiceConsent>> => {
         await RNUsercentricsModule.isReady();
         return RNUsercentricsModule.acceptAllForTCF(fromLayer, consentType);
     },
 
-    denyAll: async (consentType: UsercentricsConsentType): Promise<[UsercentricsServiceConsent]> => {
+    denyAll: async (consentType: UsercentricsConsentType): Promise<Array<UsercentricsServiceConsent>> => {
         await RNUsercentricsModule.isReady();
         return RNUsercentricsModule.denyAll(consentType);
     },
 
-    denyAllForTCF: async (fromLayer: TCFDecisionUILayer, consentType: UsercentricsConsentType): Promise<[UsercentricsServiceConsent]> => {
+    denyAllForTCF: async (fromLayer: TCFDecisionUILayer, consentType: UsercentricsConsentType): Promise<Array<UsercentricsServiceConsent>> => {
         await RNUsercentricsModule.isReady();
         return RNUsercentricsModule.denyAllForTCF(fromLayer, consentType);
     },
 
-    saveDecisions: async (decisions: UserDecision[], consentType: UsercentricsConsentType): Promise<[UsercentricsServiceConsent]> => {
+    saveDecisions: async (decisions: UserDecision[], consentType: UsercentricsConsentType): Promise<Array<UsercentricsServiceConsent>> => {
         await RNUsercentricsModule.isReady();
         return RNUsercentricsModule.saveDecisions(decisions, consentType);
     },
 
-    saveDecisionsForTCF: async (tcfDecisions: TCFUserDecisions, fromLayer: TCFDecisionUILayer, decisions: UserDecision[], consentType: UsercentricsConsentType): Promise<[UsercentricsServiceConsent]> => {
+    saveDecisionsForTCF: async (tcfDecisions: TCFUserDecisions, fromLayer: TCFDecisionUILayer, decisions: UserDecision[], consentType: UsercentricsConsentType): Promise<Array<UsercentricsServiceConsent>> => {
         await RNUsercentricsModule.isReady();
         return RNUsercentricsModule.saveDecisionsForTCF(tcfDecisions, fromLayer, decisions, consentType);
     },
 
-    saveOptOutForCCPA: async (isOptedOut: boolean, consentType: UsercentricsConsentType): Promise<[UsercentricsServiceConsent]> => {
+    saveOptOutForCCPA: async (isOptedOut: boolean, consentType: UsercentricsConsentType): Promise<Array<UsercentricsServiceConsent>> => {
         await RNUsercentricsModule.isReady();
         return RNUsercentricsModule.saveOptOutForCCPA(isOptedOut, consentType);
     },

@@ -11,18 +11,18 @@ internal class RNUsercentricsModule(
     reactContext: ReactApplicationContext,
     private val usercentricsProxy: UsercentricsProxy,
     private val reactContextProvider: ReactContextProvider,
-) : ReactContextBaseJavaModule(reactContext) {
+) : RNUsercentricsModuleSpec(reactContext) {
 
-    override fun getName() = "RNUsercentricsModule"
+    override fun getName() = NAME
 
     @ReactMethod
-    fun configure(options: ReadableMap) {
+    override fun configure(options: ReadableMap) {
         val usercentricsOptions = options.usercentricsOptionsFromMap()
         usercentricsProxy.initialize(reactApplicationContext, usercentricsOptions)
     }
 
     @ReactMethod
-    fun isReady(promise: Promise) {
+    override fun isReady(promise: Promise) {
         usercentricsProxy.isReady({
             promise.resolve(it.toWritableMap())
         }, {
@@ -31,7 +31,7 @@ internal class RNUsercentricsModule(
     }
 
     @ReactMethod
-    fun showFirstLayer(options: ReadableMap?, promise: Promise) {
+    override fun showFirstLayer(options: ReadableMap?, promise: Promise) {
         runOnUiThread {
             try {
                 val context = reactContextProvider.context()
@@ -46,7 +46,7 @@ internal class RNUsercentricsModule(
     }
 
     @ReactMethod
-    fun showSecondLayer(options: ReadableMap?, promise: Promise) {
+    override fun showSecondLayer(options: ReadableMap?, promise: Promise) {
         runOnUiThread {
             try {
                 val context = reactContextProvider.context()
@@ -61,7 +61,7 @@ internal class RNUsercentricsModule(
     }
 
     @ReactMethod
-    fun restoreUserSession(controllerId: String, promise: Promise) {
+    override fun restoreUserSession(controllerId: String, promise: Promise) {
         usercentricsProxy.instance.restoreUserSession(controllerId, {
             promise.resolve(it.toWritableMap())
         }, {
@@ -70,59 +70,59 @@ internal class RNUsercentricsModule(
     }
 
     @ReactMethod
-    fun getControllerId(promise: Promise) {
+    override fun getControllerId(promise: Promise) {
         promise.resolve(usercentricsProxy.instance.getControllerId())
     }
 
     @ReactMethod
-    fun getABTestingVariant(promise: Promise) {
+    override fun getABTestingVariant(promise: Promise) {
         promise.resolve(usercentricsProxy.instance.getABTestingVariant())
     }
 
     @ReactMethod
-    fun getConsents(promise: Promise) {
+    override fun getConsents(promise: Promise) {
         promise.resolve(usercentricsProxy.instance.getConsents().toWritableArray())
     }
 
     @ReactMethod
-    fun getCMPData(promise: Promise) {
+    override fun getCMPData(promise: Promise) {
         promise.resolve(usercentricsProxy.instance.getCMPData().serialize())
     }
 
     @ReactMethod
-    fun getAdditionalConsentModeData(promise: Promise) {
+    override fun getAdditionalConsentModeData(promise: Promise) {
         promise.resolve(usercentricsProxy.instance.getAdditionalConsentModeData().serialize())
     }
 
     @ReactMethod
-    fun setCMPId(id: Int) {
+    override fun setCMPId(id: Int) {
         usercentricsProxy.instance.setCMPId(id)
     }
 
     @ReactMethod
-    fun setABTestingVariant(variant: String) {
+    override fun setABTestingVariant(variant: String) {
         usercentricsProxy.instance.setABTestingVariant(variant)
     }
 
     @ReactMethod
-    fun getTCFData(promise: Promise) {
+    override fun getTCFData(promise: Promise) {
         usercentricsProxy.instance.getTCFData {
             promise.resolve(it.serialize())
         }
     }
 
     @ReactMethod
-    fun getUserSessionData(promise: Promise) {
+    override fun getUserSessionData(promise: Promise) {
         promise.resolve(usercentricsProxy.instance.getUserSessionData())
     }
 
     @ReactMethod
-    fun getUSPData(promise: Promise) {
+    override fun getUSPData(promise: Promise) {
         promise.resolve(usercentricsProxy.instance.getUSPData().serialize())
     }
 
     @ReactMethod
-    fun changeLanguage(language: String, promise: Promise) {
+    override fun changeLanguage(language: String, promise: Promise) {
         usercentricsProxy.instance.changeLanguage(language, {
             promise.resolve(null)
         }, {
@@ -131,7 +131,7 @@ internal class RNUsercentricsModule(
     }
 
     @ReactMethod
-    fun acceptAllForTCF(fromLayer: Int, consentType: Int, promise: Promise) {
+    override fun acceptAllForTCF(fromLayer: Int, consentType: Int, promise: Promise) {
         promise.resolve(
             usercentricsProxy.instance.acceptAllForTCF(
                 TCFDecisionUILayer.values()[fromLayer], UsercentricsConsentType.values()[consentType]
@@ -140,7 +140,7 @@ internal class RNUsercentricsModule(
     }
 
     @ReactMethod
-    fun acceptAll(consentType: Int, promise: Promise) {
+    override fun acceptAll(consentType: Int, promise: Promise) {
         promise.resolve(
             usercentricsProxy.instance.acceptAll(
                 UsercentricsConsentType.values()[consentType]
@@ -149,7 +149,7 @@ internal class RNUsercentricsModule(
     }
 
     @ReactMethod
-    fun denyAllForTCF(fromLayer: Int, consentType: Int, promise: Promise) {
+    override fun denyAllForTCF(fromLayer: Int, consentType: Int, promise: Promise) {
         promise.resolve(
             usercentricsProxy.instance.denyAllForTCF(
                 TCFDecisionUILayer.values()[fromLayer], UsercentricsConsentType.values()[consentType]
@@ -158,7 +158,7 @@ internal class RNUsercentricsModule(
     }
 
     @ReactMethod
-    fun denyAll(consentType: Int, promise: Promise) {
+    override fun denyAll(consentType: Int, promise: Promise) {
         promise.resolve(
             usercentricsProxy.instance.denyAll(
                 UsercentricsConsentType.values()[consentType]
@@ -167,7 +167,7 @@ internal class RNUsercentricsModule(
     }
 
     @ReactMethod
-    fun saveDecisionsForTCF(
+    override fun saveDecisionsForTCF(
         tcfDecisions: ReadableMap,
         fromLayer: Int,
         saveDecisions: ReadableArray,
@@ -185,7 +185,7 @@ internal class RNUsercentricsModule(
     }
 
     @ReactMethod
-    fun saveDecisions(decisions: ReadableArray, consentType: Int, promise: Promise) {
+    override fun saveDecisions(decisions: ReadableArray, consentType: Int, promise: Promise) {
         promise.resolve(
             usercentricsProxy.instance.saveDecisions(
                 decisions.deserializeUserDecision(), UsercentricsConsentType.values()[consentType]
@@ -194,7 +194,7 @@ internal class RNUsercentricsModule(
     }
 
     @ReactMethod
-    fun saveOptOutForCCPA(isOptedOut: Boolean, consentType: Int, promise: Promise) {
+    override fun saveOptOutForCCPA(isOptedOut: Boolean, consentType: Int, promise: Promise) {
         promise.resolve(
             usercentricsProxy.instance.saveOptOutForCCPA(
                 isOptedOut, UsercentricsConsentType.values()[consentType]
@@ -203,12 +203,12 @@ internal class RNUsercentricsModule(
     }
 
     @ReactMethod
-    fun track(event: Int) {
+    override fun track(event: Int) {
         usercentricsProxy.instance.track(UsercentricsAnalyticsEventType.values()[event])
     }
 
     @ReactMethod
-    fun clearUserSession(promise: Promise) {
+    override fun clearUserSession(promise: Promise) {
         usercentricsProxy.instance.clearUserSession({
             promise.resolve(it.toWritableMap())
         }, {
@@ -218,5 +218,9 @@ internal class RNUsercentricsModule(
 
     private fun runOnUiThread(block: () -> Unit) {
         UiThreadUtil.runOnUiThread(block)
+    }
+
+    companion object {
+        const val NAME = "RNUsercentricsModule"
     }
 }

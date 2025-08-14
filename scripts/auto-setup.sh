@@ -481,3 +481,6 @@ echo "🔍 For troubleshooting, run: npm run check-requirements"
 echo ""
 
 exit $EXIT_CODE
+
+
+

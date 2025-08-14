@@ -22,6 +22,17 @@ def safeExtGet(prop, fallback) {
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 
+// Apply React Native CodeGen
+if (findProject(':ReactAndroid') != null) {
+    apply plugin: 'com.facebook.react'
+    
+    react {
+        codegenDir = file("${rootDir}/../node_modules/react-native-codegen")
+        reactNativeDir = file("${rootDir}/../node_modules/react-native")
+        jsRootDir = file("${rootDir}/../src")
+    }
+}
+
 android {
     namespace 'com.usercentrics.reactnative'
     compileSdkVersion libs.versions.compile.sdk.get().toInteger()

@@ -138,12 +138,34 @@ android {
         jvmTarget = libs.versions.jvm.target.get()
     }
 
+    // Ativa o Prefab automaticamente para CMake
+    buildFeatures {
+        prefab true
+    }
+
     defaultConfig {
         applicationId 'com.example'
         minSdkVersion libs.versions.min.sdk.get().toInteger()
         targetSdkVersion libs.versions.target.sdk.get().toInteger()
         versionCode 1
         versionName '1.0'
+        
+        // Force C++17 and shared STL for Fabric compatibility
+        externalNativeBuild {
+            cmake {
+                cppFlags "-std=c++17"
+                arguments "-DCMAKE_CXX_STANDARD=17", 
+                          "-DCMAKE_CXX_STANDARD_REQUIRED=ON",
+                          "-DANDROID_STL=c++_shared"
+            }
+        }
+        ndk {
+            abiFilters 'arm64-v8a', 'armeabi-v7a', 'x86', 'x86_64'
+        }
+        
+        // BuildConfig fields for New Architecture
+        buildConfigField "boolean", "IS_NEW_ARCHITECTURE_ENABLED", project.hasProperty("newArchEnabled") && project.newArchEnabled == "true" ? "true" : "false"
+        buildConfigField "boolean", "IS_HERMES_ENABLED", enableHermes.toString()
     }
 
     splits {
@@ -154,6 +176,15 @@ android {
             include 'armeabi-v7a', 'x86', 'arm64-v8a', 'x86_64'
         }
     }
+    
+    // Diga ao Gradle onde está seu CMakeLists.txt e a versão do CMake do SDK
+    externalNativeBuild {
+        cmake {
+            path file("src/main/jni/CMakeLists.txt")
+            version "3.22.1"
+        }
+    }
+    
     signingConfigs {
         debug {
             storeFile file('debug.keystore')
@@ -198,6 +229,9 @@ dependencies {
 
     //noinspection GradleDynamicVersion
     implementation 'com.facebook.react:react-android'
+    
+    // fbjni é necessário para JNI com React Native
+    implementation 'com.facebook.fbjni:fbjni:0.6.0'
 
     implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
 
