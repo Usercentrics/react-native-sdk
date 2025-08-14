@@ -1,3 +1,7 @@
 module.exports = {
-    assets: ['./assets'],
+  project: {
+    android: {
+      packageName: 'com.usercentrics.reactnativesdk.example',
+    },
+  },
 };

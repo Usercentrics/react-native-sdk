@@ -1,4 +1,4 @@
-package com.example
+package com.usercentrics.reactnativesdk.example
 
 import android.content.Context
 import com.facebook.flipper.android.AndroidFlipperClient

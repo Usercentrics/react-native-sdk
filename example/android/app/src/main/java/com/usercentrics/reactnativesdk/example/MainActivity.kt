@@ -1,4 +1,4 @@
-package com.example
+package com.usercentrics.reactnativesdk.example
 
 import com.facebook.react.ReactActivity
 import com.facebook.react.ReactActivityDelegate

@@ -1,11 +1,11 @@
-package com.example
+package com.usercentrics.reactnativesdk.example
 
 import android.app.Application
 import android.content.Context
 import com.facebook.react.*
 import com.facebook.react.defaults.DefaultReactNativeHost
 import com.facebook.soloader.SoLoader
-import com.usercentrics.reactnativeusercentrics.RNUsercentricsPackage
+// import com.usercentrics.reactnativeusercentrics.RNUsercentricsPackage
 import java.lang.reflect.InvocationTargetException
 
 class MainApplication : Application(), ReactApplication {
@@ -17,7 +17,7 @@ class MainApplication : Application(), ReactApplication {
 
         override fun getPackages(): List<ReactPackage> {
             val packages = PackageList(this).packages
-            packages.add(RNUsercentricsPackage()) // Pacotes manuais
+            // packages.add(RNUsercentricsPackage()) // Pacotes manuais
             return packages
         }
 
@@ -48,7 +48,7 @@ class MainApplication : Application(), ReactApplication {
         ) {
             if (BuildConfig.DEBUG) {
                 try {
-                    val aClass = Class.forName("com.example.ReactNativeFlipper")
+                    val aClass = Class.forName("com.usercentrics.reactnativesdk.example.ReactNativeFlipper")
                     aClass
                         .getMethod(
                             "initializeFlipper",

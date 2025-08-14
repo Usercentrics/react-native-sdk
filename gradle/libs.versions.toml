@@ -1,6 +1,7 @@
 [versions]
 # Build Tools
-gradle-plugin = "8.2.1"
+gradle-plugin = "8.5.0"
+gradle-wrapper = "8.9"
 kotlin = "1.9.22"
 
 # Android SDK
@@ -15,11 +16,20 @@ java-version = "17"
 jvm-target = "17"
 
 # React Native
-react-native-plugin = "0.74.3"
+react-native = "0.75.0"
+react-native-plugin = "0.75.5"
 
-# Dependencies
+# Core Dependencies
+fbjni = "0.6.0"
+hermes-android = "+"
+
+# Flipper (Debug)
+flipper = "0.190.0"
+flipper-network = "0.190.0"
+flipper-soloader = "0.10.5"
+
+# Main Dependencies
 usercentrics = "2.21.1"
-react-native = "+"
 
 # Test Dependencies
 mockk = "1.12.0"
@@ -34,8 +44,19 @@ gradle-plugin = { module = "com.android.tools.build:gradle", version.ref = "grad
 kotlin-plugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
 react-native-plugin = { module = "com.facebook.react:react-native-gradle-plugin", version.ref = "react-native-plugin" }
 
-# Main Dependencies
+# React Native Core
 react-native = { module = "com.facebook.react:react-native", version.ref = "react-native" }
+
+# Core Dependencies
+fbjni = { module = "com.facebook.fbjni:fbjni", version.ref = "fbjni" }
+hermes-android = { module = "com.facebook.react:hermes-android", version.ref = "hermes-android" }
+
+# Flipper (Debug only)
+flipper = { module = "com.facebook.flipper:flipper", version.ref = "flipper" }
+flipper-network = { module = "com.facebook.flipper:flipper-network-plugin", version.ref = "flipper-network" }
+flipper-soloader = { module = "com.facebook.soloader:soloader", version.ref = "flipper-soloader" }
+
+# Main Dependencies
 usercentrics-ui = { module = "com.usercentrics.sdk:usercentrics-ui", version.ref = "usercentrics" }
 
 # Test Dependencies
