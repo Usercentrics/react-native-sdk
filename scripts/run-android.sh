@@ -19,5 +19,5 @@ else
     exit 1
 fi
 
-echo "🤖 Starting Android build..."
-react-native run-android --no-packager
+echo "🤖 Starting Android build with Metro bundler..."
+react-native run-android
