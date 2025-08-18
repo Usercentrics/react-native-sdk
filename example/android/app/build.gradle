@@ -59,3 +59,87 @@ dependencies {
     debugImplementation libs.flipper.network
     debugImplementation libs.flipper.soloader
 }
+
+// ===================================================================================================
+// AUTOLINKING AUTOMATION FOR NEW ARCHITECTURE
+// ===================================================================================================
+// This section automatically generates the autolinking.json file required for React Native's
+// New Architecture (Fabric + TurboModules). The file is only generated when newArchEnabled=true
+// and contains configuration data needed for CodeGen to generate native C++ bindings.
+// ===================================================================================================
+task generateAutolinking(type: Exec) {
+    description = 'Generates autolinking.json configuration file for React Native New Architecture'
+    group = 'react-native'
+    
+    workingDir project.rootDir.parent
+    commandLine 'node', 'generateAutolinking.js'
+
+    onlyIf {
+        def newArchEnabled = findProperty("newArchEnabled")
+        if (newArchEnabled != "true" && newArchEnabled != true) {
+            return false
+        }
+
+        def autolinkingFile = file("${project.rootDir}/build/generated/autolinking/autolinking.json")
+        def packageJsonFile = file("${project.rootDir.parent}/package.json")
+        def configFile = file("${project.rootDir.parent}/react-native.config.js")
+
+        if (!autolinkingFile.exists()) {
+            println "📝 autolinking.json not found - will generate"
+            return true
+        }
+
+        def autolinkingTime = autolinkingFile.lastModified()
+        def packageTime = packageJsonFile.exists() ? packageJsonFile.lastModified() : 0
+        def configTime = configFile.exists() ? configFile.lastModified() : 0
+        
+        if (packageTime > autolinkingTime || configTime > autolinkingTime) {
+            println "📝 Input files changed - will regenerate autolinking.json"
+            return true
+        }
+        
+        println "✅ autolinking.json is up to date - skipping generation"
+        return false
+    }
+
+    inputs.files(
+        "${project.rootDir.parent}/package.json",
+        "${project.rootDir.parent}/react-native.config.js"
+    )
+    
+    outputs.file("${project.rootDir}/build/generated/autolinking/autolinking.json")
+    
+    doFirst {
+        println "🔄 Generating autolinking.json for React Native New Architecture..."
+    }
+    
+    doLast {
+        println "✅ autolinking.json generated successfully!"
+    }
+}
+
+/**
+ * Automatic task dependency configuration
+ * This ensures that autolinking.json is generated before any build tasks that require it.
+ * The configuration runs after all build scripts are evaluated to ensure all tasks exist.
+ */
+afterEvaluate {
+    def newArchEnabled = findProperty("newArchEnabled")
+    
+    if (newArchEnabled == "true" || newArchEnabled == true) {
+        
+        tasks.matching {
+            it.name.startsWith('generate') && it.name.contains('NewArchitectureFiles') 
+        }.configureEach {
+            dependsOn generateAutolinking
+        }
+        
+        preBuild.dependsOn generateAutolinking
+        
+        tasks.matching { it.name == 'generateAutolinkingPackageList' }.configureEach {
+            dependsOn generateAutolinking
+        }
+        
+        println "🔧 Autolinking automation configured for New Architecture"
+    }
+}
