@@ -35,6 +35,7 @@
         "test": "jest src/__tests__/index.test.ts",
         "clean-all-caches": "./scripts/clean-all-caches.sh",
         "install-dependencies": "./scripts/install-dependencies.sh",
+        "android": "./scripts/run-android.sh",
         "run-android": "./scripts/run-android.sh",
         "check-requirements": "./scripts/check-requirements.sh",
         "auto-setup": "./scripts/auto-setup.sh"
