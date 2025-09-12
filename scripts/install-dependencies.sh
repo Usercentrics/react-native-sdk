@@ -30,7 +30,7 @@ echo "📂 Project root folder: $PROJECT_ROOT"
 # Install dependencies in root folder
 echo "🏠 Installing dependencies in root folder..."
 cd "$PROJECT_ROOT"
-if npm install --legacy-peer-deps; then
+if yarn install; then
     echo "✅ Root dependencies installed successfully"
 else
     echo "❌ Failed to install root dependencies"
@@ -40,7 +40,7 @@ fi
 # Install dependencies in example folder
 echo "📱 Installing dependencies in example folder..."
 cd "$PROJECT_ROOT/example"
-if npm install --legacy-peer-deps; then
+if yarn install; then
     echo "✅ Example dependencies installed successfully"
 else
     echo "❌ Failed to install example dependencies"
@@ -51,6 +51,6 @@ fi
 cd "$CURRENT_DIR"
 echo "🎉 All dependencies installed successfully!"
 echo "📝 Next steps:"
-echo "   1. cd $PROJECT_ROOT/example && npm run android (to run Android)"
-echo "   2. cd $PROJECT_ROOT/example && npm run ios (to run iOS)"
-echo "   3. cd $PROJECT_ROOT/example && npm run start (to start Metro bundler)"
+echo "   1. cd $PROJECT_ROOT/example && yarn run android (to run Android)"
+echo "   2. cd $PROJECT_ROOT/example && yarn run ios (to run iOS)"
+echo "   3. cd $PROJECT_ROOT/example && yarn run start (to start Metro bundler)"
