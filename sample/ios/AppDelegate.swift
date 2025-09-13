@@ -16,7 +16,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if let bundleURL = Bundle.main.url(forResource: "main", withExtension: "jsbundle") {
             jsCodeLocation = bundleURL
         } else {
-            // Fallback para desenvolvimento quando bundle não existe
             jsCodeLocation = RCTBundleURLProvider.sharedSettings().jsBundleURL(forBundleRoot: "index") ?? URL(string: "about:blank")!
         }
         #endif
