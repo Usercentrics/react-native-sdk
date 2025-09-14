@@ -1,27 +1,27 @@
 [versions]
 # Build Tools
-gradle-plugin = "8.5.0"
-gradle-wrapper = "8.9"
+gradle-plugin = "8.5.2"
+gradle-wrapper = "8.10.2"
 kotlin = "1.9.22"
 
 # Android SDK
-min-sdk = "23"
+min-sdk = "24"
 compile-sdk = "34"
 target-sdk = "34"
 build-tools = "34.0.0"
-ndk = "27.3.13750724"
+ndk = "27.2.12479018"
 
 # Java/Kotlin Compatibility
 java-version = "17"
 jvm-target = "17"
 
 # React Native
-react-native = "0.75.0"
-react-native-plugin = "0.75.5"
+react-native = "0.78.3"
+react-native-plugin = "0.78.3"
 
 # Core Dependencies
 fbjni = "0.6.0"
-hermes-android = "+"
+hermes-android = "0.78.3"
 
 # Flipper (Debug)
 flipper = "0.190.0"
