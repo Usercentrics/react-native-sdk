@@ -1,0 +1,47 @@
+[versions]
+# Build Tools
+gradle-plugin = "8.2.1"
+gradle-wrapper = "8.6"
+kotlin = "1.9.22"
+
+# Android SDK
+min-sdk = "24"
+compile-sdk = "34"
+target-sdk = "34"
+build-tools = "34.0.0"
+ndk = "26.1.10909125"
+
+# Java/Kotlin Compatibility
+java-version = "17"
+jvm-target = "17"
+
+# React Native
+react-native = "0.74.5"
+react-native-plugin = "0.74.5"
+
+# Core Dependencies
+hermes-android = "0.74.5"
+
+# Main Dependencies
+usercentrics = "2.22.2"
+
+[libraries]
+# Build Tools (for buildscript)
+gradle-plugin = { module = "com.android.tools.build:gradle", version.ref = "gradle-plugin" }
+kotlin-plugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
+react-native-plugin = { module = "com.facebook.react:react-native-gradle-plugin", version.ref = "react-native-plugin" }
+
+# React Native Core
+react-native = { module = "com.facebook.react:react-android", version.ref = "react-native" }
+
+# Core Dependencies
+hermes-android = { module = "com.facebook.react:hermes-android", version.ref = "hermes-android" }
+
+# Main Dependencies
+usercentrics-ui = { module = "com.usercentrics.sdk:usercentrics-ui", version.ref = "usercentrics" }
+
+[plugins]
+android-application = { id = "com.android.application", version.ref = "gradle-plugin" }
+android-library = { id = "com.android.library", version.ref = "gradle-plugin" }
+kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+react-native = { id = "com.facebook.react", version.ref = "react-native-plugin" }
