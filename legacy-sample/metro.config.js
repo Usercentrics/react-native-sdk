@@ -13,6 +13,7 @@ const moduleRoot = path.resolve(__dirname, '..')
 module.exports = {
   watchFolders: [moduleRoot],
   resolver: {
+    assetExts: ['png', 'jpg', 'jpeg', 'gif', 'svg', 'ttf', 'otf', 'woff', 'woff2'],
     extraNodeModules: {
       react: path.resolve(__dirname, 'node_modules/react'),
       'react-native': path.resolve(__dirname, 'node_modules/react-native'),
