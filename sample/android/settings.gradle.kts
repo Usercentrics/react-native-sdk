@@ -13,4 +13,6 @@ val applyNativeModulesSettingsGradle: groovy.lang.Closure<Any> by extra
 applyNativeModulesSettingsGradle(settings)
 
 include(":app")
+include(":react-native-usercentrics")
+project(":react-native-usercentrics").projectDir = file("../../android")
 includeBuild("../node_modules/@react-native/gradle-plugin")
