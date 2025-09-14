@@ -13,45 +13,47 @@ internal fun ReadableArray.deserializeUserDecision(): List<UserDecision> {
     val decisionList = mutableListOf<UserDecision>()
     for (i in 0 until size()) {
         val map = getMap(i)
-        decisionList.add(
-            UserDecision(
-                map.getString("serviceId")!!,
-                map.getBoolean("consent")
+        map?.let {
+            decisionList.add(
+                UserDecision(
+                    it.getString("serviceId")!!,
+                    it.getBoolean("consent")
+                )
             )
-        )
+        }
     }
     return decisionList
 }
 
 internal fun ReadableMap.deserializeTCFUserDecisions(): TCFUserDecisions {
-    val purposes = getArray("purposes")?.let {
+    val purposes = getArray("purposes")?.let { purpose ->
         val list = mutableListOf<TCFUserDecisionOnPurpose>()
-        for (i in 0 until it.size()) {
-            list.add(it.getMap(i).deserializeTCFUserDecisionOnPurpose())
+        for (i in 0 until purpose.size()) {
+            purpose.getMap(i)?.let { map -> list.add(map.deserializeTCFUserDecisionOnPurpose()) }
         }
         list
     }
 
-    val specialFeature = getArray("specialFeatures")?.let {
+    val specialFeature = getArray("specialFeatures")?.let { feature ->
         val list = mutableListOf<TCFUserDecisionOnSpecialFeature>()
-        for (i in 0 until it.size()) {
-            list.add(it.getMap(i).deserializeTCFUserDecisionOnSpecialFeature())
+        for (i in 0 until feature.size()) {
+            feature.getMap(i)?.let { map -> list.add(map.deserializeTCFUserDecisionOnSpecialFeature()) }
         }
         list
     }
 
-    val vendors = getArray("vendors")?.let {
+    val vendors = getArray("vendors")?.let { vendor ->
         val list = mutableListOf<TCFUserDecisionOnVendor>()
-        for (i in 0 until it.size()) {
-            list.add(it.getMap(i).deserializeTCFUserDecisionOnVendor())
+        for (i in 0 until vendor.size()) {
+            vendor.getMap(i)?.let { map -> list.add(map.deserializeTCFUserDecisionOnVendor()) }
         }
         list
     }
 
-    val adTechProviderDecisions = getArray("adTechProviders")?.let {
+    val adTechProviderDecisions = getArray("adTechProviders")?.let { decision ->
         val list = mutableListOf<AdTechProviderDecision>()
-        for (i in 0 until it.size()) {
-            list.add(it.getMap(i).deserializeAdTechProviderDecision())
+        for (i in 0 until decision.size()) {
+            decision.getMap(i)?.let { map -> list.add(map.deserializeAdTechProviderDecision()) }
         }
         list
     }
