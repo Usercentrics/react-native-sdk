@@ -1,7 +1,7 @@
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
-    id("com.facebook.react") apply false
+    // id("com.facebook.react") apply false
 }
 
 val usercentricsVersion = "2.22.2"
@@ -15,6 +15,9 @@ android {
         targetSdk = 34
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("proguard-rules.pro")
+        
+        buildConfigField("boolean", "IS_NEW_ARCHITECTURE_ENABLED", "false")
+        buildConfigField("boolean", "IS_HERMES_ENABLED", "true")
     }
 
     compileOptions {
@@ -24,6 +27,11 @@ android {
 
     kotlinOptions {
         jvmTarget = "17"
+    }
+    
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
 
     sourceSets {
@@ -42,7 +50,7 @@ android {
 }
 
 dependencies {
-    implementation("com.facebook.react:react-native:0.81.0")
+    implementation("com.facebook.react:react-android:0.74.5")
     implementation("com.usercentrics.sdk:usercentrics-ui:$usercentricsVersion")
 
     androidTestImplementation("io.mockk:mockk-android:1.12.0")
