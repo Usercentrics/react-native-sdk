@@ -384,17 +384,28 @@ npm install --legacy-peer-deps && \
 print_status "SUCCESS" "Root dependencies installed" || \
 print_status "FAIL" "Failed to install root dependencies"
 
-# Install example dependencies
-print_status "INFO" "Installing example project dependencies..."
-cd "$PROJECT_ROOT/example"
-npm install --legacy-peer-deps && \
-print_status "SUCCESS" "Example dependencies installed" || \
-print_status "FAIL" "Failed to install example dependencies"
+# Install sample dependencies
+if [[ -d "$PROJECT_ROOT/sample" ]]; then
+    print_status "INFO" "Installing sample project dependencies..."
+    cd "$PROJECT_ROOT/sample"
+    npm install --legacy-peer-deps && \
+    print_status "SUCCESS" "Sample dependencies installed" || \
+    print_status "FAIL" "Failed to install sample dependencies"
+fi
+
+# Install legacy-sample dependencies
+if [[ -d "$PROJECT_ROOT/legacy-sample" ]]; then
+    print_status "INFO" "Installing legacy-sample project dependencies..."
+    cd "$PROJECT_ROOT/legacy-sample"
+    npm install --legacy-peer-deps && \
+    print_status "SUCCESS" "Legacy-sample dependencies installed" || \
+    print_status "FAIL" "Failed to install legacy-sample dependencies"
+fi
 
 # Apply patches
-if [ -f "$PROJECT_ROOT/example/package.json" ] && grep -q "patch-package" "$PROJECT_ROOT/example/package.json"; then
+if [ -f "$PROJECT_ROOT/sample/package.json" ] && grep -q "patch-package" "$PROJECT_ROOT/sample/package.json"; then
     print_status "INFO" "Applying patches..."
-    cd "$PROJECT_ROOT/example"
+    cd "$PROJECT_ROOT/sample"
     npm run postinstall && \
     print_status "SUCCESS" "Patches applied" || \
     print_status "FAIL" "Failed to apply patches"
@@ -435,7 +446,7 @@ echo "==========================================================================
 # Run requirements check
 print_status "INFO" "Running requirements verification..."
 if [ -f "$PROJECT_ROOT/scripts/check-requirements.sh" ]; then
-    cd "$PROJECT_ROOT/example"
+    cd "$PROJECT_ROOT/sample"
     if ../scripts/check-requirements.sh >/dev/null 2>&1; then
         print_status "SUCCESS" "All requirements verified" "Environment ready!"
     else
@@ -460,9 +471,9 @@ if [ $FAILED -eq 0 ]; then
     echo ""
     echo "🚀 Next steps:"
     echo "   1. Restart your terminal to load new environment variables"
-    echo "   2. cd $PROJECT_ROOT/example && npm run check-requirements (verify setup)"
-    echo "   3. cd $PROJECT_ROOT/example && npm run android (test Android build)"
-    echo "   4. cd $PROJECT_ROOT/example && npm run ios (test iOS build - macOS only)"
+    echo "   2. cd $PROJECT_ROOT/sample && npm run check-requirements (verify setup)"
+    echo "   3. cd $PROJECT_ROOT/sample && npm run android (test Android build)"
+    echo "   4. cd $PROJECT_ROOT/sample && npm run ios (test iOS build - macOS only)"
     EXIT_CODE=0
 else
     echo -e "⚠️  ${YELLOW}SETUP COMPLETED WITH ISSUES${NC}"

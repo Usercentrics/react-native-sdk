@@ -257,10 +257,10 @@ else
 fi
 
 # Check Metro
-if [ -f "$PROJECT_ROOT/example/node_modules/.bin/metro" ]; then
-    print_status "PASS" "Metro bundler found" "Available in example project"
+if [ -f "$PROJECT_ROOT/sample/node_modules/.bin/metro" ]; then
+    print_status "PASS" "Metro bundler found" "Available in sample project"
 else
-    print_status "WARN" "Metro bundler not found" "Run npm install in example directory"
+    print_status "WARN" "Metro bundler not found" "Run npm install in sample directory"
 fi
 
 # ============================================================================
@@ -280,26 +280,39 @@ else
     print_status "FAIL" "Root package.json missing" "Invalid project structure"
 fi
 
-# Check example dependencies
-if [ -f "$PROJECT_ROOT/example/package.json" ]; then
-    print_status "PASS" "Example package.json found" "Example project OK"
+# Check sample dependencies
+if [ -f "$PROJECT_ROOT/sample/package.json" ]; then
+    print_status "PASS" "Sample package.json found" "Sample project OK"
     
-    if [ -d "$PROJECT_ROOT/example/node_modules" ]; then
-        print_status "PASS" "Example node_modules found" "Example dependencies installed"
+    if [ -d "$PROJECT_ROOT/sample/node_modules" ]; then
+        print_status "PASS" "Sample node_modules found" "Sample dependencies installed"
         
         # Check if patches are applied
-        if [ -f "$PROJECT_ROOT/example/node_modules/react-native-screens/android/build.gradle" ]; then
-            if grep -q "minSdkVersion 23" "$PROJECT_ROOT/example/node_modules/react-native-screens/android/build.gradle"; then
+        if [ -f "$PROJECT_ROOT/sample/node_modules/react-native-screens/android/build.gradle" ]; then
+            if grep -q "minSdkVersion 23" "$PROJECT_ROOT/sample/node_modules/react-native-screens/android/build.gradle"; then
                 print_status "PASS" "Patches applied successfully" "react-native-screens patched"
             else
-                print_status "WARN" "Patches may not be applied" "Run: npm run postinstall in example"
+                print_status "WARN" "Patches may not be applied" "Run: npm run postinstall in sample"
             fi
         fi
     else
-        print_status "FAIL" "Example node_modules missing" "Run: cd example && npm install --legacy-peer-deps"
+        print_status "FAIL" "Sample node_modules missing" "Run: cd sample && npm install --legacy-peer-deps"
     fi
 else
-    print_status "FAIL" "Example package.json missing" "Invalid project structure"
+    print_status "FAIL" "Sample package.json missing" "Invalid project structure"
+fi
+
+# Check legacy-sample dependencies
+if [ -f "$PROJECT_ROOT/legacy-sample/package.json" ]; then
+    print_status "PASS" "Legacy-sample package.json found" "Legacy-sample project OK"
+    
+    if [ -d "$PROJECT_ROOT/legacy-sample/node_modules" ]; then
+        print_status "PASS" "Legacy-sample node_modules found" "Legacy-sample dependencies installed"
+    else
+        print_status "FAIL" "Legacy-sample node_modules missing" "Run: cd legacy-sample && npm install --legacy-peer-deps"
+    fi
+else
+    print_status "WARN" "Legacy-sample package.json missing" "Legacy-sample project not found"
 fi
 
 # Check compiled TypeScript
@@ -355,16 +368,16 @@ if [ -f "$PROJECT_ROOT/package.json" ]; then
 fi
 
 # Check Gradle wrapper version
-if [ -f "$PROJECT_ROOT/example/android/gradle/wrapper/gradle-wrapper.properties" ]; then
-    GRADLE_WRAPPER_VERSION=$(grep "distributionUrl" "$PROJECT_ROOT/example/android/gradle/wrapper/gradle-wrapper.properties" | grep -o '[0-9]\+\.[0-9]\+')
+if [ -f "$PROJECT_ROOT/sample/android/gradle/wrapper/gradle-wrapper.properties" ]; then
+    GRADLE_WRAPPER_VERSION=$(grep "distributionUrl" "$PROJECT_ROOT/sample/android/gradle/wrapper/gradle-wrapper.properties" | grep -o '[0-9]\+\.[0-9]\+')
     print_status "PASS" "Gradle Wrapper version" "$GRADLE_WRAPPER_VERSION"
 else
     print_status "WARN" "Gradle wrapper properties not found"
 fi
 
 # Check Android Gradle Plugin version
-if [ -f "$PROJECT_ROOT/example/android/build.gradle" ]; then
-    AGP_VERSION=$(grep "com.android.tools.build:gradle" "$PROJECT_ROOT/example/android/build.gradle" | grep -o '[0-9]\+\.[0-9]\+\.[0-9]\+')
+if [ -f "$PROJECT_ROOT/sample/android/build.gradle" ]; then
+    AGP_VERSION=$(grep "com.android.tools.build:gradle" "$PROJECT_ROOT/sample/android/build.gradle" | grep -o '[0-9]\+\.[0-9]\+\.[0-9]\+')
     if [ ! -z "$AGP_VERSION" ]; then
         print_status "PASS" "Android Gradle Plugin version" "$AGP_VERSION"
     fi
@@ -391,7 +404,7 @@ if [ $FAILED -eq 0 ]; then
     echo ""
     echo "🚀 Next steps:"
     echo "   1. cd $PROJECT_ROOT && npm run install-dependencies"
-    echo "   2. cd $PROJECT_ROOT/example && npm run android"
+    echo "   2. cd $PROJECT_ROOT/sample && npm run android"
     EXIT_CODE=0
 else
     echo -e "❌ ${RED}REQUIREMENTS NOT MET${NC}. Please fix the $FAILED failed requirement(s) above."
@@ -420,5 +433,7 @@ echo ""
 echo "📝 This report was generated on $(date)"
 echo "🔍 For detailed setup instructions, visit: https://reactnative.dev/docs/environment-setup"
 echo ""
+
+exit $EXIT_CODE
 
 exit $EXIT_CODE
