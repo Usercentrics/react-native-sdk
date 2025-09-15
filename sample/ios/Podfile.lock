@@ -1806,6 +1806,10 @@ PODS:
     - ReactCommon/turbomodule/core
     - SocketRocket
     - Yoga
+  - react-native-usercentrics (2.21.1):
+    - React-Core
+    - React-NativeModulesApple
+    - UsercentricsUI (= 2.21.1)
   - React-NativeModulesApple (0.81.0):
     - boost
     - DoubleConversion
@@ -2311,6 +2315,9 @@ PODS:
     - React-utils (= 0.81.0)
     - SocketRocket
   - SocketRocket (0.7.1)
+  - Usercentrics (2.21.1)
+  - UsercentricsUI (2.21.1):
+    - Usercentrics (= 2.21.1)
   - Yoga (0.0.0)
 
 DEPENDENCIES:
@@ -2356,6 +2363,7 @@ DEPENDENCIES:
   - React-Mapbuffer (from `../node_modules/react-native/ReactCommon`)
   - React-microtasksnativemodule (from `../node_modules/react-native/ReactCommon/react/nativemodule/microtasks`)
   - react-native-safe-area-context (from `../node_modules/react-native-safe-area-context`)
+  - react-native-usercentrics (from `../node_modules/react-native-usercentrics`)
   - React-NativeModulesApple (from `../node_modules/react-native/ReactCommon/react/nativemodule/core/platform/ios`)
   - React-oscompat (from `../node_modules/react-native/ReactCommon/oscompat`)
   - React-perflogger (from `../node_modules/react-native/ReactCommon/reactperflogger`)
@@ -2392,6 +2400,8 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - SocketRocket
+    - Usercentrics
+    - UsercentricsUI
 
 EXTERNAL SOURCES:
   boost:
@@ -2477,6 +2487,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/react/nativemodule/microtasks"
   react-native-safe-area-context:
     :path: "../node_modules/react-native-safe-area-context"
+  react-native-usercentrics:
+    :path: "../node_modules/react-native-usercentrics"
   React-NativeModulesApple:
     :path: "../node_modules/react-native/ReactCommon/react/nativemodule/core/platform/ios"
   React-oscompat:
@@ -2582,6 +2594,7 @@ SPEC CHECKSUMS:
   React-Mapbuffer: e402e7a0535b2213c50727553621480fe8cd8ade
   React-microtasksnativemodule: a63ce5595016996a9bac1f10c70a7a7fe6506649
   react-native-safe-area-context: c6e2edd1c1da07bdce287fa9d9e60c5f7b514616
+  react-native-usercentrics: 45aa6c7baa9c2475449e5cfc0f40da0088f35daf
   React-NativeModulesApple: b3766e1f87b08064ebc459b9e1538da2447ca874
   React-oscompat: 34f3d3c06cadcbc470bc4509c717fb9b919eaa8b
   React-perflogger: a1edb025fd5d44f61bf09307e248f7608d7b2dcf
@@ -2613,6 +2626,8 @@ SPEC CHECKSUMS:
   ReactCodegen: a55799cae416c387aeaae3aabc1bc0289ac19cee
   ReactCommon: 116d6ee71679243698620d8cd9a9042541e44aa6
   SocketRocket: d4aabe649be1e368d1318fdf28a022d714d65748
+  Usercentrics: 833b5329d91d4b6f45a00dcf531dfa3cd802a209
+  UsercentricsUI: acbd7dff3b5208dfaef1801c7b6b5f3248e9ec8e
   Yoga: 00013dd9cde63a2d98e8002fcc4f5ddb66c10782
 
 PODFILE CHECKSUM: efdc448e03b62370a33c82ca9add9631cf99c44c
