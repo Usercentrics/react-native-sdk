@@ -1,6 +1,35 @@
-pluginManagement { includeBuild("../node_modules/@react-native/gradle-plugin") }
-plugins { id("com.facebook.react.settings") }
-extensions.configure(com.facebook.react.ReactSettingsExtension){ ex -> ex.autolinkLibrariesFromCommand() }
-rootProject.name = 'sample'
-include ':app'
-includeBuild('../node_modules/@react-native/gradle-plugin')
+pluginManagement {
+    repositories {
+        google()
+        mavenCentral()
+        gradlePluginPortal()
+    }
+    plugins {
+        id("com.android.application") version "8.5.2"
+        id("com.android.library") version "8.5.2"
+        id("org.jetbrains.kotlin.android") version "2.1.0"
+        id("com.facebook.react") version "0.74.5"
+    }
+}
+
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.PREFER_SETTINGS)
+    repositories {
+        google()
+        mavenCentral()
+        maven { url "https://www.jitpack.io" }
+    }
+}
+
+rootProject.name = "sample"
+
+include(":app")
+include(":react-native-webview")
+include(":react-native-screens")
+include(":react-native-usercentrics")
+include(":react-native-safe-area-context")
+project(":react-native-usercentrics").projectDir = file("../../android")
+project(":react-native-webview").projectDir = file("../node_modules/react-native-webview/android")
+project(":react-native-screens").projectDir = file("../node_modules/react-native-screens/android")
+project(":react-native-safe-area-context").projectDir = file("../node_modules/react-native-safe-area-context/android")
+

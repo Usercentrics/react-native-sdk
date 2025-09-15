@@ -1,7 +1,7 @@
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
-    id("com.facebook.react") version "0.81.0" apply false
+    id("com.facebook.react") apply false
 }
 
 val usercentricsVersion = "2.22.2"

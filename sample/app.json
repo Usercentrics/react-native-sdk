@@ -1,4 +1,7 @@
 {
   "name": "sample",
-  "displayName": "sample"
+  "displayName": "usercentrics",
+  "android": {
+    "packageName": "com.usercentrics.reactnativesdk.sample"
+  }
 }
