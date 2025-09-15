@@ -1,5 +1,11 @@
 [Release Notes](https://docs.usercentrics.com/cmp_in_app_sdk/latest/about/history/)
 
+### 2.23.0 - Sep 15, 2025
+## Android/iOS Bug Fixes:
+* Fixed bugs related to Google Consent Strings on DenyAll, ensuring correct consent handling
+* Resolved geolocation issue reported in version 2.22.2
+* Fixed accessibility contrast issues for improved usability
+
 ### 2.22.2 - Aug 7, 2025
 ## Feature - Consent Mediation
 * Added support for AirBridge SDK
