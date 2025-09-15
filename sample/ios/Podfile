@@ -1,4 +1,4 @@
-# Resolve react_native_pods.rb with node to allow for hoisting
+# Resolve react_native_pods.rb com node para permitir hoisting
 require Pod::Executable.execute_command('node', ['-p',
   'require.resolve(
     "react-native/scripts/react_native_pods.rb",
@@ -15,11 +15,15 @@ target 'sample' do
   use_react_native!(
     :path => config[:reactNativePath],
     :hermes_enabled => true,
-    :fabric_enabled => true,
-    :new_arch_enabled => ENV['RCT_NEW_ARCH_ENABLED'] == '1'
+    :fabric_enabled => false,
+    :new_arch_enabled => false
   )
 
+  # Development: Use local SDK
   pod 'react-native-usercentrics', :path => '../..'
+  
+  # Testing: Use GitHub version (uncomment to test with published version)
+  # pod 'react-native-usercentrics', :git => 'https://github.com/Usercentrics/usercentrics-react-native.git', :tag => 'v2.22.2'
 
   post_install do |installer|
     react_native_post_install(
