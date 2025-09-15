@@ -1,10 +1,8 @@
 #import <React/RCTBridgeModule.h>
-#import <React/RCTTurboModule.h>
-#import <ReactCommon/RCTTurboModule.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
-@protocol NativeUsercentricsSpec <RCTBridgeModule, RCTTurboModule>
+@protocol NativeUsercentricsSpec <RCTBridgeModule>
 
 // Configuration
 - (void)configure:(NSDictionary *)options;

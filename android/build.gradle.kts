@@ -1,7 +1,7 @@
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
-    id("com.facebook.react") version "0.78.3" apply false
+    id("com.facebook.react") version "0.81.0" apply false
 }
 
 val usercentricsVersion = "2.22.2"
@@ -42,7 +42,7 @@ android {
 }
 
 dependencies {
-    implementation("com.facebook.react:react-native:0.78.3")
+    implementation("com.facebook.react:react-native:0.81.0")
     implementation("com.usercentrics.sdk:usercentrics-ui:$usercentricsVersion")
 
     androidTestImplementation("io.mockk:mockk-android:1.12.0")

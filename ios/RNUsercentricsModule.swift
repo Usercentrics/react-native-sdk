@@ -4,7 +4,13 @@ import UsercentricsUI
 import UIKit
 
 #if RCT_NEW_ARCH_ENABLED
+#if canImport(RNUsercentricsModuleSpec)
+// RN ≤ 0.77
 import RNUsercentricsModuleSpec
+#else
+// RN ≥ 0.78
+import React_Codegen
+#endif
 #endif
 
 @objc(RNUsercentricsModule)
@@ -212,12 +218,12 @@ class RNUsercentricsModule: NSObject {
 // MARK: - RCTBridgeModule & TurboModule Conformance
 #if RCT_NEW_ARCH_ENABLED
 extension RNUsercentricsModule: NativeUsercentricsSpec {
-    func getTurboModule(jsInvoker: RCTJSInvoker) -> std::shared_ptr<facebook::react::TurboModule> {
-        return std::make_shared<facebook::react::NativeUsercentricsSpecJSI>(self, jsInvoker)
+    func getTurboModule(jsInvoker: RCTJSInvoker) -> Any {
+        return self
     }
 }
 #else
 extension RNUsercentricsModule: RCTBridgeModule {
-    // Bridge module methods are already implemented above
+
 }
 #endif
