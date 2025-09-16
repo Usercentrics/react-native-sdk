@@ -10,7 +10,7 @@ import com.reactnativecommunity.webview.RNCWebViewPackage
 import com.usercentrics.reactnativeusercentrics.RNUsercentricsPackage
 import com.swmansion.rnscreens.RNScreensPackage
 import com.th3rdwave.safeareacontext.SafeAreaContextPackage
-import java.util.*
+import java.util.Arrays
 
 class MainApplication : Application(), ReactApplication {
 

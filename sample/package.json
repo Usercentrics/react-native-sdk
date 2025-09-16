@@ -8,12 +8,18 @@
     "lint": "eslint .",
     "start": "react-native start",
     "test": "jest",
-    "postinstall": "patch-package"
+    "postinstall": "patch-package",
+    "android-build": "cd android && ./gradlew app:assembleDebug",
+    "clean-and-build": "./scripts/clean-and-build.sh",
+    "clean-all-caches": "../scripts/clean-all-caches.sh",
+    "install-dependencies": "../scripts/install-dependencies.sh"
   },
   "dependencies": {
     "@react-navigation/native": "^6.1.18",
     "@react-navigation/native-stack": "^6.11.0",
     "@usercentrics/react-native-sdk": "file:../",
+    "install": "^0.13.0",
+    "npm": "^11.6.0",
     "react": "18.2.0",
     "react-native": "0.74.5",
     "react-native-safe-area-context": "^5.6.1",
