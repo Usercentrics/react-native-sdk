@@ -28,6 +28,7 @@ include(":react-native-webview")
 include(":react-native-screens")
 include(":react-native-usercentrics")
 include(":react-native-safe-area-context")
+
 project(":react-native-usercentrics").projectDir = file("../../android")
 project(":react-native-webview").projectDir = file("../node_modules/react-native-webview/android")
 project(":react-native-screens").projectDir = file("../node_modules/react-native-screens/android")

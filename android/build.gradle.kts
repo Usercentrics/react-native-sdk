@@ -4,6 +4,7 @@ plugins {
 }
 
 val usercentricsVersion = "2.22.2"
+val reactNativeVersion = "0.74.5"
 
 android {
     namespace = "com.usercentrics.reactnative"
@@ -43,13 +44,17 @@ android {
 
     packagingOptions {
         jniLibs {
+            pickFirsts.add("**/libjscexecutor.so")
+            pickFirsts.add("**/libhermes.so")
+            pickFirsts.add("**/libreactnativejni.so")
+            pickFirsts.add("**/libreact_featureflagsjni.so")
             useLegacyPackaging = false
         }
     }
 }
 
 dependencies {
-    implementation("com.facebook.react:react-android:0.74.5")
+    implementation("com.facebook.react:react-android:$reactNativeVersion")
     implementation("com.usercentrics.sdk:usercentrics-ui:$usercentricsVersion")
 
     androidTestImplementation("io.mockk:mockk-android:1.12.0")

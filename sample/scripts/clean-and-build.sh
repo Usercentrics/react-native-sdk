@@ -17,12 +17,6 @@ rm -rf ../node_modules/react-native-screens/android/.cxx
 rm -rf ../node_modules/react-native-screens/android/build
 cd ..
 
-#echo "📦 Removing node_modules..."
-#rm -rf node_modules
-#
-#echo "📥 Installing dependencies..."
-#npm install
-
 echo "🔨 Building APK..."
 cd android
 ./gradlew assembleDebug

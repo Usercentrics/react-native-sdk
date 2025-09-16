@@ -1,6 +1,8 @@
 apply plugin: "com.android.application"
 apply plugin: "org.jetbrains.kotlin.android"
 
+def reactNativeVersion = "0.74.5"
+
 android {
     ndkVersion rootProject.ext.ndkVersion
     buildToolsVersion rootProject.ext.buildToolsVersion
@@ -50,19 +52,30 @@ android {
     buildFeatures {
         buildConfig = true
     }
+
+    packagingOptions {
+        jniLibs {
+            pickFirsts.add("**/libjscexecutor.so")
+            pickFirsts.add("**/libhermes.so")
+            pickFirsts.add("**/libreactnativejni.so")
+            pickFirsts.add("**/libreact_featureflagsjni.so")
+            useLegacyPackaging = false
+        }
+    }
 }
 
 dependencies {
-    implementation("com.facebook.react:react-android:0.74.5")
+    // SDK Usercentrics
     implementation(project(":react-native-usercentrics"))
+
+    // React Native
+    implementation("com.facebook.react:react-android:$reactNativeVersion")
+
     implementation(project(":react-native-webview"))
     implementation(project(":react-native-screens"))
     implementation(project(":react-native-safe-area-context"))
 
-    debugImplementation("com.facebook.react:hermes-android:0.74.5") {
-        exclude(group: "com.facebook.fbjni")
-    }
-    releaseImplementation("com.facebook.react:hermes-android:0.74.5") {
+    debugImplementation("com.facebook.react:hermes-android:$reactNativeVersion") {
         exclude(group: "com.facebook.fbjni")
     }
 }
