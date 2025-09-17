@@ -4,7 +4,7 @@ plugins {
 }
 
 val usercentricsVersion = "2.22.2"
-val reactNativeVersion = "0.78.3"
+val reactNativeVersion = "0.79.6"
 
 android {
     namespace = "com.usercentrics.reactnative"

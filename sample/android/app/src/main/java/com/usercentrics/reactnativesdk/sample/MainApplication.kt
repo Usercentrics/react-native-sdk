@@ -5,6 +5,7 @@ import android.content.Context
 import com.facebook.react.ReactApplication
 import com.facebook.react.ReactNativeHost
 import com.facebook.react.ReactPackage
+import com.facebook.react.defaults.DefaultNewArchitectureEntryPoint
 import com.facebook.react.shell.MainReactPackage
 import com.facebook.soloader.SoLoader
 import com.reactnativecommunity.webview.RNCWebViewPackage
@@ -46,6 +47,7 @@ class MainApplication : Application(), ReactApplication {
         Log.d("MainApplication", "DEBUG: ${BuildConfig.DEBUG}")
 
         if (BuildConfig.IS_NEW_ARCHITECTURE_ENABLED) {
+            DefaultNewArchitectureEntryPoint.load()
         }
     }
 
