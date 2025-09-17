@@ -8,7 +8,8 @@
     "ios": "react-native run-ios",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "start": "react-native start",
-    "test": "jest"
+    "test": "jest",
+    "fix-metro": "../scripts/fix-metro.sh"
   },
   "dependencies": {
     "@react-navigation/native": "^5.9.8",

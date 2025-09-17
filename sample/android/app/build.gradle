@@ -1,7 +1,10 @@
-apply plugin: "com.android.application"
-apply plugin: "org.jetbrains.kotlin.android"
+plugins {
+    id("com.android.application")
+    id("org.jetbrains.kotlin.android")
+    id("com.facebook.react")
+}
 
-def reactNativeVersion = "0.74.5"
+def reactNativeVersion = "0.79.6"
 
 android {
     ndkVersion rootProject.ext.ndkVersion
@@ -15,29 +18,16 @@ android {
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
         versionName "1.0"
-        
-        buildConfigField("boolean", "IS_NEW_ARCHITECTURE_ENABLED", "false")
-        buildConfigField("boolean", "IS_HERMES_ENABLED", "true")
+
+        def isNewArchEnabled = project.findProperty("newArchEnabled") == "true"
+        def isHermesEnabled = project.findProperty("hermesEnabled") != "false"
+        buildConfigField("boolean", "IS_NEW_ARCHITECTURE_ENABLED", isNewArchEnabled.toString())
+        buildConfigField("boolean", "IS_HERMES_ENABLED", isHermesEnabled.toString())
     }
-    
-    signingConfigs {
-        debug {
-            storeFile file('debug.keystore')
-            storePassword 'android'
-            keyAlias 'androiddebugkey'
-            keyPassword 'android'
-        }
-    }
-    
+
     buildTypes {
-        debug {
-            debuggable true
-            signingConfig signingConfigs.debug
-        }
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
+        debug { debuggable true }
+        release { minifyEnabled false }
     }
 
     compileOptions {
@@ -64,6 +54,13 @@ android {
     }
 }
 
+configurations.all {
+    resolutionStrategy {
+        force("com.facebook.react:react-native:$reactNativeVersion")
+        force("com.facebook.react:hermes-engine:$reactNativeVersion")
+    }
+}
+
 dependencies {
     // SDK Usercentrics
     implementation(project(":react-native-usercentrics"))
@@ -78,4 +75,21 @@ dependencies {
     debugImplementation("com.facebook.react:hermes-android:$reactNativeVersion") {
         exclude(group: "com.facebook.fbjni")
     }
+
+    // Flipper dependencies
+    debugImplementation("com.facebook.flipper:flipper:0.212.0")
+    debugImplementation("com.facebook.flipper:flipper-network-plugin:0.212.0")
+    debugImplementation("com.facebook.soloader:soloader:0.10.5")
 }
+
+react {
+    jsRootDir = file("${rootDir}/../src")
+}
+
+// ===================================================================================================
+// AUTOLINKING AUTOMATION
+// ===================================================================================================
+// Include the external autolinking configuration file
+// This file contains the generateAutolinking task and automation logic
+// ===================================================================================================
+apply from: "${rootDir}/plugin/autolinking.gradle"

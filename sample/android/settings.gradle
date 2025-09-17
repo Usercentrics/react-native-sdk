@@ -1,14 +1,14 @@
 pluginManagement {
     repositories {
+        gradlePluginPortal()
         google()
         mavenCentral()
-        gradlePluginPortal()
+        maven { url = uri("$rootDir/../node_modules/@react-native/gradle-plugin") }
     }
+
     plugins {
-        id("com.android.application") version "8.5.2"
-        id("com.android.library") version "8.5.2"
-        id("org.jetbrains.kotlin.android") version "2.1.0"
-        id("com.facebook.react") version "0.74.5"
+        id("org.jetbrains.kotlin.android") version "2.1.20"
+        id("com.facebook.react") version "0.79.6"
     }
 }
 
@@ -17,7 +17,8 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
-        maven { url "https://www.jitpack.io" }
+        maven { url = uri("$rootDir/../node_modules/@react-native/gradle-plugin") }
+        maven { url = "https://www.jitpack.io" }
     }
 }
 
@@ -33,4 +34,4 @@ project(":react-native-usercentrics").projectDir = file("../../android")
 project(":react-native-webview").projectDir = file("../node_modules/react-native-webview/android")
 project(":react-native-screens").projectDir = file("../node_modules/react-native-screens/android")
 project(":react-native-safe-area-context").projectDir = file("../node_modules/react-native-safe-area-context/android")
-
+includeBuild("../node_modules/@react-native/gradle-plugin")

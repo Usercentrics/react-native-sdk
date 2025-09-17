@@ -11,6 +11,7 @@ import com.reactnativecommunity.webview.RNCWebViewPackage
 import com.usercentrics.reactnativeusercentrics.RNUsercentricsPackage
 import com.swmansion.rnscreens.RNScreensPackage
 import com.th3rdwave.safeareacontext.SafeAreaContextPackage
+import com.facebook.react.soloader.OpenSourceMergedSoMapping
 import java.util.Arrays
 import android.util.Log
 
@@ -38,7 +39,7 @@ class MainApplication : Application(), ReactApplication {
 
     override fun onCreate() {
         super.onCreate()
-        SoLoader.init(this, false)
+        SoLoader.init(this, OpenSourceMergedSoMapping)
 
         Log.d("MainApplication", "IS_HERMES_ENABLED: ${BuildConfig.IS_HERMES_ENABLED}")
         Log.d("MainApplication", "IS_NEW_ARCHITECTURE_ENABLED: ${BuildConfig.IS_NEW_ARCHITECTURE_ENABLED}")

@@ -87,6 +87,15 @@ rm -rf android/build
 rm -rf android/.gradle
 rm -rf lib
 rm -rf ios/build
+rm -rf ios/Pods
+rm -rf ios/Podfile.lock
+
+# Clean Android with gradlew in root SDK
+if [[ -f "android/gradlew" ]]; then
+    echo "🔧 Cleaning root SDK Android with gradlew..."
+    cd android && ./gradlew clean 2>/dev/null || true
+    cd ..
+fi
 
 # Clean global system caches
 echo "🌐 Cleaning global system caches..."
@@ -111,6 +120,30 @@ fi
 # Return to original directory
 cd "$CURRENT_DIR"
 echo "✅ Complete cleanup finished!"
+
+# Automatically run fix-metro.sh to resolve Metro issues
+echo "🔧 Running Metro fix script to prevent common issues..."
+if [[ -f "$PROJECT_ROOT/scripts/fix-metro.sh" ]]; then
+    # Run fix-metro.sh in sample directory if it exists
+    if [[ -d "$PROJECT_ROOT/sample" ]]; then
+        echo "   Fixing Metro issues in sample..."
+        cd "$PROJECT_ROOT/sample"
+        "$PROJECT_ROOT/scripts/fix-metro.sh" --kill-only
+        cd "$CURRENT_DIR"
+    fi
+    # Run fix-metro.sh in legacy-sample directory if it exists
+    if [[ -d "$PROJECT_ROOT/legacy-sample" ]]; then
+        echo "   Fixing Metro issues in legacy-sample..."
+        cd "$PROJECT_ROOT/legacy-sample"
+        "$PROJECT_ROOT/scripts/fix-metro.sh" --kill-only
+        cd "$CURRENT_DIR"
+    fi
+    echo "✅ Metro issues prevention completed!"
+else
+    echo "⚠️  fix-metro.sh not found, skipping Metro fix"
+fi
+
+echo ""
 echo "📝 Next steps:"
 echo "   1. npm run install-dependencies"
 if [[ -d "$PROJECT_ROOT/sample" ]]; then
@@ -119,3 +152,7 @@ fi
 if [[ -d "$PROJECT_ROOT/legacy-sample" ]]; then
     echo "   2. cd $PROJECT_ROOT/legacy-sample && npm run android"
 fi
+echo ""
+echo "🔧 If you encounter Metro bundler issues, use:"
+echo "   npm run fix-metro"
+echo "   This script resolves TreeFS conflicts, port issues, and cache problems."

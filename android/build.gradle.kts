@@ -4,7 +4,7 @@ plugins {
 }
 
 val usercentricsVersion = "2.22.2"
-val reactNativeVersion = "0.74.5"
+val reactNativeVersion = "0.78.3"
 
 android {
     namespace = "com.usercentrics.reactnative"
@@ -15,9 +15,12 @@ android {
         targetSdk = 34
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("proguard-rules.pro")
+
+        val isNewArchEnabled = project.findProperty("newArchEnabled") == "true"
+        val isHermesEnabled = project.findProperty("hermesEnabled") == "true"
         
-        buildConfigField("boolean", "IS_NEW_ARCHITECTURE_ENABLED", "false")
-        buildConfigField("boolean", "IS_HERMES_ENABLED", "true")
+        buildConfigField("boolean", "IS_NEW_ARCHITECTURE_ENABLED", isNewArchEnabled.toString())
+        buildConfigField("boolean", "IS_HERMES_ENABLED", isHermesEnabled.toString())
     }
 
     compileOptions {
@@ -44,10 +47,6 @@ android {
 
     packagingOptions {
         jniLibs {
-            pickFirsts.add("**/libjscexecutor.so")
-            pickFirsts.add("**/libhermes.so")
-            pickFirsts.add("**/libreactnativejni.so")
-            pickFirsts.add("**/libreact_featureflagsjni.so")
             useLegacyPackaging = false
         }
     }
