@@ -5,6 +5,9 @@
 # ===================================================================================================
 # This script resolves common Metro bundler issues that occur frequently in React Native projects.
 # It handles TreeFS conflicts, port conflicts, cache issues, and Watchman problems.
+# 
+# NOTE: This script does NOT reinstall dependencies. It only fixes Metro-specific issues.
+#       Use the install-dependencies script if you need to reinstall packages.
 # ===================================================================================================
 
 set -e  # Exit on any error
@@ -99,42 +102,38 @@ fix_watchman_issues() {
 fix_treefs_conflicts() {
     print_status "Fixing TreeFS conflicts in node_modules..."
     
-    # Check if @usercentrics/react-native-sdk exists and is causing conflicts
-    if [ -d "node_modules/@usercentrics/react-native-sdk" ]; then
-        print_warning "Found @usercentrics/react-native-sdk, removing to fix TreeFS conflicts..."
-        rm -rf node_modules/@usercentrics/react-native-sdk
-        print_success "Removed conflicting SDK directory"
-    fi
-    
-    # Check for other potential conflicts
+    # Check for symlinks that might be causing issues
     if [ -d "node_modules/@react-native" ]; then
-        print_status "Checking for React Native conflicts..."
+        print_status "Checking for React Native symlink conflicts..."
         # Remove any symlinks that might be causing issues
         find node_modules/@react-native -type l -delete 2>/dev/null || true
+    fi
+    
+    # Check for other common symlink issues
+    if [ -d "node_modules" ]; then
+        print_status "Checking for other symlink conflicts..."
+        find node_modules -name "*.symlink" -delete 2>/dev/null || true
+        find node_modules -type l -name "*react*" -delete 2>/dev/null || true
     fi
     
     print_success "TreeFS conflicts resolved"
 }
 
-# Function to reinstall dependencies
-reinstall_dependencies() {
-    print_status "Reinstalling dependencies..."
+# Function to fix dependency issues without reinstalling
+fix_dependency_issues() {
+    print_status "Fixing dependency issues..."
     
-    # Remove node_modules and package-lock.json
-    rm -rf node_modules
-    rm -f package-lock.json
-    rm -f yarn.lock
-    
-    # Install dependencies
-    if command -v yarn &> /dev/null; then
-        print_status "Using Yarn to install dependencies..."
-        yarn install
-    else
-        print_status "Using npm to install dependencies..."
-        npm install
+    # Only remove conflicting packages, not the entire node_modules
+    if [ -d "node_modules/@usercentrics/react-native-sdk" ]; then
+        print_warning "Found @usercentrics/react-native-sdk, removing to fix conflicts..."
+        rm -rf node_modules/@usercentrics/react-native-sdk
+        print_success "Removed conflicting SDK directory"
     fi
     
-    print_success "Dependencies reinstalled"
+    # Clear npm cache without reinstalling
+    npm cache clean --force 2>/dev/null || true
+    
+    print_success "Dependency issues fixed"
 }
 
 # Function to check and kill processes using port 8081
@@ -200,6 +199,9 @@ main() {
     echo "==================================================================================================="
     echo "                    METRO ISSUES FIX SCRIPT"
     echo "==================================================================================================="
+    echo "  This script fixes Metro bundler issues WITHOUT reinstalling dependencies"
+    echo "  Use install-dependencies script if you need to reinstall packages"
+    echo "==================================================================================================="
     echo ""
     
     # Check if we're in a React Native project
@@ -224,8 +226,8 @@ main() {
     fix_treefs_conflicts
     echo ""
     
-    # Step 5: Reinstall dependencies
-    reinstall_dependencies
+    # Step 5: Fix dependency issues
+    fix_dependency_issues
     echo ""
     
     # Step 6: Kill processes using port 8081
@@ -251,7 +253,10 @@ case "${1:-}" in
         echo "  - Port 8081 conflicts"
         echo "  - Metro cache issues"
         echo "  - Watchman problems"
-        echo "  - Dependency conflicts"
+        echo "  - Dependency symlink conflicts"
+        echo ""
+        echo "Note: This script does NOT reinstall dependencies."
+        echo "      Use the install-dependencies script if you need to reinstall packages."
         exit 0
         ;;
     --test)
@@ -260,7 +265,7 @@ case "${1:-}" in
         clear_metro_caches
         fix_watchman_issues
         fix_treefs_conflicts
-        reinstall_dependencies
+        fix_dependency_issues
         kill_port_8081
         print_success "All fixes applied. You can now start Metro manually."
         exit 0

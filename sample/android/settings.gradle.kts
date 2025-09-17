@@ -18,7 +18,13 @@ dependencyResolutionManagement {
         google()
         mavenCentral()
         maven { url = uri("$rootDir/../node_modules/@react-native/gradle-plugin") }
-        maven { url = "https://www.jitpack.io" }
+        maven { url = uri("https://www.jitpack.io") }
+    }
+
+    versionCatalogs {
+        create("versions") {
+            from(files("gradle/libs.versions.toml"))
+        }
     }
 }
 
@@ -35,3 +41,4 @@ project(":react-native-webview").projectDir = file("../node_modules/react-native
 project(":react-native-screens").projectDir = file("../node_modules/react-native-screens/android")
 project(":react-native-safe-area-context").projectDir = file("../node_modules/react-native-safe-area-context/android")
 includeBuild("../node_modules/@react-native/gradle-plugin")
+
