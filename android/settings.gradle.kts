@@ -4,6 +4,9 @@ pluginManagement {
         mavenCentral()
         gradlePluginPortal()
     }
+    plugins {
+        id("org.jetbrains.kotlin.android") version "2.1.20"
+    }
 }
 
 dependencyResolutionManagement {
