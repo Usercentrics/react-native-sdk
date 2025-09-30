@@ -1,7 +1,7 @@
 name: CI/CD
 
 env:
-  NODE_JS_VERSION: 14.21.3
+  NODE_JS_VERSION: 20.19.5
 
 on:
   pull_request:
@@ -22,8 +22,8 @@ jobs:
 
       - name: Run RN Tests
         run: |
-          npm ci
-          npm test
+          yarn install --frozen-lockfile
+          yarn test
 
       - name: Assert that every file that should be public has been exported
         run: ./scripts/assert_export.sh
@@ -48,8 +48,8 @@ jobs:
         with:
           node-version: ${{ env.NODE_JS_VERSION }}
 
-      - name: Install NPM dependencies
-        run: npm install
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
 
       - name: Install pods
         run: cd ios && pod install
@@ -77,9 +77,9 @@ jobs:
         with:
           java-version: 17
 
-      - name: Install Dependencies npm
+      - name: Install Dependencies
         working-directory: ./example
-        run: npm install
+        run: npm ci --legacy-peer-deps
 
       - name: Cache Gradle
         id: cache-gradle
