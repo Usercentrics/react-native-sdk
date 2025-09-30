@@ -3,7 +3,7 @@ plugins {
     id("org.jetbrains.kotlin.android")
 }
 
-val usercentricsVersion = "2.22.2"
+val usercentricsVersion = "2.23.0"
 val reactNativeVersion = "0.79.6"
 
 android {
