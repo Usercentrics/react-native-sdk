@@ -224,7 +224,7 @@ buck-out/
 # Gradle files
 .gradle/
 build/
-**/android/**/gradle-wrapper.jar
+android/**/gradle-wrapper.jar
 
 # Local configuration file (sdk path, etc)
 local.properties
