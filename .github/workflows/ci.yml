@@ -23,6 +23,7 @@ jobs:
       - name: Run RN Tests
         run: |
           yarn install --frozen-lockfile
+          yarn compile
           yarn test
 
       - name: Assert that every file that should be public has been exported
