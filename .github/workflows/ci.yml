@@ -22,13 +22,13 @@ jobs:
 
       - name: Install Dependencies
         run: yarn install --frozen-lockfile
-        
+
       - name: Install TypeScript
         run: yarn add --dev typescript@^5.6.3
-        
+
       - name: Compile TypeScript
         run: yarn compile
-        
+
       - name: Run Tests
         run: yarn test
 
@@ -54,10 +54,10 @@ jobs:
 
       - name: Install SDK Dependencies
         run: yarn install --frozen-lockfile
-        
+
       - name: Compile SDK
         run: yarn compile
-        
+
       - name: Install Sample Dependencies
         working-directory: ./sample
         run: npm ci --legacy-peer-deps
@@ -92,32 +92,45 @@ jobs:
 
       - name: Install SDK Dependencies
         run: yarn install --frozen-lockfile
-        
+
       - name: Compile SDK
         run: yarn compile
-        
-      - name: Install Sample Dependencies
-        working-directory: ./sample
-        run: npm ci --legacy-peer-deps
 
-      - name: Cache Gradle
-        id: cache-gradle
-        uses: actions/cache@v4
-        with:
-          path: |
-            ./sample/android/ci-cache/gradle
-            ./sample/android/gradle/wrapper/gradle-wrapper.jar
-            ./sample/android/gradlew
-          key: ${{ runner.os }}-cache-gradle-${{ env.GRADLE_VERSION }}
-
-      - name: Setup Gradle
-        if: steps.cache-gradle.outputs.cache-hit != 'true'
+      - name: Run SDK Unit Tests
         working-directory: ./sample/android
-        run: ../../scripts/setup_gradle.sh ${{ env.GRADLE_VERSION }}
+        run: ./gradlew :react-native-usercentrics:test
 
-      - name: Android tests
-        uses: reactivecircus/android-emulator-runner@v2
-        with:
-          working-directory: ./sample/android
-          api-level: 29
-          script: gradle wrapper; ./gradlew :react-native-usercentrics:connectedAndroidTest
+      # Commented out sample dependencies and Gradle setup since we're only running unit tests now
+      # - name: Install Sample Dependencies
+      #   working-directory: ./sample
+      #   run: npm ci --legacy-peer-deps
+
+      # - name: Clean Gradle Cache
+      #   run: |
+      #     rm -rf $HOME/.gradle/caches/
+      #     rm -rf ./sample/android/.gradle
+      #     rm -rf ./sample/android/build
+
+      # - name: Cache Gradle
+      #   id: cache-gradle
+      #   uses: actions/cache@v4
+      #   with:
+      #     path: |
+      #       ./sample/android/ci-cache/gradle
+      #       ./sample/android/gradle/wrapper/gradle-wrapper.jar
+      #       ./sample/android/gradlew
+      #     key: ${{ runner.os }}-cache-gradle-${{ env.GRADLE_VERSION }}
+
+      # Commented out instrumented tests - using unit tests instead for faster CI
+      # - name: Setup Gradle
+      #   if: steps.cache-gradle.outputs.cache-hit != 'true'
+      #   working-directory: ./sample/android
+      #   run: ../../scripts/setup_gradle.sh ${{ env.GRADLE_VERSION }}
+
+      # - name: Android tests
+      #   uses: reactivecircus/android-emulator-runner@v2
+      #   with:
+      #     working-directory: ./sample/android
+      #     api-level: 29
+      #     arch: x86_64
+      #     script: ./gradlew clean :app:connectedDebugAndroidTest

@@ -1,8 +1,21 @@
 diff --git a/node_modules/react-native-webview/android/build.gradle b/node_modules/react-native-webview/android/build.gradle
-index cb3476a..d584262 100644
+index cb3476a..f715903 100644
 --- a/node_modules/react-native-webview/android/build.gradle
 +++ b/node_modules/react-native-webview/android/build.gradle
-@@ -86,6 +86,15 @@ android {
+@@ -15,6 +15,12 @@ buildscript {
+ }
+ 
+ def getExtOrIntegerDefault(prop) {
++  if (prop == 'minSdkVersion') {
++    return 24
++  }
++  if (prop == 'compileSdkVersion') {
++    return 36
++  }
+   return rootProject.ext.has(prop) ? rootProject.ext.get(prop) : (project.properties['ReactNativeWebView_' + prop]).toInteger()
+ }
+ 
+@@ -86,6 +92,15 @@ android {
              }
          }
      }
@@ -18,7 +31,7 @@ index cb3476a..d584262 100644
  }
  
  def reactNativePath = findNodeModulePath(projectDir, "react-native")
-@@ -104,7 +113,7 @@ repositories {
+@@ -104,7 +119,7 @@ repositories {
  }
  
  dependencies {
@@ -27,244 +40,262 @@ index cb3476a..d584262 100644
      implementation "org.jetbrains.kotlin:kotlin-stdlib:${safeExtGet('kotlinVersion')}"
      implementation "androidx.webkit:webkit:${safeExtGet('webkitVersion')}"
  }
-diff --git a/node_modules/react-native-webview/android/build/.transforms/4553c3f04fdbe40415ff4f6af1dc5276/results.bin b/node_modules/react-native-webview/android/build/.transforms/4553c3f04fdbe40415ff4f6af1dc5276/results.bin
-new file mode 100644
-index 0000000..0d259dd
---- /dev/null
-+++ b/node_modules/react-native-webview/android/build/.transforms/4553c3f04fdbe40415ff4f6af1dc5276/results.bin
-@@ -0,0 +1 @@
-+o/classes
-diff --git a/node_modules/react-native-webview/android/build/.transforms/4553c3f04fdbe40415ff4f6af1dc5276/transformed/classes/classes_dex/classes.dex b/node_modules/react-native-webview/android/build/.transforms/4553c3f04fdbe40415ff4f6af1dc5276/transformed/classes/classes_dex/classes.dex
-new file mode 100644
-index 0000000..04e69d4
-Binary files /dev/null and b/node_modules/react-native-webview/android/build/.transforms/4553c3f04fdbe40415ff4f6af1dc5276/transformed/classes/classes_dex/classes.dex differ
-diff --git a/node_modules/react-native-webview/android/build/.transforms/d0fcabc106d227fa0d998d83995b4652/results.bin b/node_modules/react-native-webview/android/build/.transforms/d0fcabc106d227fa0d998d83995b4652/results.bin
+diff --git a/node_modules/react-native-webview/android/build/.transforms/013fc807a271e353f82d26d259b31f6e/results.bin b/node_modules/react-native-webview/android/build/.transforms/013fc807a271e353f82d26d259b31f6e/results.bin
 new file mode 100644
 index 0000000..7ed749e
 --- /dev/null
-+++ b/node_modules/react-native-webview/android/build/.transforms/d0fcabc106d227fa0d998d83995b4652/results.bin
++++ b/node_modules/react-native-webview/android/build/.transforms/013fc807a271e353f82d26d259b31f6e/results.bin
 @@ -0,0 +1 @@
 +o/bundleLibRuntimeToDirDebug
-diff --git a/node_modules/react-native-webview/android/build/.transforms/d0fcabc106d227fa0d998d83995b4652/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/BuildConfig.dex b/node_modules/react-native-webview/android/build/.transforms/d0fcabc106d227fa0d998d83995b4652/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/BuildConfig.dex
+diff --git a/node_modules/react-native-webview/android/build/.transforms/013fc807a271e353f82d26d259b31f6e/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/BuildConfig.dex b/node_modules/react-native-webview/android/build/.transforms/013fc807a271e353f82d26d259b31f6e/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/BuildConfig.dex
 new file mode 100644
-index 0000000..c1a6904
-Binary files /dev/null and b/node_modules/react-native-webview/android/build/.transforms/d0fcabc106d227fa0d998d83995b4652/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/BuildConfig.dex differ
-diff --git a/node_modules/react-native-webview/android/build/.transforms/d0fcabc106d227fa0d998d83995b4652/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCBasicAuthCredential.dex b/node_modules/react-native-webview/android/build/.transforms/d0fcabc106d227fa0d998d83995b4652/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCBasicAuthCredential.dex
+index 0000000..43e3a2a
+Binary files /dev/null and b/node_modules/react-native-webview/android/build/.transforms/013fc807a271e353f82d26d259b31f6e/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/BuildConfig.dex differ
+diff --git a/node_modules/react-native-webview/android/build/.transforms/013fc807a271e353f82d26d259b31f6e/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCBasicAuthCredential.dex b/node_modules/react-native-webview/android/build/.transforms/013fc807a271e353f82d26d259b31f6e/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCBasicAuthCredential.dex
 new file mode 100644
-index 0000000..cf7c2e8
-Binary files /dev/null and b/node_modules/react-native-webview/android/build/.transforms/d0fcabc106d227fa0d998d83995b4652/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCBasicAuthCredential.dex differ
-diff --git a/node_modules/react-native-webview/android/build/.transforms/d0fcabc106d227fa0d998d83995b4652/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebChromeClient$1.dex b/node_modules/react-native-webview/android/build/.transforms/d0fcabc106d227fa0d998d83995b4652/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebChromeClient$1.dex
+index 0000000..a8751c6
+Binary files /dev/null and b/node_modules/react-native-webview/android/build/.transforms/013fc807a271e353f82d26d259b31f6e/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCBasicAuthCredential.dex differ
+diff --git a/node_modules/react-native-webview/android/build/.transforms/013fc807a271e353f82d26d259b31f6e/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebChromeClient$1.dex b/node_modules/react-native-webview/android/build/.transforms/013fc807a271e353f82d26d259b31f6e/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebChromeClient$1.dex
 new file mode 100644
-index 0000000..6bf926a
-Binary files /dev/null and b/node_modules/react-native-webview/android/build/.transforms/d0fcabc106d227fa0d998d83995b4652/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebChromeClient$1.dex differ
-diff --git a/node_modules/react-native-webview/android/build/.transforms/d0fcabc106d227fa0d998d83995b4652/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebChromeClient.dex b/node_modules/react-native-webview/android/build/.transforms/d0fcabc106d227fa0d998d83995b4652/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebChromeClient.dex
+index 0000000..fcd4c7d
+Binary files /dev/null and b/node_modules/react-native-webview/android/build/.transforms/013fc807a271e353f82d26d259b31f6e/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebChromeClient$1.dex differ
+diff --git a/node_modules/react-native-webview/android/build/.transforms/013fc807a271e353f82d26d259b31f6e/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebChromeClient.dex b/node_modules/react-native-webview/android/build/.transforms/013fc807a271e353f82d26d259b31f6e/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebChromeClient.dex
 new file mode 100644
-index 0000000..9c81834
-Binary files /dev/null and b/node_modules/react-native-webview/android/build/.transforms/d0fcabc106d227fa0d998d83995b4652/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebChromeClient.dex differ
-diff --git a/node_modules/react-native-webview/android/build/.transforms/d0fcabc106d227fa0d998d83995b4652/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebView$1$1.dex b/node_modules/react-native-webview/android/build/.transforms/d0fcabc106d227fa0d998d83995b4652/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebView$1$1.dex
+index 0000000..504d184
+Binary files /dev/null and b/node_modules/react-native-webview/android/build/.transforms/013fc807a271e353f82d26d259b31f6e/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebChromeClient.dex differ
+diff --git a/node_modules/react-native-webview/android/build/.transforms/013fc807a271e353f82d26d259b31f6e/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebView$1$1.dex b/node_modules/react-native-webview/android/build/.transforms/013fc807a271e353f82d26d259b31f6e/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebView$1$1.dex
 new file mode 100644
-index 0000000..0a5a505
-Binary files /dev/null and b/node_modules/react-native-webview/android/build/.transforms/d0fcabc106d227fa0d998d83995b4652/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebView$1$1.dex differ
-diff --git a/node_modules/react-native-webview/android/build/.transforms/d0fcabc106d227fa0d998d83995b4652/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebView$1.dex b/node_modules/react-native-webview/android/build/.transforms/d0fcabc106d227fa0d998d83995b4652/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebView$1.dex
+index 0000000..4769169
+Binary files /dev/null and b/node_modules/react-native-webview/android/build/.transforms/013fc807a271e353f82d26d259b31f6e/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebView$1$1.dex differ
+diff --git a/node_modules/react-native-webview/android/build/.transforms/013fc807a271e353f82d26d259b31f6e/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebView$1.dex b/node_modules/react-native-webview/android/build/.transforms/013fc807a271e353f82d26d259b31f6e/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebView$1.dex
 new file mode 100644
-index 0000000..4cecf21
-Binary files /dev/null and b/node_modules/react-native-webview/android/build/.transforms/d0fcabc106d227fa0d998d83995b4652/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebView$1.dex differ
-diff --git a/node_modules/react-native-webview/android/build/.transforms/d0fcabc106d227fa0d998d83995b4652/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebView$2.dex b/node_modules/react-native-webview/android/build/.transforms/d0fcabc106d227fa0d998d83995b4652/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebView$2.dex
+index 0000000..d3e660e
+Binary files /dev/null and b/node_modules/react-native-webview/android/build/.transforms/013fc807a271e353f82d26d259b31f6e/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebView$1.dex differ
+diff --git a/node_modules/react-native-webview/android/build/.transforms/013fc807a271e353f82d26d259b31f6e/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebView$2.dex b/node_modules/react-native-webview/android/build/.transforms/013fc807a271e353f82d26d259b31f6e/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebView$2.dex
 new file mode 100644
-index 0000000..5f174bc
-Binary files /dev/null and b/node_modules/react-native-webview/android/build/.transforms/d0fcabc106d227fa0d998d83995b4652/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebView$2.dex differ
-diff --git a/node_modules/react-native-webview/android/build/.transforms/d0fcabc106d227fa0d998d83995b4652/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebView$3.dex b/node_modules/react-native-webview/android/build/.transforms/d0fcabc106d227fa0d998d83995b4652/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebView$3.dex
+index 0000000..c7ed26d
+Binary files /dev/null and b/node_modules/react-native-webview/android/build/.transforms/013fc807a271e353f82d26d259b31f6e/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebView$2.dex differ
+diff --git a/node_modules/react-native-webview/android/build/.transforms/013fc807a271e353f82d26d259b31f6e/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebView$3.dex b/node_modules/react-native-webview/android/build/.transforms/013fc807a271e353f82d26d259b31f6e/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebView$3.dex
 new file mode 100644
-index 0000000..5601bff
-Binary files /dev/null and b/node_modules/react-native-webview/android/build/.transforms/d0fcabc106d227fa0d998d83995b4652/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebView$3.dex differ
-diff --git a/node_modules/react-native-webview/android/build/.transforms/d0fcabc106d227fa0d998d83995b4652/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebView$ProgressChangedFilter.dex b/node_modules/react-native-webview/android/build/.transforms/d0fcabc106d227fa0d998d83995b4652/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebView$ProgressChangedFilter.dex
+index 0000000..471c241
+Binary files /dev/null and b/node_modules/react-native-webview/android/build/.transforms/013fc807a271e353f82d26d259b31f6e/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebView$3.dex differ
+diff --git a/node_modules/react-native-webview/android/build/.transforms/013fc807a271e353f82d26d259b31f6e/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebView$ProgressChangedFilter.dex b/node_modules/react-native-webview/android/build/.transforms/013fc807a271e353f82d26d259b31f6e/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebView$ProgressChangedFilter.dex
 new file mode 100644
-index 0000000..0f968f5
-Binary files /dev/null and b/node_modules/react-native-webview/android/build/.transforms/d0fcabc106d227fa0d998d83995b4652/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebView$ProgressChangedFilter.dex differ
-diff --git a/node_modules/react-native-webview/android/build/.transforms/d0fcabc106d227fa0d998d83995b4652/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebView$RNCWebViewBridge.dex b/node_modules/react-native-webview/android/build/.transforms/d0fcabc106d227fa0d998d83995b4652/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebView$RNCWebViewBridge.dex
+index 0000000..b19d673
+Binary files /dev/null and b/node_modules/react-native-webview/android/build/.transforms/013fc807a271e353f82d26d259b31f6e/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebView$ProgressChangedFilter.dex differ
+diff --git a/node_modules/react-native-webview/android/build/.transforms/013fc807a271e353f82d26d259b31f6e/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebView$RNCWebViewBridge.dex b/node_modules/react-native-webview/android/build/.transforms/013fc807a271e353f82d26d259b31f6e/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebView$RNCWebViewBridge.dex
 new file mode 100644
-index 0000000..efcb754
-Binary files /dev/null and b/node_modules/react-native-webview/android/build/.transforms/d0fcabc106d227fa0d998d83995b4652/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebView$RNCWebViewBridge.dex differ
-diff --git a/node_modules/react-native-webview/android/build/.transforms/d0fcabc106d227fa0d998d83995b4652/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebView.dex b/node_modules/react-native-webview/android/build/.transforms/d0fcabc106d227fa0d998d83995b4652/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebView.dex
+index 0000000..875903c
+Binary files /dev/null and b/node_modules/react-native-webview/android/build/.transforms/013fc807a271e353f82d26d259b31f6e/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebView$RNCWebViewBridge.dex differ
+diff --git a/node_modules/react-native-webview/android/build/.transforms/013fc807a271e353f82d26d259b31f6e/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebView.dex b/node_modules/react-native-webview/android/build/.transforms/013fc807a271e353f82d26d259b31f6e/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebView.dex
 new file mode 100644
-index 0000000..7909f8e
-Binary files /dev/null and b/node_modules/react-native-webview/android/build/.transforms/d0fcabc106d227fa0d998d83995b4652/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebView.dex differ
-diff --git a/node_modules/react-native-webview/android/build/.transforms/d0fcabc106d227fa0d998d83995b4652/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebViewClient.dex b/node_modules/react-native-webview/android/build/.transforms/d0fcabc106d227fa0d998d83995b4652/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebViewClient.dex
+index 0000000..4ae222d
+Binary files /dev/null and b/node_modules/react-native-webview/android/build/.transforms/013fc807a271e353f82d26d259b31f6e/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebView.dex differ
+diff --git a/node_modules/react-native-webview/android/build/.transforms/013fc807a271e353f82d26d259b31f6e/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebViewClient.dex b/node_modules/react-native-webview/android/build/.transforms/013fc807a271e353f82d26d259b31f6e/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebViewClient.dex
 new file mode 100644
-index 0000000..766ef4d
-Binary files /dev/null and b/node_modules/react-native-webview/android/build/.transforms/d0fcabc106d227fa0d998d83995b4652/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebViewClient.dex differ
-diff --git a/node_modules/react-native-webview/android/build/.transforms/d0fcabc106d227fa0d998d83995b4652/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebViewConfig.dex b/node_modules/react-native-webview/android/build/.transforms/d0fcabc106d227fa0d998d83995b4652/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebViewConfig.dex
+index 0000000..8b84bf5
+Binary files /dev/null and b/node_modules/react-native-webview/android/build/.transforms/013fc807a271e353f82d26d259b31f6e/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebViewClient.dex differ
+diff --git a/node_modules/react-native-webview/android/build/.transforms/013fc807a271e353f82d26d259b31f6e/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebViewConfig.dex b/node_modules/react-native-webview/android/build/.transforms/013fc807a271e353f82d26d259b31f6e/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebViewConfig.dex
 new file mode 100644
-index 0000000..45ebf2c
-Binary files /dev/null and b/node_modules/react-native-webview/android/build/.transforms/d0fcabc106d227fa0d998d83995b4652/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebViewConfig.dex differ
-diff --git a/node_modules/react-native-webview/android/build/.transforms/d0fcabc106d227fa0d998d83995b4652/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebViewFileProvider.dex b/node_modules/react-native-webview/android/build/.transforms/d0fcabc106d227fa0d998d83995b4652/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebViewFileProvider.dex
+index 0000000..84093a7
+Binary files /dev/null and b/node_modules/react-native-webview/android/build/.transforms/013fc807a271e353f82d26d259b31f6e/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebViewConfig.dex differ
+diff --git a/node_modules/react-native-webview/android/build/.transforms/013fc807a271e353f82d26d259b31f6e/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebViewFileProvider.dex b/node_modules/react-native-webview/android/build/.transforms/013fc807a271e353f82d26d259b31f6e/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebViewFileProvider.dex
 new file mode 100644
-index 0000000..978bd37
-Binary files /dev/null and b/node_modules/react-native-webview/android/build/.transforms/d0fcabc106d227fa0d998d83995b4652/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebViewFileProvider.dex differ
-diff --git a/node_modules/react-native-webview/android/build/.transforms/d0fcabc106d227fa0d998d83995b4652/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebViewManager.dex b/node_modules/react-native-webview/android/build/.transforms/d0fcabc106d227fa0d998d83995b4652/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebViewManager.dex
+index 0000000..da8835e
+Binary files /dev/null and b/node_modules/react-native-webview/android/build/.transforms/013fc807a271e353f82d26d259b31f6e/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebViewFileProvider.dex differ
+diff --git a/node_modules/react-native-webview/android/build/.transforms/013fc807a271e353f82d26d259b31f6e/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebViewManager.dex b/node_modules/react-native-webview/android/build/.transforms/013fc807a271e353f82d26d259b31f6e/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebViewManager.dex
 new file mode 100644
-index 0000000..67646f9
-Binary files /dev/null and b/node_modules/react-native-webview/android/build/.transforms/d0fcabc106d227fa0d998d83995b4652/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebViewManager.dex differ
-diff --git a/node_modules/react-native-webview/android/build/.transforms/d0fcabc106d227fa0d998d83995b4652/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebViewManagerImpl$Companion.dex b/node_modules/react-native-webview/android/build/.transforms/d0fcabc106d227fa0d998d83995b4652/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebViewManagerImpl$Companion.dex
+index 0000000..c249ed0
+Binary files /dev/null and b/node_modules/react-native-webview/android/build/.transforms/013fc807a271e353f82d26d259b31f6e/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebViewManager.dex differ
+diff --git a/node_modules/react-native-webview/android/build/.transforms/013fc807a271e353f82d26d259b31f6e/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebViewManagerImpl$Companion.dex b/node_modules/react-native-webview/android/build/.transforms/013fc807a271e353f82d26d259b31f6e/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebViewManagerImpl$Companion.dex
 new file mode 100644
-index 0000000..ff66c86
-Binary files /dev/null and b/node_modules/react-native-webview/android/build/.transforms/d0fcabc106d227fa0d998d83995b4652/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebViewManagerImpl$Companion.dex differ
-diff --git a/node_modules/react-native-webview/android/build/.transforms/d0fcabc106d227fa0d998d83995b4652/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebViewManagerImpl$setupWebChromeClient$1.dex b/node_modules/react-native-webview/android/build/.transforms/d0fcabc106d227fa0d998d83995b4652/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebViewManagerImpl$setupWebChromeClient$1.dex
+index 0000000..a0f810d
+Binary files /dev/null and b/node_modules/react-native-webview/android/build/.transforms/013fc807a271e353f82d26d259b31f6e/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebViewManagerImpl$Companion.dex differ
+diff --git a/node_modules/react-native-webview/android/build/.transforms/013fc807a271e353f82d26d259b31f6e/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebViewManagerImpl$setupWebChromeClient$1.dex b/node_modules/react-native-webview/android/build/.transforms/013fc807a271e353f82d26d259b31f6e/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebViewManagerImpl$setupWebChromeClient$1.dex
 new file mode 100644
-index 0000000..236fba4
-Binary files /dev/null and b/node_modules/react-native-webview/android/build/.transforms/d0fcabc106d227fa0d998d83995b4652/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebViewManagerImpl$setupWebChromeClient$1.dex differ
-diff --git a/node_modules/react-native-webview/android/build/.transforms/d0fcabc106d227fa0d998d83995b4652/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebViewManagerImpl$setupWebChromeClient$webChromeClient$1.dex b/node_modules/react-native-webview/android/build/.transforms/d0fcabc106d227fa0d998d83995b4652/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebViewManagerImpl$setupWebChromeClient$webChromeClient$1.dex
+index 0000000..95b11dd
+Binary files /dev/null and b/node_modules/react-native-webview/android/build/.transforms/013fc807a271e353f82d26d259b31f6e/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebViewManagerImpl$setupWebChromeClient$1.dex differ
+diff --git a/node_modules/react-native-webview/android/build/.transforms/013fc807a271e353f82d26d259b31f6e/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebViewManagerImpl$setupWebChromeClient$webChromeClient$1.dex b/node_modules/react-native-webview/android/build/.transforms/013fc807a271e353f82d26d259b31f6e/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebViewManagerImpl$setupWebChromeClient$webChromeClient$1.dex
 new file mode 100644
-index 0000000..2a144ee
-Binary files /dev/null and b/node_modules/react-native-webview/android/build/.transforms/d0fcabc106d227fa0d998d83995b4652/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebViewManagerImpl$setupWebChromeClient$webChromeClient$1.dex differ
-diff --git a/node_modules/react-native-webview/android/build/.transforms/d0fcabc106d227fa0d998d83995b4652/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebViewManagerImpl.dex b/node_modules/react-native-webview/android/build/.transforms/d0fcabc106d227fa0d998d83995b4652/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebViewManagerImpl.dex
+index 0000000..ae465b7
+Binary files /dev/null and b/node_modules/react-native-webview/android/build/.transforms/013fc807a271e353f82d26d259b31f6e/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebViewManagerImpl$setupWebChromeClient$webChromeClient$1.dex differ
+diff --git a/node_modules/react-native-webview/android/build/.transforms/013fc807a271e353f82d26d259b31f6e/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebViewManagerImpl.dex b/node_modules/react-native-webview/android/build/.transforms/013fc807a271e353f82d26d259b31f6e/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebViewManagerImpl.dex
 new file mode 100644
-index 0000000..fb73371
-Binary files /dev/null and b/node_modules/react-native-webview/android/build/.transforms/d0fcabc106d227fa0d998d83995b4652/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebViewManagerImpl.dex differ
-diff --git a/node_modules/react-native-webview/android/build/.transforms/d0fcabc106d227fa0d998d83995b4652/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebViewManagerImplKt.dex b/node_modules/react-native-webview/android/build/.transforms/d0fcabc106d227fa0d998d83995b4652/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebViewManagerImplKt.dex
+index 0000000..76da83d
+Binary files /dev/null and b/node_modules/react-native-webview/android/build/.transforms/013fc807a271e353f82d26d259b31f6e/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebViewManagerImpl.dex differ
+diff --git a/node_modules/react-native-webview/android/build/.transforms/013fc807a271e353f82d26d259b31f6e/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebViewManagerImplKt.dex b/node_modules/react-native-webview/android/build/.transforms/013fc807a271e353f82d26d259b31f6e/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebViewManagerImplKt.dex
 new file mode 100644
-index 0000000..6b52deb
-Binary files /dev/null and b/node_modules/react-native-webview/android/build/.transforms/d0fcabc106d227fa0d998d83995b4652/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebViewManagerImplKt.dex differ
-diff --git a/node_modules/react-native-webview/android/build/.transforms/d0fcabc106d227fa0d998d83995b4652/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebViewMessagingModule.dex b/node_modules/react-native-webview/android/build/.transforms/d0fcabc106d227fa0d998d83995b4652/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebViewMessagingModule.dex
+index 0000000..94213ff
+Binary files /dev/null and b/node_modules/react-native-webview/android/build/.transforms/013fc807a271e353f82d26d259b31f6e/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebViewManagerImplKt.dex differ
+diff --git a/node_modules/react-native-webview/android/build/.transforms/013fc807a271e353f82d26d259b31f6e/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebViewMessagingModule.dex b/node_modules/react-native-webview/android/build/.transforms/013fc807a271e353f82d26d259b31f6e/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebViewMessagingModule.dex
 new file mode 100644
-index 0000000..9bba8a9
-Binary files /dev/null and b/node_modules/react-native-webview/android/build/.transforms/d0fcabc106d227fa0d998d83995b4652/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebViewMessagingModule.dex differ
-diff --git a/node_modules/react-native-webview/android/build/.transforms/d0fcabc106d227fa0d998d83995b4652/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebViewModule.dex b/node_modules/react-native-webview/android/build/.transforms/d0fcabc106d227fa0d998d83995b4652/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebViewModule.dex
+index 0000000..f75756e
+Binary files /dev/null and b/node_modules/react-native-webview/android/build/.transforms/013fc807a271e353f82d26d259b31f6e/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebViewMessagingModule.dex differ
+diff --git a/node_modules/react-native-webview/android/build/.transforms/013fc807a271e353f82d26d259b31f6e/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebViewModule.dex b/node_modules/react-native-webview/android/build/.transforms/013fc807a271e353f82d26d259b31f6e/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebViewModule.dex
 new file mode 100644
-index 0000000..39108a8
-Binary files /dev/null and b/node_modules/react-native-webview/android/build/.transforms/d0fcabc106d227fa0d998d83995b4652/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebViewModule.dex differ
-diff --git a/node_modules/react-native-webview/android/build/.transforms/d0fcabc106d227fa0d998d83995b4652/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebViewModuleImpl$1.dex b/node_modules/react-native-webview/android/build/.transforms/d0fcabc106d227fa0d998d83995b4652/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebViewModuleImpl$1.dex
+index 0000000..d20feab
+Binary files /dev/null and b/node_modules/react-native-webview/android/build/.transforms/013fc807a271e353f82d26d259b31f6e/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebViewModule.dex differ
+diff --git a/node_modules/react-native-webview/android/build/.transforms/013fc807a271e353f82d26d259b31f6e/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebViewModuleImpl$1.dex b/node_modules/react-native-webview/android/build/.transforms/013fc807a271e353f82d26d259b31f6e/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebViewModuleImpl$1.dex
 new file mode 100644
-index 0000000..bc3b41e
-Binary files /dev/null and b/node_modules/react-native-webview/android/build/.transforms/d0fcabc106d227fa0d998d83995b4652/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebViewModuleImpl$1.dex differ
-diff --git a/node_modules/react-native-webview/android/build/.transforms/d0fcabc106d227fa0d998d83995b4652/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebViewModuleImpl$2.dex b/node_modules/react-native-webview/android/build/.transforms/d0fcabc106d227fa0d998d83995b4652/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebViewModuleImpl$2.dex
+index 0000000..9b22729
+Binary files /dev/null and b/node_modules/react-native-webview/android/build/.transforms/013fc807a271e353f82d26d259b31f6e/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebViewModuleImpl$1.dex differ
+diff --git a/node_modules/react-native-webview/android/build/.transforms/013fc807a271e353f82d26d259b31f6e/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebViewModuleImpl$2.dex b/node_modules/react-native-webview/android/build/.transforms/013fc807a271e353f82d26d259b31f6e/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebViewModuleImpl$2.dex
 new file mode 100644
-index 0000000..2387af3
-Binary files /dev/null and b/node_modules/react-native-webview/android/build/.transforms/d0fcabc106d227fa0d998d83995b4652/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebViewModuleImpl$2.dex differ
-diff --git a/node_modules/react-native-webview/android/build/.transforms/d0fcabc106d227fa0d998d83995b4652/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebViewModuleImpl$MimeType.dex b/node_modules/react-native-webview/android/build/.transforms/d0fcabc106d227fa0d998d83995b4652/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebViewModuleImpl$MimeType.dex
+index 0000000..b5cfe1d
+Binary files /dev/null and b/node_modules/react-native-webview/android/build/.transforms/013fc807a271e353f82d26d259b31f6e/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebViewModuleImpl$2.dex differ
+diff --git a/node_modules/react-native-webview/android/build/.transforms/013fc807a271e353f82d26d259b31f6e/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebViewModuleImpl$MimeType.dex b/node_modules/react-native-webview/android/build/.transforms/013fc807a271e353f82d26d259b31f6e/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebViewModuleImpl$MimeType.dex
 new file mode 100644
-index 0000000..333ca02
-Binary files /dev/null and b/node_modules/react-native-webview/android/build/.transforms/d0fcabc106d227fa0d998d83995b4652/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebViewModuleImpl$MimeType.dex differ
-diff --git a/node_modules/react-native-webview/android/build/.transforms/d0fcabc106d227fa0d998d83995b4652/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebViewModuleImpl$ShouldOverrideUrlLoadingLock$ShouldOverrideCallbackState.dex b/node_modules/react-native-webview/android/build/.transforms/d0fcabc106d227fa0d998d83995b4652/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebViewModuleImpl$ShouldOverrideUrlLoadingLock$ShouldOverrideCallbackState.dex
+index 0000000..618d8f9
+Binary files /dev/null and b/node_modules/react-native-webview/android/build/.transforms/013fc807a271e353f82d26d259b31f6e/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebViewModuleImpl$MimeType.dex differ
+diff --git a/node_modules/react-native-webview/android/build/.transforms/013fc807a271e353f82d26d259b31f6e/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebViewModuleImpl$ShouldOverrideUrlLoadingLock$ShouldOverrideCallbackState.dex b/node_modules/react-native-webview/android/build/.transforms/013fc807a271e353f82d26d259b31f6e/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebViewModuleImpl$ShouldOverrideUrlLoadingLock$ShouldOverrideCallbackState.dex
 new file mode 100644
-index 0000000..b7b8284
-Binary files /dev/null and b/node_modules/react-native-webview/android/build/.transforms/d0fcabc106d227fa0d998d83995b4652/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebViewModuleImpl$ShouldOverrideUrlLoadingLock$ShouldOverrideCallbackState.dex differ
-diff --git a/node_modules/react-native-webview/android/build/.transforms/d0fcabc106d227fa0d998d83995b4652/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebViewModuleImpl$ShouldOverrideUrlLoadingLock.dex b/node_modules/react-native-webview/android/build/.transforms/d0fcabc106d227fa0d998d83995b4652/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebViewModuleImpl$ShouldOverrideUrlLoadingLock.dex
+index 0000000..3630f9d
+Binary files /dev/null and b/node_modules/react-native-webview/android/build/.transforms/013fc807a271e353f82d26d259b31f6e/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebViewModuleImpl$ShouldOverrideUrlLoadingLock$ShouldOverrideCallbackState.dex differ
+diff --git a/node_modules/react-native-webview/android/build/.transforms/013fc807a271e353f82d26d259b31f6e/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebViewModuleImpl$ShouldOverrideUrlLoadingLock.dex b/node_modules/react-native-webview/android/build/.transforms/013fc807a271e353f82d26d259b31f6e/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebViewModuleImpl$ShouldOverrideUrlLoadingLock.dex
 new file mode 100644
-index 0000000..ebc11b1
-Binary files /dev/null and b/node_modules/react-native-webview/android/build/.transforms/d0fcabc106d227fa0d998d83995b4652/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebViewModuleImpl$ShouldOverrideUrlLoadingLock.dex differ
-diff --git a/node_modules/react-native-webview/android/build/.transforms/d0fcabc106d227fa0d998d83995b4652/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebViewModuleImpl.dex b/node_modules/react-native-webview/android/build/.transforms/d0fcabc106d227fa0d998d83995b4652/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebViewModuleImpl.dex
+index 0000000..be417d4
+Binary files /dev/null and b/node_modules/react-native-webview/android/build/.transforms/013fc807a271e353f82d26d259b31f6e/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebViewModuleImpl$ShouldOverrideUrlLoadingLock.dex differ
+diff --git a/node_modules/react-native-webview/android/build/.transforms/013fc807a271e353f82d26d259b31f6e/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebViewModuleImpl.dex b/node_modules/react-native-webview/android/build/.transforms/013fc807a271e353f82d26d259b31f6e/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebViewModuleImpl.dex
 new file mode 100644
-index 0000000..5b8cff8
-Binary files /dev/null and b/node_modules/react-native-webview/android/build/.transforms/d0fcabc106d227fa0d998d83995b4652/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebViewModuleImpl.dex differ
-diff --git a/node_modules/react-native-webview/android/build/.transforms/d0fcabc106d227fa0d998d83995b4652/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebViewPackage.dex b/node_modules/react-native-webview/android/build/.transforms/d0fcabc106d227fa0d998d83995b4652/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebViewPackage.dex
+index 0000000..606282b
+Binary files /dev/null and b/node_modules/react-native-webview/android/build/.transforms/013fc807a271e353f82d26d259b31f6e/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebViewModuleImpl.dex differ
+diff --git a/node_modules/react-native-webview/android/build/.transforms/013fc807a271e353f82d26d259b31f6e/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebViewPackage.dex b/node_modules/react-native-webview/android/build/.transforms/013fc807a271e353f82d26d259b31f6e/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebViewPackage.dex
 new file mode 100644
-index 0000000..2fd7a7a
-Binary files /dev/null and b/node_modules/react-native-webview/android/build/.transforms/d0fcabc106d227fa0d998d83995b4652/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebViewPackage.dex differ
-diff --git a/node_modules/react-native-webview/android/build/.transforms/d0fcabc106d227fa0d998d83995b4652/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebViewWrapper$Companion.dex b/node_modules/react-native-webview/android/build/.transforms/d0fcabc106d227fa0d998d83995b4652/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebViewWrapper$Companion.dex
+index 0000000..02885c3
+Binary files /dev/null and b/node_modules/react-native-webview/android/build/.transforms/013fc807a271e353f82d26d259b31f6e/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebViewPackage.dex differ
+diff --git a/node_modules/react-native-webview/android/build/.transforms/013fc807a271e353f82d26d259b31f6e/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebViewWrapper$Companion.dex b/node_modules/react-native-webview/android/build/.transforms/013fc807a271e353f82d26d259b31f6e/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebViewWrapper$Companion.dex
 new file mode 100644
-index 0000000..dfd1a1c
-Binary files /dev/null and b/node_modules/react-native-webview/android/build/.transforms/d0fcabc106d227fa0d998d83995b4652/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebViewWrapper$Companion.dex differ
-diff --git a/node_modules/react-native-webview/android/build/.transforms/d0fcabc106d227fa0d998d83995b4652/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebViewWrapper.dex b/node_modules/react-native-webview/android/build/.transforms/d0fcabc106d227fa0d998d83995b4652/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebViewWrapper.dex
+index 0000000..4556a19
+Binary files /dev/null and b/node_modules/react-native-webview/android/build/.transforms/013fc807a271e353f82d26d259b31f6e/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebViewWrapper$Companion.dex differ
+diff --git a/node_modules/react-native-webview/android/build/.transforms/013fc807a271e353f82d26d259b31f6e/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebViewWrapper.dex b/node_modules/react-native-webview/android/build/.transforms/013fc807a271e353f82d26d259b31f6e/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebViewWrapper.dex
 new file mode 100644
-index 0000000..19609c0
-Binary files /dev/null and b/node_modules/react-native-webview/android/build/.transforms/d0fcabc106d227fa0d998d83995b4652/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebViewWrapper.dex differ
-diff --git a/node_modules/react-native-webview/android/build/.transforms/d0fcabc106d227fa0d998d83995b4652/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/URLUtil.dex b/node_modules/react-native-webview/android/build/.transforms/d0fcabc106d227fa0d998d83995b4652/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/URLUtil.dex
+index 0000000..ecf940c
+Binary files /dev/null and b/node_modules/react-native-webview/android/build/.transforms/013fc807a271e353f82d26d259b31f6e/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/RNCWebViewWrapper.dex differ
+diff --git a/node_modules/react-native-webview/android/build/.transforms/013fc807a271e353f82d26d259b31f6e/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/URLUtil.dex b/node_modules/react-native-webview/android/build/.transforms/013fc807a271e353f82d26d259b31f6e/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/URLUtil.dex
 new file mode 100644
-index 0000000..da307ba
-Binary files /dev/null and b/node_modules/react-native-webview/android/build/.transforms/d0fcabc106d227fa0d998d83995b4652/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/URLUtil.dex differ
-diff --git a/node_modules/react-native-webview/android/build/.transforms/d0fcabc106d227fa0d998d83995b4652/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/events/SubResourceErrorEvent$Companion.dex b/node_modules/react-native-webview/android/build/.transforms/d0fcabc106d227fa0d998d83995b4652/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/events/SubResourceErrorEvent$Companion.dex
+index 0000000..2a64be1
+Binary files /dev/null and b/node_modules/react-native-webview/android/build/.transforms/013fc807a271e353f82d26d259b31f6e/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/URLUtil.dex differ
+diff --git a/node_modules/react-native-webview/android/build/.transforms/013fc807a271e353f82d26d259b31f6e/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/events/SubResourceErrorEvent$Companion.dex b/node_modules/react-native-webview/android/build/.transforms/013fc807a271e353f82d26d259b31f6e/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/events/SubResourceErrorEvent$Companion.dex
 new file mode 100644
-index 0000000..4cb178e
-Binary files /dev/null and b/node_modules/react-native-webview/android/build/.transforms/d0fcabc106d227fa0d998d83995b4652/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/events/SubResourceErrorEvent$Companion.dex differ
-diff --git a/node_modules/react-native-webview/android/build/.transforms/d0fcabc106d227fa0d998d83995b4652/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/events/SubResourceErrorEvent.dex b/node_modules/react-native-webview/android/build/.transforms/d0fcabc106d227fa0d998d83995b4652/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/events/SubResourceErrorEvent.dex
+index 0000000..33b848d
+Binary files /dev/null and b/node_modules/react-native-webview/android/build/.transforms/013fc807a271e353f82d26d259b31f6e/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/events/SubResourceErrorEvent$Companion.dex differ
+diff --git a/node_modules/react-native-webview/android/build/.transforms/013fc807a271e353f82d26d259b31f6e/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/events/SubResourceErrorEvent.dex b/node_modules/react-native-webview/android/build/.transforms/013fc807a271e353f82d26d259b31f6e/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/events/SubResourceErrorEvent.dex
 new file mode 100644
-index 0000000..605d0b2
-Binary files /dev/null and b/node_modules/react-native-webview/android/build/.transforms/d0fcabc106d227fa0d998d83995b4652/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/events/SubResourceErrorEvent.dex differ
-diff --git a/node_modules/react-native-webview/android/build/.transforms/d0fcabc106d227fa0d998d83995b4652/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/events/TopCustomMenuSelectionEvent$Companion.dex b/node_modules/react-native-webview/android/build/.transforms/d0fcabc106d227fa0d998d83995b4652/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/events/TopCustomMenuSelectionEvent$Companion.dex
+index 0000000..dcdb67b
+Binary files /dev/null and b/node_modules/react-native-webview/android/build/.transforms/013fc807a271e353f82d26d259b31f6e/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/events/SubResourceErrorEvent.dex differ
+diff --git a/node_modules/react-native-webview/android/build/.transforms/013fc807a271e353f82d26d259b31f6e/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/events/TopCustomMenuSelectionEvent$Companion.dex b/node_modules/react-native-webview/android/build/.transforms/013fc807a271e353f82d26d259b31f6e/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/events/TopCustomMenuSelectionEvent$Companion.dex
 new file mode 100644
-index 0000000..40e58f1
-Binary files /dev/null and b/node_modules/react-native-webview/android/build/.transforms/d0fcabc106d227fa0d998d83995b4652/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/events/TopCustomMenuSelectionEvent$Companion.dex differ
-diff --git a/node_modules/react-native-webview/android/build/.transforms/d0fcabc106d227fa0d998d83995b4652/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/events/TopCustomMenuSelectionEvent.dex b/node_modules/react-native-webview/android/build/.transforms/d0fcabc106d227fa0d998d83995b4652/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/events/TopCustomMenuSelectionEvent.dex
+index 0000000..c47c0d9
+Binary files /dev/null and b/node_modules/react-native-webview/android/build/.transforms/013fc807a271e353f82d26d259b31f6e/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/events/TopCustomMenuSelectionEvent$Companion.dex differ
+diff --git a/node_modules/react-native-webview/android/build/.transforms/013fc807a271e353f82d26d259b31f6e/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/events/TopCustomMenuSelectionEvent.dex b/node_modules/react-native-webview/android/build/.transforms/013fc807a271e353f82d26d259b31f6e/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/events/TopCustomMenuSelectionEvent.dex
 new file mode 100644
-index 0000000..0f79c35
-Binary files /dev/null and b/node_modules/react-native-webview/android/build/.transforms/d0fcabc106d227fa0d998d83995b4652/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/events/TopCustomMenuSelectionEvent.dex differ
-diff --git a/node_modules/react-native-webview/android/build/.transforms/d0fcabc106d227fa0d998d83995b4652/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/events/TopHttpErrorEvent$Companion.dex b/node_modules/react-native-webview/android/build/.transforms/d0fcabc106d227fa0d998d83995b4652/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/events/TopHttpErrorEvent$Companion.dex
+index 0000000..f9e6e4e
+Binary files /dev/null and b/node_modules/react-native-webview/android/build/.transforms/013fc807a271e353f82d26d259b31f6e/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/events/TopCustomMenuSelectionEvent.dex differ
+diff --git a/node_modules/react-native-webview/android/build/.transforms/013fc807a271e353f82d26d259b31f6e/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/events/TopHttpErrorEvent$Companion.dex b/node_modules/react-native-webview/android/build/.transforms/013fc807a271e353f82d26d259b31f6e/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/events/TopHttpErrorEvent$Companion.dex
 new file mode 100644
-index 0000000..a12161d
-Binary files /dev/null and b/node_modules/react-native-webview/android/build/.transforms/d0fcabc106d227fa0d998d83995b4652/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/events/TopHttpErrorEvent$Companion.dex differ
-diff --git a/node_modules/react-native-webview/android/build/.transforms/d0fcabc106d227fa0d998d83995b4652/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/events/TopHttpErrorEvent.dex b/node_modules/react-native-webview/android/build/.transforms/d0fcabc106d227fa0d998d83995b4652/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/events/TopHttpErrorEvent.dex
+index 0000000..68d7f78
+Binary files /dev/null and b/node_modules/react-native-webview/android/build/.transforms/013fc807a271e353f82d26d259b31f6e/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/events/TopHttpErrorEvent$Companion.dex differ
+diff --git a/node_modules/react-native-webview/android/build/.transforms/013fc807a271e353f82d26d259b31f6e/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/events/TopHttpErrorEvent.dex b/node_modules/react-native-webview/android/build/.transforms/013fc807a271e353f82d26d259b31f6e/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/events/TopHttpErrorEvent.dex
 new file mode 100644
-index 0000000..9431f92
-Binary files /dev/null and b/node_modules/react-native-webview/android/build/.transforms/d0fcabc106d227fa0d998d83995b4652/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/events/TopHttpErrorEvent.dex differ
-diff --git a/node_modules/react-native-webview/android/build/.transforms/d0fcabc106d227fa0d998d83995b4652/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/events/TopLoadingErrorEvent$Companion.dex b/node_modules/react-native-webview/android/build/.transforms/d0fcabc106d227fa0d998d83995b4652/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/events/TopLoadingErrorEvent$Companion.dex
+index 0000000..9b89dbb
+Binary files /dev/null and b/node_modules/react-native-webview/android/build/.transforms/013fc807a271e353f82d26d259b31f6e/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/events/TopHttpErrorEvent.dex differ
+diff --git a/node_modules/react-native-webview/android/build/.transforms/013fc807a271e353f82d26d259b31f6e/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/events/TopLoadingErrorEvent$Companion.dex b/node_modules/react-native-webview/android/build/.transforms/013fc807a271e353f82d26d259b31f6e/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/events/TopLoadingErrorEvent$Companion.dex
 new file mode 100644
-index 0000000..4563f4c
-Binary files /dev/null and b/node_modules/react-native-webview/android/build/.transforms/d0fcabc106d227fa0d998d83995b4652/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/events/TopLoadingErrorEvent$Companion.dex differ
-diff --git a/node_modules/react-native-webview/android/build/.transforms/d0fcabc106d227fa0d998d83995b4652/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/events/TopLoadingErrorEvent.dex b/node_modules/react-native-webview/android/build/.transforms/d0fcabc106d227fa0d998d83995b4652/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/events/TopLoadingErrorEvent.dex
+index 0000000..30e0e26
+Binary files /dev/null and b/node_modules/react-native-webview/android/build/.transforms/013fc807a271e353f82d26d259b31f6e/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/events/TopLoadingErrorEvent$Companion.dex differ
+diff --git a/node_modules/react-native-webview/android/build/.transforms/013fc807a271e353f82d26d259b31f6e/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/events/TopLoadingErrorEvent.dex b/node_modules/react-native-webview/android/build/.transforms/013fc807a271e353f82d26d259b31f6e/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/events/TopLoadingErrorEvent.dex
 new file mode 100644
-index 0000000..dbff580
-Binary files /dev/null and b/node_modules/react-native-webview/android/build/.transforms/d0fcabc106d227fa0d998d83995b4652/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/events/TopLoadingErrorEvent.dex differ
-diff --git a/node_modules/react-native-webview/android/build/.transforms/d0fcabc106d227fa0d998d83995b4652/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/events/TopLoadingFinishEvent$Companion.dex b/node_modules/react-native-webview/android/build/.transforms/d0fcabc106d227fa0d998d83995b4652/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/events/TopLoadingFinishEvent$Companion.dex
+index 0000000..6e37232
+Binary files /dev/null and b/node_modules/react-native-webview/android/build/.transforms/013fc807a271e353f82d26d259b31f6e/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/events/TopLoadingErrorEvent.dex differ
+diff --git a/node_modules/react-native-webview/android/build/.transforms/013fc807a271e353f82d26d259b31f6e/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/events/TopLoadingFinishEvent$Companion.dex b/node_modules/react-native-webview/android/build/.transforms/013fc807a271e353f82d26d259b31f6e/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/events/TopLoadingFinishEvent$Companion.dex
 new file mode 100644
-index 0000000..b628e7b
-Binary files /dev/null and b/node_modules/react-native-webview/android/build/.transforms/d0fcabc106d227fa0d998d83995b4652/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/events/TopLoadingFinishEvent$Companion.dex differ
-diff --git a/node_modules/react-native-webview/android/build/.transforms/d0fcabc106d227fa0d998d83995b4652/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/events/TopLoadingFinishEvent.dex b/node_modules/react-native-webview/android/build/.transforms/d0fcabc106d227fa0d998d83995b4652/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/events/TopLoadingFinishEvent.dex
+index 0000000..4daafdb
+Binary files /dev/null and b/node_modules/react-native-webview/android/build/.transforms/013fc807a271e353f82d26d259b31f6e/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/events/TopLoadingFinishEvent$Companion.dex differ
+diff --git a/node_modules/react-native-webview/android/build/.transforms/013fc807a271e353f82d26d259b31f6e/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/events/TopLoadingFinishEvent.dex b/node_modules/react-native-webview/android/build/.transforms/013fc807a271e353f82d26d259b31f6e/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/events/TopLoadingFinishEvent.dex
 new file mode 100644
-index 0000000..085b602
-Binary files /dev/null and b/node_modules/react-native-webview/android/build/.transforms/d0fcabc106d227fa0d998d83995b4652/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/events/TopLoadingFinishEvent.dex differ
-diff --git a/node_modules/react-native-webview/android/build/.transforms/d0fcabc106d227fa0d998d83995b4652/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/events/TopLoadingProgressEvent$Companion.dex b/node_modules/react-native-webview/android/build/.transforms/d0fcabc106d227fa0d998d83995b4652/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/events/TopLoadingProgressEvent$Companion.dex
+index 0000000..d67b420
+Binary files /dev/null and b/node_modules/react-native-webview/android/build/.transforms/013fc807a271e353f82d26d259b31f6e/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/events/TopLoadingFinishEvent.dex differ
+diff --git a/node_modules/react-native-webview/android/build/.transforms/013fc807a271e353f82d26d259b31f6e/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/events/TopLoadingProgressEvent$Companion.dex b/node_modules/react-native-webview/android/build/.transforms/013fc807a271e353f82d26d259b31f6e/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/events/TopLoadingProgressEvent$Companion.dex
 new file mode 100644
-index 0000000..f5f5c67
-Binary files /dev/null and b/node_modules/react-native-webview/android/build/.transforms/d0fcabc106d227fa0d998d83995b4652/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/events/TopLoadingProgressEvent$Companion.dex differ
-diff --git a/node_modules/react-native-webview/android/build/.transforms/d0fcabc106d227fa0d998d83995b4652/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/events/TopLoadingProgressEvent.dex b/node_modules/react-native-webview/android/build/.transforms/d0fcabc106d227fa0d998d83995b4652/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/events/TopLoadingProgressEvent.dex
+index 0000000..aff6af6
+Binary files /dev/null and b/node_modules/react-native-webview/android/build/.transforms/013fc807a271e353f82d26d259b31f6e/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/events/TopLoadingProgressEvent$Companion.dex differ
+diff --git a/node_modules/react-native-webview/android/build/.transforms/013fc807a271e353f82d26d259b31f6e/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/events/TopLoadingProgressEvent.dex b/node_modules/react-native-webview/android/build/.transforms/013fc807a271e353f82d26d259b31f6e/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/events/TopLoadingProgressEvent.dex
 new file mode 100644
-index 0000000..72da9a8
-Binary files /dev/null and b/node_modules/react-native-webview/android/build/.transforms/d0fcabc106d227fa0d998d83995b4652/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/events/TopLoadingProgressEvent.dex differ
-diff --git a/node_modules/react-native-webview/android/build/.transforms/d0fcabc106d227fa0d998d83995b4652/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/events/TopLoadingStartEvent$Companion.dex b/node_modules/react-native-webview/android/build/.transforms/d0fcabc106d227fa0d998d83995b4652/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/events/TopLoadingStartEvent$Companion.dex
+index 0000000..eacade5
+Binary files /dev/null and b/node_modules/react-native-webview/android/build/.transforms/013fc807a271e353f82d26d259b31f6e/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/events/TopLoadingProgressEvent.dex differ
+diff --git a/node_modules/react-native-webview/android/build/.transforms/013fc807a271e353f82d26d259b31f6e/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/events/TopLoadingStartEvent$Companion.dex b/node_modules/react-native-webview/android/build/.transforms/013fc807a271e353f82d26d259b31f6e/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/events/TopLoadingStartEvent$Companion.dex
 new file mode 100644
-index 0000000..543772f
-Binary files /dev/null and b/node_modules/react-native-webview/android/build/.transforms/d0fcabc106d227fa0d998d83995b4652/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/events/TopLoadingStartEvent$Companion.dex differ
-diff --git a/node_modules/react-native-webview/android/build/.transforms/d0fcabc106d227fa0d998d83995b4652/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/events/TopLoadingStartEvent.dex b/node_modules/react-native-webview/android/build/.transforms/d0fcabc106d227fa0d998d83995b4652/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/events/TopLoadingStartEvent.dex
+index 0000000..c819e82
+Binary files /dev/null and b/node_modules/react-native-webview/android/build/.transforms/013fc807a271e353f82d26d259b31f6e/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/events/TopLoadingStartEvent$Companion.dex differ
+diff --git a/node_modules/react-native-webview/android/build/.transforms/013fc807a271e353f82d26d259b31f6e/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/events/TopLoadingStartEvent.dex b/node_modules/react-native-webview/android/build/.transforms/013fc807a271e353f82d26d259b31f6e/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/events/TopLoadingStartEvent.dex
 new file mode 100644
-index 0000000..037d0d8
-Binary files /dev/null and b/node_modules/react-native-webview/android/build/.transforms/d0fcabc106d227fa0d998d83995b4652/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/events/TopLoadingStartEvent.dex differ
-diff --git a/node_modules/react-native-webview/android/build/.transforms/d0fcabc106d227fa0d998d83995b4652/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/events/TopMessageEvent$Companion.dex b/node_modules/react-native-webview/android/build/.transforms/d0fcabc106d227fa0d998d83995b4652/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/events/TopMessageEvent$Companion.dex
+index 0000000..517339b
+Binary files /dev/null and b/node_modules/react-native-webview/android/build/.transforms/013fc807a271e353f82d26d259b31f6e/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/events/TopLoadingStartEvent.dex differ
+diff --git a/node_modules/react-native-webview/android/build/.transforms/013fc807a271e353f82d26d259b31f6e/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/events/TopMessageEvent$Companion.dex b/node_modules/react-native-webview/android/build/.transforms/013fc807a271e353f82d26d259b31f6e/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/events/TopMessageEvent$Companion.dex
 new file mode 100644
-index 0000000..72fed8b
-Binary files /dev/null and b/node_modules/react-native-webview/android/build/.transforms/d0fcabc106d227fa0d998d83995b4652/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/events/TopMessageEvent$Companion.dex differ
-diff --git a/node_modules/react-native-webview/android/build/.transforms/d0fcabc106d227fa0d998d83995b4652/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/events/TopMessageEvent.dex b/node_modules/react-native-webview/android/build/.transforms/d0fcabc106d227fa0d998d83995b4652/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/events/TopMessageEvent.dex
+index 0000000..bcc50fc
+Binary files /dev/null and b/node_modules/react-native-webview/android/build/.transforms/013fc807a271e353f82d26d259b31f6e/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/events/TopMessageEvent$Companion.dex differ
+diff --git a/node_modules/react-native-webview/android/build/.transforms/013fc807a271e353f82d26d259b31f6e/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/events/TopMessageEvent.dex b/node_modules/react-native-webview/android/build/.transforms/013fc807a271e353f82d26d259b31f6e/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/events/TopMessageEvent.dex
 new file mode 100644
-index 0000000..b06b289
-Binary files /dev/null and b/node_modules/react-native-webview/android/build/.transforms/d0fcabc106d227fa0d998d83995b4652/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/events/TopMessageEvent.dex differ
-diff --git a/node_modules/react-native-webview/android/build/.transforms/d0fcabc106d227fa0d998d83995b4652/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/events/TopOpenWindowEvent$Companion.dex b/node_modules/react-native-webview/android/build/.transforms/d0fcabc106d227fa0d998d83995b4652/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/events/TopOpenWindowEvent$Companion.dex
+index 0000000..84a075b
+Binary files /dev/null and b/node_modules/react-native-webview/android/build/.transforms/013fc807a271e353f82d26d259b31f6e/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/events/TopMessageEvent.dex differ
+diff --git a/node_modules/react-native-webview/android/build/.transforms/013fc807a271e353f82d26d259b31f6e/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/events/TopOpenWindowEvent$Companion.dex b/node_modules/react-native-webview/android/build/.transforms/013fc807a271e353f82d26d259b31f6e/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/events/TopOpenWindowEvent$Companion.dex
 new file mode 100644
-index 0000000..3b942d8
-Binary files /dev/null and b/node_modules/react-native-webview/android/build/.transforms/d0fcabc106d227fa0d998d83995b4652/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/events/TopOpenWindowEvent$Companion.dex differ
-diff --git a/node_modules/react-native-webview/android/build/.transforms/d0fcabc106d227fa0d998d83995b4652/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/events/TopOpenWindowEvent.dex b/node_modules/react-native-webview/android/build/.transforms/d0fcabc106d227fa0d998d83995b4652/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/events/TopOpenWindowEvent.dex
+index 0000000..fe33788
+Binary files /dev/null and b/node_modules/react-native-webview/android/build/.transforms/013fc807a271e353f82d26d259b31f6e/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/events/TopOpenWindowEvent$Companion.dex differ
+diff --git a/node_modules/react-native-webview/android/build/.transforms/013fc807a271e353f82d26d259b31f6e/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/events/TopOpenWindowEvent.dex b/node_modules/react-native-webview/android/build/.transforms/013fc807a271e353f82d26d259b31f6e/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/events/TopOpenWindowEvent.dex
 new file mode 100644
-index 0000000..310d8a0
-Binary files /dev/null and b/node_modules/react-native-webview/android/build/.transforms/d0fcabc106d227fa0d998d83995b4652/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/events/TopOpenWindowEvent.dex differ
-diff --git a/node_modules/react-native-webview/android/build/.transforms/d0fcabc106d227fa0d998d83995b4652/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/events/TopRenderProcessGoneEvent$Companion.dex b/node_modules/react-native-webview/android/build/.transforms/d0fcabc106d227fa0d998d83995b4652/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/events/TopRenderProcessGoneEvent$Companion.dex
+index 0000000..febfad1
+Binary files /dev/null and b/node_modules/react-native-webview/android/build/.transforms/013fc807a271e353f82d26d259b31f6e/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/events/TopOpenWindowEvent.dex differ
+diff --git a/node_modules/react-native-webview/android/build/.transforms/013fc807a271e353f82d26d259b31f6e/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/events/TopRenderProcessGoneEvent$Companion.dex b/node_modules/react-native-webview/android/build/.transforms/013fc807a271e353f82d26d259b31f6e/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/events/TopRenderProcessGoneEvent$Companion.dex
 new file mode 100644
-index 0000000..44e01aa
-Binary files /dev/null and b/node_modules/react-native-webview/android/build/.transforms/d0fcabc106d227fa0d998d83995b4652/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/events/TopRenderProcessGoneEvent$Companion.dex differ
-diff --git a/node_modules/react-native-webview/android/build/.transforms/d0fcabc106d227fa0d998d83995b4652/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/events/TopRenderProcessGoneEvent.dex b/node_modules/react-native-webview/android/build/.transforms/d0fcabc106d227fa0d998d83995b4652/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/events/TopRenderProcessGoneEvent.dex
+index 0000000..6c7ee4e
+Binary files /dev/null and b/node_modules/react-native-webview/android/build/.transforms/013fc807a271e353f82d26d259b31f6e/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/events/TopRenderProcessGoneEvent$Companion.dex differ
+diff --git a/node_modules/react-native-webview/android/build/.transforms/013fc807a271e353f82d26d259b31f6e/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/events/TopRenderProcessGoneEvent.dex b/node_modules/react-native-webview/android/build/.transforms/013fc807a271e353f82d26d259b31f6e/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/events/TopRenderProcessGoneEvent.dex
 new file mode 100644
-index 0000000..8ec1ce1
-Binary files /dev/null and b/node_modules/react-native-webview/android/build/.transforms/d0fcabc106d227fa0d998d83995b4652/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/events/TopRenderProcessGoneEvent.dex differ
-diff --git a/node_modules/react-native-webview/android/build/.transforms/d0fcabc106d227fa0d998d83995b4652/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/events/TopShouldStartLoadWithRequestEvent$Companion.dex b/node_modules/react-native-webview/android/build/.transforms/d0fcabc106d227fa0d998d83995b4652/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/events/TopShouldStartLoadWithRequestEvent$Companion.dex
+index 0000000..2172785
+Binary files /dev/null and b/node_modules/react-native-webview/android/build/.transforms/013fc807a271e353f82d26d259b31f6e/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/events/TopRenderProcessGoneEvent.dex differ
+diff --git a/node_modules/react-native-webview/android/build/.transforms/013fc807a271e353f82d26d259b31f6e/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/events/TopShouldStartLoadWithRequestEvent$Companion.dex b/node_modules/react-native-webview/android/build/.transforms/013fc807a271e353f82d26d259b31f6e/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/events/TopShouldStartLoadWithRequestEvent$Companion.dex
 new file mode 100644
-index 0000000..a79b9d2
-Binary files /dev/null and b/node_modules/react-native-webview/android/build/.transforms/d0fcabc106d227fa0d998d83995b4652/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/events/TopShouldStartLoadWithRequestEvent$Companion.dex differ
-diff --git a/node_modules/react-native-webview/android/build/.transforms/d0fcabc106d227fa0d998d83995b4652/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/events/TopShouldStartLoadWithRequestEvent.dex b/node_modules/react-native-webview/android/build/.transforms/d0fcabc106d227fa0d998d83995b4652/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/events/TopShouldStartLoadWithRequestEvent.dex
+index 0000000..7b08682
+Binary files /dev/null and b/node_modules/react-native-webview/android/build/.transforms/013fc807a271e353f82d26d259b31f6e/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/events/TopShouldStartLoadWithRequestEvent$Companion.dex differ
+diff --git a/node_modules/react-native-webview/android/build/.transforms/013fc807a271e353f82d26d259b31f6e/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/events/TopShouldStartLoadWithRequestEvent.dex b/node_modules/react-native-webview/android/build/.transforms/013fc807a271e353f82d26d259b31f6e/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/events/TopShouldStartLoadWithRequestEvent.dex
 new file mode 100644
-index 0000000..c81e442
-Binary files /dev/null and b/node_modules/react-native-webview/android/build/.transforms/d0fcabc106d227fa0d998d83995b4652/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/events/TopShouldStartLoadWithRequestEvent.dex differ
-diff --git a/node_modules/react-native-webview/android/build/.transforms/d0fcabc106d227fa0d998d83995b4652/transformed/bundleLibRuntimeToDirDebug/desugar_graph.bin b/node_modules/react-native-webview/android/build/.transforms/d0fcabc106d227fa0d998d83995b4652/transformed/bundleLibRuntimeToDirDebug/desugar_graph.bin
+index 0000000..29f201d
+Binary files /dev/null and b/node_modules/react-native-webview/android/build/.transforms/013fc807a271e353f82d26d259b31f6e/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/reactnativecommunity/webview/events/TopShouldStartLoadWithRequestEvent.dex differ
+diff --git a/node_modules/react-native-webview/android/build/.transforms/013fc807a271e353f82d26d259b31f6e/transformed/bundleLibRuntimeToDirDebug/desugar_graph.bin b/node_modules/react-native-webview/android/build/.transforms/013fc807a271e353f82d26d259b31f6e/transformed/bundleLibRuntimeToDirDebug/desugar_graph.bin
 new file mode 100644
 index 0000000..72bde00
-Binary files /dev/null and b/node_modules/react-native-webview/android/build/.transforms/d0fcabc106d227fa0d998d83995b4652/transformed/bundleLibRuntimeToDirDebug/desugar_graph.bin differ
+Binary files /dev/null and b/node_modules/react-native-webview/android/build/.transforms/013fc807a271e353f82d26d259b31f6e/transformed/bundleLibRuntimeToDirDebug/desugar_graph.bin differ
+diff --git a/node_modules/react-native-webview/android/build/.transforms/80fb709a3ea4570a6dc3488dd722c9c5/results.bin b/node_modules/react-native-webview/android/build/.transforms/80fb709a3ea4570a6dc3488dd722c9c5/results.bin
+new file mode 100644
+index 0000000..0d259dd
+--- /dev/null
++++ b/node_modules/react-native-webview/android/build/.transforms/80fb709a3ea4570a6dc3488dd722c9c5/results.bin
+@@ -0,0 +1 @@
++o/classes
+diff --git a/node_modules/react-native-webview/android/build/.transforms/80fb709a3ea4570a6dc3488dd722c9c5/transformed/classes/classes_dex/classes.dex b/node_modules/react-native-webview/android/build/.transforms/80fb709a3ea4570a6dc3488dd722c9c5/transformed/classes/classes_dex/classes.dex
+new file mode 100644
+index 0000000..7509a62
+Binary files /dev/null and b/node_modules/react-native-webview/android/build/.transforms/80fb709a3ea4570a6dc3488dd722c9c5/transformed/classes/classes_dex/classes.dex differ
+diff --git a/node_modules/react-native-webview/android/build/generated/source/buildConfig/androidTest/debug/com/reactnativecommunity/webview/test/BuildConfig.java b/node_modules/react-native-webview/android/build/generated/source/buildConfig/androidTest/debug/com/reactnativecommunity/webview/test/BuildConfig.java
+new file mode 100644
+index 0000000..c1792a3
+--- /dev/null
++++ b/node_modules/react-native-webview/android/build/generated/source/buildConfig/androidTest/debug/com/reactnativecommunity/webview/test/BuildConfig.java
+@@ -0,0 +1,12 @@
++/**
++ * Automatically generated file. DO NOT MODIFY
++ */
++package com.reactnativecommunity.webview.test;
++
++public final class BuildConfig {
++  public static final boolean DEBUG = Boolean.parseBoolean("true");
++  public static final String APPLICATION_ID = "com.reactnativecommunity.webview.test";
++  public static final String BUILD_TYPE = "debug";
++  // Field from default config.
++  public static final boolean IS_NEW_ARCHITECTURE_ENABLED = false;
++}
 diff --git a/node_modules/react-native-webview/android/build/generated/source/buildConfig/debug/com/reactnativecommunity/webview/BuildConfig.java b/node_modules/react-native-webview/android/build/generated/source/buildConfig/debug/com/reactnativecommunity/webview/BuildConfig.java
 new file mode 100644
 index 0000000..bdae87e
@@ -368,7 +399,7 @@ index 0000000..9e26dfe
 \ No newline at end of file
 diff --git a/node_modules/react-native-webview/android/build/intermediates/compile_library_classes_jar/debug/bundleLibCompileToJarDebug/classes.jar b/node_modules/react-native-webview/android/build/intermediates/compile_library_classes_jar/debug/bundleLibCompileToJarDebug/classes.jar
 new file mode 100644
-index 0000000..61779d3
+index 0000000..47d6b15
 Binary files /dev/null and b/node_modules/react-native-webview/android/build/intermediates/compile_library_classes_jar/debug/bundleLibCompileToJarDebug/classes.jar differ
 diff --git a/node_modules/react-native-webview/android/build/intermediates/compile_r_class_jar/debug/generateDebugRFile/R.jar b/node_modules/react-native-webview/android/build/intermediates/compile_r_class_jar/debug/generateDebugRFile/R.jar
 new file mode 100644
@@ -387,11 +418,11 @@ index 0000000..cb42067
 Binary files /dev/null and b/node_modules/react-native-webview/android/build/intermediates/compiled_local_resources/debug/compileDebugLibraryResources/out/xml_file_provider_paths.xml.flat differ
 diff --git a/node_modules/react-native-webview/android/build/intermediates/incremental/debug/packageDebugResources/compile-file-map.properties b/node_modules/react-native-webview/android/build/intermediates/incremental/debug/packageDebugResources/compile-file-map.properties
 new file mode 100644
-index 0000000..8f1e693
+index 0000000..fa49656
 --- /dev/null
 +++ b/node_modules/react-native-webview/android/build/intermediates/incremental/debug/packageDebugResources/compile-file-map.properties
 @@ -0,0 +1,2 @@
-+#Mon Sep 15 14:48:54 BRT 2025
++#Wed Oct 01 22:55:12 WEST 2025
 +com.reactnativecommunity.webview.react-native-webview-main-6\:/xml/file_provider_paths.xml=/Users/brunosouza/StudioProjects/usercentrics/react-native-sdk/sample/node_modules/react-native-webview/android/build/intermediates/packaged_res/debug/packageDebugResources/xml/file_provider_paths.xml
 diff --git a/node_modules/react-native-webview/android/build/intermediates/incremental/debug/packageDebugResources/merger.xml b/node_modules/react-native-webview/android/build/intermediates/incremental/debug/packageDebugResources/merger.xml
 new file mode 100644
@@ -431,7 +462,7 @@ index 0000000..5fb415b
 \ No newline at end of file
 diff --git a/node_modules/react-native-webview/android/build/intermediates/java_res/debug/processDebugJavaRes/out/META-INF/react-native-webview_debug.kotlin_module b/node_modules/react-native-webview/android/build/intermediates/java_res/debug/processDebugJavaRes/out/META-INF/react-native-webview_debug.kotlin_module
 new file mode 100644
-index 0000000..92b0cb6
+index 0000000..a72dc55
 Binary files /dev/null and b/node_modules/react-native-webview/android/build/intermediates/java_res/debug/processDebugJavaRes/out/META-INF/react-native-webview_debug.kotlin_module differ
 diff --git a/node_modules/react-native-webview/android/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/reactnativecommunity/webview/BuildConfig.class b/node_modules/react-native-webview/android/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/reactnativecommunity/webview/BuildConfig.class
 new file mode 100644
@@ -594,6 +625,186 @@ index 0000000..77652a9
 +29    </application>
 +30
 +31</manifest>
+diff --git a/node_modules/react-native-webview/android/build/intermediates/manifest_merge_blame_file/debugAndroidTest/processDebugAndroidTestManifest/manifest-merger-blame-debug-androidTest-report.txt b/node_modules/react-native-webview/android/build/intermediates/manifest_merge_blame_file/debugAndroidTest/processDebugAndroidTestManifest/manifest-merger-blame-debug-androidTest-report.txt
+new file mode 100644
+index 0000000..7089971
+--- /dev/null
++++ b/node_modules/react-native-webview/android/build/intermediates/manifest_merge_blame_file/debugAndroidTest/processDebugAndroidTestManifest/manifest-merger-blame-debug-androidTest-report.txt
+@@ -0,0 +1,174 @@
++1<?xml version="1.0" encoding="utf-8"?>
++2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
++3    package="com.reactnativecommunity.webview.test" >
++4
++5    <uses-sdk
++5-->/Users/brunosouza/StudioProjects/usercentrics/react-native-sdk/sample/node_modules/react-native-webview/android/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest6451336682419930683.xml:5:5-74
++6        android:minSdkVersion="24"
++6-->/Users/brunosouza/StudioProjects/usercentrics/react-native-sdk/sample/node_modules/react-native-webview/android/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest6451336682419930683.xml:5:15-41
++7        android:targetSdkVersion="31" />
++7-->/Users/brunosouza/StudioProjects/usercentrics/react-native-sdk/sample/node_modules/react-native-webview/android/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest6451336682419930683.xml:5:42-71
++8
++9    <instrumentation
++9-->/Users/brunosouza/StudioProjects/usercentrics/react-native-sdk/sample/node_modules/react-native-webview/android/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest6451336682419930683.xml:11:5-15:87
++10        android:name="android.test.InstrumentationTestRunner"
++10-->/Users/brunosouza/StudioProjects/usercentrics/react-native-sdk/sample/node_modules/react-native-webview/android/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest6451336682419930683.xml:11:22-75
++11        android:functionalTest="false"
++11-->/Users/brunosouza/StudioProjects/usercentrics/react-native-sdk/sample/node_modules/react-native-webview/android/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest6451336682419930683.xml:14:22-52
++12        android:handleProfiling="false"
++12-->/Users/brunosouza/StudioProjects/usercentrics/react-native-sdk/sample/node_modules/react-native-webview/android/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest6451336682419930683.xml:13:22-53
++13        android:label="Tests for com.reactnativecommunity.webview.test"
++13-->/Users/brunosouza/StudioProjects/usercentrics/react-native-sdk/sample/node_modules/react-native-webview/android/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest6451336682419930683.xml:15:22-85
++14        android:targetPackage="com.reactnativecommunity.webview.test" />
++14-->/Users/brunosouza/StudioProjects/usercentrics/react-native-sdk/sample/node_modules/react-native-webview/android/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest6451336682419930683.xml:12:22-83
++15
++16    <queries>
++16-->[:react-native-webview] /Users/brunosouza/StudioProjects/usercentrics/react-native-sdk/sample/node_modules/react-native-webview/android/build/intermediates/merged_manifest/debug/processDebugManifest/AndroidManifest.xml:7:5-17:15
++17        <intent>
++17-->[:react-native-webview] /Users/brunosouza/StudioProjects/usercentrics/react-native-sdk/sample/node_modules/react-native-webview/android/build/intermediates/merged_manifest/debug/processDebugManifest/AndroidManifest.xml:8:9-10:18
++18            <action android:name="org.chromium.intent.action.PAY" />
++18-->[:react-native-webview] /Users/brunosouza/StudioProjects/usercentrics/react-native-sdk/sample/node_modules/react-native-webview/android/build/intermediates/merged_manifest/debug/processDebugManifest/AndroidManifest.xml:9:13-69
++18-->[:react-native-webview] /Users/brunosouza/StudioProjects/usercentrics/react-native-sdk/sample/node_modules/react-native-webview/android/build/intermediates/merged_manifest/debug/processDebugManifest/AndroidManifest.xml:9:21-66
++19        </intent>
++20        <intent>
++20-->[:react-native-webview] /Users/brunosouza/StudioProjects/usercentrics/react-native-sdk/sample/node_modules/react-native-webview/android/build/intermediates/merged_manifest/debug/processDebugManifest/AndroidManifest.xml:11:9-13:18
++21            <action android:name="org.chromium.intent.action.IS_READY_TO_PAY" />
++21-->[:react-native-webview] /Users/brunosouza/StudioProjects/usercentrics/react-native-sdk/sample/node_modules/react-native-webview/android/build/intermediates/merged_manifest/debug/processDebugManifest/AndroidManifest.xml:12:13-81
++21-->[:react-native-webview] /Users/brunosouza/StudioProjects/usercentrics/react-native-sdk/sample/node_modules/react-native-webview/android/build/intermediates/merged_manifest/debug/processDebugManifest/AndroidManifest.xml:12:21-78
++22        </intent>
++23        <intent>
++23-->[:react-native-webview] /Users/brunosouza/StudioProjects/usercentrics/react-native-sdk/sample/node_modules/react-native-webview/android/build/intermediates/merged_manifest/debug/processDebugManifest/AndroidManifest.xml:14:9-16:18
++24            <action android:name="org.chromium.intent.action.UPDATE_PAYMENT_DETAILS" />
++24-->[:react-native-webview] /Users/brunosouza/StudioProjects/usercentrics/react-native-sdk/sample/node_modules/react-native-webview/android/build/intermediates/merged_manifest/debug/processDebugManifest/AndroidManifest.xml:15:13-88
++24-->[:react-native-webview] /Users/brunosouza/StudioProjects/usercentrics/react-native-sdk/sample/node_modules/react-native-webview/android/build/intermediates/merged_manifest/debug/processDebugManifest/AndroidManifest.xml:15:21-85
++25        </intent>
++26    </queries>
++27    <!--
++28    This manifest file is used only by Gradle to configure debug-only capabilities
++29    for React Native Apps.
++30    -->
++31    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
++31-->[com.facebook.react:react-android:0.79.6] /Users/brunosouza/.gradle/caches/8.13/transforms/971429be201e6f9b7347884ce651e85f/transformed/jetified-react-android-0.79.6-debug/AndroidManifest.xml:16:5-78
++31-->[com.facebook.react:react-android:0.79.6] /Users/brunosouza/.gradle/caches/8.13/transforms/971429be201e6f9b7347884ce651e85f/transformed/jetified-react-android-0.79.6-debug/AndroidManifest.xml:16:22-75
++32
++33    <permission
++33-->[androidx.core:core:1.13.1] /Users/brunosouza/.gradle/caches/8.13/transforms/22bfcf5658bcc8ddbf35b456f6c9b811/transformed/core-1.13.1/AndroidManifest.xml:22:5-24:47
++34        android:name="com.reactnativecommunity.webview.test.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
++34-->[androidx.core:core:1.13.1] /Users/brunosouza/.gradle/caches/8.13/transforms/22bfcf5658bcc8ddbf35b456f6c9b811/transformed/core-1.13.1/AndroidManifest.xml:23:9-81
++35        android:protectionLevel="signature" />
++35-->[androidx.core:core:1.13.1] /Users/brunosouza/.gradle/caches/8.13/transforms/22bfcf5658bcc8ddbf35b456f6c9b811/transformed/core-1.13.1/AndroidManifest.xml:24:9-44
++36
++37    <uses-permission android:name="com.reactnativecommunity.webview.test.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
++37-->[androidx.core:core:1.13.1] /Users/brunosouza/.gradle/caches/8.13/transforms/22bfcf5658bcc8ddbf35b456f6c9b811/transformed/core-1.13.1/AndroidManifest.xml:26:5-97
++37-->[androidx.core:core:1.13.1] /Users/brunosouza/.gradle/caches/8.13/transforms/22bfcf5658bcc8ddbf35b456f6c9b811/transformed/core-1.13.1/AndroidManifest.xml:26:22-94
++38
++39    <application
++39-->/Users/brunosouza/StudioProjects/usercentrics/react-native-sdk/sample/node_modules/react-native-webview/android/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest6451336682419930683.xml:7:5-9:19
++40        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
++40-->[androidx.core:core:1.13.1] /Users/brunosouza/.gradle/caches/8.13/transforms/22bfcf5658bcc8ddbf35b456f6c9b811/transformed/core-1.13.1/AndroidManifest.xml:28:18-86
++41        android:debuggable="true"
++42        android:extractNativeLibs="false" >
++43        <uses-library android:name="android.test.runner" />
++43-->/Users/brunosouza/StudioProjects/usercentrics/react-native-sdk/sample/node_modules/react-native-webview/android/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest6451336682419930683.xml:8:9-60
++43-->/Users/brunosouza/StudioProjects/usercentrics/react-native-sdk/sample/node_modules/react-native-webview/android/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest6451336682419930683.xml:8:23-57
++44
++45        <provider
++45-->[:react-native-webview] /Users/brunosouza/StudioProjects/usercentrics/react-native-sdk/sample/node_modules/react-native-webview/android/build/intermediates/merged_manifest/debug/processDebugManifest/AndroidManifest.xml:20:9-28:20
++46            android:name="com.reactnativecommunity.webview.RNCWebViewFileProvider"
++46-->[:react-native-webview] /Users/brunosouza/StudioProjects/usercentrics/react-native-sdk/sample/node_modules/react-native-webview/android/build/intermediates/merged_manifest/debug/processDebugManifest/AndroidManifest.xml:21:13-83
++47            android:authorities="com.reactnativecommunity.webview.test.fileprovider"
++47-->[:react-native-webview] /Users/brunosouza/StudioProjects/usercentrics/react-native-sdk/sample/node_modules/react-native-webview/android/build/intermediates/merged_manifest/debug/processDebugManifest/AndroidManifest.xml:22:13-64
++48            android:exported="false"
++48-->[:react-native-webview] /Users/brunosouza/StudioProjects/usercentrics/react-native-sdk/sample/node_modules/react-native-webview/android/build/intermediates/merged_manifest/debug/processDebugManifest/AndroidManifest.xml:23:13-37
++49            android:grantUriPermissions="true" >
++49-->[:react-native-webview] /Users/brunosouza/StudioProjects/usercentrics/react-native-sdk/sample/node_modules/react-native-webview/android/build/intermediates/merged_manifest/debug/processDebugManifest/AndroidManifest.xml:24:13-47
++50            <meta-data
++50-->[:react-native-webview] /Users/brunosouza/StudioProjects/usercentrics/react-native-sdk/sample/node_modules/react-native-webview/android/build/intermediates/merged_manifest/debug/processDebugManifest/AndroidManifest.xml:25:13-27:63
++51                android:name="android.support.FILE_PROVIDER_PATHS"
++51-->[:react-native-webview] /Users/brunosouza/StudioProjects/usercentrics/react-native-sdk/sample/node_modules/react-native-webview/android/build/intermediates/merged_manifest/debug/processDebugManifest/AndroidManifest.xml:26:17-67
++52                android:resource="@xml/file_provider_paths" />
++52-->[:react-native-webview] /Users/brunosouza/StudioProjects/usercentrics/react-native-sdk/sample/node_modules/react-native-webview/android/build/intermediates/merged_manifest/debug/processDebugManifest/AndroidManifest.xml:27:17-60
++53        </provider>
++54
++55        <activity
++55-->[com.facebook.react:react-android:0.79.6] /Users/brunosouza/.gradle/caches/8.13/transforms/971429be201e6f9b7347884ce651e85f/transformed/jetified-react-android-0.79.6-debug/AndroidManifest.xml:19:9-21:40
++56            android:name="com.facebook.react.devsupport.DevSettingsActivity"
++56-->[com.facebook.react:react-android:0.79.6] /Users/brunosouza/.gradle/caches/8.13/transforms/971429be201e6f9b7347884ce651e85f/transformed/jetified-react-android-0.79.6-debug/AndroidManifest.xml:20:13-77
++57            android:exported="false" />
++57-->[com.facebook.react:react-android:0.79.6] /Users/brunosouza/.gradle/caches/8.13/transforms/971429be201e6f9b7347884ce651e85f/transformed/jetified-react-android-0.79.6-debug/AndroidManifest.xml:21:13-37
++58
++59        <provider
++59-->[androidx.emoji2:emoji2:1.3.0] /Users/brunosouza/.gradle/caches/8.13/transforms/cb00d3a1b4b229de8433342a9243aba4/transformed/jetified-emoji2-1.3.0/AndroidManifest.xml:24:9-32:20
++60            android:name="androidx.startup.InitializationProvider"
++60-->[androidx.emoji2:emoji2:1.3.0] /Users/brunosouza/.gradle/caches/8.13/transforms/cb00d3a1b4b229de8433342a9243aba4/transformed/jetified-emoji2-1.3.0/AndroidManifest.xml:25:13-67
++61            android:authorities="com.reactnativecommunity.webview.test.androidx-startup"
++61-->[androidx.emoji2:emoji2:1.3.0] /Users/brunosouza/.gradle/caches/8.13/transforms/cb00d3a1b4b229de8433342a9243aba4/transformed/jetified-emoji2-1.3.0/AndroidManifest.xml:26:13-68
++62            android:exported="false" >
++62-->[androidx.emoji2:emoji2:1.3.0] /Users/brunosouza/.gradle/caches/8.13/transforms/cb00d3a1b4b229de8433342a9243aba4/transformed/jetified-emoji2-1.3.0/AndroidManifest.xml:27:13-37
++63            <meta-data
++63-->[androidx.emoji2:emoji2:1.3.0] /Users/brunosouza/.gradle/caches/8.13/transforms/cb00d3a1b4b229de8433342a9243aba4/transformed/jetified-emoji2-1.3.0/AndroidManifest.xml:29:13-31:52
++64                android:name="androidx.emoji2.text.EmojiCompatInitializer"
++64-->[androidx.emoji2:emoji2:1.3.0] /Users/brunosouza/.gradle/caches/8.13/transforms/cb00d3a1b4b229de8433342a9243aba4/transformed/jetified-emoji2-1.3.0/AndroidManifest.xml:30:17-75
++65                android:value="androidx.startup" />
++65-->[androidx.emoji2:emoji2:1.3.0] /Users/brunosouza/.gradle/caches/8.13/transforms/cb00d3a1b4b229de8433342a9243aba4/transformed/jetified-emoji2-1.3.0/AndroidManifest.xml:31:17-49
++66            <meta-data
++66-->[androidx.lifecycle:lifecycle-process:2.6.2] /Users/brunosouza/.gradle/caches/8.13/transforms/dd88c21e4fdb4bb83006bf4152e826d4/transformed/jetified-lifecycle-process-2.6.2/AndroidManifest.xml:29:13-31:52
++67                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
++67-->[androidx.lifecycle:lifecycle-process:2.6.2] /Users/brunosouza/.gradle/caches/8.13/transforms/dd88c21e4fdb4bb83006bf4152e826d4/transformed/jetified-lifecycle-process-2.6.2/AndroidManifest.xml:30:17-78
++68                android:value="androidx.startup" />
++68-->[androidx.lifecycle:lifecycle-process:2.6.2] /Users/brunosouza/.gradle/caches/8.13/transforms/dd88c21e4fdb4bb83006bf4152e826d4/transformed/jetified-lifecycle-process-2.6.2/AndroidManifest.xml:31:17-49
++69            <meta-data
++69-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/brunosouza/.gradle/caches/8.13/transforms/84469e0004649e62f8f557b4c7cd9657/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:29:13-31:52
++70                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
++70-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/brunosouza/.gradle/caches/8.13/transforms/84469e0004649e62f8f557b4c7cd9657/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:30:17-85
++71                android:value="androidx.startup" />
++71-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/brunosouza/.gradle/caches/8.13/transforms/84469e0004649e62f8f557b4c7cd9657/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:31:17-49
++72        </provider>
++73
++74        <receiver
++74-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/brunosouza/.gradle/caches/8.13/transforms/84469e0004649e62f8f557b4c7cd9657/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:34:9-52:20
++75            android:name="androidx.profileinstaller.ProfileInstallReceiver"
++75-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/brunosouza/.gradle/caches/8.13/transforms/84469e0004649e62f8f557b4c7cd9657/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:35:13-76
++76            android:directBootAware="false"
++76-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/brunosouza/.gradle/caches/8.13/transforms/84469e0004649e62f8f557b4c7cd9657/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:36:13-44
++77            android:enabled="true"
++77-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/brunosouza/.gradle/caches/8.13/transforms/84469e0004649e62f8f557b4c7cd9657/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:37:13-35
++78            android:exported="true"
++78-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/brunosouza/.gradle/caches/8.13/transforms/84469e0004649e62f8f557b4c7cd9657/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:38:13-36
++79            android:permission="android.permission.DUMP" >
++79-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/brunosouza/.gradle/caches/8.13/transforms/84469e0004649e62f8f557b4c7cd9657/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:39:13-57
++80            <intent-filter>
++80-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/brunosouza/.gradle/caches/8.13/transforms/84469e0004649e62f8f557b4c7cd9657/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:40:13-42:29
++81                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
++81-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/brunosouza/.gradle/caches/8.13/transforms/84469e0004649e62f8f557b4c7cd9657/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:41:17-91
++81-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/brunosouza/.gradle/caches/8.13/transforms/84469e0004649e62f8f557b4c7cd9657/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:41:25-88
++82            </intent-filter>
++83            <intent-filter>
++83-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/brunosouza/.gradle/caches/8.13/transforms/84469e0004649e62f8f557b4c7cd9657/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:43:13-45:29
++84                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
++84-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/brunosouza/.gradle/caches/8.13/transforms/84469e0004649e62f8f557b4c7cd9657/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:44:17-85
++84-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/brunosouza/.gradle/caches/8.13/transforms/84469e0004649e62f8f557b4c7cd9657/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:44:25-82
++85            </intent-filter>
++86            <intent-filter>
++86-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/brunosouza/.gradle/caches/8.13/transforms/84469e0004649e62f8f557b4c7cd9657/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:46:13-48:29
++87                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
++87-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/brunosouza/.gradle/caches/8.13/transforms/84469e0004649e62f8f557b4c7cd9657/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:47:17-88
++87-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/brunosouza/.gradle/caches/8.13/transforms/84469e0004649e62f8f557b4c7cd9657/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:47:25-85
++88            </intent-filter>
++89            <intent-filter>
++89-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/brunosouza/.gradle/caches/8.13/transforms/84469e0004649e62f8f557b4c7cd9657/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:49:13-51:29
++90                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
++90-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/brunosouza/.gradle/caches/8.13/transforms/84469e0004649e62f8f557b4c7cd9657/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:50:17-95
++90-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/brunosouza/.gradle/caches/8.13/transforms/84469e0004649e62f8f557b4c7cd9657/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:50:25-92
++91            </intent-filter>
++92        </receiver>
++93
++94        <meta-data
++94-->[com.facebook.soloader:soloader:0.12.1] /Users/brunosouza/.gradle/caches/8.13/transforms/495759f02750362cf798d85b08b1c592/transformed/jetified-soloader-0.12.1/AndroidManifest.xml:12:9-14:37
++95            android:name="com.facebook.soloader.enabled"
++95-->[com.facebook.soloader:soloader:0.12.1] /Users/brunosouza/.gradle/caches/8.13/transforms/495759f02750362cf798d85b08b1c592/transformed/jetified-soloader-0.12.1/AndroidManifest.xml:13:13-57
++96            android:value="false" />
++96-->[com.facebook.soloader:soloader:0.12.1] /Users/brunosouza/.gradle/caches/8.13/transforms/495759f02750362cf798d85b08b1c592/transformed/jetified-soloader-0.12.1/AndroidManifest.xml:14:13-34
++97    </application>
++98
++99</manifest>
 diff --git a/node_modules/react-native-webview/android/build/intermediates/merged_manifest/debug/processDebugManifest/AndroidManifest.xml b/node_modules/react-native-webview/android/build/intermediates/merged_manifest/debug/processDebugManifest/AndroidManifest.xml
 new file mode 100644
 index 0000000..634d173
@@ -648,6 +859,137 @@ index 0000000..08f4ebe
 @@ -0,0 +1 @@
 +0 Warning/Error
 \ No newline at end of file
+diff --git a/node_modules/react-native-webview/android/build/intermediates/packaged_manifests/debugAndroidTest/processDebugAndroidTestManifest/AndroidManifest.xml b/node_modules/react-native-webview/android/build/intermediates/packaged_manifests/debugAndroidTest/processDebugAndroidTestManifest/AndroidManifest.xml
+new file mode 100644
+index 0000000..39a3e5d
+--- /dev/null
++++ b/node_modules/react-native-webview/android/build/intermediates/packaged_manifests/debugAndroidTest/processDebugAndroidTestManifest/AndroidManifest.xml
+@@ -0,0 +1,99 @@
++<?xml version="1.0" encoding="utf-8"?>
++<manifest xmlns:android="http://schemas.android.com/apk/res/android"
++    package="com.reactnativecommunity.webview.test" >
++
++    <uses-sdk
++        android:minSdkVersion="24"
++        android:targetSdkVersion="31" />
++
++    <instrumentation
++        android:name="android.test.InstrumentationTestRunner"
++        android:functionalTest="false"
++        android:handleProfiling="false"
++        android:label="Tests for com.reactnativecommunity.webview.test"
++        android:targetPackage="com.reactnativecommunity.webview.test" />
++
++    <queries>
++        <intent>
++            <action android:name="org.chromium.intent.action.PAY" />
++        </intent>
++        <intent>
++            <action android:name="org.chromium.intent.action.IS_READY_TO_PAY" />
++        </intent>
++        <intent>
++            <action android:name="org.chromium.intent.action.UPDATE_PAYMENT_DETAILS" />
++        </intent>
++    </queries>
++    <!--
++    This manifest file is used only by Gradle to configure debug-only capabilities
++    for React Native Apps.
++    -->
++    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
++
++    <permission
++        android:name="com.reactnativecommunity.webview.test.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
++        android:protectionLevel="signature" />
++
++    <uses-permission android:name="com.reactnativecommunity.webview.test.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
++
++    <application
++        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
++        android:debuggable="true"
++        android:extractNativeLibs="false" >
++        <uses-library android:name="android.test.runner" />
++
++        <provider
++            android:name="com.reactnativecommunity.webview.RNCWebViewFileProvider"
++            android:authorities="com.reactnativecommunity.webview.test.fileprovider"
++            android:exported="false"
++            android:grantUriPermissions="true" >
++            <meta-data
++                android:name="android.support.FILE_PROVIDER_PATHS"
++                android:resource="@xml/file_provider_paths" />
++        </provider>
++
++        <activity
++            android:name="com.facebook.react.devsupport.DevSettingsActivity"
++            android:exported="false" />
++
++        <provider
++            android:name="androidx.startup.InitializationProvider"
++            android:authorities="com.reactnativecommunity.webview.test.androidx-startup"
++            android:exported="false" >
++            <meta-data
++                android:name="androidx.emoji2.text.EmojiCompatInitializer"
++                android:value="androidx.startup" />
++            <meta-data
++                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
++                android:value="androidx.startup" />
++            <meta-data
++                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
++                android:value="androidx.startup" />
++        </provider>
++
++        <receiver
++            android:name="androidx.profileinstaller.ProfileInstallReceiver"
++            android:directBootAware="false"
++            android:enabled="true"
++            android:exported="true"
++            android:permission="android.permission.DUMP" >
++            <intent-filter>
++                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
++            </intent-filter>
++            <intent-filter>
++                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
++            </intent-filter>
++            <intent-filter>
++                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
++            </intent-filter>
++            <intent-filter>
++                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
++            </intent-filter>
++        </receiver>
++
++        <meta-data
++            android:name="com.facebook.soloader.enabled"
++            android:value="false" />
++    </application>
++
++</manifest>
+\ No newline at end of file
+diff --git a/node_modules/react-native-webview/android/build/intermediates/packaged_manifests/debugAndroidTest/processDebugAndroidTestManifest/output-metadata.json b/node_modules/react-native-webview/android/build/intermediates/packaged_manifests/debugAndroidTest/processDebugAndroidTestManifest/output-metadata.json
+new file mode 100644
+index 0000000..9309ff1
+--- /dev/null
++++ b/node_modules/react-native-webview/android/build/intermediates/packaged_manifests/debugAndroidTest/processDebugAndroidTestManifest/output-metadata.json
+@@ -0,0 +1,18 @@
++{
++  "version": 3,
++  "artifactType": {
++    "type": "PACKAGED_MANIFESTS",
++    "kind": "Directory"
++  },
++  "applicationId": "com.reactnativecommunity.webview.test",
++  "variantName": "debugAndroidTest",
++  "elements": [
++    {
++      "type": "SINGLE",
++      "filters": [],
++      "attributes": [],
++      "outputFile": "AndroidManifest.xml"
++    }
++  ],
++  "elementType": "File"
++}
+\ No newline at end of file
 diff --git a/node_modules/react-native-webview/android/build/intermediates/packaged_res/debug/packageDebugResources/xml/file_provider_paths.xml b/node_modules/react-native-webview/android/build/intermediates/packaged_res/debug/packageDebugResources/xml/file_provider_paths.xml
 new file mode 100644
 index 0000000..aba5f56
@@ -662,7 +1004,7 @@ index 0000000..aba5f56
 +</paths>
 diff --git a/node_modules/react-native-webview/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/META-INF/react-native-webview_debug.kotlin_module b/node_modules/react-native-webview/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/META-INF/react-native-webview_debug.kotlin_module
 new file mode 100644
-index 0000000..92b0cb6
+index 0000000..a72dc55
 Binary files /dev/null and b/node_modules/react-native-webview/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/META-INF/react-native-webview_debug.kotlin_module differ
 diff --git a/node_modules/react-native-webview/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/reactnativecommunity/webview/BuildConfig.class b/node_modules/react-native-webview/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/reactnativecommunity/webview/BuildConfig.class
 new file mode 100644
@@ -726,27 +1068,27 @@ index 0000000..3d2e649
 Binary files /dev/null and b/node_modules/react-native-webview/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/reactnativecommunity/webview/RNCWebViewManager.class differ
 diff --git a/node_modules/react-native-webview/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/reactnativecommunity/webview/RNCWebViewManagerImpl$Companion.class b/node_modules/react-native-webview/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/reactnativecommunity/webview/RNCWebViewManagerImpl$Companion.class
 new file mode 100644
-index 0000000..1298485
+index 0000000..c90bbeb
 Binary files /dev/null and b/node_modules/react-native-webview/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/reactnativecommunity/webview/RNCWebViewManagerImpl$Companion.class differ
 diff --git a/node_modules/react-native-webview/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/reactnativecommunity/webview/RNCWebViewManagerImpl$setupWebChromeClient$1.class b/node_modules/react-native-webview/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/reactnativecommunity/webview/RNCWebViewManagerImpl$setupWebChromeClient$1.class
 new file mode 100644
-index 0000000..2954890
+index 0000000..873d14b
 Binary files /dev/null and b/node_modules/react-native-webview/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/reactnativecommunity/webview/RNCWebViewManagerImpl$setupWebChromeClient$1.class differ
 diff --git a/node_modules/react-native-webview/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/reactnativecommunity/webview/RNCWebViewManagerImpl$setupWebChromeClient$webChromeClient$1.class b/node_modules/react-native-webview/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/reactnativecommunity/webview/RNCWebViewManagerImpl$setupWebChromeClient$webChromeClient$1.class
 new file mode 100644
-index 0000000..bdd884c
+index 0000000..a8a3e9e
 Binary files /dev/null and b/node_modules/react-native-webview/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/reactnativecommunity/webview/RNCWebViewManagerImpl$setupWebChromeClient$webChromeClient$1.class differ
 diff --git a/node_modules/react-native-webview/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/reactnativecommunity/webview/RNCWebViewManagerImpl.class b/node_modules/react-native-webview/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/reactnativecommunity/webview/RNCWebViewManagerImpl.class
 new file mode 100644
-index 0000000..420c722
+index 0000000..671bc09
 Binary files /dev/null and b/node_modules/react-native-webview/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/reactnativecommunity/webview/RNCWebViewManagerImpl.class differ
 diff --git a/node_modules/react-native-webview/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/reactnativecommunity/webview/RNCWebViewManagerImplKt.class b/node_modules/react-native-webview/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/reactnativecommunity/webview/RNCWebViewManagerImplKt.class
 new file mode 100644
-index 0000000..035b3e0
+index 0000000..70dc3d0
 Binary files /dev/null and b/node_modules/react-native-webview/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/reactnativecommunity/webview/RNCWebViewManagerImplKt.class differ
 diff --git a/node_modules/react-native-webview/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/reactnativecommunity/webview/RNCWebViewMessagingModule.class b/node_modules/react-native-webview/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/reactnativecommunity/webview/RNCWebViewMessagingModule.class
 new file mode 100644
-index 0000000..5383798
+index 0000000..25a805e
 Binary files /dev/null and b/node_modules/react-native-webview/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/reactnativecommunity/webview/RNCWebViewMessagingModule.class differ
 diff --git a/node_modules/react-native-webview/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/reactnativecommunity/webview/RNCWebViewModule.class b/node_modules/react-native-webview/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/reactnativecommunity/webview/RNCWebViewModule.class
 new file mode 100644
@@ -782,11 +1124,11 @@ index 0000000..75fc2db
 Binary files /dev/null and b/node_modules/react-native-webview/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/reactnativecommunity/webview/RNCWebViewPackage.class differ
 diff --git a/node_modules/react-native-webview/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/reactnativecommunity/webview/RNCWebViewWrapper$Companion.class b/node_modules/react-native-webview/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/reactnativecommunity/webview/RNCWebViewWrapper$Companion.class
 new file mode 100644
-index 0000000..1edb622
+index 0000000..91b0ec8
 Binary files /dev/null and b/node_modules/react-native-webview/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/reactnativecommunity/webview/RNCWebViewWrapper$Companion.class differ
 diff --git a/node_modules/react-native-webview/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/reactnativecommunity/webview/RNCWebViewWrapper.class b/node_modules/react-native-webview/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/reactnativecommunity/webview/RNCWebViewWrapper.class
 new file mode 100644
-index 0000000..71d1813
+index 0000000..df008e9
 Binary files /dev/null and b/node_modules/react-native-webview/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/reactnativecommunity/webview/RNCWebViewWrapper.class differ
 diff --git a/node_modules/react-native-webview/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/reactnativecommunity/webview/URLUtil.class b/node_modules/react-native-webview/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/reactnativecommunity/webview/URLUtil.class
 new file mode 100644
@@ -794,95 +1136,95 @@ index 0000000..b1a2c52
 Binary files /dev/null and b/node_modules/react-native-webview/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/reactnativecommunity/webview/URLUtil.class differ
 diff --git a/node_modules/react-native-webview/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/reactnativecommunity/webview/events/SubResourceErrorEvent$Companion.class b/node_modules/react-native-webview/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/reactnativecommunity/webview/events/SubResourceErrorEvent$Companion.class
 new file mode 100644
-index 0000000..385b3db
+index 0000000..b5456f0
 Binary files /dev/null and b/node_modules/react-native-webview/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/reactnativecommunity/webview/events/SubResourceErrorEvent$Companion.class differ
 diff --git a/node_modules/react-native-webview/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/reactnativecommunity/webview/events/SubResourceErrorEvent.class b/node_modules/react-native-webview/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/reactnativecommunity/webview/events/SubResourceErrorEvent.class
 new file mode 100644
-index 0000000..67f313e
+index 0000000..528f0ab
 Binary files /dev/null and b/node_modules/react-native-webview/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/reactnativecommunity/webview/events/SubResourceErrorEvent.class differ
 diff --git a/node_modules/react-native-webview/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/reactnativecommunity/webview/events/TopCustomMenuSelectionEvent$Companion.class b/node_modules/react-native-webview/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/reactnativecommunity/webview/events/TopCustomMenuSelectionEvent$Companion.class
 new file mode 100644
-index 0000000..9fb10f4
+index 0000000..6ed2ecf
 Binary files /dev/null and b/node_modules/react-native-webview/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/reactnativecommunity/webview/events/TopCustomMenuSelectionEvent$Companion.class differ
 diff --git a/node_modules/react-native-webview/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/reactnativecommunity/webview/events/TopCustomMenuSelectionEvent.class b/node_modules/react-native-webview/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/reactnativecommunity/webview/events/TopCustomMenuSelectionEvent.class
 new file mode 100644
-index 0000000..c22d80d
+index 0000000..61b8a0c
 Binary files /dev/null and b/node_modules/react-native-webview/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/reactnativecommunity/webview/events/TopCustomMenuSelectionEvent.class differ
 diff --git a/node_modules/react-native-webview/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/reactnativecommunity/webview/events/TopHttpErrorEvent$Companion.class b/node_modules/react-native-webview/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/reactnativecommunity/webview/events/TopHttpErrorEvent$Companion.class
 new file mode 100644
-index 0000000..482a601
+index 0000000..fdd2777
 Binary files /dev/null and b/node_modules/react-native-webview/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/reactnativecommunity/webview/events/TopHttpErrorEvent$Companion.class differ
 diff --git a/node_modules/react-native-webview/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/reactnativecommunity/webview/events/TopHttpErrorEvent.class b/node_modules/react-native-webview/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/reactnativecommunity/webview/events/TopHttpErrorEvent.class
 new file mode 100644
-index 0000000..bfae0a6
+index 0000000..b540bc7
 Binary files /dev/null and b/node_modules/react-native-webview/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/reactnativecommunity/webview/events/TopHttpErrorEvent.class differ
 diff --git a/node_modules/react-native-webview/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/reactnativecommunity/webview/events/TopLoadingErrorEvent$Companion.class b/node_modules/react-native-webview/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/reactnativecommunity/webview/events/TopLoadingErrorEvent$Companion.class
 new file mode 100644
-index 0000000..4a8ee3b
+index 0000000..971033b
 Binary files /dev/null and b/node_modules/react-native-webview/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/reactnativecommunity/webview/events/TopLoadingErrorEvent$Companion.class differ
 diff --git a/node_modules/react-native-webview/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/reactnativecommunity/webview/events/TopLoadingErrorEvent.class b/node_modules/react-native-webview/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/reactnativecommunity/webview/events/TopLoadingErrorEvent.class
 new file mode 100644
-index 0000000..1891fe7
+index 0000000..b9a6db8
 Binary files /dev/null and b/node_modules/react-native-webview/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/reactnativecommunity/webview/events/TopLoadingErrorEvent.class differ
 diff --git a/node_modules/react-native-webview/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/reactnativecommunity/webview/events/TopLoadingFinishEvent$Companion.class b/node_modules/react-native-webview/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/reactnativecommunity/webview/events/TopLoadingFinishEvent$Companion.class
 new file mode 100644
-index 0000000..4ec612f
+index 0000000..0428c98
 Binary files /dev/null and b/node_modules/react-native-webview/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/reactnativecommunity/webview/events/TopLoadingFinishEvent$Companion.class differ
 diff --git a/node_modules/react-native-webview/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/reactnativecommunity/webview/events/TopLoadingFinishEvent.class b/node_modules/react-native-webview/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/reactnativecommunity/webview/events/TopLoadingFinishEvent.class
 new file mode 100644
-index 0000000..ac796b1
+index 0000000..dbf9890
 Binary files /dev/null and b/node_modules/react-native-webview/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/reactnativecommunity/webview/events/TopLoadingFinishEvent.class differ
 diff --git a/node_modules/react-native-webview/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/reactnativecommunity/webview/events/TopLoadingProgressEvent$Companion.class b/node_modules/react-native-webview/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/reactnativecommunity/webview/events/TopLoadingProgressEvent$Companion.class
 new file mode 100644
-index 0000000..5edcda2
+index 0000000..5f77562
 Binary files /dev/null and b/node_modules/react-native-webview/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/reactnativecommunity/webview/events/TopLoadingProgressEvent$Companion.class differ
 diff --git a/node_modules/react-native-webview/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/reactnativecommunity/webview/events/TopLoadingProgressEvent.class b/node_modules/react-native-webview/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/reactnativecommunity/webview/events/TopLoadingProgressEvent.class
 new file mode 100644
-index 0000000..5170d31
+index 0000000..8c8890b
 Binary files /dev/null and b/node_modules/react-native-webview/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/reactnativecommunity/webview/events/TopLoadingProgressEvent.class differ
 diff --git a/node_modules/react-native-webview/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/reactnativecommunity/webview/events/TopLoadingStartEvent$Companion.class b/node_modules/react-native-webview/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/reactnativecommunity/webview/events/TopLoadingStartEvent$Companion.class
 new file mode 100644
-index 0000000..ec723fc
+index 0000000..7bae255
 Binary files /dev/null and b/node_modules/react-native-webview/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/reactnativecommunity/webview/events/TopLoadingStartEvent$Companion.class differ
 diff --git a/node_modules/react-native-webview/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/reactnativecommunity/webview/events/TopLoadingStartEvent.class b/node_modules/react-native-webview/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/reactnativecommunity/webview/events/TopLoadingStartEvent.class
 new file mode 100644
-index 0000000..fb33945
+index 0000000..14725ba
 Binary files /dev/null and b/node_modules/react-native-webview/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/reactnativecommunity/webview/events/TopLoadingStartEvent.class differ
 diff --git a/node_modules/react-native-webview/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/reactnativecommunity/webview/events/TopMessageEvent$Companion.class b/node_modules/react-native-webview/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/reactnativecommunity/webview/events/TopMessageEvent$Companion.class
 new file mode 100644
-index 0000000..70620b2
+index 0000000..02ef317
 Binary files /dev/null and b/node_modules/react-native-webview/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/reactnativecommunity/webview/events/TopMessageEvent$Companion.class differ
 diff --git a/node_modules/react-native-webview/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/reactnativecommunity/webview/events/TopMessageEvent.class b/node_modules/react-native-webview/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/reactnativecommunity/webview/events/TopMessageEvent.class
 new file mode 100644
-index 0000000..aedbf71
+index 0000000..140a826
 Binary files /dev/null and b/node_modules/react-native-webview/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/reactnativecommunity/webview/events/TopMessageEvent.class differ
 diff --git a/node_modules/react-native-webview/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/reactnativecommunity/webview/events/TopOpenWindowEvent$Companion.class b/node_modules/react-native-webview/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/reactnativecommunity/webview/events/TopOpenWindowEvent$Companion.class
 new file mode 100644
-index 0000000..ad734fd
+index 0000000..5b663b1
 Binary files /dev/null and b/node_modules/react-native-webview/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/reactnativecommunity/webview/events/TopOpenWindowEvent$Companion.class differ
 diff --git a/node_modules/react-native-webview/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/reactnativecommunity/webview/events/TopOpenWindowEvent.class b/node_modules/react-native-webview/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/reactnativecommunity/webview/events/TopOpenWindowEvent.class
 new file mode 100644
-index 0000000..5102a85
+index 0000000..f4661e7
 Binary files /dev/null and b/node_modules/react-native-webview/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/reactnativecommunity/webview/events/TopOpenWindowEvent.class differ
 diff --git a/node_modules/react-native-webview/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/reactnativecommunity/webview/events/TopRenderProcessGoneEvent$Companion.class b/node_modules/react-native-webview/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/reactnativecommunity/webview/events/TopRenderProcessGoneEvent$Companion.class
 new file mode 100644
-index 0000000..abaad0a
+index 0000000..d1e21f0
 Binary files /dev/null and b/node_modules/react-native-webview/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/reactnativecommunity/webview/events/TopRenderProcessGoneEvent$Companion.class differ
 diff --git a/node_modules/react-native-webview/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/reactnativecommunity/webview/events/TopRenderProcessGoneEvent.class b/node_modules/react-native-webview/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/reactnativecommunity/webview/events/TopRenderProcessGoneEvent.class
 new file mode 100644
-index 0000000..b704ea1
+index 0000000..55b2c73
 Binary files /dev/null and b/node_modules/react-native-webview/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/reactnativecommunity/webview/events/TopRenderProcessGoneEvent.class differ
 diff --git a/node_modules/react-native-webview/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/reactnativecommunity/webview/events/TopShouldStartLoadWithRequestEvent$Companion.class b/node_modules/react-native-webview/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/reactnativecommunity/webview/events/TopShouldStartLoadWithRequestEvent$Companion.class
 new file mode 100644
-index 0000000..788c43f
+index 0000000..5562b84
 Binary files /dev/null and b/node_modules/react-native-webview/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/reactnativecommunity/webview/events/TopShouldStartLoadWithRequestEvent$Companion.class differ
 diff --git a/node_modules/react-native-webview/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/reactnativecommunity/webview/events/TopShouldStartLoadWithRequestEvent.class b/node_modules/react-native-webview/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/reactnativecommunity/webview/events/TopShouldStartLoadWithRequestEvent.class
 new file mode 100644
-index 0000000..a72474a
+index 0000000..e9a5ed2
 Binary files /dev/null and b/node_modules/react-native-webview/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/reactnativecommunity/webview/events/TopShouldStartLoadWithRequestEvent.class differ
 diff --git a/node_modules/react-native-webview/android/build/intermediates/runtime_library_classes_jar/debug/bundleLibRuntimeToJarDebug/classes.jar b/node_modules/react-native-webview/android/build/intermediates/runtime_library_classes_jar/debug/bundleLibRuntimeToJarDebug/classes.jar
 new file mode 100644
-index 0000000..71f02bc
+index 0000000..aa3063a
 Binary files /dev/null and b/node_modules/react-native-webview/android/build/intermediates/runtime_library_classes_jar/debug/bundleLibRuntimeToJarDebug/classes.jar differ
 diff --git a/node_modules/react-native-webview/android/build/intermediates/symbol_list_with_package_name/debug/generateDebugRFile/package-aware-r.txt b/node_modules/react-native-webview/android/build/intermediates/symbol_list_with_package_name/debug/generateDebugRFile/package-aware-r.txt
 new file mode 100644
@@ -1078,7 +1420,7 @@ index 0000000..fa43224
 Binary files /dev/null and b/node_modules/react-native-webview/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/proto.tab.len differ
 diff --git a/node_modules/react-native-webview/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/proto.tab.values.at b/node_modules/react-native-webview/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/proto.tab.values.at
 new file mode 100644
-index 0000000..11ac0c6
+index 0000000..58db35f
 Binary files /dev/null and b/node_modules/react-native-webview/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/proto.tab.values.at differ
 diff --git a/node_modules/react-native-webview/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/proto.tab_i b/node_modules/react-native-webview/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/proto.tab_i
 new file mode 100644
@@ -1239,27 +1581,27 @@ index 0000000..131e265
 Binary files /dev/null and b/node_modules/react-native-webview/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/id-to-file.tab_i.len differ
 diff --git a/node_modules/react-native-webview/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/lookups.tab b/node_modules/react-native-webview/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/lookups.tab
 new file mode 100644
-index 0000000..7980130
+index 0000000..ba0f32c
 Binary files /dev/null and b/node_modules/react-native-webview/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/lookups.tab differ
 diff --git a/node_modules/react-native-webview/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/lookups.tab.keystream b/node_modules/react-native-webview/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/lookups.tab.keystream
 new file mode 100644
-index 0000000..1153be3
+index 0000000..eff20d5
 Binary files /dev/null and b/node_modules/react-native-webview/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/lookups.tab.keystream differ
 diff --git a/node_modules/react-native-webview/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/lookups.tab.keystream.len b/node_modules/react-native-webview/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/lookups.tab.keystream.len
 new file mode 100644
-index 0000000..021a3b2
+index 0000000..6ce2e35
 Binary files /dev/null and b/node_modules/react-native-webview/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/lookups.tab.keystream.len differ
 diff --git a/node_modules/react-native-webview/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/lookups.tab.len b/node_modules/react-native-webview/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/lookups.tab.len
 new file mode 100644
-index 0000000..f452dd1
+index 0000000..d2334ec
 Binary files /dev/null and b/node_modules/react-native-webview/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/lookups.tab.len differ
 diff --git a/node_modules/react-native-webview/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/lookups.tab.values.at b/node_modules/react-native-webview/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/lookups.tab.values.at
 new file mode 100644
-index 0000000..a5a8b59
+index 0000000..14fcb46
 Binary files /dev/null and b/node_modules/react-native-webview/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/lookups.tab.values.at differ
 diff --git a/node_modules/react-native-webview/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/lookups.tab_i b/node_modules/react-native-webview/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/lookups.tab_i
 new file mode 100644
-index 0000000..8c172e2
+index 0000000..90f6362
 Binary files /dev/null and b/node_modules/react-native-webview/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/lookups.tab_i differ
 diff --git a/node_modules/react-native-webview/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/lookups.tab_i.len b/node_modules/react-native-webview/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/lookups.tab_i.len
 new file mode 100644
@@ -1267,16 +1609,12 @@ index 0000000..131e265
 Binary files /dev/null and b/node_modules/react-native-webview/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/lookups.tab_i.len differ
 diff --git a/node_modules/react-native-webview/android/build/kotlin/compileDebugKotlin/cacheable/last-build.bin b/node_modules/react-native-webview/android/build/kotlin/compileDebugKotlin/cacheable/last-build.bin
 new file mode 100644
-index 0000000..6b68aa2
+index 0000000..918d3c1
 Binary files /dev/null and b/node_modules/react-native-webview/android/build/kotlin/compileDebugKotlin/cacheable/last-build.bin differ
 diff --git a/node_modules/react-native-webview/android/build/kotlin/compileDebugKotlin/classpath-snapshot/shrunk-classpath-snapshot.bin b/node_modules/react-native-webview/android/build/kotlin/compileDebugKotlin/classpath-snapshot/shrunk-classpath-snapshot.bin
 new file mode 100644
-index 0000000..a8218ff
+index 0000000..85eeded
 Binary files /dev/null and b/node_modules/react-native-webview/android/build/kotlin/compileDebugKotlin/classpath-snapshot/shrunk-classpath-snapshot.bin differ
-diff --git a/node_modules/react-native-webview/android/build/kotlin/compileDebugKotlin/local-state/build-history.bin b/node_modules/react-native-webview/android/build/kotlin/compileDebugKotlin/local-state/build-history.bin
-new file mode 100644
-index 0000000..304858c
-Binary files /dev/null and b/node_modules/react-native-webview/android/build/kotlin/compileDebugKotlin/local-state/build-history.bin differ
 diff --git a/node_modules/react-native-webview/android/build/outputs/logs/manifest-merger-debug-report.txt b/node_modules/react-native-webview/android/build/outputs/logs/manifest-merger-debug-report.txt
 new file mode 100644
 index 0000000..12e9600
@@ -1339,129 +1677,129 @@ index 0000000..12e9600
 +		INJECTED from /Users/brunosouza/StudioProjects/usercentrics/react-native-sdk/sample/node_modules/react-native-webview/android/src/main/AndroidManifestNew.xml
 diff --git a/node_modules/react-native-webview/android/build/tmp/compileDebugJavaWithJavac/previous-compilation-data.bin b/node_modules/react-native-webview/android/build/tmp/compileDebugJavaWithJavac/previous-compilation-data.bin
 new file mode 100644
-index 0000000..57e94bf
+index 0000000..7f5fb0b
 Binary files /dev/null and b/node_modules/react-native-webview/android/build/tmp/compileDebugJavaWithJavac/previous-compilation-data.bin differ
 diff --git a/node_modules/react-native-webview/android/build/tmp/kotlin-classes/debug/META-INF/react-native-webview_debug.kotlin_module b/node_modules/react-native-webview/android/build/tmp/kotlin-classes/debug/META-INF/react-native-webview_debug.kotlin_module
 new file mode 100644
-index 0000000..92b0cb6
+index 0000000..a72dc55
 Binary files /dev/null and b/node_modules/react-native-webview/android/build/tmp/kotlin-classes/debug/META-INF/react-native-webview_debug.kotlin_module differ
 diff --git a/node_modules/react-native-webview/android/build/tmp/kotlin-classes/debug/com/reactnativecommunity/webview/RNCWebViewManagerImpl$Companion.class b/node_modules/react-native-webview/android/build/tmp/kotlin-classes/debug/com/reactnativecommunity/webview/RNCWebViewManagerImpl$Companion.class
 new file mode 100644
-index 0000000..1298485
+index 0000000..c90bbeb
 Binary files /dev/null and b/node_modules/react-native-webview/android/build/tmp/kotlin-classes/debug/com/reactnativecommunity/webview/RNCWebViewManagerImpl$Companion.class differ
 diff --git a/node_modules/react-native-webview/android/build/tmp/kotlin-classes/debug/com/reactnativecommunity/webview/RNCWebViewManagerImpl$setupWebChromeClient$1.class b/node_modules/react-native-webview/android/build/tmp/kotlin-classes/debug/com/reactnativecommunity/webview/RNCWebViewManagerImpl$setupWebChromeClient$1.class
 new file mode 100644
-index 0000000..2954890
+index 0000000..873d14b
 Binary files /dev/null and b/node_modules/react-native-webview/android/build/tmp/kotlin-classes/debug/com/reactnativecommunity/webview/RNCWebViewManagerImpl$setupWebChromeClient$1.class differ
 diff --git a/node_modules/react-native-webview/android/build/tmp/kotlin-classes/debug/com/reactnativecommunity/webview/RNCWebViewManagerImpl$setupWebChromeClient$webChromeClient$1.class b/node_modules/react-native-webview/android/build/tmp/kotlin-classes/debug/com/reactnativecommunity/webview/RNCWebViewManagerImpl$setupWebChromeClient$webChromeClient$1.class
 new file mode 100644
-index 0000000..bdd884c
+index 0000000..a8a3e9e
 Binary files /dev/null and b/node_modules/react-native-webview/android/build/tmp/kotlin-classes/debug/com/reactnativecommunity/webview/RNCWebViewManagerImpl$setupWebChromeClient$webChromeClient$1.class differ
 diff --git a/node_modules/react-native-webview/android/build/tmp/kotlin-classes/debug/com/reactnativecommunity/webview/RNCWebViewManagerImpl.class b/node_modules/react-native-webview/android/build/tmp/kotlin-classes/debug/com/reactnativecommunity/webview/RNCWebViewManagerImpl.class
 new file mode 100644
-index 0000000..420c722
+index 0000000..671bc09
 Binary files /dev/null and b/node_modules/react-native-webview/android/build/tmp/kotlin-classes/debug/com/reactnativecommunity/webview/RNCWebViewManagerImpl.class differ
 diff --git a/node_modules/react-native-webview/android/build/tmp/kotlin-classes/debug/com/reactnativecommunity/webview/RNCWebViewManagerImplKt.class b/node_modules/react-native-webview/android/build/tmp/kotlin-classes/debug/com/reactnativecommunity/webview/RNCWebViewManagerImplKt.class
 new file mode 100644
-index 0000000..035b3e0
+index 0000000..70dc3d0
 Binary files /dev/null and b/node_modules/react-native-webview/android/build/tmp/kotlin-classes/debug/com/reactnativecommunity/webview/RNCWebViewManagerImplKt.class differ
 diff --git a/node_modules/react-native-webview/android/build/tmp/kotlin-classes/debug/com/reactnativecommunity/webview/RNCWebViewMessagingModule.class b/node_modules/react-native-webview/android/build/tmp/kotlin-classes/debug/com/reactnativecommunity/webview/RNCWebViewMessagingModule.class
 new file mode 100644
-index 0000000..5383798
+index 0000000..25a805e
 Binary files /dev/null and b/node_modules/react-native-webview/android/build/tmp/kotlin-classes/debug/com/reactnativecommunity/webview/RNCWebViewMessagingModule.class differ
 diff --git a/node_modules/react-native-webview/android/build/tmp/kotlin-classes/debug/com/reactnativecommunity/webview/RNCWebViewWrapper$Companion.class b/node_modules/react-native-webview/android/build/tmp/kotlin-classes/debug/com/reactnativecommunity/webview/RNCWebViewWrapper$Companion.class
 new file mode 100644
-index 0000000..1edb622
+index 0000000..91b0ec8
 Binary files /dev/null and b/node_modules/react-native-webview/android/build/tmp/kotlin-classes/debug/com/reactnativecommunity/webview/RNCWebViewWrapper$Companion.class differ
 diff --git a/node_modules/react-native-webview/android/build/tmp/kotlin-classes/debug/com/reactnativecommunity/webview/RNCWebViewWrapper.class b/node_modules/react-native-webview/android/build/tmp/kotlin-classes/debug/com/reactnativecommunity/webview/RNCWebViewWrapper.class
 new file mode 100644
-index 0000000..71d1813
+index 0000000..df008e9
 Binary files /dev/null and b/node_modules/react-native-webview/android/build/tmp/kotlin-classes/debug/com/reactnativecommunity/webview/RNCWebViewWrapper.class differ
 diff --git a/node_modules/react-native-webview/android/build/tmp/kotlin-classes/debug/com/reactnativecommunity/webview/events/SubResourceErrorEvent$Companion.class b/node_modules/react-native-webview/android/build/tmp/kotlin-classes/debug/com/reactnativecommunity/webview/events/SubResourceErrorEvent$Companion.class
 new file mode 100644
-index 0000000..385b3db
+index 0000000..b5456f0
 Binary files /dev/null and b/node_modules/react-native-webview/android/build/tmp/kotlin-classes/debug/com/reactnativecommunity/webview/events/SubResourceErrorEvent$Companion.class differ
 diff --git a/node_modules/react-native-webview/android/build/tmp/kotlin-classes/debug/com/reactnativecommunity/webview/events/SubResourceErrorEvent.class b/node_modules/react-native-webview/android/build/tmp/kotlin-classes/debug/com/reactnativecommunity/webview/events/SubResourceErrorEvent.class
 new file mode 100644
-index 0000000..67f313e
+index 0000000..528f0ab
 Binary files /dev/null and b/node_modules/react-native-webview/android/build/tmp/kotlin-classes/debug/com/reactnativecommunity/webview/events/SubResourceErrorEvent.class differ
 diff --git a/node_modules/react-native-webview/android/build/tmp/kotlin-classes/debug/com/reactnativecommunity/webview/events/TopCustomMenuSelectionEvent$Companion.class b/node_modules/react-native-webview/android/build/tmp/kotlin-classes/debug/com/reactnativecommunity/webview/events/TopCustomMenuSelectionEvent$Companion.class
 new file mode 100644
-index 0000000..9fb10f4
+index 0000000..6ed2ecf
 Binary files /dev/null and b/node_modules/react-native-webview/android/build/tmp/kotlin-classes/debug/com/reactnativecommunity/webview/events/TopCustomMenuSelectionEvent$Companion.class differ
 diff --git a/node_modules/react-native-webview/android/build/tmp/kotlin-classes/debug/com/reactnativecommunity/webview/events/TopCustomMenuSelectionEvent.class b/node_modules/react-native-webview/android/build/tmp/kotlin-classes/debug/com/reactnativecommunity/webview/events/TopCustomMenuSelectionEvent.class
 new file mode 100644
-index 0000000..c22d80d
+index 0000000..61b8a0c
 Binary files /dev/null and b/node_modules/react-native-webview/android/build/tmp/kotlin-classes/debug/com/reactnativecommunity/webview/events/TopCustomMenuSelectionEvent.class differ
 diff --git a/node_modules/react-native-webview/android/build/tmp/kotlin-classes/debug/com/reactnativecommunity/webview/events/TopHttpErrorEvent$Companion.class b/node_modules/react-native-webview/android/build/tmp/kotlin-classes/debug/com/reactnativecommunity/webview/events/TopHttpErrorEvent$Companion.class
 new file mode 100644
-index 0000000..482a601
+index 0000000..fdd2777
 Binary files /dev/null and b/node_modules/react-native-webview/android/build/tmp/kotlin-classes/debug/com/reactnativecommunity/webview/events/TopHttpErrorEvent$Companion.class differ
 diff --git a/node_modules/react-native-webview/android/build/tmp/kotlin-classes/debug/com/reactnativecommunity/webview/events/TopHttpErrorEvent.class b/node_modules/react-native-webview/android/build/tmp/kotlin-classes/debug/com/reactnativecommunity/webview/events/TopHttpErrorEvent.class
 new file mode 100644
-index 0000000..bfae0a6
+index 0000000..b540bc7
 Binary files /dev/null and b/node_modules/react-native-webview/android/build/tmp/kotlin-classes/debug/com/reactnativecommunity/webview/events/TopHttpErrorEvent.class differ
 diff --git a/node_modules/react-native-webview/android/build/tmp/kotlin-classes/debug/com/reactnativecommunity/webview/events/TopLoadingErrorEvent$Companion.class b/node_modules/react-native-webview/android/build/tmp/kotlin-classes/debug/com/reactnativecommunity/webview/events/TopLoadingErrorEvent$Companion.class
 new file mode 100644
-index 0000000..4a8ee3b
+index 0000000..971033b
 Binary files /dev/null and b/node_modules/react-native-webview/android/build/tmp/kotlin-classes/debug/com/reactnativecommunity/webview/events/TopLoadingErrorEvent$Companion.class differ
 diff --git a/node_modules/react-native-webview/android/build/tmp/kotlin-classes/debug/com/reactnativecommunity/webview/events/TopLoadingErrorEvent.class b/node_modules/react-native-webview/android/build/tmp/kotlin-classes/debug/com/reactnativecommunity/webview/events/TopLoadingErrorEvent.class
 new file mode 100644
-index 0000000..1891fe7
+index 0000000..b9a6db8
 Binary files /dev/null and b/node_modules/react-native-webview/android/build/tmp/kotlin-classes/debug/com/reactnativecommunity/webview/events/TopLoadingErrorEvent.class differ
 diff --git a/node_modules/react-native-webview/android/build/tmp/kotlin-classes/debug/com/reactnativecommunity/webview/events/TopLoadingFinishEvent$Companion.class b/node_modules/react-native-webview/android/build/tmp/kotlin-classes/debug/com/reactnativecommunity/webview/events/TopLoadingFinishEvent$Companion.class
 new file mode 100644
-index 0000000..4ec612f
+index 0000000..0428c98
 Binary files /dev/null and b/node_modules/react-native-webview/android/build/tmp/kotlin-classes/debug/com/reactnativecommunity/webview/events/TopLoadingFinishEvent$Companion.class differ
 diff --git a/node_modules/react-native-webview/android/build/tmp/kotlin-classes/debug/com/reactnativecommunity/webview/events/TopLoadingFinishEvent.class b/node_modules/react-native-webview/android/build/tmp/kotlin-classes/debug/com/reactnativecommunity/webview/events/TopLoadingFinishEvent.class
 new file mode 100644
-index 0000000..ac796b1
+index 0000000..dbf9890
 Binary files /dev/null and b/node_modules/react-native-webview/android/build/tmp/kotlin-classes/debug/com/reactnativecommunity/webview/events/TopLoadingFinishEvent.class differ
 diff --git a/node_modules/react-native-webview/android/build/tmp/kotlin-classes/debug/com/reactnativecommunity/webview/events/TopLoadingProgressEvent$Companion.class b/node_modules/react-native-webview/android/build/tmp/kotlin-classes/debug/com/reactnativecommunity/webview/events/TopLoadingProgressEvent$Companion.class
 new file mode 100644
-index 0000000..5edcda2
+index 0000000..5f77562
 Binary files /dev/null and b/node_modules/react-native-webview/android/build/tmp/kotlin-classes/debug/com/reactnativecommunity/webview/events/TopLoadingProgressEvent$Companion.class differ
 diff --git a/node_modules/react-native-webview/android/build/tmp/kotlin-classes/debug/com/reactnativecommunity/webview/events/TopLoadingProgressEvent.class b/node_modules/react-native-webview/android/build/tmp/kotlin-classes/debug/com/reactnativecommunity/webview/events/TopLoadingProgressEvent.class
 new file mode 100644
-index 0000000..5170d31
+index 0000000..8c8890b
 Binary files /dev/null and b/node_modules/react-native-webview/android/build/tmp/kotlin-classes/debug/com/reactnativecommunity/webview/events/TopLoadingProgressEvent.class differ
 diff --git a/node_modules/react-native-webview/android/build/tmp/kotlin-classes/debug/com/reactnativecommunity/webview/events/TopLoadingStartEvent$Companion.class b/node_modules/react-native-webview/android/build/tmp/kotlin-classes/debug/com/reactnativecommunity/webview/events/TopLoadingStartEvent$Companion.class
 new file mode 100644
-index 0000000..ec723fc
+index 0000000..7bae255
 Binary files /dev/null and b/node_modules/react-native-webview/android/build/tmp/kotlin-classes/debug/com/reactnativecommunity/webview/events/TopLoadingStartEvent$Companion.class differ
 diff --git a/node_modules/react-native-webview/android/build/tmp/kotlin-classes/debug/com/reactnativecommunity/webview/events/TopLoadingStartEvent.class b/node_modules/react-native-webview/android/build/tmp/kotlin-classes/debug/com/reactnativecommunity/webview/events/TopLoadingStartEvent.class
 new file mode 100644
-index 0000000..fb33945
+index 0000000..14725ba
 Binary files /dev/null and b/node_modules/react-native-webview/android/build/tmp/kotlin-classes/debug/com/reactnativecommunity/webview/events/TopLoadingStartEvent.class differ
 diff --git a/node_modules/react-native-webview/android/build/tmp/kotlin-classes/debug/com/reactnativecommunity/webview/events/TopMessageEvent$Companion.class b/node_modules/react-native-webview/android/build/tmp/kotlin-classes/debug/com/reactnativecommunity/webview/events/TopMessageEvent$Companion.class
 new file mode 100644
-index 0000000..70620b2
+index 0000000..02ef317
 Binary files /dev/null and b/node_modules/react-native-webview/android/build/tmp/kotlin-classes/debug/com/reactnativecommunity/webview/events/TopMessageEvent$Companion.class differ
 diff --git a/node_modules/react-native-webview/android/build/tmp/kotlin-classes/debug/com/reactnativecommunity/webview/events/TopMessageEvent.class b/node_modules/react-native-webview/android/build/tmp/kotlin-classes/debug/com/reactnativecommunity/webview/events/TopMessageEvent.class
 new file mode 100644
-index 0000000..aedbf71
+index 0000000..140a826
 Binary files /dev/null and b/node_modules/react-native-webview/android/build/tmp/kotlin-classes/debug/com/reactnativecommunity/webview/events/TopMessageEvent.class differ
 diff --git a/node_modules/react-native-webview/android/build/tmp/kotlin-classes/debug/com/reactnativecommunity/webview/events/TopOpenWindowEvent$Companion.class b/node_modules/react-native-webview/android/build/tmp/kotlin-classes/debug/com/reactnativecommunity/webview/events/TopOpenWindowEvent$Companion.class
 new file mode 100644
-index 0000000..ad734fd
+index 0000000..5b663b1
 Binary files /dev/null and b/node_modules/react-native-webview/android/build/tmp/kotlin-classes/debug/com/reactnativecommunity/webview/events/TopOpenWindowEvent$Companion.class differ
 diff --git a/node_modules/react-native-webview/android/build/tmp/kotlin-classes/debug/com/reactnativecommunity/webview/events/TopOpenWindowEvent.class b/node_modules/react-native-webview/android/build/tmp/kotlin-classes/debug/com/reactnativecommunity/webview/events/TopOpenWindowEvent.class
 new file mode 100644
-index 0000000..5102a85
+index 0000000..f4661e7
 Binary files /dev/null and b/node_modules/react-native-webview/android/build/tmp/kotlin-classes/debug/com/reactnativecommunity/webview/events/TopOpenWindowEvent.class differ
 diff --git a/node_modules/react-native-webview/android/build/tmp/kotlin-classes/debug/com/reactnativecommunity/webview/events/TopRenderProcessGoneEvent$Companion.class b/node_modules/react-native-webview/android/build/tmp/kotlin-classes/debug/com/reactnativecommunity/webview/events/TopRenderProcessGoneEvent$Companion.class
 new file mode 100644
-index 0000000..abaad0a
+index 0000000..d1e21f0
 Binary files /dev/null and b/node_modules/react-native-webview/android/build/tmp/kotlin-classes/debug/com/reactnativecommunity/webview/events/TopRenderProcessGoneEvent$Companion.class differ
 diff --git a/node_modules/react-native-webview/android/build/tmp/kotlin-classes/debug/com/reactnativecommunity/webview/events/TopRenderProcessGoneEvent.class b/node_modules/react-native-webview/android/build/tmp/kotlin-classes/debug/com/reactnativecommunity/webview/events/TopRenderProcessGoneEvent.class
 new file mode 100644
-index 0000000..b704ea1
+index 0000000..55b2c73
 Binary files /dev/null and b/node_modules/react-native-webview/android/build/tmp/kotlin-classes/debug/com/reactnativecommunity/webview/events/TopRenderProcessGoneEvent.class differ
 diff --git a/node_modules/react-native-webview/android/build/tmp/kotlin-classes/debug/com/reactnativecommunity/webview/events/TopShouldStartLoadWithRequestEvent$Companion.class b/node_modules/react-native-webview/android/build/tmp/kotlin-classes/debug/com/reactnativecommunity/webview/events/TopShouldStartLoadWithRequestEvent$Companion.class
 new file mode 100644
-index 0000000..788c43f
+index 0000000..5562b84
 Binary files /dev/null and b/node_modules/react-native-webview/android/build/tmp/kotlin-classes/debug/com/reactnativecommunity/webview/events/TopShouldStartLoadWithRequestEvent$Companion.class differ
 diff --git a/node_modules/react-native-webview/android/build/tmp/kotlin-classes/debug/com/reactnativecommunity/webview/events/TopShouldStartLoadWithRequestEvent.class b/node_modules/react-native-webview/android/build/tmp/kotlin-classes/debug/com/reactnativecommunity/webview/events/TopShouldStartLoadWithRequestEvent.class
 new file mode 100644
-index 0000000..a72474a
+index 0000000..e9a5ed2
 Binary files /dev/null and b/node_modules/react-native-webview/android/build/tmp/kotlin-classes/debug/com/reactnativecommunity/webview/events/TopShouldStartLoadWithRequestEvent.class differ
