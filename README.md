@@ -22,12 +22,36 @@ The Usercentrics Apps SDK is a native Consent Management Platform solution for m
 <img src="https://docs.usercentrics.com/cmp_in_app_sdk/latest/assets/media/predefinedUI.png" alt="Usercentrics UI" />
 </p>
 
-### Requirements
-* Android 5.0 (API 21) or higher with Kotlin 1.5 or higher
-* iOS 11 or higher
-* React 17.0 or higher
-* React Native 0.65 or higher
-* Node 14
+## 📋 Requirements
+
+### Mobile Platforms
+* **Android 5.0 (API 21)** or higher
+* **iOS 11** or higher
+
+### Development Environment
+* **Node.js 18.0+** (LTS recommended)
+* **npm 9.0+** or **Yarn 1.22+**
+* **TypeScript 5.1+**
+* **React 18.2+**
+* **React Native 0.74.3+** (with Fabric support)
+
+### Android Development
+* **Java 17+** (OpenJDK or Oracle JDK)
+* **Android SDK** with API 33+ platforms
+* **Android NDK 25+**
+* **Gradle 8.2+**
+* **Kotlin 1.9.22+**
+* **Android Gradle Plugin 8.2+**
+
+### iOS Development (macOS only)
+* **Xcode 15.0+** with iOS SDK
+* **CocoaPods 1.12+**
+* **iOS Simulators** (recommended)
+
+### Optional but Recommended
+* **Watchman** (for better file watching)
+* **Git** (for version control)
+* **SDKMan** (for Java version management)
 
 ## Get started!
 
@@ -41,35 +65,92 @@ Continue to our [documentation](https://usercentrics.com/docs/apps/intro/) for a
 
 See the [example](https://github.com/Usercentrics/react-native/tree/master/example) directory for a complete sample app using Usercentrics.
 
-## Sample Project
+## Quick Start
 
-To run the sample project, you will need to run npm install from both root and example folders:
+### 🚀 Automated Setup (Recommended)
 
+The easiest way to get started is using our automated setup script:
+
+```sh
+# Check your development environment
+npm run check-requirements
+
+# Automatically install missing dependencies
+npm run auto-setup
+
+# Verify everything is ready
+npm run check-requirements
+```
+
+### 📱 Running the Sample Project
+
+### Option 1: Using Helper Scripts
+```sh
+# Install all dependencies
+npm run install-dependencies
+
+# Run Android app
+npm run run-android
+
+# Run iOS app (macOS only)
+npm run ios
+```
+
+### Option 2: Manual Setup
 * From root folder:
     ```sh
-    npm install
+    npm install --legacy-peer-deps
     ``` 
 * From example folder:
     ```sh
-    npm install
+    npm install --legacy-peer-deps
     ``` 
 
-    ### iOS
+### iOS (macOS only)
 
-    From example folder: 
-    ```sh
-    npx pod-install
-    npx react-native run-ios
-    ``` 
+From example folder: 
+```sh
+npx pod-install
+npx react-native run-ios
+``` 
 
-    ### Android
+### Android
 
-    Open the android folder using Android Studio in order to create essential files then run from example folder:
-    ```sh
-    npx react-native run-android
-    ``` 
+Make sure you have Android SDK configured, then from example folder:
+```sh
+npx react-native run-android
+```
 
-### Consent Mediation
+## 🛠️ Development Scripts
+
+| Script | Description |
+|--------|-------------|
+| `npm run auto-setup` | 🤖 Automatically install all required dependencies |
+| `npm run check-requirements` | 🔍 Check development environment requirements |
+| `npm run clean-all-caches` | 🧹 Clean all project and system caches |
+| `npm run install-dependencies` | 📦 Install dependencies in root and example folders |
+| `npm run run-android` | 🤖 Kill conflicting ports and run Android app |
+
+### 🔧 Troubleshooting
+
+If you encounter issues:
+
+1. **Check Requirements**: `npm run check-requirements`
+2. **Clean & Reinstall**: `npm run clean-all-caches && npm run install-dependencies`
+3. **Auto Setup**: `npm run auto-setup` (installs missing tools)
+4. **Manual Setup**: Follow the detailed error messages from check-requirements
+
+### 📋 Environment Setup
+
+The project includes intelligent scripts that will:
+- ✅ Detect your operating system (macOS/Linux)
+- ✅ Check for required tools and versions
+- ✅ Install missing dependencies automatically
+- ✅ Configure environment variables
+- ✅ Apply necessary patches
+- ✅ Verify the setup works correctly
+
+## Consent Mediation
 
 You can enable and run the Consent Mediation example in this example by following the [documentation](https://usercentrics.com/docs/apps/features/consent-mediation/#enable-mediation).
 

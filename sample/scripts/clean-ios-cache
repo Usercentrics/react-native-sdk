@@ -1,0 +1,39 @@
+#!/bin/bash
+
+echo "🧹 Limpando caches do Xcode e do React Native..."
+
+# 1️⃣ Limpa DerivedData
+echo "📂 Limpando DerivedData..."
+rm -rf ~/Library/Developer/Xcode/DerivedData/*
+
+# 2️⃣ Limpa build do projeto iOS
+echo "🏗️ Limpando pastas de build do projeto iOS..."
+cd ios
+# Remove manualmente a pasta build primeiro
+rm -rf build
+# Tenta limpar com xcodebuild, mas não falha se der erro
+xcodebuild clean || echo "⚠️  xcodebuild clean falhou, continuando..."
+cd ..
+
+# 3️⃣ Limpa cache do Cocoapods
+echo "🥣 Limpando cache do Cocoapods..."
+if [ -f "ios/Podfile" ]; then
+  cd ios
+  pod cache clean --all
+  rm -rf Pods
+  rm -rf ~/Library/Caches/CocoaPods
+  pod install --repo-update
+  cd ..
+else
+  echo "⚠️  Podfile não encontrado, pulando limpeza do Cocoapods"
+fi
+
+# 4️⃣ Limpa cache do Yarn
+echo "🧶 Limpando cache do Yarn..."
+yarn cache clean
+
+# 5️⃣ Limpa cache do Metro bundler
+echo "🚀 Limpando cache do Metro bundler..."
+rm -rf /tmp/metro-*
+
+echo "✅ Todos os caches foram limpos. Agora tente reconstruir o projeto!"

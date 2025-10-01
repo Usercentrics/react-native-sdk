@@ -1,33 +1,39 @@
-/**
- * Metro configuration for React Native
- * https://github.com/facebook/react-native
- *
- * @format
- */
+const path = require('path');
+const { getDefaultConfig, mergeConfig } = require('@react-native/metro-config');
 
-const path = require('path')
-const exclusionList = require('metro-config/src/defaults/exclusionList')
+const customConfig = async () => {
+  const {
+    resolver: { sourceExts, assetExts },
+  } = await getDefaultConfig(__dirname);
 
-const moduleRoot = path.resolve(__dirname, '..')
+  const customSourceExts = [...sourceExts, 'svg', 'json', 'prod.ts', 'prod.tsx'];
+  const newAssetExts = assetExts.filter(ext => ext !== 'svg');
 
-module.exports = {
-  watchFolders: [moduleRoot],
-  resolver: {
-    extraNodeModules: {
-      react: path.resolve(__dirname, 'node_modules/react'),
-      'react-native': path.resolve(__dirname, 'node_modules/react-native'),
+  return {
+    transformer: {
+      getTransformOptions: async () => ({
+        transform: {
+          experimentalImportSupport: false,
+          inlineRequires: true,
+        },
+      }),
     },
-    blockList: exclusionList([
-      new RegExp(`${moduleRoot}/node_modules/react/.*`),
-      new RegExp(`${moduleRoot}/node_modules/react-native/.*`),
-    ]),
-  },
-  transformer: {
-    getTransformOptions: async () => ({
-      transform: {
-        experimentalImportSupport: false,
-        inlineRequires: true,
+    resolver: {
+      assetExts: newAssetExts,
+      sourceExts: customSourceExts,
+      extraNodeModules: {
+        src: path.resolve(__dirname, 'src'),
       },
-    }),
-  },
-}
+    },
+    watchFolders: [
+      path.resolve(__dirname, 'src'),
+      path.resolve(__dirname, '..'),
+    ],
+  };
+};
+
+module.exports = (async () => {
+  const defaultConfig = await getDefaultConfig(__dirname);
+  const config = await customConfig();
+  return mergeConfig(defaultConfig, config);
+})();

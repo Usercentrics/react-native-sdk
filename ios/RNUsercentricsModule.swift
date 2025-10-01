@@ -3,8 +3,18 @@ import Usercentrics
 import UsercentricsUI
 import UIKit
 
+#if RCT_NEW_ARCH_ENABLED
+#if canImport(RNUsercentricsModuleSpec)
+// RN ≤ 0.77
+import RNUsercentricsModuleSpec
+#else
+// RN ≥ 0.78
+import React_Codegen
+#endif
+#endif
+
 @objc(RNUsercentricsModule)
-class RNUsercentricsModule: NSObject, RCTBridgeModule {
+class RNUsercentricsModule: NSObject {
     
     var usercentricsManager: UsercentricsManager = UsercentricsManagerImplementation()
     var queue: DispatchQueueManager = DispatchQueue.main
@@ -204,3 +214,16 @@ class RNUsercentricsModule: NSObject, RCTBridgeModule {
         }
     }
 }
+
+// MARK: - RCTBridgeModule & TurboModule Conformance
+#if RCT_NEW_ARCH_ENABLED
+extension RNUsercentricsModule: NativeUsercentricsSpec {
+    func getTurboModule(jsInvoker: RCTJSInvoker) -> Any {
+        return self
+    }
+}
+#else
+extension RNUsercentricsModule: RCTBridgeModule {
+
+}
+#endif

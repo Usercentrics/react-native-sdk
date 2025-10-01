@@ -32,25 +32,35 @@
         "compile": "rm -rf lib && tsc -p .",
         "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
         "prepare": "yarn compile",
-        "test": "jest src/__tests__/index.test.ts"
+        "test": "jest src/__tests__/index.test.ts",
+        "clean-all-caches": "./scripts/clean-all-caches.sh",
+        "install-dependencies": "./scripts/install-dependencies.sh",
+        "android": "./scripts/run-android.sh",
+        "run-android": "./scripts/run-android.sh",
+        "check-requirements": "./scripts/check-requirements.sh",
+        "auto-setup": "./scripts/auto-setup.sh"
     },
     "devDependencies": {
-        "@babel/core": "^7.15.5",
-        "@babel/runtime": "^7.15.4",
+        "@babel/core": "^7.25.10",
+        "@babel/runtime": "^7.25.3",
+        "@react-native-community/cli": "^18.0.0",
+        "@react-native-community/cli-platform-android": "18.0.0",
+        "@react-native-community/cli-platform-ios": "18.0.0",
         "@react-native-community/eslint-config": "^3.0.1",
-        "@types/jest": "^27.0.1",
-        "@types/react-native": "^0.64.13",
-        "@types/react-test-renderer": "^17.0.1",
-        "babel-jest": "^27.1.0",
-        "eslint": "^7.32.0",
-        "eslint-plugin-simple-import-sort": "^7.0.0",
-        "jest": "^27.1.0",
-        "metro-react-native-babel-preset": "^0.66.2",
-        "react": "^17.0.2",
-        "react-native": "^0.65.1",
+        "@react-native/babel-preset": "^0.81.1",
+        "@types/jest": "^29.5.2",
+        "@types/react-native": "^0.73.0",
+        "@types/react-test-renderer": "^19.0.0",
+        "babel-jest": "^29.5.0",
+        "eslint": "^8.44.0",
+        "eslint-plugin-simple-import-sort": "^10.0.0",
+        "jest": "^29.5.0",
+        "metro-react-native-babel-preset": "^0.77.0",
+        "react": "^19.1.0",
+        "react-native": "^0.79.6",
         "react-native-codegen": "^0.0.7",
-        "react-test-renderer": "^17.0.2",
-        "typescript": "^4.4.2"
+        "react-test-renderer": "^19.1.0",
+        "typescript": "^5.8.3"
     },
     "peerDependencies": {
         "react": "*",
@@ -77,5 +87,13 @@
     },
     "bugs": {
         "url": "https://github.com/Usercentrics/react-native-sdk/issues"
+    },
+    "dependencies": {
+        "hermes-engine": "^0.11.0",
+        "install": "^0.13.0",
+        "npm": "^11.6.0",
+        "react-native-safe-area-context": "^5.6.1",
+        "react-native-screens": "^4.16.0",
+        "react-native-webview": "^13.16.0"
     }
 }

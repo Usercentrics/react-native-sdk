@@ -1,0 +1,69 @@
+[versions]
+# Android SDK
+buildTools = "36.0.0"
+minSdk = "24"
+compileSdk = "36"
+targetSdk = "36"
+ndk = "27.1.12297006"
+
+# Gradle
+androidGradlePlugin = "8.5.2"
+gradle = "8.8.2"
+
+# Kotlin
+kotlin = "2.1.20"
+
+# React Native
+reactNative = "0.79.6"
+
+# Java
+java = "17"
+
+# Flipper
+flipper = "0.212.0"
+soloader = "0.10.5"
+
+[libraries]
+# Android Gradle Plugin
+android-gradle-plugin = { group = "com.android.tools.build", name = "gradle", version.ref = "androidGradlePlugin" }
+
+# Kotlin
+kotlin-gradle-plugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
+
+# React Native
+react-native-gradle-plugin = { group = "com.facebook.react", name = "react-native-gradle-plugin", version.ref = "reactNative" }
+react-android = { group = "com.facebook.react", name = "react-android", version.ref = "reactNative" }
+react-native = { group = "com.facebook.react", name = "react-native", version.ref = "reactNative" }
+hermes-android = { group = "com.facebook.react", name = "hermes-android", version.ref = "reactNative" }
+hermes-engine = { group = "com.facebook.react", name = "hermes-engine", version.ref = "reactNative" }
+
+# Flipper
+flipper = { group = "com.facebook.flipper", name = "flipper", version.ref = "flipper" }
+flipper-network-plugin = { group = "com.facebook.flipper", name = "flipper-network-plugin", version.ref = "flipper" }
+soloader = { group = "com.facebook.soloader", name = "soloader", version.ref = "soloader" }
+
+[plugins]
+# Android
+android-application = { id = "com.android.application", version.ref = "androidGradlePlugin" }
+
+# Kotlin
+kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+
+# React Native
+react = { id = "com.facebook.react", version.ref = "reactNative" }
+
+[bundles]
+# React Native Core
+react-native-core = [
+    "react-android",
+    "react-native",
+    "hermes-android",
+    "hermes-engine"
+]
+
+# Flipper Debug
+flipper-debug = [
+    "flipper",
+    "flipper-network-plugin",
+    "soloader"
+]
