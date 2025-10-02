@@ -20,87 +20,86 @@ jobs:
         with:
           node-version: ${{ env.NODE_JS_VERSION }}
 
-      - name: Run RN Tests
-        run: |
-          yarn install --frozen-lockfile
-          yarn test
+      - name: Install Dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Install TypeScript
+        run: yarn add --dev typescript@^5.6.3
+
+      - name: Compile TypeScript
+        run: yarn compile
+
+      - name: Run Tests
+        run: yarn test
 
       - name: Assert that every file that should be public has been exported
         run: ./scripts/assert_export.sh
 
-  # Temporary
+  test-ios:
+    needs: test-rn
+    runs-on: macos-13
 
-  # test-ios:
-  #   needs: test-rn
-  #   runs-on: macos-13
-  #   defaults:
-  #     run:
-  #       working-directory: example
+    steps:
+      - uses: maxim-lobanov/setup-xcode@v1
+        with:
+          xcode-version: '15.2'
 
-  #   steps:
-  #     - uses: maxim-lobanov/setup-xcode@v1
-  #       with:
-  #         xcode-version: '14.2'
+      - name: Checkout
+        uses: actions/checkout@v2
 
-  #     - name: Checkout
-  #       uses: actions/checkout@v2
+      - name: Setup Node
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ env.NODE_JS_VERSION }}
 
-  #     - name: Setup Node
-  #       uses: actions/setup-node@v2
-  #       with:
-  #         node-version: ${{ env.NODE_JS_VERSION }}
+      - name: Install SDK Dependencies
+        run: yarn install --frozen-lockfile
 
-  #     - name: Install dependencies
-  #       run: yarn install --frozen-lockfile
+      - name: Compile SDK
+        run: yarn compile
 
-  #     - name: Install pods
-  #       run: cd ios && pod install
+      - name: Install Sample Dependencies
+        working-directory: ./sample
+        run: npm ci --legacy-peer-deps
 
-  #     - name: Run tests
-  #       run: cd ios && xcodebuild -workspace example.xcworkspace -scheme "example" -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 14' test
+      - name: Install pods
+        working-directory: ./sample
+        run: cd ios && pod install
 
-  # test-android:
-  #   needs: test-rn
-  #   runs-on: macOS-13
-  #   env:
-  #     GRADLE_VERSION: 7.6
+      - name: Run tests
+        working-directory: ./sample
+        run: cd ios && xcodebuild -workspace sample.xcworkspace -scheme "sample" -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 14' test
 
-  #   steps:
-  #     - name: Checkout
-  #       uses: actions/checkout@v4
+  test-android:
+    needs: test-rn
+    runs-on: macOS-13
+    env:
+      GRADLE_VERSION: 8.13
 
-  #     - name: Setup Node
-  #       uses: actions/setup-node@v2
-  #       with:
-  #         node-version: ${{ env.NODE_JS_VERSION }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
 
-  #     - name: Java 17
-  #       uses: actions/setup-java@v1
-  #       with:
-  #         java-version: 17
+      - name: Setup Node
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ env.NODE_JS_VERSION }}
 
-  #     - name: Install Dependencies
-  #       working-directory: ./example
-  #       run: npm ci --legacy-peer-deps
+      - name: Java 17
+        uses: actions/setup-java@v1
+        with:
+          java-version: 17
 
-  #     - name: Cache Gradle
-  #       id: cache-gradle
-  #       uses: actions/cache@v4
-  #       with:
-  #         path: |
-  #           ./example/android/ci-cache/gradle
-  #           ./example/android/gradle/wrapper/gradle-wrapper.jar
-  #           ./example/android/gradlew
-  #         key: ${{ runner.os }}-cache-gradle-${{ env.GRADLE_VERSION }}
+      - name: Install SDK Dependencies
+        run: yarn install --frozen-lockfile
 
-  #     - name: Setup Gradle
-  #       if: steps.cache-gradle.outputs.cache-hit != 'true'
-  #       working-directory: ./example/android
-  #       run: ../../scripts/setup_gradle.sh ${{ env.GRADLE_VERSION }}
+      - name: Compile SDK
+        run: yarn compile
 
-  #     - name: Android tests
-  #       uses: reactivecircus/android-emulator-runner@v2
-  #       with:
-  #         working-directory: ./example/android
-  #         api-level: 29
-  #         script: gradle wrapper; ./gradlew :react-native-usercentrics:connectedAndroidTest
+      - name: Install Sample Dependencies (needed for Gradle build)
+        working-directory: ./sample
+        run: npm ci --legacy-peer-deps
+
+      - name: Run SDK Unit Tests
+        working-directory: ./sample/android
+        run: ./gradlew :react-native-usercentrics:test

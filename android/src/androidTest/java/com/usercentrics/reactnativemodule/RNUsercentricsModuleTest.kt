@@ -290,11 +290,11 @@ class RNUsercentricsModuleTest {
         val result = promise.resolveValue as WritableArray
         val consent = result.getMap(0)
 
-        assertEquals(false, consent.getBoolean("status"))
-        assertEquals("ocv9HNX_g", consent.getString("templateId"))
-        assertEquals("Facebook SDK", consent.getString("dataProcessor"))
-        assertEquals(0, consent.getInt("type"))
-        assertEquals("1.0.1", consent.getString("version"))
+        assertEquals(false, consent?.getBoolean("status"))
+        assertEquals("ocv9HNX_g", consent?.getString("templateId"))
+        assertEquals("Facebook SDK", consent?.getString("dataProcessor"))
+        assertEquals(0, consent?.getInt("type"))
+        assertEquals("1.0.1", consent?.getString("version"))
     }
 
     @Test

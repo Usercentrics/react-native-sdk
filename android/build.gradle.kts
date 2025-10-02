@@ -21,6 +21,10 @@ android {
         
         buildConfigField("boolean", "IS_NEW_ARCHITECTURE_ENABLED", isNewArchEnabled.toString())
         buildConfigField("boolean", "IS_HERMES_ENABLED", isHermesEnabled.toString())
+        
+        ndk {
+            abiFilters += listOf("armeabi-v7a", "arm64-v8a", "x86", "x86_64")
+        }
     }
 
     compileOptions {
@@ -45,7 +49,7 @@ android {
         buildConfig = true
     }
 
-    packagingOptions {
+    packaging {
         jniLibs {
             useLegacyPackaging = false
         }
@@ -56,6 +60,14 @@ dependencies {
     implementation("com.facebook.react:react-android:$reactNativeVersion")
     implementation("com.usercentrics.sdk:usercentrics-ui:$usercentricsVersion")
 
+    // Unit tests (JVM)
+    testImplementation("junit:junit:4.13.2")
+    testImplementation("io.mockk:mockk:1.13.12")
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.9.0")
+    testImplementation("com.facebook.react:react-android:$reactNativeVersion")
+
+    // Instrumented tests (Android)
+    androidTestImplementation("com.facebook.react:react-android:$reactNativeVersion")
     androidTestImplementation("io.mockk:mockk-android:1.12.0")
     androidTestImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit-ktx:1.1.3")
