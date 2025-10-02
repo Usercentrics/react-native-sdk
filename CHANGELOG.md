@@ -1,5 +1,9 @@
 [Release Notes](https://docs.usercentrics.com/cmp_in_app_sdk/latest/about/history/)
 
+### 2.23.2 – Oct 1, 2025
+## React Native
+* Updated React Native to 0.79.6 to support 16 KB page sizes
+
 ### 2.23.0 - Sep 15, 2025
 ## Android/iOS Bug Fixes:
 * Fixed bugs related to Google Consent Strings on DenyAll, ensuring correct consent handling
