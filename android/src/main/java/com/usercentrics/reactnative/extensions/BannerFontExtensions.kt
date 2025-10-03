@@ -1,4 +1,4 @@
-package com.usercentrics.reactnativeusercentrics.extensions
+package com.usercentrics.reactnative.extensions
 
 import android.content.Context
 import android.content.res.AssetManager

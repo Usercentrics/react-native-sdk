@@ -1,4 +1,4 @@
-package com.usercentrics.reactnativeusercentrics
+package com.usercentrics.reactnative
 
 import com.facebook.react.bridge.Promise
 import com.facebook.react.bridge.ReactApplicationContext

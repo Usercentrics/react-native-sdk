@@ -1,4 +1,4 @@
-package com.usercentrics.reactnativeusercentrics.extensions
+package com.usercentrics.reactnative.extensions
 
 import com.usercentrics.sdk.v2.settings.data.ConsentDisclosure
 import com.usercentrics.sdk.v2.settings.data.ConsentDisclosureObject

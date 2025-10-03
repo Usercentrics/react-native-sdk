@@ -1,4 +1,4 @@
-package com.usercentrics.reactnativeusercentrics
+package com.usercentrics.reactnative
 
 import android.app.Activity
 import android.content.Context
