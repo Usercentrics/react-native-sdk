@@ -2,58 +2,58 @@
 
 set -e
 
-echo "🧹 Script simplificado de limpeza e build..."
+echo "🧹 Simplified cleanup and build script..."
 
 # ------------------------------
-# LIMPEZA DE CACHE
+# CACHE CLEANUP
 # ------------------------------
-echo "📂 Limpando DerivedData..."
+echo "📂 Cleaning DerivedData..."
 rm -rf ~/Library/Developer/Xcode/DerivedData/*
 
-echo "🏗️ Limpando builds antigos do projeto iOS..."
+echo "🏗️ Cleaning old iOS project builds..."
 cd ios
 rm -rf build
-xcodebuild clean || echo "⚠️  xcodebuild clean falhou, continuando..."
+xcodebuild clean || echo "⚠️  xcodebuild clean failed, continuing..."
 rm -rf Pods
 cd ..
 
-echo "🥣 Limpando cache do CocoaPods..."
+echo "🥣 Cleaning CocoaPods cache..."
 pod cache clean --all
 rm -rf ~/Library/Caches/CocoaPods
 
-echo "🧶 Limpando cache do Yarn..."
+echo "🧶 Cleaning Yarn cache..."
 yarn cache clean
 
-echo "🚀 Limpando cache do Metro bundler..."
+echo "🚀 Cleaning Metro bundler cache..."
 rm -rf /tmp/metro-*
 
 # ------------------------------
-# INSTALAÇÃO DOS PODS
+# PODS INSTALLATION
 # ------------------------------
-echo "📦 Instalando pods..."
+echo "📦 Installing pods..."
 cd ios
 pod install --repo-update
 cd ..
 
 # ------------------------------
-# VERIFICAÇÃO DE XCFRAMEWORKS
+# XCFRAMEWORKS VERIFICATION
 # ------------------------------
-echo "🔍 Verificando XCFrameworks disponíveis..."
+echo "🔍 Checking available XCFrameworks..."
 XCFRAMEWORKS=("UsercentricsUI")
 for XCFRAMEWORK in "${XCFRAMEWORKS[@]}"; do
   XCFRAMEWORK_PATH="ios/Pods/$XCFRAMEWORK/$XCFRAMEWORK.xcframework"
   if [ -d "$XCFRAMEWORK_PATH" ]; then
-    echo "✅ $XCFRAMEWORK XCFramework encontrado em: $XCFRAMEWORK_PATH"
+    echo "✅ $XCFRAMEWORK XCFramework found at: $XCFRAMEWORK_PATH"
   else
-    echo "⚠️  $XCFRAMEWORK XCFramework não encontrado em: $XCFRAMEWORK_PATH"
+    echo "⚠️  $XCFRAMEWORK XCFramework not found at: $XCFRAMEWORK_PATH"
   fi
 done
 
 # ------------------------------
-# BUILD FINAL DO APP
+# FINAL APP BUILD
 # ------------------------------
 echo ""
-echo "📦 Construindo o app final..."
+echo "📦 Building final app..."
 echo "=========================================="
 
 cd ios
@@ -64,5 +64,5 @@ xcodebuild -workspace sample.xcworkspace \
   BUILD_DIR=build clean build
 
 echo ""
-echo "🎉 Build final do app concluído com sucesso!"
-echo "✅ O app foi construído e está pronto para uso no simulador"
+echo "🎉 Final app build completed successfully!"
+echo "✅ The app has been built and is ready for use in the simulator"
