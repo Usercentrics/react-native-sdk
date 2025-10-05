@@ -9,7 +9,7 @@ import com.facebook.react.defaults.DefaultNewArchitectureEntryPoint
 import com.facebook.react.shell.MainReactPackage
 import com.facebook.soloader.SoLoader
 import com.reactnativecommunity.webview.RNCWebViewPackage
-import com.usercentrics.reactnativeusercentrics.RNUsercentricsPackage
+import com.usercentrics.reactnative.RNUsercentricsPackage
 import com.swmansion.rnscreens.RNScreensPackage
 import com.th3rdwave.safeareacontext.SafeAreaContextPackage
 import com.facebook.react.soloader.OpenSourceMergedSoMapping

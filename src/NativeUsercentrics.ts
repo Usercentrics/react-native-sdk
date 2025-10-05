@@ -1,5 +1,4 @@
-import type { TurboModule } from 'react-native';
-import { TurboModuleRegistry } from 'react-native';
+import { NativeModules } from 'react-native';
 import type {
   UsercentricsOptions,
   UsercentricsReadyStatus,
@@ -14,7 +13,7 @@ import type {
   TCFUserDecisions,
 } from './models';
 
-export interface Spec extends TurboModule {
+export interface Spec {
   // Configuration
   configure(options: UsercentricsOptions): void;
   isReady(): Promise<UsercentricsReadyStatus>;
@@ -61,4 +60,15 @@ export interface Spec extends TurboModule {
   track(event: number): void;
 }
 
-export default TurboModuleRegistry.getEnforcing<Spec>('RNUsercentricsModule');
+const { RNUsercentricsModule } = NativeModules;
+
+if (!RNUsercentricsModule) {
+  throw new Error(
+    'Usercentrics React Native SDK: Native module not found. ' +
+    'Make sure the SDK is properly installed and linked. ' +
+    'For iOS, run "cd ios && pod install". ' +
+    'For Android, make sure autolinking is working correctly.'
+  );
+}
+
+export default RNUsercentricsModule as Spec;
