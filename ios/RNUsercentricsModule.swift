@@ -2,6 +2,7 @@ import Foundation
 import Usercentrics
 import UsercentricsUI
 import UIKit
+import React
 
 #if RCT_NEW_ARCH_ENABLED
 #if canImport(RNUsercentricsModuleSpec)
