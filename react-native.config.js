@@ -6,9 +6,7 @@ module.exports = {
         packageImportPath: 'import com.usercentrics.reactnative.RNUsercentricsPackage;',
         packageInstance: 'new RNUsercentricsPackage()',
       },
-      ios: {
-        podspecPath: './react-native-usercentrics.podspec',
-      },
+      ios: {},
     },
   },
 };

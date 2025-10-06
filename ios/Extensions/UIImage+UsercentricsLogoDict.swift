@@ -1,4 +1,5 @@
 import Foundation
+import UIKit
 
 extension UIImage {
     convenience init?(from dictionary: NSDictionary?) {
