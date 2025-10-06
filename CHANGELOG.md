@@ -1,5 +1,10 @@
 [Release Notes](https://docs.usercentrics.com/cmp_in_app_sdk/latest/about/history/)
 
+### 2.23.3 – Oct 6, 2025
+## React Native
+* Updated React Native to 0.79.6 to support 16 KB page sizes
+* Fix react native issues 
+
 ### 2.23.2 – Oct 1, 2025
 ## React Native
 * Updated React Native to 0.79.6 to support 16 KB page sizes
