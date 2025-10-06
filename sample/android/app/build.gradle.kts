@@ -23,18 +23,17 @@ android {
         buildConfigField("boolean", "IS_HERMES_ENABLED", isHermesEnabled.toString())
 
         ndk {
-            abiFilters += setOf("armeabi-v7a", "arm64-v8a", "x86", "x86_64")
+            abiFilters += listOf("armeabi-v7a", "arm64-v8a", "x86", "x86_64")
         }
     }
 
     buildTypes {
         debug {
             isDebuggable = true
-            packagingOptions {
-                jniLibs.useLegacyPackaging = false
-            }
         }
-        release { isMinifyEnabled = false }
+        release {
+            isMinifyEnabled = false
+        }
     }
 
     compileOptions {
@@ -52,10 +51,12 @@ android {
 
     packaging {
         jniLibs {
-            pickFirsts += "**/libjscexecutor.so"
-            pickFirsts += "**/libhermes.so"
-            pickFirsts += "**/libreactnativejni.so"
-            pickFirsts += "**/libreact_featureflagsjni.so"
+            pickFirsts += listOf(
+                "**/libjscexecutor.so",
+                "**/libhermes.so",
+                "**/libreactnativejni.so",
+                "**/libreact_featureflagsjni.so"
+            )
             useLegacyPackaging = false
         }
     }
@@ -75,6 +76,7 @@ dependencies {
     // React Native
     implementation(versions.react.android)
 
+    // Autolinked
     implementation(project(":react-native-webview"))
     implementation(project(":react-native-screens"))
     implementation(project(":react-native-safe-area-context"))
@@ -85,7 +87,17 @@ dependencies {
         }
     }
 
+    // Flipper (debug only)
     debugImplementation(versions.bundles.flipper.debug)
+
+    // Tests
+    androidTestImplementation("com.facebook.react:react-android:${versions.versions.reactNative.get()}")
+    androidTestImplementation(project(":react-native-usercentrics"))
+    androidTestImplementation("io.mockk:mockk-android:1.12.0")
+    androidTestImplementation("junit:junit:4.13.2")
+    androidTestImplementation("androidx.test.ext:junit-ktx:1.1.3")
+    androidTestImplementation("androidx.test:runner:1.4.0")
+    androidTestImplementation("androidx.test:rules:1.4.0")
 }
 
 react {
@@ -100,14 +112,14 @@ react {
 // ===================================================================================================
 apply(from = "${rootDir}/plugin/autolinking.gradle.kts")
 
-subprojects {
-    afterEvaluate {
-        if (hasProperty("android")) {
-            android {
-                defaultConfig {
-                    minSdk = 24
-                }
-            }
-        }
-    }
-}
+//subprojects {
+//    afterEvaluate {
+//        if (hasProperty("android")) {
+//            android {
+//                defaultConfig {
+//                    minSdk = 24
+//                }
+//            }
+//        }
+//    }
+//}

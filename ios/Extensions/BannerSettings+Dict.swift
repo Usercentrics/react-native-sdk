@@ -1,5 +1,6 @@
 import Foundation
 import UsercentricsUI
+import UIKit
 
 extension BannerSettings {
     init?(from dictionary: NSDictionary?) {

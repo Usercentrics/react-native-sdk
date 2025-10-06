@@ -1,9 +1,9 @@
-package com.usercentrics.reactnativeusercentrics.api
+package com.usercentrics.reactnative.api
 
 import android.app.Activity
 import android.content.Context
 import com.facebook.react.bridge.Promise
-import com.usercentrics.reactnativeusercentrics.extensions.toWritableMap
+import com.usercentrics.reactnative.extensions.toWritableMap
 import com.usercentrics.sdk.*
 import com.usercentrics.sdk.errors.UsercentricsError
 

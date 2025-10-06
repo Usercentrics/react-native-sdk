@@ -1,8 +1,8 @@
-package com.usercentrics.reactnativeusercentrics
+package com.usercentrics.reactnative
 
 import com.facebook.react.bridge.*
-import com.usercentrics.reactnativeusercentrics.api.UsercentricsProxy
-import com.usercentrics.reactnativeusercentrics.extensions.*
+import com.usercentrics.reactnative.api.UsercentricsProxy
+import com.usercentrics.reactnative.extensions.*
 import com.usercentrics.sdk.UsercentricsAnalyticsEventType
 import com.usercentrics.sdk.models.settings.UsercentricsConsentType
 import com.usercentrics.sdk.services.tcf.TCFDecisionUILayer

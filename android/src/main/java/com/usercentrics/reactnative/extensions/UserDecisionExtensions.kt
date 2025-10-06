@@ -1,4 +1,4 @@
-package com.usercentrics.reactnativeusercentrics.extensions
+package com.usercentrics.reactnative.extensions
 
 import com.facebook.react.bridge.ReadableArray
 import com.facebook.react.bridge.ReadableMap

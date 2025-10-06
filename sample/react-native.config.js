@@ -10,7 +10,7 @@ module.exports = {
       platforms: {
         android: {
           sourceDir: require('path').resolve(__dirname, '../android'),
-          packageImportPath: 'import com.usercentrics.reactnativeusercentrics.RNUsercentricsPackage;',
+          packageImportPath: 'import com.usercentrics.reactnative.RNUsercentricsPackage;',
           packageInstance: 'new RNUsercentricsPackage()',
         },
         ios: {
