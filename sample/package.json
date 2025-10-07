@@ -8,12 +8,14 @@
     "lint": "eslint .",
     "start": "react-native start",
     "test": "jest",
-    "postinstall": "patch-package",
+    "postinstall": "patch-package && ./scripts/fix-react-logger.sh",
     "android-build": "cd android && ./gradlew app:assembleDebug",
     "clean-and-build": "./scripts/clean-and-build.sh",
     "clean-all-caches": "../scripts/clean-all-caches.sh",
     "install-dependencies": "../scripts/install-dependencies.sh",
-    "fix-metro": "../scripts/fix-metro.sh"
+    "fix-sandbox": "./scripts/fix-xcode-sandbox.sh",
+    "fix-metro": "../scripts/fix-metro.sh",
+    "build-ios": "./scripts/test-ios-build.sh"
   },
   "dependencies": {
     "@react-navigation/native": "^6.1.18",

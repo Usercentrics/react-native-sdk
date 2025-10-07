@@ -1,0 +1,24 @@
+diff --git a/node_modules/react-native/ReactCommon/logger/react_native_log.h b/node_modules/react-native/ReactCommon/logger/react_native_log.h
+index 5f585ef..692b2bf 100644
+--- a/node_modules/react-native/ReactCommon/logger/react_native_log.h
++++ b/node_modules/react-native/ReactCommon/logger/react_native_log.h
+@@ -14,7 +14,7 @@ enum ReactNativeLogLevel {
+   ReactNativeLogLevelFatal = 4
+ };
+ 
+-typedef void (*reactnativelogfunctype)(ReactNativeLogLevel, const char*);
++typedef void (*reactnativelogfunctype)(enum ReactNativeLogLevel, const char*);
+ 
+ #ifdef __cplusplus
+ extern "C" {
+@@ -26,8 +26,8 @@ void react_native_log_warn(const char* text);
+ void react_native_log_error(const char* text);
+ void react_native_log_fatal(const char* text);
+ 
+-void _react_native_log(ReactNativeLogLevel level, const char* text);
+-void _react_native_log_default(ReactNativeLogLevel level, const char* text);
++void _react_native_log(enum ReactNativeLogLevel level, const char* text);
++void _react_native_log_default(enum ReactNativeLogLevel level, const char* text);
+ #ifdef __cplusplus
+ }
+ #endif // __cpusplus
