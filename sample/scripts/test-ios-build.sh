@@ -11,9 +11,14 @@ cd ios
 echo "🧹 Cleaning previous build..."
 xcodebuild clean -workspace sample.xcworkspace -scheme sample
 
-# Reinstall pods
-echo "📦 Reinstalling pods..."
-pod install --repo-update
+# Clean CocoaPods cache to avoid build_configurations errors
+echo "🧹 Cleaning CocoaPods cache..."
+pod cache clean --all
+rm -rf ~/Library/Caches/CocoaPods
+
+# Reinstall pods with additional safety measures
+echo "📦 Reinstalling pods with CI fixes..."
+pod install --repo-update --verbose
 
 # Find available iOS simulator
 echo "🔍 Finding available iOS simulator..."
