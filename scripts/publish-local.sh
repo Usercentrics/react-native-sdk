@@ -89,7 +89,7 @@ print_success "TypeScript compilation completed"
 
 # Create npm package
 print_info "Creating npm package..."
-PACKAGE_FILE=$(npm pack)
+PACKAGE_FILE=$(npm pack 2>&1 | tail -1)
 
 if [ -z "$PACKAGE_FILE" ]; then
     print_error "Failed to create npm package!"
@@ -98,8 +98,8 @@ fi
 
 print_success "Package created: $PACKAGE_FILE"
 
-# Get absolute path of the package
-PACKAGE_PATH=$(realpath "$PACKAGE_FILE")
+# Get absolute path of the package (macOS compatible)
+PACKAGE_PATH="$(pwd)/$PACKAGE_FILE"
 print_info "Package path: $PACKAGE_PATH"
 
 # Display installation instructions
