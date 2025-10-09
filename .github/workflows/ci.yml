@@ -56,6 +56,7 @@ jobs:
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: '3.2'
+          bundler-cache: true # Caches gems
 
       - name: Install SDK Dependencies
         run: yarn install --frozen-lockfile
@@ -74,12 +75,27 @@ jobs:
           bundle install --jobs 4 --retry 3
 
       - name: Install pods (via bundler)
-        working-directory: ./sample
-        run: cd ios && bundle exec pod install --repo-update
+        working-directory: ./sample/ios
+        run: |
+          pod deintegrate
+          pod cache clean --all
+          bundle exec pod install --repo-update
+
+      - name: Clean Xcode Build Artifacts
+        run: |
+            rm -rf ~/Library/Developer/Xcode/DerivedData/*
 
       - name: Run tests
-        working-directory: ./sample
-        run: cd ios && set -o pipefail && xcodebuild -workspace sample.xcworkspace -scheme "sample" -sdk iphonesimulator -destination 'platform=iOS Simulator,OS=17.5,name=iPhone 15' -parallel-testing-enabled NO -parallel-testing-worker-count 1 -only-testing:sampleTests - test | bundle exec xcpretty && exit ${PIPESTATUS[0]}
+        working-directory: ./sample/ios
+        run: |
+          set -o pipefail && \
+          xcodebuild \
+            -workspace sample.xcworkspace \
+            -scheme "sample" \
+            -sdk iphonosimulator \
+            -destination 'platform=iOS Simulator,OS=17.5,name=iPhone 15' \
+            -only-testing:sampleTests \
+            test | bundle exec xcpretty && exit ${PIPESTATUS[0]}
 
   test-android:
     needs: test-rn
