@@ -92,10 +92,10 @@ jobs:
           xcodebuild \
             -workspace sample.xcworkspace \
             -scheme "sample" \
-            -sdk iphonosimulator \
-            -destination 'platform=iOS Simulator,OS=17.5,name=iPhone 15' \
+            -sdk iphonesimulator \
+            -destination 'platform=iOS Simulator,OS=18.2,name=iPhone 16 Pro' \
             -only-testing:sampleTests \
-             test | bundle exec xcpretty && exit ${PIPESTATUS[0]}
+            test | bundle exec xcpretty && exit ${PIPESTATUS[0]}
 
   test-android:
     needs: test-rn
