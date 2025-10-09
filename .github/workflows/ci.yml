@@ -42,7 +42,7 @@ jobs:
     steps:
       - uses: maxim-lobanov/setup-xcode@v1
         with:
-          xcode-version: '15.4'
+          xcode-version: '16.1'
 
       - name: Checkout
         uses: actions/checkout@v2
@@ -77,14 +77,9 @@ jobs:
         working-directory: ./sample
         run: cd ios && bundle exec pod install --repo-update
 
-      - name: Switch to Xcode 16.1 for build & test
-        uses: maxim-lobanov/setup-xcode@v1
-        with:
-          xcode-version: '16.1'
-
       - name: Run tests
         working-directory: ./sample
-        run: cd ios && xcodebuild -workspace sample.xcworkspace -scheme "sample" -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 15' test
+        run: cd ios && set -o pipefail && xcodebuild -workspace sample.xcworkspace -scheme "sample" -sdk iphonesimulator -destination 'platform=iOS Simulator,OS=17.5,name=iPhone 15' -parallel-testing-enabled NO -parallel-testing-worker-count 1 -only-testing:sampleTests - test | bundle exec xcpretty && exit ${PIPESTATUS[0]}
 
   test-android:
     needs: test-rn

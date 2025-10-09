@@ -12,21 +12,6 @@ use_frameworks! :linkage => :static
 target 'sample' do
   config = use_native_modules!
 
-  # ✅ Pre-install: patch xcodeproj to recognize Xcode 16 objectVersion 70
-  pre_install do |installer|
-    begin
-      require 'xcodeproj'
-      if defined?(Xcodeproj::Constants::COMPATIBILITY_VERSION_BY_OBJECT_VERSION)
-        Xcodeproj::Constants::COMPATIBILITY_VERSION_BY_OBJECT_VERSION[70] ||= 'Xcode 16.0'
-      end
-      if defined?(Xcodeproj::Constants::OBJECT_VERSION_BY_COMPATIBILITY_VERSION)
-        Xcodeproj::Constants::OBJECT_VERSION_BY_COMPATIBILITY_VERSION['Xcode 16.0'] ||= 70
-      end
-    rescue => e
-      Pod::UI.puts("[Podfile] Warning: xcodeproj patch failed: #{e}")
-    end
-  end
-
   use_react_native!(
     :path => config[:reactNativePath],
     :hermes_enabled => true,
