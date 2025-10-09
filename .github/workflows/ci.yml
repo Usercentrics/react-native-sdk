@@ -95,7 +95,7 @@ jobs:
             -sdk iphonosimulator \
             -destination 'platform=iOS Simulator,OS=17.5,name=iPhone 15' \
             -only-testing:sampleTests \
-             test | bundle exec xcpretty && exit ${PIPESTATUS[0]}
+           test | bundle exec xcpretty && exit ${PIPESTATUS[0]}
 
   test-android:
     needs: test-rn
