@@ -37,12 +37,12 @@ jobs:
 
   test-ios:
     needs: test-rn
-    runs-on: macos-13
+    runs-on: macos-14
 
     steps:
       - uses: maxim-lobanov/setup-xcode@v1
         with:
-          xcode-version: '15.2'
+          xcode-version: '16.1'
 
       - name: Checkout
         uses: actions/checkout@v2
@@ -51,6 +51,11 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: ${{ env.NODE_JS_VERSION }}
+
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.2'
 
       - name: Install SDK Dependencies
         run: yarn install --frozen-lockfile
@@ -62,13 +67,17 @@ jobs:
         working-directory: ./sample
         run: npm ci --legacy-peer-deps
 
-      - name: Install pods
+      - name: Bundle install (Ruby gems)
         working-directory: ./sample
-        run: cd ios && pod install
+        run: bundle install --jobs 4 --retry 3
+
+      - name: Install pods (via bundler)
+        working-directory: ./sample
+        run: cd ios && bundle exec pod install --repo-update
 
       - name: Run tests
         working-directory: ./sample
-        run: cd ios && xcodebuild -workspace sample.xcworkspace -scheme "sample" -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 14' test
+        run: cd ios && xcodebuild -workspace sample.xcworkspace -scheme "sample" -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 15' test
 
   test-android:
     needs: test-rn
