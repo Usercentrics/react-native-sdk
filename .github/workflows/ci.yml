@@ -38,6 +38,11 @@ jobs:
   test-ios:
     needs: test-rn
     runs-on: macos-14
+    env:
+      RCT_NEW_ARCH_ENABLED: 0
+      RCT_NO_LAUNCH_PACKAGER: 1
+      USE_METRO_BUNDLER: 0
+      FORCE_BUNDLING: 1
 
     steps:
       - uses: maxim-lobanov/setup-xcode@v1
@@ -73,7 +78,7 @@ jobs:
         run: |
           bundle config set path 'vendor/bundle'
           bundle install --jobs 4 --retry 3
-
+          
       - name: Install pods (via bundler)
         working-directory: ./sample/ios
         run: |
@@ -92,10 +97,10 @@ jobs:
           xcodebuild \
             -workspace sample.xcworkspace \
             -scheme "sample" \
-            -sdk iphonosimulator \
-            -destination 'platform=iOS Simulator,OS=17.5,name=iPhone 15' \
+            -sdk iphonesimulator \
+            -destination 'platform=iOS Simulator,OS=latest,name=iPhone 16 Pro' \
             -only-testing:sampleTests \
-             test | bundle exec xcpretty && exit ${PIPESTATUS[0]}
+            test | bundle exec xcpretty && exit ${PIPESTATUS[0]}
 
   test-android:
     needs: test-rn
