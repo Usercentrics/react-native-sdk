@@ -1,4 +1,4 @@
-# Resolve react_native_pods.rb com node para permitir hoisting
+# Resolve react_native_pods.rb with Node to allow hoisting
 require Pod::Executable.execute_command('node', ['-p',
   'require.resolve(
     "react-native/scripts/react_native_pods.rb",
@@ -21,10 +21,15 @@ target 'sample' do
 
   # Development: Use local SDK
   pod 'react-native-usercentrics', :path => '../..'
-  
-  # Testing: Use GitHub version (uncomment to test with published version)
+  # Testing (optional): Use GitHub version
   # pod 'react-native-usercentrics', :git => 'https://github.com/Usercentrics/usercentrics-react-native.git', :tag => 'v2.22.2'
 
+  # ✅ Test target: inherit search paths only, not full settings
+  target 'sampleTests' do
+    inherit! :search_paths
+  end
+
+  # ✅ Post-install hook (safe for CircleCI and macOS 13+)
   post_install do |installer|
     react_native_post_install(
       installer,
@@ -32,10 +37,15 @@ target 'sample' do
     )
 
     installer.pods_project.targets.each do |target|
+      next if target.name.to_s.include?('Tests')
+
       target.build_configurations.each do |config|
-        config.build_settings['CLANG_CXX_LANGUAGE_STANDARD'] = 'c++20'
-        config.build_settings['CLANG_CXX_LIBRARY'] = 'libc++'
-        config.build_settings['OTHER_CPLUSPLUSFLAGS'] = '-std=c++20 -stdlib=libc++'
+        settings = config.build_settings
+        next unless settings
+
+        settings['CLANG_CXX_LANGUAGE_STANDARD'] = '$(inherited) c++20'
+        settings['CLANG_CXX_LIBRARY'] = '$(inherited) libc++'
+        settings['OTHER_CPLUSPLUSFLAGS'] = '$(inherited) -std=c++20 -stdlib=libc++'
       end
     end
   end
