@@ -36,17 +36,16 @@ target 'sample' do
       :mac_catalyst_enabled => false
     )
 
-    targets = installer&.pods_project&.targets
-    Array(targets).compact.each do |t|
-      next unless t.respond_to?(:build_configurations)
-      name = t.respond_to?(:name) ? t.name.to_s : ""
-      next if name.include?("Tests")
+    installer.pods_project.targets.each do |target|
+      next if target.name.to_s.include?('Tests')
 
-      Array(t.build_configurations).compact.each do |config|
-        next unless config.respond_to?(:build_settings) && config.build_settings.is_a?(Hash)
-        config.build_settings['CLANG_CXX_LANGUAGE_STANDARD'] = '$(inherited) c++20'
-        config.build_settings['CLANG_CXX_LIBRARY'] = '$(inherited) libc++'
-        config.build_settings['OTHER_CPLUSPLUSFLAGS'] = '$(inherited) -std=c++20 -stdlib=libc++'
+      target.build_configurations.each do |config|
+        settings = config.build_settings
+        next unless settings
+
+        settings['CLANG_CXX_LANGUAGE_STANDARD'] = '$(inherited) c++20'
+        settings['CLANG_CXX_LIBRARY'] = '$(inherited) libc++'
+        settings['OTHER_CPLUSPLUSFLAGS'] = '$(inherited) -std=c++20 -stdlib=libc++'
       end
     end
   end
