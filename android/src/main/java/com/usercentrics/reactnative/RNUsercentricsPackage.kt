@@ -1,22 +1,43 @@
 package com.usercentrics.reactnative
 
-import com.facebook.react.ReactPackage
+import com.facebook.react.TurboReactPackage
 import com.facebook.react.bridge.NativeModule
 import com.facebook.react.bridge.ReactApplicationContext
+import com.facebook.react.module.model.ReactModuleInfo
+import com.facebook.react.module.model.ReactModuleInfoProvider
 import com.facebook.react.uimanager.ViewManager
-import com.facebook.react.turbomodule.core.interfaces.TurboModule
 import com.usercentrics.reactnative.api.UsercentricsProxyImpl
 
-class RNUsercentricsPackage : ReactPackage {
+class RNUsercentricsPackage : TurboReactPackage() {
 
     private val usercentricsProxy = UsercentricsProxyImpl()
 
-    override fun createViewManagers(reactContext: ReactApplicationContext): MutableList<ViewManager<*, *>> {
-        return mutableListOf()
+    override fun getModule(name: String, reactContext: ReactApplicationContext): NativeModule? {
+        return if (name == RNUsercentricsModule.NAME) {
+            val reactContextProvider = ReactContextProviderImpl(reactContext)
+            RNUsercentricsModule(reactContext, usercentricsProxy, reactContextProvider)
+        } else {
+            null
+        }
     }
 
-    override fun createNativeModules(reactContext: ReactApplicationContext): MutableList<NativeModule> {
-        val reactContextProvider = ReactContextProviderImpl(reactContext)
-        return mutableListOf(RNUsercentricsModule(reactContext, usercentricsProxy, reactContextProvider))
+    override fun getReactModuleInfoProvider(): ReactModuleInfoProvider {
+        return ReactModuleInfoProvider {
+            mapOf(
+                RNUsercentricsModule.NAME to ReactModuleInfo(
+                    RNUsercentricsModule.NAME,
+                    RNUsercentricsModule::class.java.name,
+                    false,
+                    false,
+                    true,
+                    false,
+                    true, //BuildConfig.IS_NEW_ARCHITECTURE_ENABLED
+                )
+            )
+        }
+    }
+
+    override fun createViewManagers(reactContext: ReactApplicationContext): MutableList<ViewManager<*, *>> {
+        return mutableListOf()
     }
 }
