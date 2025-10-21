@@ -1,10 +1,21 @@
-plugins {
-    id("com.android.library")
-    id("org.jetbrains.kotlin.android")
+val usercentricsVersion = "2.23.3"
+val reactNativeVersion = "+"
+
+fun BooleanProperty(name: String): Boolean {
+    return project.hasProperty(name) && project.property(name) == "true"
 }
 
-val usercentricsVersion = "2.23.3"
-val reactNativeVersion = "0.79.6"
+val isNewArchitectureEnabled = BooleanProperty("newArchEnabled")
+val isHermesEnabled = BooleanProperty("hermesEnabled")
+
+plugins {
+    id("com.android.library")
+    id("kotlin-android")
+}
+
+if (isNewArchitectureEnabled) {
+    apply(plugin = "com.facebook.react")
+}
 
 android {
     namespace = "com.usercentrics.reactnative"
@@ -16,27 +27,14 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("proguard-rules.pro")
 
-        val isNewArchEnabled = project.findProperty("newArchEnabled") == "true"
-        val isHermesEnabled = project.findProperty("hermesEnabled") == "true"
-        
-        buildConfigField("boolean", "IS_NEW_ARCHITECTURE_ENABLED", isNewArchEnabled.toString())
+        // BuildConfig flags
+        buildConfigField("boolean", "IS_NEW_ARCHITECTURE_ENABLED", isNewArchitectureEnabled.toString())
         buildConfigField("boolean", "IS_HERMES_ENABLED", isHermesEnabled.toString())
 
         ndk {
             abiFilters += listOf("armeabi-v7a", "arm64-v8a", "x86", "x86_64")
         }
 
-        // Only configure CMake if New Architecture is enabled
-        if (isNewArchEnabled) {
-            externalNativeBuild {
-                cmake {
-                    cppFlags += listOf("-std=c++20", "-fexceptions", "-frtti")
-                    arguments += listOf(
-                        "-DANDROID_STL=c++_shared"
-                    )
-                }
-            }
-        }
     }
 
     compileOptions {
@@ -65,15 +63,6 @@ android {
         }
     }
 
-    // External native build (CMake) path
-    if (true) {
-        externalNativeBuild {
-            cmake {
-                path = file("src/main/jni/CMakeLists.txt")
-                version = "3.22.1"
-            }
-        }
-    }
 }
 
 dependencies {

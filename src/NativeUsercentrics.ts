@@ -1,4 +1,4 @@
-import { NativeModules } from 'react-native';
+import { NativeModules, TurboModuleRegistry, TurboModule } from 'react-native';
 import type {
   UsercentricsOptions,
   UsercentricsReadyStatus,
@@ -13,7 +13,7 @@ import type {
   TCFUserDecisions,
 } from './models';
 
-export interface Spec {
+export interface Spec extends TurboModule {
   // Configuration
   configure(options: UsercentricsOptions): void;
   isReady(): Promise<UsercentricsReadyStatus>;
@@ -60,7 +60,8 @@ export interface Spec {
   track(event: number): void;
 }
 
-const { RNUsercentricsModule } = NativeModules;
+// Try to get TurboModule first, fallback to NativeModule
+const RNUsercentricsModule = TurboModuleRegistry.get<Spec>('RNUsercentricsModule') || NativeModules.RNUsercentricsModule;
 
 if (!RNUsercentricsModule) {
   throw new Error(

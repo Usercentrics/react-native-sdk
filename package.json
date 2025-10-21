@@ -15,7 +15,7 @@
     "lib",
     "src",
     "react-native-usercentrics.podspec",
-    "!android/build",
+    "react-native.config.js",
     "!.DS_Store",
     "!.gradle",
     "!.idea",
@@ -102,8 +102,8 @@
   },
   "codegenConfig": {
     "name": "RNUsercentricsModule",
-    "type": "modules",
-    "jsSrcsDir": "src",
+    "type": "all",
+    "jsSrcsDir": "./src/fabric",
     "android": {
       "javaPackageName": "com.usercentrics.reactnative"
     }

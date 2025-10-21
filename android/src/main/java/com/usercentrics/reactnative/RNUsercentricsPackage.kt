@@ -3,41 +3,49 @@ package com.usercentrics.reactnative
 import com.facebook.react.TurboReactPackage
 import com.facebook.react.bridge.NativeModule
 import com.facebook.react.bridge.ReactApplicationContext
+import com.facebook.react.module.annotations.ReactModuleList
 import com.facebook.react.module.model.ReactModuleInfo
 import com.facebook.react.module.model.ReactModuleInfoProvider
 import com.facebook.react.uimanager.ViewManager
 import com.usercentrics.reactnative.api.UsercentricsProxyImpl
 
+@ReactModuleList(
+    nativeModules = [
+        RNUsercentricsModule::class,
+    ],
+)
 class RNUsercentricsPackage : TurboReactPackage() {
 
     private val usercentricsProxy = UsercentricsProxyImpl()
 
-    override fun getModule(name: String, reactContext: ReactApplicationContext): NativeModule? {
-        return if (name == RNUsercentricsModule.NAME) {
-            val reactContextProvider = ReactContextProviderImpl(reactContext)
-            RNUsercentricsModule(reactContext, usercentricsProxy, reactContextProvider)
-        } else {
-            null
+    override fun getModule(s: String, reactApplicationContext: ReactApplicationContext): NativeModule? {
+        when (s) {
+            RNUsercentricsModule.NAME -> {
+                val reactContextProvider = ReactContextProviderImpl(reactApplicationContext)
+                return RNUsercentricsModule(reactApplicationContext, usercentricsProxy, reactContextProvider)
+            }
         }
+        return null
     }
 
-    override fun getReactModuleInfoProvider(): ReactModuleInfoProvider {
-        return ReactModuleInfoProvider {
-            mapOf(
-                RNUsercentricsModule.NAME to ReactModuleInfo(
+    override fun getReactModuleInfoProvider(): ReactModuleInfoProvider =
+        ReactModuleInfoProvider {
+            val moduleInfos: MutableMap<String, ReactModuleInfo> = HashMap()
+            val isTurboModule = BuildConfig.IS_NEW_ARCHITECTURE_ENABLED
+            moduleInfos[RNUsercentricsModule.NAME] =
+                ReactModuleInfo(
                     RNUsercentricsModule.NAME,
-                    RNUsercentricsModule::class.java.name,
-                    false,
-                    false,
-                    true,
-                    false,
-                    true, //BuildConfig.IS_NEW_ARCHITECTURE_ENABLED
+                    RNUsercentricsModule.NAME,
+                    false, // canOverrideExistingModule
+                    false, // needsEagerInit
+                    true, // hasConstants
+                    false, // isCxxModule
+                    isTurboModule,
                 )
-            )
+            moduleInfos
         }
-    }
 
-    override fun createViewManagers(reactContext: ReactApplicationContext): MutableList<ViewManager<*, *>> {
-        return mutableListOf()
+    override fun createViewManagers(reactContext: ReactApplicationContext): List<ViewManager<*, *>> {
+        return emptyList()
     }
 }

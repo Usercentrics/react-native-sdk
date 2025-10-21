@@ -1,84 +1,85 @@
 cmake_minimum_required(VERSION 3.13)
 set(CMAKE_VERBOSE_MAKEFILE ON)
 
-# ---------------------------------------------------------
-# Set CMAKE_PREFIX_PATH to locate fbjni and ReactAndroid
-# This ensures that CMake can find the required packages
-# when building the SDK in the sample app
-# ---------------------------------------------------------
-if(NOT DEFINED CMAKE_PREFIX_PATH)
-    set(CMAKE_PREFIX_PATH "${CMAKE_CURRENT_SOURCE_DIR}/../../node_modules/react-native/ReactAndroid/cmake-utils")
-endif()
-message(STATUS "CMAKE_PREFIX_PATH = ${CMAKE_PREFIX_PATH}")
+# Set library name
+set(LIB_TARGET_NAME react_codegen_RNUsercentricsModule)
 
-# ---------------------------------------------------------
-# Compiler options
-# Enable exceptions, RTTI, C++20 standard, and all warnings
-# ---------------------------------------------------------
+# Add compile options
 add_compile_options(
-        -fexceptions
-        -frtti
-        -std=c++20
-        -Wall
+  -fexceptions
+  -frtti
+  -std=c++20
+  -Wall
+  -Wpedantic
+  -Wno-gnu-zero-variadic-macro-arguments
+  -Wno-dollar-in-identifier-extension
 )
 
-# ---------------------------------------------------------
-# Native source files
-# Glob all .cpp files in the current directory
-# ---------------------------------------------------------
-file(GLOB RN_USERCENTRICS_SRC CONFIGURE_DEPENDS
-        "${CMAKE_CURRENT_SOURCE_DIR}/*.cpp"
+# Find source files
+file(GLOB LIB_CUSTOM_SRCS CONFIGURE_DEPENDS *.cpp)
+
+# Create the library
+add_library(
+  ${LIB_TARGET_NAME}
+  SHARED
+  ${LIB_CUSTOM_SRCS}
 )
 
-# ---------------------------------------------------------
-# Include generated codegen headers if they exist
-# This allows integration with React Native New Architecture
-# ---------------------------------------------------------
-set(RN_USERCENTRICS_CODEGEN_DIR "${CMAKE_CURRENT_SOURCE_DIR}/build/generated/source/codegen/jni")
-if(EXISTS "${RN_USERCENTRICS_CODEGEN_DIR}")
-    include_directories("${RN_USERCENTRICS_CODEGEN_DIR}")
+# Include directories
+target_include_directories(
+  ${LIB_TARGET_NAME}
+  PUBLIC
+  .
+)
 
-    # Only add the codegen subdirectory if its CMakeLists.txt exists
-    if(EXISTS "${RN_USERCENTRICS_CODEGEN_DIR}/CMakeLists.txt")
-        add_subdirectory(
-                "${RN_USERCENTRICS_CODEGEN_DIR}"
-                "${CMAKE_CURRENT_BINARY_DIR}/RNUsercentricsCodegen"
-        )
-    endif()
+# Link libraries based on React Native version
+if(ReactAndroid_VERSION_MINOR GREATER_EQUAL 76)
+  target_link_libraries(
+    ${LIB_TARGET_NAME}
+    ReactAndroid::reactnative
+    ReactAndroid::jsi
+    fbjni::fbjni
+  )
+else()
+  target_link_libraries(
+    ${LIB_TARGET_NAME}
+    fbjni
+    folly_runtime
+    glog
+    jsi
+    react_codegen_rncore
+    react_debug
+    react_nativemodule_core
+    react_render_core
+    react_render_debug
+    react_render_graphics
+    react_render_mapbuffer
+    react_render_componentregistry
+    react_utils
+    rrc_view
+    turbomodulejsijni
+    yoga
+  )
 endif()
 
-# ---------------------------------------------------------
-# Create the shared library for the SDK
-# ---------------------------------------------------------
-add_library(rn_usercentrics SHARED ${RN_USERCENTRICS_SRC})
-target_include_directories(rn_usercentrics PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
-
-# ---------------------------------------------------------
-# Find required packages
-# fbjni and ReactAndroid are needed for TurboModules and JNI
-# ---------------------------------------------------------
-find_package(fbjni REQUIRED CONFIG PATHS "${CMAKE_PREFIX_PATH}")
-find_package(ReactAndroid REQUIRED CONFIG PATHS "${CMAKE_PREFIX_PATH}")
-
-# ---------------------------------------------------------
-# Link the required libraries
-# - fbjni for JNI helper functions
-# - ReactAndroid::jsi and reactnative for RN integration
-# - android and log for NDK support
-# ---------------------------------------------------------
-target_link_libraries(
-        rn_usercentrics
-        fbjni::fbjni
-        ReactAndroid::jsi
-        ReactAndroid::reactnative
-        android
-        log
-)
-
-# ---------------------------------------------------------
-# Optionally link the codegen module if it was generated
-# This avoids CMake errors when the codegen is missing
-# ---------------------------------------------------------
-if(TARGET react_codegen_RNUsercentricsModule)
-    target_link_libraries(rn_usercentrics react_codegen_RNUsercentricsModule)
+# Compile options based on React Native version
+if(ReactAndroid_VERSION_MINOR GREATER_EQUAL 80)
+  target_compile_reactnative_options(${LIB_TARGET_NAME} PRIVATE)
+else()
+  target_compile_options(
+    ${LIB_TARGET_NAME}
+    PRIVATE
+    -DLOG_TAG=\"ReactNative\"
+    -fexceptions
+    -frtti
+    -std=c++20
+    -Wall
+  )
 endif()
+
+# Additional include directories
+target_include_directories(
+ ${CMAKE_PROJECT_NAME}
+ PUBLIC
+ ${CMAKE_CURRENT_SOURCE_DIR}
+)
