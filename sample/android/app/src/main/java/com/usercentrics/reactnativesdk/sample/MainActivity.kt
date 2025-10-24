@@ -21,7 +21,7 @@ class MainActivity : ReactActivity() {
         return DefaultReactActivityDelegate(
             this,
             mainComponentName,
-            false,
+            BuildConfig.IS_NEW_ARCHITECTURE_ENABLED,
         )
     }
 

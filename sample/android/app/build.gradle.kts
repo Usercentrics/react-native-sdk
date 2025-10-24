@@ -48,18 +48,6 @@ android {
     buildFeatures {
         buildConfig = true
     }
-
-    packaging {
-        jniLibs {
-            pickFirsts += listOf(
-                "**/libjscexecutor.so",
-                "**/libhermes.so",
-                "**/libreactnativejni.so",
-                "**/libreact_featureflagsjni.so"
-            )
-            useLegacyPackaging = false
-        }
-    }
 }
 
 configurations.all {
@@ -111,15 +99,3 @@ react {
 // This file contains the generateAutolinking task and automation logic
 // ===================================================================================================
 apply(from = "${rootDir}/plugin/autolinking.gradle.kts")
-
-//subprojects {
-//    afterEvaluate {
-//        if (hasProperty("android")) {
-//            android {
-//                defaultConfig {
-//                    minSdk = 24
-//                }
-//            }
-//        }
-//    }
-//}
