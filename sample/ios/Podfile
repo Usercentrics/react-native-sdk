@@ -1,4 +1,4 @@
-# Resolve react_native_pods.rb com node para allow hoisting
+# Resolve react_native_pods.rb with Node to allow hoisting
 require Pod::Executable.execute_command('node', ['-p',
   'require.resolve(
     "react-native/scripts/react_native_pods.rb",
@@ -31,17 +31,25 @@ target 'sample' do
     :new_arch_enabled => $RCT_NEW_ARCH_ENABLED,
   )
 
+  # ✅ Test target: inherit search paths only, not full settings
+  target 'sampleTests' do
+    inherit! :search_paths
+  end
+
+  # ✅ Post-install hook (safe for CircleCI and macOS 13+)
   post_install do |installer|
     react_native_post_install(
       installer,
       config[:reactNativePath],
       :mac_catalyst_enabled => false
     )
-    
+
     # ========================================
     # APPLY NEW ARCHITECTURE CONFIGURATION
     # ========================================
     installer.pods_project.targets.each do |target|
+      next if target.name.to_s.include?('Tests')
+
       target.build_configurations.each do |config|
         # Apply New Architecture flags
         if $RCT_NEW_ARCH_ENABLED
@@ -55,15 +63,15 @@ target 'sample' do
           # Use Legacy Architecture
           config.build_settings['RCT_NEW_ARCH_ENABLED'] = '0'
         end
-        
+
         # Fix modular headers issues
         config.build_settings['CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES'] = 'YES'
         config.build_settings['DEFINES_MODULE'] = 'YES'
-        
+
         # Additional fixes for React Native 0.81
         config.build_settings['GCC_WARN_INHIBIT_ALL_WARNINGS'] = 'YES'
         config.build_settings['CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER'] = 'NO'
-        
+
         # C++ settings
         config.build_settings['CLANG_CXX_LANGUAGE_STANDARD'] = 'c++20'
         config.build_settings['CLANG_CXX_LIBRARY'] = 'libc++'

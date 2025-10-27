@@ -37,12 +37,17 @@ jobs:
 
   test-ios:
     needs: test-rn
-    runs-on: macos-13
+    runs-on: macos-14
+    env:
+      RCT_NEW_ARCH_ENABLED: 0
+      RCT_NO_LAUNCH_PACKAGER: 1
+      USE_METRO_BUNDLER: 0
+      FORCE_BUNDLING: 1
 
     steps:
       - uses: maxim-lobanov/setup-xcode@v1
         with:
-          xcode-version: '15.2'
+          xcode-version: '16.1'
 
       - name: Checkout
         uses: actions/checkout@v2
@@ -51,6 +56,12 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: ${{ env.NODE_JS_VERSION }}
+
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.2'
+          bundler-cache: true # Caches gems
 
       - name: Install SDK Dependencies
         run: yarn install --frozen-lockfile
@@ -62,13 +73,34 @@ jobs:
         working-directory: ./sample
         run: npm ci --legacy-peer-deps
 
-      - name: Install pods
+      - name: Bundle install (Ruby gems)
         working-directory: ./sample
-        run: cd ios && pod install
+        run: |
+          bundle config set path 'vendor/bundle'
+          bundle install --jobs 4 --retry 3
+          
+      - name: Install pods (via bundler)
+        working-directory: ./sample/ios
+        run: |
+          pod deintegrate
+          pod cache clean --all
+          bundle exec pod install --repo-update
+
+      - name: Clean Xcode Build Artifacts
+        run: |
+            rm -rf ~/Library/Developer/Xcode/DerivedData/*
 
       - name: Run tests
-        working-directory: ./sample
-        run: cd ios && xcodebuild -workspace sample.xcworkspace -scheme "sample" -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 14' test
+        working-directory: ./sample/ios
+        run: |
+          set -o pipefail && \
+          xcodebuild \
+            -workspace sample.xcworkspace \
+            -scheme "sample" \
+            -sdk iphonesimulator \
+            -destination 'platform=iOS Simulator,OS=latest,name=iPhone 16 Pro' \
+            -only-testing:sampleTests \
+            test | bundle exec xcpretty && exit ${PIPESTATUS[0]}
 
   test-android:
     needs: test-rn
