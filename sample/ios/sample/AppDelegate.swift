@@ -9,7 +9,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     _ application: UIApplication,
     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil
   ) -> Bool {
-    let bundleURL = self.bundleURL() ?? RCTBundleURLProvider.sharedSettings().jsBundleURL(forBundleRoot: "index")!
+    #if DEBUG
+    guard let bundleURL = RCTBundleURLProvider.sharedSettings().jsBundleURL(forBundleRoot: "index") else {
+      fatalError("Unable to find bundle URL")
+    }
+    #else
+    guard let bundleURL = Bundle.main.url(forResource: "main", withExtension: "jsbundle") else {
+      fatalError("Unable to find bundle URL")
+    }
+    #endif
     
     let rootView = RCTRootView(
       bundleURL: bundleURL,
@@ -31,13 +39,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     self.window?.makeKeyAndVisible()
 
     return true
-  }
-
-  func bundleURL() -> URL? {
-#if DEBUG
-    return RCTBundleURLProvider.sharedSettings().jsBundleURL(forBundleRoot: "index")
-#else
-    return Bundle.main.url(forResource: "main", withExtension: "jsbundle")
-#endif
   }
 }
