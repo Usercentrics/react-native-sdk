@@ -82,3 +82,13 @@ dependencies {
     androidTestImplementation("androidx.test:runner:1.4.0")
     androidTestImplementation("androidx.test:rules:1.4.0")
 }
+
+// Fix for Gradle task dependency issue with React Native autolinking
+// This ensures that packageReleaseResources task waits for generateReleaseResValues to complete
+afterEvaluate {
+    if (project.tasks.findByName("packageReleaseResources") != null && project.tasks.findByName(":usercentrics_react-native-sdk:generateReleaseResValues") != null) {
+        project.tasks.named("packageReleaseResources").configure {
+            dependsOn(":usercentrics_react-native-sdk:generateReleaseResValues")
+        }
+    }
+}
