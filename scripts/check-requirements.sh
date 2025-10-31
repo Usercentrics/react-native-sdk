@@ -147,11 +147,13 @@ if [ ! -z "$ANDROID_HOME" ] || [ ! -z "$ANDROID_SDK_ROOT" ]; then
         print_status "FAIL" "ADB not found" "Install Android SDK Platform Tools"
     fi
     
-    # Check for Android 33+ (required for compileSdkVersion 34)
-    if [ -d "$SDK_ROOT/platforms/android-33" ] || [ -d "$SDK_ROOT/platforms/android-34" ]; then
-        print_status "PASS" "Android SDK Platform found" "API 33+ available"
+    # Check for Android 34+ (required for compileSdkVersion and targetSdk 34)
+    if [ -d "$SDK_ROOT/platforms/android-34" ]; then
+        print_status "PASS" "Android SDK Platform found" "API 34 available"
+    elif [ -d "$SDK_ROOT/platforms/android-33" ]; then
+        print_status "WARN" "Android SDK Platform found" "API 33 available (API 34 recommended for compileSdkVersion 34)"
     else
-        print_status "FAIL" "Android SDK Platform missing" "Install Android API 33 or higher"
+        print_status "FAIL" "Android SDK Platform missing" "Install Android API 34 or higher"
     fi
     
     # Check build tools
@@ -194,8 +196,15 @@ fi
 if command -v kotlin >/dev/null 2>&1; then
     KOTLIN_VERSION=$(kotlin -version 2>&1 | grep -o '[0-9]\+\.[0-9]\+\.[0-9]\+')
     check_version "$KOTLIN_VERSION" "1.9.22" "Kotlin"
+    # Note: Kotlin 2.0.21 is recommended for this project
+    if [ ! -z "$KOTLIN_VERSION" ]; then
+        KOTLIN_MAJOR=$(echo $KOTLIN_VERSION | cut -d. -f1)
+        if [ "$KOTLIN_MAJOR" -ge 2 ]; then
+            print_status "PASS" "Kotlin 2.0+ detected" "Kotlin 2.0.21 is recommended"
+        fi
+    fi
 else
-    print_status "WARN" "Kotlin not found globally" "Will use version from Gradle"
+    print_status "WARN" "Kotlin not found globally" "Will use version from Gradle (Kotlin 2.0.21 recommended)"
 fi
 
 # ============================================================================

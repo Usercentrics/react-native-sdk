@@ -8,21 +8,22 @@
     "lint": "eslint .",
     "start": "react-native start",
     "test": "jest",
-    "postinstall": "patch-package",
+    "postinstall": "patch-package && ./scripts/fix-react-logger.sh",
     "android-build": "cd android && ./gradlew app:assembleDebug",
     "clean-and-build": "./scripts/clean-and-build.sh",
     "clean-all-caches": "../scripts/clean-all-caches.sh",
     "install-dependencies": "../scripts/install-dependencies.sh",
-    "fix-metro": "../scripts/fix-metro.sh"
+    "fix-sandbox": "./scripts/fix-xcode-sandbox.sh",
+    "fix-metro": "../scripts/fix-metro.sh",
+    "build-ios": "./scripts/test-ios-build.sh"
   },
   "dependencies": {
     "@react-navigation/native": "^6.1.18",
     "@react-navigation/native-stack": "^6.11.0",
-    "@usercentrics/react-native-sdk": "file:../",
     "install": "^0.13.0",
     "npm": "^11.6.0",
-    "react": "19.0.0",
-    "react-native": "^0.79.6",
+    "react": "19.1.0",
+    "react-native": "0.81.4",
     "react-native-safe-area-context": "5.6.1",
     "react-native-screens": "^4.16.0",
     "react-native-webview": "^13.16.0"
@@ -34,10 +35,10 @@
     "@react-native-community/cli": "18.0.0",
     "@react-native-community/cli-platform-android": "18.0.0",
     "@react-native-community/cli-platform-ios": "18.0.0",
-    "@react-native/babel-preset": "0.79.6",
-    "@react-native/eslint-config": "0.79.6",
-    "@react-native/metro-config": "0.79.6",
-    "@react-native/typescript-config": "0.79.6",
+    "@react-native/babel-preset": "0.81.4",
+    "@react-native/eslint-config": "0.81.4",
+    "@react-native/metro-config": "0.81.4",
+    "@react-native/typescript-config": "0.81.4",
     "@types/jest": "^29.5.13",
     "@types/react": "^19.0.0",
     "@types/react-test-renderer": "^19.0.0",
@@ -45,8 +46,8 @@
     "jest": "^29.6.3",
     "patch-package": "^8.0.0",
     "prettier": "2.8.8",
-    "react-test-renderer": "19.0.0",
-    "typescript": "^5.8.3"
+    "react-test-renderer": "19.1.0",
+    "typescript": "~5.3.0"
   },
   "engines": {
     "node": ">=18"
