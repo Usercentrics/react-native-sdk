@@ -25,22 +25,22 @@ The Usercentrics Apps SDK is a native Consent Management Platform solution for m
 ## 📋 Requirements
 
 ### Mobile Platforms
-* **Android 5.0 (API 21)** or higher
+* **Android 7.0 (API 24)** or higher
 * **iOS 11** or higher
 
 ### Development Environment
 * **Node.js 18.0+** (LTS recommended)
 * **npm 9.0+** or **Yarn 1.22+**
 * **TypeScript 5.1+**
-* **React 18.2+**
+* **React 18.2+** (React 19 supported)
 * **React Native 0.74.3+** (with Fabric support)
 
 ### Android Development
 * **Java 17+** (OpenJDK or Oracle JDK)
-* **Android SDK** with API 33+ platforms
+* **Android SDK** with API 34+ platforms
 * **Android NDK 25+**
-* **Gradle 8.2+**
-* **Kotlin 1.9.22+**
+* **Gradle 8.2+** (Gradle 8.13 used)
+* **Kotlin 1.9.22+** (Kotlin 2.0.21 recommended)
 * **Android Gradle Plugin 8.2+**
 
 ### iOS Development (macOS only)
