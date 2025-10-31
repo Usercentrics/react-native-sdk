@@ -1,5 +1,9 @@
 [Release Notes](https://docs.usercentrics.com/cmp_in_app_sdk/latest/about/history/)
 
+### 2.24.0 – Oct 31, 2025
+## React Native
+* Added Fabric renderer compatibility
+
 ### 2.23.3 – Oct 6, 2025
 ## React Native
 * Updated React Native to 0.79.6 to support 16 KB page sizes
