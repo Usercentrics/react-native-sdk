@@ -33,7 +33,7 @@ public extension UsercentricsOptions {
             options.networkMode = NetworkMode.initialize(from: networkModeValue)
         }
 
-        if let consentMediationValue = dictionary["networkMode"] as? Bool {
+        if let consentMediationValue = dictionary["consentMediation"] as? Bool {
             options.consentMediation = consentMediationValue
         }
         
