@@ -4,6 +4,13 @@
 ## React Native
 * Added Fabric renderer compatibility
 
+### 2.24.1 – Oct 31, 2025
+## Improvement
+* TCF 2.3 Support: Support the latest Transparency & Consent Framework 2.3.
+* TCF 2.3 Support: fixes about tcString
+* Special Features Section: Added support for the new Special Features/Purposes section.
+* Fix issue where the SDK failed to initialize offline.
+
 ### 2.23.3 – Oct 6, 2025
 ## React Native
 * Updated React Native to 0.79.6 to support 16 KB page sizes
