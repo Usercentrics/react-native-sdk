@@ -20,7 +20,6 @@ Pod::Spec.new do |s|
   s.dependency 'React-Core'
   s.dependency 'React-NativeModulesApple'
   s.dependency 'UsercentricsUI', "#{package['iosPackageVersion']}"
-  s.dependency 'RNScreens'
 
   # Base C++ configuration
   # Note: RCT_NEW_ARCH_ENABLED is inherited from parent project build settings
@@ -71,6 +70,7 @@ Pod::Spec.new do |s|
     'CLANG_CXX_LANGUAGE_STANDARD' => 'c++20',
     'CLANG_CXX_LIBRARY' => 'libc++',
     'OTHER_CPLUSPLUSFLAGS' => '-std=c++20 -stdlib=libc++ $(inherited)',
+    'GCC_PREPROCESSOR_DEFINITIONS' => '$(inherited)',
     'CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER' => 'NO',
     'CLANG_WARN_DOCUMENTATION_COMMENTS' => 'NO',
     'GCC_WARN_INHIBIT_ALL_WARNINGS' => 'YES'
