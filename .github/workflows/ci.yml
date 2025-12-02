@@ -32,6 +32,13 @@ jobs:
       - name: Run Tests
         run: yarn test
 
+      - name: Upload coverage reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-report
+          path: coverage/
+
       - name: Assert that every file that should be public has been exported
         run: ./scripts/assert_export.sh
 
@@ -99,8 +106,17 @@ jobs:
             -scheme "sample" \
             -sdk iphonesimulator \
             -destination 'platform=iOS Simulator,OS=latest,name=iPhone 16 Pro' \
+            -enableCodeCoverage YES \
+            -resultBundlePath TestResults.xcresult \
             -only-testing:sampleTests \
             test | bundle exec xcpretty && exit ${PIPESTATUS[0]}
+
+      - name: Upload iOS coverage
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ios-coverage
+          path: sample/ios/TestResults.xcresult
 
   test-android:
     needs: test-rn
@@ -134,4 +150,11 @@ jobs:
 
       - name: Run SDK Unit Tests
         working-directory: ./sample/android
-        run: ./gradlew :react-native-usercentrics:test
+        run: ./gradlew :react-native-usercentrics:koverXmlReport
+
+      - name: Upload Android coverage
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: android-coverage
+          path: android/build/reports/kover/
