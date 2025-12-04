@@ -2,6 +2,8 @@ name: release
 on:
   release:
     types: [created]
+env:
+  NODE_JS_VERSION: 20.19.5
 jobs:
   release:
     runs-on: ubuntu-latest
