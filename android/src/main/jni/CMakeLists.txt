@@ -1,8 +1,9 @@
 cmake_minimum_required(VERSION 3.13)
+project(rn_usercentrics)
 set(CMAKE_VERBOSE_MAKEFILE ON)
 
 # Set library name
-set(LIB_TARGET_NAME react_codegen_RNUsercentricsModule)
+set(LIB_TARGET_NAME rn_usercentrics)
 
 # Add compile options
 add_compile_options(
@@ -32,54 +33,44 @@ target_include_directories(
   .
 )
 
+# Find ReactAndroid package first (required for version detection)
+find_package(ReactAndroid REQUIRED CONFIG)
+
 # Link libraries based on React Native version
-if(ReactAndroid_VERSION_MINOR GREATER_EQUAL 76)
+if(DEFINED ReactAndroid_VERSION_MINOR AND ReactAndroid_VERSION_MINOR GREATER_EQUAL 76)
   target_link_libraries(
     ${LIB_TARGET_NAME}
     ReactAndroid::reactnative
     ReactAndroid::jsi
-    fbjni::fbjni
+    ReactAndroid::fbjni
+    android
+    log
   )
 else()
+  # Fallback for older RN versions or when version is not available
   target_link_libraries(
     ${LIB_TARGET_NAME}
-    fbjni
-    folly_runtime
-    glog
-    jsi
-    react_codegen_rncore
-    react_debug
-    react_nativemodule_core
-    react_render_core
-    react_render_debug
-    react_render_graphics
-    react_render_mapbuffer
-    react_render_componentregistry
-    react_utils
-    rrc_view
-    turbomodulejsijni
-    yoga
+    ReactAndroid::reactnative
+    ReactAndroid::jsi
+    android
+    log
   )
 endif()
 
-# Compile options based on React Native version
-if(ReactAndroid_VERSION_MINOR GREATER_EQUAL 80)
-  target_compile_reactnative_options(${LIB_TARGET_NAME} PRIVATE)
-else()
-  target_compile_options(
-    ${LIB_TARGET_NAME}
-    PRIVATE
-    -DLOG_TAG=\"ReactNative\"
-    -fexceptions
-    -frtti
-    -std=c++20
-    -Wall
-  )
-endif()
+# Compile options - use standard approach for compatibility
+target_compile_options(
+  ${LIB_TARGET_NAME}
+  PRIVATE
+  -DLOG_TAG=\"ReactNative\"
+  -fexceptions
+  -frtti
+  -std=c++20
+  -Wall
+)
 
 # Additional include directories
 target_include_directories(
- ${CMAKE_PROJECT_NAME}
- PUBLIC
+ ${LIB_TARGET_NAME}
+ PRIVATE
  ${CMAKE_CURRENT_SOURCE_DIR}
 )
