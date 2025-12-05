@@ -1,8 +1,8 @@
 [Release Notes](https://docs.usercentrics.com/cmp_in_app_sdk/latest/about/history/)
 
-### 2.24.0 – Oct 31, 2025
-## React Native
-* Added Fabric renderer compatibility
+### 2.24.2 – Dec 5, 2025
+## Improvement
+* Fix react native issues
 
 ### 2.24.1 – Oct 31, 2025
 ## Improvement
@@ -10,6 +10,10 @@
 * TCF 2.3 Support: fixes about tcString
 * Special Features Section: Added support for the new Special Features/Purposes section.
 * Fix issue where the SDK failed to initialize offline.
+
+### 2.24.0 – Oct 31, 2025
+## React Native
+* Added Fabric renderer compatibility
 
 ### 2.23.3 – Oct 6, 2025
 ## React Native

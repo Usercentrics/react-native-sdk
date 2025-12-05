@@ -319,7 +319,7 @@ class RNUsercentricsModuleTests: XCTestCase {
   func testDenyAllForTCF() {
     fakeUsercentrics.denyAllForTCFResponse = [.mock()]
 
-    module.denyAllForTCF(0, consentType: 0) { [unowned self] result in
+    module.denyAllForTCF(0, consentType: 0, unsavedPurposeLIDecisions: []) { [unowned self] result in
       guard
         let result = result as? [NSDictionary],
         let consent = result.first
@@ -343,7 +343,7 @@ class RNUsercentricsModuleTests: XCTestCase {
 
   func testDenyAllForTCFSecondLayer() {
     fakeUsercentrics.denyAllForTCFResponse = [.mock()]
-    module.denyAllForTCF(1, consentType: 1) { [unowned self] _ in
+    module.denyAllForTCF(1, consentType: 1, unsavedPurposeLIDecisions: []) { [unowned self] _ in
       XCTAssertEqual(.implicit, self.fakeUsercentrics.denyAllForTCFConsentType!)
       XCTAssertEqual(.secondLayer, self.fakeUsercentrics.denyAllForTCFFromLayer!)
     } reject: { _, _, _ in

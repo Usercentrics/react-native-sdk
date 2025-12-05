@@ -339,7 +339,8 @@ extension TCF2Settings {
                  acmV2Enabled: true,
                  selectedATPIds: [43,46,55],
                  resurfaceATPListChanged: false,
-                 atpListTitle: "Google Providers")
+                 atpListTitle: "Google Providers",
+                 maintainLegitimateInterest: false)
   }
 }
 
