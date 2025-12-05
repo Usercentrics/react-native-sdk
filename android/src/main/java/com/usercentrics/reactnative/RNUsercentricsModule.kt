@@ -152,7 +152,7 @@ internal class RNUsercentricsModule(
     override fun denyAllForTCF(fromLayer: Int, consentType: Int, promise: Promise) {
         promise.resolve(
             usercentricsProxy.instance.denyAllForTCF(
-                TCFDecisionUILayer.values()[fromLayer], UsercentricsConsentType.values()[consentType]
+                TCFDecisionUILayer.values()[fromLayer], UsercentricsConsentType.values()[consentType], emptyList()
             ).toWritableArray()
         )
     }

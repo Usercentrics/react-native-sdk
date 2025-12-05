@@ -113,7 +113,7 @@ final class UsercentricsManagerImplementation: UsercentricsManager {
     }
 
     func denyAllForTCF(fromLayer: TCFDecisionUILayer, consentType: UsercentricsConsentType) -> [UsercentricsServiceConsent] {
-        return UsercentricsCore.shared.denyAllForTCF(fromLayer: fromLayer, consentType: consentType)
+        return UsercentricsCore.shared.denyAllForTCF(fromLayer: fromLayer, consentType: consentType, unsavedPurposeLIDecisions: [])
     }
 
     func denyAll(consentType: UsercentricsConsentType) -> [UsercentricsServiceConsent] {
