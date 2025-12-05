@@ -149,10 +149,10 @@ internal class RNUsercentricsModule(
     }
 
     @ReactMethod
-    override fun denyAllForTCF(fromLayer: Int, consentType: Int, promise: Promise) {
+    override fun denyAllForTCF(fromLayer: Int, consentType: Int, unsavedPurposeLIDecisions: ReadableArray, promise: Promise) {
         promise.resolve(
             usercentricsProxy.instance.denyAllForTCF(
-                TCFDecisionUILayer.values()[fromLayer], UsercentricsConsentType.values()[consentType], emptyList()
+                TCFDecisionUILayer.values()[fromLayer], UsercentricsConsentType.values()[consentType], unsavedPurposeLIDecisions.deserializePurposeLIDecisionsMap()
             ).toWritableArray()
         )
     }

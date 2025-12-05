@@ -74,6 +74,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)denyAllForTCF:(NSInteger)fromLayer
           consentType:(NSInteger)consentType
+          unsavedPurposeLIDecisions:(NSArray<NSDictionary *> *)unsavedPurposeLIDecisions
               resolve:(RCTPromiseResolveBlock)resolve
                reject:(RCTPromiseRejectBlock)reject;
 

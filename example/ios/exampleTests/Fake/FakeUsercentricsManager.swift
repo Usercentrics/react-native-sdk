@@ -133,10 +133,12 @@ final class FakeUsercentricsManager: UsercentricsManager {
 
   var denyAllForTCFConsentType: UsercentricsConsentType?
   var denyAllForTCFFromLayer: TCFDecisionUILayer?
+  var denyAllForTCFUnsavedPurposeLIDecisions: [KotlinInt: KotlinBoolean]?
   var denyAllForTCFResponse: [UsercentricsServiceConsent]?
-  func denyAllForTCF(fromLayer: TCFDecisionUILayer, consentType: UsercentricsConsentType) -> [UsercentricsServiceConsent] {
+  func denyAllForTCF(fromLayer: TCFDecisionUILayer, consentType: UsercentricsConsentType, unsavedPurposeLIDecisions: [KotlinInt: KotlinBoolean]?) -> [UsercentricsServiceConsent] {
     self.denyAllForTCFConsentType = consentType
     self.denyAllForTCFFromLayer = fromLayer
+    self.denyAllForTCFUnsavedPurposeLIDecisions = unsavedPurposeLIDecisions
     return denyAllForTCFResponse!
   }
 

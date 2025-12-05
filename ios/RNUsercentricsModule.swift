@@ -157,9 +157,20 @@ class RNUsercentricsModule: NSObject {
     
     @objc func denyAllForTCF(_ fromLayer: Int,
                              consentType: Int,
+                             unsavedPurposeLIDecisions: [NSDictionary],
                              resolve: @escaping RCTPromiseResolveBlock,
                              reject: @escaping RCTPromiseRejectBlock) -> Void {
-        let services = usercentricsManager.denyAllForTCF(fromLayer: .initialize(from: fromLayer), consentType: .initialize(from: consentType))
+        var decisions: [KotlinInt: KotlinBoolean]? = nil
+        if !unsavedPurposeLIDecisions.isEmpty {
+            decisions = [:]
+            for dict in unsavedPurposeLIDecisions {
+                if let id = dict["id"] as? Int,
+                   let consent = dict["legitimateInterestConsent"] as? Bool {
+                    decisions?[KotlinInt(int: Int32(id))] = KotlinBoolean(bool: consent)
+                }
+            }
+        }
+        let services = usercentricsManager.denyAllForTCF(fromLayer: .initialize(from: fromLayer), consentType: .initialize(from: consentType), unsavedPurposeLIDecisions: decisions)
         resolve(services.toListOfDictionary())
     }
     
