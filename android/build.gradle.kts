@@ -11,6 +11,7 @@ val isHermesEnabled = BooleanProperty("hermesEnabled")
 plugins {
     id("com.android.library")
     id("kotlin-android")
+    id("org.jetbrains.kotlinx.kover") version "0.9.1"
 }
 
 if (isNewArchitectureEnabled) {
@@ -35,6 +36,11 @@ android {
             abiFilters += listOf("armeabi-v7a", "arm64-v8a", "x86", "x86_64")
         }
 
+    }
+
+    buildTypes {
+        getByName("debug") {
+        }
     }
 
     compileOptions {
