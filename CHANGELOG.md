@@ -1,4 +1,10 @@
 [Release Notes](https://docs.usercentrics.com/cmp_in_app_sdk/latest/about/history/)
+### 2.24.3 – Dec 18, 2025
+## Improvement
+* Updated CTV first layer CMP to fully align with TCF requirements by displaying purposes and stacks based on the Admin UI configuration, matching web and mobile behavior.
+* Added proper labels for Consent and Legitimate Interest toggles in the CTV second layer, resolving TCF policy check 23.
+* Introduced vendor storage information section (cookies and non-cookie access details) in the CTV second layer, addressing TCF policy check 24.
+* Changes apply to both Android and iOS CTV implementations.
 
 ### 2.24.2 – Dec 5, 2025
 ## Improvement
