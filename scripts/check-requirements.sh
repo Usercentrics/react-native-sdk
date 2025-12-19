@@ -56,6 +56,10 @@ check_version() {
     required_major=$(echo $required | cut -d. -f1)
     required_minor=$(echo $required | cut -d. -f2)
     
+    # Store version for logging
+    version_log=$(echo "Version check: $current vs $required")
+    eval "echo $version_log"
+    
     if [ "$current_major" -gt "$required_major" ] || 
        ([ "$current_major" -eq "$required_major" ] && [ "$current_minor" -ge "$required_minor" ]); then
         print_status "PASS" "$name version $current" "Required: >= $required"
