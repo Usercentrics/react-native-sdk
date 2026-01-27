@@ -20,42 +20,32 @@ internal class FakePromise : Promise {
         lock.countDown()
     }
 
-    override fun reject(code: String, message: String?) {
+    override fun reject(code: String?, message: String?) {
         rejectThrowable = RuntimeException("$code: $message")
         lock.countDown()
     }
 
-    override fun reject(code: String, throwable: Throwable?) {
+    override fun reject(code: String?, throwable: Throwable?) {
         rejectThrowable = throwable ?: RuntimeException(code)
         lock.countDown()
     }
 
-    override fun reject(code: String, message: String?, throwable: Throwable?) {
+    override fun reject(code: String?, message: String?, throwable: Throwable?) {
         rejectThrowable = throwable ?: RuntimeException("$code: $message")
         lock.countDown()
     }
 
-    override fun reject(throwable: Throwable) {
-        rejectThrowable = throwable
-        lock.countDown()
-    }
-
-    override fun reject(throwable: Throwable, userInfo: WritableMap) {
-        rejectThrowable = throwable
-        lock.countDown()
-    }
-
-    override fun reject(code: String, userInfo: WritableMap) {
+    override fun reject(code: String?, userInfo: WritableMap) {
         rejectThrowable = RuntimeException("$code: $userInfo")
         lock.countDown()
     }
 
-    override fun reject(code: String, throwable: Throwable?, userInfo: WritableMap) {
+    override fun reject(code: String?, throwable: Throwable?, userInfo: WritableMap) {
         rejectThrowable = throwable
         lock.countDown()
     }
 
-    override fun reject(code: String, message: String?, userInfo: WritableMap) {
+    override fun reject(code: String?, message: String?, userInfo: WritableMap) {
         rejectThrowable = RuntimeException("$code: $message")
         lock.countDown()
     }
