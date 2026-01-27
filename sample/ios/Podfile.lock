@@ -1750,10 +1750,10 @@ PODS:
     - SocketRocket
   - react-native-safe-area-context (5.6.1):
     - React-Core
-  - react-native-usercentrics (2.24.3):
+  - react-native-usercentrics (2.24.4):
     - React-Core
     - React-NativeModulesApple
-    - UsercentricsUI (= 2.24.3)
+    - UsercentricsUI (= 2.24.4)
   - react-native-webview (13.16.0):
     - boost
     - DoubleConversion
@@ -2317,9 +2317,9 @@ PODS:
     - SocketRocket
     - Yoga
   - SocketRocket (0.7.1)
-  - Usercentrics (2.24.3)
-  - UsercentricsUI (2.24.3):
-    - Usercentrics (= 2.24.3)
+  - Usercentrics (2.24.4)
+  - UsercentricsUI (2.24.4):
+    - Usercentrics (= 2.24.4)
   - Yoga (0.0.0)
 
 DEPENDENCIES:
