@@ -1,4 +1,12 @@
 [Release Notes](https://docs.usercentrics.com/cmp_in_app_sdk/latest/about/history/)
+### 2.24.4 – Jan 27, 2026
+## Improvement
+* Added a new feature allowing admins to show or hide the "Manage Settings" button
+* Added TCF Storage Disclosures and detailed storage information views for CTV.
+* Updated logic to ensure unsaved Legitimate Interest settings are correctly captured even after a user clicks "Deny All.
+* Added status text for Legitimate Interest (LI) toggles on Android TV and AppleTV to clearly show if they are enabled/disabled
+* UI improvements and fixes
+
 ### 2.24.3 – Dec 18, 2025
 ## Improvement
 * Updated CTV first layer CMP to fully align with TCF requirements by displaying purposes and stacks based on the Admin UI configuration, matching web and mobile behavior.
