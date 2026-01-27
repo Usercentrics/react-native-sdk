@@ -354,8 +354,8 @@ extension UsercentricsCustomization {
                  overlayOpacity: 123,
                  font: .mock(),
                  color: .mock(),
-                 buttonAlignment: .center,
-                 logoAltTag: "logoAltTag")
+                 logoAltTag: "logoAltTag",
+                 buttonAlignment: "center")
   }
 }
 

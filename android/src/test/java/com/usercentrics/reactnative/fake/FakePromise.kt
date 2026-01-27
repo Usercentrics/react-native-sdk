@@ -35,6 +35,16 @@ internal class FakePromise : Promise {
         lock.countDown()
     }
 
+    override fun reject(throwable: Throwable) {
+        rejectThrowable = throwable
+        lock.countDown()
+    }
+
+    override fun reject(throwable: Throwable, userInfo: WritableMap) {
+        rejectThrowable = throwable
+        lock.countDown()
+    }
+
     override fun reject(code: String?, userInfo: WritableMap) {
         rejectThrowable = RuntimeException("$code: $userInfo")
         lock.countDown()
