@@ -317,6 +317,7 @@ extension TCF2Settings {
                  dataSharedOutsideEUText: "dataSharedOutsideEUText",
                  vendorIdsOutsideEUList: [1,2,3],
                  firstLayerHideButtonDeny: true,
+                 hideButtonManageSettings: false,
                  secondLayerHideButtonDeny: true,
                  publisherCountryCode: "publisherCountryCode",
                  purposeOneTreatment: true,
@@ -353,7 +354,8 @@ extension UsercentricsCustomization {
                  overlayOpacity: 123,
                  font: .mock(),
                  color: .mock(),
-                 logoAltTag: "logoAltTag")
+                 logoAltTag: "logoAltTag",
+                 buttonAlignment: "center")
   }
 }
 
