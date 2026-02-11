@@ -1,13 +1,13 @@
 {
   "name": "@usercentrics/react-native-sdk",
-  "version": "2.24.1",
+  "version": "2.24.4",
   "description": "Usercentrics SDK",
   "homepage": "https://usercentrics.com",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "author": "Usercentrics <developer@usercentrics.com>",
   "iosPackageName": "react-native-usercentrics",
-  "iosPackageVersion": "2.24.1",
+  "iosPackageVersion": "2.24.4",
   "license": "SEE LICENSE IN LICENSE",
   "files": [
     "android",
@@ -46,7 +46,6 @@
   },
   "devDependencies": {
     "@babel/core": "^7.25.10",
-    "@babel/runtime": "^7.25.3",
     "@react-native-community/cli": "^18.0.0",
     "@react-native-community/cli-platform-android": "18.0.0",
     "@react-native-community/cli-platform-ios": "18.0.0",
@@ -102,14 +101,7 @@
   "bugs": {
     "url": "https://github.com/Usercentrics/react-native-sdk/issues"
   },
-  "dependencies": {
-    "hermes-engine": "^0.11.0",
-    "install": "^0.13.0",
-    "npm": "^11.6.0",
-    "react-native-safe-area-context": "^5.6.1",
-    "react-native-screens": "^4.16.0",
-    "react-native-webview": "^13.16.0"
-  },
+  "dependencies": {},
   "codegenConfig": {
     "name": "RNUsercentricsModule",
     "type": "all",

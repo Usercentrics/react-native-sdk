@@ -71,6 +71,7 @@ RCT_EXTERN_METHOD(acceptAll:(NSInteger *)consentType
 
 RCT_EXTERN_METHOD(denyAllForTCF:(NSInteger *)fromLayer
                   consentType:(NSInteger)consentType
+                  unsavedPurposeLIDecisions:(NSArray)unsavedPurposeLIDecisions
                   resolve:(RCTPromiseResolveBlock)resolve
                   reject:(RCTPromiseRejectBlock)reject)
 

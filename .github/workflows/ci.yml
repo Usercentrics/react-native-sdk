@@ -130,7 +130,7 @@ jobs:
 
   test-android:
     needs: test-rn
-    runs-on: macOS-13
+    runs-on: macOS-14
     env:
       GRADLE_VERSION: 8.13
 

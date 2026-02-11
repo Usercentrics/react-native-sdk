@@ -1,8 +1,22 @@
 [Release Notes](https://docs.usercentrics.com/cmp_in_app_sdk/latest/about/history/)
+### 2.24.4 – Jan 27, 2026
+## Improvement
+* Added a new feature allowing admins to show or hide the "Manage Settings" button
+* Added TCF Storage Disclosures and detailed storage information views for CTV.
+* Updated logic to ensure unsaved Legitimate Interest settings are correctly captured even after a user clicks "Deny All.
+* Added status text for Legitimate Interest (LI) toggles on Android TV and AppleTV to clearly show if they are enabled/disabled
+* UI improvements and fixes
 
-### 2.24.0 – Oct 31, 2025
-## React Native
-* Added Fabric renderer compatibility
+### 2.24.3 – Dec 18, 2025
+## Improvement
+* Updated CTV first layer CMP to fully align with TCF requirements by displaying purposes and stacks based on the Admin UI configuration, matching web and mobile behavior.
+* Added proper labels for Consent and Legitimate Interest toggles in the CTV second layer, resolving TCF policy check 23.
+* Introduced vendor storage information section (cookies and non-cookie access details) in the CTV second layer, addressing TCF policy check 24.
+* Changes apply to both Android and iOS CTV implementations.
+
+### 2.24.2 – Dec 5, 2025
+## Improvement
+* Fix react native issues
 
 ### 2.24.1 – Oct 31, 2025
 ## Improvement
@@ -10,6 +24,10 @@
 * TCF 2.3 Support: fixes about tcString
 * Special Features Section: Added support for the new Special Features/Purposes section.
 * Fix issue where the SDK failed to initialize offline.
+
+### 2.24.0 – Oct 31, 2025
+## React Native
+* Added Fabric renderer compatibility
 
 ### 2.23.3 – Oct 6, 2025
 ## React Native

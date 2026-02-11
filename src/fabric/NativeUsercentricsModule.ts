@@ -33,7 +33,7 @@ export interface Spec extends TurboModule {
   acceptAll(consentType: number): Promise<Array<Object>>;
   acceptAllForTCF(fromLayer: number, consentType: number): Promise<Array<Object>>;
   denyAll(consentType: number): Promise<Array<Object>>;
-  denyAllForTCF(fromLayer: number, consentType: number): Promise<Array<Object>>;
+  denyAllForTCF(fromLayer: number, consentType: number, unsavedPurposeLIDecisions: Array<Object>): Promise<Array<Object>>;
   
   saveDecisions(decisions: Array<Object>, consentType: number): Promise<Array<Object>>;
   saveDecisionsForTCF(

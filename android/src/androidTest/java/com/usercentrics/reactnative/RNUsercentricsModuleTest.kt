@@ -517,7 +517,7 @@ class RNUsercentricsModuleTest {
         val usercentricsSDK = mockk<UsercentricsSDK>()
         every {
             usercentricsSDK.denyAllForTCF(
-                any(), any()
+                any(), any(), any()
             )
         }.returns(GetConsentsMock.fakeWithData)
 
@@ -527,11 +527,12 @@ class RNUsercentricsModuleTest {
             RNUsercentricsModule(contextMock, usercentricsProxy, ReactContextProviderMock())
 
         val promise = FakePromise()
-        module.denyAllForTCF(0, 0, promise)
+        val emptyArray = JavaOnlyArray()
+        module.denyAllForTCF(0, 0, emptyArray, promise)
 
         verify(exactly = 1) {
             usercentricsSDK.denyAllForTCF(
-                TCFDecisionUILayer.FIRST_LAYER, UsercentricsConsentType.EXPLICIT
+                TCFDecisionUILayer.FIRST_LAYER, UsercentricsConsentType.EXPLICIT, null
             )
         }
 

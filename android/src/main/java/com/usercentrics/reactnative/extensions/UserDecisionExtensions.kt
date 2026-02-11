@@ -25,6 +25,19 @@ internal fun ReadableArray.deserializeUserDecision(): List<UserDecision> {
     return decisionList
 }
 
+internal fun ReadableArray.deserializePurposeLIDecisionsMap(): Map<Int, Boolean>? {
+    if (size() == 0) return null
+    val map = mutableMapOf<Int, Boolean>()
+    for (i in 0 until size()) {
+        getMap(i)?.let { readableMap ->
+            val id = readableMap.getInt("id")
+            val consent = readableMap.getBooleanOrNull("legitimateInterestConsent") ?: false
+            map[id] = consent
+        }
+    }
+    return map
+}
+
 internal fun ReadableMap.deserializeTCFUserDecisions(): TCFUserDecisions {
     val purposes = getArray("purposes")?.let { purpose ->
         val list = mutableListOf<TCFUserDecisionOnPurpose>()

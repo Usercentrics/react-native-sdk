@@ -5,6 +5,7 @@ import {
     CCPAData,
     TCFData,
     TCFDecisionUILayer,
+    TCFUserDecisionOnPurpose,
     TCFUserDecisions,
     UsercentricsAnalyticsEventType,
     UsercentricsCMPData,
@@ -105,9 +106,9 @@ export const Usercentrics = {
         return RNUsercentricsModule.denyAll(consentType);
     },
 
-    denyAllForTCF: async (fromLayer: TCFDecisionUILayer, consentType: UsercentricsConsentType): Promise<Array<UsercentricsServiceConsent>> => {
+    denyAllForTCF: async (fromLayer: TCFDecisionUILayer, consentType: UsercentricsConsentType, unsavedPurposeLIDecisions: TCFUserDecisionOnPurpose[] = []): Promise<Array<UsercentricsServiceConsent>> => {
         await RNUsercentricsModule.isReady();
-        return RNUsercentricsModule.denyAllForTCF(fromLayer, consentType);
+        return RNUsercentricsModule.denyAllForTCF(fromLayer, consentType, unsavedPurposeLIDecisions);
     },
 
     saveDecisions: async (decisions: UserDecision[], consentType: UsercentricsConsentType): Promise<Array<UsercentricsServiceConsent>> => {

@@ -317,6 +317,7 @@ extension TCF2Settings {
                  dataSharedOutsideEUText: "dataSharedOutsideEUText",
                  vendorIdsOutsideEUList: [1,2,3],
                  firstLayerHideButtonDeny: true,
+                 hideButtonManageSettings: false,
                  secondLayerHideButtonDeny: true,
                  publisherCountryCode: "publisherCountryCode",
                  purposeOneTreatment: true,
@@ -339,7 +340,8 @@ extension TCF2Settings {
                  acmV2Enabled: true,
                  selectedATPIds: [43,46,55],
                  resurfaceATPListChanged: false,
-                 atpListTitle: "Google Providers")
+                 atpListTitle: "Google Providers",
+                 maintainLegitimateInterest: false)
   }
 }
 
@@ -352,7 +354,8 @@ extension UsercentricsCustomization {
                  overlayOpacity: 123,
                  font: .mock(),
                  color: .mock(),
-                 logoAltTag: "logoAltTag")
+                 logoAltTag: "logoAltTag",
+                 buttonAlignment: "center")
   }
 }
 
