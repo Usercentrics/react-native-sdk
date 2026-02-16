@@ -5,12 +5,14 @@ import UIKit
 import React
 
 #if RCT_NEW_ARCH_ENABLED
-#if canImport(RNUsercentricsModuleSpec)
+#if canImport(ReactCodegen)
+// RN ≥ 0.79: getTurboModule: implemented in RNUsercentricsModule+TurboModule.mm (do not import ReactCodegen in Swift — C++ module)
+#elseif canImport(React_Codegen)
+// RN 0.78
+import React_Codegen
+#elseif canImport(RNUsercentricsModuleSpec)
 // RN ≤ 0.77
 import RNUsercentricsModuleSpec
-#else
-// RN ≥ 0.78
-import React_Codegen
 #endif
 #endif
 
@@ -229,13 +231,21 @@ class RNUsercentricsModule: NSObject {
 
 // MARK: - RCTBridgeModule & TurboModule Conformance
 #if RCT_NEW_ARCH_ENABLED
+#if canImport(React_Codegen)
+// RN 0.78: codegen-generated protocol
+extension RNUsercentricsModule: NativeUsercentricsModuleSpec {
+    func getTurboModule(jsInvoker: RCTJSInvoker) -> Any {
+        return self
+    }
+}
+#elseif canImport(RNUsercentricsModuleSpec)
+// RN ≤ 0.77
 extension RNUsercentricsModule: NativeUsercentricsSpec {
     func getTurboModule(jsInvoker: RCTJSInvoker) -> Any {
         return self
     }
 }
+#endif
 #else
-extension RNUsercentricsModule: RCTBridgeModule {
-
-}
+extension RNUsercentricsModule: RCTBridgeModule {}
 #endif
