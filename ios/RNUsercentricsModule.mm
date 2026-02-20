@@ -60,47 +60,47 @@ RCT_EXTERN_METHOD(changeLanguage:(NSString *)language
                   resolve:(RCTPromiseResolveBlock)resolve
                   reject:(RCTPromiseRejectBlock)reject)
 
-RCT_EXTERN_METHOD(acceptAllForTCF:(NSInteger *)fromLayer
-                  consentType:(NSInteger)consentType
+RCT_EXTERN_METHOD(acceptAllForTCF:(double)fromLayer
+                  consentType:(double)consentType
                   resolve:(RCTPromiseResolveBlock)resolve
                   reject:(RCTPromiseRejectBlock)reject)
 
-RCT_EXTERN_METHOD(acceptAll:(NSInteger *)consentType
+RCT_EXTERN_METHOD(acceptAll:(double)consentType
                   resolve:(RCTPromiseResolveBlock)resolve
                   reject:(RCTPromiseRejectBlock)reject)
 
-RCT_EXTERN_METHOD(denyAllForTCF:(NSInteger *)fromLayer
-                  consentType:(NSInteger)consentType
+RCT_EXTERN_METHOD(denyAllForTCF:(double)fromLayer
+                  consentType:(double)consentType
                   unsavedPurposeLIDecisions:(NSArray)unsavedPurposeLIDecisions
                   resolve:(RCTPromiseResolveBlock)resolve
                   reject:(RCTPromiseRejectBlock)reject)
 
-RCT_EXTERN_METHOD(denyAll:(NSInteger *)consentType
+RCT_EXTERN_METHOD(denyAll:(double)consentType
                   resolve:(RCTPromiseResolveBlock)resolve
                   reject:(RCTPromiseRejectBlock)reject)
 
 RCT_EXTERN_METHOD(saveDecisionsForTCF:(NSDictionary *)tcfDecisions
-                  fromLayer:(NSInteger)fromLayer
+                  fromLayer:(double)fromLayer
                   serviceDecisions:(NSArray)serviceDecisions
-                  consentType:(NSInteger)consentType
+                  consentType:(double)consentType
                   resolve:(RCTPromiseResolveBlock)resolve
                   reject:(RCTPromiseRejectBlock)reject)
 
 RCT_EXTERN_METHOD(saveDecisions:(NSArray)serviceDecisions
-                  consentType:(NSInteger)consentType
+                  consentType:(double)consentType
                   resolve:(RCTPromiseResolveBlock)resolve
                   reject:(RCTPromiseRejectBlock)reject)
 
 RCT_EXTERN_METHOD(saveOptOutForCCPA:(BOOL *)isOptedOut
-                  consentType:(NSInteger)consentType
+                  consentType:(double)consentType
                   resolve:(RCTPromiseResolveBlock)resolve
                   reject:(RCTPromiseRejectBlock)reject)
 
-RCT_EXTERN_METHOD(setCMPId:(NSInteger *)id)
+RCT_EXTERN_METHOD(setCMPId:(double)id)
 
 RCT_EXTERN_METHOD(setABTestingVariant:(NSString *)variant)
 
-RCT_EXTERN_METHOD(track:(NSInteger *)event)
+RCT_EXTERN_METHOD(track:(double)event)
 
 RCT_EXTERN_METHOD(clearUserSession:(RCTPromiseResolveBlock)resolve
                   reject:(RCTPromiseRejectBlock)reject)

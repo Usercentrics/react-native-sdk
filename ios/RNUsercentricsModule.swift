@@ -81,7 +81,7 @@ class RNUsercentricsModule: NSObject {
         }
     }
     
-    @objc func setCMPId(_ id: Int) -> Void {
+    @objc func setCMPId(_ id: Double) -> Void {
         usercentricsManager.setCMPId(id: Int32(id))
     }
 
@@ -139,24 +139,24 @@ class RNUsercentricsModule: NSObject {
         }
     }
     
-    @objc func acceptAllForTCF(_ fromLayer: Int,
-                               consentType: Int,
+    @objc func acceptAllForTCF(_ fromLayer: Double,
+                               consentType: Double,
                                resolve: @escaping RCTPromiseResolveBlock,
                                reject: @escaping RCTPromiseRejectBlock) -> Void {
-        let services = usercentricsManager.acceptAllForTCF(fromLayer: TCFDecisionUILayer.initialize(from: fromLayer),
-                                                           consentType: UsercentricsConsentType.initialize(from: consentType))
+        let services = usercentricsManager.acceptAllForTCF(fromLayer: TCFDecisionUILayer.initialize(from: Int(fromLayer)),
+                                                           consentType: UsercentricsConsentType.initialize(from: Int(consentType)))
         resolve(services.toListOfDictionary())
     }
     
-    @objc func acceptAll(_ consentType: Int,
+    @objc func acceptAll(_ consentType: Double,
                          resolve: @escaping RCTPromiseResolveBlock,
                          reject: @escaping RCTPromiseRejectBlock) -> Void {
-        let services = usercentricsManager.acceptAll(consentType: UsercentricsConsentType.initialize(from: consentType))
+        let services = usercentricsManager.acceptAll(consentType: UsercentricsConsentType.initialize(from: Int(consentType)))
         resolve(services.toListOfDictionary())
     }
     
-    @objc func denyAllForTCF(_ fromLayer: Int,
-                             consentType: Int,
+    @objc func denyAllForTCF(_ fromLayer: Double,
+                             consentType: Double,
                              unsavedPurposeLIDecisions: [NSDictionary],
                              resolve: @escaping RCTPromiseResolveBlock,
                              reject: @escaping RCTPromiseRejectBlock) -> Void {
@@ -170,51 +170,51 @@ class RNUsercentricsModule: NSObject {
                 }
             }
         }
-        let services = usercentricsManager.denyAllForTCF(fromLayer: .initialize(from: fromLayer), consentType: .initialize(from: consentType), unsavedPurposeLIDecisions: decisions)
+        let services = usercentricsManager.denyAllForTCF(fromLayer: .initialize(from: Int(fromLayer)), consentType: .initialize(from: Int(consentType)), unsavedPurposeLIDecisions: decisions)
         resolve(services.toListOfDictionary())
     }
     
-    @objc func denyAll(_ consentType: Int,
+    @objc func denyAll(_ consentType: Double,
                        resolve: @escaping RCTPromiseResolveBlock,
                        reject: @escaping RCTPromiseRejectBlock) -> Void {
-        let services = usercentricsManager.denyAll(consentType: .initialize(from: consentType))
+        let services = usercentricsManager.denyAll(consentType: .initialize(from: Int(consentType)))
         resolve(services.toListOfDictionary())
     }
     
     @objc func saveDecisionsForTCF(_ tcfDecisions: NSDictionary,
-                                   fromLayer: Int,
+                                   fromLayer: Double,
                                    serviceDecisions: [NSDictionary],
-                                   consentType: Int,
+                                   consentType: Double,
                                    resolve: @escaping RCTPromiseResolveBlock,
                                    reject: @escaping RCTPromiseRejectBlock) -> Void {
         
         let services = usercentricsManager.saveDecisionsForTCF(
             tcfDecisions: TCFUserDecisions(from: tcfDecisions),
-            fromLayer: .initialize(from: fromLayer),
+            fromLayer: .initialize(from: Int(fromLayer)),
             serviceDecisions: serviceDecisions.compactMap { UserDecision(from: $0) },
-            consentType: .initialize(from: consentType))
+            consentType: .initialize(from: Int(consentType)))
         resolve(services.toListOfDictionary())
         
     }
     
     @objc func saveDecisions(_ decisions: [NSDictionary],
-                             consentType: Int,
+                             consentType: Double,
                              resolve: @escaping RCTPromiseResolveBlock,
                              reject: @escaping RCTPromiseRejectBlock) -> Void {
-        let services = usercentricsManager.saveDecisions(decisions: decisions.compactMap { UserDecision.init(from: $0) }, consentType: .initialize(from: consentType))
+        let services = usercentricsManager.saveDecisions(decisions: decisions.compactMap { UserDecision.init(from: $0) }, consentType: .initialize(from: Int(consentType)))
         resolve(services.toListOfDictionary())
     }
     
     @objc func saveOptOutForCCPA(_ isOptedOut: Bool,
-                                 consentType: Int,
+                                 consentType: Double,
                                  resolve: @escaping RCTPromiseResolveBlock,
                                  reject: @escaping RCTPromiseRejectBlock) -> Void {
-        let services = usercentricsManager.saveOptOutForCCPA(isOptedOut: isOptedOut, consentType: .initialize(from: consentType))
+        let services = usercentricsManager.saveOptOutForCCPA(isOptedOut: isOptedOut, consentType: .initialize(from: Int(consentType)))
         resolve(services.toListOfDictionary())
     }
 
-    @objc func track(_ event: Int) -> Void {
-        guard let usercentricsAnalyticsEventType = UsercentricsAnalyticsEventType.initialize(from: event) else { return }
+    @objc func track(_ event: Double) -> Void {
+        guard let usercentricsAnalyticsEventType = UsercentricsAnalyticsEventType.initialize(from: Int(event)) else { return }
         usercentricsManager.track(event: usercentricsAnalyticsEventType)
     }
     
