@@ -1,4 +1,4 @@
-val usercentricsVersion = "2.24.4"
+val usercentricsVersion = "2.25.0"
 val reactNativeVersion = "+"
 
 fun BooleanProperty(name: String): Boolean {
