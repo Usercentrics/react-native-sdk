@@ -1,0 +1,30 @@
+---
+description: React Native patterns for SDK and sample apps
+globs: "**/*.tsx,**/*.jsx"
+alwaysApply: false
+---
+
+# React Native Patterns
+
+## SDK Bridge Layer
+
+- The SDK exposes a singleton `Usercentrics` object (not a React component).
+- Native communication goes through `NativeModules` / TurboModules, not direct native calls.
+- All native method signatures must match across TS spec, Kotlin, and Swift.
+
+## Sample App
+
+- The sample app in `sample/` is the canonical integration test app.
+- Metro config uses `watchFolders` to include the parent SDK directory.
+- `react-native.config.js` in sample links back to the parent SDK for auto-linking.
+
+## Component Patterns
+
+- Functional components only. No class components.
+- Use React hooks for state and lifecycle.
+- Keep screen components in a flat structure.
+
+## Navigation
+
+- The sample app uses React Navigation for screen routing.
+- Screens: Home, CustomUI, CustomizationExamples, WebviewIntegration.

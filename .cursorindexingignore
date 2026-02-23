@@ -1,0 +1,48 @@
+# === Lock files (large, not useful for indexing) ===
+package-lock.json
+sample/package-lock.json
+example/package-lock.json
+**/Podfile.lock
+**/Gemfile.lock
+yarn.lock
+
+# === Xcode project files (huge, binary-like) ===
+**/*.pbxproj
+**/*.xcworkspacedata
+
+# === Legacy & secondary sample apps ===
+legacy-sample/
+example/
+
+# === Gradle wrapper binaries ===
+**/gradle/wrapper/gradle-wrapper.jar
+
+# === Codegen / JNI generated files ===
+android/src/main/jni/
+sample/ios/build/generated/
+
+# === GitHub templates & workflows ===
+.github/ISSUE_TEMPLATE/
+
+# === Patch files ===
+sample/patches/
+
+# === Ruby / CocoaPods config ===
+sample/Gemfile
+sample/.ruby-version
+
+# === Script files (utility, not core logic) ===
+scripts/
+sample/scripts/
+
+# === License / changelog ===
+LICENSE
+CHANGELOG.md
+
+# === Xcode build-phase scripts ===
+**/*.xctestplan
+
+# === Android generated ===
+android/build.gradle.kts
+android/settings.gradle.kts
+android/gradle.properties

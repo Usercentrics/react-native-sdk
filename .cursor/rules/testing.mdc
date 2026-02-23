@@ -1,0 +1,33 @@
+---
+description: Testing conventions for the SDK
+globs: "**/__tests__/**,**/*.test.*,**/sampleTests/**,**/src/test/**,**/src/androidTest/**"
+alwaysApply: false
+---
+
+# Testing
+
+## JavaScript / TypeScript (Jest)
+
+- Tests live in `src/__tests__/`.
+- Jest config is in `package.json` under the `jest` key (preset: `react-native`).
+- Mock native modules in `src/__tests__/mocks.ts`.
+- Run with `yarn test`.
+
+## iOS (XCTest)
+
+- Tests live in `sample/ios/sampleTests/`.
+- Written in Swift, targeting the sample app scheme.
+- Run via `xcodebuild test` against `sample.xcworkspace`.
+
+## Android (JUnit + MockK)
+
+- Unit tests: `android/src/test/`.
+- Instrumented tests: `android/src/androidTest/`.
+- Run via `./gradlew :react-native-usercentrics:test` from `sample/android/`.
+
+## Guidelines
+
+- Test the public API surface, not internal implementation details.
+- Native bridge methods should have corresponding tests on both platforms.
+- When adding a new public method to `Usercentrics`, add a Jest test and at minimum one native platform test.
+- Keep mocks minimal — only mock the native module boundary.

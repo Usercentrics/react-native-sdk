@@ -1,0 +1,57 @@
+---
+description: Security best practices and Snyk compliance rules
+alwaysApply: true
+---
+
+# Security & Snyk Compliance
+
+Snyk runs in CI pipelines to scan for vulnerabilities. Follow these rules to avoid introducing issues.
+
+## Dependency Security
+
+- **Never** pin exact versions of transitive dependencies to work around vulnerabilities — fix at the source.
+- Keep dependencies up to date. Prefer `^` ranges in `package.json` to allow patch updates.
+- Do not add dependencies unless strictly necessary. This SDK has **zero** runtime dependencies by design.
+- When adding devDependencies, verify they don't have known critical/high CVEs (`npx snyk test` locally).
+- Never commit lock files with known vulnerable dependency resolutions without a remediation plan.
+
+## Secrets & Credentials
+
+- **Never** hardcode API keys, tokens, secrets, or credentials in source code.
+- Never commit `.env` files, `google-services.json`, keystores (`*.jks`, `*.keystore`), or private keys.
+- Use environment variables for any sensitive configuration in CI/CD.
+- If a secret is needed in a sample app, use a placeholder value and document the setup.
+
+## Code Security (Snyk Code)
+
+- Avoid `eval()`, `Function()` constructor, and dynamic code execution.
+- Never use `dangerouslySetInnerHTML` without sanitization.
+- Sanitize and validate all data crossing the native bridge boundary.
+- Do not disable SSL/TLS certificate validation in any code.
+- Avoid hardcoded IP addresses or URLs pointing to internal infrastructure.
+- Use parameterized queries — never concatenate user input into commands or queries.
+
+## Native Code Security
+
+### iOS
+- Do not disable App Transport Security (ATS) in production.
+- Avoid storing sensitive data in `UserDefaults` — use Keychain for secrets.
+- Do not log sensitive user data (PII, consent tokens) in release builds.
+
+### Android
+- Do not set `android:debuggable="true"` in release manifests.
+- Do not set `android:allowBackup="true"` without encrypting backup data.
+- Avoid using `MODE_WORLD_READABLE` or `MODE_WORLD_WRITEABLE` for file storage.
+- Do not log sensitive data with `Log.d`/`Log.v` in release builds — use `Log.e` sparingly.
+- Use `ProGuard`/`R8` for release builds to strip debug info.
+
+## Open Source License Compliance
+
+- Only add dependencies with licenses compatible with Apache 2.0 (this project's license).
+- Snyk also checks license compliance. Avoid GPL-licensed dependencies.
+
+## Supply Chain
+
+- Always use `--frozen-lockfile` / `npm ci` in CI to ensure reproducible builds.
+- Do not run arbitrary `postinstall` scripts from untrusted packages.
+- Review new dependencies before adding them — check download counts, maintenance status, and known issues.

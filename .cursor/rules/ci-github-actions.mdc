@@ -1,0 +1,34 @@
+---
+description: CI/CD and GitHub Actions conventions
+globs: '.github/**/*.yml,.github/**/*.yaml'
+alwaysApply: false
+---
+
+# CI/CD — GitHub Actions
+
+## Workflows
+
+- **`ci.yml`** — Runs on PRs to `master`. Jobs: `test-rn`, `test-ios`, `test-android`.
+- **`release.yml`** — Triggers on GitHub release creation. Publishes to npm.
+
+## CI Jobs
+
+### test-rn (Ubuntu)
+
+- Node 20, `yarn install --frozen-lockfile`, `yarn compile`, `yarn test`, `assert_export.sh`.
+
+### test-ios (macOS 14)
+
+- Xcode 16.1, Ruby 3.2, CocoaPods via Bundler, `xcodebuild test` on iPhone 16 Pro simulator.
+
+### test-android (macOS 14)
+
+- Java 17, Gradle 8.13, `./gradlew :react-native-usercentrics:test`.
+
+## Conventions
+
+- Always use `--frozen-lockfile` (yarn) or `npm ci` (npm) for deterministic installs.
+- Use pinned action versions (`@v1`, `@v2`, `@v4`) — prefer SHA pinning for security-critical actions.
+- Do not store secrets in workflow files. Use GitHub Secrets and reference via `${{ secrets.NAME }}`.
+- Snyk scanning runs in the pipeline — ensure no new critical/high vulnerabilities are introduced.
+- Keep CI fast: run JS tests first (`test-rn`), gate native tests behind it with `needs: test-rn`.
