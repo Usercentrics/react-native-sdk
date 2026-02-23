@@ -234,7 +234,7 @@ extension SecondLayer {
 extension ConsentDisclosureObject {
 
   static func mock() -> ConsentDisclosureObject {
-    return .init(disclosures: [.mock()])
+    return .init(disclosures: [.mock()], sdks: [])
   }
 }
 
