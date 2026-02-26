@@ -268,7 +268,8 @@ const disclosure: ConsentDisclosure = {
 }
 
 const consentDisclosureObject: ConsentDisclosureObject = {
-    disclosures: [disclosure]
+    disclosures: [disclosure],
+    sdks: [],
 }
 
 const ucService: UsercentricsService = {

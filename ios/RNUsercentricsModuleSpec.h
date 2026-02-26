@@ -52,51 +52,51 @@ NS_ASSUME_NONNULL_BEGIN
                      reject:(RCTPromiseRejectBlock)reject;
 
 // Configuration Setters
-- (void)setCMPId:(NSInteger)cmpId;
+- (void)setCMPId:(double)cmpId;
 - (void)setABTestingVariant:(NSString *)variant;
 - (void)changeLanguage:(NSString *)language
                resolve:(RCTPromiseResolveBlock)resolve
                 reject:(RCTPromiseRejectBlock)reject;
 
 // Consent Actions
-- (void)acceptAll:(NSInteger)consentType
+- (void)acceptAll:(double)consentType
           resolve:(RCTPromiseResolveBlock)resolve
            reject:(RCTPromiseRejectBlock)reject;
 
-- (void)acceptAllForTCF:(NSInteger)fromLayer
-            consentType:(NSInteger)consentType
+- (void)acceptAllForTCF:(double)fromLayer
+            consentType:(double)consentType
                 resolve:(RCTPromiseResolveBlock)resolve
                  reject:(RCTPromiseRejectBlock)reject;
 
-- (void)denyAll:(NSInteger)consentType
+- (void)denyAll:(double)consentType
         resolve:(RCTPromiseResolveBlock)resolve
          reject:(RCTPromiseRejectBlock)reject;
 
-- (void)denyAllForTCF:(NSInteger)fromLayer
-          consentType:(NSInteger)consentType
+- (void)denyAllForTCF:(double)fromLayer
+          consentType:(double)consentType
           unsavedPurposeLIDecisions:(NSArray<NSDictionary *> *)unsavedPurposeLIDecisions
               resolve:(RCTPromiseResolveBlock)resolve
                reject:(RCTPromiseRejectBlock)reject;
 
 - (void)saveDecisions:(NSArray<NSDictionary *> *)decisions
-          consentType:(NSInteger)consentType
+          consentType:(double)consentType
               resolve:(RCTPromiseResolveBlock)resolve
                reject:(RCTPromiseRejectBlock)reject;
 
 - (void)saveDecisionsForTCF:(NSDictionary *)tcfDecisions
-                  fromLayer:(NSInteger)fromLayer
+                  fromLayer:(double)fromLayer
               saveDecisions:(NSArray<NSDictionary *> *)saveDecisions
-                consentType:(NSInteger)consentType
+                consentType:(double)consentType
                     resolve:(RCTPromiseResolveBlock)resolve
                      reject:(RCTPromiseRejectBlock)reject;
 
 - (void)saveOptOutForCCPA:(BOOL)isOptedOut
-              consentType:(NSInteger)consentType
+              consentType:(double)consentType
                   resolve:(RCTPromiseResolveBlock)resolve
                    reject:(RCTPromiseRejectBlock)reject;
 
 // Analytics
-- (void)track:(NSInteger)event;
+- (void)track:(double)event;
 
 @end
 

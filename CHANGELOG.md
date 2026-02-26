@@ -1,4 +1,9 @@
 [Release Notes](https://docs.usercentrics.com/cmp_in_app_sdk/latest/about/history/)
+### 2.25.0 – Feb 23, 2026
+## Improvement
+* Added `specialPurposes` and `optOut` fields to TCF vendor disclosures for detailed storage information
+* Added SDKs section in the second layer UI with name and usage
+
 ### 2.24.4 – Jan 27, 2026
 ## Improvement
 * Added a new feature allowing admins to show or hide the "Manage Settings" button

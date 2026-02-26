@@ -95,8 +95,8 @@ internal class RNUsercentricsModule(
     }
 
     @ReactMethod
-    override fun setCMPId(id: Int) {
-        usercentricsProxy.instance.setCMPId(id)
+    override fun setCMPId(id: Double) {
+        usercentricsProxy.instance.setCMPId(id.toInt())
     }
 
     @ReactMethod
@@ -131,37 +131,37 @@ internal class RNUsercentricsModule(
     }
 
     @ReactMethod
-    override fun acceptAllForTCF(fromLayer: Int, consentType: Int, promise: Promise) {
+    override fun acceptAllForTCF(fromLayer: Double, consentType: Double, promise: Promise) {
         promise.resolve(
             usercentricsProxy.instance.acceptAllForTCF(
-                TCFDecisionUILayer.values()[fromLayer], UsercentricsConsentType.values()[consentType]
+                TCFDecisionUILayer.values()[fromLayer.toInt()], UsercentricsConsentType.values()[consentType.toInt()]
             ).toWritableArray()
         )
     }
 
     @ReactMethod
-    override fun acceptAll(consentType: Int, promise: Promise) {
+    override fun acceptAll(consentType: Double, promise: Promise) {
         promise.resolve(
             usercentricsProxy.instance.acceptAll(
-                UsercentricsConsentType.values()[consentType]
+                UsercentricsConsentType.values()[consentType.toInt()]
             ).toWritableArray()
         )
     }
 
     @ReactMethod
-    override fun denyAllForTCF(fromLayer: Int, consentType: Int, unsavedPurposeLIDecisions: ReadableArray, promise: Promise) {
+    override fun denyAllForTCF(fromLayer: Double, consentType: Double, unsavedPurposeLIDecisions: ReadableArray, promise: Promise) {
         promise.resolve(
             usercentricsProxy.instance.denyAllForTCF(
-                TCFDecisionUILayer.values()[fromLayer], UsercentricsConsentType.values()[consentType], unsavedPurposeLIDecisions.deserializePurposeLIDecisionsMap()
+                TCFDecisionUILayer.values()[fromLayer.toInt()], UsercentricsConsentType.values()[consentType.toInt()], unsavedPurposeLIDecisions.deserializePurposeLIDecisionsMap()
             ).toWritableArray()
         )
     }
 
     @ReactMethod
-    override fun denyAll(consentType: Int, promise: Promise) {
+    override fun denyAll(consentType: Double, promise: Promise) {
         promise.resolve(
             usercentricsProxy.instance.denyAll(
-                UsercentricsConsentType.values()[consentType]
+                UsercentricsConsentType.values()[consentType.toInt()]
             ).toWritableArray()
         )
     }
@@ -169,42 +169,42 @@ internal class RNUsercentricsModule(
     @ReactMethod
     override fun saveDecisionsForTCF(
         tcfDecisions: ReadableMap,
-        fromLayer: Int,
+        fromLayer: Double,
         saveDecisions: ReadableArray,
-        consentType: Int,
+        consentType: Double,
         promise: Promise
     ) {
         promise.resolve(
             usercentricsProxy.instance.saveDecisionsForTCF(
                 tcfDecisions.deserializeTCFUserDecisions(),
-                TCFDecisionUILayer.values()[fromLayer],
+                TCFDecisionUILayer.values()[fromLayer.toInt()],
                 saveDecisions.deserializeUserDecision(),
-                UsercentricsConsentType.values()[consentType]
+                UsercentricsConsentType.values()[consentType.toInt()]
             ).toWritableArray()
         )
     }
 
     @ReactMethod
-    override fun saveDecisions(decisions: ReadableArray, consentType: Int, promise: Promise) {
+    override fun saveDecisions(decisions: ReadableArray, consentType: Double, promise: Promise) {
         promise.resolve(
             usercentricsProxy.instance.saveDecisions(
-                decisions.deserializeUserDecision(), UsercentricsConsentType.values()[consentType]
+                decisions.deserializeUserDecision(), UsercentricsConsentType.values()[consentType.toInt()]
             ).toWritableArray()
         )
     }
 
     @ReactMethod
-    override fun saveOptOutForCCPA(isOptedOut: Boolean, consentType: Int, promise: Promise) {
+    override fun saveOptOutForCCPA(isOptedOut: Boolean, consentType: Double, promise: Promise) {
         promise.resolve(
             usercentricsProxy.instance.saveOptOutForCCPA(
-                isOptedOut, UsercentricsConsentType.values()[consentType]
+                isOptedOut, UsercentricsConsentType.values()[consentType.toInt()]
             ).toWritableArray()
         )
     }
 
     @ReactMethod
-    override fun track(event: Int) {
-        usercentricsProxy.instance.track(UsercentricsAnalyticsEventType.values()[event])
+    override fun track(event: Double) {
+        usercentricsProxy.instance.track(UsercentricsAnalyticsEventType.values()[event.toInt()])
     }
 
     @ReactMethod

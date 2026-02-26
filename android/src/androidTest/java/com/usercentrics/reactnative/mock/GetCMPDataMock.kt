@@ -88,7 +88,8 @@ internal object GetCMPDataMock {
                         domain = "domain",
                         description = "description",
                     )
-                )
+                ),
+                sdks = listOf()
             ),
             isHidden = false,
         )
@@ -628,17 +629,20 @@ internal object GetCMPDataMock {
             "isDeactivated" to false,
             "disableLegalBasis" to false,
             "technologyUsed" to listOf("Cookies", "Pixel Tags"),
-            "deviceStorage" to listOf(
-                mapOf(
-                    "identifier" to "identifier",
-                    "type" to 2,
-                    "name" to "name",
-                    "maxAgeSeconds" to 123123L,
-                    "cookieRefresh" to true,
-                    "purposes" to listOf(1, 2, 3),
-                    "domain" to "domain",
-                    "description" to "description",
-                )
+            "deviceStorage" to mapOf(
+                "disclosures" to listOf(
+                    mapOf(
+                        "identifier" to "identifier",
+                        "type" to 2,
+                        "name" to "name",
+                        "maxAgeSeconds" to 123123L,
+                        "cookieRefresh" to true,
+                        "purposes" to listOf(1, 2, 3),
+                        "domain" to "domain",
+                        "description" to "description",
+                    )
+                ),
+                "sdks" to emptyList<Map<String, Any>>()
             ),
             "isHidden" to false,
         )

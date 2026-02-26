@@ -55,7 +55,7 @@ abstract class RNUsercentricsModuleSpec internal constructor(context: ReactAppli
     abstract fun getABTestingVariant(promise: Promise)
 
     @ReactMethod
-    abstract fun setCMPId(id: Int)
+    abstract fun setCMPId(id: Double)
 
     @ReactMethod
     abstract fun setABTestingVariant(variant: String)
@@ -64,34 +64,34 @@ abstract class RNUsercentricsModuleSpec internal constructor(context: ReactAppli
     abstract fun changeLanguage(language: String, promise: Promise)
 
     @ReactMethod
-    abstract fun acceptAll(consentType: Int, promise: Promise)
+    abstract fun acceptAll(consentType: Double, promise: Promise)
 
     @ReactMethod
-    abstract fun acceptAllForTCF(fromLayer: Int, consentType: Int, promise: Promise)
+    abstract fun acceptAllForTCF(fromLayer: Double, consentType: Double, promise: Promise)
 
     @ReactMethod
-    abstract fun denyAll(consentType: Int, promise: Promise)
+    abstract fun denyAll(consentType: Double, promise: Promise)
 
     @ReactMethod
-    abstract fun denyAllForTCF(fromLayer: Int, consentType: Int, unsavedPurposeLIDecisions: ReadableArray, promise: Promise)
+    abstract fun denyAllForTCF(fromLayer: Double, consentType: Double, unsavedPurposeLIDecisions: ReadableArray, promise: Promise)
 
     @ReactMethod
-    abstract fun saveDecisions(decisions: ReadableArray, consentType: Int, promise: Promise)
+    abstract fun saveDecisions(decisions: ReadableArray, consentType: Double, promise: Promise)
 
     @ReactMethod
     abstract fun saveDecisionsForTCF(
         tcfDecisions: ReadableMap,
-        fromLayer: Int,
+        fromLayer: Double,
         saveDecisions: ReadableArray,
-        consentType: Int,
+        consentType: Double,
         promise: Promise
     )
 
     @ReactMethod
-    abstract fun saveOptOutForCCPA(isOptedOut: Boolean, consentType: Int, promise: Promise)
+    abstract fun saveOptOutForCCPA(isOptedOut: Boolean, consentType: Double, promise: Promise)
 
     @ReactMethod
-    abstract fun track(event: Int)
+    abstract fun track(event: Double)
 
     companion object {
         const val NAME = "RNUsercentricsModule"
