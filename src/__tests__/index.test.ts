@@ -18,6 +18,7 @@ import {
     ccpaDataExample,
     cmpDataExample,
     featuresExample,
+    gppDataExample,
     purposesExample,
     tcfUserDecisionOnPurposeExample,
     tcfUserDecisionOnSpecialFeatureExample,
@@ -45,6 +46,8 @@ jest.mock("react-native", () => {
         getCMPData: jest.fn(),
         getUserSessionData: jest.fn(),
         getUSPData: jest.fn(),
+        getGPPData: jest.fn(),
+        getGPPString: jest.fn(),
         getTCFData: jest.fn(),
         getAdditionalConsentModeData: jest.fn(),
         changeLanguage: jest.fn(),
@@ -55,9 +58,12 @@ jest.mock("react-native", () => {
         saveOptOutForCCPA: jest.fn(),
         saveDecisionsForTCF: jest.fn(),
         saveDecisions: jest.fn(),
+        setGPPConsent: jest.fn(),
         track: jest.fn(),
         reset: jest.fn(),
-        clearUserSession: jest.fn()
+        clearUserSession: jest.fn(),
+        addListener: jest.fn(),
+        removeListeners: jest.fn()
     };
 
     return RN
@@ -393,6 +399,33 @@ describe('Test Usercentrics Module', () => {
         );
 
         expect(data).toStrictEqual([usercentricsServiceConsent]);
+    })
+
+    test('testGetGPPData', async () => {
+        RNUsercentricsModule.getGPPData.mockImplementationOnce(
+            (): Promise<any> => Promise.resolve(gppDataExample)
+        )
+
+        const data = await Usercentrics.getGPPData();
+        expect(data).toBe(gppDataExample);
+    })
+
+    test('testGetGPPString', async () => {
+        RNUsercentricsModule.getGPPString.mockImplementationOnce(
+            (): Promise<any> => Promise.resolve("DBABMA~CPXxRfA")
+        )
+
+        const data = await Usercentrics.getGPPString();
+        expect(data).toBe("DBABMA~CPXxRfA");
+    })
+
+    test('testSetGPPConsent', async () => {
+        await Usercentrics.setGPPConsent("usnat", "SaleOptOut", 2);
+
+        const call = RNUsercentricsModule.setGPPConsent.mock.calls[0];
+        expect(call[0]).toBe("usnat");
+        expect(call[1]).toBe("SaleOptOut");
+        expect(call[2]).toEqual({ value: 2 });
     })
 
     test('testTrack', async () => {

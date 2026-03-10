@@ -219,7 +219,6 @@ private fun TCF2Settings.serialize(): WritableMap {
         "disabledSpecialFeatures" to disabledSpecialFeatures,
         "firstLayerShowDescriptions" to firstLayerShowDescriptions,
         "hideNonIabOnFirstLayer" to hideNonIabOnFirstLayer,
-        "resurfacePeriodEnded" to resurfacePeriodEnded,
         "resurfacePurposeChanged" to resurfacePurposeChanged,
         "resurfaceVendorAdded" to resurfaceVendorAdded,
         "firstLayerDescription" to firstLayerDescription,

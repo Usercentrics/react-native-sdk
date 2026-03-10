@@ -9,6 +9,7 @@ import type {
   AdditionalConsentModeData,
   TCFData,
   CCPAData,
+  GppData,
   UserDecision,
   TCFUserDecisions,
   TCFUserDecisionOnPurpose,
@@ -35,11 +36,14 @@ export interface Spec extends TurboModule {
   getTCFData(): Promise<TCFData>;
   getUserSessionData(): Promise<string>;
   getUSPData(): Promise<CCPAData>;
+  getGPPData(): Promise<GppData>;
+  getGPPString(): Promise<string | null>;
   getABTestingVariant(): Promise<string>;
 
   // Configuration Setters
   setCMPId(id: number): void;
   setABTestingVariant(variant: string): void;
+  setGPPConsent(sectionName: string, fieldName: string, value: Object): void;
   changeLanguage(language: string): Promise<void>;
 
   // Consent Actions
@@ -59,6 +63,9 @@ export interface Spec extends TurboModule {
 
   // Analytics
   track(event: number): void;
+
+  addListener(eventName: string): void;
+  removeListeners(count: number): void;
 }
 
 // Try to get TurboModule first, fallback to NativeModule

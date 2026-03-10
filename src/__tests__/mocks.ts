@@ -45,6 +45,22 @@ export const ccpaDataExample = {
     noticeGiven: false
 }
 
+export const gppDataExample = {
+    gppString: "DBABMA~CPXxRfAPXxRfAAfKABENB-CgAAAAAAAAAAYgAAAAAAAA",
+    applicableSections: [7],
+    sections: {
+        usnat: {
+            Version: 1,
+            SharingNotice: 2,
+            SaleOptOut: 2
+        }
+    }
+}
+
+export const gppSectionChangePayloadExample = {
+    data: "usnat"
+}
+
 const ucLabels: UsercentricsLabels = {
     btnAcceptAll: "btnAcceptAll",
     btnDeny: "btnDeny",

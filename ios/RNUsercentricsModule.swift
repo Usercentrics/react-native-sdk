@@ -17,10 +17,11 @@ import RNUsercentricsModuleSpec
 #endif
 
 @objc(RNUsercentricsModule)
-class RNUsercentricsModule: NSObject {
+class RNUsercentricsModule: RCTEventEmitter {
     
     var usercentricsManager: UsercentricsManager = UsercentricsManagerImplementation()
     var queue: DispatchQueueManager = DispatchQueue.main
+    private var gppSectionChangeSubscription: UsercentricsDisposableEvent<GppSectionChangePayload>?
 
     @objc static func moduleName() -> String! {
         return "RNUsercentricsModule"
@@ -28,6 +29,26 @@ class RNUsercentricsModule: NSObject {
     
     @objc static func requiresMainQueueSetup() -> Bool {
         return true
+    }
+
+    override func supportedEvents() -> [String]! {
+        return [Self.onGppSectionChangeEvent]
+    }
+
+    override func startObserving() {
+        queue.async { [weak self] in
+            guard let self = self, self.gppSectionChangeSubscription == nil else { return }
+            self.gppSectionChangeSubscription = self.usercentricsManager.onGppSectionChange { payload in
+                self.sendEvent(withName: Self.onGppSectionChangeEvent, body: payload.toDictionary())
+            }
+        }
+    }
+
+    override func stopObserving() {
+        queue.async { [weak self] in
+            self?.gppSectionChangeSubscription?.dispose()
+            self?.gppSectionChangeSubscription = nil
+        }
     }
     
     @objc func configure(_ dict: NSDictionary) -> Void {
@@ -123,6 +144,19 @@ class RNUsercentricsModule: NSObject {
     
     @objc func getUSPData(_ resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) -> Void {
         resolve(usercentricsManager.getUSPData().toDictionary())
+    }
+
+    @objc func getGPPData(_ resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) -> Void {
+        resolve(usercentricsManager.getGPPData().toDictionary())
+    }
+
+    @objc func getGPPString(_ resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) -> Void {
+        resolve(usercentricsManager.getGPPString())
+    }
+
+    @objc func setGPPConsent(_ sectionName: String, fieldName: String, value: NSDictionary) -> Void {
+        let unwrapped = value["value"] ?? NSNull()
+        usercentricsManager.setGPPConsent(sectionName: sectionName, fieldName: fieldName, value: unwrapped)
     }
 
     @objc func getABTestingVariant(_ resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) -> Void {
@@ -227,6 +261,8 @@ class RNUsercentricsModule: NSObject {
             reject("usercentrics_reactNative_clearUserSession_error", error.localizedDescription, error)
         }
     }
+
+    private static let onGppSectionChangeEvent = "onGppSectionChange"
 }
 
 // MARK: - RCTBridgeModule & TurboModule Conformance

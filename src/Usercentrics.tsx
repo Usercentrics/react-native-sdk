@@ -1,8 +1,10 @@
-import {NativeModules, Platform} from 'react-native';
+import {EmitterSubscription, NativeEventEmitter, NativeModules, Platform} from 'react-native';
 import {
     AdditionalConsentModeData,
     BannerSettings,
     CCPAData,
+    GppData,
+    GppSectionChangePayload,
     TCFData,
     TCFDecisionUILayer,
     TCFUserDecisionOnPurpose,
@@ -20,6 +22,7 @@ import NativeUsercentrics from './NativeUsercentrics';
 
 // Use TurboModule when available, fallback to legacy bridge
 const RNUsercentricsModule = NativeUsercentrics || NativeModules.RNUsercentricsModule;
+const eventEmitter = new NativeEventEmitter(RNUsercentricsModule);
 
 export const Usercentrics = {
 
@@ -74,6 +77,16 @@ export const Usercentrics = {
     getCCPAData: async (): Promise<CCPAData> => {
         await RNUsercentricsModule.isReady();
         return RNUsercentricsModule.getUSPData();
+    },
+
+    getGPPData: async (): Promise<GppData> => {
+        await RNUsercentricsModule.isReady();
+        return RNUsercentricsModule.getGPPData();
+    },
+
+    getGPPString: async (): Promise<string | null> => {
+        await RNUsercentricsModule.isReady();
+        return RNUsercentricsModule.getGPPString();
     },
 
     getTCFData: async (): Promise<TCFData> => {
@@ -134,6 +147,11 @@ export const Usercentrics = {
         RNUsercentricsModule.setABTestingVariant(variant);
     },
 
+    setGPPConsent: async (sectionName: string, fieldName: string, value: unknown) => {
+        await RNUsercentricsModule.isReady();
+        RNUsercentricsModule.setGPPConsent(sectionName, fieldName, { value } as Object);
+    },
+
     track: async (event: UsercentricsAnalyticsEventType) => {
         await RNUsercentricsModule.isReady();
         RNUsercentricsModule.track(event);
@@ -142,5 +160,9 @@ export const Usercentrics = {
     clearUserSession: async (): Promise<UsercentricsReadyStatus> => {
         await RNUsercentricsModule.isReady();
         return RNUsercentricsModule.clearUserSession();
+    },
+
+    onGppSectionChange: (callback: (payload: GppSectionChangePayload) => void): EmitterSubscription => {
+        return eventEmitter.addListener("onGppSectionChange", callback);
     },
 }
