@@ -23,11 +23,11 @@ class RNUsercentricsModule: RCTEventEmitter {
     var queue: DispatchQueueManager = DispatchQueue.main
     private var gppSectionChangeSubscription: UsercentricsDisposableEvent<GppSectionChangePayload>?
 
-    @objc static func moduleName() -> String! {
+    @objc override static func moduleName() -> String! {
         return "RNUsercentricsModule"
     }
     
-    @objc static func requiresMainQueueSetup() -> Bool {
+    @objc override static func requiresMainQueueSetup() -> Bool {
         return true
     }
 
@@ -282,6 +282,4 @@ extension RNUsercentricsModule: NativeUsercentricsSpec {
     }
 }
 #endif
-#else
-extension RNUsercentricsModule: RCTBridgeModule {}
 #endif
