@@ -12,6 +12,7 @@ import type {
   UserDecision,
   TCFUserDecisions,
   TCFUserDecisionOnPurpose,
+  TCFUserDecisionOnVendor,
 } from './models';
 
 export interface Spec extends TurboModule {
@@ -46,7 +47,7 @@ export interface Spec extends TurboModule {
   acceptAll(consentType: number): Promise<Array<UsercentricsServiceConsent>>;
   acceptAllForTCF(fromLayer: number, consentType: number): Promise<Array<UsercentricsServiceConsent>>;
   denyAll(consentType: number): Promise<Array<UsercentricsServiceConsent>>;
-  denyAllForTCF(fromLayer: number, consentType: number, unsavedPurposeLIDecisions: Array<TCFUserDecisionOnPurpose>): Promise<Array<UsercentricsServiceConsent>>;
+  denyAllForTCF(fromLayer: number, consentType: number, unsavedPurposeLIDecisions: Array<TCFUserDecisionOnPurpose>, unsavedVendorLIDecisions: Array<TCFUserDecisionOnVendor>): Promise<Array<UsercentricsServiceConsent>>;
   
   saveDecisions(decisions: Array<UserDecision>, consentType: number): Promise<Array<UsercentricsServiceConsent>>;
   saveDecisionsForTCF(
