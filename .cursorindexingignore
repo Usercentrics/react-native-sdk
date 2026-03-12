@@ -41,8 +41,3 @@ CHANGELOG.md
 
 # === Xcode build-phase scripts ===
 **/*.xctestplan
-
-# === Android generated ===
-android/build.gradle.kts
-android/settings.gradle.kts
-android/gradle.properties

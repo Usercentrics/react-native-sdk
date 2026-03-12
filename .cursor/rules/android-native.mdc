@@ -21,7 +21,7 @@ alwaysApply: false
 
 ## Build
 
-- Min SDK: 26 (Android 8.0).
+- Min SDK: 24 (Android 7.0).
 - Java 17 for compilation.
 - Gradle 8.13.
 - Tests run via `./gradlew :react-native-usercentrics:test` from `sample/android/`.

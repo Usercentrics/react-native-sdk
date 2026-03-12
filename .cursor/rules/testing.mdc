@@ -21,9 +21,8 @@ alwaysApply: false
 
 ## Android (JUnit + MockK)
 
-- Unit tests: `android/src/test/`.
-- Instrumented tests: `android/src/androidTest/`.
-- Run via `./gradlew :react-native-usercentrics:test` from `sample/android/`.
+- Unit tests: `android/src/test/`. Run via `./gradlew :react-native-usercentrics:test` from `sample/android/`.
+- Instrumented tests: `android/src/androidTest/`. Run via `./gradlew :react-native-usercentrics:connectedAndroidTest` (requires a connected device or emulator).
 
 ## Guidelines
 

@@ -28,7 +28,7 @@ alwaysApply: false
 ## Conventions
 
 - Always use `--frozen-lockfile` (yarn) or `npm ci` (npm) for deterministic installs.
-- Use pinned action versions (`@v1`, `@v2`, `@v4`) — prefer SHA pinning for security-critical actions.
+- Major-version tags (`@v1`, `@v2`, `@v4`) are mutable — maintainers can move them. They are acceptable for convenience on non-critical actions, but use full commit SHA pins (immutable) for security-sensitive actions (e.g., `actions/checkout@<full-sha>`).
 - Do not store secrets in workflow files. Use GitHub Secrets and reference via `${{ secrets.NAME }}`.
 - Snyk scanning runs in the pipeline — ensure no new critical/high vulnerabilities are introduced.
 - Keep CI fast: run JS tests first (`test-rn`), gate native tests behind it with `needs: test-rn`.

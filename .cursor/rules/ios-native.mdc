@@ -23,6 +23,6 @@ alwaysApply: false
 
 ## Build
 
-- Minimum iOS deployment target: 16.0.
+- Minimum iOS deployment target: 11.0.
 - CocoaPods managed via Bundler (`bundle exec pod install`).
 - Xcode tests live in `sample/ios/sampleTests/` (XCTest, Swift).
