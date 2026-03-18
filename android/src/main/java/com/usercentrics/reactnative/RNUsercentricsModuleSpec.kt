@@ -82,7 +82,7 @@ abstract class RNUsercentricsModuleSpec internal constructor(context: ReactAppli
     abstract fun denyAll(consentType: Double, promise: Promise)
 
     @ReactMethod
-    abstract fun denyAllForTCF(fromLayer: Double, consentType: Double, unsavedPurposeLIDecisions: ReadableArray, promise: Promise)
+    abstract fun denyAllForTCF(fromLayer: Double, consentType: Double, unsavedPurposeLIDecisions: ReadableArray, unsavedVendorLIDecisions: ReadableArray, promise: Promise)
 
     @ReactMethod
     abstract fun saveDecisions(decisions: ReadableArray, consentType: Double, promise: Promise)
