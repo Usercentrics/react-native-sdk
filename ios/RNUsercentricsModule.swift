@@ -36,19 +36,15 @@ class RNUsercentricsModule: RCTEventEmitter {
     }
 
     override func startObserving() {
-        queue.async { [weak self] in
-            guard let self = self, self.gppSectionChangeSubscription == nil else { return }
-            self.gppSectionChangeSubscription = self.usercentricsManager.onGppSectionChange { payload in
-                self.sendEvent(withName: Self.onGppSectionChangeEvent, body: payload.toDictionary())
-            }
+        guard gppSectionChangeSubscription == nil else { return }
+        gppSectionChangeSubscription = usercentricsManager.onGppSectionChange { [weak self] payload in
+            self?.sendEvent(withName: Self.onGppSectionChangeEvent, body: payload.toDictionary())
         }
     }
 
     override func stopObserving() {
-        queue.async { [weak self] in
-            self?.gppSectionChangeSubscription?.dispose()
-            self?.gppSectionChangeSubscription = nil
-        }
+        gppSectionChangeSubscription?.dispose()
+        gppSectionChangeSubscription = nil
     }
     
     @objc func configure(_ dict: NSDictionary) -> Void {

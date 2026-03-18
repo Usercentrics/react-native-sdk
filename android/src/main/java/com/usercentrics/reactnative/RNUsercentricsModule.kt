@@ -139,7 +139,12 @@ internal class RNUsercentricsModule(
 
     @ReactMethod
     override fun setGPPConsent(sectionName: String, fieldName: String, value: ReadableMap) {
-        val parsedValue = readableMapValueToAny(value) ?: return
+        if (!value.hasKey("value")) return
+        val parsedValue = if (value.getType("value") == ReadableType.Null) {
+            null
+        } else {
+            readableMapValueToAny(value)
+        }
         usercentricsProxy.instance.setGPPConsent(sectionName, fieldName, parsedValue)
     }
 

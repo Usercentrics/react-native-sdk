@@ -62,7 +62,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)setABTestingVariant:(NSString *)variant;
 - (void)setGPPConsent:(NSString *)sectionName
             fieldName:(NSString *)fieldName
-                value:(id)value;
+                value:(NSDictionary *)value;
 - (void)changeLanguage:(NSString *)language
                resolve:(RCTPromiseResolveBlock)resolve
                 reject:(RCTPromiseRejectBlock)reject;
