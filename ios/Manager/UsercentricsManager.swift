@@ -19,9 +19,13 @@ public protocol UsercentricsManager {
     func getCMPData() -> UsercentricsCMPData
     func getUserSessionData() -> String
     func getUSPData() -> CCPAData
+    func getGPPData() -> GppData
+    func getGPPString() -> String?
+    func setGPPConsent(sectionName: String, fieldName: String, value: Any)
     func getTCFData(callback: @escaping (TCFData) -> Void)
     func getABTestingVariant() -> String?
     func getAdditionalConsentModeData() -> AdditionalConsentModeData
+    func onGppSectionChange(callback: @escaping (GppSectionChangePayload) -> Void) -> UsercentricsDisposableEvent<GppSectionChangePayload>
 
     func changeLanguage(language: String, onSuccess: @escaping (() -> Void), onFailure: @escaping ((Error) -> Void))
 
@@ -90,6 +94,22 @@ final class UsercentricsManagerImplementation: UsercentricsManager {
 
     func getUSPData() -> CCPAData {
         return UsercentricsCore.shared.getUSPData()
+    }
+
+    func getGPPData() -> GppData {
+        return UsercentricsCore.shared.getGPPData()
+    }
+
+    func getGPPString() -> String? {
+        return UsercentricsCore.shared.getGPPString()
+    }
+
+    func setGPPConsent(sectionName: String, fieldName: String, value: Any) {
+        UsercentricsCore.shared.setGPPConsent(sectionName: sectionName, fieldName: fieldName, value: value)
+    }
+
+    func onGppSectionChange(callback: @escaping (GppSectionChangePayload) -> Void) -> UsercentricsDisposableEvent<GppSectionChangePayload> {
+        return UsercentricsEvent.shared.onGppSectionChange(callback: callback)
     }
 
     func getTCFData(callback: @escaping (TCFData) -> Void) {

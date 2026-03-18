@@ -208,7 +208,6 @@ extension TCF2Settings {
             "disabledSpecialFeatures" : self.disabledSpecialFeatures,
             "firstLayerShowDescriptions" : self.firstLayerShowDescriptions,
             "hideNonIabOnFirstLayer" : self.hideNonIabOnFirstLayer,
-            "resurfacePeriodEnded" : self.resurfacePeriodEnded,
             "resurfacePurposeChanged" : self.resurfacePurposeChanged,
             "resurfaceVendorAdded" : self.resurfaceVendorAdded,
             "firstLayerDescription" : self.firstLayerDescription as Any,
