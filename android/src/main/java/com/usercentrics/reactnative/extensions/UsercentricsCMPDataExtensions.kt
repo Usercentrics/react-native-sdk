@@ -219,7 +219,7 @@ private fun TCF2Settings.serialize(): WritableMap {
         "disabledSpecialFeatures" to disabledSpecialFeatures,
         "firstLayerShowDescriptions" to firstLayerShowDescriptions,
         "hideNonIabOnFirstLayer" to hideNonIabOnFirstLayer,
-        "resurfacePeriodEnded" to resurfacePeriodEnded,
+        "resurfacePeriodEnded" to getResurfacePeriodEndedCompat(),
         "resurfacePurposeChanged" to resurfacePurposeChanged,
         "resurfaceVendorAdded" to resurfaceVendorAdded,
         "firstLayerDescription" to firstLayerDescription,
@@ -243,6 +243,16 @@ private fun TCF2Settings.serialize(): WritableMap {
         "acmV2Enabled" to acmV2Enabled,
         "selectedATPIds" to selectedATPIds,
     ).toWritableMap()
+}
+
+private fun TCF2Settings.getResurfacePeriodEndedCompat(): Boolean {
+    val reflectionValue = runCatching {
+        javaClass.getMethod("getResurfacePeriodEnded").invoke(this)
+    }.getOrNull() ?: runCatching {
+        javaClass.getMethod("isResurfacePeriodEnded").invoke(this)
+    }.getOrNull()
+
+    return reflectionValue as? Boolean ?: false
 }
 
 private fun UsercentricsCustomization.serialize(): WritableMap {

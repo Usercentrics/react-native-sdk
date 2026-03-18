@@ -11,9 +11,6 @@ import {
 export const HomeScreen = ({ navigation }: { navigation: any }) => {
     async function showFirstLayer(bannerSettings: BannerSettings = new BannerSettings()) {
         const response = await Usercentrics.showFirstLayer(bannerSettings);
-        console.log("Consents -> ${response.consents}", response.consents);
-        console.log("User Interaction -> ${response.userInteraction}", response.userInteraction);
-        console.log("Controller Id -> ${response.controllerId}", response.controllerId);
     }
 
     async function showSecondLayer() {
@@ -24,9 +21,6 @@ export const HomeScreen = ({ navigation }: { navigation: any }) => {
         };
 
         const response = await Usercentrics.showSecondLayer(bannerSettings);
-        console.log("Consents -> ${response.consents}", response.consents);
-        console.log("User Interaction -> ${response.userInteraction}", response.userInteraction);
-        console.log("Controller Id -> ${response.controllerId}", response.controllerId);
     }
 
     async function getBannerSettings() {
@@ -103,6 +97,11 @@ export const HomeScreen = ({ navigation }: { navigation: any }) => {
                 await Usercentrics.status();
                 navigation.navigate("WebviewIntegration")
             }} title="Webview Integration" />
+
+            <Button onPress={async () => {
+                await Usercentrics.status();
+                navigation.navigate("GPPTesting")
+            }} title="GPP Testing" />
         </View>
     );
 };
