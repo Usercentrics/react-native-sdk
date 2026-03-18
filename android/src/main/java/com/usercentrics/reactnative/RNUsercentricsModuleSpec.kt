@@ -52,6 +52,12 @@ abstract class RNUsercentricsModuleSpec internal constructor(context: ReactAppli
     abstract fun getUSPData(promise: Promise)
 
     @ReactMethod
+    abstract fun getGPPData(promise: Promise)
+
+    @ReactMethod
+    abstract fun getGPPString(promise: Promise)
+
+    @ReactMethod
     abstract fun getABTestingVariant(promise: Promise)
 
     @ReactMethod
@@ -59,6 +65,9 @@ abstract class RNUsercentricsModuleSpec internal constructor(context: ReactAppli
 
     @ReactMethod
     abstract fun setABTestingVariant(variant: String)
+
+    @ReactMethod
+    abstract fun setGPPConsent(sectionName: String, fieldName: String, value: ReadableMap)
 
     @ReactMethod
     abstract fun changeLanguage(language: String, promise: Promise)
@@ -92,6 +101,12 @@ abstract class RNUsercentricsModuleSpec internal constructor(context: ReactAppli
 
     @ReactMethod
     abstract fun track(event: Double)
+
+    @ReactMethod
+    abstract fun addListener(eventName: String)
+
+    @ReactMethod
+    abstract fun removeListeners(count: Double)
 
     companion object {
         const val NAME = "RNUsercentricsModule"

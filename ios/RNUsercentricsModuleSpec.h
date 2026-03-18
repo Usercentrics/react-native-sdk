@@ -48,12 +48,21 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)getUSPData:(RCTPromiseResolveBlock)resolve
             reject:(RCTPromiseRejectBlock)reject;
 
+- (void)getGPPData:(RCTPromiseResolveBlock)resolve
+            reject:(RCTPromiseRejectBlock)reject;
+
+- (void)getGPPString:(RCTPromiseResolveBlock)resolve
+              reject:(RCTPromiseRejectBlock)reject;
+
 - (void)getABTestingVariant:(RCTPromiseResolveBlock)resolve
                      reject:(RCTPromiseRejectBlock)reject;
 
 // Configuration Setters
 - (void)setCMPId:(double)cmpId;
 - (void)setABTestingVariant:(NSString *)variant;
+- (void)setGPPConsent:(NSString *)sectionName
+            fieldName:(NSString *)fieldName
+                value:(NSDictionary *)value;
 - (void)changeLanguage:(NSString *)language
                resolve:(RCTPromiseResolveBlock)resolve
                 reject:(RCTPromiseRejectBlock)reject;

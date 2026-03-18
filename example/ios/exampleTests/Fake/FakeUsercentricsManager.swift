@@ -88,6 +88,31 @@ final class FakeUsercentricsManager: UsercentricsManager {
     return getUSPDataResponse!
   }
 
+  var getGPPDataResponse: GppData?
+  func getGPPData() -> GppData {
+    return getGPPDataResponse!
+  }
+
+  var getGPPStringResponse: String?
+  func getGPPString() -> String? {
+    return getGPPStringResponse
+  }
+
+  var setGPPConsentSectionName: String?
+  var setGPPConsentFieldName: String?
+  var setGPPConsentValue: Any?
+  func setGPPConsent(sectionName: String, fieldName: String, value: Any) {
+    self.setGPPConsentSectionName = sectionName
+    self.setGPPConsentFieldName = fieldName
+    self.setGPPConsentValue = value
+  }
+
+  var gppSectionChangeDisposableEvent = UsercentricsDisposableEvent<GppSectionChangePayload>()
+  func onGppSectionChange(callback: @escaping (GppSectionChangePayload) -> Void) -> UsercentricsDisposableEvent<GppSectionChangePayload> {
+    gppSectionChangeDisposableEvent.callback = callback
+    return gppSectionChangeDisposableEvent
+  }
+
   var getTCFDataResponse: TCFData?
   func getTCFData(callback: @escaping (TCFData) -> Void) {
     callback(getTCFDataResponse!)

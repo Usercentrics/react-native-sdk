@@ -22,11 +22,14 @@ export interface Spec extends TurboModule {
   getTCFData(): Promise<Object>;
   getUserSessionData(): Promise<string>;
   getUSPData(): Promise<Object>;
+  getGPPData(): Promise<Object>;
+  getGPPString(): Promise<string | null>;
   getABTestingVariant(): Promise<string>;
 
   // Configuration Setters
   setCMPId(id: number): void;
   setABTestingVariant(variant: string): void;
+  setGPPConsent(sectionName: string, fieldName: string, value: Object): void;
   changeLanguage(language: string): Promise<void>;
 
   // Consent Actions
@@ -46,6 +49,9 @@ export interface Spec extends TurboModule {
 
   // Analytics
   track(event: number): void;
+
+  addListener(eventName: string): void;
+  removeListeners(count: number): void;
 }
 
 export default TurboModuleRegistry.get<Spec>('RNUsercentricsModule');

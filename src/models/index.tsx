@@ -27,3 +27,5 @@ export * from './UsercentricsLocation';
 export * from './UsercentricsSettings';
 export * from './GeolocationRuleset';
 export * from './LegalBasisLocalization'
+export * from './GppData'
+export * from './GppSectionChangePayload'
