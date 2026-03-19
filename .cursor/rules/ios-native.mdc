@@ -1,0 +1,28 @@
+---
+description: iOS native module conventions (Swift, ObjC++)
+globs: "ios/**/*.swift,ios/**/*.mm,ios/**/*.h"
+alwaysApply: false
+---
+
+# iOS Native Module
+
+## Structure
+
+- `RNUsercentricsModule.swift` — Main module class, bridge methods.
+- `RNUsercentricsModule.mm` — ObjC++ bridge for TurboModule registration.
+- `Manager/` — Swift helpers/managers that wrap the native Usercentrics iOS SDK.
+- `Extensions/` — Swift extensions for type conversions (NSDictionary <-> Swift models).
+- `Errors/` — Typed error definitions for the bridge layer.
+
+## Conventions
+
+- Use Swift for all new logic. ObjC++ only for required bridge glue.
+- Bridging header: `RNUsercentricsModule-Bridging-Header.h`.
+- Codegen spec header: `RNUsercentricsModuleSpec.h` (auto-generated, do not edit).
+- The podspec is `react-native-usercentrics.podspec` at the repo root.
+
+## Build
+
+- Minimum iOS deployment target: 11.0.
+- CocoaPods managed via Bundler (`bundle exec pod install`).
+- Xcode tests live in `sample/ios/sampleTests/` (XCTest, Swift).

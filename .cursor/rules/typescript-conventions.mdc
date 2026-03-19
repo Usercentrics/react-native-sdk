@@ -1,0 +1,36 @@
+---
+description: TypeScript conventions for the SDK source code
+globs: src/**/*.ts,src/**/*.tsx
+alwaysApply: false
+---
+
+# TypeScript Conventions
+
+## Style
+
+- Strict mode is enabled (`"strict": true` in tsconfig).
+- Target: ES2018. Module: ESNext. Module resolution: Node.
+- No semicolons, single quotes, JSX single quotes (Prettier enforced).
+
+## Exports
+
+- Every public type, enum, interface, and function **must** be re-exported from `src/index.tsx`.
+- The CI script `scripts/assert_export.sh` will fail if exports are missing.
+
+## Models
+
+- Model files live in `src/models/`. One model concern per file.
+- Use TypeScript `enum` for SDK enums (matching native SDK enums).
+- Use `interface` for data structures returned from native side.
+
+## Fabric / TurboModules
+
+- The TurboModule spec lives in `src/fabric/NativeUsercentricsModule.ts`.
+- It uses `TurboModuleRegistry` and `codegenNativeComponent`.
+- Codegen config is in `package.json` under `codegenConfig`.
+- Changes to the spec require regenerating JNI bindings (`npm run prepublishOnly`).
+
+## Error Handling
+
+- Native bridge calls can throw. Always handle errors from `NativeModules` calls.
+- Use typed error objects rather than raw string checks.
