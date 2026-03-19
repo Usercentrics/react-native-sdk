@@ -1,10 +1,14 @@
 package com.usercentrics.reactnative
 
 import com.facebook.react.bridge.*
+import com.facebook.react.modules.core.DeviceEventManagerModule
+import com.usercentrics.sdk.UsercentricsDisposableEvent
+import com.usercentrics.sdk.UsercentricsEvent
 import com.usercentrics.reactnative.api.UsercentricsProxy
 import com.usercentrics.reactnative.extensions.*
 import com.usercentrics.sdk.UsercentricsAnalyticsEventType
 import com.usercentrics.sdk.models.settings.UsercentricsConsentType
+import com.usercentrics.sdk.services.gpp.GppSectionChangePayload
 import com.usercentrics.sdk.services.tcf.TCFDecisionUILayer
 
 internal class RNUsercentricsModule(
@@ -12,6 +16,8 @@ internal class RNUsercentricsModule(
     private val usercentricsProxy: UsercentricsProxy,
     private val reactContextProvider: ReactContextProvider,
 ) : RNUsercentricsModuleSpec(reactContext) {
+    private var gppSectionChangeSubscription: UsercentricsDisposableEvent<GppSectionChangePayload>? = null
+    private var gppSectionChangeListenersCount = 0
 
     override fun getName() = NAME
 
@@ -122,6 +128,27 @@ internal class RNUsercentricsModule(
     }
 
     @ReactMethod
+    override fun getGPPData(promise: Promise) {
+        promise.resolve(usercentricsProxy.instance.getGPPData().serializeGppData())
+    }
+
+    @ReactMethod
+    override fun getGPPString(promise: Promise) {
+        promise.resolve(usercentricsProxy.instance.getGPPString())
+    }
+
+    @ReactMethod
+    override fun setGPPConsent(sectionName: String, fieldName: String, value: ReadableMap) {
+        if (!value.hasKey("value")) return
+        val parsedValue = if (value.getType("value") == ReadableType.Null) {
+            null
+        } else {
+            readableMapValueToAny(value)
+        }
+        usercentricsProxy.instance.setGPPConsent(sectionName, fieldName, parsedValue)
+    }
+
+    @ReactMethod
     override fun changeLanguage(language: String, promise: Promise) {
         usercentricsProxy.instance.changeLanguage(language, {
             promise.resolve(null)
@@ -149,10 +176,10 @@ internal class RNUsercentricsModule(
     }
 
     @ReactMethod
-    override fun denyAllForTCF(fromLayer: Double, consentType: Double, unsavedPurposeLIDecisions: ReadableArray, promise: Promise) {
+    override fun denyAllForTCF(fromLayer: Double, consentType: Double, unsavedPurposeLIDecisions: ReadableArray, unsavedVendorLIDecisions: ReadableArray, promise: Promise) {
         promise.resolve(
             usercentricsProxy.instance.denyAllForTCF(
-                TCFDecisionUILayer.values()[fromLayer.toInt()], UsercentricsConsentType.values()[consentType.toInt()], unsavedPurposeLIDecisions.deserializePurposeLIDecisionsMap()
+                TCFDecisionUILayer.values()[fromLayer.toInt()], UsercentricsConsentType.values()[consentType.toInt()], unsavedPurposeLIDecisions.deserializePurposeLIDecisionsMap(), unsavedVendorLIDecisions.deserializePurposeLIDecisionsMap()
             ).toWritableArray()
         )
     }
@@ -216,11 +243,73 @@ internal class RNUsercentricsModule(
         })
     }
 
+    @ReactMethod
+    override fun addListener(eventName: String) {
+        if (eventName != ON_GPP_SECTION_CHANGE_EVENT) return
+
+        gppSectionChangeListenersCount++
+        if (gppSectionChangeSubscription != null) return
+
+        gppSectionChangeSubscription = UsercentricsEvent.onGppSectionChange { payload ->
+            emitEvent(ON_GPP_SECTION_CHANGE_EVENT, payload.serializeGppPayload())
+        }
+    }
+
+    @ReactMethod
+    override fun removeListeners(count: Double) {
+        gppSectionChangeListenersCount = (gppSectionChangeListenersCount - count.toInt()).coerceAtLeast(0)
+        if (gppSectionChangeListenersCount == 0) {
+            gppSectionChangeSubscription?.dispose()
+            gppSectionChangeSubscription = null
+        }
+    }
+
+    override fun invalidate() {
+        gppSectionChangeSubscription?.dispose()
+        gppSectionChangeSubscription = null
+        gppSectionChangeListenersCount = 0
+        super.invalidate()
+    }
+
+    private fun emitEvent(eventName: String, payload: WritableMap) {
+        reactApplicationContext
+            .getJSModule(DeviceEventManagerModule.RCTDeviceEventEmitter::class.java)
+            .emit(eventName, payload)
+    }
+
+    private fun readableMapValueToAny(map: ReadableMap): Any? {
+        if (!map.hasKey("value")) return null
+        return when (map.getType("value")) {
+            ReadableType.Null -> null
+            ReadableType.Boolean -> map.getBoolean("value")
+            ReadableType.Number -> normalizeNumber(map.getDouble("value"))
+            ReadableType.String -> map.getString("value")
+            ReadableType.Map -> normalizeCompositeValue(map.getMap("value")?.toHashMap())
+            ReadableType.Array -> normalizeCompositeValue(map.getArray("value")?.toArrayList())
+        }
+    }
+
+    private fun normalizeCompositeValue(value: Any?): Any? {
+        return when (value) {
+            is Double -> normalizeNumber(value)
+            is ArrayList<*> -> value.map { normalizeCompositeValue(it) }
+            is HashMap<*, *> -> value.entries.associate { (key, nestedValue) ->
+                key.toString() to normalizeCompositeValue(nestedValue)
+            }
+            else -> value
+        }
+    }
+
+    private fun normalizeNumber(value: Double): Any {
+        return if (value % 1.0 == 0.0) value.toInt() else value
+    }
+
     private fun runOnUiThread(block: () -> Unit) {
         UiThreadUtil.runOnUiThread(block)
     }
 
     companion object {
         const val NAME = "RNUsercentricsModule"
+        const val ON_GPP_SECTION_CHANGE_EVENT = "onGppSectionChange"
     }
 }

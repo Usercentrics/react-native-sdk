@@ -208,7 +208,6 @@ extension TCF2Settings {
             "disabledSpecialFeatures" : self.disabledSpecialFeatures,
             "firstLayerShowDescriptions" : self.firstLayerShowDescriptions,
             "hideNonIabOnFirstLayer" : self.hideNonIabOnFirstLayer,
-            "resurfacePeriodEnded" : self.resurfacePeriodEnded,
             "resurfacePurposeChanged" : self.resurfacePurposeChanged,
             "resurfaceVendorAdded" : self.resurfaceVendorAdded,
             "firstLayerDescription" : self.firstLayerDescription as Any,
@@ -364,7 +363,10 @@ extension UsercentricsService {
 
 extension ConsentDisclosureObject {
     func toDictionary() -> Any {
-        return self.disclosures.map { $0.toDictionary() }
+        return [
+            "disclosures": self.disclosures.map { $0.toDictionary() },
+            "sdks": self.sdks.map { ["name": $0.name, "use": $0.use] }
+        ]
     }
 }
 

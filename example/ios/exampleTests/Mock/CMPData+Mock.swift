@@ -34,6 +34,7 @@ extension UsercentricsSettings {
                  showInitialViewForVersionChange: ["showInitialViewForVersionChange"],
                  ccpa: .mock(),
                  tcf2: .mock(),
+                 gpp: nil,
                  customization: .mock(),
                  firstLayer: .mock(),
                  styles: .mock(),
@@ -234,7 +235,7 @@ extension SecondLayer {
 extension ConsentDisclosureObject {
 
   static func mock() -> ConsentDisclosureObject {
-    return .init(disclosures: [.mock()])
+    return .init(disclosures: [.mock()], sdks: [])
   }
 }
 
@@ -248,7 +249,9 @@ extension ConsentDisclosure {
                  cookieRefresh: true,
                  purposes: [1,2,3],
                  domain: "domain",
-                 description: "description")
+                 description: "description",
+                 specialPurposes: [],
+                 optOut: false)
   }
 }
 

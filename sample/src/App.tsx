@@ -1,15 +1,14 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import * as React from 'react';
-import { Usercentrics, UsercentricsLoggerLevel, UsercentricsOptions } from '@usercentrics/react-native-sdk';
-import { CustomScreen, HomeScreen, WebviewIntegrationScreen } from './screens';
+import { Usercentrics, UsercentricsOptions } from '@usercentrics/react-native-sdk';
+import { CustomScreen, GppTestingScreen, HomeScreen, WebviewIntegrationScreen } from './screens';
 
 const Stack = createNativeStackNavigator();
 
 const App = () => {
   React.useEffect(() => {
     let options: UsercentricsOptions = { settingsId: "Yi9N3aXia" };
-    options.loggerLevel = UsercentricsLoggerLevel.debug;
     Usercentrics.configure(options);
   }, []);
 
@@ -26,6 +25,9 @@ const App = () => {
         <Stack.Screen
           name="WebviewIntegration"
           component={WebviewIntegrationScreen} />
+        <Stack.Screen
+          name="GPPTesting"
+          component={GppTestingScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   )

@@ -9,9 +9,11 @@ import type {
   AdditionalConsentModeData,
   TCFData,
   CCPAData,
+  GppData,
   UserDecision,
   TCFUserDecisions,
   TCFUserDecisionOnPurpose,
+  TCFUserDecisionOnVendor,
 } from './models';
 
 export interface Spec extends TurboModule {
@@ -35,18 +37,21 @@ export interface Spec extends TurboModule {
   getTCFData(): Promise<TCFData>;
   getUserSessionData(): Promise<string>;
   getUSPData(): Promise<CCPAData>;
+  getGPPData(): Promise<GppData>;
+  getGPPString(): Promise<string | null>;
   getABTestingVariant(): Promise<string>;
 
   // Configuration Setters
   setCMPId(id: number): void;
   setABTestingVariant(variant: string): void;
+  setGPPConsent(sectionName: string, fieldName: string, value: Object): void;
   changeLanguage(language: string): Promise<void>;
 
   // Consent Actions
   acceptAll(consentType: number): Promise<Array<UsercentricsServiceConsent>>;
   acceptAllForTCF(fromLayer: number, consentType: number): Promise<Array<UsercentricsServiceConsent>>;
   denyAll(consentType: number): Promise<Array<UsercentricsServiceConsent>>;
-  denyAllForTCF(fromLayer: number, consentType: number, unsavedPurposeLIDecisions: Array<TCFUserDecisionOnPurpose>): Promise<Array<UsercentricsServiceConsent>>;
+  denyAllForTCF(fromLayer: number, consentType: number, unsavedPurposeLIDecisions: Array<TCFUserDecisionOnPurpose>, unsavedVendorLIDecisions: Array<TCFUserDecisionOnVendor>): Promise<Array<UsercentricsServiceConsent>>;
   
   saveDecisions(decisions: Array<UserDecision>, consentType: number): Promise<Array<UsercentricsServiceConsent>>;
   saveDecisionsForTCF(
@@ -59,6 +64,9 @@ export interface Spec extends TurboModule {
 
   // Analytics
   track(event: number): void;
+
+  addListener(eventName: string): void;
+  removeListeners(count: number): void;
 }
 
 // Try to get TurboModule first, fallback to NativeModule

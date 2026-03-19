@@ -50,6 +50,12 @@ RCT_EXTERN_METHOD(getUserSessionData:(RCTPromiseResolveBlock)resolve
 RCT_EXTERN_METHOD(getUSPData:(RCTPromiseResolveBlock)resolve
                   reject:(RCTPromiseRejectBlock)reject)
 
+RCT_EXTERN_METHOD(getGPPData:(RCTPromiseResolveBlock)resolve
+                  reject:(RCTPromiseRejectBlock)reject)
+
+RCT_EXTERN_METHOD(getGPPString:(RCTPromiseResolveBlock)resolve
+                  reject:(RCTPromiseRejectBlock)reject)
+
 RCT_EXTERN_METHOD(getTCFData:(RCTPromiseResolveBlock)resolve
                   reject:(RCTPromiseRejectBlock)reject)
 
@@ -72,6 +78,7 @@ RCT_EXTERN_METHOD(acceptAll:(double)consentType
 RCT_EXTERN_METHOD(denyAllForTCF:(double)fromLayer
                   consentType:(double)consentType
                   unsavedPurposeLIDecisions:(NSArray)unsavedPurposeLIDecisions
+                  unsavedVendorLIDecisions:(NSArray)unsavedVendorLIDecisions
                   resolve:(RCTPromiseResolveBlock)resolve
                   reject:(RCTPromiseRejectBlock)reject)
 
@@ -99,6 +106,10 @@ RCT_EXTERN_METHOD(saveOptOutForCCPA:(BOOL *)isOptedOut
 RCT_EXTERN_METHOD(setCMPId:(double)id)
 
 RCT_EXTERN_METHOD(setABTestingVariant:(NSString *)variant)
+
+RCT_EXTERN_METHOD(setGPPConsent:(NSString *)sectionName
+                  fieldName:(NSString *)fieldName
+                  value:(NSDictionary *)value)
 
 RCT_EXTERN_METHOD(track:(double)event)
 

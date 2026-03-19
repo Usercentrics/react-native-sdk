@@ -19,16 +19,20 @@ public protocol UsercentricsManager {
     func getCMPData() -> UsercentricsCMPData
     func getUserSessionData() -> String
     func getUSPData() -> CCPAData
+    func getGPPData() -> GppData
+    func getGPPString() -> String?
+    func setGPPConsent(sectionName: String, fieldName: String, value: Any)
     func getTCFData(callback: @escaping (TCFData) -> Void)
     func getABTestingVariant() -> String?
     func getAdditionalConsentModeData() -> AdditionalConsentModeData
+    func onGppSectionChange(callback: @escaping (GppSectionChangePayload) -> Void) -> UsercentricsDisposableEvent<GppSectionChangePayload>
 
     func changeLanguage(language: String, onSuccess: @escaping (() -> Void), onFailure: @escaping ((Error) -> Void))
 
     func acceptAllForTCF(fromLayer: TCFDecisionUILayer, consentType: UsercentricsConsentType) -> [UsercentricsServiceConsent]
     func acceptAll(consentType: UsercentricsConsentType) -> [UsercentricsServiceConsent]
 
-    func denyAllForTCF(fromLayer: TCFDecisionUILayer, consentType: UsercentricsConsentType, unsavedPurposeLIDecisions: [KotlinInt: KotlinBoolean]?) -> [UsercentricsServiceConsent]
+    func denyAllForTCF(fromLayer: TCFDecisionUILayer, consentType: UsercentricsConsentType, unsavedPurposeLIDecisions: [KotlinInt: KotlinBoolean]?, unsavedVendorLIDecisions: [KotlinInt: KotlinBoolean]?) -> [UsercentricsServiceConsent]
     func denyAll(consentType: UsercentricsConsentType) -> [UsercentricsServiceConsent]
 
     func saveDecisionsForTCF(tcfDecisions: TCFUserDecisions,
@@ -92,6 +96,22 @@ final class UsercentricsManagerImplementation: UsercentricsManager {
         return UsercentricsCore.shared.getUSPData()
     }
 
+    func getGPPData() -> GppData {
+        return UsercentricsCore.shared.getGPPData()
+    }
+
+    func getGPPString() -> String? {
+        return UsercentricsCore.shared.getGPPString()
+    }
+
+    func setGPPConsent(sectionName: String, fieldName: String, value: Any) {
+        UsercentricsCore.shared.setGPPConsent(sectionName: sectionName, fieldName: fieldName, value: value)
+    }
+
+    func onGppSectionChange(callback: @escaping (GppSectionChangePayload) -> Void) -> UsercentricsDisposableEvent<GppSectionChangePayload> {
+        return UsercentricsEvent.shared.onGppSectionChange(callback: callback)
+    }
+
     func getTCFData(callback: @escaping (TCFData) -> Void) {
         UsercentricsCore.shared.getTCFData(callback: callback)
     }
@@ -112,8 +132,8 @@ final class UsercentricsManagerImplementation: UsercentricsManager {
         return UsercentricsCore.shared.acceptAll(consentType: consentType)
     }
 
-    func denyAllForTCF(fromLayer: TCFDecisionUILayer, consentType: UsercentricsConsentType, unsavedPurposeLIDecisions: [KotlinInt: KotlinBoolean]?) -> [UsercentricsServiceConsent] {
-        return UsercentricsCore.shared.denyAllForTCF(fromLayer: fromLayer, consentType: consentType, unsavedPurposeLIDecisions: unsavedPurposeLIDecisions)
+    func denyAllForTCF(fromLayer: TCFDecisionUILayer, consentType: UsercentricsConsentType, unsavedPurposeLIDecisions: [KotlinInt: KotlinBoolean]?, unsavedVendorLIDecisions: [KotlinInt: KotlinBoolean]?) -> [UsercentricsServiceConsent] {
+        return UsercentricsCore.shared.denyAllForTCF(fromLayer: fromLayer, consentType: consentType, unsavedPurposeLIDecisions: unsavedPurposeLIDecisions, unsavedVendorLIDecisions: unsavedVendorLIDecisions)
     }
 
     func denyAll(consentType: UsercentricsConsentType) -> [UsercentricsServiceConsent] {

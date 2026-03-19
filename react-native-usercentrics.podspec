@@ -12,7 +12,6 @@ Pod::Spec.new do |s|
   s.homepage     = package['homepage']
   s.platform     = :ios, "11.0"
 
-  # Use apenas o path local para desenvolvimento
   s.source       = { :path => '.' }
 
   s.source_files = 'ios/**/*.{h,m,mm,swift}'
@@ -21,9 +20,12 @@ Pod::Spec.new do |s|
   s.dependency 'React-NativeModulesApple'
   s.dependency 'UsercentricsUI', "#{package['iosPackageVersion']}"
 
-  # Base C++ configuration
-  # Note: RCT_NEW_ARCH_ENABLED is inherited from parent project build settings
-  # This ensures compatibility with Expo's prebuild process
+  # Required for TurboModules RN 0.78+: injects codegen dependencies (ReactCodegen, etc.)
+  if defined?(install_modules_dependencies)
+    install_modules_dependencies(s)
+  end
+
+  # C++ configuration (compatible with Expo prebuild and New Architecture)
   base_cpp_flags = {
     'CLANG_CXX_LANGUAGE_STANDARD' => 'c++20',
     'CLANG_CXX_LIBRARY' => 'libc++',
@@ -48,14 +50,6 @@ Pod::Spec.new do |s|
     '$(PODS_ROOT)/Headers/Public',
     '$(PODS_ROOT)/Headers/Public/React-Core',
     '$(PODS_ROOT)/Headers/Public/ReactCommon'
-  ]
-
-  # Add new architecture paths if available (will be resolved at build time)
-  header_search_paths += [
-    '$(PODS_ROOT)/Headers/Public/React-Fabric',
-    '$(PODS_ROOT)/Headers/Public/React-Codegen',
-    '$(PODS_CONFIGURATION_BUILD_DIR)/React-Codegen/React_Codegen.framework/Headers',
-    '$(PODS_CONFIGURATION_BUILD_DIR)/React-Fabric/React_Fabric.framework/Headers'
   ]
 
   base_cpp_flags['HEADER_SEARCH_PATHS'] = header_search_paths.map { |path| "\"#{path}\"" }.join(' ')

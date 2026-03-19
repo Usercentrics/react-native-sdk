@@ -1,9 +1,21 @@
+export class ConsentDisclosureSDK {
+    name: string
+    use: string
+
+    constructor(name: string, use: string) {
+        this.name = name
+        this.use = use
+    }
+}
+
 export class ConsentDisclosureObject {
 
     disclosures: [ConsentDisclosure]
+    sdks: ConsentDisclosureSDK[]
 
-    constructor(disclosures: [ConsentDisclosure]) {
+    constructor(disclosures: [ConsentDisclosure], sdks?: ConsentDisclosureSDK[]) {
         this.disclosures = disclosures
+        this.sdks = sdks ?? []
     }
 }
 

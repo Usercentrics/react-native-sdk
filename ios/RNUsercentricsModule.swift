@@ -5,27 +5,46 @@ import UIKit
 import React
 
 #if RCT_NEW_ARCH_ENABLED
-#if canImport(RNUsercentricsModuleSpec)
+#if canImport(ReactCodegen)
+// RN ≥ 0.79: getTurboModule: implemented in RNUsercentricsModule+TurboModule.mm (do not import ReactCodegen in Swift — C++ module)
+#elseif canImport(React_Codegen)
+// RN 0.78
+import React_Codegen
+#elseif canImport(RNUsercentricsModuleSpec)
 // RN ≤ 0.77
 import RNUsercentricsModuleSpec
-#else
-// RN ≥ 0.78
-import React_Codegen
 #endif
 #endif
 
 @objc(RNUsercentricsModule)
-class RNUsercentricsModule: NSObject {
+class RNUsercentricsModule: RCTEventEmitter {
     
     var usercentricsManager: UsercentricsManager = UsercentricsManagerImplementation()
     var queue: DispatchQueueManager = DispatchQueue.main
+    private var gppSectionChangeSubscription: UsercentricsDisposableEvent<GppSectionChangePayload>?
 
-    @objc static func moduleName() -> String! {
+    @objc override static func moduleName() -> String! {
         return "RNUsercentricsModule"
     }
     
-    @objc static func requiresMainQueueSetup() -> Bool {
+    @objc override static func requiresMainQueueSetup() -> Bool {
         return true
+    }
+
+    override func supportedEvents() -> [String]! {
+        return [Self.onGppSectionChangeEvent]
+    }
+
+    override func startObserving() {
+        guard gppSectionChangeSubscription == nil else { return }
+        gppSectionChangeSubscription = usercentricsManager.onGppSectionChange { [weak self] payload in
+            self?.sendEvent(withName: Self.onGppSectionChangeEvent, body: payload.toDictionary())
+        }
+    }
+
+    override func stopObserving() {
+        gppSectionChangeSubscription?.dispose()
+        gppSectionChangeSubscription = nil
     }
     
     @objc func configure(_ dict: NSDictionary) -> Void {
@@ -123,6 +142,19 @@ class RNUsercentricsModule: NSObject {
         resolve(usercentricsManager.getUSPData().toDictionary())
     }
 
+    @objc func getGPPData(_ resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) -> Void {
+        resolve(usercentricsManager.getGPPData().toDictionary())
+    }
+
+    @objc func getGPPString(_ resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) -> Void {
+        resolve(usercentricsManager.getGPPString())
+    }
+
+    @objc func setGPPConsent(_ sectionName: String, fieldName: String, value: NSDictionary) -> Void {
+        let unwrapped = value["value"] ?? NSNull()
+        usercentricsManager.setGPPConsent(sectionName: sectionName, fieldName: fieldName, value: unwrapped)
+    }
+
     @objc func getABTestingVariant(_ resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) -> Void {
         resolve(usercentricsManager.getABTestingVariant())
     }
@@ -158,20 +190,26 @@ class RNUsercentricsModule: NSObject {
     @objc func denyAllForTCF(_ fromLayer: Double,
                              consentType: Double,
                              unsavedPurposeLIDecisions: [NSDictionary],
+                             unsavedVendorLIDecisions: [NSDictionary],
                              resolve: @escaping RCTPromiseResolveBlock,
                              reject: @escaping RCTPromiseRejectBlock) -> Void {
-        var decisions: [KotlinInt: KotlinBoolean]? = nil
-        if !unsavedPurposeLIDecisions.isEmpty {
-            decisions = [:]
-            for dict in unsavedPurposeLIDecisions {
-                if let id = dict["id"] as? Int,
-                   let consent = dict["legitimateInterestConsent"] as? Bool {
-                    decisions?[KotlinInt(int: Int32(id))] = KotlinBoolean(bool: consent)
-                }
+        let services = usercentricsManager.denyAllForTCF(
+            fromLayer: .initialize(from: Int(fromLayer)),
+            consentType: .initialize(from: Int(consentType)),
+            unsavedPurposeLIDecisions: extractLIDecisionsMap(unsavedPurposeLIDecisions),
+            unsavedVendorLIDecisions: extractLIDecisionsMap(unsavedVendorLIDecisions)
+        )
+        resolve(services.toListOfDictionary())
+    }
+
+    private func extractLIDecisionsMap(_ decisions: [NSDictionary]) -> [KotlinInt: KotlinBoolean]? {
+        guard !decisions.isEmpty else { return nil }
+        return decisions.reduce(into: [:]) { result, dict in
+            if let id = dict["id"] as? Int,
+               let consent = dict["legitimateInterestConsent"] as? Bool {
+                result[KotlinInt(int: Int32(id))] = KotlinBoolean(bool: consent)
             }
         }
-        let services = usercentricsManager.denyAllForTCF(fromLayer: .initialize(from: Int(fromLayer)), consentType: .initialize(from: Int(consentType)), unsavedPurposeLIDecisions: decisions)
-        resolve(services.toListOfDictionary())
     }
     
     @objc func denyAll(_ consentType: Double,
@@ -225,17 +263,25 @@ class RNUsercentricsModule: NSObject {
             reject("usercentrics_reactNative_clearUserSession_error", error.localizedDescription, error)
         }
     }
+
+    private static let onGppSectionChangeEvent = "onGppSectionChange"
 }
 
 // MARK: - RCTBridgeModule & TurboModule Conformance
 #if RCT_NEW_ARCH_ENABLED
+#if canImport(React_Codegen)
+// RN 0.78: codegen-generated protocol
+extension RNUsercentricsModule: NativeUsercentricsModuleSpec {
+    func getTurboModule(jsInvoker: RCTJSInvoker) -> Any {
+        return self
+    }
+}
+#elseif canImport(RNUsercentricsModuleSpec)
+// RN ≤ 0.77
 extension RNUsercentricsModule: NativeUsercentricsSpec {
     func getTurboModule(jsInvoker: RCTJSInvoker) -> Any {
         return self
     }
 }
-#else
-extension RNUsercentricsModule: RCTBridgeModule {
-
-}
+#endif
 #endif
