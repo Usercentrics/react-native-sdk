@@ -14,9 +14,10 @@ internal fun ReadableArray.deserializeUserDecision(): List<UserDecision> {
     for (i in 0 until size()) {
         val map = getMap(i)
         map?.let {
+            val serviceId = it.getString("serviceId") ?: return@let
             decisionList.add(
                 UserDecision(
-                    it.getString("serviceId")!!,
+                    serviceId,
                     it.getBoolean("consent")
                 )
             )
