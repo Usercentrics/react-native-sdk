@@ -1,0 +1,113 @@
+# === Dependencies ===
+node_modules/
+sample/node_modules/
+example/node_modules/
+legacy-sample/node_modules/
+jspm_packages/
+web_modules/
+bower_components/
+
+# === Build outputs ===
+lib/
+**/build/
+.gradle/
+.gradle
+buck-out/
+.cxx/
+.externalNativeBuild/
+DerivedData/
+
+# === iOS artifacts ===
+**/Pods/
+sample/vendor/bundle/
+*.ipa
+*.dSYM.zip
+*.dSYM
+xcuserdata/
+
+# === Android artifacts ===
+*.apk
+*.aab
+*.hprof
+local.properties
+captures/
+
+# === Package archives ===
+*.tgz
+*.tar.gz
+*.zip
+
+# === IDE / Editor ===
+.idea/
+*.iml
+.vscode-test
+*.xccheckout
+*.xcscmblueprint
+*.xcuserstate
+
+# === OS files ===
+.DS_Store
+._*
+.AppleDouble
+.LSOverride
+Thumbs.db
+.Spotlight-V100
+.Trashes
+
+# === Logs ===
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+# === Coverage / test output ===
+coverage/
+*.lcov
+.nyc_output
+
+# === Caches ===
+.eslintcache
+.stylelintcache
+*.tsbuildinfo
+.cache/
+.parcel-cache
+.rpt2_cache/
+.rts2_cache_cjs/
+.rts2_cache_es/
+.rts2_cache_umd/
+.metro-health-check*
+.fusebox/
+
+# === Secrets / environment ===
+.env
+.env.*
+!.env.example
+google-services.json
+*.jks
+*.keystore
+!debug.keystore
+
+# === Expo / Metro ===
+.expo
+__generated__
+
+# === Yarn v2+ ===
+.yarn/cache
+.yarn/unplugged
+.yarn/build-state.yml
+.yarn/install-state.gz
+.pnp.*
+
+# === Buck ===
+.buckconfig.local
+.buckd/
+.buckversion
+.fakebuckversion
+
+# === Misc generated ===
+.docusaurus
+.serverless/
+.dynamodb/
+.temp
+report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json

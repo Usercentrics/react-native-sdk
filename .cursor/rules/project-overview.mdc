@@ -1,0 +1,31 @@
+---
+description: Project overview and architecture for @usercentrics/react-native-sdk
+alwaysApply: true
+---
+
+# Project Overview
+
+This is `@usercentrics/react-native-sdk` — a React Native bridge for the Usercentrics Consent Management Platform (CMP).
+
+## Architecture
+
+- **`src/`** — TypeScript SDK source. Models, Fabric TurboModule spec, and the main `Usercentrics` API.
+- **`android/`** — Kotlin native module with C++ JNI bindings (Fabric/TurboModules).
+- **`ios/`** — Swift native module with ObjC++ bridge (Fabric/TurboModules).
+- **`sample/`** — Primary sample app (RN 0.81, used in CI).
+- **`example/`** — Secondary example app (RN 0.78).
+- **`legacy-sample/`** — Legacy sample (older RN, Java/Flow). Do not modify unless explicitly asked.
+
+## Key Conventions
+
+- Package manager: **yarn 1.x** (classic). Use `yarn install --frozen-lockfile` in CI.
+- Compiled output goes to `lib/` via `tsc`. Entry point: `lib/index.js`.
+- React Native Codegen is used for Fabric/TurboModule specs in `src/fabric/`.
+- The SDK has zero runtime dependencies — only peer deps on `react` and `react-native`.
+- All public types/APIs must be re-exported from `src/index.tsx` (enforced by `scripts/assert_export.sh`).
+
+## Formatting
+
+- Prettier: single quotes, no semicolons, JSX single quotes.
+- ESLint: `@react-native-community` config + `simple-import-sort` plugin.
+- Imports must be sorted via `simple-import-sort`.

@@ -190,20 +190,26 @@ class RNUsercentricsModule: RCTEventEmitter {
     @objc func denyAllForTCF(_ fromLayer: Double,
                              consentType: Double,
                              unsavedPurposeLIDecisions: [NSDictionary],
+                             unsavedVendorLIDecisions: [NSDictionary],
                              resolve: @escaping RCTPromiseResolveBlock,
                              reject: @escaping RCTPromiseRejectBlock) -> Void {
-        var decisions: [KotlinInt: KotlinBoolean]? = nil
-        if !unsavedPurposeLIDecisions.isEmpty {
-            decisions = [:]
-            for dict in unsavedPurposeLIDecisions {
-                if let id = dict["id"] as? Int,
-                   let consent = dict["legitimateInterestConsent"] as? Bool {
-                    decisions?[KotlinInt(int: Int32(id))] = KotlinBoolean(bool: consent)
-                }
+        let services = usercentricsManager.denyAllForTCF(
+            fromLayer: .initialize(from: Int(fromLayer)),
+            consentType: .initialize(from: Int(consentType)),
+            unsavedPurposeLIDecisions: extractLIDecisionsMap(unsavedPurposeLIDecisions),
+            unsavedVendorLIDecisions: extractLIDecisionsMap(unsavedVendorLIDecisions)
+        )
+        resolve(services.toListOfDictionary())
+    }
+
+    private func extractLIDecisionsMap(_ decisions: [NSDictionary]) -> [KotlinInt: KotlinBoolean]? {
+        guard !decisions.isEmpty else { return nil }
+        return decisions.reduce(into: [:]) { result, dict in
+            if let id = dict["id"] as? Int,
+               let consent = dict["legitimateInterestConsent"] as? Bool {
+                result[KotlinInt(int: Int32(id))] = KotlinBoolean(bool: consent)
             }
         }
-        let services = usercentricsManager.denyAllForTCF(fromLayer: .initialize(from: Int(fromLayer)), consentType: .initialize(from: Int(consentType)), unsavedPurposeLIDecisions: decisions)
-        resolve(services.toListOfDictionary())
     }
     
     @objc func denyAll(_ consentType: Double,
