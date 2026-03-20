@@ -100,6 +100,11 @@ export const Usercentrics = {
         return RNUsercentricsModule.getAdditionalConsentModeData();
     },
 
+    getDpsMetadata: async (templateId: string): Promise<Record<string, unknown> | null> => {
+        await RNUsercentricsModule.isReady();
+        return RNUsercentricsModule.getDpsMetadata(templateId);
+    },
+
     changeLanguage: async (language: string): Promise<void> => {
         await RNUsercentricsModule.isReady();
         return RNUsercentricsModule.changeLanguage(language);

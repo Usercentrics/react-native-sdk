@@ -159,6 +159,11 @@ class RNUsercentricsModule: RCTEventEmitter {
         resolve(usercentricsManager.getABTestingVariant())
     }
 
+    @objc func getDpsMetadata(_ templateId: String, resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) -> Void {
+        let metadata = usercentricsManager.getDpsMetadata(templateId: templateId)
+        resolve(metadata as NSDictionary?)
+    }
+
     @objc func getAdditionalConsentModeData(_ resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) -> Void {
         resolve(usercentricsManager.getAdditionalConsentModeData().toDictionary())
     }
