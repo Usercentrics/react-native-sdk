@@ -40,6 +40,7 @@ export interface Spec extends TurboModule {
   getGPPData(): Promise<GppData>;
   getGPPString(): Promise<string | null>;
   getABTestingVariant(): Promise<string>;
+  getDpsMetadata(templateId: string): Promise<Record<string, unknown> | null>;
 
   // Configuration Setters
   setCMPId(id: number): void;

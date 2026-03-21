@@ -24,6 +24,7 @@ public protocol UsercentricsManager {
     func setGPPConsent(sectionName: String, fieldName: String, value: Any)
     func getTCFData(callback: @escaping (TCFData) -> Void)
     func getABTestingVariant() -> String?
+    func getDpsMetadata(templateId: String) -> [String: Any]?
     func getAdditionalConsentModeData() -> AdditionalConsentModeData
     func onGppSectionChange(callback: @escaping (GppSectionChangePayload) -> Void) -> UsercentricsDisposableEvent<GppSectionChangePayload>
 
@@ -114,6 +115,10 @@ final class UsercentricsManagerImplementation: UsercentricsManager {
 
     func getTCFData(callback: @escaping (TCFData) -> Void) {
         UsercentricsCore.shared.getTCFData(callback: callback)
+    }
+
+    func getDpsMetadata(templateId: String) -> [String: Any]? {
+        return UsercentricsCore.shared.getDpsMetadata(templateId: templateId)
     }
 
     func getAdditionalConsentModeData() -> AdditionalConsentModeData {
