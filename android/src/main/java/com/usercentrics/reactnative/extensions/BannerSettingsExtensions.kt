@@ -137,9 +137,10 @@ internal fun ReadableMap.buttonLayoutFromMap(context: Context): ButtonLayout? {
 
 internal fun ReadableMap.buttonSettingsFromMap(context: Context): ButtonSettings {
     val assetManager = context.assets
+    val buttonType = getString("buttonType")?.deserializeButtonType() ?: ButtonType.MORE
 
     return ButtonSettings(
-        type = getString("buttonType")!!.deserializeButtonType(),
+        type = buttonType,
         isAllCaps = getBooleanOrNull("isAllCaps"),
         font = assetManager.createFontFromName(getString("fontName")),
         textColor = getString("textColorHex")?.deserializeColor(),
