@@ -10,10 +10,6 @@
 @interface RCT_EXTERN_MODULE(RNUsercentricsModule, NSObject)
 RCT_EXTERN_METHOD(configure:(NSDictionary *)dict)
 
-RCT_EXTERN_METHOD(showCMP:(NSDictionary *)dict
-                  resolve:(RCTPromiseResolveBlock)resolve
-                  reject:(RCTPromiseRejectBlock)reject)
-
 RCT_EXTERN_METHOD(showFirstLayer:(NSDictionary *)dict
                   resolve:(RCTPromiseResolveBlock)resolve
                   reject:(RCTPromiseRejectBlock)reject)
@@ -27,9 +23,6 @@ RCT_EXTERN_METHOD(restoreUserSession:(NSString *)controllerId
                   reject:(RCTPromiseRejectBlock)reject)
 
 RCT_EXTERN_METHOD(isReady:(RCTPromiseResolveBlock)resolve
-                  reject:(RCTPromiseRejectBlock)reject)
-
-RCT_EXTERN_METHOD(getTCFString:(RCTPromiseResolveBlock)resolve
                   reject:(RCTPromiseRejectBlock)reject)
 
 RCT_EXTERN_METHOD(getControllerId:(RCTPromiseResolveBlock)resolve
