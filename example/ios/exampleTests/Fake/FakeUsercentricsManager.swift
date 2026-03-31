@@ -118,6 +118,13 @@ final class FakeUsercentricsManager: UsercentricsManager {
     callback(getTCFDataResponse!)
   }
 
+  var getDpsMetadataResponse: [String: Any]?
+  var getDpsMetadataTemplateId: String?
+  func getDpsMetadata(templateId: String) -> [String: Any]? {
+    getDpsMetadataTemplateId = templateId
+    return getDpsMetadataResponse
+  }
+
   var getAdditionalConsentModeDataResponse: AdditionalConsentModeData?
   func getAdditionalConsentModeData() -> AdditionalConsentModeData {
     return getAdditionalConsentModeDataResponse!

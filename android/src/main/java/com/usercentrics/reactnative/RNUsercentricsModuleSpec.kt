@@ -61,6 +61,9 @@ abstract class RNUsercentricsModuleSpec internal constructor(context: ReactAppli
     abstract fun getABTestingVariant(promise: Promise)
 
     @ReactMethod
+    abstract fun getDpsMetadata(templateId: String, promise: Promise)
+
+    @ReactMethod
     abstract fun setCMPId(id: Double)
 
     @ReactMethod

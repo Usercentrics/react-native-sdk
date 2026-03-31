@@ -563,6 +563,43 @@ class RNUsercentricsModuleTests: XCTestCase {
     }
   }
 
+  func testGetDpsMetadataWithValidData() {
+    fakeUsercentrics.getDpsMetadataResponse = ["partner": "appsflyer", "source": "campaign_1"]
+    module.getDpsMetadata("template123") { result in
+      guard let result = result as? NSDictionary else {
+        XCTFail()
+        return
+      }
+      XCTAssertEqual("appsflyer", result["partner"] as! String)
+      XCTAssertEqual("campaign_1", result["source"] as! String)
+    } reject: { _, _, _ in
+      XCTFail("Should not go here")
+    }
+    XCTAssertEqual("template123", fakeUsercentrics.getDpsMetadataTemplateId)
+  }
+
+  func testGetDpsMetadataWhenNull() {
+    fakeUsercentrics.getDpsMetadataResponse = nil
+    module.getDpsMetadata("nonExistent") { result in
+      XCTAssertNil(result)
+    } reject: { _, _, _ in
+      XCTFail("Should not go here")
+    }
+  }
+
+  func testGetDpsMetadataWithEmptyMap() {
+    fakeUsercentrics.getDpsMetadataResponse = [:]
+    module.getDpsMetadata("template123") { result in
+      guard let result = result as? NSDictionary else {
+        XCTFail()
+        return
+      }
+      XCTAssertEqual(0, result.count)
+    } reject: { _, _, _ in
+      XCTFail("Should not go here")
+    }
+  }
+
   func testGetAdditionalConsentModeData() {
     let expected = AdditionalConsentModeData(acString: "2~43.46.55~dv.",
                                              adTechProviders: [AdTechProvider(id: 43, name: "AdPredictive", privacyPolicyUrl: "https://adpredictive.com/privacy", consent: true)])

@@ -86,6 +86,16 @@ internal class RNUsercentricsModule(
     }
 
     @ReactMethod
+    override fun getDpsMetadata(templateId: String, promise: Promise) {
+        val metadata = usercentricsProxy.instance.getDpsMetadata(templateId)
+        if (metadata == null) {
+            promise.resolve(null)
+        } else {
+            promise.resolve(metadata.toWritableMap())
+        }
+    }
+
+    @ReactMethod
     override fun getConsents(promise: Promise) {
         promise.resolve(usercentricsProxy.instance.getConsents().toWritableArray())
     }

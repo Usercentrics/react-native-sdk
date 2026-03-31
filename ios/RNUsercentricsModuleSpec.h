@@ -36,6 +36,10 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)getCMPData:(RCTPromiseResolveBlock)resolve
             reject:(RCTPromiseRejectBlock)reject;
 
+- (void)getDpsMetadata:(NSString *)templateId
+               resolve:(RCTPromiseResolveBlock)resolve
+                reject:(RCTPromiseRejectBlock)reject;
+
 - (void)getAdditionalConsentModeData:(RCTPromiseResolveBlock)resolve
                               reject:(RCTPromiseRejectBlock)reject;
 

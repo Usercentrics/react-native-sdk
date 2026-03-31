@@ -61,6 +61,7 @@ jest.mock("react-native", () => {
         setGPPConsent: jest.fn(),
         track: jest.fn(),
         reset: jest.fn(),
+        getDpsMetadata: jest.fn(),
         clearUserSession: jest.fn(),
         addListener: jest.fn(),
         removeListeners: jest.fn()
@@ -453,6 +454,37 @@ describe('Test Usercentrics Module', () => {
 
         const data = await Usercentrics.getAdditionalConsentModeData();
         expect(data).toStrictEqual(response)
+    })
+
+    test('testGetDpsMetadataWithValidData', async () => {
+        const metadata = { partner: "appsflyer", source: "campaign_1" };
+        RNUsercentricsModule.getDpsMetadata.mockImplementationOnce(
+            (): Promise<any> => Promise.resolve(metadata)
+        )
+
+        const data = await Usercentrics.getDpsMetadata("templateId123");
+        expect(data).toStrictEqual(metadata);
+
+        const call = RNUsercentricsModule.getDpsMetadata.mock.calls[0][0];
+        expect(call).toBe("templateId123");
+    })
+
+    test('testGetDpsMetadataWhenNull', async () => {
+        RNUsercentricsModule.getDpsMetadata.mockImplementationOnce(
+            (): Promise<any> => Promise.resolve(null)
+        )
+
+        const data = await Usercentrics.getDpsMetadata("nonExistentId");
+        expect(data).toBe(null);
+    })
+
+    test('testGetDpsMetadataWithEmptyObject', async () => {
+        RNUsercentricsModule.getDpsMetadata.mockImplementationOnce(
+            (): Promise<any> => Promise.resolve({})
+        )
+
+        const data = await Usercentrics.getDpsMetadata("templateId123");
+        expect(data).toStrictEqual({});
     })
 
     test('testClearUserSession', async () => {
