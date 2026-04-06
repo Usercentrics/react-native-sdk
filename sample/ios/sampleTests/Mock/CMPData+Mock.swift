@@ -336,7 +336,7 @@ extension TCF2Settings {
                  disabledSpecialFeatures: [1,2,3],
                  firstLayerShowDescriptions: true,
                  hideNonIabOnFirstLayer: true,
-                 resurfacePeriodEnded: true,
+                 resurfacePeriod: 1,
                  resurfacePurposeChanged: true,
                  resurfaceVendorAdded: true,
                  firstLayerDescription: "firstLayerDescription",

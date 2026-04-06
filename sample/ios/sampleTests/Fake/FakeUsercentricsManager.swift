@@ -108,10 +108,10 @@ final class FakeUsercentricsManager: UsercentricsManager {
     self.setGPPConsentValue = value
   }
 
-  var gppSectionChangeDisposableEvent = UsercentricsDisposableEvent<GppSectionChangePayload>()
+  var gppSectionChangeCallback: ((GppSectionChangePayload) -> Void)?
   func onGppSectionChange(callback: @escaping (GppSectionChangePayload) -> Void) -> UsercentricsDisposableEvent<GppSectionChangePayload> {
-    gppSectionChangeDisposableEvent.callback = callback
-    return gppSectionChangeDisposableEvent
+    gppSectionChangeCallback = callback
+    return UsercentricsDisposableEvent(callback: callback)
   }
 
   var getTCFDataResponse: TCFData?
