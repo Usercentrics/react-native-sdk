@@ -11,7 +11,7 @@ private func bridgeValue(_ value: Any) -> Any {
                 return bridgeDictionary(nested)
             }
             if let nestedArray = item as? [Any] {
-                return nestedArray.map { nestedItem in
+                return nestedArray.map { nestedItem -> Any in
                     if let nestedDict = nestedItem as? [String: Any] {
                         return bridgeDictionary(nestedDict)
                     }
