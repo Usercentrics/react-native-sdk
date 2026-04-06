@@ -111,7 +111,9 @@ final class FakeUsercentricsManager: UsercentricsManager {
   var gppSectionChangeCallback: ((GppSectionChangePayload) -> Void)?
   func onGppSectionChange(callback: @escaping (GppSectionChangePayload) -> Void) -> UsercentricsDisposableEvent<GppSectionChangePayload> {
     gppSectionChangeCallback = callback
-    return UsercentricsDisposableEvent(callback: callback)
+    return UsercentricsDisposableEvent(callback: { payload in
+      if let payload = payload { callback(payload) }
+    })
   }
 
   var getTCFDataResponse: TCFData?
