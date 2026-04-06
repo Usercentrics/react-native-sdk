@@ -155,6 +155,7 @@ internal class RNUsercentricsModule(
         } else {
             readableMapValueToAny(value)
         }
+        parsedValue ?: return
         usercentricsProxy.instance.setGPPConsent(sectionName, fieldName, parsedValue)
     }
 
