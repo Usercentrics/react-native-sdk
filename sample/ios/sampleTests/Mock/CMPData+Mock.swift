@@ -35,6 +35,8 @@ extension UsercentricsSettings {
                  ccpa: .mock(),
                  tcf2: .mock(),
                  gpp: nil,
+                 gppSignalingEnabled: true,
+                 gpcSignalHonoured: true,
                  customization: .mock(),
                  firstLayer: .mock(),
                  styles: .mock(),
@@ -101,7 +103,8 @@ extension UsercentricsService {
                  isDeactivated: true,
                  isAutoUpdateAllowed: true,
                  disableLegalBasis: true,
-                 isEssential: true)
+                 isEssential: true,
+                 metadata: nil)
   }
 }
 
@@ -275,7 +278,9 @@ extension CCPASettings {
                  appFirstLayerDescription: "appFirstLayerDescription",
                  firstLayerMobileDescriptionIsActive: true,
                  firstLayerMobileDescription: "firstLayerMobileDescription",
-                 secondLayerHideLanguageSwitch: true)
+                 secondLayerHideLanguageSwitch: true,
+                 mspaCoveredTransaction: true,
+                 mspaMode: nil)
   }
 }
 
@@ -434,7 +439,8 @@ extension ServiceConsentTemplate {
                  subConsents: [.mock()],
                  isAutoUpdateAllowed: true,
                  legalBasisList: ["legalBasisList"],
-                 disableLegalBasis: true)
+                 disableLegalBasis: true,
+                 metadata: nil)
   }
 }
 
