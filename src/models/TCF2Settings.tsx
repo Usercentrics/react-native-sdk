@@ -156,7 +156,7 @@ export class TCF2Settings {
         this.disabledSpecialFeatures = disabledSpecialFeatures
         this.firstLayerShowDescriptions = firstLayerShowDescriptions
         this.hideNonIabOnFirstLayer = hideNonIabOnFirstLayer
-        this.resurfacePeriodEnded = resurfacePeriodEnded
+        this.resurfacePeriod = resurfacePeriod
         this.resurfacePurposeChanged = resurfacePurposeChanged
         this.resurfaceVendorAdded = resurfaceVendorAdded
         this.firstLayerDescription = firstLayerDescription
