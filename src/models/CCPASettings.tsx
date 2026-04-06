@@ -14,6 +14,8 @@ export class CCPASettings {
     secondLayerDescription: string
     secondLayerHideLanguageSwitch: boolean
     btnMoreInfo: string
+    mspaCoveredTransaction?: boolean
+    mspaMode?: number
 
     constructor(
         optOutNoticeLabel: string,
@@ -29,7 +31,9 @@ export class CCPASettings {
         secondLayerTitle: string,
         secondLayerDescription: string,
         secondLayerHideLanguageSwitch: boolean,
-        btnMoreInfo: string
+        btnMoreInfo: string,
+        mspaCoveredTransaction?: boolean,
+        mspaMode?: number
     ) {
         this.optOutNoticeLabel = optOutNoticeLabel
         this.btnSave = btnSave
@@ -45,5 +49,7 @@ export class CCPASettings {
         this.secondLayerDescription = secondLayerDescription
         this.secondLayerHideLanguageSwitch = secondLayerHideLanguageSwitch
         this.btnMoreInfo = btnMoreInfo
+        this.mspaCoveredTransaction = mspaCoveredTransaction
+        this.mspaMode = mspaMode
     }
 }

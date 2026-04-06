@@ -35,7 +35,7 @@ export class TCF2Settings {
     disabledSpecialFeatures: [number]
     firstLayerShowDescriptions: boolean
     hideNonIabOnFirstLayer: boolean
-    resurfacePeriodEnded: boolean
+    resurfacePeriod: number
     resurfacePurposeChanged: boolean
     resurfaceVendorAdded: boolean
     firstLayerDescription: string
@@ -95,7 +95,7 @@ export class TCF2Settings {
         disabledSpecialFeatures: [number],
         firstLayerShowDescriptions: boolean,
         hideNonIabOnFirstLayer: boolean,
-        resurfacePeriodEnded: boolean,
+        resurfacePeriod: number,
         resurfacePurposeChanged: boolean,
         resurfaceVendorAdded: boolean,
         firstLayerDescription: string,

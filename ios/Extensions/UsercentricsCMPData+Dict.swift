@@ -45,6 +45,8 @@ extension UsercentricsSettings {
             "publishedApps": (self.publishedApps?.map { $0.toDictionary() } ?? nil) as Any,
             "renewConsentsTimestamp": self.renewConsentsTimestamp as Any,
             "consentWebhook": self.consentWebhook as Any,
+            "gppSignalingEnabled": self.gppSignalingEnabled,
+            "gpcSignalHonoured": self.gpcSignalHonoured,
         ]
     }
 }
@@ -164,6 +166,8 @@ extension CCPASettings {
             "secondLayerDescription" : self.secondLayerDescription as Any,
             "secondLayerHideLanguageSwitch" : self.secondLayerHideLanguageSwitch,
             "btnMoreInfo" : self.btnMoreInfo as Any,
+            "mspaCoveredTransaction" : self.mspaCoveredTransaction,
+            "mspaMode" : self.mspaMode?.ordinal as Any,
         ]
     }
 }
@@ -230,7 +234,8 @@ extension TCF2Settings {
             "scope": self.scope.ordinal,
             "changedPurposes": self.changedPurposes?.toDictionary() as Any,
             "acmV2Enabled": self.acmV2Enabled,
-            "selectedATPIds": self.selectedATPIds
+            "selectedATPIds": self.selectedATPIds,
+            "resurfacePeriod": self.resurfacePeriod,
         ]
     }
 }
