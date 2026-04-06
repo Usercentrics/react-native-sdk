@@ -155,8 +155,8 @@ internal class RNUsercentricsModule(
         } else {
             readableMapValueToAny(value)
         }
-        parsedValue ?: return
-        usercentricsProxy.instance.setGPPConsent(sectionName, fieldName, parsedValue)
+        val safeValue = parsedValue ?: org.json.JSONObject.NULL
+        usercentricsProxy.instance.setGPPConsent(sectionName, fieldName, safeValue)
     }
 
     @ReactMethod
