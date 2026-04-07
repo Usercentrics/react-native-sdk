@@ -108,10 +108,12 @@ final class FakeUsercentricsManager: UsercentricsManager {
     self.setGPPConsentValue = value
   }
 
-  var gppSectionChangeDisposableEvent = UsercentricsDisposableEvent<GppSectionChangePayload>()
+  var gppSectionChangeCallback: ((GppSectionChangePayload) -> Void)?
   func onGppSectionChange(callback: @escaping (GppSectionChangePayload) -> Void) -> UsercentricsDisposableEvent<GppSectionChangePayload> {
-    gppSectionChangeDisposableEvent.callback = callback
-    return gppSectionChangeDisposableEvent
+    gppSectionChangeCallback = callback
+    return UsercentricsDisposableEvent(callback: { payload in
+      if let payload = payload { callback(payload) }
+    })
   }
 
   var getTCFDataResponse: TCFData?
@@ -167,11 +169,13 @@ final class FakeUsercentricsManager: UsercentricsManager {
   var denyAllForTCFConsentType: UsercentricsConsentType?
   var denyAllForTCFFromLayer: TCFDecisionUILayer?
   var denyAllForTCFUnsavedPurposeLIDecisions: [KotlinInt: KotlinBoolean]?
+  var denyAllForTCFUnsavedVendorLIDecisions: [KotlinInt: KotlinBoolean]?
   var denyAllForTCFResponse: [UsercentricsServiceConsent]?
-  func denyAllForTCF(fromLayer: TCFDecisionUILayer, consentType: UsercentricsConsentType, unsavedPurposeLIDecisions: [KotlinInt: KotlinBoolean]?) -> [UsercentricsServiceConsent] {
+  func denyAllForTCF(fromLayer: TCFDecisionUILayer, consentType: UsercentricsConsentType, unsavedPurposeLIDecisions: [KotlinInt: KotlinBoolean]?, unsavedVendorLIDecisions: [KotlinInt: KotlinBoolean]?) -> [UsercentricsServiceConsent] {
     self.denyAllForTCFConsentType = consentType
     self.denyAllForTCFFromLayer = fromLayer
     self.denyAllForTCFUnsavedPurposeLIDecisions = unsavedPurposeLIDecisions
+    self.denyAllForTCFUnsavedVendorLIDecisions = unsavedVendorLIDecisions
     return denyAllForTCFResponse!
   }
 

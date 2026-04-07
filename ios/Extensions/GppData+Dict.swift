@@ -6,17 +6,17 @@ private func bridgeValue(_ value: Any) -> Any {
     case let dictionary as [String: Any]:
         return bridgeDictionary(dictionary)
     case let array as [Any]:
-        return array.map { item in
+        return array.map { item -> Any in
             if let nested = item as? [String: Any] {
                 return bridgeDictionary(nested)
             }
             if let nestedArray = item as? [Any] {
-                return nestedArray.map { nestedItem in
+                return nestedArray.map { nestedItem -> Any in
                     if let nestedDict = nestedItem as? [String: Any] {
                         return bridgeDictionary(nestedDict)
                     }
                     return nestedItem
-                }
+                } as NSArray
             }
             return item
         } as NSArray

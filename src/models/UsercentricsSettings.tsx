@@ -31,6 +31,8 @@ export class UsercentricsSettings {
     publishedApps?: [PublishedApp]
     renewConsentsTimestamp?: number
     consentWebhook?: boolean
+    gppSignalingEnabled?: boolean
+    gpcSignalHonoured?: boolean
 
     constructor(
         labels: UsercentricsLabels,
@@ -61,6 +63,8 @@ export class UsercentricsSettings {
         publishedApps?: [PublishedApp],
         renewConsentsTimestamp?: number,
         consentWebhook?: boolean,
+        gppSignalingEnabled?: boolean,
+        gpcSignalHonoured?: boolean,
     ) {
         this.labels = labels
         this.version = version
@@ -90,6 +94,8 @@ export class UsercentricsSettings {
         this.publishedApps = publishedApps
         this.renewConsentsTimestamp = renewConsentsTimestamp
         this.consentWebhook = consentWebhook
+        this.gppSignalingEnabled = gppSignalingEnabled
+        this.gpcSignalHonoured = gpcSignalHonoured
     }
 }
 

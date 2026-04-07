@@ -63,7 +63,9 @@ private fun UsercentricsSettings.serialize(): WritableMap {
         "framework" to framework?.ordinal,
         "publishedApps" to publishedApps?.map { it.serialize() },
         "renewConsentsTimestamp" to renewConsentsTimestamp,
-        "consentWebhook" to consentWebhook
+        "consentWebhook" to consentWebhook,
+        "gppSignalingEnabled" to getGppSignalingEnabledCompat(),
+        "gpcSignalHonoured" to getGpcSignalHonouredCompat(),
     ).toWritableMap()
 }
 
@@ -178,6 +180,8 @@ private fun CCPASettings.serialize(): WritableMap {
         "secondLayerDescription" to secondLayerDescription,
         "secondLayerHideLanguageSwitch" to secondLayerHideLanguageSwitch,
         "btnMoreInfo" to btnMoreInfo,
+        "mspaCoveredTransaction" to getMspaCoveredTransactionCompat(),
+        "mspaMode" to getMspaModeCompat(),
     ).toWritableMap()
 }
 
@@ -219,7 +223,7 @@ private fun TCF2Settings.serialize(): WritableMap {
         "disabledSpecialFeatures" to disabledSpecialFeatures,
         "firstLayerShowDescriptions" to firstLayerShowDescriptions,
         "hideNonIabOnFirstLayer" to hideNonIabOnFirstLayer,
-        "resurfacePeriodEnded" to getResurfacePeriodEndedCompat(),
+        "resurfacePeriod" to getResurfacePeriodCompat(),
         "resurfacePurposeChanged" to resurfacePurposeChanged,
         "resurfaceVendorAdded" to resurfaceVendorAdded,
         "firstLayerDescription" to firstLayerDescription,
@@ -245,14 +249,42 @@ private fun TCF2Settings.serialize(): WritableMap {
     ).toWritableMap()
 }
 
-private fun TCF2Settings.getResurfacePeriodEndedCompat(): Boolean {
-    val reflectionValue = runCatching {
+private fun TCF2Settings.getResurfacePeriodCompat(): Int {
+    val intValue = runCatching {
+        javaClass.getMethod("getResurfacePeriod").invoke(this) as? Int
+    }.getOrNull()
+    if (intValue != null) return intValue
+    val boolValue = runCatching {
         javaClass.getMethod("getResurfacePeriodEnded").invoke(this)
     }.getOrNull() ?: runCatching {
         javaClass.getMethod("isResurfacePeriodEnded").invoke(this)
     }.getOrNull()
+    return if (boolValue as? Boolean == true) 1 else 0
+}
 
-    return reflectionValue as? Boolean ?: false
+private fun UsercentricsSettings.getGppSignalingEnabledCompat(): Boolean {
+    return runCatching {
+        javaClass.getMethod("getGppSignalingEnabled").invoke(this) as? Boolean
+    }.getOrNull() ?: false
+}
+
+private fun UsercentricsSettings.getGpcSignalHonouredCompat(): Boolean {
+    return runCatching {
+        javaClass.getMethod("getGpcSignalHonoured").invoke(this) as? Boolean
+    }.getOrNull() ?: false
+}
+
+private fun CCPASettings.getMspaCoveredTransactionCompat(): Boolean {
+    return runCatching {
+        javaClass.getMethod("getMspaCoveredTransaction").invoke(this) as? Boolean
+    }.getOrNull() ?: false
+}
+
+private fun CCPASettings.getMspaModeCompat(): Int? {
+    return runCatching {
+        val mode = javaClass.getMethod("getMspaMode").invoke(this) ?: return@runCatching null
+        mode.javaClass.getMethod("ordinal").invoke(mode) as? Int
+    }.getOrNull()
 }
 
 private fun UsercentricsCustomization.serialize(): WritableMap {

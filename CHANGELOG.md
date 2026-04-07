@@ -1,4 +1,15 @@
 [Release Notes](https://docs.usercentrics.com/cmp_in_app_sdk/latest/about/history/)
+### 2.26.1 – Apr 07, 2026
+## Features
+* Added support for US National (GPP) privacy framework
+* Extended GPP API to Flutter, React Native and Unity bridges
+* Exposed DPS metadata via new `getDpsMetadata()` API
+* TCF resurfacing period now configurable via Admin UI (1–13 months)
+## Fixes
+* Fixed TCF resurfacing period logic
+* Fixed stored information not shown on DPS details
+* Fixed TCF maintain legitimate interest logic on Deny All
+
 ### 2.25.1 – Mar 02, 2026
 ## Improvement
 * UI improvements and fixes
