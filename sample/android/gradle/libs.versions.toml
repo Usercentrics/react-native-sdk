@@ -14,7 +14,7 @@ gradle = "8.13"
 kotlin = "2.0.21"
 
 # React Native
-reactNative = "0.79.6"
+reactNative = "0.81.4"
 
 # Java
 java = "17"

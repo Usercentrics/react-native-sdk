@@ -3,10 +3,10 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "android": "react-native run-android",
-    "ios": "react-native run-ios",
+    "android": "npx react-native run-android",
+    "ios": "npx react-native run-ios",
     "lint": "eslint .",
-    "start": "react-native start",
+    "start": "npx react-native start",
     "test": "jest",
     "postinstall": "patch-package && ./scripts/fix-react-logger.sh",
     "android-build": "cd android && ./gradlew app:assembleDebug",
@@ -20,18 +20,16 @@
   "dependencies": {
     "@react-navigation/native": "^6.1.18",
     "@react-navigation/native-stack": "^6.11.0",
-    "install": "^0.13.0",
-    "npm": "^11.6.0",
     "react": "19.1.0",
     "react-native": "0.81.4",
-    "react-native-safe-area-context": "5.6.1",
-    "react-native-screens": "^4.16.0",
-    "react-native-webview": "^13.16.0"
+    "react-native-safe-area-context": "^5.7.0",
+    "react-native-screens": "^4.24.0",
+    "react-native-webview": "^13.16.1"
   },
   "devDependencies": {
-    "@babel/core": "^7.25.2",
-    "@babel/preset-env": "^7.25.3",
-    "@babel/runtime": "^7.25.0",
+    "@babel/core": "^7.26.0",
+    "@babel/preset-env": "^7.26.0",
+    "@babel/runtime": "^7.26.0",
     "@react-native-community/cli": "18.0.0",
     "@react-native-community/cli-platform-android": "18.0.0",
     "@react-native-community/cli-platform-ios": "18.0.0",
