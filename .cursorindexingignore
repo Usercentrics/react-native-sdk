@@ -1,7 +1,6 @@
 # === Lock files (large, not useful for indexing) ===
 package-lock.json
 sample/package-lock.json
-example/package-lock.json
 **/Podfile.lock
 **/Gemfile.lock
 yarn.lock
@@ -9,10 +8,6 @@ yarn.lock
 # === Xcode project files (huge, binary-like) ===
 **/*.pbxproj
 **/*.xcworkspacedata
-
-# === Legacy & secondary sample apps ===
-legacy-sample/
-example/
 
 # === Gradle wrapper binaries ===
 **/gradle/wrapper/gradle-wrapper.jar

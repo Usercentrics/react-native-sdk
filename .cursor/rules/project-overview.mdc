@@ -12,9 +12,7 @@ This is `@usercentrics/react-native-sdk` — a React Native bridge for the Userc
 - **`src/`** — TypeScript SDK source. Models, Fabric TurboModule spec, and the main `Usercentrics` API.
 - **`android/`** — Kotlin native module with C++ JNI bindings (Fabric/TurboModules).
 - **`ios/`** — Swift native module with ObjC++ bridge (Fabric/TurboModules).
-- **`sample/`** — Primary sample app (RN 0.81, used in CI).
-- **`example/`** — Secondary example app (RN 0.78).
-- **`legacy-sample/`** — Legacy sample (older RN, Java/Flow). Do not modify unless explicitly asked.
+- **`sample/`** — Sample app (RN 0.81, used in CI).
 
 ## Key Conventions
 

@@ -1,8 +1,6 @@
 # === Dependencies ===
 node_modules/
 sample/node_modules/
-example/node_modules/
-legacy-sample/node_modules/
 jspm_packages/
 web_modules/
 bower_components/

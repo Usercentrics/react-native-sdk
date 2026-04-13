@@ -3,7 +3,7 @@
 
 echo "🧹 Starting complete cache cleanup..."
 
-# Detect if we are in root, example, or sample folder and define root path
+# Detect if we are in root or sample folder and define root path
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 CURRENT_DIR="$(pwd)"
 
@@ -12,15 +12,11 @@ if [[ "$CURRENT_DIR" == *"/sample" ]]; then
     # Running from inside sample folder
     PROJECT_ROOT="$(cd .. && pwd)"
     echo "📍 Detected: running from inside sample folder"
-elif [[ "$CURRENT_DIR" == *"/legacy-sample" ]]; then
-    # Running from inside legacy-sample folder
-    PROJECT_ROOT="$(cd .. && pwd)"
-    echo "📍 Detected: running from inside legacy-sample folder"
-elif [[ -d "$CURRENT_DIR/scripts" && (-d "$CURRENT_DIR/sample" || -d "$CURRENT_DIR/legacy-sample") ]]; then
+elif [[ -d "$CURRENT_DIR/scripts" && -d "$CURRENT_DIR/sample" ]]; then
     # Running from project root
     PROJECT_ROOT="$CURRENT_DIR"
     echo "📍 Detected: running from project root"
-elif [[ -d "$SCRIPT_DIR/../sample" || -d "$SCRIPT_DIR/../legacy-sample" ]]; then
+elif [[ -d "$SCRIPT_DIR/../sample" ]]; then
     # Script executed from scripts folder
     PROJECT_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
     echo "📍 Detected: running from scripts folder"
@@ -42,26 +38,6 @@ pkill -f gradle 2>/dev/null || true
 if [[ -d "$PROJECT_ROOT/sample" ]]; then
     echo "🗂️  Cleaning sample project caches..."
     cd "$PROJECT_ROOT/sample"
-    npm cache clean --force 2>/dev/null || true
-    rm -rf node_modules package-lock.json
-    rm -rf android/.cxx
-    rm -rf android/app/.cxx android/app/build android/build android/.gradle
-    rm -rf .metro
-    rm -rf ios/build
-    rm -rf ios/Pods
-    rm -rf ios/Podfile.lock
-
-    # Clean Android with gradlew
-    if [[ -f "android/gradlew" ]]; then
-        cd android && ./gradlew clean 2>/dev/null || true
-        cd ..
-    fi
-fi
-
-# Clean legacy-sample project caches
-if [[ -d "$PROJECT_ROOT/legacy-sample" ]]; then
-    echo "🗂️  Cleaning legacy-sample project caches..."
-    cd "$PROJECT_ROOT/legacy-sample"
     npm cache clean --force 2>/dev/null || true
     rm -rf node_modules package-lock.json
     rm -rf android/.cxx
@@ -112,10 +88,6 @@ if [[ -d "$PROJECT_ROOT/sample/android" ]]; then
     cd "$PROJECT_ROOT/sample/android"
     ./gradlew --stop 2>/dev/null || true
 fi
-if [[ -d "$PROJECT_ROOT/legacy-sample/android" ]]; then
-    cd "$PROJECT_ROOT/legacy-sample/android"
-    ./gradlew --stop 2>/dev/null || true
-fi
 
 # Return to original directory
 cd "$CURRENT_DIR"
@@ -131,13 +103,6 @@ if [[ -f "$PROJECT_ROOT/scripts/fix-metro.sh" ]]; then
         "$PROJECT_ROOT/scripts/fix-metro.sh" --kill-only
         cd "$CURRENT_DIR"
     fi
-    # Run fix-metro.sh in legacy-sample directory if it exists
-    if [[ -d "$PROJECT_ROOT/legacy-sample" ]]; then
-        echo "   Fixing Metro issues in legacy-sample..."
-        cd "$PROJECT_ROOT/legacy-sample"
-        "$PROJECT_ROOT/scripts/fix-metro.sh" --kill-only
-        cd "$CURRENT_DIR"
-    fi
     echo "✅ Metro issues prevention completed!"
 else
     echo "⚠️  fix-metro.sh not found, skipping Metro fix"
@@ -148,9 +113,6 @@ echo "📝 Next steps:"
 echo "   1. npm run install-dependencies"
 if [[ -d "$PROJECT_ROOT/sample" ]]; then
     echo "   2. cd $PROJECT_ROOT/sample && npm run android"
-fi
-if [[ -d "$PROJECT_ROOT/legacy-sample" ]]; then
-    echo "   2. cd $PROJECT_ROOT/legacy-sample && npm run android"
 fi
 echo ""
 echo "🔧 If you encounter Metro bundler issues, use:"

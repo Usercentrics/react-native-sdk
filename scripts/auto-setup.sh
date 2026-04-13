@@ -393,15 +393,6 @@ if [[ -d "$PROJECT_ROOT/sample" ]]; then
     print_status "FAIL" "Failed to install sample dependencies"
 fi
 
-# Install legacy-sample dependencies
-if [[ -d "$PROJECT_ROOT/legacy-sample" ]]; then
-    print_status "INFO" "Installing legacy-sample project dependencies..."
-    cd "$PROJECT_ROOT/legacy-sample"
-    npm install --legacy-peer-deps && \
-    print_status "SUCCESS" "Legacy-sample dependencies installed" || \
-    print_status "FAIL" "Failed to install legacy-sample dependencies"
-fi
-
 # Apply patches
 if [ -f "$PROJECT_ROOT/sample/package.json" ] && grep -q "patch-package" "$PROJECT_ROOT/sample/package.json"; then
     print_status "INFO" "Applying patches..."

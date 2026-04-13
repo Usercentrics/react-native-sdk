@@ -348,7 +348,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(SRCROOT)/../example/ios/Pods/Headers/Public/React-Core",
+					"$(SRCROOT)/../sample/ios/Pods/Headers/Public/React-Core",
 					"$(SRCROOT)/../../../ios/Pods/Headers/Public/React-Core",
 				);
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -372,7 +372,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(SRCROOT)/../example/ios/Pods/Headers/Public/React-Core",
+					"$(SRCROOT)/../sample/ios/Pods/Headers/Public/React-Core",
 					"$(SRCROOT)/../../../ios/Pods/Headers/Public/React-Core",
 				);
 				LD_RUNPATH_SEARCH_PATHS = (

@@ -61,9 +61,9 @@ In order to use and test the SDK, you will need a Usercentrics Account. Get [sta
 
 Continue to our [documentation](https://usercentrics.com/docs/apps/intro/) for a step by step integration guide.
 
-## Example
+## Sample app
 
-See the [example](https://github.com/Usercentrics/react-native/tree/master/example) directory for a complete sample app using Usercentrics.
+This repository includes a **`sample/`** app that demonstrates integrating the SDK. Use it as a reference and for local development.
 
 ## Quick Start
 
@@ -101,14 +101,14 @@ npm run ios
     ```sh
     npm install --legacy-peer-deps
     ``` 
-* From example folder:
+* From `sample` folder:
     ```sh
     npm install --legacy-peer-deps
     ``` 
 
 ### iOS (macOS only)
 
-From example folder: 
+From `sample` folder: 
 ```sh
 npx pod-install
 npx react-native run-ios
@@ -116,7 +116,7 @@ npx react-native run-ios
 
 ### Android
 
-Make sure you have Android SDK configured, then from example folder:
+Make sure you have Android SDK configured, then from `sample` folder:
 ```sh
 npx react-native run-android
 ```
@@ -128,7 +128,7 @@ npx react-native run-android
 | `npm run auto-setup` | 🤖 Automatically install all required dependencies |
 | `npm run check-requirements` | 🔍 Check development environment requirements |
 | `npm run clean-all-caches` | 🧹 Clean all project and system caches |
-| `npm run install-dependencies` | 📦 Install dependencies in root and example folders |
+| `npm run install-dependencies` | 📦 Install dependencies in root and `sample/` |
 | `npm run run-android` | 🤖 Kill conflicting ports and run Android app |
 
 ### 🔧 Troubleshooting
@@ -152,7 +152,7 @@ The project includes intelligent scripts that will:
 
 ## Consent Mediation
 
-You can enable and run the Consent Mediation example in this example by following the [documentation](https://usercentrics.com/docs/apps/features/consent-mediation/#enable-mediation).
+You can enable and run the Consent Mediation flow in the sample app by following the [documentation](https://usercentrics.com/docs/apps/features/consent-mediation/#enable-mediation).
 
 ## Maintainers
 - [Usercentrics](https://github.com/Usercentrics)
