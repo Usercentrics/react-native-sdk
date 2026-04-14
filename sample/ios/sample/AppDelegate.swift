@@ -1,43 +1,48 @@
 import UIKit
 import React
+import React_RCTAppDelegate
+import ReactAppDependencyProvider
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
   var window: UIWindow?
 
+  var reactNativeDelegate: ReactNativeDelegate?
+  var reactNativeFactory: RCTReactNativeFactory?
+
   func application(
     _ application: UIApplication,
     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil
   ) -> Bool {
-    #if DEBUG
-    guard let bundleURL = RCTBundleURLProvider.sharedSettings().jsBundleURL(forBundleRoot: "index") else {
-      fatalError("Unable to find bundle URL")
-    }
-    #else
-    guard let bundleURL = Bundle.main.url(forResource: "main", withExtension: "jsbundle") else {
-      fatalError("Unable to find bundle URL")
-    }
-    #endif
-    
-    let rootView = RCTRootView(
-      bundleURL: bundleURL,
-      moduleName: "sample",
-      initialProperties: nil,
+    let delegate = ReactNativeDelegate()
+    let factory = RCTReactNativeFactory(delegate: delegate)
+    delegate.dependencyProvider = RCTAppDependencyProvider()
+
+    reactNativeDelegate = delegate
+    reactNativeFactory = factory
+
+    window = UIWindow(frame: UIScreen.main.bounds)
+
+    factory.startReactNative(
+      withModuleName: "sample",
+      in: window,
       launchOptions: launchOptions
     )
 
-    if #available(iOS 13.0, *) {
-      rootView.backgroundColor = UIColor.systemBackground
-    } else {
-      rootView.backgroundColor = UIColor.white
-    }
-
-    self.window = UIWindow(frame: UIScreen.main.bounds)
-    let rootViewController = UIViewController()
-    rootViewController.view = rootView
-    self.window?.rootViewController = rootViewController
-    self.window?.makeKeyAndVisible()
-
     return true
+  }
+}
+
+class ReactNativeDelegate: RCTDefaultReactNativeFactoryDelegate {
+  override func sourceURL(for bridge: RCTBridge) -> URL? {
+    return bundleURL()
+  }
+
+  override func bundleURL() -> URL? {
+    #if DEBUG
+    return RCTBundleURLProvider.sharedSettings().jsBundleURL(forBundleRoot: "index")
+    #else
+    return Bundle.main.url(forResource: "main", withExtension: "jsbundle")
+    #endif
   }
 }

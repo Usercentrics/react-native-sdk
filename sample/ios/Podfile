@@ -12,7 +12,7 @@ require Pod::Executable.execute_command('node', ['-p',
 # true  = Enable New Architecture (TurboModules + Fabric)
 # false = Use Legacy Architecture
 # ========================================
-$RCT_NEW_ARCH_ENABLED = false  # ← CHANGE HERE: true ou false
+$RCT_NEW_ARCH_ENABLED = true  # ← CHANGE HERE: true ou false
 
 # React Native environment setup
 ENV['RCT_NEW_ARCH_ENABLED'] = $RCT_NEW_ARCH_ENABLED ? '1' : '0'
@@ -77,5 +77,49 @@ target 'sample' do
         config.build_settings['CLANG_CXX_LIBRARY'] = 'libc++'
       end
     end
+
+    # RN 0.81 + Fabric: ReactCodegen can end up with several PBXFileReferences whose path is only
+    # "Props.cpp" / "EventEmitters.cpp" / … (no directory). Xcode treats them as one file, so
+    # rnscreens / RNCWebView / … symbols never link. Remove those ambiguous compile entries and add
+    # one explicit file reference per generated cpp (path relative to Pods/).
+    fix_react_codegen_third_party_component_sources!(installer) if $RCT_NEW_ARCH_ENABLED
   end
+end
+
+def fix_react_codegen_third_party_component_sources!(installer)
+  require 'pathname'
+  require 'xcodeproj'
+
+  project = installer.pods_project
+  target = project.targets.find { |t| t.name == 'ReactCodegen' }
+  return unless target
+
+  ios_root = installer.sandbox.root.parent
+  codegen_root = File.join(ios_root, 'build', 'generated', 'ios')
+  return unless Dir.exist?(codegen_root)
+
+  pods_root = File.join(ios_root, 'Pods')
+  phase = target.source_build_phase
+  basenames = %w[Props.cpp ComponentDescriptors.cpp EventEmitters.cpp ShadowNodes.cpp States.cpp].freeze
+
+  phase.files.to_a.each do |build_file|
+    ref = build_file.file_ref
+    next unless ref && ref.path
+    next unless basenames.include?(File.basename(ref.path))
+    next if ref.path.include?('/')
+
+    phase.files.delete(build_file)
+  end
+
+  pattern = File.join(codegen_root, 'react', 'renderer', 'components', '*', '*.cpp')
+  Dir.glob(pattern).sort.each do |abs|
+    rel_from_pods = Pathname.new(abs).relative_path_from(Pathname.new(pods_root)).to_s
+    next if phase.files.any? { |bf| bf.file_ref && bf.file_ref.path == rel_from_pods }
+
+    file_ref = project.files.find { |f| f.path == rel_from_pods }
+    file_ref ||= project.new_file(rel_from_pods)
+    phase.add_file_reference(file_ref)
+  end
+
+  project.save
 end

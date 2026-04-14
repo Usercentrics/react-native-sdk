@@ -91,7 +91,6 @@
     ]
   },
   "directories": {
-    "example": "example",
     "lib": "lib"
   },
   "repository": {

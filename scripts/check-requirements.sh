@@ -311,19 +311,6 @@ else
     print_status "FAIL" "Sample package.json missing" "Invalid project structure"
 fi
 
-# Check legacy-sample dependencies
-if [ -f "$PROJECT_ROOT/legacy-sample/package.json" ]; then
-    print_status "PASS" "Legacy-sample package.json found" "Legacy-sample project OK"
-    
-    if [ -d "$PROJECT_ROOT/legacy-sample/node_modules" ]; then
-        print_status "PASS" "Legacy-sample node_modules found" "Legacy-sample dependencies installed"
-    else
-        print_status "FAIL" "Legacy-sample node_modules missing" "Run: cd legacy-sample && npm install --legacy-peer-deps"
-    fi
-else
-    print_status "WARN" "Legacy-sample package.json missing" "Legacy-sample project not found"
-fi
-
 # Check compiled TypeScript
 if [ -d "$PROJECT_ROOT/lib" ]; then
     print_status "PASS" "TypeScript compiled" "lib directory exists"
