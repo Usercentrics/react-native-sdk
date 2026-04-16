@@ -326,6 +326,8 @@ private fun CustomizationColor.serialize(): WritableMap {
         "toggleDisabledBackground" to toggleDisabledBackground,
         "toggleDisabledIcon" to toggleDisabledIcon,
         "secondLayerTab" to secondLayerTab,
+        "moreBtnBackground" to moreBtnBackground,
+        "moreBtnText" to moreBtnText,
     ).toWritableMap()
 }
 
