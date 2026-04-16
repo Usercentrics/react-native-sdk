@@ -1,4 +1,20 @@
 [Release Notes](https://docs.usercentrics.com/cmp_in_app_sdk/latest/about/history/)
+### 2.26.2 – Apr 15, 2026
+## Improvements
+* Improved SDK initialization logging
+## Fixes
+* **[Android]** Fixed consent banner ignoring "Popup" mode dashboard configuration and always showing fullscreen
+* **[Android]** Fixed `shouldCollectConsent` always returning `true` after app relaunch on TCF configs
+* **[Android]** Fixed window leak when activity finishes while consent banner is still showing
+* **[Android]** Fixed ATP list updates that could lead to infinite banner resurfaces
+* **[iOS]** Fixed SVG banner logo failing to load due to SVGKit parsing error
+* **[iOS]** Fixed missing padding and misalignment between toggle and label in second layer
+* **[iOS]** Fixed toggle dropdown arrow alignment
+* **[iOS]** Fixed Swift Package Manager unable to resolve `usercentrics-spm-ui` package
+* **[TCF]** Fixed Stack appearing duplicated under Special Purposes section with broken consent persistence
+* Fixed "More" button custom colors not being applied in the first layer
+* Fixed mediation consent logs not appearing when applying consent
+
 ### 2.26.1 – Apr 07, 2026
 ## Features
 * Added support for US National (GPP) privacy framework
