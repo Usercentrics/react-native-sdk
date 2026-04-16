@@ -508,7 +508,9 @@ extension CustomizationColor {
                  secondLayerTab: "secondLayerTab",
                  tabsBorderColor: "tabsBorderColor",
                  ccpaButtonColor: "ccpaButtonColor",
-                 ccpaButtonTextColor: "ccpaButtonTextColor")
+                 ccpaButtonTextColor: "ccpaButtonTextColor",
+                 moreBtnBackground: "moreBtnBackground",
+                 moreBtnText: "moreBtnText")
   }
 }
 
