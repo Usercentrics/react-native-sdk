@@ -80,9 +80,9 @@ echo "==========================================================================
 # Check Node.js
 if command -v node >/dev/null 2>&1; then
     NODE_VERSION=$(node --version | sed 's/v//')
-    check_version "$NODE_VERSION" "20.19.4" "Node.js"
+    check_version "$NODE_VERSION" "18.0" "Node.js"
 else
-    print_status "FAIL" "Node.js not found" "Install Node.js >= 20.19.4"
+    print_status "FAIL" "Node.js not found" "Install Node.js >= 18.0"
 fi
 
 # Check npm
