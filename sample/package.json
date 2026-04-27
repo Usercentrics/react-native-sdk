@@ -22,15 +22,15 @@
     "@react-navigation/native-stack": "^6.11.0",
     "react": "19.1.0",
     "react-native": "0.81.4",
-    "react-native-safe-area-context": "^5.6.1",
+    "react-native-safe-area-context": "^5.7.0",
     "react-native-screens": "^4.24.0",
-    "react-native-webview": "^13.16.0"
+    "react-native-webview": "^13.16.1"
   },
   "devDependencies": {
-    "@babel/core": "^7.25.2",
+    "@babel/core": "^7.26.0",
     "@babel/eslint-parser": "^7.28.6",
-    "@babel/preset-env": "^7.25.3",
-    "@babel/runtime": "^7.25.0",
+    "@babel/preset-env": "^7.26.0",
+    "@babel/runtime": "^7.26.0",
     "@eslint/eslintrc": "^3.3.5",
     "@eslint/js": "^9.39.4",
     "@react-native-community/cli": "^20.1.3",
