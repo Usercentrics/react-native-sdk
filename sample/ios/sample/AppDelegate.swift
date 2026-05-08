@@ -1,4 +1,5 @@
-import FirebaseCore
+// Uncomment to enable Firebase locally (requires GoogleService-Info.plist in sample/ios/sample/)
+// import FirebaseCore
 import UIKit
 import React
 import React_RCTAppDelegate
@@ -15,7 +16,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     _ application: UIApplication,
     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil
   ) -> Bool {
-    FirebaseApp.configure()
+    // Uncomment to enable Firebase locally (requires GoogleService-Info.plist in sample/ios/sample/)
+    // FirebaseApp.configure()
     let delegate = ReactNativeDelegate()
     let factory = RCTReactNativeFactory(delegate: delegate)
     delegate.dependencyProvider = RCTAppDependencyProvider()

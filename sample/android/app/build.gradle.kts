@@ -2,7 +2,8 @@ plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("com.facebook.react")
-    id("com.google.gms.google-services")
+    // Uncomment to enable Firebase locally (requires google-services.json in sample/android/app/)
+    // id("com.google.gms.google-services")
 }
 
 android {
