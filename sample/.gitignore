@@ -53,6 +53,10 @@ yarn-error.log
 **/fastlane/screenshots
 **/fastlane/test_output
 
+# Firebase config files — must be added manually (see README for instructions)
+google-services.json
+GoogleService-Info.plist
+
 # Bundle artifact
 *.jsbundle
 

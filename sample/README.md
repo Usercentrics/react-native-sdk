@@ -250,14 +250,22 @@ Firebase Analytics is included as a reference mediation partner. It is configure
 
 ### Firebase Config Files
 
-Firebase requires platform-specific config files that are **not committed** to this repository:
+Firebase requires platform-specific config files that contain project credentials. These files are **not stored in this repository** and must be added manually before building.
 
 | Platform | File | Location |
 |----------|------|----------|
-| Android | `google-services.json` | `android/app/` |
-| iOS | `GoogleService-Info.plist` | `ios/sample/` |
+| Android | `google-services.json` | `sample/android/app/` |
+| iOS | `GoogleService-Info.plist` | `sample/ios/sample/` |
 
-Obtain these from the Firebase Console for the `in-app-sdk` project and place them in the locations above before building. The Xcode project already has `GoogleService-Info.plist` wired as a build resource in `project.pbxproj`.
+**Steps to add the files:**
+
+1. Obtain the `google-services.json` (Android) and `GoogleService-Info.plist` (iOS) from the Firebase Console for the Firebase project used with this sample app.
+2. Place each file in the path shown in the table above.
+3. For iOS: the Xcode project already has `GoogleService-Info.plist` wired as a build resource in `project.pbxproj` — no Xcode changes needed.
+4. For Android: the `google-services` Gradle plugin is already configured in `android/build.gradle.kts` and `android/app/build.gradle.kts` — no Gradle changes needed.
+5. Build and run the app as described in [Running the Sample App](#running-the-sample-app).
+
+> Both files are listed in `.gitignore` and will not be accidentally committed.
 
 ### Testing Mediation Step by Step
 
