@@ -24,6 +24,8 @@ use_frameworks! :linkage => :static
 target 'sample' do
   config = use_native_modules!
 
+  pod 'FirebaseAnalytics'
+
   use_react_native!(
     :path => config[:reactNativePath],
     :hermes_enabled => true,

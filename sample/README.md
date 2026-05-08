@@ -1,97 +1,344 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# Usercentrics React Native SDK — Sample App
 
-# Getting Started
+This is the reference sample application for the [Usercentrics React Native SDK](https://github.com/Usercentrics/react-native-sdk). It demonstrates the full SDK integration across the predefined UI, custom UI, webview session handoff, GPP, and consent mediation with Firebase Analytics.
 
-> **Note**: Make sure you have completed the [Set Up Your Environment](https://reactnative.dev/docs/set-up-your-environment) guide before proceeding.
+## Prerequisites
 
-## Step 1: Start Metro
+Before running the sample app, ensure your environment meets the following requirements.
 
-First, you will need to run **Metro**, the JavaScript build tool for React Native.
-
-To start the Metro dev server, run the following command from the root of your React Native project:
-
-```sh
-# Using npm
-npm start
-
-# OR using Yarn
-yarn start
-```
-
-## Step 2: Build and run your app
-
-With Metro running, open a new terminal window/pane from the root of your React Native project, and use one of the following commands to build and run your Android or iOS app:
+### All Platforms
+- **Node.js 18.0+** (LTS recommended)
+- **npm 9.0+** or **Yarn 1.22+**
+- **React Native 0.74.3+**
+- **Watchman** (recommended for file watching)
 
 ### Android
+- **Java 17+** (OpenJDK or Oracle JDK)
+- **Android SDK** with API 34+ platforms installed
+- **Android NDK 25+**
+- **Gradle 8.2+**
+- A running Android Emulator (AVD) or a connected physical device
+
+### iOS (macOS only)
+- **Xcode 15.0+**
+- **CocoaPods 1.12+**
+- An iOS Simulator or connected physical device
+
+---
+
+## Project Structure
+
+```
+sample/
+├── src/
+│   ├── App.tsx                          # SDK initialisation and navigation root
+│   └── screens/
+│       ├── Home.tsx                     # Main consent flow (auto status check, first/second layer)
+│       ├── CustomUI.tsx                 # Programmatic API demo (GDPR / TCF / CCPA)
+│       ├── WebviewIntegrationScreen.tsx # In-App SDK → Browser SDK session handoff
+│       └── GppTestingScreen.tsx         # GPP string and section-change event testing
+├── android/                             # Android project (Kotlin, Firebase integrated)
+│   ├── app/
+│   │   ├── build.gradle.kts            # Firebase BOM, google-services plugin
+│   │   └── src/main/AndroidManifest.xml# Firebase collection flags (all false by default)
+│   └── build.gradle.kts               # google-services classpath
+└── ios/                                 # iOS project (Swift, Firebase integrated)
+    ├── Podfile                          # FirebaseAnalytics pod
+    └── sample/
+        ├── AppDelegate.swift            # FirebaseApp.configure() call
+        ├── Info.plist                   # FIREBASE_ANALYTICS_COLLECTION_ENABLED = false
+        └── PrivacyInfo.xcprivacy        # NSUserDefaults access reasons for Firebase
+```
+
+---
+
+## SDK Initialisation
+
+The SDK is initialised once on app start in `src/App.tsx`:
+
+```tsx
+// Set to true when testing consent mediation. Keep false for normal builds.
+const MEDIATION_TEST_ENABLED = true;
+const SETTINGS_ID = '3C9-yvno8-dEzy';
+
+React.useEffect(() => {
+    Usercentrics.configure({
+        settingsId: SETTINGS_ID,
+        loggerLevel: UsercentricsLoggerLevel.debug,
+        consentMediation: MEDIATION_TEST_ENABLED,
+    });
+}, []);
+```
+
+`MEDIATION_TEST_ENABLED` and `SETTINGS_ID` are the single place to control mediation mode and the target Usercentrics configuration. No other files need to change — toggle the flag and rebuild.
+
+---
+
+## Running the Sample App
+
+### Step 1 — Install Dependencies
+
+From the **repo root**:
 
 ```sh
-# Using npm
+npm install --legacy-peer-deps
+```
+
+Then from the **`sample/` folder**:
+
+```sh
+npm install --legacy-peer-deps
+```
+
+### Step 2 — Run on Android
+
+Ensure a running emulator or connected device is available, then from the `sample/` folder:
+
+```sh
 npm run android
-
-# OR using Yarn
-yarn android
+# or
+npx react-native run-android
 ```
 
-### iOS
-
-For iOS, remember to install CocoaPods dependencies (this only needs to be run on first clone or after updating native deps).
-
-The first time you create a new project, run the Ruby bundler to install CocoaPods itself:
+To list available AVDs and launch one:
 
 ```sh
-bundle install
+emulator -list-avds
+emulator -avd <avd-name>
 ```
 
-Then, and every time you update your native dependencies, run:
+> **Port conflict:** If Metro is already running on port 8081, stop it first (`kill $(lsof -t -i:8081)`) or run `npm run fix-metro` to clear it.
+
+### Step 3 — Run on iOS (macOS only)
+
+Install CocoaPods dependencies from the `sample/` folder:
 
 ```sh
-bundle exec pod install
+npx pod-install
 ```
 
-For more information, please visit [CocoaPods Getting Started guide](https://guides.cocoapods.org/using/getting-started.html).
+> Re-run `npx pod-install` any time you change `ios/Podfile` or pull changes that modify native dependencies.
+
+Then run the app:
 
 ```sh
-# Using npm
 npm run ios
-
-# OR using Yarn
-yarn ios
+# or
+npx react-native run-ios
 ```
 
-If everything is set up correctly, you should see your new app running in the Android Emulator, iOS Simulator, or your connected device.
+To target a specific simulator:
 
-This is one way to run your app — you can also build it directly from Android Studio or Xcode.
+```sh
+npx react-native run-ios --simulator "iPhone 15 Pro"
+```
 
-## Step 3: Modify your app
+List available simulators:
 
-Now that you have successfully run the app, let's make changes!
+```sh
+xcrun simctl list devices available
+```
 
-Open `App.tsx` in your text editor of choice and make some changes. When you save, your app will automatically update and reflect these changes — this is powered by [Fast Refresh](https://reactnative.dev/docs/fast-refresh).
+### Step 4 — Start Metro Manually (optional)
 
-When you want to forcefully reload, for example to reset the state of your app, you can perform a full reload:
+`react-native run-android` / `run-ios` auto-start Metro. If you need to start it separately:
 
-- **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Dev Menu**, accessed via <kbd>Ctrl</kbd> + <kbd>M</kbd> (Windows/Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (macOS).
-- **iOS**: Press <kbd>R</kbd> in iOS Simulator.
+```sh
+npm start
+```
 
-## Congratulations! :tada:
+---
 
-You've successfully run and modified your React Native App. :partying_face:
+## Screen Guide
 
-### Now what?
+### Home Screen
 
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [docs](https://reactnative.dev/docs/getting-started).
+Entry point of the consent flow. On launch it calls `Usercentrics.status()` automatically:
 
-# Troubleshooting
+- If `shouldCollectConsent` is `true` → the first-layer banner is shown immediately
+- Otherwise → existing consents are applied via `applyConsent()`
 
-If you're having issues getting the above steps to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
+Buttons available:
 
-# Learn More
+| Button | Action |
+|--------|--------|
+| Show First Layer | Opens the predefined consent banner |
+| Show Second Layer | Opens the detailed consent preferences screen |
+| Customization Example 1 / 2 | Opens the first layer with custom `BannerSettings` |
+| Custom UI | Navigates to the Custom UI screen |
+| Webview Integration | Navigates to the Webview Integration screen |
+| GPP Testing | Navigates to the GPP Testing screen |
 
-To learn more about React Native, take a look at the following resources:
+### Custom UI Screen
 
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+Demonstrates the programmatic SDK API for building a fully custom consent UI. Adapts to the active legal framework:
+
+| Framework | APIs exercised |
+|-----------|---------------|
+| GDPR (default) | `getCMPData`, `acceptAll`, `denyAll`, `saveDecisions`, `getConsents`, `changeLanguage` |
+| TCF | `getCMPData`, `getTCFData`, `setCMPId`, `acceptAllForTCF`, `denyAllForTCF`, `saveDecisionsForTCF` |
+| CCPA | `getCMPData`, `saveOptOutForCCPA` |
+
+All consent outputs are logged to the console. Open Logcat (Android) or the Xcode console (iOS) to inspect them.
+
+### Webview Integration Screen
+
+Demonstrates passing the native consent session to a WebView so the Browser SDK can inherit it without re-asking for consent. It:
+
+1. Calls `Usercentrics.getUserSessionData()` to retrieve the encoded session token
+2. Injects it into the WebView as `window.UC_UI_USER_SESSION_DATA` before page load
+3. The Browser SDK loaded in the WebView reads this value and skips the consent banner
+
+### GPP Testing Screen
+
+Exercises the Global Privacy Platform (GPP) API:
+
+| Action | API |
+|--------|-----|
+| Read the current GPP string | `Usercentrics.getGPPString()` |
+| Read full GPP data as JSON | `Usercentrics.getGPPData()` |
+| Write a consent signal | `Usercentrics.setGPPConsent('usnat', 'SaleOptOut', 2)` |
+| Listen to section changes | `Usercentrics.onGppSectionChange(callback)` |
+
+Section-change events are displayed in real time on screen.
+
+---
+
+## Consent Mediation
+
+Consent Mediation lets the Usercentrics SDK automatically propagate user consent decisions to third-party SDKs — no manual wiring required in your app code.
+
+### How It Works
+
+When `consentMediation: true` is passed to `Usercentrics.configure()`, the SDK intercepts consent decisions and forwards them to every registered mediation partner at the correct point in the consent lifecycle.
+
+### Enabling / Disabling Mediation
+
+Open `src/App.tsx` and toggle the constant at the top:
+
+```tsx
+// true  → SDK automatically propagates consent to Firebase and other partners
+// false → standard mode, no automatic propagation
+const MEDIATION_TEST_ENABLED = true;
+```
+
+Rebuild and relaunch after changing the value.
+
+### Firebase Analytics Integration
+
+Firebase Analytics is included as a reference mediation partner. It is configured to collect **no data** until Usercentrics grants consent.
+
+**Android setup**
+- `com.google.gms:google-services:4.4.2` classpath in `android/build.gradle.kts`
+- `com.google.gms.google-services` plugin in `android/app/build.gradle.kts`
+- Firebase BOM `33.13.0` + `firebase-analytics` in `android/app/build.gradle.kts`
+- All collection flags default to `false` in `AndroidManifest.xml`:
+
+```xml
+<meta-data android:name="firebase_analytics_collection_enabled" android:value="false" />
+<meta-data android:name="google_analytics_default_allow_analytics_storage" android:value="false" />
+<meta-data android:name="google_analytics_default_allow_ad_storage" android:value="false" />
+<meta-data android:name="google_analytics_default_allow_ad_user_data" android:value="false" />
+<meta-data android:name="google_analytics_default_allow_ad_personalization_signals" android:value="false" />
+```
+
+**iOS setup**
+- `pod 'FirebaseAnalytics'` in `ios/Podfile`
+- `FirebaseApp.configure()` at the top of `application(_:didFinishLaunchingWithOptions:)` in `AppDelegate.swift`
+- `FIREBASE_ANALYTICS_COLLECTION_ENABLED` set to `false` in `ios/sample/Info.plist`
+- `PrivacyInfo.xcprivacy` updated with the NSUserDefaults access reasons required by Firebase
+
+### Firebase Config Files
+
+Firebase requires platform-specific config files that are **not committed** to this repository:
+
+| Platform | File | Location |
+|----------|------|----------|
+| Android | `google-services.json` | `android/app/` |
+| iOS | `GoogleService-Info.plist` | `ios/sample/` |
+
+Obtain these from the Firebase Console for the `in-app-sdk` project and place them in the locations above before building. The Xcode project already has `GoogleService-Info.plist` wired as a build resource in `project.pbxproj`.
+
+### Testing Mediation Step by Step
+
+1. Set `MEDIATION_TEST_ENABLED = true` in `src/App.tsx`
+2. Place the Firebase config files in the correct locations (see above)
+3. Build and run the app on a device or simulator
+4. On first launch the consent banner appears automatically — accept or deny
+5. Check the logs to confirm Firebase received the correct consent signal:
+   - **Android**: Logcat → filter by `Firebase` or `Usercentrics`
+   - **iOS**: Xcode console → filter by `Firebase` or `Usercentrics`
+6. To re-test: clear app data (Android) or reinstall the app (iOS) to reset consent state, then relaunch
+
+For full documentation see the [Usercentrics Consent Mediation guide](https://usercentrics.com/docs/apps/features/consent-mediation/#enable-mediation).
+
+---
+
+## New Architecture
+
+The sample app runs with **React Native New Architecture (Fabric + TurboModules) enabled by default**.
+
+To toggle it, change the following two files and ensure they match:
+
+**`ios/Podfile`**
+```ruby
+$RCT_NEW_ARCH_ENABLED = true  # set to false for Legacy Architecture
+```
+
+**`android/gradle.properties`**
+```properties
+newArchEnabled=true  # set to false for Legacy Architecture
+```
+
+After changing the iOS flag, run `npx pod-install` from the `sample/` folder before rebuilding.
+
+---
+
+## Available Scripts
+
+| Script | Description |
+|--------|-------------|
+| `npm run android` | Run the Android app |
+| `npm run ios` | Run the iOS app |
+| `npm start` | Start the Metro bundler |
+| `npm run android-build` | Assemble a debug APK via Gradle |
+| `npm run clean-and-build` | Clean all caches and rebuild |
+| `npm run clean-all-caches` | Clean project and system caches |
+| `npm run fix-sandbox` | Fix Xcode sandbox permission issues |
+| `npm run fix-metro` | Kill stale Metro processes and clear the Metro cache |
+| `npm run build-ios` | Run the iOS build validation script |
+| `npm test` | Run unit tests |
+| `npm run lint` | Run ESLint |
+
+---
+
+## Troubleshooting
+
+**Metro port conflict**
+```sh
+npm run fix-metro
+# or manually:
+kill $(lsof -t -i:8081)
+```
+
+**iOS pod issues**
+```sh
+npx pod-install
+```
+Re-run after any Podfile change or native dependency update.
+
+**Android emulator not found**
+```sh
+emulator -list-avds          # list available AVDs
+emulator -avd <avd-name>     # start one before running the app
+```
+
+**Full clean and reinstall**
+```sh
+npm run clean-all-caches
+npm install --legacy-peer-deps
+npx pod-install              # iOS only
+```
+
+**General React Native issues**
+See the [React Native Troubleshooting guide](https://reactnative.dev/docs/troubleshooting).

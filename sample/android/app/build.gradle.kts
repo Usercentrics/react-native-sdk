@@ -2,6 +2,7 @@ plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("com.facebook.react")
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -11,7 +12,7 @@ android {
 
     namespace = "com.usercentrics.reactnativesdk.sample"
     defaultConfig {
-        applicationId = "com.usercentrics.reactnativesdk.sample"
+        applicationId = "com.usercentrics.sdk.mediation.test"
         minSdk = versions.versions.minSdk.get().toInt()
         targetSdk = versions.versions.targetSdk.get().toInt()
         versionCode = 1
@@ -77,6 +78,10 @@ dependencies {
 
     // Flipper (debug only)
     debugImplementation(versions.bundles.flipper.debug)
+
+    // Firebase
+    implementation(platform("com.google.firebase:firebase-bom:33.13.0"))
+    implementation("com.google.firebase:firebase-analytics")
 
     // Tests
     androidTestImplementation("com.facebook.react:react-android:${versions.versions.reactNative.get()}")
