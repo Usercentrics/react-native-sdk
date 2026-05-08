@@ -42,6 +42,39 @@ export const HomeScreen = ({ navigation }: { navigation: any }) => {
         // https://docs.usercentrics.com/cmp_in_app_sdk/latest/apply_consent/apply-consent/#apply-consent-to-each-service
     }
 
+    // A/B testing example — use Usercentrics native variant
+    async function getBannerSettings() {
+        const variant = await Usercentrics.getABTestingVariant();
+        switch (variant) {
+            case 'variantA':
+                return {/* BannerSettings for variantA */} as BannerSettings;
+            case 'variantB':
+                return {/* BannerSettings for variantB */} as BannerSettings;
+            default:
+                return {/* default BannerSettings */} as BannerSettings;
+        }
+    }
+
+    // A/B testing example — use a third-party tool for variant resolution
+    async function getBannerSettingsThirdPartyTool() {
+        const variant = ThirdPartyTool.getABTestingVariant();
+        switch (variant) {
+            case 'variantA':
+                return {/* BannerSettings for variantA */ variantName: 'variantA'} as BannerSettings;
+            case 'variantB':
+                return {/* BannerSettings for variantB */ variantName: 'variantB'} as BannerSettings;
+            default:
+                return {/* default BannerSettings */ variantName: 'variantC'} as BannerSettings;
+        }
+    }
+
+    const ThirdPartyTool = {
+        getABTestingVariant: (): string | null => {
+            const variants = ['variantA', 'variantB'];
+            return variants[Math.floor(Math.random() * variants.length)];
+        },
+    };
+
     return (
         <View style={styles.container}>
             <Button onPress={() => showFirstLayer()} title="Show First Layer" />
