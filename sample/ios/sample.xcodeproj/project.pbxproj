@@ -12,6 +12,7 @@
 		761780ED2CA45674006654EE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761780EC2CA45674006654EE /* AppDelegate.swift */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		D3AD968898A2D5F12A3B498E /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB81A68108700A75B9A /* PrivacyInfo.xcprivacy */; };
+		DA0000021CF9000F007C117D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DA0000011CF9000F007C117D /* GoogleService-Info.plist */; };
 		E15BA0BEFE259BD9E92A30B3 /* Pods_sampleTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EF340075CFB0AF66FD7B255 /* Pods_sampleTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -38,6 +39,7 @@
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = sample/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A131F51045AC368AA4449B3F /* Pods_sample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_sample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B876D4792E95685D00879086 /* sampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = sampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		DA0000011CF9000F007C117D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "sample/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E06B5EC4B4478FD5056A0028 /* Pods-sampleTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sampleTests.release.xcconfig"; path = "Target Support Files/Pods-sampleTests/Pods-sampleTests.release.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
@@ -80,6 +82,7 @@
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */,
 				13B07FB81A68108700A75B9A /* PrivacyInfo.xcprivacy */,
+				DA0000011CF9000F007C117D /* GoogleService-Info.plist */,
 			);
 			name = sample;
 			sourceTree = "<group>";
@@ -386,7 +389,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.usercentrics.reactnativesdk.sample;
+				PRODUCT_BUNDLE_IDENTIFIER = com.usercentrics.sdk.mediation.test;
 				PRODUCT_NAME = sample;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/sample-Bridging-Header.h";
@@ -418,7 +421,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.usercentrics.reactnativesdk.sample;
+				PRODUCT_BUNDLE_IDENTIFIER = com.usercentrics.sdk.mediation.test;
 				PRODUCT_NAME = sample;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/sample-Bridging-Header.h";
