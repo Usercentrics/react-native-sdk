@@ -1,4 +1,11 @@
 [Release Notes](https://docs.usercentrics.com/cmp_in_app_sdk/latest/about/history/)
+### 2.26.3 – May 14, 2026
+## Fixes
+* **[Mediation]** Fixed `FirebaseAnalyticsMediationSDK` failing for apps using Firebase 32+ due to the Firebase KTX migration
+* **[Mediation]** Fixed `setAnalyticsCollectionEnabled(true)` not being called after consent is granted, causing Firebase Analytics to remain permanently disabled on Android and iOS
+* **[Android]** Fixed Protobuf dependency conflict causing runtime errors
+* **[Android]** Fixed button text appearing off-center in React Native consent banners
+
 ### 2.26.2 – Apr 15, 2026
 ## Improvements
 * Improved SDK initialization logging
