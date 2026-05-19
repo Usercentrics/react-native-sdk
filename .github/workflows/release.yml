@@ -21,3 +21,10 @@ jobs:
       - run: npm publish --access public --provenance
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}  # Granular token
+      - name: Measure binary sizes
+        run: ./scripts/measure_binary_sizes.sh --compare --output binary-sizes-rn.json
+      - name: Upload binary sizes artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: binary-sizes-rn
+          path: binary-sizes-rn.json
