@@ -236,10 +236,21 @@ extension TCF2Settings {
             "acmV2Enabled": self.acmV2Enabled,
             "selectedATPIds": self.selectedATPIds,
             "resurfacePeriod": self.resurfacePeriod,
+            "consentOrPay": self.consentOrPay?.toDictionary() as Any,
         ]
     }
 }
 
+extension ConsentOrPaySettings {
+    func toDictionary() -> [String: Any] {
+        return [
+            "enableConsentOrPay": self.enableConsentOrPay,
+            "showTogglesForVendors": self.showTogglesForVendors,
+            "publisherRestrictions": self.publisherRestrictions,
+            "specialFeatures": self.specialFeatures
+        ]
+    }
+}
 
 extension UsercentricsCustomization {
     func toDictionary() -> NSDictionary {

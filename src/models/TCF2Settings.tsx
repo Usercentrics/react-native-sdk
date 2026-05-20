@@ -58,6 +58,7 @@ export class TCF2Settings {
     changedPurposes: TCF2ChangedPurposes
     acmV2Enabled: boolean
     selectedATPIds: number[]
+    consentOrPay?: TCF2ConsentOrPaySettings
 
     constructor(
         firstLayerTitle: string,
@@ -119,6 +120,7 @@ export class TCF2Settings {
         firstLayerHideButtonDeny?: boolean,
         firstLayerMobileVariant?: FirstLayerMobileVariant,
         dataSharedOutsideEUText?: string,
+        consentOrPay?: TCF2ConsentOrPaySettings,
     ) {
         this.firstLayerTitle = firstLayerTitle
         this.secondLayerTitle = secondLayerTitle
@@ -179,6 +181,7 @@ export class TCF2Settings {
         this.changedPurposes = changedPurposes
         this.acmV2Enabled = acmV2Enabled
         this.selectedATPIds = selectedATPIds
+        this.consentOrPay = consentOrPay
     }
 }
 
@@ -205,5 +208,27 @@ export class TCF2ChangedPurposes {
     ) {
         this.purposes = purposes
         this.legIntPurposes = legIntPurposes
+    }
+}
+
+export class TCF2ConsentOrPaySettings {
+
+    enableConsentOrPay: boolean
+    showTogglesForVendors: boolean
+    /** Maps TCF Purpose ID (as string) to "flexible". Absent entries are mandatory. */
+    publisherRestrictions: Record<string, string>
+    /** Maps Special Feature ID (as string) to "flexible". Absent entries are mandatory. */
+    specialFeatures: Record<string, string>
+
+    constructor(
+        enableConsentOrPay: boolean,
+        showTogglesForVendors: boolean,
+        publisherRestrictions: Record<string, string>,
+        specialFeatures: Record<string, string>,
+    ) {
+        this.enableConsentOrPay = enableConsentOrPay
+        this.showTogglesForVendors = showTogglesForVendors
+        this.publisherRestrictions = publisherRestrictions
+        this.specialFeatures = specialFeatures
     }
 }
