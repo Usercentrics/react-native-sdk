@@ -15,6 +15,7 @@ pluginManagement {
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.PREFER_SETTINGS)
     repositories {
+        mavenLocal()
         google()
         mavenCentral()
         maven { url = uri("$rootDir/../node_modules/@react-native/gradle-plugin") }
