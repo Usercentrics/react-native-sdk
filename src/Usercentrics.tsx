@@ -1,4 +1,4 @@
-import {EmitterSubscription, NativeEventEmitter, NativeModules, Platform} from 'react-native';
+import {EmitterSubscription, NativeEventEmitter, NativeModules} from 'react-native';
 import {
     AdditionalConsentModeData,
     BannerSettings,

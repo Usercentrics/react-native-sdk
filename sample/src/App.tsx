@@ -5,8 +5,8 @@ import { Usercentrics, UsercentricsLoggerLevel } from '@usercentrics/react-nativ
 import { CustomScreen, GppTestingScreen, HomeScreen, WebviewIntegrationScreen } from './screens';
 
 // Set to true when testing consent mediation. Keep false for normal builds.
-const MEDIATION_TEST_ENABLED = true;
-const SETTINGS_ID = '3C9-yvno8-dEzy';
+const MEDIATION_TEST_ENABLED = false;
+const SETTINGS_ID = 'EA4jnNPb9';
 
 const Stack = createNativeStackNavigator();
 
