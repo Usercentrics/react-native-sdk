@@ -1,4 +1,25 @@
 [Release Notes](https://docs.usercentrics.com/cmp_in_app_sdk/latest/about/history/)
+### 2.27.0 – Jun 1, 2026
+## Features
+* **[PUR Compliance]** Implemented Mandatory Label and Hide Vendor Toggles on the second layer — purposes and special features absent from `publisherRestrictions`/`specialFeatures` maps are rendered as mandatory (pre-consented, non-interactive with a "Mandatory" label), and `showTogglesForVendors: false` hides toggles on the Vendors/DPS tab while keeping them on the Purposes tab. All logic is gated behind `enableConsentOrPay`; existing configurations are fully unaffected
+* **[PUR Compliance]** Extended mandatory label and hide vendor toggles behaviour to Flutter, React Native, and Unity bridges
+* **[Unity]** Exposed GDPR legal texts in `getCmpData`, enabling fully custom TCF UI builds
+
+## Fixes
+* **[Android — Accessibility]** Fixed TalkBack reading consent layer content with wrong language pronunciation (WCAG 3.1.2 Language of Parts)
+* **[Android — Accessibility]** Added visible focus indicators to interactive elements in the consent layer (WCAG 2.4.7 Focus Visible)
+* **[Android — Accessibility]** Action buttons now correctly announced as buttons by TalkBack (WCAG 4.1.2 Name, Role, Value)
+* **[Android — Accessibility]** Accordion controls now announced as interactive buttons by TalkBack (WCAG 4.1.2 Name, Role, Value)
+* **[Android — Accessibility]** External links in the consent layer now announced as links by TalkBack (WCAG 4.1.2 Name, Role, Value)
+* **[Android — Accessibility]** Fixed TalkBack focus jumping unexpectedly after accordion expand/collapse (WCAG 3.2.1 On Focus)
+* **[Android — Accessibility]** Consent history table now semantically exposed to screen readers (WCAG 1.3.1 Info and Relationships)
+* **[Android — Accessibility]** History section heading now programmatically marked as a heading for TalkBack navigation (WCAG 1.3.1 Info and Relationships)
+* **[Android]** Fixed button text losing center alignment when label wraps to multiple lines
+* **[Android]** Fixed first layer being blocked on the preview page when consent was already stored
+* **[iOS]** Fixed SPM UI package incompatibility with Xcode 26
+* **[TV]** Fixed CMP initialization failing on Samsung TV 2018 with `AbortController is not defined`
+* **[Unity]** Added `changeLanguage()` API to the Unity bridge
+
 ### 2.26.3 – May 14, 2026
 ## Fixes
 * **[Mediation]** Fixed `FirebaseAnalyticsMediationSDK` failing for apps using Firebase 32+ due to the Firebase KTX migration

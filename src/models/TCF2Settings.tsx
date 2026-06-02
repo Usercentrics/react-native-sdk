@@ -59,6 +59,7 @@ export class TCF2Settings {
     acmV2Enabled: boolean
     selectedATPIds: number[]
     consentOrPay?: TCF2ConsentOrPaySettings
+    mandatoryLabel: string
 
     constructor(
         firstLayerTitle: string,
@@ -121,6 +122,7 @@ export class TCF2Settings {
         firstLayerMobileVariant?: FirstLayerMobileVariant,
         dataSharedOutsideEUText?: string,
         consentOrPay?: TCF2ConsentOrPaySettings,
+        mandatoryLabel: string = 'Mandatory',
     ) {
         this.firstLayerTitle = firstLayerTitle
         this.secondLayerTitle = secondLayerTitle
@@ -182,6 +184,7 @@ export class TCF2Settings {
         this.acmV2Enabled = acmV2Enabled
         this.selectedATPIds = selectedATPIds
         this.consentOrPay = consentOrPay
+        this.mandatoryLabel = mandatoryLabel
     }
 }
 

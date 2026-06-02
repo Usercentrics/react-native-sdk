@@ -248,6 +248,7 @@ private fun TCF2Settings.serialize(): WritableMap {
         "acmV2Enabled" to acmV2Enabled,
         "selectedATPIds" to selectedATPIds,
         "consentOrPay" to consentOrPay?.serialize(),
+        "mandatoryLabel" to mandatoryLabel,
     ).toWritableMap()
 }
 

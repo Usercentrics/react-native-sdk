@@ -349,7 +349,9 @@ extension TCF2Settings {
                  selectedATPIds: [43,46,55],
                  resurfaceATPListChanged: false,
                  atpListTitle: "Google Providers",
-                 maintainLegitimateInterest: false)
+                 maintainLegitimateInterest: false,
+                 consentOrPay: nil,
+                 mandatoryLabel: "Mandatory")
   }
 }
 

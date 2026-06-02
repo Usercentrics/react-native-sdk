@@ -509,7 +509,8 @@ internal object GetCMPDataMock {
             "legIntPurposes" to listOf(1, 2, 3),
         ),
         "acmV2Enabled" to true,
-        "selectedATPIds" to listOf(43, 46, 55)
+        "selectedATPIds" to listOf(43, 46, 55),
+        "mandatoryLabel" to "Mandatory",
     )
     private val expectedCCPASettings = hashMapOf(
         "optOutNoticeLabel" to "Do not sell my personal information",

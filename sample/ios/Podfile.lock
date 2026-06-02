@@ -1924,7 +1924,7 @@ PODS:
     - ReactCommon/turbomodule/core
     - SocketRocket
     - Yoga
-  - react-native-usercentrics (2.26.3):
+  - react-native-usercentrics (2.27.0):
     - boost
     - DoubleConversion
     - fast_float
@@ -1951,7 +1951,7 @@ PODS:
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
     - SocketRocket
-    - UsercentricsUI (= 2.26.3)
+    - UsercentricsUI (= 2.27.0)
     - Yoga
   - react-native-webview (13.16.1):
     - boost
@@ -2546,9 +2546,9 @@ PODS:
     - SocketRocket
     - Yoga
   - SocketRocket (0.7.1)
-  - Usercentrics (2.26.3)
-  - UsercentricsUI (2.26.3):
-    - Usercentrics (= 2.26.3)
+  - Usercentrics (2.27.0)
+  - UsercentricsUI (2.27.0):
+    - Usercentrics (= 2.27.0)
   - Yoga (0.0.0)
 
 DEPENDENCIES:
@@ -2816,7 +2816,7 @@ SPEC CHECKSUMS:
   hermes-engine: 35c763d57c9832d0eef764316ca1c4d043581394
   nanopb: fad817b59e0457d11a5dfbde799381cd727c1275
   PromisesObjC: f5707f49cb48b9636751c5b2e7d227e43fba9f47
-  RCT-Folly: 846fda9475e61ec7bcbf8a3fe81edfcaeb090669
+  RCT-Folly: 59ec0ac1f2f39672a0c6e6cecdd39383b764646f
   RCTDeprecation: c0ed3249a97243002615517dff789bf4666cf585
   RCTRequired: 58719f5124f9267b5f9649c08bf23d9aea845b23
   RCTTypeSafety: 4aefa8328ab1f86da273f08517f1f6b343f6c2cc
@@ -2850,7 +2850,7 @@ SPEC CHECKSUMS:
   React-Mapbuffer: e4a65db5f4df53369f39558c0cf2f480f6d3d6c7
   React-microtasksnativemodule: 86334c5c06315e0bccb7b6e6f2c905e92f98b615
   react-native-safe-area-context: eda63a662750758c1fdd7e719c9f1026c8d161cb
-  react-native-usercentrics: 8cbc2cbd939ac1bd39a85d439a26a5d7fb773639
+  react-native-usercentrics: 8f2a8976b7c3e887d8de1fd8309c84693ba005bf
   react-native-webview: 83c663c5bdf1357d3e7c00986260cb888ea0e328
   React-NativeModulesApple: 8c7eb6057b00c191a11ad5ced41826ec5a0e4d78
   React-oscompat: 93b5535ea7f7dff46aaee4f78309a70979bdde9d
@@ -2884,8 +2884,8 @@ SPEC CHECKSUMS:
   ReactCommon: e9ab32f1d1482d207867b4fdd139361302b9dcc6
   RNScreens: e902eba58a27d3ad399a495d578e8aba3ea0f490
   SocketRocket: d4aabe649be1e368d1318fdf28a022d714d65748
-  Usercentrics: 82516ec0af3d552dced169285731571b71d74fc2
-  UsercentricsUI: 085bb51480cdd35d1b8c0f4661c72fa728a163ba
+  Usercentrics: e980f9ab4cf1d1c6de5825d7c23ca8ada2d6f0a5
+  UsercentricsUI: 3297ec6fb0e2cbb781abf4e61377979099007982
   Yoga: 9b30b783a17681321b52ac507a37219d7d795ace
 
 PODFILE CHECKSUM: 8d257452e9e69d13384a99ee3cd38b42636521da
