@@ -237,6 +237,7 @@ extension TCF2Settings {
             "selectedATPIds": self.selectedATPIds,
             "resurfacePeriod": self.resurfacePeriod,
             "consentOrPay": self.consentOrPay?.toDictionary() as Any,
+            "mandatoryLabel": self.mandatoryLabel,
         ]
     }
 }
