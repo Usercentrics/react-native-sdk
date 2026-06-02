@@ -9,40 +9,52 @@ import {
 import { customizationExampleOne, customizationExampleTwo } from './CustomizationExamples';
 
 export const HomeScreen = ({ navigation }: { navigation: any }) => {
-    React.useEffect(() => {
-        Usercentrics.status().then(status => {
-            if (status.shouldCollectConsent) {
-                showFirstLayer();
-            } else {
-                applyConsent(status.consents);
-            }
-        });
-    }, []);
-
-    async function showFirstLayer(bannerSettings: BannerSettings = new BannerSettings()) {
-        const response = await Usercentrics.showFirstLayer(bannerSettings);
-        handleUserResponse(response);
-    }
-
-    async function showSecondLayer() {
-        const response = await Usercentrics.showSecondLayer({
-            secondLayerStyleSettings: { showCloseButton: true },
-        });
-        handleUserResponse(response);
-    }
-
-    function handleUserResponse(response: UsercentricsConsentUserResponse | null) {
-        console.log('Consents ->', response?.consents);
-        console.log('User Interaction ->', response?.userInteraction);
-        console.log('Controller Id ->', response?.controllerId);
-        applyConsent(response?.consents);
-    }
-
     function applyConsent(_consents?: UsercentricsServiceConsent[] | null) {
         // https://docs.usercentrics.com/cmp_in_app_sdk/latest/apply_consent/apply-consent/#apply-consent-to-each-service
     }
 
+    const handleUserResponse = React.useCallback((response: UsercentricsConsentUserResponse | null) => {
+        console.log('Consents ->', response?.consents);
+        console.log('User Interaction ->', response?.userInteraction);
+        console.log('Controller Id ->', response?.controllerId);
+        applyConsent(response?.consents);
+    }, []);
+
+    const showFirstLayer = React.useCallback(async (bannerSettings: BannerSettings = new BannerSettings()) => {
+        try {
+            const response = await Usercentrics.showFirstLayer(bannerSettings);
+            handleUserResponse(response);
+        } catch (e) {
+            console.error('[Usercentrics] showFirstLayer failed:', e);
+        }
+    }, [handleUserResponse]);
+
+    React.useEffect(() => {
+        Usercentrics.status()
+            .then(status => {
+                console.log('[Usercentrics] status:', JSON.stringify(status));
+                if (status.shouldCollectConsent) {
+                    showFirstLayer();
+                } else {
+                    applyConsent(status.consents);
+                }
+            })
+            .catch(e => console.error('[Usercentrics] status failed:', e));
+    }, [showFirstLayer]);
+
+    async function showSecondLayer() {
+        try {
+            const response = await Usercentrics.showSecondLayer({
+                secondLayerStyleSettings: { showCloseButton: true },
+            });
+            handleUserResponse(response);
+        } catch (e) {
+            console.error('[Usercentrics] showSecondLayer failed:', e);
+        }
+    }
+
     // A/B testing example — use Usercentrics native variant
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     async function getBannerSettings() {
         const variant = await Usercentrics.getABTestingVariant();
         switch (variant) {
@@ -56,6 +68,7 @@ export const HomeScreen = ({ navigation }: { navigation: any }) => {
     }
 
     // A/B testing example — use a third-party tool for variant resolution
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     async function getBannerSettingsThirdPartyTool() {
         const variant = ThirdPartyTool.getABTestingVariant();
         switch (variant) {

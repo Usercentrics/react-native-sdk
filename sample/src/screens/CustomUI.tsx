@@ -19,8 +19,8 @@ export const CustomScreen = () => {
     const [data, setData] = React.useState<UsercentricsCMPData>()
 
     const getActiveVariant = React.useCallback(async () => {
-        let data = await Usercentrics.getCMPData();
-        setData(data);
+        const cmpData = await Usercentrics.getCMPData();
+        setData(cmpData);
     }, [])
 
     React.useEffect(() => {
@@ -40,7 +40,7 @@ export const CustomScreen = () => {
     })
 
     const activeVariantTitle = () => {
-        if (data != undefined) {
+        if (data !== undefined) {
             switch (data.activeVariant) {
                 case UsercentricsVariant.default:
                     return "GDPR";
@@ -57,7 +57,7 @@ export const CustomScreen = () => {
     }
 
     function printUIElements() {
-        if (data == undefined) return;
+        if (data === undefined) return;
         switch (data.activeVariant) {
             case UsercentricsVariant.default:
                 return printGDPR();
@@ -71,7 +71,7 @@ export const CustomScreen = () => {
     }
 
     function printGDPR() {
-        if (data == undefined) return;
+        if (data === undefined) return;
         const cmpDataSettings = data.settings;
 
         console.log(`Title: ${cmpDataSettings.labels.firstLayerTitle}`);
@@ -92,7 +92,7 @@ export const CustomScreen = () => {
     }
 
     async function printCCPA() {
-        if (data == undefined) return;
+        if (data === undefined) return;
         const ccpa = data.settings.ccpa;
 
 
@@ -112,7 +112,7 @@ export const CustomScreen = () => {
     }
 
     async function printTCF() {
-        if (data == undefined) return;
+        if (data === undefined) return;
 
         console.log("Set your CMP ID");
         Usercentrics.setCMPId(123);
@@ -171,12 +171,12 @@ export const CustomScreen = () => {
         let newLanguage = "de";
         await Usercentrics.changeLanguage(newLanguage);
 
-        let data = await Usercentrics.getCMPData();
-        console.log(data);
+        const languageData = await Usercentrics.getCMPData();
+        console.log(languageData);
     }
 
     async function acceptAll() {
-        if (data == undefined) return;
+        if (data === undefined) return;
 
         let consents: Array<UsercentricsServiceConsent>
         switch (data.activeVariant) {
@@ -196,7 +196,7 @@ export const CustomScreen = () => {
     }
 
     async function denyAll() {
-        if (data == undefined) return;
+        if (data === undefined) return;
 
         let consents: Array<UsercentricsServiceConsent>
         switch (data.activeVariant) {
@@ -253,7 +253,7 @@ export const CustomScreen = () => {
     ];
 
     async function saveServices() {
-        if (data == undefined) return;
+        if (data === undefined) return;
 
         let consents: Array<UsercentricsServiceConsent>
         switch (data.activeVariant) {
@@ -289,7 +289,7 @@ export const CustomScreen = () => {
     }
 
     async function getConsents() {
-        if (data == undefined) return;
+        if (data === undefined) return;
         let consents = await Usercentrics.getConsents();
         applyConsents(consents);
     }
