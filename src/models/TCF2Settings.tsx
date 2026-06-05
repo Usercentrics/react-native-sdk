@@ -60,6 +60,7 @@ export class TCF2Settings {
     selectedATPIds: number[]
     consentOrPay?: TCF2ConsentOrPaySettings
     mandatoryLabel: string
+    specialFeaturesConsentOrPay?: ConsentOrPayRestriction[]
 
     constructor(
         firstLayerTitle: string,
@@ -123,6 +124,7 @@ export class TCF2Settings {
         dataSharedOutsideEUText?: string,
         consentOrPay?: TCF2ConsentOrPaySettings,
         mandatoryLabel: string = 'Mandatory',
+        specialFeaturesConsentOrPay?: ConsentOrPayRestriction[],
     ) {
         this.firstLayerTitle = firstLayerTitle
         this.secondLayerTitle = secondLayerTitle
@@ -185,6 +187,7 @@ export class TCF2Settings {
         this.selectedATPIds = selectedATPIds
         this.consentOrPay = consentOrPay
         this.mandatoryLabel = mandatoryLabel
+        this.specialFeaturesConsentOrPay = specialFeaturesConsentOrPay
     }
 }
 
@@ -204,13 +207,30 @@ export class TCF2ChangedPurposes {
 
     purposes: [number]
     legIntPurposes: [number]
+    consentOrPay?: ConsentOrPayRestriction[]
 
     constructor(
         purposes: [number],
         legIntPurposes: [number],
+        consentOrPay?: ConsentOrPayRestriction[],
     ) {
         this.purposes = purposes
         this.legIntPurposes = legIntPurposes
+        this.consentOrPay = consentOrPay
+    }
+}
+
+export class ConsentOrPayRestriction {
+    id: number
+    value: string
+
+    constructor(id: number, value: string) {
+        this.id = id
+        this.value = value
+    }
+
+    isFlexible(): boolean {
+        return this.value?.toUpperCase() === 'FLEXIBLE'
     }
 }
 
