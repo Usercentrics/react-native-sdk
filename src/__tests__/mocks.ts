@@ -172,7 +172,9 @@ const ccpaSettings: CCPASettings = {
 
 const tcf2ChangedPurposes: TCF2ChangedPurposes = {
     legIntPurposes: [1],
-    purposes: [2]
+    purposes: [2],
+    notAllowedPurposes: [],
+    consentOrPay: undefined
 }
 
 const tcf2Settings: TCF2Settings = {
@@ -234,7 +236,10 @@ const tcf2Settings: TCF2Settings = {
     scope: TCF2Scope.global,
     changedPurposes: tcf2ChangedPurposes,
     acmV2Enabled: true,
-    selectedATPIds: [10, 20, 30]
+    selectedATPIds: [10, 20, 30],
+    mandatoryLabel: 'Mandatory',
+    consentOrPay: undefined,
+    specialFeaturesConsentOrPay: undefined
 }
 
 const firstLayer: FirstLayer = {
