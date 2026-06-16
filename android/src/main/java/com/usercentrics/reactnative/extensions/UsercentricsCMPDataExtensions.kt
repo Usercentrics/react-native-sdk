@@ -12,6 +12,7 @@ import com.usercentrics.sdk.v2.settings.data.CustomizationFont
 import com.usercentrics.sdk.v2.settings.data.FirstLayer
 import com.usercentrics.sdk.v2.settings.data.PublishedApp
 import com.usercentrics.sdk.v2.settings.data.SecondLayer
+import com.usercentrics.sdk.v2.settings.data.ConsentOrPayRestriction
 import com.usercentrics.sdk.v2.settings.data.ConsentOrPaySettings
 import com.usercentrics.sdk.v2.settings.data.TCF2ChangedPurposes
 import com.usercentrics.sdk.v2.settings.data.TCF2Settings
@@ -249,6 +250,7 @@ private fun TCF2Settings.serialize(): WritableMap {
         "selectedATPIds" to selectedATPIds,
         "consentOrPay" to consentOrPay?.serialize(),
         "mandatoryLabel" to mandatoryLabel,
+        "specialFeaturesConsentOrPay" to specialFeaturesConsentOrPay?.map { it.serialize() },
     ).toWritableMap()
 }
 
@@ -447,9 +449,15 @@ private fun TCF2ChangedPurposes?.serialize(): Any? {
     }
     return mapOf(
         "purposes" to purposes,
-        "legIntPurposes" to legIntPurposes
+        "legIntPurposes" to legIntPurposes,
+        "consentOrPay" to consentOrPay?.map { it.serialize() },
     )
 }
+
+private fun ConsentOrPayRestriction.serialize(): Map<String, Any?> = mapOf(
+    "id" to id,
+    "value" to value,
+)
 
 internal fun AdditionalConsentModeData.serialize(): WritableMap {
     return Arguments.createMap().apply {

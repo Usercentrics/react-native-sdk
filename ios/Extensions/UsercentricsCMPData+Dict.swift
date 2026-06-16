@@ -238,6 +238,7 @@ extension TCF2Settings {
             "resurfacePeriod": self.resurfacePeriod,
             "consentOrPay": self.consentOrPay?.toDictionary() as Any,
             "mandatoryLabel": self.mandatoryLabel,
+            "specialFeaturesConsentOrPay": self.specialFeaturesConsentOrPay?.map { $0.toDictionary() } as Any,
         ]
     }
 }
@@ -497,7 +498,17 @@ extension TCF2ChangedPurposes {
     func toDictionary() -> Any {
         return [
             "purposes": purposes,
-            "legIntPurposes": legIntPurposes
+            "legIntPurposes": legIntPurposes,
+            "consentOrPay": consentOrPay?.map { $0.toDictionary() } as Any,
+        ]
+    }
+}
+
+extension ConsentOrPayRestriction {
+    func toDictionary() -> [String: Any] {
+        return [
+            "id": self.id,
+            "value": self.value,
         ]
     }
 }
