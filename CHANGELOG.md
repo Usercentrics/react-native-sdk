@@ -1,4 +1,16 @@
 [Release Notes](https://docs.usercentrics.com/cmp_in_app_sdk/latest/about/history/)
+### 2.27.1 – Jun 15, 2026
+## Fixes
+* **[iOS — Accessibility]** Fixed VoiceOver announcing wrong language for English content (WCAG 3.1.2 Language of Parts)
+* **[iOS — Accessibility]** Fixed table in second layer not semantically exposed to VoiceOver (WCAG 1.3.1 Info and Relationships)
+* **[iOS — Accessibility]** Fixed CMP links not announced as links by VoiceOver (WCAG 4.1.2 Name, Role, Value)
+* **[iOS — Accessibility]** Fixed VoiceOver focus not restored to language picker after language switch (WCAG 3.2.1 On Focus)
+* **[iOS — Accessibility]** Added visible focus indicator for all assistive technologies (WCAG 2.4.7 Focus Visible)
+* **[iOS]** Fixed crash when tapping service info icon (ⓘ) in Second Layer Categories tab
+* **[iOS]** Fixed UI work not dispatched to main thread in `showFirstLayer`; added guard against double-presentation
+* **[Android/iOS]** Restored button order to `[denyAll, acceptAll]` in default button mapping
+* **[PUR]** Fixed vendor consents not set to `true` when `showTogglesForVendors=false` on second layer Save
+
 ### 2.27.0 – Jun 1, 2026
 ## Features
 * **[PUR Compliance]** Implemented Mandatory Label and Hide Vendor Toggles on the second layer — purposes and special features absent from `publisherRestrictions`/`specialFeatures` maps are rendered as mandatory (pre-consented, non-interactive with a "Mandatory" label), and `showTogglesForVendors: false` hides toggles on the Vendors/DPS tab while keeping them on the Purposes tab. All logic is gated behind `enableConsentOrPay`; existing configurations are fully unaffected
