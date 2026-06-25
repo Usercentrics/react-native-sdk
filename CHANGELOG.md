@@ -1,4 +1,12 @@
 [Release Notes](https://docs.usercentrics.com/cmp_in_app_sdk/latest/about/history/)
+### 2.27.3 – Jun 25, 2026
+## Fixes
+* **[Android/iOS]** Fixed ACM (Additional Consent Mode) initialization silently continuing when selected ATP providers are no longer listed in Google's ATP CDN — the SDK now surfaces the failure correctly instead of proceeding with an empty provider list
+* **[iOS]** Fixed stray `PrivacyInfo.xcprivacy` file at SPM zip root causing `pod install` integration warnings
+## Chores
+* **[Android]** Reduced public API surface: `UCButtonSettings`, `UCButtonType`, `UCToggle`, `PredefinedUIAlertDialogFactory`, `UCSecondLayerViewModel`, and related UI internals are now `internal` or annotated with `@InternalUsercentricsApi` — these were never part of the documented public API
+* **[Android]** Audited and tightened consumer ProGuard rules
+
 ### 2.27.1 – Jun 15, 2026
 ## Fixes
 * **[iOS — Accessibility]** Fixed VoiceOver announcing wrong language for English content (WCAG 3.1.2 Language of Parts)
