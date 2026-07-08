@@ -1,4 +1,13 @@
 [Release Notes](https://docs.usercentrics.com/cmp_in_app_sdk/latest/about/history/)
+### 2.28.0 – Jul 8, 2026
+## Fixes
+* **[Android/iOS]** Fixed multiple overlapping banner instances on rapid `showFirstLayer`/`showSecondLayer` calls
+* **[Android]** Fixed button spacing being ignored in the 2nd layer footer
+* **[iOS]** Fixed Unity static package iOS build failing to compile
+* **[PUR]** Fixed flexible special features/purposes in Consent-or-Pay being forced mandatory instead of showing a toggle
+* **[Billing]** Fixed session buffer overcounting causing a spike in the Displays metric
+* **[TCF]** Removed hard AppsFlyer import and fixed incorrect purpose-one treatment
+
 ### 2.27.3 – Jun 25, 2026
 ## Fixes
 * **[Android/iOS]** Fixed ACM (Additional Consent Mode) initialization silently continuing when selected ATP providers are no longer listed in Google's ATP CDN — the SDK now surfaces the failure correctly instead of proceeding with an empty provider list
