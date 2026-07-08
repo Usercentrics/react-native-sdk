@@ -1924,7 +1924,7 @@ PODS:
     - ReactCommon/turbomodule/core
     - SocketRocket
     - Yoga
-  - react-native-usercentrics (2.27.3):
+  - react-native-usercentrics (2.28.0):
     - boost
     - DoubleConversion
     - fast_float
@@ -1951,7 +1951,7 @@ PODS:
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
     - SocketRocket
-    - UsercentricsUI (= 2.27.3)
+    - UsercentricsUI (= 2.28.0)
     - Yoga
   - react-native-webview (13.16.1):
     - boost
@@ -2546,9 +2546,9 @@ PODS:
     - SocketRocket
     - Yoga
   - SocketRocket (0.7.1)
-  - Usercentrics (2.27.3)
-  - UsercentricsUI (2.27.3):
-    - Usercentrics (= 2.27.3)
+  - Usercentrics (2.28.0)
+  - UsercentricsUI (2.28.0):
+    - Usercentrics (= 2.28.0)
   - Yoga (0.0.0)
 
 DEPENDENCIES:
@@ -2850,7 +2850,7 @@ SPEC CHECKSUMS:
   React-Mapbuffer: e4a65db5f4df53369f39558c0cf2f480f6d3d6c7
   React-microtasksnativemodule: 86334c5c06315e0bccb7b6e6f2c905e92f98b615
   react-native-safe-area-context: eda63a662750758c1fdd7e719c9f1026c8d161cb
-  react-native-usercentrics: f3e12a1f92335bd31030412c38d8d66d10ee26e0
+  react-native-usercentrics: 04e3b7f3afa0f0d105c316b1d6f4aea5b5fbfe0c
   react-native-webview: 83c663c5bdf1357d3e7c00986260cb888ea0e328
   React-NativeModulesApple: 8c7eb6057b00c191a11ad5ced41826ec5a0e4d78
   React-oscompat: 93b5535ea7f7dff46aaee4f78309a70979bdde9d
@@ -2884,8 +2884,8 @@ SPEC CHECKSUMS:
   ReactCommon: e9ab32f1d1482d207867b4fdd139361302b9dcc6
   RNScreens: e902eba58a27d3ad399a495d578e8aba3ea0f490
   SocketRocket: d4aabe649be1e368d1318fdf28a022d714d65748
-  Usercentrics: 16a9944cc41dac706ecfa97649f3dde2db65c96f
-  UsercentricsUI: b0d7ae45053b4c7f3393a188963f3f095d33d8c9
+  Usercentrics: 700664d1dcf3dc2109589609c4ea848cfa510959
+  UsercentricsUI: 7fc0ea725ad1eb82c544e417aea4618bb659e5ef
   Yoga: 9b30b783a17681321b52ac507a37219d7d795ace
 
 PODFILE CHECKSUM: 8d257452e9e69d13384a99ee3cd38b42636521da
