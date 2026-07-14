@@ -1,4 +1,4 @@
-import {NetworkMode, UsercentricsLoggerLevel} from ".";
+import {BannerInitCustomization, NetworkMode, UsercentricsLoggerLevel} from ".";
 
 export class UsercentricsOptions {
     settingsId?: string;
@@ -10,6 +10,11 @@ export class UsercentricsOptions {
     networkMode?: NetworkMode;
     consentMediation?: Boolean;
     initTimeoutMillis?: number;
+    /**
+     * @deprecated bannerCustomization is deprecated and will be removed in a future release.
+     * Configure banner appearance via the Usercentrics dashboard instead.
+     */
+    bannerCustomization?: BannerInitCustomization;
 
     constructor({
                     settingsId = "",
@@ -20,7 +25,8 @@ export class UsercentricsOptions {
                     version = undefined,
                     networkMode = undefined,
                     consentMediation = undefined,
-                    initTimeoutMillis = undefined
+                    initTimeoutMillis = undefined,
+                    bannerCustomization = undefined
                 }: {
         settingsId?: string,
         ruleSetId?: string,
@@ -30,7 +36,8 @@ export class UsercentricsOptions {
         version?: string,
         networkMode?: NetworkMode,
         consentMediation?: Boolean,
-        initTimeoutMillis?: number
+        initTimeoutMillis?: number,
+        bannerCustomization?: BannerInitCustomization
     }) {
         this.settingsId = settingsId;
         this.ruleSetId = ruleSetId;
@@ -41,5 +48,6 @@ export class UsercentricsOptions {
         this.networkMode = networkMode
         this.consentMediation = consentMediation
         this.initTimeoutMillis = initTimeoutMillis
+        this.bannerCustomization = bannerCustomization
     }
 }

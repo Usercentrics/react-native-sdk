@@ -1,5 +1,5 @@
 import {ImageResolvedAssetSource} from "react-native";
-import {FirstLayerStyleSettings, SecondLayerStyleSettings} from ".";
+import {BannerInitCustomization, FirstLayerStyleSettings, SecondLayerStyleSettings} from ".";
 
 export class BannerLogo {
 
@@ -107,11 +107,17 @@ export class BannerSettings {
     secondLayerStyleSettings?: SecondLayerStyleSettings;
     generalStyleSettings?: GeneralStyleSettings;
     variantName?: String
+    /**
+     * @deprecated initCustomization is deprecated and will be removed in a future release.
+     * Configure banner appearance via the Usercentrics dashboard instead.
+     */
+    initCustomization?: BannerInitCustomization;
 
-    constructor(firstLayerStyleSettings?: FirstLayerStyleSettings, secondLayerStyleSettings?: SecondLayerStyleSettings, generalStyleSettings?: GeneralStyleSettings, variantName?: String) {
+    constructor(firstLayerStyleSettings?: FirstLayerStyleSettings, secondLayerStyleSettings?: SecondLayerStyleSettings, generalStyleSettings?: GeneralStyleSettings, variantName?: String, initCustomization?: BannerInitCustomization) {
         this.firstLayerStyleSettings = firstLayerStyleSettings;
         this.secondLayerStyleSettings = secondLayerStyleSettings;
         this.generalStyleSettings = generalStyleSettings;
         this.variantName = variantName;
+        this.initCustomization = initCustomization;
     }
 }

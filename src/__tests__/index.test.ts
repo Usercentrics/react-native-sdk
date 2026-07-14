@@ -1,7 +1,9 @@
 import {NativeModules} from 'react-native';
 import {
+    BannerInitCustomization,
     BannerSettings,
     NetworkMode,
+    PurposeListStyle,
     TCFData,
     TCFDecisionUILayer,
     UsercentricsConsentType,
@@ -85,6 +87,50 @@ describe('Test Usercentrics Module', () => {
         Usercentrics.configure(options);
         const call = RNUsercentricsModule.configure.mock.calls[0][0];
         expect(call).toBe(options)
+    })
+
+    test('testConfigureBridgeWithBannerCustomization', () => {
+        const bannerCustomization = new BannerInitCustomization({
+            paddingTop: 16,
+            paddingBottom: 16,
+            paddingStart: 8,
+            paddingEnd: 8,
+            lineSpacingMultiplier: 1.2,
+            titleFontSize: 18,
+            bodyFontSize: 14,
+            linkFontSize: 14,
+            titleFontBold: true,
+            headerPaddingTop: 12,
+            headerPaddingSides: 12,
+            headerPaddingBetweenElements: 4,
+            buttonBorderColor: "#004dcf",
+            buttonBorderWidth: 1,
+            purposeListStyle: PurposeListStyle.flat,
+            stickyHeader: true,
+            hideLanguageSwitcher: false,
+            buttonHeightDp: 48,
+            buttonHorizontalPaddingDp: 16,
+            buttonSpacingDp: 8,
+            linkUnderline: true,
+            showSecondLayerCloseButton: true,
+            tabFontSize: 14,
+            tabActiveColor: "#004dcf",
+            denyAllButtonBackground: "#ffffff",
+            acceptAllButtonBackground: "#004dcf",
+            linkColor: "#004dcf"
+        });
+
+        const options = new UsercentricsOptions({
+            settingsId: "abc",
+            ruleSetId: "qwer",
+            bannerCustomization
+        });
+
+        Usercentrics.configure(options);
+        const calls = RNUsercentricsModule.configure.mock.calls;
+        const call = calls[calls.length - 1][0];
+        expect(call).toBe(options);
+        expect(call.bannerCustomization).toBe(bannerCustomization);
     })
 
     test('testStatus', async () => {
@@ -176,6 +222,36 @@ describe('Test Usercentrics Module', () => {
 
         const call = RNUsercentricsModule.showFirstLayer.mock.calls[0][0];
         expect(call).toBe(bannerSettings)
+    })
+
+    test('testShowFirstLayerWithInitCustomization', async () => {
+        const response = new UsercentricsConsentUserResponse(
+            "abc",
+            UsercentricsUserInteraction.acceptAll,
+            []
+        )
+
+        RNUsercentricsModule.showFirstLayer.mockImplementationOnce(
+            (): Promise<any> => Promise.resolve(response)
+        )
+
+        const initCustomization = new BannerInitCustomization({
+            paddingTop: 16,
+            buttonBorderColor: "#004dcf",
+            purposeListStyle: PurposeListStyle.flat
+        });
+
+        const bannerSettings: BannerSettings = {
+            initCustomization
+        }
+
+        const data = await Usercentrics.showFirstLayer(bannerSettings)
+        expect(data).toBe(response);
+
+        const calls = RNUsercentricsModule.showFirstLayer.mock.calls;
+        const call = calls[calls.length - 1][0];
+        expect(call).toBe(bannerSettings);
+        expect(call.initCustomization).toBe(initCustomization);
     })
 
     test('testRestoreUserSession', async () => {
