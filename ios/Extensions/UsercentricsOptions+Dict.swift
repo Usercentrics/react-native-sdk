@@ -41,6 +41,10 @@ public extension UsercentricsOptions {
             options.initTimeoutMillis = Int64(initTimeoutMillis)
         }
 
+        if let bannerCustomizationDict = dictionary["bannerCustomization"] as? NSDictionary {
+            options.bannerCustomization = BannerInitCustomization(from: bannerCustomizationDict)
+        }
+
         return options
     }
 }

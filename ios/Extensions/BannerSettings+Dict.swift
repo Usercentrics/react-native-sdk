@@ -1,4 +1,5 @@
 import Foundation
+import Usercentrics
 import UsercentricsUI
 import UIKit
 
@@ -16,10 +17,14 @@ extension BannerSettings {
         let secondLayerStyleSettingsDict = dictionary["secondLayerStyleSettings"] as? NSDictionary
         let secondLayerSettings = SecondLayerStyleSettings(from: secondLayerStyleSettingsDict, bannerFontHolder: bannerFontHolder)
 
+        let initCustomizationDict = dictionary["initCustomization"] as? NSDictionary
+        let initCustomization = BannerInitCustomization(from: initCustomizationDict)
+
         self.init(generalStyleSettings: generalStyleSettings,
                   firstLayerStyleSettings: firstLayerSettings,
                   secondLayerStyleSettings: secondLayerSettings,
-                  variantName: dictionary["variantName"] as? String)
+                  variantName: dictionary["variantName"] as? String,
+                  initCustomization: initCustomization)
     }
 }
 

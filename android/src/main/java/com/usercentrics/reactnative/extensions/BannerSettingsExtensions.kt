@@ -26,6 +26,7 @@ internal fun ReadableMap.bannerSettingsFromMap(context: Context): BannerSettings
         secondLayerStyleSettings = rawSecondLayerStyleSettings?.secondLayerStyleSettingsFromMap(context),
         generalStyleSettings = rawGeneralStyleSettings?.generalStyleSettingsFromMap(context),
         variantName = getString("variantName"),
+        initCustomization = getMap("initCustomization")?.bannerInitCustomizationFromMap(),
     )
 }
 

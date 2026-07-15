@@ -29,6 +29,10 @@ internal fun ReadableMap.getBooleanOrNull(key: String): Boolean? {
     }
 }
 
+internal fun ReadableMap.getFloatOrNull(key: String): Float? {
+    return getDoubleOrNull(key)?.toFloat()
+}
+
 internal fun List<*>.serialize(): WritableArray {
     val array = Arguments.createArray()
     forEach { value ->

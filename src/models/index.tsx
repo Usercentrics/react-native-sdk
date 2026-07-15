@@ -1,3 +1,4 @@
+export * from './BannerInitCustomization';
 export * from './BannerSettings';
 export * from './CCPAData';
 export * from './FirstLayerSettings';
