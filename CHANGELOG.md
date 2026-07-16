@@ -1,4 +1,8 @@
 [Release Notes](https://docs.usercentrics.com/cmp_in_app_sdk/latest/about/history/)
+### 2.28.1 – Jul 15, 2026
+## Fixes
+* **[iOS — Mediation]** Fixed AppLovin CCPA `setDoNotSell` always passing `YES` regardless of the actual consent value
+
 ### 2.28.0 – Jul 8, 2026
 ## Fixes
 * **[Android/iOS]** Fixed multiple overlapping banner instances on rapid `showFirstLayer`/`showSecondLayer` calls
