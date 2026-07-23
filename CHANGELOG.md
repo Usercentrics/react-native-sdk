@@ -1,4 +1,11 @@
 [Release Notes](https://docs.usercentrics.com/cmp_in_app_sdk/latest/about/history/)
+### 2.28.2 – Jul 22, 2026
+## Fixes
+* **[iOS]** Rebuilt `UsercentricsUI.xcframework` with the Xcode 26 / Swift 6.3.3 toolchain, fixing build failures on Xcode 26.6 for apps consuming 2.27.1/2.28.0 (including via the React Native bridge)
+* **[PUR]** Fixed Consent-or-Pay mandatory purposes silently overriding the user's real TCF consent state on SDK initialization, causing a desync between the SDK's consent getters and the persisted TC string
+* **[TCF]** Removed Special Purposes from the first layer of the TCF banner — not a first-layer requirement
+* **[TCF]** Fixed purposes and special features being disclosed in the second layer (and included in the TC string) even when no vendor declared them, when Stacks are enabled
+
 ### 2.28.1 – Jul 15, 2026
 ## Fixes
 * **[iOS — Mediation]** Fixed AppLovin CCPA `setDoNotSell` always passing `YES` regardless of the actual consent value
