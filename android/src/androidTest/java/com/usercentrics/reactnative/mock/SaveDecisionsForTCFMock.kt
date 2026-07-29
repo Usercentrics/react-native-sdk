@@ -29,6 +29,7 @@ internal class SaveDecisionsForTCFMock {
                 ),
                 isEssential = false,
                 category = "marketing",
+                isExempt = false,
             )
         )
 
@@ -86,7 +87,8 @@ internal class SaveDecisionsForTCFMock {
                         "status" to false
                     )
                 ),
-                "category" to "marketing"
+                "category" to "marketing",
+                "isExempt" to false
             )
         )
     }

@@ -14,7 +14,8 @@ class ReadyStatusDictTests: XCTestCase {
                                                                          dataProcessor: "abc",
                                                                          version: "version",
                                                                          isEssential: true,
-                                                                         category: "marketing")
+                                                                         category: "marketing",
+                                                                         isExempt: false)
     
     let usercentricsReady = UsercentricsReadyStatus(shouldCollectConsent: false,
                                                     consents: [consent],
@@ -43,7 +44,8 @@ class ReadyStatusDictTests: XCTestCase {
                                              dataProcessor: "abc",
                                              version: "version",
                                              isEssential: false,
-                                             category: "marketing").toDictionary()
+                                             category: "marketing",
+                                             isExempt: false).toDictionary()
 
     XCTAssertEqual("abc", consent["templateId"] as! String)
     XCTAssertEqual(true, consent["status"] as! Bool)
@@ -60,7 +62,8 @@ class ReadyStatusDictTests: XCTestCase {
                                                      dataProcessor: "abc",
                                                      version: "version",
                                                      isEssential: false,
-                                                     category: "marketing").toDictionary()
+                                                     category: "marketing",
+                                                     isExempt: false).toDictionary()
 
     XCTAssertEqual(1, consentImplicit["type"] as! Int)
   }
