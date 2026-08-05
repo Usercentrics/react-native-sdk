@@ -12,7 +12,7 @@ export class UsercentricsServiceConsent {
     category: string
     isExempt: boolean
 
-    constructor(templateId: string, status: boolean, dataProcessor: string, version: string, type: UsercentricsConsentType, isEssential: boolean, history: UsercentricsConsentHistoryEntry[], category: string, isExempt: boolean) {
+    constructor(templateId: string, status: boolean, dataProcessor: string, version: string, type: UsercentricsConsentType, isEssential: boolean, history: UsercentricsConsentHistoryEntry[], category: string, isExempt: boolean = false) {
         this.templateId = templateId
         this.status = status
         this.dataProcessor = dataProcessor
