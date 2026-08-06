@@ -149,7 +149,8 @@ describe('Test Usercentrics Module', () => {
                         timestampInMillis: 123.0,
                         type: 0
                     }],
-                    category: "essemtial"
+                    category: "essemtial",
+                    isExempt: false,
                 }
             ],
           {
@@ -202,7 +203,8 @@ describe('Test Usercentrics Module', () => {
                         timestampInMillis: 123.0,
                         type: 0
                     }],
-                    category: "essemtial"
+                    category: "essemtial",
+                    isExempt: false,
                 }
             ]
         )
@@ -270,7 +272,8 @@ describe('Test Usercentrics Module', () => {
                         timestampInMillis: 123.0,
                         type: 0
                     }],
-                    category: "essemtial"
+                    category: "essemtial",
+                    isExempt: false,
                 }
             ],
           {
@@ -579,7 +582,8 @@ describe('Test Usercentrics Module', () => {
                       timestampInMillis: 123.0,
                       type: 0
                   }],
-                  category: "essemtial"
+                  category: "essemtial",
+                  isExempt: false,
               }
           ],
           {

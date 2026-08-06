@@ -26,7 +26,8 @@ extension UsercentricsServiceConsent {
                                       dataProcessor: "BBBB",
                                       version: "1.2.3",
                                       isEssential: false,
-                                      category: "marketing")
+                                      category: "marketing",
+                                      isExempt: false)
   }
 }
 
