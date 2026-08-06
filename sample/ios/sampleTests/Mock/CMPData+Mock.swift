@@ -104,7 +104,8 @@ extension UsercentricsService {
                  isAutoUpdateAllowed: true,
                  disableLegalBasis: true,
                  isEssential: true,
-                 metadata: nil)
+                 metadata: nil,
+                 isExempt: false)
   }
 }
 
@@ -434,6 +435,7 @@ extension ServiceConsentTemplate {
   static func mock() -> ServiceConsentTemplate {
     return .init(isDeactivated: true,
                  defaultConsentStatus: true,
+                 isExempt: false,
                  templateId: "templateId",
                  version: "version",
                  categorySlug: "categorySlug",
@@ -452,6 +454,7 @@ extension SubConsentTemplate {
   static func mock() -> SubConsentTemplate {
     return .init(isDeactivated: true,
                  defaultConsentStatus: true,
+                 isExempt: false,
                  templateId: "templateId",
                  version: "version",
                  categorySlug: "categorySlug",
@@ -468,7 +471,8 @@ extension UsercentricsCategory {
                  label: "label",
                  description: "description",
                  isEssential: true,
-                 isHidden: true)
+                 isHidden: true,
+                 isExempt: false)
   }
 }
 

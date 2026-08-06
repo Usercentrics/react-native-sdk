@@ -1,4 +1,24 @@
 [Release Notes](https://docs.usercentrics.com/cmp_in_app_sdk/latest/about/history/)
+### 2.29.1 – Aug 5, 2026
+## Features
+* **[Unity]** Added `isExempt` to the Unity `ServiceConsent` model, propagating the statistical exception flag to the Unity bridge
+
+### 2.29.0 – Aug 5, 2026
+## Features
+* **[Mediation]** Added Amazon Consent Signal (ACS) mediation support for Android and iOS, including Adjust adapter integration
+* **[PUR Compliance]** Added statistical exception disclosure and toggle UI to the first and second layer, and excluded statistical exception services from Reject All/Deny All, supporting the UK DUAA statistical-exception requirement
+* **[Unity]** Automated the Unity-flavored SPM release pipeline, publishing `usercentrics-spm-ui`/`usercentrics-spm-sdk` package tags for Unity releases
+
+## Fixes
+* **[Android]** Fixed consent banner rendering behind system bars on edge-to-edge displays
+* **[Android]** Fixed `ExternalLinkSpan.onClick` crash on invalid/empty link URLs
+* **[iOS]** Fixed app hang caused by synchronous HTML parsing in first-layer banner/content text
+* **[Android/iOS]** Removed residual `assert(false)` calls in Additional Consent Mode and CCPA save paths that could crash debug builds
+* **[TV]** Fixed `DPAD_DOWN` navigation escaping the second-layer detail list boundary
+
+## Chores
+* **[Unity]** Stripped debug symbols from iOS core release binaries, reducing device binary size by ~31% with no functional change
+
 ### 2.28.2 – Jul 22, 2026
 ## Fixes
 * **[iOS]** Rebuilt `UsercentricsUI.xcframework` with the Xcode 26 / Swift 6.3.3 toolchain, fixing build failures on Xcode 26.6 for apps consuming 2.27.1/2.28.0 (including via the React Native bridge)
