@@ -60,6 +60,9 @@
     "react-test-renderer": "19.1.0",
     "typescript": "~5.3.0"
   },
+  "overrides": {
+    "shell-quote": ">=1.9.0"
+  },
   "engines": {
     "node": ">=20.19.4"
   }
