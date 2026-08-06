@@ -33,8 +33,8 @@ public protocol UsercentricsManager {
     func acceptAllForTCF(fromLayer: TCFDecisionUILayer, consentType: UsercentricsConsentType) -> [UsercentricsServiceConsent]
     func acceptAll(consentType: UsercentricsConsentType) -> [UsercentricsServiceConsent]
 
-    func denyAllForTCF(fromLayer: TCFDecisionUILayer, consentType: UsercentricsConsentType, unsavedPurposeLIDecisions: [KotlinInt: KotlinBoolean]?, unsavedVendorLIDecisions: [KotlinInt: KotlinBoolean]?) -> [UsercentricsServiceConsent]
-    func denyAll(consentType: UsercentricsConsentType) -> [UsercentricsServiceConsent]
+    func denyAllForTCF(fromLayer: TCFDecisionUILayer, consentType: UsercentricsConsentType, unsavedPurposeLIDecisions: [KotlinInt: KotlinBoolean]?, unsavedVendorLIDecisions: [KotlinInt: KotlinBoolean]?, unsavedServiceDecisions: [String: KotlinBoolean]?) -> [UsercentricsServiceConsent]
+    func denyAll(consentType: UsercentricsConsentType, unsavedServiceDecisions: [String: KotlinBoolean]?) -> [UsercentricsServiceConsent]
 
     func saveDecisionsForTCF(tcfDecisions: TCFUserDecisions,
                              fromLayer: TCFDecisionUILayer,
@@ -137,12 +137,12 @@ final class UsercentricsManagerImplementation: UsercentricsManager {
         return UsercentricsCore.shared.acceptAll(consentType: consentType)
     }
 
-    func denyAllForTCF(fromLayer: TCFDecisionUILayer, consentType: UsercentricsConsentType, unsavedPurposeLIDecisions: [KotlinInt: KotlinBoolean]?, unsavedVendorLIDecisions: [KotlinInt: KotlinBoolean]?) -> [UsercentricsServiceConsent] {
-        return UsercentricsCore.shared.denyAllForTCF(fromLayer: fromLayer, consentType: consentType, unsavedPurposeLIDecisions: unsavedPurposeLIDecisions, unsavedVendorLIDecisions: unsavedVendorLIDecisions)
+    func denyAllForTCF(fromLayer: TCFDecisionUILayer, consentType: UsercentricsConsentType, unsavedPurposeLIDecisions: [KotlinInt: KotlinBoolean]?, unsavedVendorLIDecisions: [KotlinInt: KotlinBoolean]?, unsavedServiceDecisions: [String: KotlinBoolean]?) -> [UsercentricsServiceConsent] {
+        return UsercentricsCore.shared.denyAllForTCF(fromLayer: fromLayer, consentType: consentType, unsavedPurposeLIDecisions: unsavedPurposeLIDecisions, unsavedVendorLIDecisions: unsavedVendorLIDecisions, unsavedServiceDecisions: unsavedServiceDecisions)
     }
 
-    func denyAll(consentType: UsercentricsConsentType) -> [UsercentricsServiceConsent] {
-        return UsercentricsCore.shared.denyAll(consentType: consentType)
+    func denyAll(consentType: UsercentricsConsentType, unsavedServiceDecisions: [String: KotlinBoolean]?) -> [UsercentricsServiceConsent] {
+        return UsercentricsCore.shared.denyAll(consentType: consentType, unsavedServiceDecisions: unsavedServiceDecisions)
     }
 
     func saveDecisionsForTCF(tcfDecisions: TCFUserDecisions, fromLayer: TCFDecisionUILayer, serviceDecisions: [UserDecision], consentType: UsercentricsConsentType) -> [UsercentricsServiceConsent] {

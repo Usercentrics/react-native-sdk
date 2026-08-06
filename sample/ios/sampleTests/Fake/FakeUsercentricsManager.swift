@@ -170,19 +170,23 @@ final class FakeUsercentricsManager: UsercentricsManager {
   var denyAllForTCFFromLayer: TCFDecisionUILayer?
   var denyAllForTCFUnsavedPurposeLIDecisions: [KotlinInt: KotlinBoolean]?
   var denyAllForTCFUnsavedVendorLIDecisions: [KotlinInt: KotlinBoolean]?
+  var denyAllForTCFUnsavedServiceDecisions: [String: KotlinBoolean]?
   var denyAllForTCFResponse: [UsercentricsServiceConsent]?
-  func denyAllForTCF(fromLayer: TCFDecisionUILayer, consentType: UsercentricsConsentType, unsavedPurposeLIDecisions: [KotlinInt: KotlinBoolean]?, unsavedVendorLIDecisions: [KotlinInt: KotlinBoolean]?) -> [UsercentricsServiceConsent] {
+  func denyAllForTCF(fromLayer: TCFDecisionUILayer, consentType: UsercentricsConsentType, unsavedPurposeLIDecisions: [KotlinInt: KotlinBoolean]?, unsavedVendorLIDecisions: [KotlinInt: KotlinBoolean]?, unsavedServiceDecisions: [String: KotlinBoolean]?) -> [UsercentricsServiceConsent] {
     self.denyAllForTCFConsentType = consentType
     self.denyAllForTCFFromLayer = fromLayer
     self.denyAllForTCFUnsavedPurposeLIDecisions = unsavedPurposeLIDecisions
     self.denyAllForTCFUnsavedVendorLIDecisions = unsavedVendorLIDecisions
+    self.denyAllForTCFUnsavedServiceDecisions = unsavedServiceDecisions
     return denyAllForTCFResponse!
   }
 
   var denyAllConsentType: UsercentricsConsentType?
+  var denyAllUnsavedServiceDecisions: [String: KotlinBoolean]?
   var denyAllResponse: [UsercentricsServiceConsent]?
-  func denyAll(consentType: UsercentricsConsentType) -> [UsercentricsServiceConsent] {
+  func denyAll(consentType: UsercentricsConsentType, unsavedServiceDecisions: [String: KotlinBoolean]?) -> [UsercentricsServiceConsent] {
     self.denyAllConsentType = consentType
+    self.denyAllUnsavedServiceDecisions = unsavedServiceDecisions
     return denyAllResponse!
   }
 

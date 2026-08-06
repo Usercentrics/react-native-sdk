@@ -202,7 +202,8 @@ class RNUsercentricsModule: RCTEventEmitter {
             fromLayer: .initialize(from: Int(fromLayer)),
             consentType: .initialize(from: Int(consentType)),
             unsavedPurposeLIDecisions: extractLIDecisionsMap(unsavedPurposeLIDecisions),
-            unsavedVendorLIDecisions: extractLIDecisionsMap(unsavedVendorLIDecisions)
+            unsavedVendorLIDecisions: extractLIDecisionsMap(unsavedVendorLIDecisions),
+            unsavedServiceDecisions: nil
         )
         resolve(services.toListOfDictionary())
     }
@@ -220,7 +221,7 @@ class RNUsercentricsModule: RCTEventEmitter {
     @objc func denyAll(_ consentType: Double,
                        resolve: @escaping RCTPromiseResolveBlock,
                        reject: @escaping RCTPromiseRejectBlock) -> Void {
-        let services = usercentricsManager.denyAll(consentType: .initialize(from: Int(consentType)))
+        let services = usercentricsManager.denyAll(consentType: .initialize(from: Int(consentType)), unsavedServiceDecisions: nil)
         resolve(services.toListOfDictionary())
     }
     
