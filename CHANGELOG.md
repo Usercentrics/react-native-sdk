@@ -1,4 +1,14 @@
 [Release Notes](https://docs.usercentrics.com/cmp_in_app_sdk/latest/about/history/)
+### 2.30.0 – Aug 19, 2026
+## Features
+* **[Unity — Mediation]** Added support for Unity's End-User Consent Mode API (`EndUserConsent.SetConsentState`), mapping UC consent decisions to Unity Vector's `AnalyticsIntent`/`AdsIntent` signals — unblocks Unity Ads Vector adoption. Also fixed the dead Unity Ads link in the Consent Mediation docs
+* **[Android]** Added APIs to capture and restore in-flight 2nd-layer consent state across Activity recreation (e.g. dark-mode toggles, single-activity navigation hosts), so unsaved user selections are no longer lost
+* **[Flutter]** Added Swift Package Manager (SPM) support for the iOS plugin, recommended for Xcode 15+, alongside continued CocoaPods compatibility
+
+## Fixes
+* **[Android — Mediation]** Fixed `CrashlyticsMediationSDK` throwing `NoClassDefFoundError` on Firebase BOM 34+ by resolving `FirebaseCrashlytics` via reflection instead of the removed KTX API
+* **[Unity/Android]** Fixed a crash during SDK initialization in Unity Development builds on Android (Production builds were unaffected)
+
 ### 2.29.1 – Aug 5, 2026
 ## Features
 * **[Unity]** Added `isExempt` to the Unity `ServiceConsent` model, propagating the statistical exception flag to the Unity bridge
