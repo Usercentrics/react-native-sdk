@@ -176,7 +176,8 @@ internal fun ReadableMap.generalStyleSettingsFromMap(context: Context): GeneralS
         font = getMap("font")?.bannerFontFromMap(context = context),
         logo = getMap("logo")?.bannerLogoFromMap(context = context),
         links = getString("links")?.legalLinksFromEnumString(),
-        disableSystemBackButton = getBooleanOrNull("disableSystemBackButton")
+        disableSystemBackButton = getBooleanOrNull("disableSystemBackButton"),
+        windowFullscreen = getBooleanOrNull("windowFullscreen")
     )
 }
 
