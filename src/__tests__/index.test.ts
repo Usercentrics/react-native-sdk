@@ -89,6 +89,21 @@ describe('Test Usercentrics Module', () => {
         expect(call).toBe(options)
     })
 
+    test('testConfigureBridgeWithControllerId', () => {
+        const controllerId = "a".repeat(64);
+        const options = new UsercentricsOptions({
+            settingsId: "abc",
+            ruleSetId: "qwer",
+            controllerId
+        });
+
+        Usercentrics.configure(options);
+        const calls = RNUsercentricsModule.configure.mock.calls;
+        const call = calls[calls.length - 1][0];
+        expect(call).toBe(options);
+        expect(call.controllerId).toBe(controllerId);
+    })
+
     test('testConfigureBridgeWithBannerCustomization', () => {
         const bannerCustomization = new BannerInitCustomization({
             paddingTop: 16,
