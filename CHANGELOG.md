@@ -1,4 +1,8 @@
 [Release Notes](https://docs.usercentrics.com/cmp_in_app_sdk/latest/about/history/)
+### 2.27.1 – Aug 25, 2026
+## Chores
+* **[Core]** Bumped native Usercentrics SDK to 2.27.1.
+
 ### 2.30.0 – Aug 19, 2026
 ## Features
 * **[Unity — Mediation]** Added support for Unity's End-User Consent Mode API (`EndUserConsent.SetConsentState`), mapping UC consent decisions to Unity Vector's `AnalyticsIntent`/`AdsIntent` signals — unblocks Unity Ads Vector adoption. Also fixed the dead Unity Ads link in the Consent Mediation docs
