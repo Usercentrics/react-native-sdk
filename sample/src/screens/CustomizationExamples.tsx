@@ -95,6 +95,17 @@ export const customizationExampleTwo: BannerSettings = {
 }
 
 
+// MSDK-4636: exercises the windowFullscreen backward-compat workaround (Android only) —
+// see https://usercentrics.atlassian.net/browse/MSDK-4636
+export const windowFullscreenExample: BannerSettings = {
+    firstLayerStyleSettings: {
+        layout: UsercentricsLayout.full,
+    },
+    generalStyleSettings: {
+        windowFullscreen: true,
+    }
+}
+
 function createBannerLogo(): BannerLogo {
     // Logo name is used for iOS and the Image.resolveAssetSource is used for Android.
     const customLogo = new BannerLogo("logo.png", Image.resolveAssetSource(require('../../assets/images/logo.png')))
