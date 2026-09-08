@@ -29,6 +29,13 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)clearUserSession:(RCTPromiseResolveBlock)resolve
                   reject:(RCTPromiseRejectBlock)reject;
 
+// Consent or Pay
+- (void)notifyLoginSuccess:(RCTPromiseResolveBlock)resolve
+                     reject:(RCTPromiseRejectBlock)reject;
+
+- (void)notifySubscribeSuccess:(RCTPromiseResolveBlock)resolve
+                         reject:(RCTPromiseRejectBlock)reject;
+
 // Data Retrieval
 - (void)getConsents:(RCTPromiseResolveBlock)resolve
              reject:(RCTPromiseRejectBlock)reject;

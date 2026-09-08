@@ -34,6 +34,12 @@ abstract class RNUsercentricsModuleSpec internal constructor(context: ReactAppli
     abstract fun clearUserSession(promise: Promise)
 
     @ReactMethod
+    abstract fun notifyLoginSuccess(promise: Promise)
+
+    @ReactMethod
+    abstract fun notifySubscribeSuccess(promise: Promise)
+
+    @ReactMethod
     abstract fun getConsents(promise: Promise)
 
     @ReactMethod

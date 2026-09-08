@@ -1,7 +1,6 @@
 package com.usercentrics.reactnative
 
 import com.facebook.react.bridge.*
-import com.facebook.react.modules.core.DeviceEventManagerModule
 import com.usercentrics.sdk.UsercentricsDisposableEvent
 import com.usercentrics.sdk.UsercentricsEvent
 import com.usercentrics.reactnative.api.UsercentricsProxy
@@ -44,7 +43,13 @@ internal class RNUsercentricsModule(
                 val bannerSettings = options?.bannerSettingsFromMap(context)
 
                 val activity = reactContextProvider.activity()!!
-                usercentricsProxy.showFirstLayer(activity, bannerSettings, promise)
+                usercentricsProxy.showFirstLayer(
+                    activity,
+                    bannerSettings,
+                    onLoginClicked = { url -> emitEvent(ON_LOGIN_CLICKED_EVENT, url) },
+                    onSubscribeClicked = { url -> emitEvent(ON_SUBSCRIBE_CLICKED_EVENT, url) },
+                    promise,
+                )
             } catch (e: Exception) {
                 promise.reject(e)
             }
@@ -255,6 +260,24 @@ internal class RNUsercentricsModule(
     }
 
     @ReactMethod
+    override fun notifyLoginSuccess(promise: Promise) {
+        usercentricsProxy.instance.notifyLoginSuccess({
+            promise.resolve(null)
+        }, {
+            promise.reject(it)
+        })
+    }
+
+    @ReactMethod
+    override fun notifySubscribeSuccess(promise: Promise) {
+        usercentricsProxy.instance.notifySubscribeSuccess({
+            promise.resolve(null)
+        }, {
+            promise.reject(it)
+        })
+    }
+
+    @ReactMethod
     override fun addListener(eventName: String) {
         if (eventName != ON_GPP_SECTION_CHANGE_EVENT) return
 
@@ -282,10 +305,8 @@ internal class RNUsercentricsModule(
         super.invalidate()
     }
 
-    private fun emitEvent(eventName: String, payload: WritableMap) {
-        reactApplicationContext
-            .getJSModule(DeviceEventManagerModule.RCTDeviceEventEmitter::class.java)
-            .emit(eventName, payload)
+    private fun emitEvent(eventName: String, payload: Any?) {
+        reactApplicationContext.emitDeviceEvent(eventName, payload)
     }
 
     private fun readableMapValueToAny(map: ReadableMap): Any? {
@@ -322,5 +343,7 @@ internal class RNUsercentricsModule(
     companion object {
         const val NAME = "RNUsercentricsModule"
         const val ON_GPP_SECTION_CHANGE_EVENT = "onGppSectionChange"
+        const val ON_LOGIN_CLICKED_EVENT = "onLoginClicked"
+        const val ON_SUBSCRIBE_CLICKED_EVENT = "onSubscribeClicked"
     }
 }

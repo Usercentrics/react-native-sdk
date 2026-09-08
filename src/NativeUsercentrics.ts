@@ -30,6 +30,10 @@ export interface Spec extends TurboModule {
   getControllerId(): Promise<string>;
   clearUserSession(): Promise<UsercentricsReadyStatus>;
 
+  // Consent or Pay
+  notifyLoginSuccess(): Promise<void>;
+  notifySubscribeSuccess(): Promise<void>;
+
   // Data Retrieval
   getConsents(): Promise<Array<UsercentricsServiceConsent>>;
   getCMPData(): Promise<UsercentricsCMPData>;

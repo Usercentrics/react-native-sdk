@@ -9,7 +9,12 @@ public protocol UsercentricsManager {
     func restoreUserSession(controllerId: String, onSuccess: @escaping ((UsercentricsReadyStatus) -> Void), onFailure: @escaping ((Error) -> Void))
 
     func showFirstLayer(bannerSettings: BannerSettings?,
+                        onLoginClicked: @escaping (String?) -> Void,
+                        onSubscribeClicked: @escaping (String?) -> Void,
                         dismissViewHandler: @escaping (UsercentricsConsentUserResponse) -> Void)
+
+    func notifyLoginSuccess(onSuccess: @escaping (() -> Void), onError: @escaping ((Error) -> Void))
+    func notifySubscribeSuccess(onSuccess: @escaping (() -> Void), onError: @escaping ((Error) -> Void))
 
     func showSecondLayer(bannerSettings: BannerSettings?,
                          dismissViewHandler: @escaping (UsercentricsConsentUserResponse) -> Void)
@@ -60,8 +65,20 @@ final class UsercentricsManagerImplementation: UsercentricsManager {
     }
 
     func showFirstLayer(bannerSettings: BannerSettings?,
+                        onLoginClicked: @escaping (String?) -> Void,
+                        onSubscribeClicked: @escaping (String?) -> Void,
                         dismissViewHandler: @escaping (UsercentricsConsentUserResponse) -> Void) {
-        UsercentricsBanner(bannerSettings: bannerSettings).showFirstLayer(completionHandler: dismissViewHandler)
+        UsercentricsBanner(bannerSettings: bannerSettings).showFirstLayer(onLoginClicked: onLoginClicked,
+                                                                          onSubscribeClicked: onSubscribeClicked,
+                                                                          completionHandler: dismissViewHandler)
+    }
+
+    func notifyLoginSuccess(onSuccess: @escaping (() -> Void), onError: @escaping ((Error) -> Void)) {
+        UsercentricsCore.shared.notifyLoginSuccess(onSuccess: onSuccess, onError: onError)
+    }
+
+    func notifySubscribeSuccess(onSuccess: @escaping (() -> Void), onError: @escaping ((Error) -> Void)) {
+        UsercentricsCore.shared.notifySubscribeSuccess(onSuccess: onSuccess, onError: onError)
     }
 
     func showSecondLayer(bannerSettings: BannerSettings?,

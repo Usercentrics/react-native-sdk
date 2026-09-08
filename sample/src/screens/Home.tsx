@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, StyleSheet, View } from 'react-native';
+import { Alert, Button, StyleSheet, View } from 'react-native';
 import {
     BannerSettings,
     Usercentrics,
@@ -41,6 +41,37 @@ export const HomeScreen = ({ navigation }: { navigation: any }) => {
             })
             .catch(e => console.error('[Usercentrics] status failed:', e));
     }, [showFirstLayer]);
+
+    React.useEffect(() => {
+        const loginSubscription = Usercentrics.onLoginClicked(async (url) => {
+            console.log('[Usercentrics] onLoginClicked:', url);
+            Alert.alert('onLoginClicked', `url: ${url}`);
+            try {
+                await Usercentrics.notifyLoginSuccess();
+                console.log('[Usercentrics] notifyLoginSuccess done');
+                Alert.alert('notifyLoginSuccess', 'TCF storage cleared');
+            } catch (e) {
+                console.error('[Usercentrics] notifyLoginSuccess failed:', e);
+                Alert.alert('notifyLoginSuccess failed', String(e));
+            }
+        });
+        const subscribeSubscription = Usercentrics.onSubscribeClicked(async (url) => {
+            console.log('[Usercentrics] onSubscribeClicked:', url);
+            Alert.alert('onSubscribeClicked', `url: ${url}`);
+            try {
+                await Usercentrics.notifySubscribeSuccess();
+                console.log('[Usercentrics] notifySubscribeSuccess done');
+                Alert.alert('notifySubscribeSuccess', 'TCF storage cleared');
+            } catch (e) {
+                console.error('[Usercentrics] notifySubscribeSuccess failed:', e);
+                Alert.alert('notifySubscribeSuccess failed', String(e));
+            }
+        });
+        return () => {
+            loginSubscription.remove();
+            subscribeSubscription.remove();
+        };
+    }, []);
 
     async function showSecondLayer() {
         try {
