@@ -74,6 +74,11 @@ export class GeneralStyleSettings {
     bordersColorHex?: String;
     toggleStyleSettings?: ToggleStyleSettings;
     disableSystemBackButton?: Boolean;
+    /**
+     * Android-only. Backward-compat workaround for publishers who relied on the legacy
+     * fullscreen dialog behavior prior to the edge-to-edge fix. Has no effect on iOS.
+     */
+    windowFullscreen?: Boolean;
 
     constructor(font?: BannerFont,
                 logo?: BannerLogo,
@@ -85,7 +90,8 @@ export class GeneralStyleSettings {
                 tabColorHex?: String,
                 bordersColorHex?: String,
                 toggleStyleSettings?: ToggleStyleSettings,
-                disableSystemBackButton?: Boolean
+                disableSystemBackButton?: Boolean,
+                windowFullscreen?: Boolean
     ) {
         this.font = font;
         this.logo = logo;
@@ -98,6 +104,7 @@ export class GeneralStyleSettings {
         this.bordersColorHex = bordersColorHex;
         this.toggleStyleSettings = toggleStyleSettings;
         this.disableSystemBackButton = disableSystemBackButton;
+        this.windowFullscreen = windowFullscreen;
     }
 }
 
