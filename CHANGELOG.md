@@ -1,4 +1,22 @@
 [Release Notes](https://docs.usercentrics.com/cmp_in_app_sdk/latest/about/history/)
+### 2.31.0 – Sep 10, 2026
+## Features
+* **[Android]** Added edge-to-edge display support for the consent banner, correctly handling system bar insets
+* **[React Native]** Added edge-to-edge display support for the consent banner on Android, correctly handling system bar insets
+* **[React Native]** Added `controllerId` to the React Native bridge options
+* **[Flutter]** Added edge-to-edge display support for the consent banner on Android, correctly handling system bar insets
+* **[Flutter]** Added `controllerId` to the Flutter bridge options
+* **[Core]** Added `controllerId` injection support to `UsercentricsOptions`
+* **[Unreal]** Added native Unreal Engine bridge scaffolding for Android and iOS, wired into the UsercentricsUI compile target
+
+## Fixes
+* **[Android]** Fixed the `version` parameter in `UsercentricsOptions` being ignored when a cached settings response already exists
+
+## Chores
+* **[Core]** Bumped native Usercentrics SDK to 2.31.0
+* **[Security]** Bumped `fastlane` to patch a high-severity `jwt` CVE
+* **[Security]** Bumped `fast-xml-builder` to patch a high-severity CVE
+
 ### 2.30.0 – Aug 19, 2026
 ## Features
 * **[Unity — Mediation]** Added support for Unity's End-User Consent Mode API (`EndUserConsent.SetConsentState`), mapping UC consent decisions to Unity Vector's `AnalyticsIntent`/`AdsIntent` signals — unblocks Unity Ads Vector adoption. Also fixed the dead Unity Ads link in the Consent Mediation docs

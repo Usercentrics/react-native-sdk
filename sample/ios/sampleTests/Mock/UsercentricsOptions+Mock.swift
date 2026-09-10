@@ -10,8 +10,9 @@ extension UsercentricsOptions {
                    timeoutMillis: Int64 = 1000,
                    consentMediation: Bool = true,
                    domains: UsercentricsDomains? = nil,
-                   initTimeoutMillis: Int64 = 1000) -> UsercentricsOptions {
-    return UsercentricsOptions(settingsId: settingsId, defaultLanguage: defaultLanguage, version: version, timeoutMillis: timeoutMillis, loggerLevel: loggerLevel, ruleSetId: ruleSetId, consentMediation: consentMediation, domains: domains, initTimeoutMillis: initTimeoutMillis)
+                   initTimeoutMillis: Int64 = 1000,
+                   controllerId: String? = nil) -> UsercentricsOptions {
+    return UsercentricsOptions(settingsId: settingsId, defaultLanguage: defaultLanguage, version: version, timeoutMillis: timeoutMillis, loggerLevel: loggerLevel, ruleSetId: ruleSetId, consentMediation: consentMediation, domains: domains, initTimeoutMillis: initTimeoutMillis, controllerId: controllerId)
   }
 
   static func asDict(mockObject: UsercentricsOptions? = nil) -> NSDictionary {
