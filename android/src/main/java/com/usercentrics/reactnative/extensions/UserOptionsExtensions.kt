@@ -56,6 +56,10 @@ internal fun ReadableMap.usercentricsOptionsFromMap(): UsercentricsOptions {
         options.initTimeoutMillis = it.toLong()
     }
 
+    getString("controllerId")?.let {
+        options.controllerId = it
+    }
+
     getMap("bannerCustomization")?.let {
         options.bannerCustomization = it.bannerInitCustomizationFromMap()
     }

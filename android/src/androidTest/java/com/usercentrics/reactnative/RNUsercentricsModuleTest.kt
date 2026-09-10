@@ -42,6 +42,7 @@ class RNUsercentricsModuleTest {
             putString("version", "1.2.3")
             putInt("networkMode", 1)
             putInt("initTimeoutMillis", 10000)
+            putString("controllerId", "a".repeat(64))
         }
 
         private val bannerSettingsMap = mapOf(
@@ -128,6 +129,7 @@ class RNUsercentricsModuleTest {
         assertEquals("1.2.3", usercentricsProxy.initializeOptionsArgument?.version)
         assertEquals(NetworkMode.EU, usercentricsProxy.initializeOptionsArgument?.networkMode)
         assertEquals(10000L, usercentricsProxy.initializeOptionsArgument?.initTimeoutMillis)
+        assertEquals("a".repeat(64), usercentricsProxy.initializeOptionsArgument?.controllerId)
     }
 
     @Test
