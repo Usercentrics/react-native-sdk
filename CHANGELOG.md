@@ -1,8 +1,11 @@
 [Release Notes](https://docs.usercentrics.com/cmp_in_app_sdk/latest/about/history/)
 ### 2.31.0 – Sep 10, 2026
 ## Features
+* **[Android]** Added edge-to-edge display support for the consent banner, correctly handling system bar insets
 * **[React Native]** Added edge-to-edge display support for the consent banner on Android, correctly handling system bar insets
 * **[React Native]** Added `controllerId` to the React Native bridge options
+* **[Flutter]** Added edge-to-edge display support for the consent banner on Android, correctly handling system bar insets
+* **[Flutter]** Added `controllerId` to the Flutter bridge options
 * **[Core]** Added `controllerId` injection support to `UsercentricsOptions`
 * **[Unreal]** Added native Unreal Engine bridge scaffolding for Android and iOS, wired into the UsercentricsUI compile target
 
