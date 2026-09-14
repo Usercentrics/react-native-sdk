@@ -65,6 +65,7 @@ jest.mock("react-native", () => {
         reset: jest.fn(),
         getDpsMetadata: jest.fn(),
         clearUserSession: jest.fn(),
+        notifySubscriptionLapsed: jest.fn(),
         addListener: jest.fn(),
         removeListeners: jest.fn()
     };
@@ -614,6 +615,27 @@ describe('Test Usercentrics Module', () => {
 
         try {
             await Usercentrics.clearUserSession();
+        } catch (e) {
+            expect(e).toBe("Failed");
+        }
+    })
+
+    test('testNotifySubscriptionLapsed', async () => {
+        RNUsercentricsModule.notifySubscriptionLapsed.mockImplementationOnce(
+          (): Promise<any> => Promise.resolve()
+        )
+
+        await Usercentrics.notifySubscriptionLapsed();
+        expect(RNUsercentricsModule.notifySubscriptionLapsed).toHaveBeenCalled();
+    })
+
+    test('testNotifySubscriptionLapsedWithError', async () => {
+        RNUsercentricsModule.notifySubscriptionLapsed.mockImplementationOnce(
+          (): Promise<any> => Promise.reject("Failed")
+        )
+
+        try {
+            await Usercentrics.notifySubscriptionLapsed();
         } catch (e) {
             expect(e).toBe("Failed");
         }

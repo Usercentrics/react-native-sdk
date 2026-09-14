@@ -40,6 +40,9 @@ abstract class RNUsercentricsModuleSpec internal constructor(context: ReactAppli
     abstract fun notifySubscribeSuccess(promise: Promise)
 
     @ReactMethod
+    abstract fun notifySubscriptionLapsed(promise: Promise)
+
+    @ReactMethod
     abstract fun getConsents(promise: Promise)
 
     @ReactMethod

@@ -33,6 +33,7 @@ export interface Spec extends TurboModule {
   // Consent or Pay
   notifyLoginSuccess(): Promise<void>;
   notifySubscribeSuccess(): Promise<void>;
+  notifySubscriptionLapsed(): Promise<void>;
 
   // Data Retrieval
   getConsents(): Promise<Array<UsercentricsServiceConsent>>;

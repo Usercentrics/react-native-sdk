@@ -36,6 +36,9 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)notifySubscribeSuccess:(RCTPromiseResolveBlock)resolve
                          reject:(RCTPromiseRejectBlock)reject;
 
+- (void)notifySubscriptionLapsed:(RCTPromiseResolveBlock)resolve
+                           reject:(RCTPromiseRejectBlock)reject;
+
 // Data Retrieval
 - (void)getConsents:(RCTPromiseResolveBlock)resolve
              reject:(RCTPromiseRejectBlock)reject;

@@ -290,6 +290,14 @@ class RNUsercentricsModule: RCTEventEmitter {
         }
     }
 
+    @objc func notifySubscriptionLapsed(_ resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) -> Void {
+        usercentricsManager.notifySubscriptionLapsed {
+            resolve(nil)
+        } onError: { error in
+            reject("usercentrics_reactNative_notifySubscriptionLapsed_error", error.localizedDescription, error)
+        }
+    }
+
     private static let onGppSectionChangeEvent = "onGppSectionChange"
     private static let onLoginClickedEvent = "onLoginClicked"
     private static let onSubscribeClickedEvent = "onSubscribeClicked"
