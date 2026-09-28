@@ -61,7 +61,9 @@
     "typescript": "~5.3.0"
   },
   "overrides": {
-    "shell-quote": ">=1.9.0"
+    "shell-quote": ">=1.9.0",
+    "ws@6.2.3": "6.2.4",
+    "ws@7.5.10": "7.5.11"
   },
   "engines": {
     "node": ">=20.19.4"
