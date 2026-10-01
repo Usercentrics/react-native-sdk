@@ -88,6 +88,22 @@ target 'sample' do
       end
     end
 
+    # WORKAROUND (MSDK-4832, continued): excluding x86_64 on the Pods project's own targets
+    # (above) isn't enough on its own — the "sample" app/test target lives in sample.xcodeproj,
+    # not Pods.xcodeproj, and Xcode still builds the full arm64+x86_64 ARCHS_STANDARD set for
+    # "generic/platform=iOS Simulator" destinations regardless of ONLY_ACTIVE_ARCH. Without this,
+    # xctest still tries to launch an x86_64 slice that links against Pods frameworks with no
+    # x86_64 slice, crashing with "Test crashed with signal abrt before starting test execution."
+    # Mirror the exclusion onto the main user project until a corrected native SDK version ships.
+    installer.aggregate_targets.each do |aggregate_target|
+      aggregate_target.user_project.native_targets.each do |target|
+        target.build_configurations.each do |config|
+          config.build_settings['EXCLUDED_ARCHS[sdk=iphonesimulator*]'] = 'x86_64'
+        end
+      end
+      aggregate_target.user_project.save
+    end
+
     # RN 0.81 + Fabric: ReactCodegen can end up with several PBXFileReferences whose path is only
     # "Props.cpp" / "EventEmitters.cpp" / … (no directory). Xcode treats them as one file, so
     # rnscreens / RNCWebView / … symbols never link. Remove those ambiguous compile entries and add
