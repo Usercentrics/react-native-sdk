@@ -197,4 +197,12 @@ export const Usercentrics = {
         await RNUsercentricsModule.isReady();
         return RNUsercentricsModule.notifySubscribeSuccess();
     },
+
+    // Notifies the SDK that a previously active Consent-or-Pay subscription has lapsed,
+    // resetting the subscriber flag so the host app can re-surface the banner. Does not
+    // alter any existing consent data, which remains accurate.
+    notifySubscriptionLapsed: async (): Promise<void> => {
+        await RNUsercentricsModule.isReady();
+        return RNUsercentricsModule.notifySubscriptionLapsed();
+    },
 }

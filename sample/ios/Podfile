@@ -21,6 +21,22 @@ platform :ios, '15.1'
 
 use_frameworks! :linkage => :static
 
+# WORKAROUND: Usercentrics.xcframework links `-framework Sentry` eagerly at the binary level
+# (a real dynamic dyld load command), but `use_frameworks! :linkage => :static` above makes
+# CocoaPods build every pod — including Sentry — as a static archive with no Sentry.framework
+# bundle ever embedded in the app. That crashes every launch with "Library not loaded:
+# @rpath/Sentry.framework/Sentry". Force only the Sentry pod to build as a dynamic framework
+# so the real Sentry.framework exists and gets embedded, matching what the binary expects.
+pre_install do |installer|
+  installer.pod_targets.each do |pod_target|
+    if pod_target.name.start_with?('Sentry')
+      def pod_target.build_type
+        Pod::BuildType.dynamic_framework
+      end
+    end
+  end
+end
+
 target 'sample' do
   config = use_native_modules!
 
@@ -77,7 +93,31 @@ target 'sample' do
         # C++ settings
         config.build_settings['CLANG_CXX_LANGUAGE_STANDARD'] = 'c++20'
         config.build_settings['CLANG_CXX_LIBRARY'] = 'libc++'
+
+        # WORKAROUND (MSDK-4832): native UsercentricsUI.xcframework 2.32.0 (and 2.31.1+) ships
+        # arm64-only iOS/tvOS Simulator slices — the old x86_64 fat-binary slice was reduced to a
+        # dSYM-only stub when Sentry was linked in (EXCLUDED_ARCHS added alongside it, unnecessarily:
+        # the real Sentry-Dynamic xcframework does ship x86_64). Causes a dyld "signal abrt before
+        # starting test execution" crash on any x86_64 Simulator destination. Exclude x86_64 here
+        # until a corrected native SDK version is published (tracked in mobile-sdk MSDK-4832).
+        config.build_settings['EXCLUDED_ARCHS[sdk=iphonesimulator*]'] = 'x86_64'
       end
+    end
+
+    # WORKAROUND (MSDK-4832, continued): excluding x86_64 on the Pods project's own targets
+    # (above) isn't enough on its own — the "sample" app/test target lives in sample.xcodeproj,
+    # not Pods.xcodeproj, and Xcode still builds the full arm64+x86_64 ARCHS_STANDARD set for
+    # "generic/platform=iOS Simulator" destinations regardless of ONLY_ACTIVE_ARCH. Without this,
+    # xctest still tries to launch an x86_64 slice that links against Pods frameworks with no
+    # x86_64 slice, crashing with "Test crashed with signal abrt before starting test execution."
+    # Mirror the exclusion onto the main user project until a corrected native SDK version ships.
+    installer.aggregate_targets.each do |aggregate_target|
+      aggregate_target.user_project.native_targets.each do |target|
+        target.build_configurations.each do |config|
+          config.build_settings['EXCLUDED_ARCHS[sdk=iphonesimulator*]'] = 'x86_64'
+        end
+      end
+      aggregate_target.user_project.save
     end
 
     # RN 0.81 + Fabric: ReactCodegen can end up with several PBXFileReferences whose path is only

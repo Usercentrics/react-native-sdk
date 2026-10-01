@@ -1,4 +1,20 @@
 [Release Notes](https://docs.usercentrics.com/cmp_in_app_sdk/latest/about/history/)
+### 2.32.0 – Sep 30, 2026
+## Features
+* **[PUR — Consent or Pay]** Added the Consent-or-Pay 1st-layer banner ("Reject & Subscribe" card, subscriber-login link, `onLoginClicked`/`onSubscribeClicked` callbacks), a setting to control TCF signal retention on rejection plus a subscription-lapse reset API, and a fix so Deny All on the 2nd layer without an active subscription redirects back to the 1st layer instead of silently force-consenting
+* **[CTV]** Added an "Accept All" button to the second layer and synced TV SDK behavior with the Admin Interface configuration
+
+## Fixes
+* **[TCF]** Fixed "Show CMP only to EU and EEA users" having no effect when TCF is enabled, which could resurface the banner to non-EU users
+* **[Android]** Fixed CMP banner content overlapping camera cutouts and the side navigation bar on edge-to-edge landscape layouts
+* **[iOS — Mediation]** Fixed a crash in Consent Mediation with Adjust v5 caused by a selector regression in the Adjust adapter
+* **[iOS]** Fixed long TCF first layer non-IAB section titles being truncated instead of wrapping
+* **[Unity]** Fixed obsolete `Object.FindObjectOfType(Type)` usage (Unity SDK repo)
+
+## Chores
+* **[Release Engineering]** Unified the native and Unity release into a single CI pipeline run with parallel steps
+* **[App Scanner]** Upgraded the Cloud Armor WAF module (CRS 3.3 → 4.22)
+
 ### 2.31.0 – Sep 10, 2026
 ## Features
 * **[Android]** Added edge-to-edge display support for the consent banner, correctly handling system bar insets

@@ -15,6 +15,7 @@ public protocol UsercentricsManager {
 
     func notifyLoginSuccess(onSuccess: @escaping (() -> Void), onError: @escaping ((Error) -> Void))
     func notifySubscribeSuccess(onSuccess: @escaping (() -> Void), onError: @escaping ((Error) -> Void))
+    func notifySubscriptionLapsed(onSuccess: @escaping (() -> Void), onError: @escaping ((Error) -> Void))
 
     func showSecondLayer(bannerSettings: BannerSettings?,
                          dismissViewHandler: @escaping (UsercentricsConsentUserResponse) -> Void)
@@ -79,6 +80,10 @@ final class UsercentricsManagerImplementation: UsercentricsManager {
 
     func notifySubscribeSuccess(onSuccess: @escaping (() -> Void), onError: @escaping ((Error) -> Void)) {
         UsercentricsCore.shared.notifySubscribeSuccess(onSuccess: onSuccess, onError: onError)
+    }
+
+    func notifySubscriptionLapsed(onSuccess: @escaping (() -> Void), onError: @escaping ((Error) -> Void)) {
+        UsercentricsCore.shared.notifySubscriptionLapsed(onSuccess: onSuccess, onError: onError)
     }
 
     func showSecondLayer(bannerSettings: BannerSettings?,
