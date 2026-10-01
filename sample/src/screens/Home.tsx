@@ -73,6 +73,17 @@ export const HomeScreen = ({ navigation }: { navigation: any }) => {
         };
     }, []);
 
+    async function notifySubscriptionLapsed() {
+        try {
+            await Usercentrics.notifySubscriptionLapsed();
+            console.log('[Usercentrics] notifySubscriptionLapsed done');
+            Alert.alert('notifySubscriptionLapsed', 'Subscription reset');
+        } catch (e) {
+            console.error('[Usercentrics] notifySubscriptionLapsed failed:', e);
+            Alert.alert('notifySubscriptionLapsed failed', String(e));
+        }
+    }
+
     async function showSecondLayer() {
         try {
             const response = await Usercentrics.showSecondLayer({
@@ -129,6 +140,7 @@ export const HomeScreen = ({ navigation }: { navigation: any }) => {
             <Button onPress={async () => { await Usercentrics.status(); navigation.navigate('CustomUI'); }} title="Custom UI" />
             <Button onPress={async () => { await Usercentrics.status(); navigation.navigate('WebviewIntegration'); }} title="Webview Integration" />
             <Button onPress={() => navigation.navigate('GPPTesting')} title="GPP Testing" />
+            <Button onPress={notifySubscriptionLapsed} title="Notify Subscription Lapsed" />
         </View>
     );
 };

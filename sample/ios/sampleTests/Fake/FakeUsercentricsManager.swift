@@ -272,4 +272,13 @@ final class FakeUsercentricsManager: UsercentricsManager {
     }
     onSuccess()
   }
+
+  var notifySubscriptionLapsedError: Error?
+  func notifySubscriptionLapsed(onSuccess: @escaping (() -> Void), onError: @escaping ((Error) -> Void)) {
+    if let notifySubscriptionLapsedError = notifySubscriptionLapsedError {
+      onError(notifySubscriptionLapsedError)
+      return
+    }
+    onSuccess()
+  }
 }
