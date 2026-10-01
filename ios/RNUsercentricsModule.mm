@@ -114,4 +114,7 @@ RCT_EXTERN_METHOD(notifyLoginSuccess:(RCTPromiseResolveBlock)resolve
 
 RCT_EXTERN_METHOD(notifySubscribeSuccess:(RCTPromiseResolveBlock)resolve
                   reject:(RCTPromiseRejectBlock)reject)
+
+RCT_EXTERN_METHOD(notifySubscriptionLapsed:(RCTPromiseResolveBlock)resolve
+                  reject:(RCTPromiseRejectBlock)reject)
 @end

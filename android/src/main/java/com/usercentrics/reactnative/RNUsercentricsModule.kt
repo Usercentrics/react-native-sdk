@@ -278,6 +278,15 @@ internal class RNUsercentricsModule(
     }
 
     @ReactMethod
+    override fun notifySubscriptionLapsed(promise: Promise) {
+        usercentricsProxy.instance.notifySubscriptionLapsed({
+            promise.resolve(null)
+        }, {
+            promise.reject(it)
+        })
+    }
+
+    @ReactMethod
     override fun addListener(eventName: String) {
         if (eventName != ON_GPP_SECTION_CHANGE_EVENT) return
 
