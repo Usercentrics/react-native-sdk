@@ -77,6 +77,14 @@ target 'sample' do
         # C++ settings
         config.build_settings['CLANG_CXX_LANGUAGE_STANDARD'] = 'c++20'
         config.build_settings['CLANG_CXX_LIBRARY'] = 'libc++'
+
+        # WORKAROUND (MSDK-4832): native UsercentricsUI.xcframework 2.32.0 (and 2.31.1+) ships
+        # arm64-only iOS/tvOS Simulator slices — the old x86_64 fat-binary slice was reduced to a
+        # dSYM-only stub when Sentry was linked in (EXCLUDED_ARCHS added alongside it, unnecessarily:
+        # the real Sentry-Dynamic xcframework does ship x86_64). Causes a dyld "signal abrt before
+        # starting test execution" crash on any x86_64 Simulator destination. Exclude x86_64 here
+        # until a corrected native SDK version is published (tracked in mobile-sdk MSDK-4832).
+        config.build_settings['EXCLUDED_ARCHS[sdk=iphonesimulator*]'] = 'x86_64'
       end
     end
 
