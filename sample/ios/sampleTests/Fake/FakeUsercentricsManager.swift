@@ -216,10 +216,20 @@ final class FakeUsercentricsManager: UsercentricsManager {
   }
 
   var showFirstLayerBannerSettings: BannerSettings?
+  var loginClickedUrl: String?
+  var subscribeClickedUrl: String?
 
   func showFirstLayer(bannerSettings: BannerSettings?,
+                      onLoginClicked: @escaping (String?) -> Void,
+                      onSubscribeClicked: @escaping (String?) -> Void,
                       dismissViewHandler: @escaping (UsercentricsConsentUserResponse) -> Void) {
     self.showFirstLayerBannerSettings = bannerSettings
+    if let loginClickedUrl = loginClickedUrl {
+      onLoginClicked(loginClickedUrl)
+    }
+    if let subscribeClickedUrl = subscribeClickedUrl {
+      onSubscribeClicked(subscribeClickedUrl)
+    }
     dismissViewHandler(UsercentricsConsentUserResponse(consents: [], controllerId: "", userInteraction: .acceptAll))
   }
 
@@ -243,5 +253,23 @@ final class FakeUsercentricsManager: UsercentricsManager {
     if let clearUserSessionError = clearUserSessionError {
       onError(clearUserSessionError)
     }
+  }
+
+  var notifyLoginSuccessError: Error?
+  func notifyLoginSuccess(onSuccess: @escaping (() -> Void), onError: @escaping ((Error) -> Void)) {
+    if let notifyLoginSuccessError = notifyLoginSuccessError {
+      onError(notifyLoginSuccessError)
+      return
+    }
+    onSuccess()
+  }
+
+  var notifySubscribeSuccessError: Error?
+  func notifySubscribeSuccess(onSuccess: @escaping (() -> Void), onError: @escaping ((Error) -> Void)) {
+    if let notifySubscribeSuccessError = notifySubscribeSuccessError {
+      onError(notifySubscribeSuccessError)
+      return
+    }
+    onSuccess()
   }
 }

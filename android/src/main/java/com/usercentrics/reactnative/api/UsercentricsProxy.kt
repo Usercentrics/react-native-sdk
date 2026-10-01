@@ -14,7 +14,13 @@ interface UsercentricsProxy {
     fun initialize(context: Context, options: UsercentricsOptions)
     fun isReady(onSuccess: (UsercentricsReadyStatus) -> Unit, onFailure: (UsercentricsError) -> Unit)
 
-    fun showFirstLayer(activity: Activity, bannerSettings: BannerSettings?, promise: Promise)
+    fun showFirstLayer(
+        activity: Activity,
+        bannerSettings: BannerSettings?,
+        onLoginClicked: (String?) -> Unit,
+        onSubscribeClicked: (String?) -> Unit,
+        promise: Promise,
+    )
     fun showSecondLayer(activity: Activity, bannerSettings: BannerSettings?, promise: Promise)
 }
 
@@ -39,11 +45,15 @@ internal class UsercentricsProxyImpl : UsercentricsProxy {
     override fun showFirstLayer(
         activity: Activity,
         bannerSettings: BannerSettings?,
+        onLoginClicked: (String?) -> Unit,
+        onSubscribeClicked: (String?) -> Unit,
         promise: Promise,
     ) {
-        UsercentricsBanner(activity, bannerSettings).showFirstLayer {
-            promise.resolve(it?.toWritableMap())
-        }
+        UsercentricsBanner(activity, bannerSettings).showFirstLayer(
+            callback = { promise.resolve(it?.toWritableMap()) },
+            onLoginClicked = onLoginClicked,
+            onSubscribeClicked = onSubscribeClicked,
+        )
     }
 
     override fun showSecondLayer(

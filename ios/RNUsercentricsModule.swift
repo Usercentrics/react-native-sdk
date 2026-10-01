@@ -32,7 +32,7 @@ class RNUsercentricsModule: RCTEventEmitter {
     }
 
     override func supportedEvents() -> [String]! {
-        return [Self.onGppSectionChangeEvent]
+        return [Self.onGppSectionChangeEvent, Self.onLoginClickedEvent, Self.onSubscribeClickedEvent]
     }
 
     override func startObserving() {
@@ -79,7 +79,11 @@ class RNUsercentricsModule: RCTEventEmitter {
                 return
             }
 
-            self.usercentricsManager.showFirstLayer(bannerSettings: BannerSettings(from: dict)) { response in
+            self.usercentricsManager.showFirstLayer(bannerSettings: BannerSettings(from: dict), onLoginClicked: { [weak self] url in
+                self?.sendEvent(withName: Self.onLoginClickedEvent, body: url)
+            }, onSubscribeClicked: { [weak self] url in
+                self?.sendEvent(withName: Self.onSubscribeClickedEvent, body: url)
+            }) { response in
                 resolve(response.toDictionary())
             }
         }
@@ -270,7 +274,25 @@ class RNUsercentricsModule: RCTEventEmitter {
         }
     }
 
+    @objc func notifyLoginSuccess(_ resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) -> Void {
+        usercentricsManager.notifyLoginSuccess {
+            resolve(nil)
+        } onError: { error in
+            reject("usercentrics_reactNative_notifyLoginSuccess_error", error.localizedDescription, error)
+        }
+    }
+
+    @objc func notifySubscribeSuccess(_ resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) -> Void {
+        usercentricsManager.notifySubscribeSuccess {
+            resolve(nil)
+        } onError: { error in
+            reject("usercentrics_reactNative_notifySubscribeSuccess_error", error.localizedDescription, error)
+        }
+    }
+
     private static let onGppSectionChangeEvent = "onGppSectionChange"
+    private static let onLoginClickedEvent = "onLoginClicked"
+    private static let onSubscribeClickedEvent = "onSubscribeClicked"
 }
 
 // MARK: - RCTBridgeModule & TurboModule Conformance

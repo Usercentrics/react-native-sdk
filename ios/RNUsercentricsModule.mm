@@ -108,4 +108,10 @@ RCT_EXTERN_METHOD(track:(double)event)
 
 RCT_EXTERN_METHOD(clearUserSession:(RCTPromiseResolveBlock)resolve
                   reject:(RCTPromiseRejectBlock)reject)
+
+RCT_EXTERN_METHOD(notifyLoginSuccess:(RCTPromiseResolveBlock)resolve
+                  reject:(RCTPromiseRejectBlock)reject)
+
+RCT_EXTERN_METHOD(notifySubscribeSuccess:(RCTPromiseResolveBlock)resolve
+                  reject:(RCTPromiseRejectBlock)reject)
 @end

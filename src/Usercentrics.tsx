@@ -171,4 +171,30 @@ export const Usercentrics = {
     onGppSectionChange: (callback: (payload: GppSectionChangePayload) => void): EmitterSubscription => {
         return eventEmitter.addListener("onGppSectionChange", callback);
     },
+
+    // Fires when the user taps the Consent-or-Pay 1st-layer subscriber-login link. The banner is not
+    // dismissed automatically — call notifyLoginSuccess once the host app confirms login, then dismiss
+    // the banner yourself.
+    onLoginClicked: (callback: (url: string | null) => void): EmitterSubscription => {
+        return eventEmitter.addListener("onLoginClicked", callback);
+    },
+
+    // Fires when the user taps the Consent-or-Pay 1st-layer Reject & Subscribe button. The banner is not
+    // dismissed automatically — call notifySubscribeSuccess once the host app confirms the subscription,
+    // then dismiss the banner yourself.
+    onSubscribeClicked: (callback: (url: string | null) => void): EmitterSubscription => {
+        return eventEmitter.addListener("onSubscribeClicked", callback);
+    },
+
+    // Clears stored TCF consent data after a successful Consent-or-Pay login.
+    notifyLoginSuccess: async (): Promise<void> => {
+        await RNUsercentricsModule.isReady();
+        return RNUsercentricsModule.notifyLoginSuccess();
+    },
+
+    // Clears stored TCF consent data after a successful Consent-or-Pay subscription.
+    notifySubscribeSuccess: async (): Promise<void> => {
+        await RNUsercentricsModule.isReady();
+        return RNUsercentricsModule.notifySubscribeSuccess();
+    },
 }
