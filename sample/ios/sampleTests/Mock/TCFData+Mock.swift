@@ -10,7 +10,8 @@ extension TCFData {
                  stacks: [.mock()],
                  vendors: [.mock()],
                  tcString: "abc",
-                 thirdPartyCount: 123)
+                 thirdPartyCount: 123,
+                 featuresStandardText: "abc")
   }
 }
 
