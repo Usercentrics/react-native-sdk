@@ -1,4 +1,14 @@
 [Release Notes](https://docs.usercentrics.com/cmp_in_app_sdk/latest/about/history/)
+### 2.33.0 – Oct 14, 2026
+## Features
+* **[TCF 2.4]** Added the new mandatory standard text to the Features category on the first and second layers (mobile and CTV), and removed the workaround for the Legitimate Interest special purpose (mobile + CTV)
+
+## Fixes
+* **[Android]** Fixed SDK initialization failing via the offline fallback on first launch when no languages cache exists, which surfaced as a misleading "wrong configuration / settingsID" error
+* **[Android/iOS]** Fixed offline consent changes never being submitted to the backend
+* **[Android/iOS — Apps Preview]** Fixed the forced/default language sticking to the first resolved value and ignoring later overrides, and fixed several issues in the mobile Apps preview
+* **[iOS]** Fixed a blank gap and overlapping headers on the second layer after expanding a card (wrong section header height estimates)
+
 ### 2.32.0 – Sep 30, 2026
 ## Features
 * **[PUR — Consent or Pay]** Added the Consent-or-Pay 1st-layer banner ("Reject & Subscribe" card, subscriber-login link, `onLoginClicked`/`onSubscribeClicked` callbacks), a setting to control TCF signal retention on rejection plus a subscription-lapse reset API, and a fix so Deny All on the 2nd layer without an active subscription redirects back to the 1st layer instead of silently force-consenting
