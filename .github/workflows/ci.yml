@@ -112,7 +112,7 @@ jobs:
             test | bundle exec xcpretty && exit ${PIPESTATUS[0]}
 
       - name: Install Slather
-        run: gem install slather
+        run: gem install slather -v 2.8.5
 
       - name: Generate iOS HTML Report
         working-directory: ./sample/ios
