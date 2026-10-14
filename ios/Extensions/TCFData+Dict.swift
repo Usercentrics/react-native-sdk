@@ -11,7 +11,8 @@ extension TCFData {
             "stacks" : stacks.map { $0.toDictionary() },
             "vendors" : vendors.map { $0.toDictionary() },
             "tcString": tcString,
-            "thirdPartyCount": thirdPartyCount
+            "thirdPartyCount": thirdPartyCount,
+            "featuresStandardText": featuresStandardText as Any
         ]
     }
 }

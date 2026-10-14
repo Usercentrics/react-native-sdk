@@ -28,6 +28,9 @@ export class TCFData {
     /// The total of vendors and services
     thirdPartyCount: number
 
+    /// IAB-mandated standard text for the Features category (TCF 2.4), sourced from the GVL.
+    featuresStandardText?: string
+
     constructor(
         features: TCFFeature[],
         purposes: TCFPurpose[],
@@ -36,7 +39,8 @@ export class TCFData {
         stacks: TCFStack[],
         vendors: TCFVendor[],
         tcString: String,
-        thirdPartyCount: number
+        thirdPartyCount: number,
+        featuresStandardText?: string
     ) {
         this.features = features
         this.purposes = purposes
@@ -46,6 +50,7 @@ export class TCFData {
         this.vendors = vendors
         this.tcString = tcString
         this.thirdPartyCount = thirdPartyCount
+        this.featuresStandardText = featuresStandardText
     }
 }
 

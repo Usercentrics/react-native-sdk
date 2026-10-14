@@ -412,7 +412,8 @@ describe('Test Usercentrics Module', () => {
             stacks: [],
             vendors: [],
             tcString: "ABCD1234",
-            thirdPartyCount: 13
+            thirdPartyCount: 13,
+            featuresStandardText: "These means of processing can be used solely in pursuit of one or several purposes for which you are given a choice in this notice."
         }
 
         RNUsercentricsModule.getTCFData.mockImplementationOnce(

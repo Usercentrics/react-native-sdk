@@ -437,6 +437,7 @@ class RNUsercentricsModuleTests: XCTestCase {
       let vendors = result["vendors"] as? [NSDictionary]
       let tcString = result["tcString"] as? String
       let thirdPartyCount = result["thirdPartyCount"] as? Int
+      let featuresStandardText = result["featuresStandardText"] as? String
 
       XCTAssertNotNil(features)
       XCTAssertNotNil(purposes)
@@ -462,6 +463,7 @@ class RNUsercentricsModuleTests: XCTestCase {
       XCTAssertEqual(TCFVendor.mock().toDictionary(), vendors!.first)
       XCTAssertEqual("abc", tcString)
       XCTAssertEqual(123, thirdPartyCount)
+      XCTAssertEqual("abc", featuresStandardText)
 
     } reject: { _, _, _ in
       XCTFail("Should not go here")

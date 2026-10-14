@@ -112,6 +112,7 @@ internal class GetTCFDataMock {
             ),
             tcString = "abc",
             thirdPartyCount = 123,
+            featuresStandardText = "These means of processing can be used solely in pursuit of one or several purposes for which you are given a choice in this notice.",
         )
 
         val expected = mapOf(
@@ -213,6 +214,7 @@ internal class GetTCFDataMock {
             ),
             "tcString" to "abc",
             "thirdPartyCount" to 123,
+            "featuresStandardText" to "These means of processing can be used solely in pursuit of one or several purposes for which you are given a choice in this notice.",
         )
     }
 }

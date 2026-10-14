@@ -20,7 +20,8 @@ internal fun TCFData.serialize(): WritableMap {
         "stacks" to stacks.map { it.serialize() },
         "vendors" to vendors.map { it.serialize() },
         "tcString" to tcString,
-        "thirdPartyCount" to thirdPartyCount
+        "thirdPartyCount" to thirdPartyCount,
+        "featuresStandardText" to featuresStandardText
     ).toWritableMap()
 }
 
