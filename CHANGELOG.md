@@ -1,4 +1,8 @@
 [Release Notes](https://docs.usercentrics.com/cmp_in_app_sdk/latest/about/history/)
+### 2.33.1 – Oct 19, 2026
+## Fixes
+* **[iOS — Unity]** Fixed the Unity iOS static package crashing at launch (`Library not loaded: @rpath/Usercentrics.framework/Usercentrics`) by restoring the static `Usercentrics` core alongside the static `UsercentricsUI`
+
 ### 2.33.0 – Oct 14, 2026
 ## Features
 * **[TCF 2.4]** Added the new mandatory standard text to the Features category on the first and second layers (mobile and CTV), and removed the workaround for the Legitimate Interest special purpose (mobile + CTV)
