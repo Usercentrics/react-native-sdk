@@ -1,4 +1,9 @@
 [Release Notes](https://docs.usercentrics.com/cmp_in_app_sdk/latest/about/history/)
+### 2.33.2 – Oct 22, 2026
+## Fixes
+* **[iOS — Unity]** Fixed the Unity iOS build (Swift Package Manager) copying the `UsercentricsUI` resource bundle into `UnityFramework` as a dangling symlink when exporting via `xcodebuild archive`, which left the bundle missing in the final `.app` (Unity SDK repo)
+* **[Unreal — iOS]** Fixed `UsercentricsUnreal.init` rejecting a null context on iOS
+
 ### 2.33.1 – Oct 19, 2026
 ## Fixes
 * **[iOS — Unity]** Fixed the Unity iOS static package crashing at launch (`Library not loaded: @rpath/Usercentrics.framework/Usercentrics`) by restoring the static `Usercentrics` core alongside the static `UsercentricsUI`
