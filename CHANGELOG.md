@@ -1,4 +1,20 @@
 [Release Notes](https://docs.usercentrics.com/cmp_in_app_sdk/latest/about/history/)
+### 2.34.0 – Oct 29, 2026
+## Features
+* **[iOS]** Added a tab-targeted `showSecondLayer` API to open the second layer directly on a given tab (Services or Vendors), falling back to the default tab when the layout does not have it
+* **[Mediation]** Added Braze consent mediation (automatic on Android; on iOS the app registers a handler with `UsercentricsCore.setBrazeConsentHandler`)
+
+## Fixes
+* **[iOS]** Fixed a crash (SIGABRT) when the banner was presented before the SDK was ready or from a background thread
+* **[Android]** Fixed the second layer legal links opening the URL twice per tap
+* **[Android/iOS]** Fixed an explicit decision being overridden by a stored implicit entry saved in the same second as initialization, and first-launch detection when a controllerId is injected
+* **[Android/iOS]** Fixed offline initialization not finishing when the offline fallback throws, and an empty ETag rolling back the cached settings
+* **[Android/iOS]** Fixed a service hidden through the deprecated `isHidden` template flag being listed in its category but missing from the Services tab
+* **[Android/iOS]** Disabled Sentry crash reporting on iOS and isolated it from the host app's own Sentry on Android
+
+## Chores
+* **[iOS]** GDPR Category Consent: service and vendor-level toggles are now visible
+
 ### 2.33.2 – Oct 22, 2026
 ## Fixes
 * **[iOS — Unity]** Fixed the Unity iOS build (Swift Package Manager) copying the `UsercentricsUI` resource bundle into `UnityFramework` as a dangling symlink when exporting via `xcodebuild archive`, which left the bundle missing in the final `.app` (Unity SDK repo)
