@@ -14,6 +14,7 @@ import type {
   TCFUserDecisions,
   TCFUserDecisionOnPurpose,
   TCFUserDecisionOnVendor,
+  SecondLayerTab,
 } from './models';
 
 export interface Spec extends TurboModule {
@@ -23,7 +24,7 @@ export interface Spec extends TurboModule {
 
   // UI Methods
   showFirstLayer(options?: BannerSettings): Promise<UsercentricsConsentUserResponse>;
-  showSecondLayer(options?: BannerSettings): Promise<UsercentricsConsentUserResponse>;
+  showSecondLayer(options?: BannerSettings & { tab?: SecondLayerTab }): Promise<UsercentricsConsentUserResponse>;
 
   // Session Management
   restoreUserSession(controllerId: string): Promise<UsercentricsReadyStatus>;

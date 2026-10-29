@@ -4,6 +4,7 @@ export * from './CCPAData';
 export * from './FirstLayerSettings';
 export * from './NetworkMode';
 export * from './SecondLayerSettings';
+export * from './SecondLayerTab';
 export * from './TCFData';
 export * from './TCFDecisionUILayer';
 export * from './TCFUserDecisions';
