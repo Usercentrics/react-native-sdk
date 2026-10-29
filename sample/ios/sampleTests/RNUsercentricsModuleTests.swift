@@ -516,8 +516,42 @@ class RNUsercentricsModuleTests: XCTestCase {
     
     module.showSecondLayer(emptyDictionary) { result in
       XCTAssertNil(self.fakeUsercentrics.showSecondLayerBannerSettings?.secondLayerStyleSettings)
+      XCTAssertNil(self.fakeUsercentrics.showSecondLayerTab)
     } reject: { _, _, _ in
       XCTFail("Should not go here")
+    }
+  }
+
+  func testShowSecondLayerWithTab() {
+    let cases: [(String, SecondLayerTab)] = [
+      ("SERVICES", SecondLayerTab.services),
+      ("PARTNERS", SecondLayerTab.partners),
+    ]
+    for (value, expectedTab) in cases {
+      var resolved = false
+      module.showSecondLayer(["tab": value]) { _ in
+        resolved = true
+      } reject: { _, _, _ in
+        XCTFail("Should not go here")
+      }
+
+      XCTAssertTrue(resolved, "tab \(value)")
+      XCTAssertEqual(expectedTab, self.fakeUsercentrics.showSecondLayerTab, "tab \(value)")
+    }
+  }
+
+  func testShowSecondLayerWithUnknownTabFallsBackToDefault() {
+    let values: [Any] = ["UNKNOWN", "services", 1, NSNull()]
+    for value in values {
+      var resolved = false
+      module.showSecondLayer(["tab": value]) { _ in
+        resolved = true
+      } reject: { _, _, _ in
+        XCTFail("Should not go here")
+      }
+
+      XCTAssertTrue(resolved, "tab \(value)")
+      XCTAssertNil(self.fakeUsercentrics.showSecondLayerTab, "tab \(value)")
     }
   }
 

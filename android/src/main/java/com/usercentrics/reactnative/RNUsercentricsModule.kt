@@ -64,7 +64,7 @@ internal class RNUsercentricsModule(
                 val bannerSettings = options?.bannerSettingsFromMap(context)
 
                 val activity = reactContextProvider.activity()!!
-                usercentricsProxy.showSecondLayer(activity, bannerSettings, promise)
+                usercentricsProxy.showSecondLayer(activity, bannerSettings, options.secondLayerTab(), promise)
             } catch (e: Exception) {
                 promise.reject(e)
             }
