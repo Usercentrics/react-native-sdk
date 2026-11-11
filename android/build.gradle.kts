@@ -1,5 +1,8 @@
-val usercentricsVersion = "2.34.0"
-val reactNativeVersion = "+"
+val usercentricsVersion = "2.35.0"
+// Pinned instead of "+": a dynamic version also matches pre-releases, and react-android 0.89.0-rc.1
+// (published 2026-11-10) is built with Kotlin 2.3, which the Kotlin compiler used by the sample (2.1)
+// cannot read, so every build broke. Bump this deliberately when the sample moves to a newer React Native.
+val reactNativeVersion = "0.88.1"
 
 fun BooleanProperty(name: String): Boolean {
     return project.hasProperty(name) && project.property(name) == "true"

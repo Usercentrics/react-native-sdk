@@ -44,7 +44,7 @@ jobs:
 
   test-ios:
     needs: test-rn
-    runs-on: macos-14
+    runs-on: macos-15
     env:
       RCT_NEW_ARCH_ENABLED: 0
       RCT_NO_LAUNCH_PACKAGER: 1
@@ -54,7 +54,7 @@ jobs:
     steps:
       - uses: maxim-lobanov/setup-xcode@v1
         with:
-          xcode-version: '16.1'
+          xcode-version: '16.4'
 
       - name: Checkout
         uses: actions/checkout@v2
@@ -130,7 +130,7 @@ jobs:
 
   test-android:
     needs: test-rn
-    runs-on: macOS-14
+    runs-on: macos-15
     env:
       GRADLE_VERSION: 8.13
 

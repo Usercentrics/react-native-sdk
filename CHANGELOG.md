@@ -1,4 +1,15 @@
 [Release Notes](https://docs.usercentrics.com/cmp_in_app_sdk/latest/about/history/)
+### 2.35.0 – Nov 11, 2026
+## Features
+* **[Android]** Added a deep link to the second layer: `showSecondLayer` now opens the second layer directly on a given tab (Services or Vendors) on Android too, matching iOS. A tab the layout does not have, or none, opens the default tab
+* **[Android]** Added APIs in the native SDK to capture and restore in-flight 1st-layer consent state across Activity recreation (not exposed by the React Native wrapper yet)
+* **[Android — Crash reporting]** Added SDK crash reporting via Sentry for users outside Europe, on its own Sentry instance separate from the app's own Sentry. iOS does not report
+* **[Android/iOS — Crash reporting]** Removed the native `UsercentricsOptions.crashReportingEnabled`, as crash reporting is no longer opt-in (not used by the React Native wrapper)
+
+## Fixes
+* **[Android — R8]** Fixed release builds with R8 minification failing with `Missing classes detected` (`org.jetbrains.annotations`) since 2.34.0
+* **[Android/iOS — Apps Preview]** Fixed the "Preview for Mobile Browsers" option showing an empty page for accounts with a domain allowlist
+
 ### 2.34.0 – Oct 29, 2026
 ## Features
 * **[iOS]** Added a tab-targeted `showSecondLayer` API to open the second layer directly on a given tab (Services or Vendors), falling back to the default tab when the layout does not have it
