@@ -89,7 +89,7 @@ Actual `npm publish` happens via `.github/workflows/release.yml`, triggered by a
 
 Runs on every PR into `master`:
 - `test-rn` (ubuntu): `yarn install --frozen-lockfile` → `yarn compile` → `yarn test` → `scripts/assert_export.sh`
-- `test-ios` (macos-15, Xcode 16.1): fresh `pod deintegrate` + `pod cache clean --all` + `pod install --repo-update`, then `xcodebuild test` on the `sampleTests` scheme
+- `test-ios` (macos-15, Xcode 16.4): fresh `pod deintegrate` + `pod cache clean --all` + `pod install --repo-update`, then `xcodebuild test` on the `sampleTests` scheme
 - `test-android` (macos-15, Java 17): `./gradlew :react-native-usercentrics:koverXmlReport`
 
 `RCT_NEW_ARCH_ENABLED` in the iOS job's `env:` is actually irrelevant — `sample/ios/Podfile` hardcodes `$RCT_NEW_ARCH_ENABLED = true` and sets `ENV['RCT_NEW_ARCH_ENABLED']` *from* that, not the other way round. Always assume New Architecture (Fabric + TurboModules) is on for both local and CI pod resolution.
