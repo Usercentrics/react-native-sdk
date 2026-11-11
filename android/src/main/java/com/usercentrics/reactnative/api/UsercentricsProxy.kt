@@ -6,6 +6,7 @@ import com.facebook.react.bridge.Promise
 import com.usercentrics.reactnative.extensions.toWritableMap
 import com.usercentrics.sdk.*
 import com.usercentrics.sdk.errors.UsercentricsError
+import com.usercentrics.sdk.models.settings.SecondLayerTab
 
 interface UsercentricsProxy {
 
@@ -21,7 +22,7 @@ interface UsercentricsProxy {
         onSubscribeClicked: (String?) -> Unit,
         promise: Promise,
     )
-    fun showSecondLayer(activity: Activity, bannerSettings: BannerSettings?, promise: Promise)
+    fun showSecondLayer(activity: Activity, bannerSettings: BannerSettings?, tab: SecondLayerTab?, promise: Promise)
 }
 
 internal class UsercentricsProxyImpl : UsercentricsProxy {
@@ -59,9 +60,10 @@ internal class UsercentricsProxyImpl : UsercentricsProxy {
     override fun showSecondLayer(
         activity: Activity,
         bannerSettings: BannerSettings?,
+        tab: SecondLayerTab?,
         promise: Promise,
     ) {
-        UsercentricsBanner(activity, bannerSettings).showSecondLayer {
+        UsercentricsBanner(activity, bannerSettings).showSecondLayer(tab) {
             promise.resolve(it?.toWritableMap())
         }
     }

@@ -4,6 +4,7 @@ import {
     BannerSettings,
     NetworkMode,
     PurposeListStyle,
+    SecondLayerTab,
     TCFData,
     TCFDecisionUILayer,
     UsercentricsConsentType,
@@ -41,6 +42,7 @@ jest.mock("react-native", () => {
         isReady: jest.fn(),
         showCMP: jest.fn(),
         showFirstLayer: jest.fn(),
+        showSecondLayer: jest.fn(),
         restoreUserSession: jest.fn(),
         getControllerId: jest.fn(),
         getABTestingVariant: jest.fn(),
@@ -270,6 +272,74 @@ describe('Test Usercentrics Module', () => {
         const call = calls[calls.length - 1][0];
         expect(call).toBe(bannerSettings);
         expect(call.initCustomization).toBe(initCustomization);
+    })
+
+    test('testShowSecondLayerWithoutTabPassesOptionsUnchanged', async () => {
+        const response = new UsercentricsConsentUserResponse(
+            "abc",
+            UsercentricsUserInteraction.acceptAll,
+            []
+        )
+
+        RNUsercentricsModule.showSecondLayer.mockImplementationOnce(
+            (): Promise<any> => Promise.resolve(response)
+        )
+
+        const bannerSettings: BannerSettings = {
+            secondLayerStyleSettings: {
+                showCloseButton: true
+            }
+        }
+
+        const data = await Usercentrics.showSecondLayer(bannerSettings)
+        expect(data).toBe(response);
+
+        const calls = RNUsercentricsModule.showSecondLayer.mock.calls;
+        const call = calls[calls.length - 1][0];
+        expect(call).toBe(bannerSettings);
+        expect(call.tab).toBeUndefined();
+    })
+
+    test('testShowSecondLayerWithTab', async () => {
+        const response = new UsercentricsConsentUserResponse(
+            "abc",
+            UsercentricsUserInteraction.acceptAll,
+            []
+        )
+
+        const bannerSettings: BannerSettings = {
+            secondLayerStyleSettings: {
+                showCloseButton: true
+            }
+        }
+
+        for (const [tab, expected] of [
+            [SecondLayerTab.services, "SERVICES"],
+            [SecondLayerTab.partners, "PARTNERS"]
+        ] as const) {
+            RNUsercentricsModule.showSecondLayer.mockImplementationOnce(
+                (): Promise<any> => Promise.resolve(response)
+            )
+
+            const data = await Usercentrics.showSecondLayer(bannerSettings, tab)
+            expect(data).toBe(response);
+
+            const calls = RNUsercentricsModule.showSecondLayer.mock.calls;
+            expect(calls[calls.length - 1][0]).toEqual({...bannerSettings, tab: expected});
+        }
+    })
+
+    test('testShowSecondLayerWithTabAndNoOptions', async () => {
+        RNUsercentricsModule.showSecondLayer.mockImplementationOnce(
+            (): Promise<any> => Promise.resolve(
+                new UsercentricsConsentUserResponse("abc", UsercentricsUserInteraction.acceptAll, [])
+            )
+        )
+
+        await Usercentrics.showSecondLayer(undefined, SecondLayerTab.partners)
+
+        const calls = RNUsercentricsModule.showSecondLayer.mock.calls;
+        expect(calls[calls.length - 1][0]).toEqual({tab: "PARTNERS"});
     })
 
     test('testRestoreUserSession', async () => {

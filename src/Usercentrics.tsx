@@ -5,6 +5,7 @@ import {
     CCPAData,
     GppData,
     GppSectionChangePayload,
+    SecondLayerTab,
     TCFData,
     TCFDecisionUILayer,
     TCFUserDecisionOnPurpose,
@@ -40,9 +41,15 @@ export const Usercentrics = {
         return RNUsercentricsModule.showFirstLayer(options);
     },
 
-    showSecondLayer: async (options?: BannerSettings): Promise<UsercentricsConsentUserResponse> => {
+    /**
+     * Shows the second layer, optionally opened directly on [tab]: `SecondLayerTab.services` for
+     * GDPR/CCPA layouts, `SecondLayerTab.partners` for TCF layouts. A tab the layout does not have,
+     * or no tab, opens the default tab.
+     */
+    showSecondLayer: async (options?: BannerSettings, tab?: SecondLayerTab): Promise<UsercentricsConsentUserResponse> => {
         await RNUsercentricsModule.isReady();
-        return RNUsercentricsModule.showSecondLayer(options);
+        // The tab travels inside the options map, so the native module signatures stay unchanged.
+        return RNUsercentricsModule.showSecondLayer(tab ? {...options, tab} : options);
     },
 
     restoreUserSession: async (controllerId: string): Promise<UsercentricsReadyStatus> => {

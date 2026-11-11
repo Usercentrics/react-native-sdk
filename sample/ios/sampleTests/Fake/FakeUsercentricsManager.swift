@@ -234,8 +234,10 @@ final class FakeUsercentricsManager: UsercentricsManager {
   }
 
   var showSecondLayerBannerSettings: BannerSettings?
-  func showSecondLayer(bannerSettings: BannerSettings?, dismissViewHandler: @escaping (UsercentricsConsentUserResponse) -> Void) {
+  var showSecondLayerTab: SecondLayerTab?
+  func showSecondLayer(bannerSettings: BannerSettings?, tab: SecondLayerTab?, dismissViewHandler: @escaping (UsercentricsConsentUserResponse) -> Void) {
     self.showSecondLayerBannerSettings = bannerSettings
+    self.showSecondLayerTab = tab
     dismissViewHandler(UsercentricsConsentUserResponse(consents: [], controllerId: "", userInteraction: .acceptAll))
   }
 

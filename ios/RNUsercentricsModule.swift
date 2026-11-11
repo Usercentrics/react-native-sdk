@@ -98,7 +98,8 @@ class RNUsercentricsModule: RCTEventEmitter {
                 return
             }
 
-            self.usercentricsManager.showSecondLayer(bannerSettings: BannerSettings(from: dict)) { response in
+            self.usercentricsManager.showSecondLayer(bannerSettings: BannerSettings(from: dict),
+                                                     tab: SecondLayerTab.from(enumString: dict["tab"] as? String)) { response in
                 resolve(response.toDictionary())
             }
         }

@@ -18,6 +18,7 @@ public protocol UsercentricsManager {
     func notifySubscriptionLapsed(onSuccess: @escaping (() -> Void), onError: @escaping ((Error) -> Void))
 
     func showSecondLayer(bannerSettings: BannerSettings?,
+                         tab: SecondLayerTab?,
                          dismissViewHandler: @escaping (UsercentricsConsentUserResponse) -> Void)
 
     func getControllerId() -> String
@@ -87,8 +88,9 @@ final class UsercentricsManagerImplementation: UsercentricsManager {
     }
 
     func showSecondLayer(bannerSettings: BannerSettings?,
+                         tab: SecondLayerTab?,
                          dismissViewHandler: @escaping (UsercentricsConsentUserResponse) -> Void) {
-        UsercentricsBanner(bannerSettings: bannerSettings).showSecondLayer(completionHandler: dismissViewHandler)
+        UsercentricsBanner(bannerSettings: bannerSettings).showSecondLayer(tab: tab, completionHandler: dismissViewHandler)
     }
 
     func restoreUserSession(controllerId: String, onSuccess: @escaping ((UsercentricsReadyStatus) -> Void), onFailure: @escaping ((Error) -> Void)) {
