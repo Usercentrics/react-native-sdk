@@ -44,7 +44,7 @@ jobs:
 
   test-ios:
     needs: test-rn
-    runs-on: macos-14
+    runs-on: macos-15
     env:
       RCT_NEW_ARCH_ENABLED: 0
       RCT_NO_LAUNCH_PACKAGER: 1
@@ -130,7 +130,7 @@ jobs:
 
   test-android:
     needs: test-rn
-    runs-on: macOS-14
+    runs-on: macos-15
     env:
       GRADLE_VERSION: 8.13
 
