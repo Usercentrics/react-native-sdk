@@ -21,12 +21,14 @@ platform :ios, '15.1'
 
 use_frameworks! :linkage => :static
 
-# WORKAROUND: Usercentrics.xcframework links `-framework Sentry` eagerly at the binary level
-# (a real dynamic dyld load command), but `use_frameworks! :linkage => :static` above makes
-# CocoaPods build every pod — including Sentry — as a static archive with no Sentry.framework
-# bundle ever embedded in the app. That crashes every launch with "Library not loaded:
-# @rpath/Sentry.framework/Sentry". Force only the Sentry pod to build as a dynamic framework
-# so the real Sentry.framework exists and gets embedded, matching what the binary expects.
+# WORKAROUND: Usercentrics.xcframework links Sentry weakly (mobile-sdk MSDK-4862 — a missing/
+# mismatched Sentry.framework no longer crashes the app at launch), but still expects a real
+# dynamic Sentry.framework to actually be present for SdkMonitor's crash reporting to function.
+# `use_frameworks! :linkage => :static` above makes CocoaPods build every pod — including
+# Sentry — as a static archive with no Sentry.framework bundle ever embedded in the app, which
+# would silently leave SdkMonitor's crash reporting non-functional (no crash, no error — it
+# just never sends anything). Force only the Sentry pod to build as a dynamic framework so the
+# real Sentry.framework exists and gets embedded, matching what the binary expects.
 pre_install do |installer|
   installer.pod_targets.each do |pod_target|
     if pod_target.name.start_with?('Sentry')
