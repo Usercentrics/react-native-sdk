@@ -117,4 +117,8 @@ RCT_EXTERN_METHOD(notifySubscribeSuccess:(RCTPromiseResolveBlock)resolve
 
 RCT_EXTERN_METHOD(notifySubscriptionLapsed:(RCTPromiseResolveBlock)resolve
                   reject:(RCTPromiseRejectBlock)reject)
+
+RCT_EXTERN_METHOD(setAgeSignal:(NSDictionary *)signal
+                  resolve:(RCTPromiseResolveBlock)resolve
+                  reject:(RCTPromiseRejectBlock)reject)
 @end

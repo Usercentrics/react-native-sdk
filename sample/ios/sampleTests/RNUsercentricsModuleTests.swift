@@ -697,4 +697,156 @@ class RNUsercentricsModuleTests: XCTestCase {
       XCTAssertEqual("The operation couldn’t be completed. (sampleTests.FakeUsercentricsError error 0.)", message)
     }
   }
+
+  func testSetAgeSignalAtLeast() {
+    fakeUsercentrics.setAgeSignalDecision = .mock(band: .minor, ageLower: 16, ageUpper: nil)
+    var resolved = false
+
+    module.setAgeSignal(["kind": "atLeast", "age": 16, "sourceLabel": "my-age-gate"]) { result in
+      resolved = true
+      guard let result = result as? NSDictionary else {
+        XCTFail()
+        return
+      }
+
+      XCTAssertEqual("PUBLISHER_PROVIDED", result["source"] as? String)
+      XCTAssertEqual("PUBLISHER_PROVIDED", result["trust"] as? String)
+      XCTAssertEqual("MINOR", result["band"] as? String)
+      XCTAssertEqual(16, result["ageLower"] as? Int)
+      XCTAssertTrue(result["ageUpper"] is NSNull)
+      XCTAssertTrue(result["unavailableReason"] is NSNull)
+      XCTAssertEqual(true, result["isAvailable"] as? Bool)
+    } reject: { _, _, _ in
+      XCTFail("Should not go here")
+    }
+
+    XCTAssertTrue(resolved)
+    XCTAssertEqual([AgeSignalRequest.atLeast(age: 16, sourceLabel: "my-age-gate")], fakeUsercentrics.setAgeSignalRequests)
+  }
+
+  func testSetAgeSignalBelowWithoutLabel() {
+    fakeUsercentrics.setAgeSignalDecision = .mock(band: .belowMinimum, ageLower: nil, ageUpper: 15)
+    var resolved = false
+
+    module.setAgeSignal(["kind": "below", "age": 16]) { result in
+      resolved = true
+      guard let result = result as? NSDictionary else {
+        XCTFail()
+        return
+      }
+
+      XCTAssertEqual("BELOW_MINIMUM", result["band"] as? String)
+      XCTAssertTrue(result["ageLower"] is NSNull)
+      XCTAssertEqual(15, result["ageUpper"] as? Int)
+    } reject: { _, _, _ in
+      XCTFail("Should not go here")
+    }
+
+    XCTAssertTrue(resolved)
+    XCTAssertEqual([AgeSignalRequest.below(age: 16, sourceLabel: nil)], fakeUsercentrics.setAgeSignalRequests)
+  }
+
+  func testSetAgeSignalBetween() {
+    fakeUsercentrics.setAgeSignalDecision = .mock(band: .minor, ageLower: 13, ageUpper: 15)
+    var resolved = false
+
+    module.setAgeSignal(["kind": "between", "lower": 13, "upper": 15, "sourceLabel": "gate.v2_A-1"]) { result in
+      resolved = true
+      guard let result = result as? NSDictionary else {
+        XCTFail()
+        return
+      }
+
+      XCTAssertEqual("MINOR", result["band"] as? String)
+      XCTAssertEqual(13, result["ageLower"] as? Int)
+      XCTAssertEqual(15, result["ageUpper"] as? Int)
+    } reject: { _, _, _ in
+      XCTFail("Should not go here")
+    }
+
+    XCTAssertTrue(resolved)
+    XCTAssertEqual([AgeSignalRequest.between(lower: 13, upper: 15, sourceLabel: "gate.v2_A-1")], fakeUsercentrics.setAgeSignalRequests)
+  }
+
+  func testSetAgeSignalResolvesADecisionWithoutBandWithItsNulls() {
+    fakeUsercentrics.setAgeSignalDecision = .mockUnavailable(reason: .declined)
+    var resolved = false
+
+    module.setAgeSignal(["kind": "atLeast", "age": 16]) { result in
+      resolved = true
+      guard let result = result as? NSDictionary else {
+        XCTFail()
+        return
+      }
+
+      XCTAssertEqual("DECLINED", result["unavailableReason"] as? String)
+      XCTAssertTrue(result["trust"] is NSNull)
+      XCTAssertTrue(result["band"] is NSNull)
+      XCTAssertTrue(result["ageLower"] is NSNull)
+      XCTAssertTrue(result["ageUpper"] is NSNull)
+      XCTAssertEqual(false, result["isAvailable"] as? Bool)
+    } reject: { _, _, _ in
+      XCTFail("Should not go here")
+    }
+
+    XCTAssertTrue(resolved)
+  }
+
+  func testSetAgeSignalWithNativeError() {
+    fakeUsercentrics.setAgeSignalError = FakeUsercentricsError.test
+    var rejected = false
+
+    // 121 is not valid, but it is the native layer that says so: the request reaches it as it was sent
+    module.setAgeSignal(["kind": "atLeast", "age": 121]) { _ in
+      XCTFail("Should not go here")
+    } reject: { code, message, error in
+      rejected = true
+      XCTAssertEqual("usercentrics_reactNative_setAgeSignal_error", code)
+      XCTAssertEqual(FakeUsercentricsError.test.localizedDescription, message)
+      XCTAssertEqual(FakeUsercentricsError.test.localizedDescription, error?.localizedDescription)
+    }
+
+    XCTAssertTrue(rejected)
+    XCTAssertEqual([AgeSignalRequest.atLeast(age: 121, sourceLabel: nil)], fakeUsercentrics.setAgeSignalRequests)
+  }
+
+  func testSetAgeSignalDoesNotJudgeTheAgesOrTheLabel() {
+    fakeUsercentrics.setAgeSignalDecision = .mock()
+    var resolved = false
+
+    module.setAgeSignal(["kind": "between", "lower": 121, "upper": -1, "sourceLabel": "not a valid label!"]) { _ in
+      resolved = true
+    } reject: { _, _, _ in
+      XCTFail("Should not go here")
+    }
+
+    XCTAssertTrue(resolved)
+    XCTAssertEqual([AgeSignalRequest.between(lower: 121, upper: -1, sourceLabel: "not a valid label!")], fakeUsercentrics.setAgeSignalRequests)
+  }
+
+  func testSetAgeSignalWithMalformedRequestIsRefusedWithAFixedMessageWithoutCallingTheSdk() {
+    let requests: [NSDictionary] = [
+      [:],
+      ["kind": "atLeast"],
+      ["kind": "atLeast", "age": 16.5, "sourceLabel": "my-secret-label"],
+      ["kind": "unknown", "age": 16, "sourceLabel": "my-secret-label"],
+      ["kind": "below", "age": 16, "sourceLabel": 5],
+    ]
+
+    for (index, request) in requests.enumerated() {
+      var rejected = false
+
+      module.setAgeSignal(request) { _ in
+        XCTFail("Should not go here, request #\(index)")
+      } reject: { code, message, error in
+        rejected = true
+        XCTAssertEqual("usercentrics_reactNative_setAgeSignal_error", code, "request #\(index)")
+        XCTAssertEqual("Invalid age signal: the request is malformed", message, "request #\(index)")
+        XCTAssertNil(error, "request #\(index)")
+      }
+
+      XCTAssertTrue(rejected, "request #\(index)")
+    }
+    XCTAssertTrue(fakeUsercentrics.setAgeSignalRequests.isEmpty)
+  }
 }

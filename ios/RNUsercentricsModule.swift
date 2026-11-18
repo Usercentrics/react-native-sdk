@@ -299,9 +299,27 @@ class RNUsercentricsModule: RCTEventEmitter {
         }
     }
 
+    // Experimental, like the native age signal API it bridges. The request is only transported: the native layer checks
+    // the ages and the label. Nothing in here logs the request or the decision, because they carry the ages.
+    @objc func setAgeSignal(_ signal: NSDictionary, resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) -> Void {
+        guard let request = AgeSignalRequest(from: signal) else {
+            reject(Self.setAgeSignalErrorCode, Self.invalidAgeSignalRequestMessage, nil)
+            return
+        }
+
+        usercentricsManager.setAgeSignal(request: request) { decision in
+            resolve(decision.toDictionary())
+        } onError: { error in
+            reject(Self.setAgeSignalErrorCode, error.localizedDescription, error)
+        }
+    }
+
     private static let onGppSectionChangeEvent = "onGppSectionChange"
     private static let onLoginClickedEvent = "onLoginClicked"
     private static let onSubscribeClickedEvent = "onSubscribeClicked"
+    private static let setAgeSignalErrorCode = "usercentrics_reactNative_setAgeSignal_error"
+    // Fixed text: it never repeats what the app sent
+    private static let invalidAgeSignalRequestMessage = "Invalid age signal: the request is malformed"
 }
 
 // MARK: - RCTBridgeModule & TurboModule Conformance

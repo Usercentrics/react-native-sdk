@@ -9,6 +9,9 @@ internal class FakePromise : Promise {
     var resolveValue: Any? = null
     var rejectThrowable: Throwable? = null
 
+    // The code of the last rejection that carries one: what a JS caller reads in error.code
+    var rejectCode: String? = null
+
     private val lock = CountDownLatch(1)
 
     fun await() {
@@ -21,16 +24,19 @@ internal class FakePromise : Promise {
     }
 
     override fun reject(code: String?, message: String?) {
+        rejectCode = code
         rejectThrowable = RuntimeException("$code: $message")
         lock.countDown()
     }
 
     override fun reject(code: String?, throwable: Throwable?) {
+        rejectCode = code
         rejectThrowable = throwable ?: RuntimeException(code)
         lock.countDown()
     }
 
     override fun reject(code: String?, message: String?, throwable: Throwable?) {
+        rejectCode = code
         rejectThrowable = throwable ?: RuntimeException("$code: $message")
         lock.countDown()
     }
@@ -46,21 +52,25 @@ internal class FakePromise : Promise {
     }
 
     override fun reject(code: String?, userInfo: WritableMap) {
+        rejectCode = code
         rejectThrowable = RuntimeException("$code: $userInfo")
         lock.countDown()
     }
 
     override fun reject(code: String?, throwable: Throwable?, userInfo: WritableMap) {
+        rejectCode = code
         rejectThrowable = throwable
         lock.countDown()
     }
 
     override fun reject(code: String?, message: String?, userInfo: WritableMap) {
+        rejectCode = code
         rejectThrowable = RuntimeException("$code: $message")
         lock.countDown()
     }
 
     override fun reject(code: String?, message: String?, throwable: Throwable?, userInfo: WritableMap?) {
+        rejectCode = code
         rejectThrowable = throwable ?: RuntimeException("$code: $message")
         lock.countDown()
     }

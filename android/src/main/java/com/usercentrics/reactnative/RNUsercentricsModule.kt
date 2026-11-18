@@ -7,6 +7,7 @@ import com.usercentrics.reactnative.api.UsercentricsProxy
 import com.usercentrics.reactnative.extensions.*
 import com.usercentrics.sdk.UsercentricsAnalyticsEventType
 import com.usercentrics.sdk.models.settings.UsercentricsConsentType
+import com.usercentrics.sdk.services.ageverification.ExperimentalAgeSignalsApi
 import com.usercentrics.sdk.services.gpp.GppSectionChangePayload
 import com.usercentrics.sdk.services.tcf.TCFDecisionUILayer
 
@@ -286,6 +287,25 @@ internal class RNUsercentricsModule(
         })
     }
 
+    // Experimental, like the native age signal API it bridges. The request is only transported: the native layer checks
+    // the ages and the label. Nothing in here logs the request or the decision, because they carry the ages.
+    @OptIn(ExperimentalAgeSignalsApi::class)
+    @ReactMethod
+    override fun setAgeSignal(signal: ReadableMap, promise: Promise) {
+        val request = signal.toAgeSignalRequest()
+        if (request == null) {
+            promise.reject(AGE_SIGNAL_ERROR_CODE, INVALID_AGE_SIGNAL_REQUEST_MESSAGE)
+            return
+        }
+
+        usercentricsProxy.instance.setAgeSignal(request.toPublisherAgeSignal(), {
+            promise.resolve(it.toWritableMap())
+        }, {
+            // The code of the malformed request above and of iOS, so an app can match on error.code on both platforms
+            promise.reject(AGE_SIGNAL_ERROR_CODE, it.message, it)
+        })
+    }
+
     @ReactMethod
     override fun addListener(eventName: String) {
         if (eventName != ON_GPP_SECTION_CHANGE_EVENT) return
@@ -354,5 +374,9 @@ internal class RNUsercentricsModule(
         const val ON_GPP_SECTION_CHANGE_EVENT = "onGppSectionChange"
         const val ON_LOGIN_CLICKED_EVENT = "onLoginClicked"
         const val ON_SUBSCRIBE_CLICKED_EVENT = "onSubscribeClicked"
+        const val AGE_SIGNAL_ERROR_CODE = "usercentrics_reactNative_setAgeSignal_error"
+
+        // Fixed text: it never repeats what the app sent
+        const val INVALID_AGE_SIGNAL_REQUEST_MESSAGE = "Invalid age signal: the request is malformed"
     }
 }

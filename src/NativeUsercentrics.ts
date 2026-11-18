@@ -15,6 +15,8 @@ import type {
   TCFUserDecisionOnPurpose,
   TCFUserDecisionOnVendor,
   SecondLayerTab,
+  UsercentricsAgeSignalDecision,
+  UsercentricsPublisherAgeSignal,
 } from './models';
 
 export interface Spec extends TurboModule {
@@ -35,6 +37,9 @@ export interface Spec extends TurboModule {
   notifyLoginSuccess(): Promise<void>;
   notifySubscribeSuccess(): Promise<void>;
   notifySubscriptionLapsed(): Promise<void>;
+
+  // Age Signals (experimental)
+  setAgeSignal(signal: UsercentricsPublisherAgeSignal): Promise<UsercentricsAgeSignalDecision>;
 
   // Data Retrieval
   getConsents(): Promise<Array<UsercentricsServiceConsent>>;

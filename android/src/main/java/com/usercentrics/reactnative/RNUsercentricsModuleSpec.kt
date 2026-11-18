@@ -42,6 +42,10 @@ abstract class RNUsercentricsModuleSpec internal constructor(context: ReactAppli
     @ReactMethod
     abstract fun notifySubscriptionLapsed(promise: Promise)
 
+    // Experimental, like the native age signal API it bridges
+    @ReactMethod
+    abstract fun setAgeSignal(signal: ReadableMap, promise: Promise)
+
     @ReactMethod
     abstract fun getConsents(promise: Promise)
 

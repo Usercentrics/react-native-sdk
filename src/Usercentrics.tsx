@@ -11,11 +11,13 @@ import {
     TCFUserDecisionOnPurpose,
     TCFUserDecisionOnVendor,
     TCFUserDecisions,
+    UsercentricsAgeSignalDecision,
     UsercentricsAnalyticsEventType,
     UsercentricsCMPData,
     UsercentricsConsentType,
     UsercentricsConsentUserResponse,
     UsercentricsOptions,
+    UsercentricsPublisherAgeSignal,
     UsercentricsReadyStatus,
     UsercentricsServiceConsent,
     UserDecision,
@@ -211,5 +213,29 @@ export const Usercentrics = {
     notifySubscriptionLapsed: async (): Promise<void> => {
         await RNUsercentricsModule.isReady();
         return RNUsercentricsModule.notifySubscriptionLapsed();
+    },
+
+    /**
+     * **Experimental**: it may change or be removed without a major version bump.
+     *
+     * Hands the SDK an age range the app already knows about its user, for example a "16+" flag from the
+     * app's own age gate. Build the [signal] with `UsercentricsPublisherAgeSignal.atLeast`, `below` or `between`.
+     *
+     * The SDK checks the range, tags it as provided by the app (`UsercentricsAgeSignalTrust.publisherProvided`,
+     * which the app cannot change, so it is never mistaken for an age that a platform verified) and resolves the
+     * band with the same rules as the Apple and Google signals. The promise resolves with the decision, or rejects
+     * with a fixed message that does not repeat what was passed: for a range that is not valid (an age outside 0..120,
+     * a lower age above the upper one, a label that is not 1 to 32 characters of A-Z a-z 0-9 . _ -) and for a signal
+     * the bridge cannot read (an age that is missing or is not a whole number: a fraction, NaN, a boolean). A rejection
+     * carries the code `usercentrics_reactNative_setAgeSignal_error` on Android and on iOS, so an app can match on it.
+     *
+     * The signal counts from now on and the last call wins. Nothing is stored or sent, and consent does not
+     * change. Send it again after each start. The signal and the decision carry the age: do not log them.
+     *
+     * @experimental
+     */
+    setAgeSignal: async (signal: UsercentricsPublisherAgeSignal): Promise<UsercentricsAgeSignalDecision> => {
+        await RNUsercentricsModule.isReady();
+        return RNUsercentricsModule.setAgeSignal(signal);
     },
 }
