@@ -128,7 +128,7 @@ class RNUsercentricsModuleAgeSignalTest {
     }
 
     @Test
-    fun `setAgeSignal rejects with the native error as it is`() {
+    fun `setAgeSignal rejects with the native error as it is, under the age signal error code`() {
         val error = UsercentricsError.create("Invalid age signal: an age is not between 0 and 120")
         every { sdk.setAgeSignal(any(), any(), any()) } answers {
             thirdArg<(UsercentricsError) -> Unit>().invoke(error)
@@ -136,9 +136,11 @@ class RNUsercentricsModuleAgeSignalTest {
 
         module.setAgeSignal(JavaOnlyMap.of("kind", "atLeast", "age", 121), promise)
 
-        // The very same error: not wrapped and not re-worded
+        // The very same error: not wrapped and not re-worded. The code is the one of the malformed request and of iOS,
+        // so an app can match on it on both platforms
         assertSame(error, promise.rejectThrowable)
         assertEquals("Invalid age signal: an age is not between 0 and 120", promise.rejectThrowable?.message)
+        assertEquals("usercentrics_reactNative_setAgeSignal_error", promise.rejectCode)
         assertNull(promise.resolveValue)
     }
 
@@ -177,6 +179,7 @@ class RNUsercentricsModuleAgeSignalTest {
                 "usercentrics_reactNative_setAgeSignal_error: Invalid age signal: the request is malformed",
                 rejected.rejectThrowable?.message
             )
+            assertEquals("usercentrics_reactNative_setAgeSignal_error", rejected.rejectCode)
             assertNull(rejected.resolveValue)
         }
         verify(exactly = 0) { sdk.setAgeSignal(any(), any(), any()) }

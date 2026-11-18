@@ -734,15 +734,20 @@ describe('Test Usercentrics Module', () => {
         }
     })
 
-    const publisherDecision = (band: UsercentricsAgeBand, ageLower: number | null, ageUpper: number | null) =>
-        new UsercentricsAgeSignalDecision(
-            UsercentricsAgeSignalSource.publisherProvided,
-            UsercentricsAgeSignalTrust.publisherProvided,
-            band,
-            ageLower,
-            ageUpper,
-            null
-        )
+    // The native side answers with a plain map, so the fixtures are plain objects too
+    const publisherDecision = (
+        band: UsercentricsAgeBand,
+        ageLower: number | null,
+        ageUpper: number | null
+    ): UsercentricsAgeSignalDecision => ({
+        source: UsercentricsAgeSignalSource.publisherProvided,
+        trust: UsercentricsAgeSignalTrust.publisherProvided,
+        band,
+        ageLower,
+        ageUpper,
+        unavailableReason: null,
+        isAvailable: true
+    })
 
     const lastSetAgeSignalPayload = () => {
         const calls = RNUsercentricsModule.setAgeSignal.mock.calls;
@@ -834,15 +839,15 @@ describe('Test Usercentrics Module', () => {
 
     test('testSetAgeSignalWithDecisionWithoutBand', async () => {
         // A publisher signal always gets a band today, but the model allows "no signal" (platform signals use it)
-        const decision = new UsercentricsAgeSignalDecision(
-            UsercentricsAgeSignalSource.googlePlayAgeSignals,
-            null,
-            null,
-            null,
-            null,
-            UsercentricsAgeSignalUnavailableReason.notShared
-        )
-        expect(decision.isAvailable).toBe(false);
+        const decision: UsercentricsAgeSignalDecision = {
+            source: UsercentricsAgeSignalSource.googlePlayAgeSignals,
+            trust: null,
+            band: null,
+            ageLower: null,
+            ageUpper: null,
+            unavailableReason: UsercentricsAgeSignalUnavailableReason.notShared,
+            isAvailable: false
+        }
 
         RNUsercentricsModule.setAgeSignal.mockImplementationOnce(
             (): Promise<any> => Promise.resolve(decision)

@@ -8,6 +8,8 @@ import {
 /**
  * The outcome of an age signal request, as data. **Experimental.**
  *
+ * It is the plain object the native side hands over, not an instance of a class: do not test it with `instanceof`.
+ *
  * - `source`: where the signal comes from.
  * - `trust`: how the age was established, or `null` when `band` is `null`.
  * - `band`: the resolved band, or `null` when no signal is available (see `unavailableReason`). `null` is never an
@@ -25,7 +27,7 @@ import {
  *
  * @experimental
  */
-export class UsercentricsAgeSignalDecision {
+export interface UsercentricsAgeSignalDecision {
 
     source: UsercentricsAgeSignalSource
     trust: UsercentricsAgeSignalTrust | null
@@ -34,19 +36,4 @@ export class UsercentricsAgeSignalDecision {
     ageUpper: number | null
     unavailableReason: UsercentricsAgeSignalUnavailableReason | null
     isAvailable: boolean
-
-    constructor(source: UsercentricsAgeSignalSource,
-                trust: UsercentricsAgeSignalTrust | null,
-                band: UsercentricsAgeBand | null,
-                ageLower: number | null,
-                ageUpper: number | null,
-                unavailableReason: UsercentricsAgeSignalUnavailableReason | null) {
-        this.source = source
-        this.trust = trust
-        this.band = band
-        this.ageLower = ageLower
-        this.ageUpper = ageUpper
-        this.unavailableReason = unavailableReason
-        this.isAvailable = band !== null
-    }
 }

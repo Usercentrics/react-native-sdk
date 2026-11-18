@@ -301,7 +301,8 @@ internal class RNUsercentricsModule(
         usercentricsProxy.instance.setAgeSignal(request.toPublisherAgeSignal(), {
             promise.resolve(it.toWritableMap())
         }, {
-            promise.reject(it)
+            // The code of the malformed request above and of iOS, so an app can match on error.code on both platforms
+            promise.reject(AGE_SIGNAL_ERROR_CODE, it.message, it)
         })
     }
 
