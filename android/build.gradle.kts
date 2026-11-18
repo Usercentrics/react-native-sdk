@@ -27,7 +27,6 @@ android {
 
     defaultConfig {
         minSdk = 24
-        targetSdk = 34
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("proguard-rules.pro")
 
@@ -51,10 +50,6 @@ android {
         targetCompatibility = JavaVersion.VERSION_17
     }
 
-    kotlinOptions {
-        jvmTarget = "17"
-    }
-
     sourceSets {
         getByName("main").java.srcDirs(
             "src/main/kotlin",
@@ -72,6 +67,12 @@ android {
         }
     }
 
+}
+
+kotlin {
+    compilerOptions {
+        jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_17)
+    }
 }
 
 dependencies {
