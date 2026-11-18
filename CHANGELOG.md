@@ -1,4 +1,8 @@
 [Release Notes](https://docs.usercentrics.com/cmp_in_app_sdk/latest/about/history/)
+### 2.X.X – Upcoming
+## Fixes
+* **[Android]** Fix build failure with Android Gradle Plugin 9.x (React Native 0.87+): remove the unsupported `targetSdk` from the library module and migrate `kotlinOptions` to the `compilerOptions` DSL
+
 ### 2.35.0 – Nov 11, 2026
 ## Features
 * **[Android]** Added a deep link to the second layer: `showSecondLayer` now opens the second layer directly on a given tab (Services or Vendors) on Android too, matching iOS. A tab the layout does not have, or none, opens the default tab
