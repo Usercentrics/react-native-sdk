@@ -223,12 +223,15 @@ export const Usercentrics = {
      *
      * The SDK checks the range, tags it as provided by the app (`UsercentricsAgeSignalTrust.publisherProvided`,
      * which the app cannot change, so it is never mistaken for an age that a platform verified) and resolves the
-     * band with the same rules as the Apple and Google signals. The promise resolves with the decision, or rejects,
-     * for a range that is not valid (no age, an age outside 0..120, a lower age above the upper one, a label that
-     * is not 1 to 32 characters of A-Z a-z 0-9 . _ -), with a fixed message that does not repeat what was passed.
+     * band with the same rules as the Apple and Google signals. The promise resolves with the decision, or rejects
+     * with a fixed message that does not repeat what was passed: for a range that is not valid (an age outside 0..120,
+     * a lower age above the upper one, a label that is not 1 to 32 characters of A-Z a-z 0-9 . _ -) and for a signal
+     * the bridge cannot read (an age that is missing or is not a whole number: a fraction, NaN, a boolean).
      *
      * The signal counts from now on and the last call wins. Nothing is stored or sent, and consent does not
      * change. Send it again after each start. The signal and the decision carry the age: do not log them.
+     *
+     * @experimental
      */
     setAgeSignal: async (signal: UsercentricsPublisherAgeSignal): Promise<UsercentricsAgeSignalDecision> => {
         await RNUsercentricsModule.isReady();
