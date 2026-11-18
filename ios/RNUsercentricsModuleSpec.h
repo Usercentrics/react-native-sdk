@@ -39,6 +39,11 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)notifySubscriptionLapsed:(RCTPromiseResolveBlock)resolve
                            reject:(RCTPromiseRejectBlock)reject;
 
+// Age Signals (experimental)
+- (void)setAgeSignal:(NSDictionary *)signal
+             resolve:(RCTPromiseResolveBlock)resolve
+              reject:(RCTPromiseRejectBlock)reject;
+
 // Data Retrieval
 - (void)getConsents:(RCTPromiseResolveBlock)resolve
              reject:(RCTPromiseRejectBlock)reject;

@@ -7,11 +7,17 @@ import {
     SecondLayerTab,
     TCFData,
     TCFDecisionUILayer,
+    UsercentricsAgeBand,
+    UsercentricsAgeSignalDecision,
+    UsercentricsAgeSignalSource,
+    UsercentricsAgeSignalTrust,
+    UsercentricsAgeSignalUnavailableReason,
     UsercentricsConsentType,
     UsercentricsConsentUserResponse,
     UsercentricsLayout,
     UsercentricsLoggerLevel,
     UsercentricsOptions,
+    UsercentricsPublisherAgeSignal,
     UsercentricsReadyStatus,
     UsercentricsUserInteraction
 } from '../models';
@@ -68,6 +74,7 @@ jest.mock("react-native", () => {
         getDpsMetadata: jest.fn(),
         clearUserSession: jest.fn(),
         notifySubscriptionLapsed: jest.fn(),
+        setAgeSignal: jest.fn(),
         addListener: jest.fn(),
         removeListeners: jest.fn()
     };
@@ -725,5 +732,185 @@ describe('Test Usercentrics Module', () => {
         } catch (e) {
             expect(e).toBe("Failed");
         }
+    })
+
+    const publisherDecision = (band: UsercentricsAgeBand, ageLower: number | null, ageUpper: number | null) =>
+        new UsercentricsAgeSignalDecision(
+            UsercentricsAgeSignalSource.publisherProvided,
+            UsercentricsAgeSignalTrust.publisherProvided,
+            band,
+            ageLower,
+            ageUpper,
+            null
+        )
+
+    const lastSetAgeSignalPayload = () => {
+        const calls = RNUsercentricsModule.setAgeSignal.mock.calls;
+        return calls[calls.length - 1][0];
+    }
+
+    test('testSetAgeSignalAtLeast', async () => {
+        const decision = publisherDecision(UsercentricsAgeBand.minor, 16, null)
+        RNUsercentricsModule.setAgeSignal.mockImplementationOnce(
+            (): Promise<any> => Promise.resolve(decision)
+        )
+
+        const data = await Usercentrics.setAgeSignal(UsercentricsPublisherAgeSignal.atLeast(16, "my-age-gate"))
+        expect(data).toBe(decision);
+
+        const payload = lastSetAgeSignalPayload();
+        expect(payload).toEqual({kind: "atLeast", age: 16, sourceLabel: "my-age-gate"});
+        expect(Object.keys(payload).sort()).toEqual(["age", "kind", "sourceLabel"]);
+    })
+
+    test('testSetAgeSignalBelowWithoutLabel', async () => {
+        const decision = publisherDecision(UsercentricsAgeBand.belowMinimum, null, 15)
+        RNUsercentricsModule.setAgeSignal.mockImplementationOnce(
+            (): Promise<any> => Promise.resolve(decision)
+        )
+
+        const data = await Usercentrics.setAgeSignal(UsercentricsPublisherAgeSignal.below(16))
+        expect(data).toBe(decision);
+
+        // A signal without a label sends no label key at all, not even an undefined one
+        const payload = lastSetAgeSignalPayload();
+        expect(payload).toEqual({kind: "below", age: 16});
+        expect(Object.keys(payload).sort()).toEqual(["age", "kind"]);
+    })
+
+    test('testSetAgeSignalBetween', async () => {
+        const decision = publisherDecision(UsercentricsAgeBand.minor, 13, 15)
+        RNUsercentricsModule.setAgeSignal.mockImplementationOnce(
+            (): Promise<any> => Promise.resolve(decision)
+        )
+
+        const data = await Usercentrics.setAgeSignal(UsercentricsPublisherAgeSignal.between(13, 15, "gate.v2_A-1"))
+        expect(data).toBe(decision);
+
+        const payload = lastSetAgeSignalPayload();
+        expect(payload).toEqual({kind: "between", lower: 13, upper: 15, sourceLabel: "gate.v2_A-1"});
+        expect(Object.keys(payload).sort()).toEqual(["kind", "lower", "sourceLabel", "upper"]);
+    })
+
+    test('testSetAgeSignalTransportsWhatTheNativeSdkMustJudge', async () => {
+        // The bridge only transports: the ages and the label are checked by the native SDK, not here
+        let signal: UsercentricsPublisherAgeSignal | undefined
+        expect(() => {
+            signal = UsercentricsPublisherAgeSignal.between(121, -1, "not a valid label!")
+        }).not.toThrow()
+
+        RNUsercentricsModule.setAgeSignal.mockImplementationOnce(
+            (): Promise<any> => Promise.resolve(publisherDecision(UsercentricsAgeBand.standard, 121, -1))
+        )
+        await Usercentrics.setAgeSignal(signal!)
+
+        expect(lastSetAgeSignalPayload()).toEqual({
+            kind: "between", lower: 121, upper: -1, sourceLabel: "not a valid label!"
+        });
+    })
+
+    test('testSetAgeSignalWaitsForTheSdkToBeReady', async () => {
+        let markReady: () => void = () => {}
+        RNUsercentricsModule.isReady.mockImplementationOnce(
+            (): Promise<void> => new Promise<void>((resolve) => {
+                markReady = resolve
+            })
+        )
+        RNUsercentricsModule.setAgeSignal.mockClear()
+        RNUsercentricsModule.setAgeSignal.mockImplementationOnce(
+            (): Promise<any> => Promise.resolve(publisherDecision(UsercentricsAgeBand.minor, 16, null))
+        )
+
+        const pending = Usercentrics.setAgeSignal(UsercentricsPublisherAgeSignal.atLeast(16))
+        for (let tick = 0; tick < 5; tick++) {
+            await Promise.resolve()
+        }
+        expect(RNUsercentricsModule.setAgeSignal).not.toHaveBeenCalled();
+
+        markReady()
+        await pending
+        expect(RNUsercentricsModule.setAgeSignal).toHaveBeenCalledTimes(1);
+    })
+
+    test('testSetAgeSignalWithDecisionWithoutBand', async () => {
+        // A publisher signal always gets a band today, but the model allows "no signal" (platform signals use it)
+        const decision = new UsercentricsAgeSignalDecision(
+            UsercentricsAgeSignalSource.googlePlayAgeSignals,
+            null,
+            null,
+            null,
+            null,
+            UsercentricsAgeSignalUnavailableReason.notShared
+        )
+        expect(decision.isAvailable).toBe(false);
+
+        RNUsercentricsModule.setAgeSignal.mockImplementationOnce(
+            (): Promise<any> => Promise.resolve(decision)
+        )
+
+        const data = await Usercentrics.setAgeSignal(UsercentricsPublisherAgeSignal.atLeast(16))
+
+        // The nulls reach the app as nulls, and a missing band is "no signal", never an adult
+        expect(data).toBe(decision);
+        expect(data.trust).toBeNull();
+        expect(data.band).toBeNull();
+        expect(data.ageLower).toBeNull();
+        expect(data.ageUpper).toBeNull();
+        expect(data.unavailableReason).toBe("NOT_SHARED");
+        expect(data.isAvailable).toBe(false);
+    })
+
+    test('testSetAgeSignalDecisionIsAvailableWhenThereIsABand', () => {
+        for (const band of Object.values(UsercentricsAgeBand)) {
+            expect(publisherDecision(band, 16, null).isAvailable).toBe(true);
+        }
+    })
+
+    test('testSetAgeSignalRejectsWithTheNativeError', async () => {
+        const error = new Error("Invalid age signal: an age is not between 0 and 120")
+        RNUsercentricsModule.setAgeSignal.mockImplementationOnce(
+            (): Promise<any> => Promise.reject(error)
+        )
+
+        // The very same error: nothing is swallowed, re-worded or wrapped on the way
+        await expect(Usercentrics.setAgeSignal(UsercentricsPublisherAgeSignal.atLeast(121))).rejects.toBe(error);
+    })
+
+    test('testSetAgeSignalNeverLogsTheSignalOrTheDecision', async () => {
+        const spies = (["log", "info", "warn", "error", "debug"] as const).map(
+            (method) => jest.spyOn(globalThis.console, method).mockImplementation(() => {})
+        )
+
+        try {
+            RNUsercentricsModule.setAgeSignal.mockImplementationOnce(
+                (): Promise<any> => Promise.resolve(publisherDecision(UsercentricsAgeBand.minor, 16, null))
+            )
+            await Usercentrics.setAgeSignal(UsercentricsPublisherAgeSignal.atLeast(16, "my-age-gate"))
+
+            RNUsercentricsModule.setAgeSignal.mockImplementationOnce(
+                (): Promise<any> => Promise.reject(new Error("Invalid age signal: it has no age"))
+            )
+            await expect(Usercentrics.setAgeSignal(UsercentricsPublisherAgeSignal.atLeast(16))).rejects.toThrow();
+
+            spies.forEach((spy) => expect(spy).not.toHaveBeenCalled())
+        } finally {
+            spies.forEach((spy) => spy.mockRestore())
+        }
+    })
+
+    test('testAgeSignalEnumsUseTheNativeNames', () => {
+        expect(Object.values(UsercentricsAgeBand)).toEqual([
+            "BELOW_MINIMUM", "MINOR", "STANDARD"
+        ]);
+        expect(Object.values(UsercentricsAgeSignalSource)).toEqual([
+            "APPLE_DECLARED_AGE_RANGE", "GOOGLE_PLAY_AGE_SIGNALS", "PUBLISHER_PROVIDED"
+        ]);
+        expect(Object.values(UsercentricsAgeSignalTrust)).toEqual([
+            "SELF_DECLARED", "GUARDIAN_DECLARED", "VERIFIED", "PUBLISHER_PROVIDED"
+        ]);
+        expect(Object.values(UsercentricsAgeSignalUnavailableReason)).toEqual([
+            "DECLINED", "NOT_SHARED", "VERIFICATION_REQUIRED", "UNSUPPORTED", "NOT_AVAILABLE",
+            "INVALID_REQUEST", "TRANSIENT_ERROR", "TIMEOUT", "ERROR"
+        ]);
     })
 })

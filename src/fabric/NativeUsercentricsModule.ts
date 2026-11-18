@@ -20,6 +20,9 @@ export interface Spec extends TurboModule {
   notifySubscribeSuccess(): Promise<void>;
   notifySubscriptionLapsed(): Promise<void>;
 
+  // Age Signals (experimental)
+  setAgeSignal(signal: Object): Promise<Object>;
+
   // Data Retrieval
   getConsents(): Promise<Array<Object>>;
   getCMPData(): Promise<Object>;

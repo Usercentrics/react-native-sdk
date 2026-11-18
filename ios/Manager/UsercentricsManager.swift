@@ -17,6 +17,11 @@ public protocol UsercentricsManager {
     func notifySubscribeSuccess(onSuccess: @escaping (() -> Void), onError: @escaping ((Error) -> Void))
     func notifySubscriptionLapsed(onSuccess: @escaping (() -> Void), onError: @escaping ((Error) -> Void))
 
+    // Experimental, like the native age signal API it bridges
+    func setAgeSignal(request: AgeSignalRequest,
+                      onSuccess: @escaping ((UsercentricsAgeSignalDecision) -> Void),
+                      onError: @escaping ((Error) -> Void))
+
     func showSecondLayer(bannerSettings: BannerSettings?,
                          tab: SecondLayerTab?,
                          dismissViewHandler: @escaping (UsercentricsConsentUserResponse) -> Void)
@@ -85,6 +90,23 @@ final class UsercentricsManagerImplementation: UsercentricsManager {
 
     func notifySubscriptionLapsed(onSuccess: @escaping (() -> Void), onError: @escaping ((Error) -> Void)) {
         UsercentricsCore.shared.notifySubscriptionLapsed(onSuccess: onSuccess, onError: onError)
+    }
+
+    func setAgeSignal(request: AgeSignalRequest,
+                      onSuccess: @escaping ((UsercentricsAgeSignalDecision) -> Void),
+                      onError: @escaping ((Error) -> Void)) {
+        // The Kotlin default `sourceLabel = null` does not exist in Swift: the label is always passed
+        let signal: UsercentricsPublisherAgeSignal
+        switch request {
+        case let .atLeast(age, sourceLabel):
+            signal = UsercentricsPublisherAgeSignal.companion.atLeast(age: age, sourceLabel: sourceLabel)
+        case let .below(age, sourceLabel):
+            signal = UsercentricsPublisherAgeSignal.companion.below(age: age, sourceLabel: sourceLabel)
+        case let .between(lower, upper, sourceLabel):
+            signal = UsercentricsPublisherAgeSignal.companion.between(lower: lower, upper: upper, sourceLabel: sourceLabel)
+        }
+
+        UsercentricsCore.shared.setAgeSignal(signal: signal, onSuccess: onSuccess, onError: onError)
     }
 
     func showSecondLayer(bannerSettings: BannerSettings?,

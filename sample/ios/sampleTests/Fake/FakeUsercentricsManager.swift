@@ -283,4 +283,16 @@ final class FakeUsercentricsManager: UsercentricsManager {
     }
     onSuccess()
   }
+
+  var setAgeSignalRequests: [AgeSignalRequest] = []
+  var setAgeSignalDecision: UsercentricsAgeSignalDecision?
+  var setAgeSignalError: Error?
+  func setAgeSignal(request: AgeSignalRequest, onSuccess: @escaping ((UsercentricsAgeSignalDecision) -> Void), onError: @escaping ((Error) -> Void)) {
+    setAgeSignalRequests.append(request)
+    if let setAgeSignalError = setAgeSignalError {
+      onError(setAgeSignalError)
+      return
+    }
+    onSuccess(setAgeSignalDecision!)
+  }
 }
