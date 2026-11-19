@@ -177,7 +177,8 @@ internal fun ReadableMap.generalStyleSettingsFromMap(context: Context): GeneralS
         logo = getMap("logo")?.bannerLogoFromMap(context = context),
         links = getString("links")?.legalLinksFromEnumString(),
         disableSystemBackButton = getBooleanOrNull("disableSystemBackButton"),
-        windowFullscreen = getBooleanOrNull("windowFullscreen")
+        windowFullscreen = getBooleanOrNull("windowFullscreen"),
+        landscapeLayout = getMap("landscapeLayout")?.let { LandscapeLayoutSettings(enabled = it.getBooleanOrNull("enabled") ?: false) },
     )
 }
 

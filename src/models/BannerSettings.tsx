@@ -61,6 +61,22 @@ export class ToggleStyleSettings {
     }
 }
 
+/**
+ * Experimental. Opt-in to the two-panel landscape layout for the first and second layer, intended for
+ * landscape-only experiences such as games. The shape of this setting may change in a later release.
+ *
+ * Used only when the screen is wider than it is tall and at least about 700 x 300 dp (pt on iOS). In every other
+ * case the standard layout is used, including in portrait, on a small screen and with very large text.
+ */
+export class LandscapeLayoutSettings {
+
+    enabled: Boolean;
+
+    constructor(enabled: Boolean = false) {
+        this.enabled = enabled;
+    }
+}
+
 export class GeneralStyleSettings {
 
     font?: BannerFont;
@@ -79,6 +95,8 @@ export class GeneralStyleSettings {
      * fullscreen dialog behavior prior to the edge-to-edge fix. Has no effect on iOS.
      */
     windowFullscreen?: Boolean;
+    /** Experimental. Off by default. See {@link LandscapeLayoutSettings}. */
+    landscapeLayout?: LandscapeLayoutSettings;
 
     constructor(font?: BannerFont,
                 logo?: BannerLogo,
@@ -91,7 +109,8 @@ export class GeneralStyleSettings {
                 bordersColorHex?: String,
                 toggleStyleSettings?: ToggleStyleSettings,
                 disableSystemBackButton?: Boolean,
-                windowFullscreen?: Boolean
+                windowFullscreen?: Boolean,
+                landscapeLayout?: LandscapeLayoutSettings
     ) {
         this.font = font;
         this.logo = logo;
@@ -105,6 +124,7 @@ export class GeneralStyleSettings {
         this.toggleStyleSettings = toggleStyleSettings;
         this.disableSystemBackButton = disableSystemBackButton;
         this.windowFullscreen = windowFullscreen;
+        this.landscapeLayout = landscapeLayout;
     }
 }
 
