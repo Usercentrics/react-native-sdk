@@ -106,6 +106,13 @@ export const windowFullscreenExample: BannerSettings = {
     }
 }
 
+// MSDK-5067: experimental two-panel landscape layout (applies only on a landscape screen of about 700 x 300 dp or more)
+export const landscapeLayoutExample: BannerSettings = {
+    generalStyleSettings: {
+        landscapeLayout: { enabled: true },
+    }
+}
+
 function createBannerLogo(): BannerLogo {
     // Logo name is used for iOS and the Image.resolveAssetSource is used for Android.
     const customLogo = new BannerLogo("logo.png", Image.resolveAssetSource(require('../../assets/images/logo.png')))

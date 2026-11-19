@@ -6,7 +6,7 @@ import {
     UsercentricsConsentUserResponse,
     UsercentricsServiceConsent,
 } from '@usercentrics/react-native-sdk';
-import { customizationExampleOne, customizationExampleTwo, windowFullscreenExample } from './CustomizationExamples';
+import { customizationExampleOne, customizationExampleTwo, landscapeLayoutExample, windowFullscreenExample } from './CustomizationExamples';
 
 export const HomeScreen = ({ navigation }: { navigation: any }) => {
     function applyConsent(_consents?: UsercentricsServiceConsent[] | null) {
@@ -137,6 +137,7 @@ export const HomeScreen = ({ navigation }: { navigation: any }) => {
             <Button onPress={() => showFirstLayer(customizationExampleOne)} title="Customization Example 1" />
             <Button onPress={() => showFirstLayer(customizationExampleTwo)} title="Customization Example 2" />
             <Button onPress={() => showFirstLayer(windowFullscreenExample)} title="Window Fullscreen (Android)" />
+            <Button onPress={() => showFirstLayer(landscapeLayoutExample)} title="Landscape Layout (experimental)" />
             <Button onPress={async () => { await Usercentrics.status(); navigation.navigate('CustomUI'); }} title="Custom UI" />
             <Button onPress={async () => { await Usercentrics.status(); navigation.navigate('WebviewIntegration'); }} title="Webview Integration" />
             <Button onPress={() => navigation.navigate('GPPTesting')} title="GPP Testing" />

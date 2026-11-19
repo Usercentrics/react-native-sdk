@@ -21,6 +21,17 @@ class BannerSettingsDictTests: XCTestCase {
 //    XCTAssertEqual(16.0, settings?.font?.pointSize)
   }
 
+  func testFromDictWithLandscapeLayout() {
+    let enabled = BannerSettings(from: ["generalStyleSettings": ["landscapeLayout": ["enabled": true]]])
+    XCTAssertEqual(true, enabled?.generalStyleSettings?.landscapeLayout?.enabled)
+
+    let missingFlag = BannerSettings(from: ["generalStyleSettings": ["landscapeLayout": [:]]])
+    XCTAssertEqual(false, missingFlag?.generalStyleSettings?.landscapeLayout?.enabled)
+
+    let absent = BannerSettings(from: ["generalStyleSettings": ["textColorHex": "#000000"]])
+    XCTAssertNil(absent?.generalStyleSettings?.landscapeLayout)
+  }
+
   func testFromDictWithIncorrectValues() {
     let dict: NSDictionary = ["font": ["fontName": "", "fontSize": ""], "logo": ["logoName": ""]]
     let settings = BannerSettings(from: dict)
